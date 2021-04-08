@@ -129,8 +129,8 @@ main{
 .event-in-calendar {
     width: 80%;
     border-radius: 2px;
-    padding: 4px;
-    margin: 2px auto;
+    padding: 2px;
+    margin: 0.5px auto;
     font-size: 0.8rem;
 }
 .yellow-event {
