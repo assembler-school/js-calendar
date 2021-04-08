@@ -3,6 +3,7 @@
 *{
   margin:0 auto;
   padding:0px;
+  box-sizing:border-box;
   /* outline:solid 1px red; */
   font-family: 'Montserrat', sans-serif;
   font-weight: 100;
@@ -10,25 +11,26 @@
 }
 
 #year-view{
-  width:100vw;
+  width:100%;
   height:100vh;
   background-color:rgb(80, 80, 80);
 }
 
 .year-row{
   display:flex;
+  width:100%;
   height:33.3%;
 }
 
 .year-row>.month{
-  width:22%;
-  height: 80%;
+  width:25%;
+  height: 100%;
 }
 
 .month>.week{
-  height:12.5%;
   display:flex;
   align-items: center;
+  height:12%;
 }
 
 .week>.days{
@@ -40,8 +42,7 @@
 
 /* STYLES */
 .month-name{
-  padding-top:5%;
-  padding-left:5%;
+  padding:5%;
   font-size:x-large;
   font-weight:bold;
   color:rgb(102, 174, 175);
@@ -53,5 +54,10 @@
 
 .current{
   background-color:rgba(102, 174, 175, 0.425);
+  border-radius:20%;
+}
+
+.days:hover{
+  background-color:rgba(166, 175, 175, 0.425);
   border-radius:20%;
 }
