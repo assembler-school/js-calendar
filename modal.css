@@ -1,0 +1,10 @@
+.modal-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-button{
+    width: 50px;
+}
