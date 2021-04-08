@@ -1,5 +1,20 @@
 /*
 ===================================
+   ! Color palette
+===================================
+*/
+:root {
+    --color1: #f0f4fa;
+    --color2: #b2c8e7;
+    --color3: #0124fd;
+    --color4: #a6a8bc;
+    --color5: #726775;
+    --color6: #ff6010;
+    --color7: #5727d2;
+}
+
+/*
+===================================
    ! General styles
 ===================================
 */
@@ -27,6 +42,7 @@ body {
     flex-direction: row;
     justify-content: space-between;
     padding: 20px;
+    background-color: var(--color1);
   }
   
   button#create-event {
