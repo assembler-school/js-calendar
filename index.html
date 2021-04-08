@@ -5,8 +5,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JS Calendar</title>
+    <link rel="stylesheet" href="./css/root.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    
+    <header>
+        <div class="header01-div">
+            <button id="newEvent-btn" class="newEvent-btn">+</button>
+            <button id="warningBox-btn" class="warningBox-btn">!2</button>
+        </div>
+        <div class="header02-div">
+            <button id="monthView-btn" class="monthView-btn">Month</button>
+            <button id="yearView-btn" class="yearView-btn">Year</button>
+        </div>
+        <div class="header03-div">
+            <button id="goPrevious-btn" class="goPrevious-btn"><</button>
+            <button id="goToday-btn" class="goToday-btn">Today</button>
+            <button id="goNext-btn" class="goNext-btn">></button>
+        </div>
+    </header>
+    <main>
+        <section id="currentDate-section" class="currentDate-section">
+            <div id="currentTypeofDate-container" class="currentTypeofDate-container">
+                <h1 id="currentMonth-text" class="currentMonth-text">April</h1>
+                <h1 id="currentYear-text" class="currentYear-text">2021</h1>
+            </div>
+        </section>
+
+        <section id="mainContent-section" class="mainContent-section">
+            <!-- <template> -->
+                <h2 class="dayOfWeek-name">Mon</h2>
+                <h2 class="dayofMonth-number">29</h2>
+                <h3 class="monthName-text">January</h3>
+                <h4 class="dayOfWeekOnMonth-name">M</h4>
+                <p class="event-text">Pagar Impuestos</p>
+            <!-- </template> -->
+        </section>
+    </main>
+    <script src="./js/main.js"></script>
 </body>
 </html>
