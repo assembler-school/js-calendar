@@ -1,46 +1,71 @@
+/* Font import */
+@import url('https://fonts.googleapis.com/css2?family=Arimo&display=swap');
+/* Project color palette */
+:root {
+    --darkGrey: #3D4141;
+    --lightGrey: #7F817F;
+    --darkestGray: #313535;
+}
+
+
 * {
     padding: 0;
     margin: 0;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    outline: black 1px solid;
+    font-family: 'Arimo', sans-serif;
+/*     outline: black 1px solid; */
+    box-sizing: border-box;
+    color: var(--darkestGrey);
 }
+
 /* * HEADER */
 header {
     max-height: 150px;
-    height: 20vh;
+    height: 10vh;
     background-color: aqua;
+    text-align: center;
+}
+.page-title {
+    display: inline-block;
+}
+.btn-add-event {
+    display: inline-block;
+}
+#current-date{
+    
 }
 
 /* * CALENDAR AREA */
 main{
-    height: 80vh;
+    height: 90vh;
     width: 100vw;
     background-color: bisque;
 }
 .calendar{
-    margin: 10px auto;
-    height: 90%;
+    margin: 0 auto 0 auto;
+    height: 100%;
     width: 90%;
-    
+    background-color: rgb(230, 222, 216);
+    padding: 10px 0;
 }
 .weekdays{
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: auto;
     justify-items: center;
+    height: 5%;
 }
 .days-wrapper{
     display: grid;
-    grid-auto-row: 1fr;
-    height: 100%;
-    gap: 10px;
-}
-.calendar-row{
-    display: grid;
+    grid-auto-rows: 1fr;
     grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
-    height:max-content;
+    height: 95%;
+    border: 0.5px solid var(--lightGrey);
+   /*  gap: 10px; */
 }
-.day{
 
+.day{
+    text-align: center;
+    padding: 5px;
+    border: 0.5px solid var(--lightGrey);
+    /* box-sizing: content-box; */
 }
