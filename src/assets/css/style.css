@@ -49,7 +49,23 @@ header {
     color: blue;
     cursor: pointer;
 }
-.btn-add-event {
+
+/*
+=======================================
+! Modal
+=======================================
+ */
+.hidden {
+    display: none;
+}
+.modal-section {
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.modal-button {
+    width: 50px;
 }
 
 /*
