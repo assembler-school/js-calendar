@@ -1,19 +1,33 @@
+/* VARIABLES */
+:root {
+  --font: "Open Sans", sans-serif;
+  --font-display: "Open Sans", sans-serif;
+  --bg: #333333;
+  --header: #404040;
+  --btnGrey: #585858;
+  --btnActive: #7b7b7b;
+  --textDarkGray: #707070;
+  --textLightGray: #b0b0b0;
+  --pink: #c07d7d;
+  --green: #b8cead;
+}
+
+
 /* STRUCTURE */
 
 *{
   margin:0 auto;
   padding:0px;
   box-sizing:border-box;
-  /* outline:solid 1px red; */
-  font-family: 'Montserrat', sans-serif;
+  /* outline: 1px solid red !important; */
+  font-family:var(--font);
   font-weight: 100;
-  color:aliceblue
+  color:var(--textLightGray);
 }
 
 #year-view{
   width:100%;
   height:100vh;
-  background-color:rgb(80, 80, 80);
 }
 
 .year-row{
@@ -25,6 +39,7 @@
 .year-row>.month{
   width:25%;
   height: 100%;
+  padding:0.5%;
 }
 
 .month>.week{
@@ -36,6 +51,7 @@
 .week>.days{
   display:flex;
   width:14.2%;
+  height:100%;
   align-items: center;
   justify-content: center;
 }
@@ -43,21 +59,33 @@
 /* STYLES */
 .month-name{
   padding:5%;
-  font-size:x-large;
+  font-size:1.5em;
   font-weight:bold;
   color:rgb(102, 174, 175);
 }
 
 .week-days>div{
-  color:rgb(190, 157, 114);
+  color:var(--pink);
 }
 
-.current{
-  background-color:rgba(102, 174, 175, 0.425);
-  border-radius:20%;
+.week-days>div:hover{
+  background-color:var(--bg);
 }
 
 .days:hover{
   background-color:rgba(166, 175, 175, 0.425);
   border-radius:20%;
+  border-radius:50%;
+}
+
+.current{
+  color:var(--bg);
+  background-color:var(--green);
+  border-radius:50%;
+}
+
+.current:hover{
+  background-color:var(--bg);
+  color:var(--textLightGray);
+  border-radius:50%;
 }
