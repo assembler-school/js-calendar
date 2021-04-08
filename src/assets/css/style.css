@@ -148,6 +148,10 @@ main{
     padding: 2px;
     margin: 0.5px auto;
     font-size: 0.8rem;
+    transition: transform 0.2s;
+}
+.event-in-calendar:hover, .event-in-calendar:focus {
+    transform: scale(1.1);
 }
 .yellow-event {
     background-color: var(--eventYellow);
