@@ -1,29 +1,86 @@
-let initialDate = new Date();
-let currenDate = new Date();
-let currentYear = currentDate.getFullYear();
-let currentMonth = currentDAte.getMonth();
+const date = new Date();
+/*
+ * This function create calendar
+ * set calendar
+ * @ Author: Armando
+ */
+const renderCalendar = () => {
+    date.setDate(1);
 
-let currentMonthInt = new Int.DateTimeFormat('en-US', {month:'long'}).format(currentDate);
+    const monthDays = document.querySelector(".days-wrapper");
 
-let calendarYearMonth = document.body.querySelector(".calendar-month-year");
-let calendarDays = document.body.querySelector(".days-wrapper");
+    const lastDay = new Date(
+        date.getFullYear(),
+        date.getMonth() + 1,
+        0
+    ).getDate();
 
-calendarYearMonth.innerHTML = `<strong>${currentMontInt}</strong> ${currentYear}`
+    const prevLastDay = new Date(
+        date.getFullYear(),
+        date.getMonth(),
+        0
+    ).getDate();
 
-document.body.onload = fillCalendarCurrentMonth(currentYear, currentMonth);
+    const firstDayIndex = date.getDay();
 
-function fillCalendarCurrentMonth (year, month) {
-    let firstDayOfMonth = new Date(year, month, 1);
-    let firstDayOfMonthweekday = firstDayOfMonth.getDay();
+    const lastDayIndex = new Date(
+        date.getFullYear(),
+        date.getMonth() + 1,
+        0
+    ).getDay();
 
-    let lastDayOfMonth = new Date(year, month + 1, 0);
+    const nextDays = 7 - lastDayIndex - 1;
 
-    for(let i = 1; 1 <= lastDayOfMonth.getDate(); i++) {
-        let dateElement = document.createElement("div");
-        let dateContent = document.createTextNode(i);
-        dateElement.appendChild(dateContent);
-        dateElement.classList.add("day");
-        calendarDays.appendChild(dateElement);
-    };
+    const months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+    ];
 
-}
+    document.querySelector(".page-title").innerHTML = months[date.getMonth()] +" "+ date.getFullYear();
+
+    document.querySelector("#current-date").innerHTML = new Date().toDateString();
+
+    let days = "";
+    // creating div with prev days of calendar
+    for (let x = firstDayIndex; x > 0; x--) {
+        days += `<div class="prev-date">${prevLastDay - x + 1}</div>`;
+    }
+    // creating div with days of calendar
+    for (let i = 1; i <= lastDay; i++) {
+        if (
+            i === new Date().getDate() &&
+            date.getMonth() === new Date().getMonth()
+        ) {
+            days += `<div class="today">${i}</div>`;
+        } else {
+            days += `<div>${i}</div>`;
+        }
+    }
+// creating div with next days of calendar
+    for (let j = 1; j <= nextDays; j++) {
+        days += `<div class="next-date">${j}</div>`;
+        monthDays.innerHTML = days;
+    }
+};
+
+document.querySelector(".prev").addEventListener("click", () => {
+    date.setMonth(date.getMonth() - 1);
+    renderCalendar();
+});
+
+document.querySelector(".next").addEventListener("click", () => {
+    date.setMonth(date.getMonth() + 1);
+    renderCalendar();
+});
+
+renderCalendar();

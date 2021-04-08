@@ -1,27 +1,38 @@
 /* Font import */
 @import url('https://fonts.googleapis.com/css2?family=Arimo&display=swap');
-/* Project color palette */
+/*
+=======================================
+! Custom properties
+=======================================
+ */
 :root {
     --darkGrey: #3D4141;
     --lightGrey: #7F817F;
     --darkestGray: #313535;
 }
-
-
+/*
+=======================================
+! General Styles
+=======================================
+ */
 * {
     padding: 0;
     margin: 0;
     font-family: 'Arimo', sans-serif;
-/*     outline: black 1px solid; */
+    /* outline: black 1px solid; */
     box-sizing: border-box;
     color: var(--darkestGrey);
 }
 
-/* * HEADER */
+/*
+=======================================
+! Header
+=======================================
+ */
 header {
     max-height: 150px;
     height: 10vh;
-    background-color: aqua;
+    background-color: #167e56;
     text-align: center;
 }
 .page-title {
@@ -30,11 +41,22 @@ header {
 .btn-add-event {
     display: inline-block;
 }
-#current-date{
-    
+.fas {
+    font-size: 2rem;
+    color: white;
+}
+.fas:hover {
+    color: blue;
+    cursor: pointer;
+}
+.btn-add-event {
 }
 
-/* * CALENDAR AREA */
+/*
+=======================================
+! Calendar Area
+=======================================
+ */
 main{
     height: 90vh;
     width: 100vw;
@@ -42,7 +64,7 @@ main{
 }
 .calendar{
     margin: 0 auto 0 auto;
-    height: 100%;
+    height: 90%;
     width: 90%;
     background-color: rgb(230, 222, 216);
     padding: 10px 0;
@@ -54,18 +76,48 @@ main{
     justify-items: center;
     height: 5%;
 }
+.weekdays div {
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.1rem;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+}
 .days-wrapper{
     display: grid;
     grid-auto-rows: 1fr;
     grid-template-columns: repeat(7, 1fr);
     height: 95%;
     border: 0.5px solid var(--lightGrey);
-   /*  gap: 10px; */
+    gap: 10px;
+}
+.days-wrapper div {
+    font-size: 1.4rem;
+    border: 0.5px solid var(--lightGrey);
+    margin: 0.3rem;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+    transition: background-color 0.2s;
+}
+.days-wrapper div:hover {
+    background-color: #262626;
+    border: 0.2rem solid #777;
+    cursor: pointer;
 }
 
 .day{
     text-align: center;
     padding: 5px;
     border: 0.5px solid var(--lightGrey);
-    /* box-sizing: content-box; */
+}
+
+.prev-date,
+.next-date {
+    opacity: 0.5;
+}
+.today {
+    background-color: #167e56;
+    color: blue;
 }
