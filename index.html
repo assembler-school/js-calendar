@@ -5,36 +5,73 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JS Calendar</title>
+    <link rel="stylesheet" href="./css/root.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <button id="createEventBtn">Create Event</button>
-    <div class="modal" id="modalDiv">
-        <div class="modalDialog">
-            <header class="modalHeader">
-                Nuevo evento
-                <button>✕</button>
-            </header>
-            <section class="modalContent">
-                <label for="eventTitleId"></label><input type="text" id="eventTitleId" placeholder="Event Title">
-                <label for="initialDateId"></label><input type="text" id="initialDateId" placeholder="Initial Date">
-
-                <label for="endDateId"></label>
-                <input type="checkbox" id="endDateId">
-
-                <label for="reminderId"></label>
-                <input type="checkbox" id="reminderId">
-
-                <label for="description"></label><textarea id="description" placeholder="Description"></textarea>
-                <label for="eventTypeSelect"></label>
-                <select id="eventTypeSelect">
-                    <option value="Meeting">EventType1</option>
-                    <option value="Meeting">EventType2</option>
-                </select>
-
-            </section>
-            <footer class="modalFooter"></footer>
+    <header>
+        <div class="header01-div">
+            <button class="newEvent-btn">+</button>
+            <button class="warningBox-btn">!2</button>
         </div>
-    </div>
+        <div class="header02-div">
+            <button class="monthView-btn">Month</button>
+            <button class="yearView-btn">Year</button>
+        </div>
+        <div class="header03-div">
+            <button class="goPrevious-btn"><</button>
+            <button class="goToday-btn">Today</button>
+            <button class="goNext-btn">></button>
+        </div>
+    </header>
+    <main>
+        <section class="currentDate-section">
+            <div class="currentTypeofDate-container">
+                <h1 class="currentMonth-text">April</h1>
+                <h1 class="currentYear-text">2021</h1>
+            </div>
+        </section>
+
+        <section class="mainContent-section">
+            <!-- <template> -->
+                <h2 class="dayOfWeek-name">Mon</h2>
+                <h2 class="dayofMonth-number">29</h2>
+                <h3 class="monthName-text">January</h3>
+                <h4 class="dayOfWeekOnMonth-name">M</h4>
+                <p class="event-text">Pagar Impuestos</p>
+            <!-- </template> -->
+        </section>
+        <button id="createEventBtn">Create Event</button>
+        <div class="modal" id="modalDiv">
+            <div class="modalDialog">
+                <header class="modalHeader">
+                    Nuevo evento
+                    <button>✕</button>
+                </header>
+                <section class="modalContent">
+                    <label for="eventTitleId"></label><input type="text" id="eventTitleId" placeholder="Event Title">
+                    <label for="initialDateId"></label><input type="text" id="initialDateId" placeholder="Initial Date">
+
+                    <label for="endDateId"></label>
+                    <input type="checkbox" id="endDateId">
+
+                    <label for="reminderId"></label>
+                    <input type="checkbox" id="reminderId">
+
+                    <label for="description"></label><textarea id="description" placeholder="Description"></textarea>
+                    <label for="eventTypeSelect"></label>
+                    <select id="eventTypeSelect">
+                        <option value="Meeting">EventType1</option>
+                        <option value="Meeting">EventType2</option>
+                    </select>
+
+                </section>
+                <footer class="modalFooter"></footer>
+            </div>
+        </div>
+    </main>
+    <script src="./js/main.js"></script>
 </body>
-<script src="js/main.js"></script>
 </html>
