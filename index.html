@@ -7,6 +7,34 @@
     <title>JS Calendar</title>
 </head>
 <body>
-    
+    <button id="createEventBtn">Create Event</button>
+    <div class="modal" id="modalDiv">
+        <div class="modalDialog">
+            <header class="modalHeader">
+                Nuevo evento
+                <button>✕</button>
+            </header>
+            <section class="modalContent">
+                <label for="eventTitleId"></label><input type="text" id="eventTitleId" placeholder="Event Title">
+                <label for="initialDateId"></label><input type="text" id="initialDateId" placeholder="Initial Date">
+
+                <label for="endDateId"></label>
+                <input type="checkbox" id="endDateId">
+
+                <label for="reminderId"></label>
+                <input type="checkbox" id="reminderId">
+
+                <label for="description"></label><textarea id="description" placeholder="Description"></textarea>
+                <label for="eventTypeSelect"></label>
+                <select id="eventTypeSelect">
+                    <option value="Meeting">EventType1</option>
+                    <option value="Meeting">EventType2</option>
+                </select>
+
+            </section>
+            <footer class="modalFooter"></footer>
+        </div>
+    </div>
 </body>
+<script src="js/main.js"></script>
 </html>

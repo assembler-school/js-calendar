@@ -1,0 +1,15 @@
+
+.modal {
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.35s ease-in;
+}
+
+.modal.showUp {
+    visibility: visible;
+    opacity: 1;
+}
+textarea {
+    /* will prevent resizing horizontally */
+    resize:vertical;
+}
