@@ -1,0 +1,57 @@
+/* STRUCTURE */
+
+*{
+  margin:0 auto;
+  padding:0px;
+  /* outline:solid 1px red; */
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
+  color:aliceblue
+}
+
+#year-view{
+  width:100vw;
+  height:100vh;
+  background-color:rgb(80, 80, 80);
+}
+
+.year-row{
+  display:flex;
+  height:33.3%;
+}
+
+.year-row>.month{
+  width:22%;
+  height: 80%;
+}
+
+.month>.week{
+  height:12.5%;
+  display:flex;
+  align-items: center;
+}
+
+.week>.days{
+  display:flex;
+  width:14.2%;
+  align-items: center;
+  justify-content: center;
+}
+
+/* STYLES */
+.month-name{
+  padding-top:5%;
+  padding-left:5%;
+  font-size:x-large;
+  font-weight:bold;
+  color:rgb(102, 174, 175);
+}
+
+.week-days>div{
+  color:rgb(190, 157, 114);
+}
+
+.current{
+  background-color:rgba(102, 174, 175, 0.425);
+  border-radius:20%;
+}
