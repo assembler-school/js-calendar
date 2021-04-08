@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family:Verdana,
+    Geneva,
+    Tahoma,
+    sans-serif;   
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    z-index:1;
+}
+
+#shadow {
+    position: absolute;
+    background-color: gray;
+    height: 100vh;
+    width: 100vw;
+    z-index: 2;
+    top: 0;
+}
+
+#modal {
+    position: fixed;
+    top: calc(50% - 250px);
+    left: calc(50% - 250px);
+    height: 500px;
+    width: 500px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+#modal div {
+    margin-top: 10px;
+    display: flex;
+    justify-content:space-between;
+    width: 65%;
+}
+
+
+
+
+
