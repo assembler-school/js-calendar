@@ -9,7 +9,7 @@ const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
 
 const prevLastDay = new Date(date.getFullYear(), date.getMonth(), 0).getDate();
 
-const firstDayIndex = date.getDay;
+const firstDayIndex = date.getDay();
 
 const lastDayIndex = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDay();
 
@@ -54,7 +54,6 @@ for (let i = 1; i <= lastDay; i++) {
         days += `<div>${i}</div>`;
     }
 
-    //x+=10 x=x+10
     monthDays.innerHTML = days;
 }
 
