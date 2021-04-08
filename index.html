@@ -1,16 +1,93 @@
 <!DOCTYPE html>
 <html>
-     <head>
-          <meta charset="utf-8">
-          <meta http-equiv="X-UA-Compatible" content="IE=edge">
-          <title></title>
-          <meta name="description" content="">
-          <meta name="viewport" content="width=device-width, initial-scale=1">
-          <link rel="stylesheet" href="./assets/css/style.css">
-     </head>
-     <body>
-          <header style="height=40px;background-color=red"></header>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./assets/css/style.css">
+    </head>
+    <body>
+        <header style="height:40px;background-color:red;padding:0.5%">Calendar</header>
 
-          <script src="" async defer></script>
-     </body>
+        <section id="calendar">
+            <div class="monthNav">
+                <div id="navLeft">
+                    <img src="./assets/img/btn-left.png" alt="">
+                    <h2>April 2021</h2>
+                    <img src="./assets/img/btn-right.png" alt="">
+                </div>
+                <div id="navRight">
+                    <button>Day</button>
+                    <button>Week</button>
+                    <button>Month</button>
+                    <button>Year</button>
+                </div>
+            </div>
+            <div class="weekDay">
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fry</div>
+                <div>Sat</div>
+                <div>Sun</div>
+            </div>
+            <div class="month">
+                <div class="week" data-row="1">
+                    <div data-col="1"></div>
+                    <div data-col="2"></div>
+                    <div data-col="3"></div>
+                    <div data-col="4"></div>
+                    <div data-col="5"></div>
+                    <div data-col="6"></div>
+                    <div data-col="7"></div>
+                </div>
+                <div class="week" data-row="2">
+                    <div data-col=""></div>
+                    <div data-col=""></div>
+                    <div data-col=""></div>
+                    <div data-col=""></div>
+                    <div data-col=""></div>
+                    <div data-col=""></div>
+                    <div data-col=""></div>                
+                </div>
+                <div class="week" data-row="3">
+                    <div data-col=""></div>
+                    <div data-col=""></div>
+                    <div data-col=""></div>
+                    <div data-col=""></div>
+                    <div data-col=""></div>
+                    <div data-col=""></div>
+                    <div data-col=""></div>                
+                </div>
+                <div class="week" data-row="4">
+                    <div data-col=""></div>
+                    <div data-col=""></div>
+                    <div data-col=""></div>
+                    <div data-col=""></div>
+                    <div data-col=""></div>
+                    <div data-col=""></div>
+                    <div data-col=""></div>                
+                </div>
+                <div class="week" data-row="5">
+                    <div data-col=""></div>
+                    <div data-col=""></div>
+                    <div data-col=""></div>
+                    <div data-col=""></div>
+                    <div data-col=""></div>
+                    <div data-col=""></div>
+                    <div data-col=""></div>                
+                </div>
+            </div>
+            
+        </section>
+
+        <template id="month">
+
+        </template>
+
+        <script src="" async defer></script>
+    </body>
 </html>
