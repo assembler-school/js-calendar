@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>JS CALENDAR</h1>
+        <button id="create-event">Add event</button>
+    </header>
+
+    <div id="shadow">
+        <form action="" id="modal">
+            <h2>New event</h2>
+            
+            <label for="title" >Title:</label>
+            <input type="text" name="title">
+
+            <label for="init-date">Initial date:</label>
+            <input type="date" name="init-date">
+
+            <label for="end-check">End date</label>
+            <input type="checkbox" name="end-check">
+
+            <label for="end-date">End date:</label>
+            <input type="date" name="end-date">
+
+            <label for="reminder">Remind me when this event is about to begin:</label>
+            <input type="checkbox" name="reminder">
+
+            <label for="select-time">Time:</label>
+            <select name="select-time">
+                <option value="5">5 minutes</option>
+                <option value="15">15 minutes</option>
+                <option value="30">30 minutes</option>
+                <option value="60">1 hour</option>
+            </select>
+
+            <label for="description"></label>
+            <textarea name="description" cols="30" rows="10"></textarea>
+
+            <label for="select-event">Event type:</label>
+            <select name="select-event">
+                <option value="5">Meeting</option>
+                <option value="15">Birthday</option>
+                <option value="30">Date</option>
+                <option value="60">Other</option>
+            </select>
+
+            <input type="submit" value="Create">
+            <button>Cancel</button>
+
+        </form>
+    </div>
+</body>
+</html>
