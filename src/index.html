@@ -6,14 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendar</title>
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous"/>
 </head>
 <body>
     <header>
-        <button>previous</button>
-        <h1 id="month" class="page-title">April </h1>
-        <h1 id="Year" class="page-title">2021</h1>
-        <button>next</button>
-        <button class="btn-add-event">Add Event</button>
+        <div class="header-top-container">
+            <button class="btn-next-prev"><i class="fas fa-arrow-left"></i></button>
+            <h1 id="month" class="page-title">April </h1>
+            <h1 id="Year" class="page-title">2021</h1>
+            <button class="btn-next-prev"><i class="fas fa-arrow-right"></i></button>
+            <button class="btn-add-event">Add Event</button>
+        </div>
         <div id="current-date">8 April 2021</div>
     </header>
     <main>

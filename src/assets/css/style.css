@@ -2,9 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Arimo&display=swap');
 /* Project color palette */
 :root {
-    --darkGrey: #3D4141;
-    --lightGrey: #7F817F;
     --darkestGray: #313535;
+    --darkGray: #3D4141;
+    --lightGray: #7F817F;
+    --lightestGray: #9A9C9A;
 }
 
 
@@ -14,7 +15,7 @@
     font-family: 'Arimo', sans-serif;
 /*     outline: black 1px solid; */
     box-sizing: border-box;
-    color: var(--darkestGrey);
+    color: var(--darkestGray);
 }
 
 /* * HEADER */
@@ -24,11 +25,27 @@ header {
     background-color: aqua;
     text-align: center;
 }
+.header-top-container {
+    height: 60%;
+    
+}
+.btn-next-prev{
+    margin: 0 10px;
+    padding: 5px;
+    background-color: var(--lightestGray);
+    font-size: 20px;
+    color: var(--darkestGray);
+    border: none;
+    border-radius: 8px;
+}
+
 .page-title {
     display: inline-block;
 }
 .btn-add-event {
-    display: inline-block;
+    position: absolute;
+    right: 10px;
+    top: 10px;
 }
 #current-date{
     
@@ -59,13 +76,13 @@ main{
     grid-auto-rows: 1fr;
     grid-template-columns: repeat(7, 1fr);
     height: 95%;
-    border: 0.5px solid var(--lightGrey);
+    border: 0.5px solid var(--lightGray);
    /*  gap: 10px; */
 }
 
 .day{
     text-align: center;
     padding: 5px;
-    border: 0.5px solid var(--lightGrey);
+    border: 0.5px solid var(--lightGray);
     /* box-sizing: content-box; */
 }
