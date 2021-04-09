@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JS-CALENDAR</title>
+      <title>JS-CALENDAR</title>
 
     <!---------------- LINKS ---------------->
     <link rel="stylesheet" href="assets/style/style.css">
+    
 
     <body>
         <!---------------- INICIO HEAD ---------------->
@@ -45,37 +46,60 @@
         </main>
         <!---------------- INICIO ASIDE ---------------->
         <aside>
-            <button class="open-button" onclick="openForm()">+</button>
-            <div class="form-popup" id="myForm">
-                <form  class="form-container">
-                  <h1>New Event</h1>
-              
-                  <label for="title"><b>Title:</b></label>
-                  <input type="text" placeholder="Add title" name="" required>
-              
-                  <label for=""><b>Initial date:</b></label>
-                  <input type="date" placeholder="" name="" required></input> <br>
+            <button id="openButton">+</button>
 
-                  <input id="endDate" type="checkbox">End date</input> <br>
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <div class="textContainer">
+                    <h1>New Event</h1>
+                </div>
+                <div id="addTitle">
+                  <label for="title"></label>
+                  <input id="titleBox" type="text" placeholder="Add title" name="Add title" maxlength="60" >
+                </div>
+                <div id="addDate">
+                  <label for="">Initial date:</label>
+                  <input id="initialCal" type="date"></input> 
+                </div>
+                <div id="endDate">
+                  <input  type="checkbox">End date</input> 
+                  <input id="endCal" type="date"></input> 
 
-                  <label for=""><b>Initial Time:</b></label> 
-                  <input type="time"  name="" > <br>
-
-                  <input id="reminderBox" type="checkbox">Remind me when this event expires</input> <br>
-
-                  <textarea id="descriptionBox" placeholder="Add a description..."></textarea> <br>
+                </div>
+                <div id="timeSelect">
+                  <label for="">Initial Time:</label> 
+                  <input id="timeSelector" type="time"  name="" > 
+                </div>
+                <div id="reminderBox">
+                  <input  type="checkbox">Remind me when this event expires
+                  <select id="reminderSelect">
+                    <option value="timeBefore">5 minutes before</option>
+                    <option value="timeBefore">10 minutes before</option>
+                    <option value="timeBefore">15 minutes before</option>
+                    <option value="timeBefore">30 minutes before</option>
+                    <option value="timeBefore">1 hour before</option>
+                </select> </input>
+                </div>
+                <div id="descriptionBox">
+                  <textarea maxlength="500" rows="3" cols="52"  placeholder="Add a description..."></textarea>
+                </div>
+               
+                <div id="eventType">
                     <label for="events"> Event type:</label>
-                  <select id="selectType">
+                  <select id="eventSelect">
                       <option value="meeting">Meeting</option>
-                      <option value="reminder">Reminder</option>
-                  </select> <br>
+                      <option value="reminder">Personal</option>
+                      <option value="reminder">Study</option>
+                  </select> 
+                </div>
                 
-
-                  <button type="submit" class="btn_create">Create</button>
-                  <button type="button" class="btn_cancel" onclick="closeForm()">Cancel</button>
-                </form>
-              </div>
-            
+                <div id="buttonsPop">
+                  <div><button id="createBtn" type="submit" class="buttons">Create</button></div>
+                  <div><button id="cancelBtn" type="button" class="buttons" onclick="closeForm()">Cancel</button></div>
+                </div>
+               
+            </div>
+        </div>
         </aside>
         <!---------------- INICIO FOOTER ---------------->
         <footer></footer>
