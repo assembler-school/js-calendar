@@ -16,7 +16,62 @@
         <h1>Js Calendar</h1>
         <button id="create-event"> <i class="fas fa-plus"></i> Add event</button>
     </header> -->
-
+    <section id="modalEvent">
+        <div id="shadow" class="off">
+            <div id="modal">
+                <i id="close" class="fas fa-times-circle"></i>
+                <h2>New event</h2>
+                <form action="">
+                    <div class="shadow__input--stretch">
+                        <label for="title">Title:</label>
+                        <input type="text" name="title">
+                    </div>
+                    <div class="shadow__input--stretch">
+                        <label for="init-date">Initial date:</label>
+                        <input type="date" name="init-date">
+                    </div>
+                    <div class="shadow__input--start">
+                        <input type="checkbox" name="end-check">
+                        <label for="end-check">End date</label>
+                    </div>
+                    <div class="shadow__input--stretch">
+                        <label for="end-date">End date:</label>
+                        <input type="date" name="end-date">
+                    </div>
+                    <div class="shadow__input--start">
+                        <input type="checkbox" name="reminder">
+                        <label for="reminder">Add reminder</label>
+                    </div>
+                    <div class="shadow__input--stretch">
+                        <label for="select-time">Time:</label>
+                        <select name="select-time">
+                            <option value="5">5 minutes</option>
+                            <option value="15">15 minutes</option>
+                            <option value="30">30 minutes</option>
+                            <option value="60">1 hour</option>
+                        </select>
+                    </div>
+                    <div class="shadow__input--stretch">
+                        <label for="description">Description:</label>
+                        <textarea name="description" cols="30" rows="10"></textarea>
+                    </div>
+                    <div class="shadow__input--stretch">
+                        <label for="select-event">Event type:</label>
+                        <select name="select-event">
+                            <option value="5">Meeting</option>
+                            <option value="15">Birthday</option>
+                            <option value="30">Date</option>
+                            <option value="60">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input type="submit" value="Create">
+                        <button>Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
     <section>
         <div class="nav__month">
             <div class="nav__left">
@@ -35,7 +90,7 @@
                 <button>Year</button>
             </div>
             <div class="nav__right">
-                <button id="create-event">
+                <button id="create-event" >
                     <i class="fas fa-plus"></i>
                     <p>Add event</p>
                 </button>
@@ -108,70 +163,25 @@
     </template>
 
     <!-- ? Modal Template -->
-    <template>
-        <div id="shadow">
-            <div id="modal">
-                <i class="fas fa-times-circle"></i>
-                <h2>New event</h2>
-                <form action="">
-                    <div class="shadow__input--stretch">
-                        <label for="title">Title:</label>
-                        <input type="text" name="title">
-                    </div>
-                    <div class="shadow__input--stretch">
-                        <label for="init-date">Initial date:</label>
-                        <input type="date" name="init-date">
-                    </div>
-
-                    <div class="shadow__input--start">
-                        <input type="checkbox" name="end-check">
-                        <label for="end-check">End date</label>
-                    </div>
-
-                    <div class="shadow__input--stretch">
-                        <label for="end-date">End date:</label>
-                        <input type="date" name="end-date">
-                    </div>
-
-                    <div class="shadow__input--start">
-                        <input type="checkbox" name="reminder">
-                        <label for="reminder">Add reminder</label>
-                    </div>
-
-                    <div class="shadow__input--stretch">
-                        <label for="select-time">Time:</label>
-                        <select name="select-time">
-                            <option value="5">5 minutes</option>
-                            <option value="15">15 minutes</option>
-                            <option value="30">30 minutes</option>
-                            <option value="60">1 hour</option>
-                        </select>
-                    </div>
-
-                    <div class="shadow__input--stretch">
-                        <label for="description">Description:</label>
-                        <textarea name="description" cols="30" rows="10"></textarea>
-                    </div>
-
-                    <div class="shadow__input--stretch">
-                        <label for="select-event">Event type:</label>
-                        <select name="select-event">
-                            <option value="5">Meeting</option>
-                            <option value="15">Birthday</option>
-                            <option value="30">Date</option>
-                            <option value="60">Other</option>
-                        </select>
-                    </div>
-                    <div>
-                        <input type="submit" value="Create">
-                        <button>Cancel</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+    <template id="addEvent">
+        
     </template>
 
     <script src="assets/js/month_render.js"></script>
+    <script>
+        document.getElementById("close").addEventListener("click", function () {
+        var closed = document.getElementById("shadow");
+        if (closed.classList.contains("on")) {
+            closed.classList.remove("on");
+            closed.classList.add("off");
+        }
+        });
+        document.getElementById("create-event").addEventListener("click", function () {
+        var closed = document.getElementById("shadow");
+        closed.classList.remove("off");
+        closed.classList.add("on");
+        });
+    </script>
 </body>
 
 </html>

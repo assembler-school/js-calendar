@@ -171,13 +171,22 @@ button#create-event i {
      ! Modal styles
   ===================================
   */
+.on{
+  visibility:visible;
+  z-index: 2;
+}
+.off{
+  visibility: hidden;
+  z-index: 0;
+}
+
 #shadow {
   position: absolute;
   top: 0;
-  background-color: gray;
+  background: rgba(121, 121, 121, 0.5);
   height: 100vh;
   width: 100vw;
-  z-index: 2;
+
   display: flex;
   align-items: center;
   justify-content: center;
