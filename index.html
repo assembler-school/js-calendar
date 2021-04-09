@@ -83,13 +83,48 @@
                     </div>
                 </div>
             </div>
+            
         </main>
         <!---------------- INICIO ASIDE ---------------->
-        <aside></aside>
+        <aside>
+            <button class="open-button" onclick="openForm()">+</button>
+            <div class="form-popup" id="myForm">
+                <form  class="form-container">
+                  <h1>New Event</h1>
+              
+                  <label for="title"><b>Title:</b></label>
+                  <input type="text" placeholder="Add title" name="" required>
+              
+                  <label for=""><b>Initial date:</b></label>
+                  <input type="date" placeholder="" name="" required></input> <br>
+
+                  <input id="endDate" type="checkbox">End date</input> <br>
+
+                  <label for=""><b>Initial Time:</b></label> 
+                  <input type="time"  name="" > <br>
+
+                  <input id="reminderBox" type="checkbox">Remind me when this event expires</input> <br>
+
+                  <textarea id="descriptionBox" placeholder="Add a description..."></textarea> <br>
+                    <label for="events"> Event type:</label>
+                  <select id="selectType">
+                      <option value="meeting">Meeting</option>
+                      <option value="reminder">Reminder</option>
+                  </select> <br>
+                
+
+                  <button type="submit" class="btn_create">Create</button>
+                  <button type="button" class="btn_cancel" onclick="closeForm()">Cancel</button>
+                </form>
+              </div>
+            
+        </aside>
         <!---------------- INICIO FOOTER ---------------->
         <footer></footer>
         <!---------------- SCRIPT ZONE ---------------->
+
         <script src="assets/js/index.js"></script>
+        <script src="assets/js/Modul.js"></script>
     </body>
 
 </html>
