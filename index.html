@@ -1,16 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
-		<link rel="stylesheet" href="css/year.css">
-		<title>JS Calendar</title>
-	</head>
-	<body>
-		
-	</body>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,8 +18,8 @@
             <button class="warningBox-btn">!2</button>
         </div>
         <div class="header02-div">
-            <button class="monthView-btn">Month</button>
-            <button class="yearView-btn">Year</button>
+            <button class="monthView-btn" id="monthView-btn">Month</button>
+            <button class="yearView-btn" id="yearView-btn">Year</button>
         </div>
         <div class="header03-div">
             <button class="goPrevious-btn"><</button>
@@ -46,145 +35,26 @@
             </div>
         </section>
 
-        <section class="mainContent-section">
-            <!-- <template> -->
-                <h2 class="dayOfWeek-name">Mon</h2>
-                <h2 class="dayofMonth-number">29</h2>
-                <h3 class="monthName-text">January</h3>
-                <h4 class="dayOfWeekOnMonth-name">M</h4>
-                <p class="event-text">Pagar Impuestos</p>
-            <!-- </template> -->
+        <section class="mainContent-section" id="mainContent-section">
         </section>
 
-				<!-- YEAR VIEW TEMPLATE -->
-				<!-- <template id=""> -->
-					<section id="year-section">
-						<!-- <div class="year-row"> -->
-							<!-- <div class="month">
-								<div class="week month-name"></div>
-								<div class="week week-days"></div>
-								<div class="week">
-									<div class="days">28</div>
-									<div class="days">29</div>
-									<div class="days">30</div>
-									<div class="days">31</div>
-									<div class="days">1</div>
-									<div class="days">2</div>
-									<div class="days">3</div>
-								</div>
-								<div class="week">
-									<div class="days">4</div>
-									<div class="days">5</div>
-									<div class="days">6</div>
-									<div class="days current">7</div>
-									<div class="days">8</div>
-									<div class="days">9</div>
-									<div class="days">10</div>
-								</div>
-								<div class="week">
-									<div class="days">11</div>
-									<div class="days">12</div>
-									<div class="days">13</div>
-									<div class="days">14</div>
-									<div class="days">15</div>
-									<div class="days">16</div>
-									<div class="days">17</div>
-								</div>
-								<div class="week">
-									<div class="days">18</div>
-									<div class="days">19</div>
-									<div class="days">20</div>
-									<div class="days">21</div>
-									<div class="days">22</div>
-									<div class="days">23</div>
-									<div class="days">24</div>
-								</div>
-								<div class="week">
-									<div class="days">25</div>
-									<div class="days">26</div>
-									<div class="days">27</div>
-									<div class="days">28</div>
-									<div class="days">29</div>
-									<div class="days">30</div>
-									<div class="days">31</div>
-								</div>
-								<div class="week">
-									<div class="days">1</div>
-									<div class="days">2</div>
-									<div class="days">3</div>
-									<div class="days">4</div>
-									<div class="days">5</div>
-									<div class="days">6</div>
-									<div class="days">7</div>
-								</div>
-							</div>
-							<div class="month">
-								<div class="week month-name"></div>
-								<div class="week week-days"></div>
-							</div>
-							<div class="month">
-								<div class="week month-name"></div>
-								<div class="week week-days"></div>
-							</div>
-							<div class="month">
-								<div class="week month-name"></div>
-								<div class="week week-days"></div>
-							</div>
-						</div>
-						<div class="year-row">
-							<div class="month">
-								<div class="week month-name"></div>
-								<div class="week week-days"></div>
-							</div>
-							<div class="month">
-								<div class="week month-name"></div>
-								<div class="week week-days"></div>
-							</div>
-							<div class="month">
-								<div class="week month-name"></div>
-								<div class="week week-days"></div>
-							</div>
-							<div class="month">
-								<div class="week month-name"></div>
-								<div class="week week-days"></div>
-							</div>
-						</div>
-						<div class="year-row">
-							<div class="month">
-								<div class="week month-name"></div>
-								<div class="week week-days"></div>
-							</div>
-							<div class="month">
-								<div class="week month-name"></div>
-								<div class="week week-days"></div>
-							</div>
-							<div class="month">
-								<div class="week month-name"></div>
-								<div class="week week-days"></div>
-							</div>
-							<div class="month">
-								<div class="week month-name"></div>
-								<div class="week week-days"></div>
-							</div> -->
-						</div>
-					</section>
-				</template>
 
         <div class="modal" id="modalDiv">
             <div class="modalDialog">
                 <header class="modalHeader">
                     Nuevo evento
-                    <button>✕</button>
                 </header>
                 <section class="modalContent">
                     <label for="eventTitleId"></label><input type="text" id="eventTitleId" placeholder="Event Title">
-                    <label for="initialDateId"></label><input type="text" id="initialDateId" placeholder="Initial Date">
+                    <label for="initialDateId">Initial Date</label><input type="date" id="initialDateId">
 
-                    <label for="endDateId"></label>
-                    <input type="checkbox" id="endDateId">
+                    <label for="endDateCheckboxId"></label>
+                    <input type="checkbox" id="endDateCheckboxId">
+                    <input type="date" id="endDateId" disabled>
 
-                    <label for="reminderId"></label>
-                    <input type="checkbox" id="reminderId">
+                    <label for="reminderCheckboxId"></label>
+                    <input type="checkbox" id="reminderCheckboxId">
+                    <input type="date" id="reminderId" disabled>
 
                     <label for="description"></label><textarea id="description" placeholder="Description"></textarea>
                     <label for="eventTypeSelect"></label>
@@ -192,14 +62,183 @@
                         <option value="Meeting">EventType1</option>
                         <option value="Meeting">EventType2</option>
                     </select>
-
+                    <button id="cancelBtn">Cancel</button>
+                    <button id="saveBtn">Save</button>
                 </section>
                 <footer class="modalFooter"></footer>
             </div>
         </div>
     </main>
-    <script src="js/main.js"></script>
-    <script src="js/calendar-constructor.js"></script>
-    <script src="js/set-calendar.js"></script>
 </body>
+<template id="month-template">
+    <section class="section-month" id="month-section">
+        <div class="week-days-header">
+            <h2 class="dayOfWeek-name">Mon</h2>
+            <h2 class="dayOfWeek-name">Tue</h2>
+            <h2 class="dayOfWeek-name">Wed</h2>
+            <h2 class="dayOfWeek-name">Thu</h2>
+            <h2 class="dayOfWeek-name">Fri</h2>
+            <h2 class="dayOfWeek-name">Sat</h2>
+            <h2 class="dayOfWeek-name">Sun</h2>
+        </div>
+        <div class="month-container">
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+                <p class="event-text">hacer la compra</p>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+                <p class="event-text event_alarm">club de lectura</p>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+            <div class="day_box">
+                <div class="month_day_number">2</div>
+            </div>
+        </div>
+    </section>
+</template>
+<template id="year-template">
+    <section id="year-section">
+    </section>
+</template>
+<script src="js/main.js"></script>
+<script src="js/calendar-constructor.js"></script>
+<script src="js/set-calendar.js"></script>
 </html>

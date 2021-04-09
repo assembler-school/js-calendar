@@ -1,3 +1,5 @@
+
+
 /* HEADER STYLES ------------------------- */
 
 .header01-div {
@@ -71,8 +73,7 @@
 .currentTypeofDate-container {
   display: flex;
   height: max-content;
-  position: absolute;
-  top: 20px;
+  margin-bottom: 20px;
 }
 
 .currentYear-text {
@@ -96,4 +97,66 @@
 .modal.showUp {
     visibility: visible;
     opacity: 1;
+}
+
+/*MONTH SECTION TEMPLATE ---------------------------*/
+
+.section-month{
+  font-family: var(--font);
+  padding: 20px 0px;
+  background-color: var(--bg);
+}
+
+.week-days-header{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-column-gap: 1px;
+  padding: 1px;
+  background-color: var(--bg);
+  margin-bottom: 5px;
+
+}
+
+.week-days-header > h2{
+  padding-right: 5%;
+  background-color: var(--bg);
+  text-align: right;
+  min-width: 50px;
+}
+
+.month-container{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-row-gap: 1px;
+  grid-column-gap: 1px;
+  background-color: var(--textLightGray);
+  padding: 1px;
+}
+
+.day_box{
+  width: 100%;
+  min-height: 80px;
+  background-color: var(--bg);
+  color: var(--textLightGray);
+  min-width: 50px;
+}
+
+.month_day_number{
+  text-align: right;
+  margin-right: 5%;
+  margin-top: 3%;
+  margin-bottom: 10px;
+}
+
+.event-text{
+  margin-right: 3%;
+  margin-left: 3%;
+  padding: 1px 3px;
+  border-radius: 5px;
+}
+
+.event_alarm{
+  background-color: tomato;
 }

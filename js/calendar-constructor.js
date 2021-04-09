@@ -2,9 +2,6 @@ var shortDays = ['M','T','W','T','F','S','S'];
 var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday"];
 var monthsNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-calendarConstructor();
-
-
 //CALENDAR CONSTRUCTOR
 function calendarConstructor(){
   var yearView = document.querySelector('#year-section');
