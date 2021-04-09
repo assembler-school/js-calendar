@@ -69,3 +69,17 @@ main{
     border: 0.5px solid var(--lightGrey);
     /* box-sizing: content-box; */
 }
+
+/* MODAL SECTION */
+
+.modal-section{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.modal-button{
+    width: 50px;
+}
