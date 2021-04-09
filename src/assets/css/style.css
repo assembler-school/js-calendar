@@ -54,6 +54,7 @@ h1 {
     border-radius: 10px;
     outline: none;
     transition: transform 0.1s;
+    user-select: none;
 }
 .btn-next-prev:hover {
     transform: scale(1.05);
@@ -77,6 +78,7 @@ h1 {
     padding: 10px;
     outline: none;
     transition: transform 0.1s;
+    user-select: none;
 }
 .btn-add-event:hover {
     transform: scale(1.05);
@@ -152,6 +154,7 @@ main{
     margin: 0.5px auto;
     font-size: 0.8rem;
     transition: transform 0.2s;
+    user-select: none;
 }
 .event-in-calendar:hover{
     transform: scale(1.1);
