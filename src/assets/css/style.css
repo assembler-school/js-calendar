@@ -1,6 +1,10 @@
 /* Font import */
-@import url('https://fonts.googleapis.com/css2?family=Arimo&display=swap');
-/* Project color palette */
+@import url("https://fonts.googleapis.com/css2?family=Arimo&display=swap");
+/*
+=======================================
+! Custom properties
+=======================================
+ */
 :root {
     --darkestGray: #313535;
     --darkGray: #3D4141;
@@ -15,8 +19,11 @@
 html {
     font-size: 16px;
 }
-
-
+/*
+=======================================
+! General Styles
+=======================================
+ */
 * {
     padding: 0;
     margin: 0;
@@ -26,7 +33,11 @@ html {
     /* color: var(--darkestGray); */
 }
 
-/* * HEADER */
+/*
+=======================================
+! Header
+=======================================
+ */
 header {
     max-height: 150px;
     min-height: 65px;
@@ -64,7 +75,7 @@ h1 {
 }
 
 .page-title {
-    display: inline-block;
+  display: inline-block;
 }
 .btn-add-event {
     position: absolute;
@@ -198,4 +209,155 @@ main{
     html {
         font-size: 10px;
     }
+}
+
+/*
+=======================================
+! Modal
+=======================================
+ */
+#modal-section.hidden {
+  display: none;
+}
+#modal-section {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0,0,0,0.4);
+}
+#modal-content {
+  display: flex;
+  flex-direction: column;
+  width: 90vw;
+  min-width: 320px;
+  max-width: 380px;
+  background-color: whitesmoke;
+  margin: 20vh auto;
+  padding: 20px;
+  border: 1px solid var(--darkestGray);
+  border-radius: 5px;
+  overflow: auto;
+}
+.modal-header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+.modal-header > h1 {
+  align-self: center;
+  text-align: center;
+  width: 100%;
+  margin-left: 32px;
+}
+.modal-button.fa-window-close {
+  align-self: flex-end;
+  font-size: xx-large;
+  color: var(--darkestGray);
+  background-color: transparent;
+}
+.modal-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+.modal-input.modal-cb {
+  justify-content: flex-start;
+}
+.modal-input > textarea {
+  vertical-align: top;
+  resize: none;
+  margin-left: 5px;
+}
+.modal-input> input[type=checkbox] {
+  margin: 2px;
+}
+.modal-footer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+}
+.m-action-button {
+  color: whitesmoke;
+  background-color: var(--darkestGray);
+  font-size: large;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+/*
+=======================================
+! Calendar Area
+=======================================
+ */
+main {
+  height: 90vh;
+  width: 100vw;
+  background-color: bisque;
+}
+.calendar {
+  margin: 0 auto 0 auto;
+  height: 90%;
+  width: 90%;
+  background-color: rgb(230, 222, 216);
+  padding: 10px 0;
+}
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: auto;
+  justify-items: center;
+  height: 5%;
+}
+.weekdays div {
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 0.1rem;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+}
+.days-wrapper {
+  display: grid;
+  grid-auto-rows: 1fr;
+  grid-template-columns: repeat(7, 1fr);
+  height: 95%;
+  border: 0.5px solid var(--lightGrey);
+  gap: 10px;
+}
+.days-wrapper div {
+  font-size: 1.4rem;
+  border: 0.5px solid var(--lightGrey);
+  margin: 0.3rem;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+  transition: background-color 0.2s;
+}
+.days-wrapper div:hover {
+  background-color: #262626;
+  border: 0.2rem solid #777;
+  cursor: pointer;
+}
+
+.day {
+  text-align: center;
+  padding: 5px;
+  border: 0.5px solid var(--lightGrey);
+}
+
+.prev-date,
+.next-date {
+  opacity: 0.5;
+}
+.today {
+  background-color: #167e56;
+  color: blue;
 }
