@@ -157,7 +157,10 @@ main{
     user-select: none;
 }
 .event-in-calendar:hover{
-    transform: scale(1.1);
+    transform: scale(1.05);
+}
+.event-in-calendar:active{
+    transform: scale(0.95);
 }
 .yellow-event {
     background-color: var(--eventYellow);
