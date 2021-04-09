@@ -56,20 +56,20 @@
                     <input type="date" name="initial-date" id="initialDate">
                 </div>
                 <div class="modal-input modal-cb">
-                    <input type="checkbox" name="endDate-cb">
+                    <input id="check-box" type="checkbox" name="endDate-cb" onclick="showMeTheEndDate()">
                     <label for="endDate-cb">End date</label>
                 </div>
                 <div class="modal-input">
-                    <label for="end-date">End date</label>
-                    <input type="date" name="end-date" id="endDate">
+                    <label for="end-date" >End date</label>
+                    <input type="date" name="end-date" id="endDate" disabled>
                 </div>
                 <div class="modal-input modal-cb">
-                    <input type="checkbox" name="remind">
+                    <input id="check-box-reminder" type="checkbox" name="remind" onclick="showMeTheReminder()">
                     <label for="remind">Remind me when this event expires</label>
                 </div>
                 <div class="modal-input">
                     <label for="time">Time</label>
-                    <select name="time" id="time">
+                    <select name="time" id="time" disabled>
                         <option value="5 min">5 min</option>
                         <option value="10 min">10 min</option>
                         <option value="15 min">15 min</option>
@@ -98,6 +98,7 @@
     </section>
     <script src="assets/js/calendar.js"></script>
     <script src="assets/js/validations.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>

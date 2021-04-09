@@ -5,9 +5,9 @@ const modalSection = document.getElementById("modal-section");
 
 const modalOpenButton = document.getElementById("modal-open-button");
 
-const modalCloseButton = document.getElementById("modal-close-button");
+const modalCloseButton = document.querySelector(".modal-button.fa-window-close");
 
-//const modalCancelButton = document.getElementById("");
+const modalCancelButton = document.getElementById("m-cancelBtn");
 
 const modalDivs = document.getElementById("modal-event-div");
 
@@ -16,20 +16,20 @@ const modalDivs = document.getElementById("modal-event-div");
 // Show de modal event. Open and close it.
 
     modalOpenButton.onclick = function() {
-        modalSection.style.display = "block";
+        modalSection.classList.remove("hidden");
     }
 
     modalCloseButton.onclick = function() {
-        modalSection.style.display = "none";
+        modalSection.classList.add("hidden");
     }
 
-   /* modalCancelButton.onclick = function() {
-        modalSection.style.display = "none";
-    } */
+   modalCancelButton.onclick = function() {
+        modalSection.classList.add("hidden");
+    }
 
     window.onclick = function(event) {
         if (event.target == modalSection){
-            modalSection.style.display = "none"; 
+            modalSection.classList.add("hidden"); 
         }
     }  
 
@@ -48,17 +48,17 @@ for (let div of modalDivs.children) {
 
 function showMeTheEndDate(){
     if (document.getElementById("check-box").checked){
-        document.getElementById("end-date").removeAttribute("disabled");
+        document.getElementById("endDate").removeAttribute("disabled");
     } else{
-        document.getElementById("end-date").disabled = true;
+        document.getElementById("endDate").disabled = true;
     }
 }
 
 function showMeTheReminder(){
     if (document.getElementById("check-box-reminder").checked){
-        document.getElementById("select-time-reminder").removeAttribute("disabled");
+        document.getElementById("time").removeAttribute("disabled");
     } else{
-        document.getElementById("select-time-reminder").disabled = true;
+        document.getElementById("time").disabled = true;
     }
 }
 
