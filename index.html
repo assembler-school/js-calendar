@@ -142,23 +142,24 @@
 							<div class="month">12</div>
 						</div>
 					</section>
-				</template>
+<!--				</template>-->
 
         <div class="modal" id="modalDiv">
             <div class="modalDialog">
                 <header class="modalHeader">
                     Nuevo evento
-                    <button>✕</button>
                 </header>
                 <section class="modalContent">
                     <label for="eventTitleId"></label><input type="text" id="eventTitleId" placeholder="Event Title">
-                    <label for="initialDateId"></label><input type="text" id="initialDateId" placeholder="Initial Date">
+                    <label for="initialDateId">Initial Date</label><input type="date" id="initialDateId">
 
-                    <label for="endDateId"></label>
-                    <input type="checkbox" id="endDateId">
+                    <label for="endDateCheckboxId"></label>
+                    <input type="checkbox" id="endDateCheckboxId">
+					<input type="date" id="endDateId" disabled>
 
-                    <label for="reminderId"></label>
-                    <input type="checkbox" id="reminderId">
+                    <label for="reminderCheckboxId"></label>
+                    <input type="checkbox" id="reminderCheckboxId">
+					<input type="date" id="reminderId" disabled>
 
                     <label for="description"></label><textarea id="description" placeholder="Description"></textarea>
                     <label for="eventTypeSelect"></label>
@@ -166,7 +167,8 @@
                         <option value="Meeting">EventType1</option>
                         <option value="Meeting">EventType2</option>
                     </select>
-
+					<button id="cancelBtn">Cancel</button>
+					<button id="saveBtn">Save</button>
                 </section>
                 <footer class="modalFooter"></footer>
             </div>
