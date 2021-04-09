@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendar</title>
+    <link rel="shortcut icon" href="/src/assets/favicon.ico">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
 </head>
+
 <body>
     <header>
         <i class="fas fa-angle-left prev"></i>
@@ -15,52 +18,6 @@
         <i class="fas fa-angle-right next"></i>
         <div id="current-date"></div>
         <button class="btn-add-event">Add Event</button>
-        <section class="modal-section hidden">
-        <button class="modal-button">x</button>
-        <form action="">
-            <div class="title">
-                <label for="title">Title</label>
-                <input type="text" name="title">
-            </div>
-            <div class="title">
-                <label for="initial-date">Initial date</label>
-                <input type="date" name="initial-date">
-            </div>
-            <div class="title">
-                <input type="checkbox">
-                <label for="end date">End date</label>
-            </div>
-            <div class="title">
-                <label for="End date">End date</label>
-                <input type="date" name="End-date">
-            </div>
-            <div class="title">
-                <input type="checkbox">
-                <label>Remind me when this event expires</label>
-            </div>
-            <div class="title">
-                <label for="time">Time</label>
-                <select name="" id="">
-                    <option value="5 min">5 min</option>
-                    <option value="10 min">10 min</option>
-                    <option value="15 min">15 min</option>
-                    <option value="20 min">20 min</option>
-                </select>
-            </div>
-            <div class="tittle">
-                <label for="description">Description</label>
-                <textarea name="description" id="" cols="30" rows="10"></textarea>
-            </div>
-            <div class="title">
-                <label for="event-type">Event type</label>
-                <select name="event-type" id="">
-                    <option value="Meeting">Meeting</option>
-                    <option value="Study">Study</option>
-                    <option value="Personal">Personal</option>
-                </select>
-            </div> 
-        </form>
-    </section>
     </header>
     <main>
         <section class="calendar">
@@ -78,6 +35,63 @@
             </div>
         </section>
     </main>
+    <section id="modal-section" class="hidden">
+        <div id="modal-content">
+            <div class="modal-header">
+                <h1>New Event</h1>
+                <i class="modal-button fas fa-window-close"></i>
+            </div>
+            <form action="" name="modal-form">
+                <div class="modal-input">
+                    <label for="title">Title</label>
+                    <input type="text" name="title">
+                </div>
+                <div class="modal-input">
+                    <label for="initial-date">Initial date</label>
+                    <input type="date" name="initial-date">
+                </div>
+                <div class="modal-input modal-cb">
+                    <input type="checkbox" name="endDate-cb">
+                    <label for="endDate-cb">End date</label>
+                </div>
+                <div class="modal-input">
+                    <label for="end-date">End date</label>
+                    <input type="date" name="end-date">
+                </div>
+                <div class="modal-input modal-cb">
+                    <input type="checkbox" name="remind">
+                    <label for="remind">Remind me when this event expires</label>
+                </div>
+                <div class="modal-input">
+                    <label for="time">Time</label>
+                    <select name="time" id="">
+                        <option value="5 min">5 min</option>
+                        <option value="10 min">10 min</option>
+                        <option value="15 min">15 min</option>
+                        <option value="20 min">20 min</option>
+                    </select>
+                </div>
+                <div class="modal-input">
+                    <label for="description">Description</label>
+                    <textarea name="description" id="" cols="30" rows="10"></textarea>
+                </div>
+                <div class="modal-input">
+                    <label for="event-type">Event type</label>
+                    <select name="event-type" id="">
+                        <option value="Meeting">Meeting</option>
+                        <option value="Study">Study</option>
+                        <option value="Personal">Personal</option>
+                    </select>
+                </div>
+            </form>
+
+            <div class="modal-footer">
+                <button id="m-cancelBtn" class="m-action-button">Cancel</button>
+                <button id="m-createBtn" class="m-action-button">Create</button>
+            </div>
+        </div>
+    </section>
     <script src="assets/js/calendar.js"></script>
 </body>
+
 </html>
