@@ -8,6 +8,10 @@
 .newEvent-btn {
   font-size: 23px;
   font-weight: 400;
+  background-image: url("/img/plus-icon.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 12px;
 }
 
 .warningBox-btn {
@@ -36,6 +40,10 @@
 .goPrevious-btn {
   font-size: 16px;
   font-weight: 400;
+  background-image: url("/img/left-arrow.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 8px;
   background-color: var(--btnActive);
   border: none;
   color: white;
@@ -53,6 +61,10 @@
 .goNext-btn {
   font-size: 16px;
   font-weight: 400;
+  background-image: url("/img/right-arrow.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 8px;
   background-color: var(--btnActive);
   border: none;
   color: white;
@@ -62,6 +74,7 @@
 
 .currentDate-section {
   width: 100%;
+  max-height: 9vh;
   height: 9vh;
   min-height: 90px;
   display: flex;
@@ -82,18 +95,61 @@
 
 /* MAIN CONTENT SECTION --------------------------- */
 
-.mainContent-section {
+.main-content-section {
   width: 100%;
   min-height: 85vh;
 }
 
+/* MODAL STYLES -------------------- */
+
 .modal {
-    visibility: hidden;
-    opacity: 0;
-    transition: all 0.35s ease-in;
+  z-index: 99999;
+  position: fixed;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  visibility: hidden;
+  width: 100vw;
+  height: 100%;
+  opacity: 0;
+  transition: all 0.35s ease-in;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalDialog {
+  width: 300px;
+  height: max-content;
+  background-color: var(--bg);
+  padding: 15px;
+  padding-top: 30px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.close-btn {
+  border: none;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+
+.modalContent {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .modal.showUp {
-    visibility: visible;
-    opacity: 1;
+  visibility: visible;
+  opacity: 1;
 }
+
+/* END OF MODAL STYLES -------------------- */

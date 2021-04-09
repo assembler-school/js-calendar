@@ -24,7 +24,7 @@
 <body>
     <header>
         <div class="header01-div">
-            <button id="createEventBtn" class="newEvent-btn">+</button>
+            <button id="createEventBtn" class="newEvent-btn"></button>
             <button class="warningBox-btn">!2</button>
         </div>
         <div class="header02-div">
@@ -32,146 +32,147 @@
             <button class="yearView-btn">Year</button>
         </div>
         <div class="header03-div">
-            <button class="goPrevious-btn"><</button>
+            <button class="goPrevious-btn"></button>
             <button class="goToday-btn">Today</button>
-            <button class="goNext-btn">></button>
+            <button class="goNext-btn"></button>
         </div>
     </header>
+
     <main>
-        <section class="currentDate-section">
-            <div class="currentTypeofDate-container">
-                <h1 class="currentMonth-text">April</h1>
-                <h1 class="currentYear-text">2021</h1>
-            </div>
-        </section>
-
-        <section class="mainContent-section">
-            <!-- <template> -->
-                <h2 class="dayOfWeek-name">Mon</h2>
-                <h2 class="dayofMonth-number">29</h2>
-                <h3 class="monthName-text">January</h3>
-                <h4 class="dayOfWeekOnMonth-name">M</h4>
-                <p class="event-text">Pagar Impuestos</p>
-            <!-- </template> -->
-        </section>
-
-				<!-- YEAR VIEW TEMPLATE -->
-				<!-- <template id="year-view"> -->
-					<section id="year-view">
-						<div class="year-row">
-							<div class="month">
-								<div class="week month-name">January</div>
-								<div class="week week-days">
-									<div class="days">M</div>
-									<div class="days">T</div>
-									<div class="days">W</div>
-									<div class="days">T</div>
-									<div class="days">F</div>
-									<div class="days">S</div>
-									<div class="days">S</div>
-								</div>
-								<div class="week">
-									<div class="days">28</div>
-									<div class="days">29</div>
-									<div class="days">30</div>
-									<div class="days">31</div>
-									<div class="days">1</div>
-									<div class="days">2</div>
-									<div class="days">3</div>
-								</div>
-								<div class="week">
-									<div class="days">4</div>
-									<div class="days">5</div>
-									<div class="days">6</div>
-									<div class="days current">7</div>
-									<div class="days">8</div>
-									<div class="days">9</div>
-									<div class="days">10</div>
-								</div>
-								<div class="week">
-									<div class="days">11</div>
-									<div class="days">12</div>
-									<div class="days">13</div>
-									<div class="days">14</div>
-									<div class="days">15</div>
-									<div class="days">16</div>
-									<div class="days">17</div>
-								</div>
-								<div class="week">
-									<div class="days">18</div>
-									<div class="days">19</div>
-									<div class="days">20</div>
-									<div class="days">21</div>
-									<div class="days">22</div>
-									<div class="days">23</div>
-									<div class="days">24</div>
-								</div>
-								<div class="week">
-									<div class="days">25</div>
-									<div class="days">26</div>
-									<div class="days">27</div>
-									<div class="days">28</div>
-									<div class="days">29</div>
-									<div class="days">30</div>
-									<div class="days">31</div>
-								</div>
-								<div class="week">
-									<div class="days">1</div>
-									<div class="days">2</div>
-									<div class="days">3</div>
-									<div class="days">4</div>
-									<div class="days">5</div>
-									<div class="days">6</div>
-									<div class="days">7</div>
-								</div>
-							</div>
-							<div class="month">2</div>
-							<div class="month">3</div>
-							<div class="month">4</div>
-						</div>
-						<div class="year-row">
-							<div class="month">5</div>
-							<div class="month">6</div>
-							<div class="month">7</div>
-							<div class="month">8</div>
-						</div>
-						<div class="year-row">
-							<div class="month">9</div>
-							<div class="month">10</div>
-							<div class="month">11</div>
-							<div class="month">12</div>
-						</div>
-					</section>
-				</template>
-
-        <div class="modal" id="modalDiv">
-            <div class="modalDialog">
-                <header class="modalHeader">
-                    Nuevo evento
-                    <button>✕</button>
-                </header>
-                <section class="modalContent">
-                    <label for="eventTitleId"></label><input type="text" id="eventTitleId" placeholder="Event Title">
-                    <label for="initialDateId"></label><input type="text" id="initialDateId" placeholder="Initial Date">
-
-                    <label for="endDateId"></label>
+        <!-- MODAL ----------------------- -->
+    <div class="modal" id="modalDiv">
+        <div class="modalDialog">
+            <button class="close-btn" onclick="hideModal()">✕</button>
+            <section class="modalContent">
+                <label for="eventTitleId"></label><input type="text" id="eventTitleId" placeholder="New Event">
+                <label for="initialDateId"></label><input type="text" id="initialDateId" placeholder="Initial Date">
+                <div class="end-date-container checkbox-container">
                     <input type="checkbox" id="endDateId">
-
-                    <label for="reminderId"></label>
+                    <label for="endDateId">End date</label>
+                </div>  
+                <div class="reminder-container checkbox-container">
                     <input type="checkbox" id="reminderId">
+                    <label for="reminderId">Reminder</label>
+                </div>
 
-                    <label for="description"></label><textarea id="description" placeholder="Description"></textarea>
-                    <label for="eventTypeSelect"></label>
-                    <select id="eventTypeSelect">
-                        <option value="Meeting">EventType1</option>
-                        <option value="Meeting">EventType2</option>
-                    </select>
+                <label for="description"></label><textarea id="description" placeholder="Description"></textarea>
+                <label for="eventTypeSelect"></label>
+                <select id="eventTypeSelect">
+                    <option value="Meeting">EventType1</option>
+                    <option value="Meeting">EventType2</option>
+                </select>
 
-                </section>
-                <footer class="modalFooter"></footer>
-            </div>
+            </section>
+            <footer class="modalFooter"></footer>
         </div>
+    </div>
+<!-- END OF MODAL ----------------------- -->
+<!-- CURRENT TYPE OF DATE ---------- -->
+    <section class="currentDate-section">
+        <div class="currentTypeofDate-container">
+            <h1 class="currentMonth-text">April</h1>
+            <h1 class="currentYear-text">2021</h1>
+        </div>
+    </section>
+<!-- END CURRENT TYPE OF DATE ---------- -->
+
+<!-- TEMPLATES HERE!! --------------------- -->
+        <section class="main-content-section">
+
+        </section>
+
+<!-- END OF TEMPLATES --------------------- -->
+
     </main>
     <script src="js/main.js"></script>
 </body>
+<!-- YEAR VIEW TEMPLATE -->
+        <template id="year-view">
+            <section id="year-view">
+                <div class="year-row">
+                    <div class="month">
+                        <div class="week month-name">January</div>
+                        <div class="week week-days">
+                            <div class="days week-days">M</div>
+                            <div class="days week-days">T</div>
+                            <div class="days week-days">W</div>
+                            <div class="days week-days">T</div>
+                            <div class="days week-days">F</div>
+                            <div class="days week-days">S</div>
+                            <div class="days week-days">S</div>
+                        </div>
+                        <div class="week">
+                            <div class="days">28</div>
+                            <div class="days">29</div>
+                            <div class="days">30</div>
+                            <div class="days">31</div>
+                            <div class="days">1</div>
+                            <div class="days">2</div>
+                            <div class="days">3</div>
+                        </div>
+                        <div class="week">
+                            <div class="days">4</div>
+                            <div class="days">5</div>
+                            <div class="days">6</div>
+                            <div class="days current">7</div>
+                            <div class="days">8</div>
+                            <div class="days">9</div>
+                            <div class="days">10</div>
+                        </div>
+                        <div class="week">
+                            <div class="days">11</div>
+                            <div class="days">12</div>
+                            <div class="days">13</div>
+                            <div class="days">14</div>
+                            <div class="days">15</div>
+                            <div class="days">16</div>
+                            <div class="days">17</div>
+                        </div>
+                        <div class="week">
+                            <div class="days">18</div>
+                            <div class="days">19</div>
+                            <div class="days">20</div>
+                            <div class="days">21</div>
+                            <div class="days">22</div>
+                            <div class="days">23</div>
+                            <div class="days">24</div>
+                        </div>
+                        <div class="week">
+                            <div class="days">25</div>
+                            <div class="days">26</div>
+                            <div class="days">27</div>
+                            <div class="days">28</div>
+                            <div class="days">29</div>
+                            <div class="days">30</div>
+                            <div class="days">31</div>
+                        </div>
+                        <div class="week">
+                            <div class="days">1</div>
+                            <div class="days">2</div>
+                            <div class="days">3</div>
+                            <div class="days">4</div>
+                            <div class="days">5</div>
+                            <div class="days">6</div>
+                            <div class="days">7</div>
+                        </div>
+                    </div>
+                    <div class="month">2</div>
+                    <div class="month">3</div>
+                    <div class="month">4</div>
+                </div>
+                <div class="year-row">
+                    <div class="month">5</div>
+                    <div class="month">6</div>
+                    <div class="month">7</div>
+                    <div class="month">8</div>
+                </div>
+                <div class="year-row">
+                    <div class="month">9</div>
+                    <div class="month">10</div>
+                    <div class="month">11</div>
+                    <div class="month">12</div>
+                </div>
+            </section>
+        </template>
+        <!-- END OF YEAR VIEW TEMPLATE -->
 </html>

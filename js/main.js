@@ -8,11 +8,9 @@ document.addEventListener("keyup", e => {
 function showModal() {
     let modal = document.getElementById("modalDiv");
     modal.classList.add('showUp');
-    modal.style.display = "block";
 }
 
 function hideModal() {
     let modal = document.getElementById("modalDiv");
     modal.classList.remove('showUp')
-    modal.style.display = "none";
 }
