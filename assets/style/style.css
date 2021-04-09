@@ -138,3 +138,122 @@ main{
 .today {
     background-color: orange;
 }
+
+
+/* ########## Pop up Modal ####### */
+#openButton{
+    height: 50px;
+     width: 50px ;
+     background-color:white;
+     font-size: 30px;
+     position: absolute;
+     bottom:20%;
+     left: 80%;
+}
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 600; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(35, 54, 54, 0.4); /* Black w/ opacity */
+    
+    
+  }
+  /* Add styles to the modal container */
+  .modal-content {
+    flex-direction: column;
+    background-color: white;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 5%;
+    width: 20%;
+    box-sizing: border-box;
+    padding: 25px;
+    box-shadow: 10px 10px 10px black;
+    font-size: 12px;
+    
+  }
+  
+  .textContainer , #addDate , #addTitle ,#endDate, #timeSelect, #reminderBox, #descriptionBox,#eventType, #buttonsPop{
+     height: 50px;
+     width: 100%;
+     /* outline: 1px black solid; */
+  }
+  /* Space beetweeen the Create and Close buttons */
+  #buttonsPop{
+    display: flex;
+    justify-content: space-between;
+  }
+  /* Move around the H1 text  */
+  .textContainer{
+      display: flex;
+      align-items: center;
+      
+  }
+  /* Size and focus of the Add title Box  */
+#titleBox{
+    height: 40px;
+    width: 100%;
+}
+#titleBox:focus {
+    background-color: #ddd;
+}
+ /* Moving around of all the content inside the separate divs */
+#addDate,#endDate{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#initialCal , #endCal{
+width: 80%;
+height: 70%;
+}
+#timeSelect{
+    display: flex;
+    align-items: center;
+}
+#timeSelector{
+margin: 18px;
+width: 20%;
+height: 70%;
+
+}
+
+textarea{
+    resize: none;
+    overflow: auto;
+    outline: none;
+    box-sizing: border-box;
+    padding: 2px;
+    
+}
+#eventType{
+    margin-top: 10px;
+}
+#eventSelect{
+  margin-left: 18px;
+
+   
+}
+#reminderBox{
+  padding: 15px 0 15px 0
+}
+/* All Modal Buttons side and shape */
+.buttons{
+    height: 50px;
+    width: 70px;
+    border-radius: 10%;
+    outline: none;
+}
+
+#createBtn {
+    background-color: lightgreen;
+}
+
+#cancelBtn{
+    background-color: lightcoral;
+}
