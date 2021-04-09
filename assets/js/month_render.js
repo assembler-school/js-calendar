@@ -13,7 +13,7 @@ export function renderMonth(selectedDate) {
     let weekCount = 1;
     /* Loop to fill calendar */
     for (let x = 1; x < daysInMonth + 1; x++) {
-        document.querySelector('.week:nth-child(' + weekCount + ') div[data-col="' + weekDay + '"]').innerHTML = x;
+        document.querySelector('.calendar__week:nth-child(' + weekCount + ') div[data-col="' + weekDay + '"]').innerHTML = x;
         if (!weekDay) {weekCount++};
         weekDay++;
         weekDay%=7;
