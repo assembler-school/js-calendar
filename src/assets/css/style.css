@@ -105,6 +105,12 @@ h1 {
 }
 
 /* * CALENDAR AREA */
+
+/*
+!=======================================
+! Calendar Area
+!=======================================
+ */
 main{
     height: 90vh;
     width: 100vw;
@@ -156,6 +162,14 @@ main{
     left: 2px;
     top: 2px; */
 }
+.prev-date,
+.next-date {
+  opacity: 0.5;
+}
+.today {
+  background-color: #167e56;
+  color: blue;
+} 
 
 /* * Events in calendar style */
 .event-in-calendar {
@@ -212,9 +226,9 @@ main{
 }
 
 /*
-=======================================
+!=======================================
 ! Modal
-=======================================
+!=======================================
  */
 #modal-section.hidden {
   display: none;
@@ -292,11 +306,8 @@ main{
   border-radius: 5px;
 }
 
-/*
-=======================================
-! Calendar Area
-=======================================
- */
+
+ /* 
 main {
   height: 90vh;
   width: 100vw;
@@ -352,12 +363,5 @@ main {
   padding: 5px;
   border: 0.5px solid var(--lightGrey);
 }
+*/
 
-.prev-date,
-.next-date {
-  opacity: 0.5;
-}
-.today {
-  background-color: #167e56;
-  color: blue;
-}
