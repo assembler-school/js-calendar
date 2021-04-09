@@ -1,4 +1,11 @@
 const date = new Date();
+
+/* * Set the current date in header */
+function setCurrentDate () {
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    document.querySelector("#current-date").innerHTML = new Date().toLocaleDateString('en-GB', options);
+}
+setCurrentDate();
 /*
  * This function create calendar
  * set calendar
@@ -47,8 +54,6 @@ const renderCalendar = () => {
     ];
 
     document.querySelector(".page-title").innerHTML = months[date.getMonth()] +" "+ date.getFullYear();
-
-    document.querySelector("#current-date").innerHTML = new Date().toDateString();
 
     let days = "";
     // creating div with prev days of calendar
