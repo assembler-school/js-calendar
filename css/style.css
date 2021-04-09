@@ -103,7 +103,7 @@
 
 .section-month{
   font-family: var(--font);
-  padding: 20px 2vw;
+  padding: 20px 0px;
   background-color: var(--bg);
 }
 
