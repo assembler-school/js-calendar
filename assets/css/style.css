@@ -129,7 +129,6 @@ button#create-event i {
 .calendar__month {
   width: 100%;
   height: 100%;
-  border-radius: var(--br-radius);
 }
 
 .calendar__week {
@@ -157,6 +156,7 @@ button#create-event i {
   text-align: center;
   border-left: #dadce0 1px solid; 
   border-top: #dadce0 1px solid;
+  border-radius: 6px 6px 0 0;
 }
 
 .calendar__weekDay > div {
