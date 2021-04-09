@@ -71,25 +71,31 @@
             </div>
         </div>
     </main>
-    <section>
-        <div class="month-year-title"><strong>May</strong><span>2021</span></div>
+    <script src="js/main.js"></script>
+</body>
+<template>
+    <section class="section-month">
+        <div class="currentTypeofDate-container">
+            <h1 class="currentMonth-text">April</h1>
+            <h1 class="currentYear-text">2021</h1>
+        </div>
         <div class="week-days-header">
-            <div>Mon</div>
-            <div>Tue</div>
-            <div>Wed</div>
-            <div>Thu</div>
-            <div>Fri</div>
-            <div>Sat</div>
-            <div>Sun</div>
+            <h2 class="dayOfWeek-name">Mon</h2>
+            <h2 class="dayOfWeek-name">Tue</h2>
+            <h2 class="dayOfWeek-name">Wed</h2>
+            <h2 class="dayOfWeek-name">Thu</h2>
+            <h2 class="dayOfWeek-name">Fri</h2>
+            <h2 class="dayOfWeek-name">Sat</h2>
+            <h2 class="dayOfWeek-name">Sun</h2>
         </div>
         <div class="month-container">
             <div class="day_box">
                 <div class="month_day_number">2</div>
-                <div class="event">hacer la compra</div>
+                <p class="event-text">hacer la compra</p>
             </div>
             <div class="day_box">
                 <div class="month_day_number">2</div>
-                <div class="event event_alarm">club de lectura</div>
+                <p class="event-text event_alarm">club de lectura</p>
             </div>
             <div class="day_box">
                 <div class="month_day_number">2</div>
@@ -213,6 +219,5 @@
             </div>
         </div>
     </section>
-    <script src="js/main.js"></script>
-</body>
+</template>
 </html>
