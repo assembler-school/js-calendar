@@ -1,10 +1,13 @@
 //
-let actualDate = new Date();
+/* Fucntion to add a month*/
+export function addMonth(monthFunction, boolean) {
+    boolean ? monthFunction++ : monthFunction--;
+    console.log(month);
+}
+
 
 /* Render of month in parameter type Date() */
-export function renderMonth(selectedDate) {
-    let month = selectedDate.getMonth();
-    let year = selectedDate.getFullYear();
+export function renderMonth(year, month) {
     /* Get the first day of month and number of days in month */
     let firstDay = (new Date(year, month)).getDay();
     let daysInMonth = 32 - new Date(year, month, 32).getDate();
@@ -18,4 +21,4 @@ export function renderMonth(selectedDate) {
         weekDay++;
         weekDay%=7;
     }
-} 
+}
