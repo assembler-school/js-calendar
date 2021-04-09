@@ -156,6 +156,7 @@
 /*MONTH SECTION TEMPLATE ---------------------------*/
 
 .section-month {
+  height: 85vh;
   font-family: var(--font);
   padding: 20px 0px;
   background-color: var(--bg);
@@ -163,6 +164,7 @@
 
 .week-days-header {
   width: 100%;
+  height: 2%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-column-gap: 1px;
@@ -180,6 +182,7 @@
 
 .month-container {
   width: 100%;
+  height: 98%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-row-gap: 1px;
