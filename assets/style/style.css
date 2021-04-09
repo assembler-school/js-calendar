@@ -40,22 +40,24 @@ main{
     width: 50%;
     height: 95vh;
     position: absolute;
-    left: 10%;
-    background-color: rgb(0, 0, 0, .4);
+    left: 5%;
+    background-color: rgb(34, 34, 34);
     border-radius: 1%;
     overflow: hidden;
-    z-index: 300;
+    z-index: 200;
+    transform: scale(0.95);
 }
 
 .calendar__shadow__2 {
     width: 50%;
     height: 95vh;
     position: absolute;
-    left: 5%;
-    background-color: rgb(0, 0, 0, .8);
+    left: 3%;
+    background-color: rgb(54, 54, 54);
     border-radius: 1%;
     overflow: hidden;
-    z-index: 200;
+    z-index: 300;
+    transform: scale(0.98);
 }
 
 .month {
