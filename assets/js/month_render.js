@@ -2,7 +2,7 @@
 let actualDate = new Date();
 console.log(actualDate);
 
-/* Render of month in parameter type Date()*/
+/* Render of month in parameter type Date() */
 function renderMonth(selectedDate) {
     let month = selectedDate.getMonth();
     let year = selectedDate.getFullYear();
@@ -21,7 +21,7 @@ function renderMonth(selectedDate) {
     }
 }
 
-/* Render of year in parameter type Date()*/
+/* Render of year in parameter type Date() */
 function renderYear(selectedDate) {
     /* Loop of renderMonth */
     /*
