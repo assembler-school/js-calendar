@@ -186,6 +186,14 @@ main{
         font-size: 12px;
     }
 }
+@media only screen and (max-width: 500px)  {
+    html {
+        font-size: 11px;
+    }
+    header {
+        text-align: left;
+    }
+}
 @media only screen and (max-width: 400px)  {
     html {
         font-size: 10px;
