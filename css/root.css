@@ -144,7 +144,7 @@ table {
 
 * {
   font-family: "Open Sans", sans-serif;
-  outline: 1px solid red !important;
+  /* outline: 1px solid red !important; */
   box-sizing: border-box;
 }
 
@@ -160,7 +160,6 @@ header {
 }
 
 body {
-  width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
