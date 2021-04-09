@@ -1,0 +1,237 @@
+/* RESET CSS ----------------------------- */
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* END OF RESET CSS ------------------------- */
+
+/* MAIN VARIABLES FOR STYLES ------------------- */
+
+:root {
+  --font: "Open Sans", sans-serif;
+  --font-display: "Open Sans", sans-serif;
+  --bg: #333333;
+  --header: #404040;
+  --btnGrey: #585858;
+  --btnActive: #7b7b7b;
+  --textDarkGray: #707070;
+  --textLightGray: #b0b0b0;
+  --pink: #c07d7d;
+  --green: #b8cead;
+}
+
+* {
+  font-family: "Open Sans", sans-serif;
+  outline: 1px solid red !important;
+  box-sizing: border-box;
+}
+
+header {
+  padding: 0px 25px;
+  width: 100%;
+  height: 6vh;
+  min-height: 70px;
+  background-color: var(--header);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  padding: 0px 25px;
+  width: 100%;
+  background-color: var(--bg);
+}
+
+button {
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 10px;
+  border: 1px solid var(--btnGrey);
+  color: var(--textDarkGray);
+  background-color: transparent;
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:hover {
+  background-color: var(--btnGrey);
+}
+
+button:active {
+  background-color: var(--btnActive);
+  color: white;
+}
+
+input[type="checkbox"] {
+  min-width: 20px;
+  min-height: 20px;
+}
+
+h1 {
+  font-size: 36px;
+  color: var(--textLightGray);
+  font-weight: 700;
+}
+
+.dayOfWeek-name {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--textLightGray);
+}
+
+.dayofMonth-number {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--textLightGray);
+}
+
+.monthName-text {
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--pink);
+}
+
+.dayOfWeekOnMonth-name {
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--green);
+}
+
+.event-text {
+  font-size: 16px;
+  font-weight: 300;
+  color: white;
+}
