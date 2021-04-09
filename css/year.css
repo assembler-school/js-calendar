@@ -1,31 +1,16 @@
-/* VARIABLES */
-:root {
-  --font: "Open Sans", sans-serif;
-  --font-display: "Open Sans", sans-serif;
-  --bg: #333333;
-  --header: #404040;
-  --btnGrey: #585858;
-  --btnActive: #7b7b7b;
-  --textDarkGray: #707070;
-  --textLightGray: #b0b0b0;
-  --pink: #c07d7d;
-  --green: #b8cead;
-}
-
-
 /* STRUCTURE */
 
 *{
   margin:0 auto;
   padding:0px;
   box-sizing:border-box;
-  /* outline: 1px solid red !important; */
+  outline: 1px solid red !important;
   font-family:var(--font);
   font-weight: 100;
   color:var(--textLightGray);
 }
 
-#year-view{
+#year-section{
   width:100%;
   height:100vh;
 }
@@ -72,7 +57,7 @@
   background-color:var(--bg);
 }
 
-.days:hover{
+.day:hover{
   background-color:rgba(166, 175, 175, 0.425);
   border-radius:20%;
   border-radius:50%;
