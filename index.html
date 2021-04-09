@@ -44,58 +44,67 @@
     </section>
 
     <section id="calendar">
-     <div class="month">
-          <div id="" class="week" data-row="1">
-              <div data-col="1"></div>
-              <div data-col="2"></div>
-              <div data-col="3"></div>
-              <div data-col="4"></div>
-              <div data-col="5"></div>
-              <div data-col="6"></div>
-              <div data-col="0"></div>
-          </div>
-          <div class="week" data-row="2">
-              <div data-col="1"></div>
-              <div data-col="2"></div>
-              <div data-col="3"></div>
-              <div data-col="4"></div>
-              <div data-col="5"></div>
-              <div data-col="6"></div>
-              <div data-col="0"></div>
-          </div>
-          <div class="week" data-row="3">
-              <div data-col="1"></div>
-              <div data-col="2"></div>
-              <div data-col="3"></div>
-              <div data-col="4"></div>
-              <div data-col="5"></div>
-              <div data-col="6"></div>
-              <div data-col="0"></div>
-          </div>
-          <div class="week" data-row="4">
-              <div data-col="1"></div>
-              <div data-col="2"></div>
-              <div data-col="3"></div>
-              <div data-col="4"></div>
-              <div data-col="5"></div>
-              <div data-col="6"></div>
-              <div data-col="0"></div>
-          </div>
-          <div class="week" data-row="5">
-              <div data-col="1"></div>
-              <div data-col="2"></div>
-              <div data-col="3"></div>
-              <div data-col="4"></div>
-              <div data-col="5"></div>
-              <div data-col="6"></div>
-              <div data-col="0"></div>
-          </div>
-      </div>
+     
     </section>
 
     <!-- ? Month Template -->
     <template id="month">
-
+        <div class="calendar__weekDay">
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fry</div>
+            <div>Sat</div>
+            <div>Sun</div>
+            </div>
+        <div class="month">
+        <div id="" class="week" data-row="1">
+            <div data-col="1"></div>
+            <div data-col="2"></div>
+            <div data-col="3"></div>
+            <div data-col="4"></div>
+            <div data-col="5"></div>
+            <div data-col="6"></div>
+            <div data-col="0"></div>
+        </div>
+        <div class="week" data-row="2">
+            <div data-col="1"></div>
+            <div data-col="2"></div>
+            <div data-col="3"></div>
+            <div data-col="4"></div>
+            <div data-col="5"></div>
+            <div data-col="6"></div>
+            <div data-col="0"></div>
+        </div>
+        <div class="week" data-row="3">
+            <div data-col="1"></div>
+            <div data-col="2"></div>
+            <div data-col="3"></div>
+            <div data-col="4"></div>
+            <div data-col="5"></div>
+            <div data-col="6"></div>
+            <div data-col="0"></div>
+        </div>
+        <div class="week" data-row="4">
+            <div data-col="1"></div>
+            <div data-col="2"></div>
+            <div data-col="3"></div>
+            <div data-col="4"></div>
+            <div data-col="5"></div>
+            <div data-col="6"></div>
+            <div data-col="0"></div>
+        </div>
+        <div class="week" data-row="5">
+            <div data-col="1"></div>
+            <div data-col="2"></div>
+            <div data-col="3"></div>
+            <div data-col="4"></div>
+            <div data-col="5"></div>
+            <div data-col="6"></div>
+            <div data-col="0"></div>
+        </div>
+    </div>
     </template>
 
     <!-- ? Modal Template -->
@@ -161,7 +170,6 @@
             </div>
         </div>
     </template>
-
-        <script src="assets/js/month_render.js"></script>
+    <script src="assets/js/calendar.js" type="module"></script>
     </body>
 </html>

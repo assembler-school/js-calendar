@@ -1,9 +1,8 @@
 //
 let actualDate = new Date();
-console.log(actualDate);
 
 /* Render of month in parameter type Date() */
-function renderMonth(selectedDate) {
+export function renderMonth(selectedDate) {
     let month = selectedDate.getMonth();
     let year = selectedDate.getFullYear();
     /* Get the first day of month and number of days in month */
@@ -19,17 +18,4 @@ function renderMonth(selectedDate) {
         weekDay++;
         weekDay%=7;
     }
-}
-
-/* Render of year in parameter type Date() */
-function renderYear(selectedDate) {
-    /* Loop of renderMonth */
-    /*
-    *renderMonth actually shows month in calendar
-    *but renderYear shouldn't
-    */
-}
-
-/*testing*/
-let date = actualDate;
-renderMonth(date);
+} 
