@@ -37,6 +37,7 @@
               <input type="checkbox" name="end-check" />
               <label for="end-check">End date</label>
             </div>
+<<<<<<< HEAD
             <div class="shadow__input--stretch">
               <label for="end-date">End date:</label>
               <input type="date" name="end-date" />
@@ -66,6 +67,35 @@
                 <option value="30">Date</option>
                 <option value="60">Other</option>
               </select>
+=======
+        </div>
+    </section>
+<!-- <hr> -->
+    <section id="calendar">
+
+    </section>
+
+    <!-- ? Month Template -->
+    <template id="month">
+        <div class="calendar__weekDay">
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+            <div>Sun</div>
+        </div>
+        <div class="calendar__month">
+            <div class="calendar__week" data-row="1">
+                <div data-col="1"></div>
+                <div data-col="2"></div>
+                <div data-col="3"></div>
+                <div data-col="4"></div>
+                <div data-col="5"></div>
+                <div data-col="6"></div>
+                <div data-col="0"></div>
+>>>>>>> F02
             </div>
             <div class="shadow__btn">
               <input type="submit" value="Create" />
@@ -73,6 +103,7 @@
             </div>
           </form>
         </div>
+<<<<<<< HEAD
       </div>
     </section>
 
@@ -163,6 +194,9 @@
 
     <!-- ? Month Template -->
     <template id="month"> </template>
+=======
+    </template>
+>>>>>>> F02
 
     <!-- ? Modal Template -->
     <template id="addEvent"> </template>
@@ -192,6 +226,7 @@
       }
       */
 
+<<<<<<< HEAD
     //   });
       document.getElementById("create-event").addEventListener("click", function () {
       var closed = document.getElementById("shadow");
@@ -205,4 +240,25 @@
       });
     </script>
   </body>
+=======
+                    <div class="shadow__input--stretch">
+                        <label for="select-event">Event type:</label>
+                        <select name="select-event">
+                            <option value="5">Meeting</option>
+                            <option value="15">Birthday</option>
+                            <option value="30">Date</option>
+                            <option value="60">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input type="submit" value="Create">
+                        <button>Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </template>
+    <script src="assets/js/calendar.js" type="module"></script>
+    </body>
+>>>>>>> F02
 </html>
