@@ -30,6 +30,9 @@ export function renderMonth(year, month) {
         weekDay++;
         weekDay%=7;
     }
+    document.querySelectorAll('.calendar__week').forEach((row)=> {
+        row.style.height = 'calc((100% - 25px) / ' + rowCont + ')'
+    });
 }
 
 /* blablabla */
