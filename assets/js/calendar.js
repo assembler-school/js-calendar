@@ -12,7 +12,7 @@ render.renderMonth(currentYear, currentMonth);
 let rightButton = document.querySelector('.fa-chevron-right');
 let leftButton = document.querySelector('.fa-chevron-left');
 
-/* Fucntion to add a month*/
+/* Function and events to change the month showed */
 let updateMonth = currentMonth;
 let updateYear = currentYear;
 function addMonth(year, month, boolean) {
@@ -38,3 +38,8 @@ rightButton.addEventListener('click', function(){
 leftButton.addEventListener('click', function(){
     addMonth(updateYear,updateMonth,false)
 });
+
+/*
+* Update html h2 to show updated month and year
+* new function?
+*/
