@@ -236,9 +236,9 @@ button#create-event i {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   width: 100%;
-  height: calc((100% - 25px) / 5);
+  /* height: calc((100% - 25px) / 5); */
   border-bottom: #dadce0 1px solid;
-  border-left: #dadce0 1px solid;
+  border-left: #dadce0 1px solid; 
 }
 
 .calendar__week > div {
