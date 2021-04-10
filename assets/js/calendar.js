@@ -9,6 +9,9 @@ let currentYear = currentDate.getFullYear();
 swapTemplate("month","calendar");
 render.renderMonth(currentYear, currentMonth);
 
+// Listeners
+document.getElementById("create-event").addEventListener("click", )
+
 /* Function and events to change the month showed */
 let updatedMonth = currentMonth;
 let updatedYear = currentYear;
