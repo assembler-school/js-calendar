@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Document</title>
+    <title>Calendar Js</title>
 </head>
 
 <body>
@@ -47,6 +47,10 @@
 
     </section>
 
+    <section id="modal-section">
+
+    </section>
+
     <!-- ? Month Template -->
     <template id="month">
         <div class="calendar__weekDay">
@@ -72,10 +76,10 @@
     </template>
 
     <!-- ? Modal Template -->
-    <template>
+    <template id="modal-template">
         <div id="shadow">
             <div id="modal">
-                <i class="fas fa-times-circle"></i>
+                <i class="fas fa-times-circle close"></i>
                 <h2>New event</h2>
                 <form action="">
                     <div class="shadow__input--stretch">
@@ -128,7 +132,7 @@
                     </div>
                     <div>
                         <input type="submit" value="Create">
-                        <button>Cancel</button>
+                        <button class="close">Cancel</button>
                     </div>
                 </form>
             </div>
