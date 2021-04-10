@@ -9,34 +9,35 @@ let currentYear = currentDate.getFullYear();
 swapTemplate("month","calendar");
 render.renderMonth(currentYear, currentMonth);
 
-let rightButton = document.querySelector('.fa-chevron-right');
-let leftButton = document.querySelector('.fa-chevron-left');
-
 /* Function and events to change the month showed */
-let updateMonth = currentMonth;
-let updateYear = currentYear;
+let updatedMonth = currentMonth;
+let updatedYear = currentYear;
 function addMonth(year, month, boolean) {
     boolean ? month++ : month--;
+    month+=12;
     month%=12;
-    updateMonth = month;
+    updatedMonth = month;
     if (!month && boolean) {
         year++;
-        updateYear = year;
+        updatedYear = year;
     } else if (!month && !boolean){
         year--;
-        updateYear = year;
+        updatedYear = year; //!!! year sactualitza de febrer->gener enlloc de gener->desembre 
     }
     
     swapTemplate("month","calendar");
-    render.renderMonth(updateYear,updateMonth);
-    console.log(updateMonth);
+    render.renderMonth(updatedYear,updatedMonth);
+    console.log(updatedYear);
+    console.log(updatedMonth);
 }
 
+let rightButton = document.querySelector('.fa-chevron-right');
+let leftButton = document.querySelector('.fa-chevron-left');
 rightButton.addEventListener('click', function(){
-    addMonth(updateYear,updateMonth,true);
+    addMonth(updatedYear,updatedMonth,true);
 });
 leftButton.addEventListener('click', function(){
-    addMonth(updateYear,updateMonth,false)
+    addMonth(updatedYear,updatedMonth,false)
 });
 
 /*

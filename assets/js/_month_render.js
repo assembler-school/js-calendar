@@ -29,7 +29,6 @@ export function renderMonth(year, month) {
         if (!weekDay) {weekCount++};
         weekDay++;
         weekDay%=7;
-        console.log(daysInMonth);
     }
 }
 
