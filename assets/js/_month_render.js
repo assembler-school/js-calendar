@@ -36,3 +36,14 @@ export function renderMonth(year, month) {
 export function handleEvent(){
 
 }
+
+export function updateDate(year,month) {
+    if (month === 12) {
+        year++;
+    } else if (month===-1){
+        year--;
+    }
+    month+=12;
+    month%=12;
+    return {year : year,month : month};
+}

@@ -14,21 +14,10 @@ let updatedMonth = currentMonth;
 let updatedYear = currentYear;
 function addMonth(year, month, boolean) {
     boolean ? month++ : month--;
-    month+=12;
-    month%=12;
-    updatedMonth = month;
-    if (!month && boolean) {
-        year++;
-        updatedYear = year;
-    } else if (!month && !boolean){
-        year--;
-        updatedYear = year; //!!! year sactualitza de febrer->gener enlloc de gener->desembre 
-    }
-    
+    updatedYear = render.updateDate(year,month).year;
+    updatedMonth = render.updateDate(year,month).month;
     swapTemplate("month","calendar");
     render.renderMonth(updatedYear,updatedMonth);
-    console.log(updatedYear);
-    console.log(updatedMonth);
 }
 
 let rightButton = document.querySelector('.fa-chevron-right');
