@@ -1,24 +1,40 @@
 //
-import * as render from "./month_render.js";
-import { swapTemplate } from "./templates.js";
+import * as render from "./_month_render.js";
+import { swapTemplate } from "./_templates.js";
 
-let actualDate = new Date();
-let month = actualDate.getMonth();
-let year = actualDate.getFullYear();
+let currentDate = new Date();
+let currentMonth = currentDate.getMonth();
+let currentYear = currentDate.getFullYear();
 
-let month2 = month;
+swapTemplate("month","calendar");
+render.renderMonth(currentYear, currentMonth);
 
 let rightButton = document.querySelector('.fa-chevron-right');
 let leftButton = document.querySelector('.fa-chevron-left');
 
-rightButton.addEventListener('click', function(){
-    /* render.addMonth(month2, true); */
-    month2++;
+/* Fucntion to add a month*/
+let updateMonth = currentMonth;
+let updateYear = currentYear;
+function addMonth(year, month, boolean) {
+    boolean ? month++ : month--;
+    month%=12;
+    updateMonth = month;
+    if (!month && boolean) {
+        year++;
+        updateYear = year;
+    } else if (!month && !boolean){
+        year--;
+        updateYear = year;
+    }
+    
     swapTemplate("month","calendar");
-    render.renderMonth(year, month2);
-    console.log(month2);
-});
-leftButton.addEventListener('click', render.addMonth, month, false);
+    render.renderMonth(updateYear,updateMonth);
+    console.log(updateMonth);
+}
 
-swapTemplate("month","calendar");
-render.renderMonth(year, month);
+rightButton.addEventListener('click', function(){
+    addMonth(updateYear,updateMonth,true);
+});
+leftButton.addEventListener('click', function(){
+    addMonth(updateYear,updateMonth,false)
+});
