@@ -36,23 +36,24 @@ body {
   font-size: 16px;
 }
 
-hr{
+hr {
   opacity: 0.5;
 }
 /* ===========MODAL NEW EVENT (alvaro)============*/
-#close{
+#close {
   color: rgb(231, 13, 13);
 }
-label{
+label {
   font-size: 0.95rem;
 }
-input{
-  padding: 1px;
-  border-top-style:hidden;
-  border-right-style:hidden;
+input {
+  padding: 0.4rem 0;
+  /* font-size: 1rem; */
+  border-top-style: hidden;
+  border-right-style: hidden;
   border-bottom-style: solid;
-  border-left-style:hidden;
-  border-width:2px;
+  border-left-style: hidden;
+  border-width: 1px;
   border-color: var(--text-color);
   outline: none;
   transition: border-color 0.6s linear 0.2s;
@@ -76,27 +77,32 @@ input[type=checkbox]{
 }*/
 
 /*  TEXTAREA  */
-textarea{
-  background-color:var(--color2);
-  opacity: 0.6;
+textarea {
+  background-color: var(--header-color);
+  /* opacity: 0.6; */
   border: var(--text-color);
   outline: none;
-  height: 50px;
-  width: 200px;
-  border-radius: 6px;
+  height: 80px;
+  width: inherit;
+  border-radius: var(--br-radius);
   resize: none;
+  padding: 0.4rem;
   color: #000;
+  font-size: 1rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   transition: border 0.6s linear 0.2s;
 }
 textarea:focus {
-  border:solid 2px #ff6010;
+  border: solid 1px #ff6010;
 }
-select{
-  border-top-style:hidden;
-  border-right-style:hidden;
+select {
+  padding: 0.4rem 0;
+  /* font-size: 1rem; */
+  border-top-style: hidden;
+  border-right-style: hidden;
   border-bottom-style: solid;
-  border-left-style:hidden;
-  border-width:2px;
+  border-left-style: hidden;
+  border-width: 1px;
   border-color: var(--text-color);
   outline: none;
   transition: border-color 0.6s linear 0.2s;
@@ -107,27 +113,32 @@ select:focus {
 }
 
 /*    BOTONES ENVIO CANCELAR */
-.shadow__btn > input{
+.shadow__btn > input {
   color: var(--text-color);
   background-color: transparent;
-  padding: 4px 6px;
-  border-radius: 6px;
+  /* padding: 4px 6px; */
+  width: 60px;
+  height: 30px;
+  border-radius: var(--br-radius);
   border-color: var(--text-color);
   border: solid 2px;
-} 
-.shadow__btn > button{
+  transition: border-color 0.6s linear 0.2s;
+}
+.shadow__btn > button {
   color: rgb(231, 13, 13);
   background-color: transparent;
-  padding: 4px 6px;
-  border-radius: 6px;
-  border-color:rgb(231, 13, 13);
-} 
-.shadow__btn > button:focus{
-  outline: none;
-  border-color:rgb(231, 13, 13);
+  /* padding: 4px 6px; */
+  width: 60px;
+  height: 30px;
+  border-radius: var(--br-radius);
+  border-color: rgb(231, 13, 13);
 }
-.shadow__btn > button{
-  transition: border-color 0.6s linear 0.2s;
+
+.shadow__btn {
+  display: flex;
+  justify-content: space-between;
+  min-width: 150px;
+  margin-bottom: 1rem;
 }
 
 /*
@@ -226,13 +237,13 @@ button#create-event i {
   grid-template-columns: repeat(7, 1fr);
   width: 100%;
   height: calc((100% - 25px) / 5);
-   border-bottom: #dadce0 1px solid;
-  border-left: #dadce0 1px solid; 
+  border-bottom: #dadce0 1px solid;
+  border-left: #dadce0 1px solid;
 }
 
 .calendar__week > div {
   height: 100%;
-  background-color:white;
+  background-color: white;
   padding: 0.5%;
   border-right: #dadce0 1px solid;
 }
@@ -244,14 +255,14 @@ button#create-event i {
   height: 25px;
   align-items: center;
   text-align: center;
-  border-left: #dadce0 1px solid; 
+  border-left: #dadce0 1px solid;
   border-top: #dadce0 1px solid;
-  border-radius: 6px 6px 0 0;
+  /* border-radius: 6px 6px 0 0; */
 }
 
 .calendar__weekDay > div {
   width: calc(100% / 7);
-  background-color:white;
+  background-color: white;
   padding: 0.5%;
   border-right: #dadce0 1px solid;
 }
@@ -261,11 +272,11 @@ button#create-event i {
      ! Modal styles
   ===================================
   */
-.on{
-  visibility:visible;
+.on {
+  visibility: visible;
   z-index: 2;
 }
-.off{
+.off {
   visibility: hidden;
   z-index: 0;
 }
@@ -286,27 +297,19 @@ button#create-event i {
   align-items: center;
   flex-direction: column;
   /*justify-content: center;*/
-  background-color: white;
-  max-width: 400px;
+  background-color: var(--header-color);
+  max-width: 500px;
   /*max-height: 800px;*/
-  border-radius: 20px;
-  /*
+  border-radius: var(--br-radius);
   width: 90%;
-  height: 90%;*/
+  /* height: 80%; */
   position: relative;
-  overflow: hidden;
-  padding: 2%;
-}
-
-i.fa-times-circle {
-  position: absolute;
-  top: 1%;
-  right: 1%;
-  margin: 1%;
+  overflow: visible;
+  /* padding-top: 2rem; */
 }
 
 #modal > h2 {
-  margin-bottom: 10px;
+  margin: 1rem 0;
 }
 
 #modal > form {
@@ -316,41 +319,73 @@ i.fa-times-circle {
   /*justify-content: space-evenly;*/
   width: 100%;
   height: 100%;
+  padding: 0 1.5rem;
+  background-color: white;
+  padding-top: 1rem;
+  font-size: 1rem;
+  border-radius: var(--br-radius);
+}
+
+i.fa-times-circle {
+  position: absolute;
+  top: 1%;
+  right: 1%;
+  margin: 1%;
 }
 
 .shadow__input--stretch {
-  margin-bottom: 14px;
+  margin-bottom: 0.9rem;
   display: flex;
   justify-content: space-between;
-   flex-direction: column; 
- /* fex wrap en version escritorio hace que se coma el margin */
+  flex-direction: column;
   flex-wrap: wrap;
-  width: 65%;
+  width: inherit;
 }
 
 .shadow__input--start {
-  margin-bottom: 14px;
-  width: 65%;
+  margin-bottom: 0.9rem;
+  width: inherit;
 }
-
 
 /*
   ===================================
      ! media queries
   ===================================
   */
+/* small screen */
+@media only screen and (max-width: 350px) {
+  #modal {
+    height: 90%;
+  }
+  #modal > h2 {
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+  }
+  #modal > form {
+    padding: 0 1rem;
+    background-color: white;
+  }
+  .shadow__input--stretch {
+    margin-bottom: 0.45rem;
+  }
+  
+  .shadow__input--start {
+    margin-bottom: 0.45rem;
+  }
+}
+
 /* Medium screen */
 @media only screen and (min-width: 600px) {
-  #modal {
+  /* #modal {
     width: 80%;
     height: 80%;
-  }
+  } */
 }
 
 /* Large screen */
 @media only screen and (min-width: 900px) {
-  #modal {
+  /* #modal {
     width: 50%;
     height: 60%;
-  }
+  } */
 }
