@@ -43,9 +43,11 @@ hr {
 #close {
   color: rgb(231, 13, 13);
 }
+
 label {
   font-size: 0.95rem;
 }
+
 input {
   padding: 0.4rem 0;
   /* font-size: 1rem; */
@@ -58,6 +60,7 @@ input {
   outline: none;
   transition: border-color 0.6s linear 0.2s;
 }
+
 input:focus {
   border-color: var(--color6);
 }
@@ -92,9 +95,11 @@ textarea {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   transition: border 0.6s linear 0.2s;
 }
+
 textarea:focus {
   border: solid 1px #ff6010;
 }
+
 select {
   padding: 0.4rem 0;
   /* font-size: 1rem; */
@@ -107,6 +112,7 @@ select {
   outline: none;
   transition: border-color 0.6s linear 0.2s;
 }
+
 select:focus {
   border-color: var(--color6);
   background-color: rgba(255, 136, 0, 0.6);
@@ -124,6 +130,7 @@ select:focus {
   border: solid 2px;
   transition: border-color 0.6s linear 0.2s;
 }
+
 .shadow__btn > button {
   color: rgb(231, 13, 13);
   background-color: transparent;
@@ -306,7 +313,7 @@ button#create-event i {
 }
 
 #modal > h2 {
-  margin: 1rem 0;
+  margin: 0.5rem 0;
 }
 
 #modal > form {
@@ -344,6 +351,15 @@ i.fa-times-circle {
   width: inherit;
 }
 
+.title__error{
+  color: red;
+  font-size: 80%;
+}
+
+.input__error{
+  border-color: red;
+}
+
 /*
   ===================================
      ! media queries
@@ -373,10 +389,9 @@ i.fa-times-circle {
 
 /* Medium screen */
 @media only screen and (min-width: 600px) {
-  /* #modal {
-    width: 80%;
-    height: 80%;
-  } */
+  #modal > h2 {
+    margin: 1rem 0;
+  }
 }
 
 /* Large screen */
@@ -393,19 +408,7 @@ i.fa-times-circle {
 ===================================
 */
 .slide-top {
-  -webkit-animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-}
-
-@-webkit-keyframes slide-top {
-  0% {
-    -webkit-transform: translateY(-100px);
-    transform: translateY(-100px);
-  }
-  100% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
 }
 
 @keyframes slide-top {
