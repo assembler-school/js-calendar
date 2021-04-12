@@ -17,7 +17,7 @@
         <button id="create-event"> <i class="fas fa-plus"></i> Add event</button>
     </header> -->
 
-    <section>
+    <section id="nav__web">
         <div class="nav__month">
             <div class="nav__left">
                 <div>
@@ -39,6 +39,49 @@
                     <i class="fas fa-plus"></i>
                     <p>Add event</p>
                 </button>
+            </div>
+        </div>
+    </section>
+    <!-- ? MOBILE NAV -->
+    <section id="nav__mobile">
+        <div class="nav__mobile">
+            <div class="nav__mobile--left">
+                <div>
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <h2>April 2021</h2>
+                <div>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+            <div>
+                <i id="navOpen" class="fas fa-bars"></i>
+            </div>
+            <div id="main" class="nav__mobile--main">
+                <div class="nav__mobile--btn-close">
+                    <i id="navClose" class="fas fa-bars"></i>
+                </div>
+                <hr>
+                <div class="nav__mobile--container">
+                    <div class="nav__mobile--containerBtn">
+                        <button>Day</button>
+                        <button>Week</button>
+                        <button class="nav__mobile--selected">Month</button>
+                        <button>Year</button>
+                    </div>
+                    <hr>
+                    <div class="nav__mobile--event">
+                        <span style="padding: 0.5rem;background-color: #5727d2;color:white;border-radius:10rem;margin:0.5rem 0;">Cumpleaños Pepe</span>
+                        <span style="padding: 0.5rem;background-color: #ff6010;color:white;border-radius:10rem;margin:0.5rem 0;">Cumpleaños Marta</span>
+                        <span style="padding: 0.5rem;background-color: #5727d2;color:white;border-radius:10rem;margin:0.5rem 0;">Cumpleaños Antonio</span>
+                        <span style="padding: 0.5rem;background-color: #726775;color:white;border-radius:10rem;margin:0.5rem 0;">Cumpleaños Javi</span>
+                        <span style="padding: 0.5rem;background-color: #5727d2;color:white;border-radius:10rem;margin:0.5rem 0;">Cumpleaños Laura</span>
+                    </div>
+                    <button id="create-event">
+                        <i class="fas fa-plus"></i>
+                        <p>Add event</p>
+                    </button>
+                </div>    
             </div>
         </div>
     </section>
@@ -135,5 +178,17 @@
         </div>
     </template>
     <script src="assets/js/calendar.js" type="module"></script>
+    <script>
+        document.getElementById("navClose").addEventListener("click", function () {
+            var navClose = document.getElementById("navClose");
+            if (navClose.classList.style = 'display:block') {
+                navClose.classList.style = 'display:none';
+            }
+        });
+        document.getElementById("navOpen").addEventListener("click", function () {
+            var navClose = document.getElementById("navClose");
+            navClose.classList.style = 'display:block';
+        });
+    </script>
     </body>
 </html>
