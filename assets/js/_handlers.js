@@ -1,6 +1,7 @@
 import { swapTemplate, removeTemplate } from "./_templates.js";
 import { formValidation } from "./_form_validation.js";
 import { addMonth, currentDate } from "./calendar.js";
+import { _event } from "./_events.js";
 /*
  * All listeners are listed here
  *
@@ -28,7 +29,11 @@ export function handleDocumentEvents(e) {
      * form validation
      */
     if (e.target.matches('input[type="submit"]')) {
-      formValidation(e, true);
+      e.preventDefault();
+
+      if (!formValidation(e, true)) {
+        _event.getDataFromModal("#modal form");
+      }
     }
 
     /*
