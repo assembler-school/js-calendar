@@ -4,15 +4,11 @@ export function formValidation(e, validateAll) {
   const inputsRequired = document.querySelectorAll("input[required]");
 
   // prevent default message
-  document.addEventListener(
-    "invalid",
-    (function () {
+  document.addEventListener("invalid",(function () {
       return function (e) {
         e.preventDefault();
       };
-    })(),
-    true
-  );
+    })(),true);
 
   // inject span with validation message
   inputsRequired.forEach((element) => {

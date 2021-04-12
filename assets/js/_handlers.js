@@ -1,12 +1,12 @@
 import { swapTemplate, removeTemplate } from "./_templates.js";
 import { formValidation } from "./_form_validation.js";
 import { addMonth, currentDate } from "./calendar.js";
-import { _event } from "./_events.js";
+import { calendarEvent } from "./_events.js";
+
 /*
  * All listeners are listed here
  *
  */
-
 export function handleDocumentEvents(e) {
   // click event
   document.addEventListener("click", (e) => {
@@ -32,7 +32,9 @@ export function handleDocumentEvents(e) {
       e.preventDefault();
 
       if (!formValidation(e, true)) {
-        _event.getDataFromModal("#modal form");
+        const data = calendarEvent.getDataFromModal("#modal form");
+        calendarEvent.toLocalStorage(data);
+        // calendarEvent.probando();
       }
     }
 
@@ -73,16 +75,3 @@ export function handleDocumentEvents(e) {
     }
   });
 }
-
-/*
- * Function to open the nav bar for mobiles
- */
-// export function handleMobileNav() {
-//   document.getElementById("main").style.display = "block";
-//   swapTemplate("template__mobile", "main");
-
-//   document.getElementById("navClose").addEventListener("click", function (e) {
-//     removeTemplate("template__mobile", "main");
-//     document.getElementById("main").style.display = "none";
-//   });
-// }
