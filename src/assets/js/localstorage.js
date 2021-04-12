@@ -50,10 +50,10 @@ function createEvent() {
     eventsById.push(newEvent);
 
     //* Saving in eventsByDate
-    if (!eventsByDate["" + startYear + startMonth + startDate]) {
-        eventsByDate["" + startYear + startMonth + startDate] = [];
+    if (!eventsByDate["" + startYear + "-" + startMonth + "-" + startDate]) {
+        eventsByDate["" + startYear + "-" + startMonth + "-" + startDate] = [];
     }
-    eventsByDate["" + startYear + startMonth + startDate].push(eventIndex);
+    eventsByDate["" + startYear + "-" + startMonth + "-" + startDate].push(eventIndex);
 
 
 
