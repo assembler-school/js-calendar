@@ -19,7 +19,6 @@ let calendarEvent = class {
     } */
 }
 
-
 let formLS = document.querySelector("form");
 
 let createBtn = document.getElementById("m-createBtn");
@@ -40,29 +39,23 @@ function createEvent() {
     const startDate = formattedIniDate.getDate();
     const startYear = formattedIniDate.getFullYear();
     const startMonth = formattedIniDate.getMonth();
-
-
-
-
-
-
     //* Saving in eventsById
     let newEvent = new calendarEvent(titleF, iniDateF, enDateF, reminderF, descriptionF, eventTF,eventIndex);
     eventsById.push(newEvent);
 
     //* Saving in eventsByDate
-    if (!eventsByDate["" + startYear + "-" + startMonth + "-" + startDate]) {
-        eventsByDate["" + startYear + "-" + startMonth + "-" + startDate] = [];
+    if (!eventsByDate[`${startYear}-${startMonth}-${startDate}`]) {
+        eventsByDate[`${startYear}-${startMonth}-${startDate}`] = [];
     }
-    eventsByDate["" + startYear + "-" + startMonth + "-" + startDate].push(eventIndex);
+    eventsByDate[`${startYear}-${startMonth}-${startDate}`].push(eventIndex);
 
     //* Save (or not) to reminders lists
     if (checkBoxReminder === true) {
         remindersById.push(newEvent);
-        if (!remindersByDate["" + startYear + "-" + startMonth + "-" + startDate]) {
-            remindersByDate["" + startYear + "-" + startMonth + "-" + startDate] = [];
+        if (!remindersByDate[`${startYear}-${startMonth}-${startDate}`]) {
+            remindersByDate[`${startYear}-${startMonth}-${startDate}`] = [];
         }
-        remindersByDate["" + startYear + "-" + startMonth + "-" + startDate].push(eventIndex);
+        remindersByDate[`${startYear}-${startMonth}-${startDate}`].push(eventIndex);
     }
 
     localStorage.setItem("eventsById", JSON.stringify(eventsById));
