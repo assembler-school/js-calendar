@@ -53,7 +53,6 @@ export function updateDate(year,month) {
 }
 
 export function highlightToday(year, month){
-    debugger;
     let date = new Date();
     if (compareMonth(year,month,date.getFullYear(),date.getMonth())) {
         document.getElementById((new Date()).getDate()).className += 'today';
