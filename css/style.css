@@ -8,7 +8,7 @@
 .newEvent-btn {
   font-size: 23px;
   font-weight: 400;
-  background-image: url("/img/plus-icon.png");
+  background-image: url("../img/plus-icon.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 12px;
@@ -40,7 +40,7 @@
 .goPrevious-btn {
   font-size: 16px;
   font-weight: 400;
-  background-image: url("/img/left-arrow.png");
+  background-image: url("../img/left-arrow.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 8px;
@@ -61,7 +61,7 @@
 .goNext-btn {
   font-size: 16px;
   font-weight: 400;
-  background-image: url("/img/right-arrow.png");
+  background-image: url("../img/right-arrow.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 8px;
@@ -84,10 +84,12 @@
 .currentTypeofDate-container {
   display: flex;
   height: max-content;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 
 .currentYear-text {
+  margin-left: 7px;
   font-weight: 300;
   letter-spacing: -2px;
 }
@@ -105,7 +107,7 @@
   z-index: 99999;
   position: fixed;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.5);
   visibility: hidden;
   width: 100vw;
   height: 100%;
@@ -160,17 +162,19 @@
   font-family: var(--font);
   padding: 20px 0px;
   background-color: var(--bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .week-days-header {
   width: 100%;
-  height: 2%;
+  max-height: 2%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-column-gap: 1px;
-  padding: 1px;
   background-color: var(--bg);
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .week-days-header > h2 {
@@ -187,7 +191,7 @@
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-row-gap: 1px;
   grid-column-gap: 1px;
-  background-color: var(--textLightGray);
+  background-color: var(--btnGrey);
   padding: 1px;
 }
 
@@ -215,4 +219,8 @@
 
 .event_alarm {
   background-color: tomato;
+}
+
+.day-not-month {
+  color: var(--textDarkGray);
 }

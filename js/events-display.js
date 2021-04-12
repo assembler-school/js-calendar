@@ -1,5 +1,5 @@
 calendar = {
-    "2021/12/05" : {
+    "2021/4/19" : {
         'nombreEvento1':{
           'endDate': '18/09/2021 12:31:22',
           'reminder': '18/09/2021 11:31:22',
@@ -13,7 +13,7 @@ calendar = {
             'eventType': 'meeting'
           },
     },
-    "2021/12/07" : {
+    "2021/4/21" : {
         'nombreEvento33333':{
             'endDate': '18/09/2021 12:31:22',
             'reminder': '18/09/2021 11:31:22',
@@ -21,10 +21,20 @@ calendar = {
             'eventType': 'meeting'
           },
   
+    },
+    "2021/4/29" : {
+        'nombreEvento444':{
+            'endDate': '18/09/2021 12:31:22',
+            'reminder': '18/09/2021 11:31:22',
+            'description': 'asdasdasd',
+            'eventType': 'meeting'
+          },
+  
     }
+
 }
 
-localStorage.setItem("calendar", JSON.stringify(calendar) );
+localStorage.setItem("calendarMock", JSON.stringify(calendar) );
 
 //console.log(JSON.stringify(calendar));
 
@@ -32,22 +42,14 @@ localStorage.setItem("calendar", JSON.stringify(calendar) );
 for (date in calendar){
     for (eventName in calendar[date]){
         //console.log(date + ' has ' + eventName);
-        displayEventInMonth(date,eventName);
+        displayEventInDate(date,eventName);
     }
 }
 
-//dateID = "2021/12/05"
-//var eventTitle = "comrmucho";
-
-function displayEventInMonth(dateID,eventTitle){
+function displayEventInDate(dateID,eventTitle){
     let displayedEvent = document.createElement("P");
     let eventTitleTextNode = document.createTextNode(eventTitle);
     displayedEvent.appendChild(eventTitleTextNode);
     displayedEvent.className = "event-text";
     document.getElementById(dateID).appendChild(displayedEvent);
 }
-
-
-
-
-//localStorage.setItem("estructura", JSON.stringify(estructura) );
