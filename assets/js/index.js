@@ -3,8 +3,6 @@ const date = new Date();
 
 const renderCalendar = () =>{
 
-    date.setDate(1);
-
     const monthDays = document.querySelector(".days")
 
     const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
@@ -42,6 +40,7 @@ const renderCalendar = () =>{
 
     let days = "";
 
+    date.setDate(1);
     //Detecta el primer dia del mes y encuentra la resta entre el mismo y 0
 
     for (let x = firstDayIndex; x > 0; x--) {
@@ -74,7 +73,6 @@ var btnPrev = document.querySelector(".next").addEventListener("click", () => {
     date.setMonth(date.getMonth() + 1);
     renderCalendar();
 });
-
 
 renderCalendar();
 
