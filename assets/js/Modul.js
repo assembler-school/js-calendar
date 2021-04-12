@@ -80,7 +80,7 @@ for (let i = 0; i < localStorage.length; i++) {
   let key = localStorage.key(i);
   let value = localStorage.getItem(key);
 
-  eventOutput.innerHTML += `${key}: ${value}`;
+  eventOutput.innerHTML += `${key}: ${value}<br />`;
   console.log(key)
   console.log(value)
 }
@@ -89,8 +89,8 @@ for (let i = 0; i < localStorage.length; i++) {
 /* *********************************
 ---------- EVENTOS -----------------
 ********************************* */
-btn__create.addEventListener("click", createEvent);
+// btn__create.addEventListener("click", createEvent);
 
-function createEvent (){
-  console.log(btn__create)
-}
+// function createEvent (){
+//   console.log(btn__create)
+// }
