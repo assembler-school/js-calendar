@@ -3,17 +3,31 @@ const date = new Date();
 
 const renderCalendar = () =>{
 
+    date.setDate(1);
+    //Detecta el primer dia del mes y encuentra la resta entre el mismo y 0
+
+    //Recoge el DIV con la clase .days
     const monthDays = document.querySelector(".days")
 
+    /*recoge la fecha actual de la variable (date), le recoge el mes SIGUIENTE al actual y se lo pone a dia 0. Al ponerselo a dia cero, lo que hace es que te coge el ultimo dia del mes pasado. Es decir, el dia 31 de cada mes, por lo tanto lo que obtenemos es el ultimo dia del mes ACTUAL*/
     const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+    console.log(lastDay, "lastDay");
 
+    /* Te recoge el ultimo día del mes pasado al Actual, por lo tanto, sera el ultimo dia del mes pasado */
     const prevLastDay = new Date(date.getFullYear(), date.getMonth(), 0).getDate();
+    console.log(prevLastDay, "prevLastDay");
 
+    /* El metodo getDay() lo que te dice es en que dia de la semana cae ese día. Si una semana tiene 7 dias, del uno al 7, en que posición caerá?*/
     const firstDayIndex = date.getDay();
+    console.log(firstDayIndex, "firstdayindex");
 
+    /* Nuevamente, con el getDay() está recogiendo el ultimo día del mes 31/28/ lo que sea y está avergiuando que dia de los 7 días a la semana caerá*/
     const lastDayIndex = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDay();
+    console.log(lastDayIndex, "lastDayIndex");
 
+    /* Para saber cuantos dias mostrar en el calendario, esta cogiendo el ÑastDay Index y le resta los 7 días de la semana y así le queda la resta para en el futuro, con un bucle crear especificamente dichos DIVS */
     const nextDays = 7 - lastDayIndex - 1;
+    console.log(nextDays, "nextDays");
 
     //Siempre se aumenta 1, puesto que la variable empieza a contar desde 0
     const months = [
@@ -32,31 +46,34 @@ const renderCalendar = () =>{
     ]
 
     //Mes actual
-    //date.getMonth(), nos trae el mes en el que estamos ahora mismo.
+    //date.getMonth(), nos trae el mes en el que estamos ahora mismo y en esta linea sdemás la inserta en el h2
     document.querySelector(".date h2").innerHTML = months[date.getMonth()];
 
-    //Dia actual
+    //Recoge el día actual de la variable date y la inserta en el P
     document.querySelector(".date p").innerHTML = date.toDateString();
 
+    /* Esta es una variable vacia con la que vamos a almacenar todos los dias con bucles y mostrarlos */
     let days = "";
 
-    date.setDate(1);
-    //Detecta el primer dia del mes y encuentra la resta entre el mismo y 0
-
+    /* Bucle que crea los dias anteriores al numero obtenido con el firstDayIndex y les añade la clase prev-date*/
     for (let x = firstDayIndex; x > 0; x--) {
         days += `<div class = "prev-date">${prevLastDay - x+1}</div>`;
     }
 
+    /* Bucle para crear todos los Divs que necesitamos para el día del mes */
     for (let i = 1; i <= lastDay; i++) {
+        /* Este if es solo un comparador que te compara el valor de la variable (date) con la fecha actual de un nuevo objeto Date y si coincide, le aplica la clase TODAY */
         if (i === new Date().getDate() && date.getMonth() === new Date().getMonth() && date.getFullYear() === new Date().getFullYear()) {
             days += `<div class="today">${i}</div>`;
         } else {
+            /*De lo contrario, te coge el numero almacenado en la variable lastDay y te va restando y crrando los Divs necesarios */
             days += `<div>${i}</div>`;
         }
 
         monthDays.innerHTML = days;
     }
 
+    /* Con la variable nexDays, te está creando tantos DIVS como el nextdays tenga de dias restamtes de semana */
     for (let j = 1; j <= nextDays; j++) {
         days += `<div class = "next-date">${j}</div>`;
         monthDays.innerHTML = days;
@@ -64,15 +81,20 @@ const renderCalendar = () =>{
 
 }
 
+//Esta funcion renderiza el calendario por primera vez
+renderCalendar();
+
+//Detecta el boton PREV y setea el mes en -1 y vuelve a renderizar el calendario
 var btnPrev = document.querySelector(".prev").addEventListener("click", () => {
     date.setMonth(date.getMonth() - 1);
     renderCalendar();
 });
 
+//Detecta el boton NEXT y setea el mes en +1 y vuelve a renderizar el calendario
 var btnPrev = document.querySelector(".next").addEventListener("click", () => {
     date.setMonth(date.getMonth() + 1);
     renderCalendar();
 });
 
-renderCalendar();
+
 
