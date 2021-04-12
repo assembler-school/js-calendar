@@ -1,5 +1,5 @@
-calendar = {
-    "2021/4/19" : {
+calendarMock = {
+    "2021/4/17" : {
         'nombreEvento1':{
           'endDate': '18/09/2021 12:31:22',
           'reminder': '18/09/2021 11:31:22',
@@ -20,29 +20,32 @@ calendar = {
             'description': 'asdasdasd',
             'eventType': 'meeting'
           },
-  
+
     },
-    "2021/4/29" : {
+    "2021/5/29" : {
         'nombreEvento444':{
             'endDate': '18/09/2021 12:31:22',
             'reminder': '18/09/2021 11:31:22',
             'description': 'asdasdasd',
             'eventType': 'meeting'
           },
-  
+
     }
 
 }
+localStorage.setItem("calendarMock", JSON.stringify(calendarMock) );
 
-localStorage.setItem("calendarMock", JSON.stringify(calendar) );
+var eventsCalendar = JSON.parse(localStorage.getItem('calendarMock'));
+var currentMonthDisplay = "4"
 
-//console.log(JSON.stringify(calendar));
-
-//let displayedDay = document.getElementById("2021/12/05");
-for (date in calendar){
-    for (eventName in calendar[date]){
-        //console.log(date + ' has ' + eventName);
-        displayEventInDate(date,eventName);
+displayEventInMonth(currentMonthDisplay, eventsCalendar);
+function displayEventInMonth(currentMonthDisplay, eventsCalendar){
+    for (date in eventsCalendar){
+        if(currentMonthDisplay === date.split("/")[1]){
+            for (eventName in eventsCalendar[date]){
+                displayEventInDate(date,eventName);
+            }
+        }
     }
 }
 
