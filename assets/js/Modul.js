@@ -59,6 +59,7 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+// Local storage input and output testing
 
 let inputTitleKey = document.getElementById("titleBox")
 let inputDescriptionValue = document.getElementById("textAreaDescription")
@@ -80,7 +81,8 @@ for (let i = 0; i < localStorage.length; i++) {
   let value = localStorage.getItem(key);
 
   eventOutput.innerHTML += `${key}: ${value}`;
-  
+  console.log(key)
+  console.log(value)
 }
 
 
