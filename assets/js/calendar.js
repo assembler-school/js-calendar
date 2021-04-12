@@ -1,7 +1,7 @@
 //
 import * as render from "./_month_render.js";
 import { swapTemplate } from "./_templates.js";
-import { handleCreateEvent } from "./_handlers.js";
+import { handleDocumentEvents } from "./_handlers.js";
 
 let currentDate = new Date();
 let currentMonth = currentDate.getMonth();
@@ -14,7 +14,8 @@ swapTemplate("month","calendar");
 render.renderMonth(currentYear, currentMonth);
 
 // Listeners
-d.getElementById("create-event").addEventListener("click", handleCreateEvent);
+// d.getElementById("create-event").addEventListener("click", handleCreateEvent);
+handleDocumentEvents();
 
 /* Function that shows the selected month and year of the calendar */
 function addTag(year, month) {
