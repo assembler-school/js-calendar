@@ -1,6 +1,44 @@
+var currentDate = new Date;
+var currentWeekDay = currentDate.getDay();
+var currentDay = currentDate.getDate();
+var currentMonth = currentDate.getMonth();
+var currentYear = currentDate.getFullYear();
+
+
+//INPUTS TO CONTROLL THE CALENDAR
+var year = currentYear;
+var month = currentMonth;
+
+
 var shortDays = ['M','T','W','T','F','S','S'];
 var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday"];
 var monthsNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+console.log(days[currentWeekDay] + ' ' + currentDay + ' ' + monthsNames[currentMonth] + ' ' + currentYear);
+
+// console.log(firstOfJanuary(2021));
+// console.log('First week day: ' + new Date(year,month).getDay());
+// console.log(getMonthDays(2021,5));
+
+var shortDays = ['M','T','W','T','F','S','S'];
+var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday"];
+var monthsNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+
+//GET DAY,MONTH,YEAR DATA
+//Get first day of month
+function getFirstMonthDay(year,month){
+  return new Date(year, month).getDay();
+};
+
+//Get number of days in month
+function getMonthDays(year,month){
+  return new Date(year,month, 0).getDate();
+};
+
+// gunction getFullDate(year);
+
+
 
 //CALENDAR CONSTRUCTOR
 function calendarConstructor(){
@@ -22,10 +60,10 @@ function calendarConstructor(){
     }
   })
 
-  //Create weeks
+  //Create row for month name
   var months = document.querySelectorAll('.month');
   months.forEach((month) => {
-    for(i=0;i<8;i++){
+    for(i=0;i<2;i++){
       let div = document.createElement('div');
       div.setAttribute('class','week');
       month.appendChild(div);
@@ -43,7 +81,6 @@ function calendarConstructor(){
   });
 
   //Setting month-name class
-  var months = document.querySelectorAll('.month');
   months.forEach((month) => {
     month.firstChild.classList.add('month-name');
   });
@@ -70,5 +107,60 @@ function calendarConstructor(){
       child.innerHTML += shortDays[i];
       i++;
     });
+  });
+  populateCalendar(2020);
+};
+
+
+
+//POPULATE CALENDAR DAYS
+function populateCalendar(year){
+  //Body of the calendar
+  var months = document.querySelectorAll('.month');
+
+  var iMonth = 1;
+  months.forEach((month) => {
+    //month counter
+
+    let date = 1;
+
+    //Dates checker
+    console.log('iMonth-' + iMonth);
+    console.log('Month days-' + getMonthDays(year,iMonth))
+    console.log('First week day-' + getFirstMonthDay(year,iMonth-1));
+
+    for (let i = 0; i < 6; i++) {
+      // creates a table row
+      // let row = document.createElement("tr");
+      let row = document.createElement('div');
+      row.setAttribute('class','week');
+
+      //creating individual cells, filing them up with data.
+      for (let j = 0; j < 7; j++) {
+        if (i === 0 && j < getFirstMonthDay(year,iMonth-1) - 1) {
+          let cell = document.createElement('div');
+          cell.setAttribute('class','days');
+          cellText = document.createTextNode("");
+          cell.appendChild(cellText);
+          row.appendChild(cell);
+        }
+        else if (date > getMonthDays(year, iMonth)) {
+          break;
+        }
+
+        else {
+          let cell = document.createElement('div');
+          cell.setAttribute('class','days');
+          let cellText = document.createTextNode(date);
+          cell.appendChild(cellText);
+          row.appendChild(cell);
+          date++;
+        }
+
+
+      }
+      month.appendChild(row); // appending each row into calendar body.
+    }
+    iMonth++;
   });
 };
