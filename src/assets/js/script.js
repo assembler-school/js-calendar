@@ -45,7 +45,7 @@ for (let div of modalDivs.children) {
     div.addEventListener('click', justFunc);
 }
 function justFunc(event) {
-    modalSection.style.display = "block";
+    modalSection.classList.remove("hidden");
 }
 
 // Show or hidden the checkbox info
