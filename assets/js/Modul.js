@@ -69,7 +69,7 @@ let inputReminderValue = document.getElementById("reminderSelect")
 let inputEventTypeValue = document.getElementById("eventSelect")
 let inputDescriptionValue = document.getElementById("textAreaDescription")
 let buttonSubmit = document.getElementById("createBtn")
-let eventOutput = document.getElementById("event__display")
+let eventOutput = document.querySelector(".event__display")
 
 buttonSubmit.onclick = function () {
   let key = inputTitleKey.value;
@@ -92,9 +92,9 @@ for (let i = 0; i < localStorage.length; i++) {
   let key = localStorage.key(i);
   let value = localStorage.getItem(key);
 
-  //eventOutput.innerHTML += `${key}: ${value}<br />`;
-  //console.log(key)
-  //console.log(value)
+  eventOutput.innerHTML += `${key}: ${value}<br />`;
+  console.log(key)
+  console.log(value)
 }
 
 
