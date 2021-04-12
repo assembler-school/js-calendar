@@ -62,13 +62,26 @@ window.onclick = function(event) {
 // Local storage input and output testing
 
 let inputTitleKey = document.getElementById("titleBox")
+let inputDateValue = document.getElementById("initialCal")
+let inputDateEndValue = document.getElementById("endCal")
+let inputTimedValue = document.getElementById("timeSelector")
+let inputReminderValue = document.getElementById("reminderSelect")
+let inputEventTypeValue = document.getElementById("eventSelect")
 let inputDescriptionValue = document.getElementById("textAreaDescription")
 let buttonSubmit = document.getElementById("createBtn")
 let eventOutput = document.getElementById("event__display1")
 
 buttonSubmit.onclick = function () {
   let key = inputTitleKey.value;
-  let value = inputDescriptionValue.value;
+  let value = [inputDescriptionValue.value , 
+    inputDateValue.value, 
+    inputDateEndValue.value, 
+    inputTimedValue.value, 
+    inputReminderValue.value, 
+    inputEventTypeValue.value]
+
+
+
 
  
   if (key && value) {
