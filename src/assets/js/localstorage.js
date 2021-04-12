@@ -1,7 +1,7 @@
 //! Objects
 var eventsByDate = {};
 var eventsById = [];
-var remindersByDate = [];
+var remindersByDate = {};
 var remindersById = [];
 var eventIndex = 0;
 let calendarEvent = class {
@@ -34,6 +34,7 @@ function createEvent() {
     const reminderF = document.getElementById("time").value;
     const descriptionF = document.getElementById("description").value;
     const eventTF = document.getElementById("event-type").value;
+    const checkBoxReminder = document.getElementById("check-box-reminder").checked;
     //*converting date to Date object
     let formattedIniDate = new Date(iniDateF);
     const startDate = formattedIniDate.getDate();
@@ -55,10 +56,19 @@ function createEvent() {
     }
     eventsByDate["" + startYear + "-" + startMonth + "-" + startDate].push(eventIndex);
 
-
+    //* Save (or not) to reminders lists
+    if (checkBoxReminder === true) {
+        remindersById.push(newEvent);
+        if (!remindersByDate["" + startYear + "-" + startMonth + "-" + startDate]) {
+            remindersByDate["" + startYear + "-" + startMonth + "-" + startDate] = [];
+        }
+        remindersByDate["" + startYear + "-" + startMonth + "-" + startDate].push(eventIndex);
+    }
 
     localStorage.setItem("eventsById", JSON.stringify(eventsById));
     localStorage.setItem("eventsByDate", JSON.stringify(eventsByDate));
+    localStorage.setItem("remindersById", JSON.stringify(remindersById));
+    localStorage.setItem("remindersByDate", JSON.stringify(remindersByDate));
     //console.log(titleF,iniDateF,enDateF,reminderF,descriptionF,eventTF);
     eventIndex += 1;
 }
