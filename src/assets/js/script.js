@@ -1,5 +1,6 @@
 
 // ctes declaration
+const modalForm = document.getElementById("form");
 
 const modalSection = document.getElementById("modal-section");
 
@@ -21,21 +22,25 @@ const modalDivs = document.getElementById("modal-event-div");
 
     modalCloseButton.onclick = function() {
         modalSection.classList.add("hidden");
+        modalForm.reset();
     }
 
     modalCancelButton.onclick = function() {
         modalSection.classList.add("hidden");
+        modalForm.reset();
     }
 
     window.onclick = function(event) {
         if (event.target == modalSection){
             modalSection.classList.add("hidden");
+            modalForm.reset();
         }
     }
     document.onkeydown = function (evt) {
         evt = evt || window.event;
         if (evt.keyCode == 27) {
             modalSection.classList.add("hidden");
+            modalForm.reset();
         }
     };
 
