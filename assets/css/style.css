@@ -331,7 +331,7 @@ button#create-event i {
   width: 100%;
   /* height: calc((100% - 25px) / 5); */
   border-bottom: #dadce0 1px solid;
-  border-left: #dadce0 1px solid; 
+  border-left: #dadce0 1px solid;
 }
 
 .calendar__week > div {
@@ -445,6 +445,15 @@ i.fa-times-circle {
 .input__error{
   border-color: red;
 }
+
+/*
+  ===================================
+     ! event styles
+  ===================================
+  */
+
+  
+
 
 /*
   ===================================
