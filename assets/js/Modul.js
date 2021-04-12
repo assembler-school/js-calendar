@@ -45,7 +45,7 @@ function displayEnd () {
 let reminderCheckBox = document.getElementById("reminderCheckBox");
 let reminderTextArea = document.getElementById("reminderSelect");
 
-function reminderShowTextArea() {
+function reminderShowSelectBox() {
   if (reminderCheckBox.checked == true) {
     reminderTextArea.style.display = "flex"
   } else {
@@ -59,6 +59,43 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+// Local storage input and output testing
+
+let inputTitleKey = document.getElementById("titleBox")
+let inputDateValue = document.getElementById("initialCal")
+let inputDateEndValue = document.getElementById("endCal")
+let inputTimedValue = document.getElementById("timeSelector")
+let inputReminderValue = document.getElementById("reminderSelect")
+let inputEventTypeValue = document.getElementById("eventSelect")
+let inputDescriptionValue = document.getElementById("textAreaDescription")
+let buttonSubmit = document.getElementById("createBtn")
+let eventOutput = document.getElementById("event__display")
+
+buttonSubmit.onclick = function () {
+  let key = inputTitleKey.value;
+  let value = [inputDescriptionValue.value , 
+    inputDateValue.value, 
+    inputDateEndValue.value, 
+    inputTimedValue.value, 
+    inputReminderValue.value, 
+    inputEventTypeValue.value]
+
+
+
+
+  if (key && value) {
+    localStorage.setItem(key, value);
+  }
+};
+
+for (let i = 0; i < localStorage.length; i++) {
+  let key = localStorage.key(i);
+  let value = localStorage.getItem(key);
+
+  //eventOutput.innerHTML += `${key}: ${value}<br />`;
+  //console.log(key)
+  //console.log(value)
+}
 
 
 /* *********************************
@@ -66,6 +103,10 @@ window.onclick = function(event) {
 ********************************* */
 btn__create.addEventListener("click", createEvent);
 
+// Pesco el div donde se guardaran los eventos
+let events = document.querySelector(".events");
 function createEvent (){
-  console.log(btn__create)
+  let section = document.createElement("section");
+  section.setAttribute("class", "event__display");
+  events.appendChild(section);
 }

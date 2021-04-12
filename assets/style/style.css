@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: fantasy;
+    font-family: 'Work Sans', sans-serif;
 }
 
 html {
@@ -164,12 +166,32 @@ main{
     margin-left: 40px;
     order:2;
 }
+.events::-webkit-scrollbar{
+    background-color: darkgreen;
+    width: 10px;
+}
+.events::-webkit-scrollbar-thumb{
+    background-color: darkmagenta;
+    border-radius: 20px;
+}
 
 .event__display{
     min-height: 100px;
     width: 100%;
     height: fit-content;
     outline: darkcyan solid 1px;
+}
+#event__display1{
+    min-height: 100px;
+    width: 100%;
+    height: fit-content;
+    outline: darkcyan solid 1px;
+}
+
+.btn__remove__event{
+    position: absolute;
+    right:100%;
+    top: 0%;
 }
 
 
@@ -206,7 +228,7 @@ main{
     padding: 25px;
     box-shadow: 10px 10px 10px black;
     font-size: 12px;
-    
+
   }
   
   .textContainer , #addDate , #addTitle ,#endDate, #timeSelect, #reminderBox, #descriptionBox,#eventType, #buttonsPop{

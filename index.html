@@ -47,14 +47,17 @@
 								<div class="calendar__shadow__2"></div>
             </div>
             <div class="events">
-              <section class="event__display"><h1>Day of the event (Monday)</h1></section>
+              <section class="event__display">
+                <h1>Day of the event (Monday)</h1>
+                <button class="btn__remove-event fas fa-trash" id="btn__remove__event"></button>
+              </section>
 
             </div>
         </main>
         <!---------------- INICIO ASIDE ---------------->
         <aside>
             <button id="openButton">+</button>
-
+       <form action="">
         <div id="myModal" class="modal">
             <div class="modal-content">
               <span class="close">&times;</span>
@@ -63,7 +66,7 @@
                 </div>
                 <div id="addTitle">
                   <label for="title"></label>
-                  <input id="titleBox" type="text" placeholder="Add title" name="Add title" maxlength="60" >
+                  <input id="titleBox" type="text" placeholder="Add title" name="Add title" maxlength="60" required >
                 </div>
                 <div id="addDate">
                   <label id="initialText" for="">Initial date:</label>
@@ -79,25 +82,25 @@
                   <input id="timeSelector" type="time"  name="" > 
                 </div>
                 <div id="reminderBox">
-                  <input id="reminderCheckBox"  type="checkbox" onclick="reminderShowTextArea()">Remind me when this event expires
+                  <input id="reminderCheckBox"  type="checkbox" onclick="reminderShowSelectBox()">Remind me when this event expires
                   <select id="reminderSelect">
-                    <option value="timeBefore">5 minutes before</option>
-                    <option value="timeBefore">10 minutes before</option>
-                    <option value="timeBefore">15 minutes before</option>
-                    <option value="timeBefore">30 minutes before</option>
-                    <option value="timeBefore">1 hour before</option>
+                    <option value="5 minutes before">5 minutes before</option>
+                    <option value="10 minutes before">10 minutes before</option>
+                    <option value="15 minutes before">15 minutes before</option>
+                    <option value="30 minutes before">30 minutes before</option>
+                    <option value="1 hour before">1 hour before</option>
                 </select> </input>
                 </div>
                 <div id="descriptionBox">
-                  <textarea maxlength="500" rows="3" cols="52"  placeholder="Add a description..."></textarea>
+                  <textarea id="textAreaDescription" maxlength="500" rows="3" cols="52"  placeholder="Add a description..."></textarea>
                 </div>
                
                 <div id="eventType">
                     <label for="events"> Event type:</label>
                   <select id="eventSelect">
                       <option value="meeting">Meeting</option>
-                      <option value="reminder">Personal</option>
-                      <option value="reminder">Study</option>
+                      <option value="Personal">Personal</option>
+                      <option value="Study">Study</option>
                   </select>
                 </div>
                 
@@ -108,6 +111,7 @@
                
             </div>
         </div>
+      </form>
         </aside>
         <!---------------- INICIO FOOTER ---------------->
         <footer></footer>
