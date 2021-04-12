@@ -47,7 +47,7 @@
 								<div class="calendar__shadow__2"></div>
             </div>
             <div class="events">
-              <section class="event__display"><h1>Day of the event (Monday)</h1></section>
+              <section id="event__display1"><h1></h1></section>
               <section class="event__display"><h1>Day of the event (Monday)</h1></section>
               <section class="event__display"><h1>Day of the event (Monday)</h1></section>
               <section class="event__display"><h1>Day of the event (Monday)</h1></section>
@@ -60,7 +60,7 @@
         <!---------------- INICIO ASIDE ---------------->
         <aside>
             <button id="openButton">+</button>
-
+       <form action="">
         <div id="myModal" class="modal">
             <div class="modal-content">
               <span class="close">&times;</span>
@@ -69,7 +69,7 @@
                 </div>
                 <div id="addTitle">
                   <label for="title"></label>
-                  <input id="titleBox" type="text" placeholder="Add title" name="Add title" maxlength="60" >
+                  <input id="titleBox" type="text" placeholder="Add title" name="Add title" maxlength="60" required >
                 </div>
                 <div id="addDate">
                   <label id="initialText" for="">Initial date:</label>
@@ -95,7 +95,7 @@
                 </select> </input>
                 </div>
                 <div id="descriptionBox">
-                  <textarea maxlength="500" rows="3" cols="52"  placeholder="Add a description..."></textarea>
+                  <textarea id="textAreaDescription" maxlength="500" rows="3" cols="52"  placeholder="Add a description..."></textarea>
                 </div>
                
                 <div id="eventType">
@@ -114,6 +114,7 @@
                
             </div>
         </div>
+      </form>
         </aside>
         <!---------------- INICIO FOOTER ---------------->
         <footer></footer>

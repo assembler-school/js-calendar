@@ -171,6 +171,12 @@ main{
     height: fit-content;
     outline: darkcyan solid 1px;
 }
+#event__display1{
+    min-height: 100px;
+    width: 100%;
+    height: fit-content;
+    outline: darkcyan solid 1px;
+}
 
 
 /* ########## Pop up Modal ####### */

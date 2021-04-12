@@ -58,3 +58,27 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
+let inputTitleKey = document.getElementById("titleBox")
+let inputDescriptionValue = document.getElementById("textAreaDescription")
+let buttonSubmit = document.getElementById("createBtn")
+let eventOutput = document.getElementById("event__display1")
+
+buttonSubmit.onclick = function () {
+  let key = inputTitleKey.value;
+  let value = inputDescriptionValue.value;
+
+ 
+  if (key && value) {
+    localStorage.setItem(key, value);
+  }
+};
+
+for (let i = 0; i < localStorage.length; i++) {
+  let key = localStorage.key(i);
+  let value = localStorage.getItem(key);
+
+  eventOutput.innerHTML += `${key}: ${value}`;
+  
+}
+
