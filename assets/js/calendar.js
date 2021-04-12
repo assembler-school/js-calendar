@@ -14,7 +14,6 @@ swapTemplate("month","calendar");
 render.renderMonth(currentYear, currentMonth);
 
 // Listeners
-// d.getElementById("create-event").addEventListener("click", handleCreateEvent);
 handleDocumentEvents();
 
 /* Function that shows the selected month and year of the calendar */

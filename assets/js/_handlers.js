@@ -44,6 +44,18 @@ export function handleDocumentEvents(e) {
       let updatedYear = currentDate.getFullYear();
       addMonth(updatedYear, updatedMonth, false);
     }
+
+    /*
+     * Mobile burguer menu
+     */
+    if (e.target.matches("#navOpen") || e.target.matches("#navOpen *")) {
+      document.getElementById("main").style.display = "block";
+      swapTemplate("template__mobile", "main");
+    }
+    if (e.target.matches("#navClose") || e.target.matches("#navClose *")) {
+      removeTemplate("template__mobile", "main");
+      document.getElementById("main").style.display = "none";
+    }
   });
 
   // focusot event
@@ -56,3 +68,16 @@ export function handleDocumentEvents(e) {
     }
   });
 }
+
+/*
+ * Function to open the nav bar for mobiles
+ */
+// export function handleMobileNav() {
+//   document.getElementById("main").style.display = "block";
+//   swapTemplate("template__mobile", "main");
+
+//   document.getElementById("navClose").addEventListener("click", function (e) {
+//     removeTemplate("template__mobile", "main");
+//     document.getElementById("main").style.display = "none";
+//   });
+// }

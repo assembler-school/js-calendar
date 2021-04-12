@@ -64,20 +64,7 @@ input {
 input:focus {
   border-color: var(--color6);
 }
-/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-/*  PENDIENTE INPUT CHECK BOX EDIT NO FUNCIONA */
-/*input[type="checkbox"]{
-  border-color:var(--text-color);
-  width: 8px;
-  height: 8px;
-  background-color: var(--color6);
-}
-input[type=checkbox]:focus {
-  border-color: var(--color6);
-}
-input[type=checkbox]{
-  transition: border-color 0.6s linear 0.2s;
-}*/
+
 
 /*  TEXTAREA  */
 textarea {
@@ -111,11 +98,15 @@ select {
   border-color: var(--text-color);
   outline: none;
   transition: border-color 0.6s linear 0.2s;
+
 }
 
 select:focus {
   border-color: var(--color6);
   background-color: rgba(255, 136, 0, 0.6);
+}
+select option {
+  width: 52px;
 }
 
 /*    BOTONES ENVIO CANCELAR */
@@ -153,6 +144,13 @@ select:focus {
      ! nav styles
   ===================================
   */
+  #nav__web{
+    display:none;
+  }
+  #nav__web h2{
+    font-size: 1.2rem;
+    margin: 0 0.5rem;
+  }
 .nav__month {
   display: flex;
   flex-direction: row;
@@ -179,7 +177,6 @@ select:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 0.5rem;
 }
 
 .nav__left i {
@@ -222,7 +219,91 @@ button#create-event {
 button#create-event i {
   margin-right: 0.3rem;
 }
+/*
+  ===================================
+     ! nav mobile styles
+  ===================================
+  */
 
+#nav__mobile{
+  /* display:block; */
+}
+#nav__mobile h2{
+  font-size: 1.2rem;
+  margin: 0 0.5rem;
+}
+.nav__mobile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #fff;
+  min-height: 55px;
+}
+
+.nav__mobile--left {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#main{
+  display:none;
+}
+.nav__mobile--main {
+  position: absolute;
+  height: 100%;
+  width: 75%;
+  background-color:var(--header-color);
+  top:0;
+  right: 0;
+  box-shadow: 20px 20px 200px 100px rgb(136, 136, 136);
+}
+.nav__mobile--btn-close{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:flex-end;
+  padding: 1rem;
+  height: 50px;
+}
+.nav__mobile--container{
+  padding: 1rem;
+  background-color: white;
+  height: calc(100% - 50pxq);
+}
+.nav__mobile--containerBtn{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  width: inherit;
+  height: calc((100% - 25px) / 5);
+  padding: 1rem;
+  /* ELIMINAR EL BORDER */
+  border: #dadce0 4px solid;
+}
+.nav__mobile--containerBtn > button {
+  padding: 5px;
+  margin: 0;
+  padding: 0.15rem;
+  background-color: var(--header-color);
+  border-radius: 10rem;
+  border:none;
+  box-shadow:  0px 0px 4px 01px rgb(136, 136, 136);
+  padding: 0.3rem 1rem;
+}
+.nav__mobile--containerBtn > .nav__mobile--selected {
+  background-color:rgb(44, 139, 184);
+  color: white;
+}
+.nav__mobile--event{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 /*
   ===================================
      ! calendar styles
@@ -385,6 +466,7 @@ i.fa-times-circle {
   .shadow__input--start {
     margin-bottom: 0.45rem;
   }
+  
 }
 
 /* Medium screen */
@@ -392,6 +474,14 @@ i.fa-times-circle {
   #modal > h2 {
     margin: 1rem 0;
   }
+  /*  Mantener CSS HEADER MOBILE  */
+  #nav__web{
+    display:none;
+  }
+  #nav__mobile{
+    display:block;
+  }
+
 }
 
 /* Large screen */
@@ -400,6 +490,12 @@ i.fa-times-circle {
     width: 50%;
     height: 60%;
   } */
+  #nav__web{
+    display:block;
+  }
+  #nav__mobile{
+    display:none;
+  }
 }
 
 /*
@@ -420,5 +516,6 @@ i.fa-times-circle {
     -webkit-transform: translateY(0);
     transform: translateY(0);
   }
+
 }
 
