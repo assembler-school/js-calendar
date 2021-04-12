@@ -1,9 +1,9 @@
 //
 import * as render from "./_month_render.js";
 import { swapTemplate } from "./_templates.js";
-import { handleCreateEvent, handleMobileNav } from "./_handlers.js";
+import { handleDocumentEvents } from "./_handlers.js";
 
-let currentDate = new Date();
+export let currentDate = new Date();
 let currentMonth = currentDate.getMonth();
 let currentYear = currentDate.getFullYear();
 const d= document;
@@ -14,8 +14,7 @@ swapTemplate("month","calendar");
 render.renderMonth(currentYear, currentMonth);
 
 // Listeners
-d.getElementById("create-event").addEventListener("click", handleCreateEvent);
-d.getElementById("navOpen").addEventListener("click", handleMobileNav);
+handleDocumentEvents();
 
 /* Function that shows the selected month and year of the calendar */
 function addTag(year, month) {
@@ -31,7 +30,7 @@ function addTag(year, month) {
 /* Function and events to change the month showed */
 let updatedMonth = currentMonth;
 let updatedYear = currentYear;
-function addMonth(year, month, boolean) {
+export function addMonth(year, month, boolean) {
     boolean ? month++ : month--;
     updatedYear = render.updateDate(year,month).year;
     updatedMonth = render.updateDate(year,month).month;
@@ -40,11 +39,11 @@ function addMonth(year, month, boolean) {
     addTag(updatedYear, updatedMonth);
 }
 
-let rightButton = document.querySelector(".fa-chevron-right");
-let leftButton = document.querySelector(".fa-chevron-left");
-rightButton.addEventListener("click", function () {
-  addMonth(updatedYear, updatedMonth, true);
-});
-leftButton.addEventListener('click', function(){
-    addMonth(updatedYear,updatedMonth,false)
-});
+// let rightButton = document.querySelector(".fa-chevron-right");
+// let leftButton = document.querySelector(".fa-chevron-left");
+// rightButton.addEventListener("click", function () {
+//   addMonth(updatedYear, updatedMonth, true);
+// });
+// leftButton.addEventListener('click', function(){
+//     addMonth(updatedYear,updatedMonth,false)
+// });
