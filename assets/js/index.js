@@ -29,6 +29,14 @@ const renderCalendar = () =>{
     const nextDays = 7 - lastDayIndex - 1;
     console.log(nextDays, "nextDays");
 
+    //coge el numero exacto del mes actual
+    let actual_month = date.getMonth() + 1;
+    console.log(actual_month, "mes actual");
+
+    //coge el numero exacto del año
+    let actual_year = date.getFullYear();
+    console.log(actual_year, "año actual");
+
     //Siempre se aumenta 1, puesto que la variable empieza a contar desde 0
     const months = [
         "Enero",
@@ -45,6 +53,7 @@ const renderCalendar = () =>{
         "Diciembre",
     ]
 
+
     //Mes actual
     //date.getMonth(), nos trae el mes en el que estamos ahora mismo y en esta linea sdemás la inserta en el h2
     document.querySelector(".date h2").innerHTML = months[date.getMonth()];
@@ -57,17 +66,17 @@ const renderCalendar = () =>{
 
     /* Bucle que crea los dias anteriores al numero obtenido con el firstDayIndex y les añade la clase prev-date*/
     for (let x = firstDayIndex; x > 0; x--) {
-        days += `<div class = "prev-date">${prevLastDay - x+1}</div>`;
+        days += `<div class = "prev-date" id="${prevLastDay - x+1}-${actual_month-1}-${actual_year}">${prevLastDay - x+1}</div>`;
     }
 
     /* Bucle para crear todos los Divs que necesitamos para el día del mes */
     for (let i = 1; i <= lastDay; i++) {
         /* Este if es solo un comparador que te compara el valor de la variable (date) con la fecha actual de un nuevo objeto Date y si coincide, le aplica la clase TODAY */
         if (i === new Date().getDate() && date.getMonth() === new Date().getMonth() && date.getFullYear() === new Date().getFullYear()) {
-            days += `<div class="today">${i}</div>`;
+            days += `<div class="today" id="${i}-${actual_month}-${actual_year}">${i}</div>`;
         } else {
             /*De lo contrario, te coge el numero almacenado en la variable lastDay y te va restando y crrando los Divs necesarios */
-            days += `<div>${i}</div>`;
+            days += `<div id="${i}-${actual_month}-${actual_year}">${i}</div>`;
         }
 
         monthDays.innerHTML = days;
@@ -75,7 +84,7 @@ const renderCalendar = () =>{
 
     /* Con la variable nexDays, te está creando tantos DIVS como el nextdays tenga de dias restamtes de semana */
     for (let j = 1; j <= nextDays; j++) {
-        days += `<div class = "next-date">${j}</div>`;
+        days += `<div class = "next-date" id="${j}-${actual_month +1}-${actual_year}">${j}</div>`;
         monthDays.innerHTML = days;
     }
 
