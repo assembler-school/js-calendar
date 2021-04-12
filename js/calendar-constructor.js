@@ -147,6 +147,7 @@ function populateCalendar(year){
           else {
             let cell = document.createElement('div');
             cell.setAttribute('class','days');
+            cell.setAttribute('id',year + '/' + iMonth + '/' + date);
             let cellText = document.createTextNode(date);
             cell.appendChild(cellText);
             row.appendChild(cell);
