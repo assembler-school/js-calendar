@@ -183,6 +183,11 @@ select option {
   color: var(--text-color);
 }
 
+.nav__left h2 {
+  width: 12rem;
+  text-align: center;
+}
+
 .nav__center {
   padding: 0.15rem;
   background-color: var(--header-color);
