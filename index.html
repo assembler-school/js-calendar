@@ -54,6 +54,7 @@
 
         <div id="myModal" class="modal">
             <div class="modal-content">
+              <span class="close">&times;</span>
                 <div class="textContainer">
                     <h1>New Event</h1>
                 </div>
@@ -62,11 +63,11 @@
                   <input id="titleBox" type="text" placeholder="Add title" name="Add title" maxlength="60" >
                 </div>
                 <div id="addDate">
-                  <label for="">Initial date:</label>
+                  <label id="initialText" for="">Initial date:</label>
                   <input id="initialCal" type="date"></input> 
                 </div>
                 <div id="endDate">
-                  <input  type="checkbox">End date</input> 
+                  <input id="checkboxEnd"  type="checkbox" onclick="displayEnd ()">End date</input> 
                   <input id="endCal" type="date"></input> 
 
                 </div>
@@ -75,7 +76,7 @@
                   <input id="timeSelector" type="time"  name="" > 
                 </div>
                 <div id="reminderBox">
-                  <input  type="checkbox">Remind me when this event expires
+                  <input id="reminderCheckBox"  type="checkbox" onclick="reminderShowTextArea()">Remind me when this event expires
                   <select id="reminderSelect">
                     <option value="timeBefore">5 minutes before</option>
                     <option value="timeBefore">10 minutes before</option>

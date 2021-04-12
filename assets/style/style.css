@@ -205,14 +205,24 @@ main{
     background-color: #ddd;
 }
  /* Moving around of all the content inside the separate divs */
-#addDate,#endDate{
+#addDate{
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    flex-direction:row ;
+    justify-content: space-between;
+    
 }
+#endCal{
+    margin-left: 20%;
+    
+}
+
 #initialCal , #endCal{
 width: 80%;
 height: 70%;
+}
+#endCal{
+    display: none;
 }
 #timeSelect{
     display: flex;
@@ -224,6 +234,10 @@ width: 20%;
 height: 70%;
 
 }
+#reminderSelect{
+    display: none;
+  
+}
 
 textarea{
     resize: none;
@@ -231,6 +245,8 @@ textarea{
     outline: none;
     box-sizing: border-box;
     padding: 2px;
+    height: 100%;
+    width: 100%;
     
 }
 #eventType{
@@ -254,8 +270,18 @@ textarea{
 
 #createBtn {
     background-color: lightgreen;
+    cursor: pointer;
 }
 
 #cancelBtn{
     background-color: lightcoral;
+    cursor: pointer;
 }
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: left;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
