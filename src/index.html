@@ -53,7 +53,7 @@
                 </div>
                 <div class="modal-input">
                     <label for="initial-date">Initial date</label>
-                    <input type="date" name="initial-date" id="initialDate">
+                    <input type="datetime-local" name="initial-date" id="initialDate">
                 </div>
                 <div class="modal-input modal-cb">
                     <input id="check-box" type="checkbox" name="endDate-cb" onclick="showMeTheEndDate()">
@@ -61,7 +61,7 @@
                 </div>
                 <div class="modal-input">
                     <label for="end-date" >End date</label>
-                    <input type="date" name="end-date" id="endDate" disabled>
+                    <input type="datetime-local" name="end-date" id="endDate" disabled>
                 </div>
                 <div class="modal-input modal-cb">
                     <input id="check-box-reminder" type="checkbox" name="remind" onclick="showMeTheReminder()">
@@ -82,23 +82,24 @@
                 </div>
                 <div class="modal-input">
                     <label for="event-type">Event type</label>
-                    <select name="event-type" id="">
+                    <select name="event-type" id="event-type">
                         <option value="Meeting">Meeting</option>
                         <option value="Study">Study</option>
                         <option value="Personal">Personal</option>
                     </select>
                 </div>
-            </form>
 
             <div class="modal-footer">
                 <button id="m-cancelBtn" class="m-action-button">Cancel</button>
                 <button id="m-createBtn" class="m-action-button">Create</button>
             </div>
+            </form>
         </div>
     </section>
     <script src="assets/js/calendar.js"></script>
     <script src="assets/js/validations.js"></script>
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/localstorage.js"></script>
 </body>
 
 </html>
