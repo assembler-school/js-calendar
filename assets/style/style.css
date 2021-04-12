@@ -198,8 +198,6 @@ main{
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     background-color: rgba(35, 54, 54, 0.4); /* Black w/ opacity */
-    
-    
   }
   /* Add styles to the modal container */
   .modal-content {
