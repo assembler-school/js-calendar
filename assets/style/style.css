@@ -268,8 +268,18 @@ textarea{
 
 #createBtn {
     background-color: lightgreen;
+    cursor: pointer;
 }
 
 #cancelBtn{
     background-color: lightcoral;
+    cursor: pointer;
 }
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: left;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }

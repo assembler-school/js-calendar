@@ -16,6 +16,11 @@ openButton.onclick = function() {
 function closeForm() {
   document.getElementById("myModal").style.display = "none";
 }
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
 
 // Set current date on Caledar 
 let today = new Date().toISOString().substr(0, 10);
@@ -46,3 +51,10 @@ function reminderShowTextArea() {
     reminderTextArea.style.display = "none"
   }
 } // End function
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
