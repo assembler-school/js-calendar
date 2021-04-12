@@ -96,6 +96,62 @@
             </div>
         </div>
     </section>
+    <section id="modal-event-section" class="hidden">
+        <div id="modal-event-content">
+            <div class="modal-event-header">
+                <h1>New Event</h1>
+                <i class="modal-event-button fas fa-window-close"></i>
+            </div>
+            <form action="" name="modal-event-form">
+                <div class="modal-event-input">
+                    <label for="title">Title</label>
+                    <input type="text" name="title" id="title">
+                </div>
+                <div class="modal-event-input">
+                    <label for="initial-date">Initial date</label>
+                    <input type="date" name="initial-date" id="initialDate">
+                </div>
+                <div class="modal-event-input modal-event-cb">
+                    <input type="checkbox" name="endDate-cb">
+                    <label for="endDate-cb">End date</label>
+                </div>
+                <div class="modal-event-input">
+                    <label for="end-date">End date</label>
+                    <input type="date" name="end-date" id="endDate">
+                </div>
+                <div class="modal-event-input modal-event-cb">
+                    <input type="checkbox" name="remind">
+                    <label for="remind">Remind me when this event expires</label>
+                </div>
+                <div class="modal-event-input">
+                    <label for="time">Time</label>
+                    <select name="time" id="time">
+                        <option value="5 min">5 min</option>
+                        <option value="10 min">10 min</option>
+                        <option value="15 min">15 min</option>
+                        <option value="20 min">20 min</option>
+                    </select>
+                </div>
+                <div class="modal-event-input">
+                    <label for="description">Description</label>
+                    <textarea name="description" id="description" cols="30" rows="10"></textarea>
+                </div>
+                <div class="modal-event-input">
+                    <label for="event-type">Event type</label>
+                    <select name="event-type" id="">
+                        <option value="Meeting">Meeting</option>
+                        <option value="Study">Study</option>
+                        <option value="Personal">Personal</option>
+                    </select>
+                </div>
+            </form>
+
+            <div class="modal-event-footer">
+                <button id="m-cancelBtn" class="m-action-button">Cancel</button>
+                <button id="m-createBtn" class="m-action-button">Create</button>
+            </div>
+        </div>
+    </section>
     <script src="assets/js/calendar.js"></script>
     <script src="assets/js/validations.js"></script>
     <script src="assets/js/event-modal.js"></script>
