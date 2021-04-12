@@ -15,19 +15,18 @@ export function handleCreateEvent() {
   // stop propagation from modal to shadow
   document.getElementById("modal").addEventListener("click", function (e) {
     e.stopPropagation();
-  });  
+  });
 }
 
 /*
- * All listeners are listed here, ipmport
- * what you need.
+ * Function to open the nav bar for mobiles
  */
 export function handleMobileNav() {
+  document.getElementById('main').style.display = 'block';
   swapTemplate("template__mobile", "main");
-  
-  document.querySelectorAll("#navClose").forEach((element) => {
-    element.addEventListener("click", function (e) {
+
+  document.getElementById("navClose").addEventListener("click", function (e) {
       removeTemplate("template__mobile", "main");
+      document.getElementById('main').style.display = 'none';
     });
-  });
 }

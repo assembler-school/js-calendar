@@ -222,7 +222,7 @@ button#create-event i {
   */
 
 #nav__mobile{
-  display:block;
+  /* display:block; */
 }
 #nav__mobile h2{
   font-size: 1.2rem;
