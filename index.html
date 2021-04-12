@@ -42,7 +42,6 @@
             </div>
         </div>
     </section>
-    <!-- ? MOBILE NAV -->
     <section id="nav__mobile">
         <div class="nav__mobile">
             <div class="nav__mobile--left">
@@ -58,6 +57,20 @@
                 <i id="navOpen" class="fas fa-bars"></i>
             </div>
             <div id="main" class="nav__mobile--main">
+            </div>
+        </div>
+    </section>
+<!-- <hr> -->
+    <section id="calendar">
+
+    </section>
+
+    <section id="modal-section">
+
+    </section>
+
+    <!-- ? MOBILE NAV -->
+    <template id="template__mobile">
                 <div class="nav__mobile--btn-close">
                     <i id="navClose" class="fas fa-bars"></i>
                 </div>
@@ -82,17 +95,7 @@
                         <p>Add event</p>
                     </button>
                 </div>    
-            </div>
-        </div>
-    </section>
-<!-- <hr> -->
-    <section id="calendar">
-
-    </section>
-
-    <section id="modal-section">
-
-    </section>
+    </template>
 
     <!-- ? Month Template -->
     <template id="month">
@@ -183,18 +186,10 @@
             </div>
         </div>
     </template>
+
+
+
+
     <script src="assets/js/calendar.js" type="module"></script>
-    <script>
-        document.getElementById("navClose").addEventListener("click", function () {
-            var navClose = document.getElementById("navClose");
-            if (navClose.classList.style = 'display:block') {
-                navClose.classList.style = 'display:none';
-            }
-        });
-        document.getElementById("navOpen").addEventListener("click", function () {
-            var navClose = document.getElementById("navClose");
-            navClose.classList.style = 'display:block';
-        });
-    </script>
     </body>
 </html>

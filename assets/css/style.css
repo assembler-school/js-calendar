@@ -64,20 +64,7 @@ input {
 input:focus {
   border-color: var(--color6);
 }
-/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-/*  PENDIENTE INPUT CHECK BOX EDIT NO FUNCIONA */
-/*input[type="checkbox"]{
-  border-color:var(--text-color);
-  width: 8px;
-  height: 8px;
-  background-color: var(--color6);
-}
-input[type=checkbox]:focus {
-  border-color: var(--color6);
-}
-input[type=checkbox]{
-  transition: border-color 0.6s linear 0.2s;
-}*/
+
 
 /*  TEXTAREA  */
 textarea {
@@ -233,6 +220,7 @@ button#create-event i {
      ! nav mobile styles
   ===================================
   */
+
 #nav__mobile{
   display:block;
 }
@@ -258,7 +246,7 @@ button#create-event i {
 }
 
 #main{
-  display:block;
+  display:none;
 }
 .nav__mobile--main {
   position: absolute;
@@ -449,6 +437,14 @@ i.fa-times-circle {
   border-color: red;
 }
 
+select{
+
+  width: 452px; 
+}
+option{
+
+  width: 352px; 
+}
 /*
   ===================================
      ! media queries
@@ -474,6 +470,7 @@ i.fa-times-circle {
   .shadow__input--start {
     margin-bottom: 0.45rem;
   }
+  
 }
 
 /* Medium screen */
@@ -497,6 +494,12 @@ i.fa-times-circle {
     width: 50%;
     height: 60%;
   } */
+  #nav__web{
+    display:block;
+  }
+  #nav__mobile{
+    display:none;
+  }
 }
 
 /*
@@ -517,12 +520,6 @@ i.fa-times-circle {
     -webkit-transform: translateY(0);
     transform: translateY(0);
   }
-  /*  Mantener CSS HEADER MOBILE  */
-  #nav__web{
-    display:block;
-  }
-  #nav__mobile{
-    display:none;
-  }
+
 }
 
