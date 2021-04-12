@@ -37,7 +37,8 @@ body {
 }
 
 hr {
-  opacity: 0.5;
+  opacity: 0.8;
+  box-shadow: 0px 2px 18px 2px rgb(136, 136, 136);
 }
 /* ===========MODAL NEW EVENT (alvaro)============*/
 #close {
@@ -150,6 +151,11 @@ select option {
   #nav__web h2{
     font-size: 1.2rem;
     margin: 0 0.5rem;
+    width: 180px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
   }
 .nav__month {
   display: flex;
@@ -224,13 +230,14 @@ button#create-event i {
      ! nav mobile styles
   ===================================
   */
-
-#nav__mobile{
-  /* display:block; */
-}
 #nav__mobile h2{
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin: 0 0.5rem;
+  width: 150px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
 }
 .nav__mobile {
   display: flex;
@@ -249,13 +256,29 @@ button#create-event i {
   align-items: center;
 }
 
+.nav__mobile--left > div {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: var(--header-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav__mobile--left i {
+  color: var(--text-color);
+}
+
+
 #main{
   display:none;
 }
 .nav__mobile--main {
   position: absolute;
   height: 100%;
-  width: 75%;
+  width: 70%;
+  max-width: 340px;
   background-color:var(--header-color);
   top:0;
   right: 0;
@@ -270,19 +293,19 @@ button#create-event i {
   height: 50px;
 }
 .nav__mobile--container{
-  padding: 1rem;
   background-color: white;
-  height: calc(100% - 50pxq);
+  height: calc(100% - 50px);
 }
 .nav__mobile--containerBtn{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 8px;
   width: inherit;
+  max-height: 100px;
   height: calc((100% - 25px) / 5);
   padding: 1rem;
-  /* ELIMINAR EL BORDER */
-  border: #dadce0 4px solid;
+  /* ELIMINAR EL BORDER 
+  border: #dadce0 4px solid; */
 }
 .nav__mobile--containerBtn > button {
   padding: 5px;
@@ -303,7 +326,24 @@ button#create-event i {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 1rem;
 }
+.nav__mobile--event--span{
+  font-size:0.8rem;
+  padding: 0.5rem;
+  background-color: #5727d2;
+  color: white;
+  border-radius: 10rem;
+  margin: 0.5rem 0;
+}
+.nav__mobile--btnEvent{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
 /*
   ===================================
      ! calendar styles
@@ -466,6 +506,18 @@ i.fa-times-circle {
   .shadow__input--start {
     margin-bottom: 0.45rem;
   }
+  .nav__mobile--main {
+    width: 70%;
+    max-width: 280px;
+  }
+  .nav__mobile--event--span{
+    font-size:0.7rem;
+    padding: 0.5rem;
+    background-color: #5727d2;
+    color: white;
+    border-radius: 10rem;
+    margin: 0.5rem 0;
+  }
   
 }
 
@@ -481,20 +533,24 @@ i.fa-times-circle {
   #nav__mobile{
     display:block;
   }
+  .nav__mobile--main {
+    width: 70%;
+    max-width: 340px;
+  }
 
 }
 
 /* Large screen */
 @media only screen and (min-width: 900px) {
-  /* #modal {
-    width: 50%;
-    height: 60%;
-  } */
   #nav__web{
     display:block;
   }
   #nav__mobile{
     display:none;
+  }
+  .nav__mobile--main {
+    width: 70%;
+    max-width: 340px;
   }
 }
 
