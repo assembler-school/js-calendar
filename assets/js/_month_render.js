@@ -23,7 +23,7 @@ export function renderMonth(year, month) {
             workClone.setAttribute("data-row",rowCont);
             document.querySelector('.calendar__month').appendChild(workClone)
             /* Fill the clone for first time */
-            document.querySelector('.calendar__week:nth-child(' + weekCount + ') div[data-col="' + weekDay + '"]').innerHTML = '<span>' + x + '</span>';
+            document.querySelector('.calendar__week:nth-child(' + weekCount + ') div[data-col="' + weekDay + '"]').innerHTML = '<span class="spanDay">' + x + '</span>';
             document.querySelector('.calendar__week:nth-child(' + weekCount + ') div[data-col="' + weekDay + '"]').setAttribute("id",x);
         };
         if (!weekDay) {weekCount++};
@@ -53,10 +53,11 @@ export function updateDate(year,month) {
 }
 
 export function highlightToday(year, month){
+    debugger;
     let date = new Date();
     if (compareMonth(year,month,date.getFullYear(),date.getMonth())) {
         document.getElementById((new Date()).getDate()).className += 'today';
-        document.getElementById((new Date()).getDate()).innerHTML = '<span class="spanDay">' + date.getDate() + '</span>';
+        document.getElementById((new Date()).getDate()).childNodes[0].innerHTML = date.getDate();
     }
 }
 
