@@ -1,195 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+			integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" href="./assets/css/style.css" />
+		<title>Calendar Js</title>
+	</head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Calendar Js</title>
-</head>
-
-<body>
-    <!-- <header>
+	<body>
+		<!-- <header>
         <h1>Js Calendar</h1>
         <button id="create-event"> <i class="fas fa-plus"></i> Add event</button>
     </header> -->
 
-    <section id="nav__web">
-        <div class="nav__month">
-            <div class="nav__left">
-                <div>
-                    <i class="fas fa-chevron-left"></i>
-                </div>
-                <h2><span id="nav__tag"></span> <span id="nav__year"></span></h2>
-                <div>
-                    <i class="fas fa-chevron-right"></i>
-                </div>
-            </div>
-            <div class="nav__center">
-                <button>Day</button>
-                <button>Week</button>
-                <button class="nav__center--selected">Month</button>
-                <button>Year</button>
-            </div>
-            <div class="nav__right">
-                <button id="create-event">
-                    <i class="fas fa-plus"></i>
-                    <p>Add event</p>
-                </button>
-            </div>
-        </div>
-    </section>
-    <section id="nav__mobile">
-        <div class="nav__mobile">
-            <div class="nav__mobile--left">
-                <div>
-                    <i class="fas fa-chevron-left"></i>
-                </div>
-                <h2>April 2021</h2>
-                <div>
-                    <i class="fas fa-chevron-right"></i>
-                </div>
-            </div>
-            <div>
-                <i id="navOpen" class="fas fa-bars"></i>
-            </div>
-            <div id="main" class="nav__mobile--main">
-            </div>
-        </div>
-    </section>
-<!-- <hr> -->
-    <section id="calendar">
+		<section id="nav__web">
+			<div class="nav__month">
+				<div class="nav__left">
+					<div>
+						<i class="fas fa-chevron-left"></i>
+					</div>
+					<h2><span id="nav__tag"></span> <span id="nav__year"></span></h2>
+					<div>
+						<i class="fas fa-chevron-right"></i>
+					</div>
+				</div>
+				<div class="nav__center">
+					<button>Day</button>
+					<button>Week</button>
+					<button class="nav__center--selected">Month</button>
+					<button>Year</button>
+				</div>
+				<div class="nav__right">
+					<button id="create-event">
+						<i class="fas fa-plus"></i>
+						<p>Add event</p>
+					</button>
+				</div>
+			</div>
+		</section>
+		<section id="nav__mobile">
+			<div class="nav__mobile">
+				<div class="nav__mobile--left">
+					<div>
+						<i class="fas fa-chevron-left"></i>
+					</div>
+					<h2>April 2021</h2>
+					<div>
+						<i class="fas fa-chevron-right"></i>
+					</div>
+				</div>
+				<div>
+					<i id="navOpen" class="fas fa-bars"></i>
+				</div>
+				<div id="main" class="nav__mobile--main"></div>
+			</div>
+		</section>
+		<!-- <hr> -->
+		<section id="calendar"></section>
 
-    </section>
+		<section id="modal-section">
+			<div class="alert__event">
+				<i class="fas fa-times"></i>
+				<h2 class="event__title">Birthday Jordi</h2>
+				<p>
+					<span class="initial__date">Tuesday, April 13</span>
+					<span class="end__date"> - Firday, April 16</span>
+				</p>
+				<p class="type__event">Birthday</p>
+				<p><i class="far fa-bell"></i> 5 min before</p>
+			</div>
+		</section>
 
-    <section id="modal-section">
+		<!-- ? MOBILE NAV -->
+		<template id="template__mobile">
+			<div class="nav__mobile--btn-close">
+				<i id="navClose" class="fas fa-bars"></i>
+			</div>
+			<hr />
+			<div class="nav__mobile--container">
+				<div class="nav__mobile--containerBtn">
+					<button>Day</button>
+					<button>Week</button>
+					<button class="nav__mobile--selected">Month</button>
+					<button>Year</button>
+				</div>
+				<hr />
+				<div class="nav__mobile--event">
+					<span
+						style="
+							padding: 0.5rem;
+							background-color: #5727d2;
+							color: white;
+							border-radius: 10rem;
+							margin: 0.5rem 0;
+						"
+						>Cumpleaños Pepe</span
+					>
+					<span
+						style="
+							padding: 0.5rem;
+							background-color: #ff6010;
+							color: white;
+							border-radius: 10rem;
+							margin: 0.5rem 0;
+						"
+						>Cumpleaños Marta</span
+					>
+					<span
+						style="
+							padding: 0.5rem;
+							background-color: #5727d2;
+							color: white;
+							border-radius: 10rem;
+							margin: 0.5rem 0;
+						"
+						>Cumpleaños Antonio</span
+					>
+					<span
+						style="
+							padding: 0.5rem;
+							background-color: #726775;
+							color: white;
+							border-radius: 10rem;
+							margin: 0.5rem 0;
+						"
+						>Cumpleaños Javi</span
+					>
+					<span
+						style="
+							padding: 0.5rem;
+							background-color: #5727d2;
+							color: white;
+							border-radius: 10rem;
+							margin: 0.5rem 0;
+						"
+						>Cumpleaños Laura</span
+					>
+				</div>
+				<button id="create-event">
+					<i class="fas fa-plus"></i>
+					<p>Add event</p>
+				</button>
+			</div>
+		</template>
 
-    </section>
+		<!-- ? Month Template -->
+		<template id="month">
+			<div class="calendar__weekDay">
+				<div>Mon</div>
+				<div>Tue</div>
+				<div>Wed</div>
+				<div>Thu</div>
+				<div>Fri</div>
+				<div>Sat</div>
+				<div>Sun</div>
+			</div>
+			<div class="calendar__month">
+				<div class="calendar__week" data-row="1">
+					<div data-col="1"></div>
+					<div data-col="2"></div>
+					<div data-col="3"></div>
+					<div data-col="4"></div>
+					<div data-col="5"></div>
+					<div data-col="6"></div>
+					<div data-col="0"></div>
+				</div>
+			</div>
+		</template>
 
-    <!-- ? MOBILE NAV -->
-    <template id="template__mobile">
-                <div class="nav__mobile--btn-close">
-                    <i id="navClose" class="fas fa-bars"></i>
-                </div>
-                <hr>
-                <div class="nav__mobile--container">
-                    <div class="nav__mobile--containerBtn">
-                        <button>Day</button>
-                        <button>Week</button>
-                        <button class="nav__mobile--selected">Month</button>
-                        <button>Year</button>
-                    </div>
-                    <hr>
-                    <div class="nav__mobile--event">
-                        <span style="padding: 0.5rem;background-color: #5727d2;color:white;border-radius:10rem;margin:0.5rem 0;">Cumpleaños Pepe</span>
-                        <span style="padding: 0.5rem;background-color: #ff6010;color:white;border-radius:10rem;margin:0.5rem 0;">Cumpleaños Marta</span>
-                        <span style="padding: 0.5rem;background-color: #5727d2;color:white;border-radius:10rem;margin:0.5rem 0;">Cumpleaños Antonio</span>
-                        <span style="padding: 0.5rem;background-color: #726775;color:white;border-radius:10rem;margin:0.5rem 0;">Cumpleaños Javi</span>
-                        <span style="padding: 0.5rem;background-color: #5727d2;color:white;border-radius:10rem;margin:0.5rem 0;">Cumpleaños Laura</span>
-                    </div>
-                    <button id="create-event">
-                        <i class="fas fa-plus"></i>
-                        <p>Add event</p>
-                    </button>
-                </div>
-    </template>
+		<!-- ? Modal Template -->
+		<template id="modal-template">
+			<div id="shadow" class="close">
+				<div id="modal" class="slide-top">
+					<i class="fas fa-times-circle close"></i>
+					<h2>New event</h2>
+					<form action="">
+						<div class="shadow__input--stretch">
+							<label for="title">Title:</label>
+							<input
+								class=""
+								type="text"
+								name="title"
+								title="Jalamanchula"
+								max-length="60"
+								required
+							/>
+							<span class="title__error">This field is required</span>
+						</div>
 
-    <!-- ? Month Template -->
-    <template id="month">
-        <div class="calendar__weekDay">
-            <div>Mon</div>
-            <div>Tue</div>
-            <div>Wed</div>
-            <div>Thu</div>
-            <div>Fri</div>
-            <div>Sat</div>
-            <div>Sun</div>
-        </div>
-        <div class="calendar__month">
-            <div class="calendar__week" data-row="1">
-                <div data-col="1"></div>
-                <div data-col="2"></div>
-                <div data-col="3"></div>
-                <div data-col="4"></div>
-                <div data-col="5"></div>
-                <div data-col="6"></div>
-                <div data-col="0"></div>
-            </div>
-        </div>
-    </template>
+						<div class="shadow__input--stretch">
+							<label for="init-date">Initial date:</label>
+							<input type="date" name="init-date" required />
+						</div>
 
-    <!-- ? Modal Template -->
-    <template id="modal-template">
-        <div id="shadow" class="close">
-            <div id="modal" class="slide-top">
-                <i class="fas fa-times-circle close"></i>
-                <h2>New event</h2>
-                <form action="">
-                    <div class="shadow__input--stretch">
-                        <label for="title">Title:</label>
-                        <input class="" type="text" name="title" title="Jalamanchula" max-length="60" required>
-                        <span class="title__error">This field is required</span>
-                    </div>
+						<div class="shadow__input--start">
+							<input type="checkbox" name="end-check" />
+							<label for="end-check">End date</label>
+						</div>
 
-                    <div class="shadow__input--stretch">
-                        <label for="init-date">Initial date:</label>
-                        <input type="date" name="init-date" required>
-                    </div>
+						<div class="shadow__input--stretch">
+							<label for="end-date">End date:</label>
+							<input type="date" name="end-date" />
+						</div>
 
-                    <div class="shadow__input--start">
-                        <input type="checkbox" name="end-check">
-                        <label for="end-check">End date</label>
-                    </div>
+						<div class="shadow__input--start">
+							<input type="checkbox" name="reminder" />
+							<label for="reminder">Add reminder</label>
+						</div>
 
-                    <div class="shadow__input--stretch">
-                        <label for="end-date">End date:</label>
-                        <input type="date" name="end-date">
-                    </div>
+						<div class="shadow__input--stretch">
+							<label for="select-time">Time:</label>
+							<select name="select-time">
+								<option value="5">5 minutes</option>
+								<option value="15">15 minutes</option>
+								<option value="30">30 minutes</option>
+								<option value="60">1 hour</option>
+							</select>
+						</div>
 
-                    <div class="shadow__input--start">
-                        <input type="checkbox" name="reminder">
-                        <label for="reminder">Add reminder</label>
-                    </div>
+						<div class="shadow__input--stretch">
+							<label for="description">Description:</label>
+							<textarea name="description" cols="30" rows="10"></textarea>
+						</div>
 
-                    <div class="shadow__input--stretch">
-                        <label for="select-time">Time:</label>
-                        <select name="select-time">
-                            <option value="5">5 minutes</option>
-                            <option value="15">15 minutes</option>
-                            <option value="30">30 minutes</option>
-                            <option value="60">1 hour</option>
-                        </select>
-                    </div>
+						<div class="shadow__input--stretch">
+							<label for="select-event">Event type:</label>
+							<select name="select-event">
+								<option value="5">Meeting</option>
+								<option value="15">Birthday</option>
+								<option value="30">Date</option>
+								<option value="60">Other</option>
+							</select>
+						</div>
+						<div class="shadow__btn">
+							<input type="submit" value="Create" />
+							<button class="close">Cancel</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</template>
 
-                    <div class="shadow__input--stretch">
-                        <label for="description">Description:</label>
-                        <textarea name="description" cols="30" rows="10"></textarea>
-                    </div>
-
-                    <div class="shadow__input--stretch">
-                        <label for="select-event">Event type:</label>
-                        <select name="select-event">
-                            <option value="5">Meeting</option>
-                            <option value="15">Birthday</option>
-                            <option value="30">Date</option>
-                            <option value="60">Other</option>
-                        </select>
-                    </div>
-                    <div class="shadow__btn">
-                        <input type="submit" value="Create">
-                        <button class="close">Cancel</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </template>
-
-
-
-
-    <script src="assets/js/calendar.js" type="module"></script>
-    </body>
+		<script src="assets/js/calendar.js" type="module"></script>
+	</body>
 </html>
