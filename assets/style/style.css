@@ -73,9 +73,12 @@ main{
 .month i {
     font-size: 2.5rem;
     cursor: pointer;
+    z-index: 600;
+    color: darkgoldenrod;
+    padding: 0px 10%;
 }
 
-.month h1 {
+.month h2 {
     font-size: 3rem;
     font-weight: 400;
     text-transform: uppercase;
@@ -138,7 +141,6 @@ main{
 .today {
     background-color: orange;
 }
-
 
 /* ########## Pop up Modal ####### */
 #openButton{

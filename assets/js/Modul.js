@@ -8,7 +8,7 @@ let btn = document.getElementById("openButton");
 // Get the <span> element that closes the modal
 let span = document.getElementsByClassName("close")[0];
 
-// When the user clicks the button, open the modal 
+// When the user clicks the button, open the modal
 openButton.onclick = function() {
   modal.style.display = "flex";
 }
