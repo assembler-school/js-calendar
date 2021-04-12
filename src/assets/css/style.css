@@ -177,6 +177,7 @@ main{
     font-size: 0.8rem;
     transition: transform 0.2s;
     user-select: none;
+    z-index: 1;
 }
 .event-in-calendar:hover{
     transform: scale(1.05);
@@ -438,14 +439,14 @@ main{
   border-radius: 5px;
   overflow: auto;
 }
-.modal-event-header {
+.modal-event-title {
   display: flex;
   flex-direction: row;
   width: 100%;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-bottom: 20px;
 }
-.modal-event-header > h1 {
+.modal-event-title > h1 {
   align-self: center;
   text-align: center;
   width: 100%;
@@ -471,14 +472,15 @@ main{
   resize: none;
   margin-left: 5px;
 }
-.modal-event-input> input[type=checkbox] {
-  margin: 2px;
+.modal-event-input > textarea:focus {
+  outline: none;
 }
 .modal-event-footer {
   display: flex;
   flex-direction: row;
   width: 100%;
   justify-content: space-around;
+  margin-top: 10px;
 }
 .m-action-button {
   color: whitesmoke;
