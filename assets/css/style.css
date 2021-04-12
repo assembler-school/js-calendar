@@ -98,11 +98,15 @@ select {
   border-color: var(--text-color);
   outline: none;
   transition: border-color 0.6s linear 0.2s;
+
 }
 
 select:focus {
   border-color: var(--color6);
   background-color: rgba(255, 136, 0, 0.6);
+}
+select option {
+  width: 52px;
 }
 
 /*    BOTONES ENVIO CANCELAR */
@@ -437,14 +441,6 @@ i.fa-times-circle {
   border-color: red;
 }
 
-select{
-
-  width: 452px; 
-}
-option{
-
-  width: 352px; 
-}
 /*
   ===================================
      ! media queries
