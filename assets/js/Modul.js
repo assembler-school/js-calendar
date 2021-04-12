@@ -8,6 +8,9 @@ let btn = document.getElementById("openButton");
 // Get the <span> element that closes the modal
 let span = document.getElementsByClassName("close")[0];
 
+// cogemos el boton create
+let btn__create = document.getElementById("createBtn");
+
 // When the user clicks the button, open the modal
 openButton.onclick = function() {
   modal.style.display = "flex";
@@ -22,11 +25,9 @@ span.onclick = function() {
 }
 
 
-// Set current date on Caledar 
+// Set current date on Caledar
 let today = new Date().toISOString().substr(0, 10);
 document.querySelector("#initialCal").value = today;
-
-
 
 // Show calendar when checkbox checked
 let checkboxEnd = document.getElementById("checkboxEnd")
@@ -57,4 +58,14 @@ window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
+}
+
+
+/* *********************************
+---------- EVENTOS -----------------
+********************************* */
+btn__create.addEventListener("click", createEvent);
+
+function createEvent (){
+  console.log(btn__create)
 }
