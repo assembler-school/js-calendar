@@ -1,13 +1,13 @@
-var currentDate = new Date;
-var currentWeekDay = currentDate.getDay();
-var currentDay = currentDate.getDate();
-var currentMonth = currentDate.getMonth();
-var currentYear = currentDate.getFullYear();
+let currentDate = new Date;
+let currentWeekDay = currentDate.getDay();
+let currentDay = currentDate.getDate();
+let currentMonth = currentDate.getMonth();
+let currentYear = currentDate.getFullYear();
 
 
 //INPUTS TO CONTROLL THE CALENDAR
-var year = currentYear;
-var month = currentMonth;
+let year = currentYear;
+let month = currentMonth;
 
 
 var shortDays = ['M','T','W','T','F','S','S'];
@@ -159,12 +159,11 @@ function populateCalendar(year){
     }
     iMonth++;
   });
+  today(currentDay,currentMonth,currentYear);
 };
+
 
 
 function today(currentDay,currentMonth,currentYear){
-  console.log(currentDay + ' ' + (currentMonth + 1) + ' ' + currentYear);
-  var months = document.querySelectorAll('.month');
-  console.log(months);
-};
-today(currentDay,currentMonth,currentYear);
+  document.querySelector('[id="' + currentYear + '/' + (currentMonth + 1) + '/' + currentDay + '"]').classList += ' current';
+}
