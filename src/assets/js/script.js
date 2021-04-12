@@ -23,26 +23,30 @@ const modalDivs = document.getElementById("modal-event-div");
         modalSection.classList.add("hidden");
     }
 
-   modalCancelButton.onclick = function() {
+    modalCancelButton.onclick = function() {
         modalSection.classList.add("hidden");
     }
 
     window.onclick = function(event) {
         if (event.target == modalSection){
-            modalSection.classList.add("hidden"); 
+            modalSection.classList.add("hidden");
         }
-    }  
+    }
+    document.onkeydown = function (evt) {
+        evt = evt || window.event;
+        if (evt.keyCode == 27) {
+            modalSection.classList.add("hidden");
+        }
+    };
 
     // Display modal event when div has been clicked
 
 for (let div of modalDivs.children) {
     div.addEventListener('click', justFunc);
 }
-    
- function justFunc(event) {
-     modalSection.style.display = "block";
- }
-    
+function justFunc(event) {
+    modalSection.classList.remove("hidden");
+}
 
 // Show or hidden the checkbox info
 
