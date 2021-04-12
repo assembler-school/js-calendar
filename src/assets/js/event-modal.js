@@ -4,15 +4,18 @@ TODO associate eventListener
 */
 
 function eventModal (event) {
+    event.stopPropagation(); // Needed to prevent execution of parent div
     /* 
     TODO Here it has to include some code to get the information from localStorage 
     */
-   /* 
-   TODO it has to include the data inside the modal
+    /* 
+    TODO it has to load the data inside the modal
    */
   //* Showing the modal
     const modalBackground = document.getElementById("modal-event-section");
 
+    //* Adding eventListener to modal
+    
     modalBackground.classList.remove("hidden");
 }
 
@@ -24,9 +27,14 @@ function addEventTesting () {
     newEvent.classList.add("event-in-calendar");
     newEvent.classList.add("blue-event");
     newEvent.innerHTML = "Evento Prueba";
+    newEvent.addEventListener('click', eventModal);
     daysContainer[5].appendChild(newEvent);
-    const allEvents = document.querySelectorAll("event-in-calendar");
+    const allEvents = document.querySelectorAll(".event-in-calendar");
+    
+    /*
+    ! This code may be usable for later
     for (let event of allEvents) {
         event.addEventListener('click', eventModal);
-    }
+    } */
 }
+addEventTesting();
