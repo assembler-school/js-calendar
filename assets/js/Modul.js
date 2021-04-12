@@ -44,7 +44,7 @@ function displayEnd () {
 let reminderCheckBox = document.getElementById("reminderCheckBox");
 let reminderTextArea = document.getElementById("reminderSelect");
 
-function reminderShowTextArea() {
+function reminderShowSelectBox() {
   if (reminderCheckBox.checked == true) {
     reminderTextArea.style.display = "flex"
   } else {
