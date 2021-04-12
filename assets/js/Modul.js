@@ -92,9 +92,9 @@ for (let i = 0; i < localStorage.length; i++) {
   let key = localStorage.key(i);
   let value = localStorage.getItem(key);
 
-  eventOutput.innerHTML += `${key}: ${value}<br />`;
-  console.log(key)
-  console.log(value)
+  //eventOutput.innerHTML += `${key}: ${value}<br />`;
+  //console.log(key)
+  //console.log(value)
 }
 
 
@@ -109,4 +109,19 @@ function createEvent (){
   let section = document.createElement("section");
   section.setAttribute("class", "event__display");
   events.appendChild(section);
+}
+
+/* *********************************
+---------- DARCK MODE -----------------
+********************************* */
+const toggleSwitch = document.querySelector('.switch input[type="checkbox"]');
+
+toggleSwitch.addEventListener("change", changeTheme);
+
+function changeTheme() {
+  if (toggleSwitch.checked) {
+    document.documentElement.setAttribute("mode-changes", "light");
+  } else {
+    document.documentElement.setAttribute("mode-changes", "dark");
+  }
 }

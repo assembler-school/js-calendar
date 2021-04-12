@@ -18,7 +18,8 @@
     <body>
         <!---------------- INICIO HEAD ---------------->
 
-        <head></head>
+        <head>
+        </head>
         <!---------------- INICIO MAIN ---------------->
         <main class="main">
             <div class="container_calendar">
@@ -78,8 +79,8 @@
 
                 </div>
                 <div id="timeSelect">
-                  <label for="">Initial Time:</label> 
-                  <input id="timeSelector" type="time"  name="" > 
+                  <label for="">Initial Time:</label>
+                  <input id="timeSelector" type="time"  name="" >
                 </div>
                 <div id="reminderBox">
                   <input id="reminderCheckBox"  type="checkbox" onclick="reminderShowSelectBox()">Remind me when this event expires
@@ -114,7 +115,24 @@
       </form>
         </aside>
         <!---------------- INICIO FOOTER ---------------->
-        <footer></footer>
+        <footer class="footer">
+          <div>
+            <h4>Einar, Sebastian, Erick</h4>
+          </div>
+          <div>
+            <h1>JS CALENDAR</h1>
+          </div>
+
+          <div class="float__checkbox">
+            <p id="timer-msg"></p>
+            <div class="switch-wrapper">
+            <label class="switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <div class="slider round"></div>
+            </label>
+            </div>
+          </div>
+        </footer>
         <!---------------- SCRIPT ZONE ---------------->
 
         <script src="assets/js/index.js"></script>
