@@ -19,7 +19,7 @@ let calendarEvent = class {
     } */
 }
 
-let formLS = document.querySelector("form");
+// TODO validate verification before createEvent
 
 let createBtn = document.getElementById("m-createBtn");
 
