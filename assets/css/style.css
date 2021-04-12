@@ -444,14 +444,28 @@ i.fa-times-circle {
      ! ALERT EVENT
   ===================================
   */
+
 .alert__event {
 	position: absolute;
-	top: calc(50% - 75px);
-	left: 50%;
+  border-radius: 15px;
+	top: calc(50% - 100px);
+	left: calc(50% - 175px);
 	color: black;
 	background-color: #b2c8e7;
 	width: 350px;
-	height: 150px;
+	height: 200px;
+  padding: 15px;
+  box-shadow: 5px 5px 15px;
+}
+
+.alert__event p {
+  margin: 20px;
+}
+
+.fa-times {
+  position: absolute;
+  top: 15px;
+  right: 15px;
 }
 
 /*
