@@ -16,7 +16,7 @@ const toDay = day + '/' + month + '/' + year;
 
 const expresiones = {
     title: /^[a-zA-ZÀ-ÿ\s\d]{4,10}$/,
-    description: /^[a-zA-ZÀ-ÿ\s\d]{5,40}$/
+    description: /^[a-zA-ZÀ-ÿ\s\d]{1,40}$/
 };
 
 const error = document.getElementById('error');
@@ -28,45 +28,57 @@ const validarFormulario = (e) =>{
     
    //Validacion Titulo
     if(title.value === null || title.value === ""){
-        mensajesError.push('Ingresa un titulo');
+        mensajesError.push('Enter a title');
         inputs[0].classList.add("incorrect");
+        createButton.classList.add('m-action-buttonHidden');
     }else if(!expresiones.title.test(inputs[0].value)){ 
-        mensajesError.push('El titulo debe tener entre 4 y 12 valores');
+        mensajesError.push('The title must have between 4 and 12 values');
         inputs[0].classList.add("incorrect");
+        createButton.classList.add('m-action-buttonHidden');
     }else{
         inputs[0].classList.remove("incorrect");
         console.log('Title: ' + ' ' + title.value);
-    }
-    //Validacion Descripcion
-    if(desc.value === null || desc.value === ""){
-        mensajesError.push('Ingresa algo en la descripción');
-        inputs[1].classList.add("incorrect");
-    }else if(!expresiones.description.test(inputs[1].value)){
-        mensajesError.push('La descripcion debe tener entre 5 y 40 caracteres');
-        inputs[1].classList.add("incorrect");
-    }else{
-        inputs[1].classList.remove("incorrect");
-        console.log('Description: ' + ' ' + desc.value);
+        createButton.classList.remove('m-action-buttonHidden');
     }
     //Validacion Initial Date
     if(initialDate.value === null || initialDate.value === ""){
-        mensajesError.push('Ingresa una fecha Inicial');
+        mensajesError.push('Enter a Initial Date');
         inputs[2].classList.add("incorrect");
+        createButton.classList.add('m-action-buttonHidden');
     }else{
         inputs[2].classList.remove("incorrect");
         console.log('Initial Date: ' + ' ' + initialDate.value);
+        createButton.classList.remove('m-action-buttonHidden');
     }
     //Validacion End Date
     if(endDate.value === null || endDate.value === ""){
-        mensajesError.push('Ingresa una fecha final');
+        mensajesError.push('Enter a Final Date');
         inputs[3].classList.add("incorrect");
+        createButton.classList.add('m-action-buttonHidden');
     }else if(endDate.value < initialDate.value){
-        mensajesError.push('No puedes finalizar un evento antes de crarlo');
-        inputs[3].classList.add("incorrect");
+         inputs[3].classList.add("incorrect");
+         mensajesError.push('You cannot end an event before creating it');
+        createButton.classList.add('m-action-buttonHidden');
     }else{
         inputs[3].classList.remove("incorrect");
         console.log('End Date: ' + ' ' + endDate.value);
+        createButton.classList.remove('m-action-buttonHidden');
+    }    
+    //Validacion Descripcion
+    if(desc.value === null || desc.value === ""){
+        mensajesError.push('Enter something in the description');
+        inputs[1].classList.add("incorrect");
+        createButton.classList.add('m-action-buttonHidden');
+    }else if(!expresiones.description.test(inputs[1].value)){
+        mensajesError.push('The description must have between 1 and 40 values');
+        inputs[1].classList.add("incorrect");
+        createButton.classList.add('m-action-buttonHidden');
+    }else{
+        inputs[1].classList.remove("incorrect");
+        console.log('Description: ' + ' ' + desc.value);
+        createButton.classList.remove('m-action-buttonHidden');
     }
     error.innerHTML = mensajesError.join(', ');
     
 }
+document.addEventListener('focusout',validarFormulario);

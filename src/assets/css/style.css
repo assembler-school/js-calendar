@@ -332,7 +332,7 @@ main{
 !=======================================
  */
 #modal-section.hidden {
-  display: block;
+  display: none;
 }
 #modal-section {
   display: block;
