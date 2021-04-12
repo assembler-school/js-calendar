@@ -36,8 +36,116 @@ body {
   font-size: 16px;
 }
 
-hr{
+hr {
   opacity: 0.5;
+}
+/* ===========MODAL NEW EVENT (alvaro)============*/
+#close {
+  color: rgb(231, 13, 13);
+}
+
+label {
+  font-size: 0.95rem;
+}
+
+input {
+  padding: 0.4rem 0;
+  /* font-size: 1rem; */
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-bottom-style: solid;
+  border-left-style: hidden;
+  border-width: 1px;
+  border-color: var(--text-color);
+  outline: none;
+  transition: border-color 0.6s linear 0.2s;
+}
+
+input:focus {
+  border-color: var(--color6);
+}
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+/*  PENDIENTE INPUT CHECK BOX EDIT NO FUNCIONA */
+/*input[type="checkbox"]{
+  border-color:var(--text-color);
+  width: 8px;
+  height: 8px;
+  background-color: var(--color6);
+}
+input[type=checkbox]:focus {
+  border-color: var(--color6);
+}
+input[type=checkbox]{
+  transition: border-color 0.6s linear 0.2s;
+}*/
+
+/*  TEXTAREA  */
+textarea {
+  background-color: var(--header-color);
+  /* opacity: 0.6; */
+  border: var(--text-color);
+  outline: none;
+  height: 80px;
+  width: inherit;
+  border-radius: var(--br-radius);
+  resize: none;
+  padding: 0.4rem;
+  color: #000;
+  font-size: 1rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  transition: border 0.6s linear 0.2s;
+}
+
+textarea:focus {
+  border: solid 1px #ff6010;
+}
+
+select {
+  padding: 0.4rem 0;
+  /* font-size: 1rem; */
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-bottom-style: solid;
+  border-left-style: hidden;
+  border-width: 1px;
+  border-color: var(--text-color);
+  outline: none;
+  transition: border-color 0.6s linear 0.2s;
+}
+
+select:focus {
+  border-color: var(--color6);
+  background-color: rgba(255, 136, 0, 0.6);
+}
+
+/*    BOTONES ENVIO CANCELAR */
+.shadow__btn > input {
+  color: var(--text-color);
+  background-color: transparent;
+  /* padding: 4px 6px; */
+  width: 60px;
+  height: 30px;
+  border-radius: var(--br-radius);
+  border-color: var(--text-color);
+  border: solid 2px;
+  transition: border-color 0.6s linear 0.2s;
+}
+
+.shadow__btn > button {
+  color: rgb(231, 13, 13);
+  background-color: transparent;
+  /* padding: 4px 6px; */
+  width: 60px;
+  height: 30px;
+  border-radius: var(--br-radius);
+  border-color: rgb(231, 13, 13);
+}
+
+.shadow__btn {
+  display: flex;
+  justify-content: space-between;
+  min-width: 150px;
+  margin-bottom: 1rem;
 }
 
 /*
@@ -224,14 +332,14 @@ button#create-event i {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   width: 100%;
-  height: calc((100% - 25px) / 5);
-   border-bottom: #dadce0 1px solid;
+  /* height: calc((100% - 25px) / 5); */
+  border-bottom: #dadce0 1px solid;
   border-left: #dadce0 1px solid; 
 }
 
 .calendar__week > div {
   height: 100%;
-  background-color:white;
+  background-color: white;
   padding: 0.5%;
   border-right: #dadce0 1px solid;
 }
@@ -243,14 +351,14 @@ button#create-event i {
   height: 25px;
   align-items: center;
   text-align: center;
-  border-left: #dadce0 1px solid; 
+  border-left: #dadce0 1px solid;
   border-top: #dadce0 1px solid;
-  border-radius: 6px 6px 0 0;
+  /* border-radius: 6px 6px 0 0; */
 }
 
 .calendar__weekDay > div {
   width: calc(100% / 7);
-  background-color:white;
+  background-color: white;
   padding: 0.5%;
   border-right: #dadce0 1px solid;
 }
@@ -260,13 +368,21 @@ button#create-event i {
      ! Modal styles
   ===================================
   */
+.on {
+  visibility: visible;
+  z-index: 2;
+}
+.off {
+  visibility: hidden;
+  z-index: 0;
+}
+
 #shadow {
   position: absolute;
   top: 0;
-  background-color: gray;
+  background: rgba(121, 121, 121, 0.5);
   height: 100vh;
   width: 100vw;
-  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -276,45 +392,61 @@ button#create-event i {
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: center;
-  background-color: white;
-  max-width: 600px;
-  /* width: 50%;
-    height: 60%; */
+  background-color: var(--header-color);
+  max-width: 500px;
+  border-radius: var(--br-radius);
   width: 90%;
-  height: 90%;
   position: relative;
-  overflow: hidden;
-  padding: 1%;
+  overflow: visible;
+  box-shadow: 10px 10px 10px rgba(121, 121, 121, 0.5);
 }
 
-i.fa-times-circle {
-  position: absolute;
-  top: 1%;
-  right: 1%;
+#modal > h2 {
+  margin: 0.5rem 0;
 }
 
 #modal > form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  /*justify-content: space-evenly;*/
   width: 100%;
   height: 100%;
+  padding: 0 1.5rem;
+  background-color: white;
+  padding-top: 1rem;
+  font-size: 1rem;
+  border-radius: var(--br-radius);
+}
+
+i.fa-times-circle {
+  position: absolute;
+  top: 1%;
+  right: 1%;
+  margin: 1%;
 }
 
 .shadow__input--stretch {
-  margin-bottom: 10px;
+  margin-bottom: 0.9rem;
   display: flex;
   justify-content: space-between;
-  /* flex-direction: column; */
+  flex-direction: column;
   flex-wrap: wrap;
-  width: 65%;
+  width: inherit;
 }
 
 .shadow__input--start {
-  margin-bottom: 10px;
-  width: 65%;
+  margin-bottom: 0.9rem;
+  width: inherit;
+}
+
+.title__error{
+  color: red;
+  font-size: 80%;
+}
+
+.input__error{
+  border-color: red;
 }
 
 /*
@@ -322,11 +454,32 @@ i.fa-times-circle {
      ! media queries
   ===================================
   */
+/* small screen */
+@media only screen and (max-width: 350px) {
+  #modal {
+    height: 90%;
+  }
+  #modal > h2 {
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+  }
+  #modal > form {
+    padding: 0 1rem;
+    background-color: white;
+  }
+  .shadow__input--stretch {
+    margin-bottom: 0.45rem;
+  }
+
+  .shadow__input--start {
+    margin-bottom: 0.45rem;
+  }
+}
+
 /* Medium screen */
 @media only screen and (min-width: 600px) {
-  #modal {
-    width: 80%;
-    height: 80%;
+  #modal > h2 {
+    margin: 1rem 0;
   }
   /*  Mantener CSS HEADER MOBILE  */
   #nav__web{
@@ -340,9 +493,29 @@ i.fa-times-circle {
 
 /* Large screen */
 @media only screen and (min-width: 900px) {
-  #modal {
+  /* #modal {
     width: 50%;
     height: 60%;
+  } */
+}
+
+/*
+===================================
+     ! animations
+===================================
+*/
+.slide-top {
+  animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes slide-top {
+  0% {
+    -webkit-transform: translateY(-100px);
+    transform: translateY(-100px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
   }
   /*  Mantener CSS HEADER MOBILE  */
   #nav__web{
@@ -352,3 +525,4 @@ i.fa-times-circle {
     display:none;
   }
 }
+
