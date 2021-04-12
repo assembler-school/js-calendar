@@ -307,6 +307,89 @@ main{
 }
 
 
+/* !============================
+   ! Modal Event Review
+   !============================*/
+
+  #modal-event-section.hidden {
+  display: none;
+}
+#modal-event-section {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0,0,0,0.4);
+}
+#modal-event-content {
+  display: flex;
+  flex-direction: column;
+  width: 90vw;
+  min-width: 320px;
+  max-width: 380px;
+  background-color: whitesmoke;
+  margin: 20vh auto;
+  padding: 20px;
+  border: 1px solid var(--darkestGray);
+  border-radius: 5px;
+  overflow: auto;
+}
+.modal-event-header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+.modal-event-header > h1 {
+  align-self: center;
+  text-align: center;
+  width: 100%;
+  margin-left: 32px;
+}
+.modal-event-button.fa-window-close {
+  align-self: flex-end;
+  font-size: xx-large;
+  color: var(--darkestGray);
+  background-color: transparent;
+}
+.modal-event-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+.modal-event-input.modal-event-cb {
+  justify-content: flex-start;
+}
+.modal-event-input > textarea {
+  vertical-align: top;
+  resize: none;
+  margin-left: 5px;
+}
+.modal-event-input> input[type=checkbox] {
+  margin: 2px;
+}
+.modal-event-footer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+}
+.m-action-button {
+  color: whitesmoke;
+  background-color: var(--darkestGray);
+  font-size: large;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+
+
+   
  /* 
 main {
   height: 90vh;
