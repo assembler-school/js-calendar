@@ -15,3 +15,18 @@ function eventModal (event) {
 
     modalBackground.classList.remove("hidden");
 }
+
+// ! Function to add a mock event
+
+function addEventTesting () {
+    const daysContainer = document.getElementById("modal-event-div").children;
+    let newEvent = document.createElement("div");
+    newEvent.classList.add("event-in-calendar");
+    newEvent.classList.add("blue-event");
+    newEvent.innerHTML = "Evento Prueba";
+    daysContainer[5].appendChild(newEvent);
+    const allEvents = document.querySelectorAll("event-in-calendar");
+    for (let event of allEvents) {
+        event.addEventListener('click', eventModal);
+    }
+}
