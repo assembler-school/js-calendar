@@ -64,13 +64,12 @@ window.onclick = function(event) {
 let inputTitleKey = document.getElementById("titleBox")
 let inputDescriptionValue = document.getElementById("textAreaDescription")
 let buttonSubmit = document.getElementById("createBtn")
-let eventOutput = document.getElementById("event__display1")
+let eventOutput = document.getElementById("event__display")
 
 buttonSubmit.onclick = function () {
   let key = inputTitleKey.value;
   let value = inputDescriptionValue.value;
 
- 
   if (key && value) {
     localStorage.setItem(key, value);
   }
@@ -80,17 +79,21 @@ for (let i = 0; i < localStorage.length; i++) {
   let key = localStorage.key(i);
   let value = localStorage.getItem(key);
 
-  eventOutput.innerHTML += `${key}: ${value}<br />`;
-  console.log(key)
-  console.log(value)
+  //eventOutput.innerHTML += `${key}: ${value}<br />`;
+  //console.log(key)
+  //console.log(value)
 }
 
 
 /* *********************************
 ---------- EVENTOS -----------------
 ********************************* */
-// btn__create.addEventListener("click", createEvent);
+btn__create.addEventListener("click", createEvent);
 
-// function createEvent (){
-//   console.log(btn__create)
-// }
+// Pesco el div donde se guardaran los eventos
+let events = document.querySelector(".events");
+function createEvent (){
+  let section = document.createElement("section");
+  section.setAttribute("class", "event__display");
+  events.appendChild(section);
+}
