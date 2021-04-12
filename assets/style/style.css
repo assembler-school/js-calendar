@@ -135,7 +135,7 @@ main{
 
 .prev-date,
 .next-date {
-    opacity: 0.5;
+    opacity: 0.1;
 }
 
 .today {
