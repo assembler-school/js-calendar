@@ -36,8 +36,6 @@ function getMonthDays(year,month){
   return new Date(year,month, 0).getDate();
 };
 
-// gunction getFullDate(year);
-
 
 
 //CALENDAR CONSTRUCTOR
@@ -108,7 +106,7 @@ function calendarConstructor(){
       i++;
     });
   });
-  populateCalendar(2020);
+  populateCalendar(year);
 };
 
 
@@ -125,9 +123,9 @@ function populateCalendar(year){
     let date = 1;
 
     //Dates checker
-    console.log('iMonth-' + iMonth);
-    console.log('Month days-' + getMonthDays(year,iMonth))
-    console.log('First week day-' + getFirstMonthDay(year,iMonth-1));
+    // console.log('iMonth-' + iMonth);
+    // console.log('Month days-' + getMonthDays(year,iMonth))
+    // console.log('First week day-' + getFirstMonthDay(year,iMonth-1));
 
     for (let i = 0; i < 6; i++) {
       // creates a table row
@@ -137,30 +135,35 @@ function populateCalendar(year){
 
       //creating individual cells, filing them up with data.
       for (let j = 0; j < 7; j++) {
-        if (i === 0 && j < getFirstMonthDay(year,iMonth-1) - 1) {
-          let cell = document.createElement('div');
-          cell.setAttribute('class','days');
-          cellText = document.createTextNode("");
-          cell.appendChild(cellText);
-          row.appendChild(cell);
-        }
-        else if (date > getMonthDays(year, iMonth)) {
-          break;
-        }
+        if(date <= getMonthDays(year, iMonth)){
+          if (i === 0 && j < getFirstMonthDay(year,iMonth-1) - 1) {
+            let cell = document.createElement('div');
+            cell.setAttribute('class','days');
+            cellText = document.createTextNode("");
+            cell.appendChild(cellText);
+            row.appendChild(cell);
+          }
 
-        else {
-          let cell = document.createElement('div');
-          cell.setAttribute('class','days');
-          let cellText = document.createTextNode(date);
-          cell.appendChild(cellText);
-          row.appendChild(cell);
-          date++;
+          else {
+            let cell = document.createElement('div');
+            cell.setAttribute('class','days');
+            let cellText = document.createTextNode(date);
+            cell.appendChild(cellText);
+            row.appendChild(cell);
+            date++;
+          }
         }
-
-
       }
       month.appendChild(row); // appending each row into calendar body.
     }
     iMonth++;
   });
 };
+
+
+function today(currentDay,currentMonth,currentYear){
+  console.log(currentDay + ' ' + (currentMonth + 1) + ' ' + currentYear);
+  var months = document.querySelectorAll('.month');
+  console.log(months);
+};
+today(currentDay,currentMonth,currentYear);
