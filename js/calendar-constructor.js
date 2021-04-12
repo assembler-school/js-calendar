@@ -147,6 +147,7 @@ function populateCalendar(year){
           else {
             let cell = document.createElement('div');
             cell.setAttribute('class','days');
+            cell.setAttribute('id',year + '/' + iMonth + '/' + date);
             let cellText = document.createTextNode(date);
             cell.appendChild(cellText);
             row.appendChild(cell);
@@ -158,12 +159,11 @@ function populateCalendar(year){
     }
     iMonth++;
   });
+  today(currentDay,currentMonth,currentYear);
 };
 
 
+//COLORING CURRENT DAY IN CALENDAR
 function today(currentDay,currentMonth,currentYear){
-  console.log(currentDay + ' ' + (currentMonth + 1) + ' ' + currentYear);
-  var months = document.querySelectorAll('.month');
-  console.log(months);
+  document.querySelector('[id="' + currentYear + '/' + (currentMonth + 1) + '/' + currentDay + '"]').classList += ' current';
 };
-today(currentDay,currentMonth,currentYear);
