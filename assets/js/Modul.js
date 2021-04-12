@@ -28,6 +28,7 @@ span.onclick = function() {
 // Set current date on Caledar
 let today = new Date().toISOString().substr(0, 10);
 document.querySelector("#initialCal").value = today;
+console.log(today);
 
 // Show calendar when checkbox checked
 let checkboxEnd = document.getElementById("checkboxEnd")
@@ -59,8 +60,8 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
-// Local storage input and output testing
 
+// Local storage input and output testing
 let inputTitleKey = document.getElementById("titleBox")
 let inputDateValue = document.getElementById("initialCal")
 let inputDateEndValue = document.getElementById("endCal")
@@ -71,43 +72,89 @@ let inputDescriptionValue = document.getElementById("textAreaDescription")
 let buttonSubmit = document.getElementById("createBtn")
 let eventOutput = document.querySelector(".event__display")
 
-buttonSubmit.onclick = function () {
-  let key = inputTitleKey.value;
-  let value = [inputDescriptionValue.value , 
-    inputDateValue.value, 
-    inputDateEndValue.value, 
-    inputTimedValue.value, 
-    inputReminderValue.value, 
-    inputEventTypeValue.value]
-
-
-
-
-  if (key && value) {
-    localStorage.setItem(key, value);
+//Aquí he creado una clase cosntructora de ventos donde se tendrían que almacenar todos su valores y posteriormente convertirlos en JSONS
+class Event {
+  constructor(titulo, dateValue, dateEndValue, timedValue, reminderValue, eventType, descriptionValue) {
+    this.titulo = titulo;
+    this.dateValue = dateValue;
+    this.dateEndValue = dateEndValue;
+    this.timedValue = timedValue;
+    this.reminderValue = reminderValue;
+    this.eventType = eventType;
+    this.descriptionValue = descriptionValue;
   }
+}
+
+Event.prototype.sentJSON = function (){
+
+    // let miJSON = JSON.stringify(supuestafecha);
+    // console.log(miJSON);
+
+}
+
+let days = document.querySelectorAll(".days div");
+console.log(days);
+
+days.forEach(function(divs){
+
+  divs.addEventListener("click", getID);
+
+});
+
+function getID(clicked){
+
+  selected = clicked.target;
+  selected= selected.getAttribute("id").value;
+  console.log(selected);
+}
+
+//funcion que envia el formulario y ademas nos crea el objeto
+buttonSubmit.onclick = function () {
+
+  const supuestafecha = new Event(`${inputTitleKey.value}`,`${inputDateValue.value}`,`${inputDateEndValue.value}`,`${inputTimedValue.value}`,`${inputReminderValue.value}`,`${inputEventTypeValue.value}`,`${inputDescriptionValue.value}`);
+  console.log(supuestafecha);
+  supuestafecha.sentJSON();
+
+
+  // let key = inputTitleKey.value;
+  // let value = [inputDescriptionValue.value ,
+  //   inputDateValue.value,
+  //   inputDateEndValue.value,
+  //   inputTimedValue.value,
+  //   inputReminderValue.value,
+  //   inputEventTypeValue.value]
+
+
+
+
+  // if (key && value) {
+  //   localStorage.setItem(key, value);
+  // }
 };
 
-for (let i = 0; i < localStorage.length; i++) {
-  let key = localStorage.key(i);
-  let value = localStorage.getItem(key);
+// for (let i = 0; i < localStorage.length; i++) {
+//   let key = localStorage.key(i);
+//   let value = localStorage.getItem(key);
 
   //eventOutput.innerHTML += `${key}: ${value}<br />`;
   //console.log(key)
   //console.log(value)
-}
-
+//
 
 /* *********************************
 ---------- EVENTOS -----------------
 ********************************* */
+
 btn__create.addEventListener("click", createEvent);
 
 // Pesco el div donde se guardaran los eventos
 let events = document.querySelector(".events");
 function createEvent (){
+
   let section = document.createElement("section");
+
   section.setAttribute("class", "event__display");
+  section.insertAdjacentHTML("afterbegin", `<h1>${inputTitleKey.value}</h1><button class="btn__remove-event fas fa-trash" id="btn__remove__event"></button><div>${inputDateValue.value}, ${inputDateEndValue.value},${inputEventTypeValue.value}, ${inputTimedValue.value}, ${inputReminderValue.value}, ${inputDescriptionValue.value}</div>`);
   events.appendChild(section);
 }
 
