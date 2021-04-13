@@ -35,6 +35,8 @@ document.getElementById('yearView-btn').addEventListener("click", (event)=>{
     }
 });
 addNewTemplate("main-content-section", "month-template");
+calendarMonthConstructor()
+
 
 hideModal();
 

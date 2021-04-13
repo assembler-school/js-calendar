@@ -1,12 +1,13 @@
-function calendarMonthConstructor(changeMonth) {
+function calendarMonthConstructor(setCalendarMonthCounter) {
     const monthSection = document.querySelector('#month-section');
 
-    //Change between months
-    if(!changeMonth || changeMonth == currentMonth){
-        month = currentMonth;
-    }else{
-        month = currentMonth + changeMonth;
-    };
+    if(setCalendarMonthCounter == 12){
+        month = 0;
+        year += 1;
+    }else if(setCalendarMonthCounter < 0){
+        month = 11;
+        year -= 1;
+    }
 
     // January is 0;
 
@@ -51,20 +52,36 @@ function calendarMonthConstructor(changeMonth) {
     };
 
     // Gives you the first day of the month (0 is Sunday, the first month is 0)
-    function getFirstMonthDay(currentYear,currentMonth){
-        return new Date(currentYear, currentMonth).getDay();
-    };
+function getFirstMonthDay(year,month){
+    let day = new Date(year, month).getDay();
+    //return 7 because in calendar week start on monday and get day starts on sunday
+    if(day == 0){
+      return 7;
+    }else{
+      return day;
+    }
+  };
 
     // Assign a number for each day. It should check what month is and display the number on the right day.
     function populateMonth(month) {
         const numberOfDay = document.querySelectorAll('.month_day_number');
         let day = 1
         for (let i = 0; i < numberOfDay.length; i++) {
-            if (i < (getFirstMonthDay(currentYear,month) - 1)) {
+            if (i < (getFirstMonthDay(year,month) - 1)) {
                 numberOfDay[i].innerHTML = ''
-            }   else if (day <= getMonthDays(currentYear,month)) {
+            }   else if (day <= getMonthDays(year,month)) {
                 numberOfDay[i].innerHTML = day;
-                numberOfDay[i].setAttribute('id',year + '/' + (month+1) + '/' + day);
+
+                idMonth = month + 1;
+                idDay = day;
+                if(idMonth < 10){
+                   idMonth = '0' + idMonth
+                };
+                if(idDay < 10){
+                    idDay = '0' + idDay;
+                };
+
+                numberOfDay[i].setAttribute('id',year + '/' + idMonth + '/' + idDay);
                 day++
             }
         }
@@ -73,11 +90,7 @@ function calendarMonthConstructor(changeMonth) {
     function updateMonthAndYearHeader(monthText, yearText) {
         let currentMonthText = document.querySelector('.currentMonth-text');
         let currentYearText = document.querySelector('.currentYear-text');
-        if (!monthText) {
-            currentMonthText.innerHTML = monthText;
-        }   else {
-            currentMonthText.innerHTML = monthText;
-        }
+        currentMonthText.innerHTML = monthText;
         currentYearText.innerHTML = yearText;
 
     }
@@ -85,14 +98,25 @@ function calendarMonthConstructor(changeMonth) {
     createWeekRow();
     createMonthGrid();
     populateMonth(month);
-    // today(currentDay,currentMonth,currentYear);
-    updateMonthAndYearHeader(monthsNames[month], year)
+
+    today(month,currentDay,currentMonth,currentYear);
+
+    updateMonthAndYearHeader(monthsNames[month], year);
+    displayEventsInMonth(idMonth, eventsCalendar);
 }
 
-// function today(month,currentDay,currentMonth,currentYear){
-//     if(month === currentMonth){
-//         document.querySelector('[id="' + currentYear + '/' + (currentMonth + 1) + '/' + currentDay + '"]').classList += ' month-current-day';
-//     }
-// }
 
-calendarMonthConstructor()
+
+function today(month,currentDay,currentMonth,currentYear){
+    var idCurrentMonth = currentMonth + 1;
+    var idCurrentDay = currentDay;
+    if(idCurrentMonth < 10){
+        idCurrentMonth = '0' + idCurrentMonth
+    };
+    if(idCurrentDay < 10){
+        idCurrentDay = '0' + idCurrentDay;
+    };
+    if(month === currentMonth){
+        document.querySelector('[id="' + currentYear + '/' + idCurrentMonth + '/' + idCurrentDay + '"]').classList += ' month-current-day';
+    };
+};

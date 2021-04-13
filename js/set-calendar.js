@@ -1,6 +1,3 @@
-var setCalendarMonthCounter = 0;
-var setCalendarYearCounter = 0;
-
 document.querySelector('.goPrevious-btn').addEventListener('click',previousButton);
 document.querySelector('.goToday-btn').addEventListener('click',todayButton);
 document.querySelector('.goNext-btn').addEventListener('click',nextButton);
@@ -9,42 +6,43 @@ document.querySelector('.goNext-btn').addEventListener('click',nextButton);
 function previousButton(){
   if(calendarView == '' || calendarView == 'month-view'){
     console.log('-1')
-    setCalendarMonthCounter -= 1;
+    month -= 1;
     clearMonthCalendar();
-    calendarMonthConstructor(setCalendarMonthCounter);
+    calendarMonthConstructor(month);
   };
   if(calendarView == 'year-view'){
     console.log('-1')
-    setCalendarYearCounter -= 1;
+    year -= 1;
     clearYearCalendar();
-    calendarConstructor(setCalendarYearCounter);
+    calendarConstructor(year);
   };
 };
 
 function todayButton(){
   if(calendarView == '' || calendarView == 'month-view'){
     clearMonthCalendar();
-    calendarMonthConstructor(currentMonth);
-    console.log(currentMonth);
+    month = currentMonth;
+    calendarMonthConstructor(month);
   };
   if(calendarView == 'year-view'){
     clearYearCalendar();
-    calendarConstructor(currentYear);
+    year = currentYear;
+    calendarConstructor(year);
   };
 };
 
 function nextButton(){
   if(calendarView == '' || calendarView == 'month-view'){
     console.log('+1')
-    setCalendarMonthCounter += 1;
+    month += 1;
     clearMonthCalendar();
-    calendarMonthConstructor(setCalendarMonthCounter);
+    calendarMonthConstructor(month);
   };
   if(calendarView == 'year-view'){
     console.log('+1')
-    setCalendarYearCounter += 1;
+    year += 1;
     clearYearCalendar();
-    calendarConstructor(setCalendarYearCounter);
+    calendarConstructor(year);
   };
 };
 
