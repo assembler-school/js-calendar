@@ -35,9 +35,23 @@
 // }
 // localStorage.setItem("calendarMock", JSON.stringify(calendarMock) );
 
+// var eventsCalendar = JSON.parse(localStorage.getItem('calendarEvents'));
+
+
+// }
+
+
+
+// localStorage.setItem("calendarMock", JSON.stringify(calendarMock) );
+// var eventsCalendar = JSON.parse(localStorage.getItem('calendarMock'));
+// var currentMonthDisplay = 4
+// */
+
+
+
 var eventsCalendar = JSON.parse(localStorage.getItem('calendarEvents'));
 
-
+//displayEventsInMonth(currentMonthDisplay, eventsCalendar);
 function displayEventsInMonth(currentMonthDisplay, eventsCalendar){
     for (date in eventsCalendar){
         if(currentMonthDisplay == date.split("/")[1]){

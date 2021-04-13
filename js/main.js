@@ -1,5 +1,4 @@
-var calendarEvents = {};
-var reminders = {};
+
 
 function addNewTemplate(containerId, templateId) {
     const templateContent = document.querySelector(`#${templateId}`).content;
@@ -17,7 +16,6 @@ document.getElementById('monthView-btn').addEventListener("click", (event)=>{
         document.getElementById("yearView-btn").disabled=false;
         updateTemplate("year-section","main-content-section","month-template");
         calendarMonthConstructor();
-        displayEventsInMonth(currentMonthDisplay, eventsCalendar);
         //Calendar view
         calendarView = 'month-view';
         console.log(calendarView);
