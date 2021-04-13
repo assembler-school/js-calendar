@@ -48,7 +48,7 @@
                 <div>
                     <i class="fas fa-chevron-left"></i>
                 </div>
-                <h2>April 2021</h2>
+                <h2>September 2021</h2>
                 <div>
                     <i class="fas fa-chevron-right"></i>
                 </div>
@@ -71,8 +71,8 @@
 
     <!-- ? MOBILE NAV -->
     <template id="template__mobile">
-                <div class="nav__mobile--btn-close">
-                    <i id="navClose" class="fas fa-bars"></i>
+                <div id="navClose" class="nav__mobile--btn-close">
+                    <i class="fas fa-bars"></i>
                 </div>
                 <hr>
                 <div class="nav__mobile--container">
@@ -84,16 +84,19 @@
                     </div>
                     <hr>
                     <div class="nav__mobile--event">
-                        <span style="padding: 0.5rem;background-color: #5727d2;color:white;border-radius:10rem;margin:0.5rem 0;">Cumpleaños Pepe</span>
-                        <span style="padding: 0.5rem;background-color: #ff6010;color:white;border-radius:10rem;margin:0.5rem 0;">Cumpleaños Marta</span>
-                        <span style="padding: 0.5rem;background-color: #5727d2;color:white;border-radius:10rem;margin:0.5rem 0;">Cumpleaños Antonio</span>
-                        <span style="padding: 0.5rem;background-color: #726775;color:white;border-radius:10rem;margin:0.5rem 0;">Cumpleaños Javi</span>
-                        <span style="padding: 0.5rem;background-color: #5727d2;color:white;border-radius:10rem;margin:0.5rem 0;">Cumpleaños Laura</span>
+                        <span class="nav__mobile--event--span">Cumpleaños Pepe</span>
+                        <span class="nav__mobile--event--span">Cumpleaños Marta</span>
+                        <span class="nav__mobile--event--span">Cumpleaños Antonio</span>
+                        <span class="nav__mobile--event--span">Cumpleaños Javi</span>
+                        <span class="nav__mobile--event--span">Cumpleaños Laura</span>
                     </div>
-                    <button id="create-event">
-                        <i class="fas fa-plus"></i>
-                        <p>Add event</p>
-                    </button>
+                    <hr>
+                    <div class="nav__mobile--btnEvent">
+                        <button id="create-event">
+                            <i class="fas fa-plus"></i>
+                            <p>Add event</p>
+                        </button>
+                    </div>    
                 </div>
     </template>
 
@@ -130,13 +133,12 @@
                 <form action="">
                     <div class="shadow__input--stretch">
                         <label for="title">Title:</label>
-                        <input class="" type="text" name="title" title="Jalamanchula" max-length="60" required>
-                        <span class="title__error">This field is required</span>
+                        <input class="" type="text" name="title" title="This field is required" max-length="60" required>
                     </div>
 
                     <div class="shadow__input--stretch">
                         <label for="init-date">Initial date:</label>
-                        <input type="date" name="init-date" required>
+                        <input type="date" name="init-date" title="Please enter a valid date" required>
                     </div>
 
                     <div class="shadow__input--start">
