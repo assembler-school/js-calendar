@@ -30,7 +30,7 @@ export function setReminder() {
                console.log(new Date(obj["init-date"]) + '-' + actualDate + '=' + remindingTime);
                console.log(remindingTime);
                if (remindingTime <= 7200000) {
-                    setAlarm(obj, 10000);
+                    setAlarm(obj, remindingTime);
                }
           });
      }
