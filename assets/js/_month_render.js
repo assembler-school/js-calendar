@@ -1,6 +1,3 @@
-let currentDate = new Date();
-let currentMonth = currentDate.getMonth();
-let currentYear = currentDate.getFullYear();
 //
 /* Dynamic render of month */
 export function renderMonth(year, month) {
@@ -53,6 +50,15 @@ export function updateDate(year,month) {
     month+=12;
     month%=12;
     return {year : year,month : month};
+}
+
+export function addTag(year, month) {
+    let monthTag = document.getElementById('nav__tag');
+    let yearTag = document.getElementById('nav__year');
+    let monthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+    monthTag.innerHTML = monthList[month];
+    yearTag.innerHTML = year;
 }
 
 export function highlightToday(year, month){

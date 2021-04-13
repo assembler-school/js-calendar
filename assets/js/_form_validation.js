@@ -44,10 +44,11 @@ export function formValidation(e, validateAll) {
     });
   };
 
-  // choose validation 
+  // choose validation
   if (validateAll) {
     formValidation(e);
-    return;
+    let result =  document.querySelector("span.on");
+    return result;
   }
   inputValidation(e);
 }
