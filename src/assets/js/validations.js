@@ -14,7 +14,7 @@ const day = Newdate.getDate();
 const toDay = day + '/' + month + '/' + year;
 
 const expresiones = {
-    title: /^[a-zA-ZÀ-ÿ\s\d]{4,10}$/,
+    title: /^[a-zA-ZÀ-ÿ\s\d]{1,60}$/,
     description: /^[a-zA-ZÀ-ÿ\s\d]{1,40}$/
 };
 
@@ -76,19 +76,4 @@ function validarEndDate(){
             return true;
         }
     }
-    
 }
-// function validarDescription(){
-
-//     //Validacion Descripcion
-//     if(desc.value === null || desc.value === ""){
-//         inputs[1].classList.add("incorrect");
-//         return false;
-//     }else if(!expresiones.description.test(inputs[1].value)){
-//         inputs[1].classList.add("incorrect");
-//         return false;
-//     }else{
-//         inputs[1].classList.remove("incorrect");
-//         return true;
-//     }
-// }

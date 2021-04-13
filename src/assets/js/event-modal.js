@@ -1,4 +1,4 @@
-
+const modalBackground = document.getElementById("modal-event-section");
 function eventModal (event) {
     event.stopPropagation(); // Needed to prevent execution of parent div
     const eventId = event.target.getAttribute("divEventId");
@@ -20,19 +20,29 @@ function eventModal (event) {
     document.getElementById("modal-event-reminder").innerText = eventReminder;
     document.getElementById("modal-event-type").innerText = eventType;
     document.getElementById("modal-event-description").innerText = eventDescription;
-    //* constants in use
-    const modalBackground = document.getElementById("modal-event-section");
      //* Adding eventListener to modal
     document.getElementById("modal-event-close-button").addEventListener('click', closeEventModal);
     document.getElementById("modal-event-edit-btn").addEventListener('click', editEventModal);
     //* Showing the modal
     modalBackground.classList.remove("hidden");
 }
+//* close event modal pressing esc key
+window.onkeyup = function (event) {
+    let escNow = event.keyCode || event.which;
+    if (escNow == 27) {
+        modalBackground.classList.add("hidden");
+    }
+}
+//* close event modal clicking outside
+window.onclick = function (event) {
+    if (event.target == modalBackground) {
+        modalBackground.classList.add("hidden");
+    }
+}
 
 
 //* Close event modal function
 function closeEventModal () {
-    const modalBackground = document.getElementById("modal-event-section");
     //* Remove event listeners
     document.getElementById("modal-event-close-button").removeEventListener('click', closeEventModal);
     document.getElementById("modal-event-edit-btn").removeEventListener('click', editEventModal);
