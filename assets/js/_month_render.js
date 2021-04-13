@@ -1,3 +1,6 @@
+let currentDate = new Date();
+let currentMonth = currentDate.getMonth();
+let currentYear = currentDate.getFullYear();
 //
 /* Dynamic render of month */
 export function renderMonth(year, month) {
@@ -12,7 +15,10 @@ export function renderMonth(year, month) {
     /* Loop to fill calendar */
     for (let x = 1; x < daysInMonth + 1; x++) {
         /* Fill the calendar divs with day number */
-        try { document.querySelector('.calendar__week:nth-child(' + weekCount + ') div[data-col="' + weekDay + '"]').innerHTML = x }
+        try { 
+            document.querySelector('.calendar__week:nth-child(' + weekCount + ') div[data-col="' + weekDay + '"]').innerHTML = '<span class="spanDay">' + x + '</span>';
+            document.querySelector('.calendar__week:nth-child(' + weekCount + ') div[data-col="' + weekDay + '"]').setAttribute("id",x);
+        }
         catch(err) {
             /* Create the week clone to show in calendar */
             let workClone = whiteClone.cloneNode(true);
@@ -20,12 +26,9 @@ export function renderMonth(year, month) {
             workClone.setAttribute("data-row",rowCont);
             document.querySelector('.calendar__month').appendChild(workClone)
             /* Fill the clone for first time */
-            document.querySelector('.calendar__week:nth-child(' + weekCount + ') div[data-col="' + weekDay + '"]').innerHTML = x
+            document.querySelector('.calendar__week:nth-child(' + weekCount + ') div[data-col="' + weekDay + '"]').innerHTML = '<span class="spanDay">' + x + '</span>';
+            document.querySelector('.calendar__week:nth-child(' + weekCount + ') div[data-col="' + weekDay + '"]').setAttribute("id",x);
         };
-        /*
-        *executar funcio per colocar events al month
-        *handleEvent()
-        */
         if (!weekDay) {weekCount++};
         weekDay++;
         weekDay%=7;
@@ -50,4 +53,18 @@ export function updateDate(year,month) {
     month+=12;
     month%=12;
     return {year : year,month : month};
+}
+
+export function highlightToday(year, month){
+    let date = new Date();
+    if (compareMonth(year,month,date.getFullYear(),date.getMonth())) {
+        document.getElementById((new Date()).getDate()).className += 'today';
+        document.getElementById((new Date()).getDate()).childNodes[0].innerHTML = date.getDate();
+    }
+}
+
+export function compareMonth(year,month,year2,month2){
+    let sameMonth = false;
+    if (year===year2 && month===month2) {sameMonth=true};
+    return sameMonth;
 }
