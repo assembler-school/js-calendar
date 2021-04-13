@@ -140,7 +140,7 @@ function renderEvent () {
                 default:
                     break;
             }
-            /* newEvent.addEventListener('click', eventModal); */
+            newEvent.addEventListener('click', eventModal);
             //* Attach of element to DOM
             for (let div of daysContainer) {
                 if (div.innerHTML == i) {
