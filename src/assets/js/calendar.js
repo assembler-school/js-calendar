@@ -88,3 +88,13 @@ document.querySelector("#nextMonth").addEventListener("click", () => {
 });
 
 renderCalendar("");
+// adding wheel  to change month
+window.addEventListener('wheel', function (event) {
+    if (event.deltaY < 0) {
+        date.setMonth(date.getMonth() - 1);
+        renderCalendar("left");
+    } else if (event.deltaY > 0) {
+        date.setMonth(date.getMonth() + 1);
+        renderCalendar("right");
+    }
+});
