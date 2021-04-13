@@ -447,25 +447,33 @@ i.fa-times-circle {
 
 .alert__event {
 	position: absolute;
-  border-radius: 15px;
+	border-radius: 15px;
 	top: calc(50% - 100px);
 	left: calc(50% - 175px);
 	color: black;
-	background-color: #b2c8e7;
+	background-color: white;
 	width: 350px;
 	height: 200px;
-  padding: 15px;
-  box-shadow: 5px 5px 15px;
+	padding: 15px;
+	box-shadow: 5px 5px 15px;
 }
 
 .alert__event p {
-  margin: 20px;
+	margin: 20px;
 }
 
 .fa-times {
-  position: absolute;
-  top: 15px;
-  right: 15px;
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	font-size: 1.2rem;
+}
+
+.fa-pencil-alt {
+	position: absolute;
+	top: 15px;
+	right: 40px;
+	font-size: 1rem;
 }
 
 /*
