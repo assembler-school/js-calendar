@@ -1,8 +1,4 @@
 
-/*! This function is to be executed each time someone click on an event
-TODO associate eventListener
-*/
-
 function eventModal (event) {
     event.stopPropagation(); // Needed to prevent execution of parent div
     const eventId = event.target.getAttribute("divEventId");
@@ -17,9 +13,6 @@ function eventModal (event) {
     }
     const eventType = eventsById[eventId].eventType;
     const eventDescription = eventsById[eventId].description;
-    /* 
-    TODO it has to load the data inside the modal
-   */
 
     document.querySelector(".modal-event-title > h1").innerText = eventTitle;
     document.getElementById("modal-event-initial-date").innerText = eventInitialDate.toLocaleString();
@@ -32,8 +25,6 @@ function eventModal (event) {
      //* Adding eventListener to modal
     document.getElementById("modal-event-close-button").addEventListener('click', closeEventModal);
     document.getElementById("modal-event-edit-btn").addEventListener('click', editEventModal);
-    //* Adding content to modal
-    //TODO
     //* Showing the modal
     modalBackground.classList.remove("hidden");
 }
@@ -53,22 +44,3 @@ function editEventModal () {
     //! TODO has to open normal modal and insert this event values
     closeEventModal();
 }
-// ! Function to add a mock event
-
-/* function addEventTesting () {
-    const daysContainer = document.getElementById("modal-event-div").children;
-    let newEvent = document.createElement("div");
-    newEvent.classList.add("event-in-calendar");
-    newEvent.classList.add("blue-event");
-    newEvent.innerHTML = "Evento Prueba";
-    newEvent.addEventListener('click', eventModal);
-    daysContainer[5].appendChild(newEvent);
-    const allEvents = document.querySelectorAll(".event-in-calendar");
-    
-    
-    ! This code may be usable for later
-    for (let event of allEvents) {
-        event.addEventListener('click', eventModal);
-    }
-}
-addEventTesting(); */
