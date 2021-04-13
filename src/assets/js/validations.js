@@ -18,16 +18,18 @@ const expresiones = {
     description: /^[a-zA-ZÀ-ÿ\s\d]{1,40}$/
 };
 
-    document.getElementById('title').addEventListener('keyup',validarTitulo);
-    document.getElementById('initialDate').addEventListener('keyup',validarInitialDate);
-    document.getElementById('endDate').addEventListener('keyup',validarEndDate);
-    document.getElementById('description').addEventListener('focus',validarDescription);
+    document.getElementById('title').addEventListener('onkeyup',validarTitulo);
+    document.getElementById('initialDate').addEventListener('onkeyup',validarInitialDate);
+    document.getElementById('endDate').addEventListener('onkeyup',validarEndDate);
+    // document.getElementById('description').addEventListener('focus',validarDescription);
 function validarFormulario() {
-  if(validarTitulo() && validarInitialDate() &&  validarEndDate() && validarDescription()){
+  if(validarTitulo() && validarInitialDate() &&  validarEndDate()){
         createButton.removeAttribute("disabled");
+        createButton.style.opacity = 1;
     }
     else{
         createButton.disabled = true;
+        createButton.style.opacity = 0.5;
     }
 }
 
@@ -76,17 +78,17 @@ function validarEndDate(){
     }
     
 }
-function validarDescription(){
+// function validarDescription(){
 
-    //Validacion Descripcion
-    if(desc.value === null || desc.value === ""){
-        inputs[1].classList.add("incorrect");
-        return false;
-    }else if(!expresiones.description.test(inputs[1].value)){
-        inputs[1].classList.add("incorrect");
-        return false;
-    }else{
-        inputs[1].classList.remove("incorrect");
-        return true;
-    }
-}
+//     //Validacion Descripcion
+//     if(desc.value === null || desc.value === ""){
+//         inputs[1].classList.add("incorrect");
+//         return false;
+//     }else if(!expresiones.description.test(inputs[1].value)){
+//         inputs[1].classList.add("incorrect");
+//         return false;
+//     }else{
+//         inputs[1].classList.remove("incorrect");
+//         return true;
+//     }
+// }
