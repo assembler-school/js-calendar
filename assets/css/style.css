@@ -315,7 +315,7 @@ button#create-event i {
 #calendar {
 	width: inherit;
 	height: calc(100% - 55px);
-	padding: 0.5rem 2rem 2rem 2rem;
+	padding: 0.5rem 0.2rem 0.2rem 0.2rem;
 }
 
 .calendar__month {
@@ -458,9 +458,9 @@ i.fa-times-circle {
 	background-color: #ff6010;
 	border-radius: 10px;
 	overflow-x: hidden;
-	padding: 0.2rem 0.4rem;
+	padding: 0.6rem 0.4rem;
 	margin: 0.5rem 0;
-	font-size: 0.6rem;
+	font-size: 0.8rem;
 }
 
 .more__event {
@@ -494,6 +494,10 @@ i.fa-times-circle {
 	.shadow__input--start {
 		margin-bottom: 0.45rem;
 	}
+
+	#calendar {
+		padding: 0.5rem 0.2rem 0.2rem 0.2rem;
+	}
 }
 
 /* Medium screen */
@@ -509,17 +513,19 @@ i.fa-times-circle {
 		display: block;
 	}
 	.event {
-    display: flex;
-    white-space: nowrap;
-    align-items: center;
-    height: 1rem;
-    color: white;
-    background-color: #ff6010;
-    border-radius: 10px;
-    overflow-x: hidden;
-    padding: 0.2rem 0.4rem;
-    margin: 0.5rem 0;
-    font-size: 0.6rem;
+		height: 1rem;
+		border-radius: 10px;
+		padding: 0.8rem 0.6rem;
+		margin: 0.5rem 0;
+		font-size: 0.8rem;
+	}
+
+	.more__event {
+		font-size: 0.8rem;
+	}
+
+	#calendar {
+		padding: 0.5rem 0.5rem 0.5rem 0.5rem;
 	}
 }
 
@@ -536,17 +542,15 @@ i.fa-times-circle {
 		display: none;
 	}
 	.event {
-    display: flex;
-    white-space: nowrap;
-    align-items: center;
-    height: 1.8rem;
-    color: white;
-    background-color: #ff6010;
-    border-radius: 25px;
-    overflow-x: hidden;
-    padding: 0.2rem 0.8rem;
-    margin: 0.5rem 0.5rem;
-	font-size: 0.8rem;
+		height: 1rem;
+		border-radius: 10px;
+		padding: 0.8rem 0.6rem;
+		margin: 0.5rem 0;
+		font-size: 1rem;
+	}
+
+	.more__event {
+		font-size: 0.8rem;
 	}
 }
 
