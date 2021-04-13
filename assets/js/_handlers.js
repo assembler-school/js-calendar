@@ -34,9 +34,7 @@ export function handleDocumentEvents(e) {
       if (!formValidation(e, true)) {
         const data = calendarEvent.getDataFromModal("#modal form");
         calendarEvent.toLocalStorage(data);
-        
-        console.log(calendarEvent.fromLocalStorage(data));
-        // calendarEvent.probando();
+        render.renderEvents(updatedYear, updatedMonth);
       }
     }
 
@@ -45,9 +43,17 @@ export function handleDocumentEvents(e) {
      */
     if (e.target.matches(".fa-chevron-right")) {
       addMonth(updatedYear, updatedMonth, true);
+      // document.getElementById("calendar").classList.add("slide-top");
+      // document.getElementById("calendar").classList.add("swing-right-fwd");
+      document
+        .querySelector(".calendar__month")
+        .classList.add("swing-right-fwd");
     }
     if (e.target.matches(".fa-chevron-left")) {
       addMonth(updatedYear, updatedMonth, false);
+      document
+        .querySelector(".calendar__month")
+        .classList.add("swing-left-fwd");
     }
 
     /*
@@ -60,6 +66,31 @@ export function handleDocumentEvents(e) {
     if (e.target.matches("#navClose") || e.target.matches("#navClose *")) {
       removeTemplate("template__mobile", "main");
       document.getElementById("main").style.display = "none";
+    }
+
+    /*
+     * checkbox End-date
+     */
+    if (e.target.matches('[name="end-check"]')) {
+      const check = document.querySelector('[name="end-date"]');
+      check.disabled ? (check.disabled = false) : (check.disabled = true);
+    }
+
+    /*
+     * Click in event
+     */
+    if (e.target.matches("[data-eventid]")) {
+      const [_event] = calendarEvent.getEvent(e.target.dataset.eventid);
+      swapTemplate("modal-template", "modal-section");
+      calendarEvent.printDataToModal("#modal form", _event);
+    }
+
+    /*
+     *
+     */
+    if (e.target.matches(".calendar__week > div")) {
+      const dia = e.target.id;
+      console.log(dia);
     }
   });
 
@@ -74,13 +105,15 @@ export function handleDocumentEvents(e) {
   });
 }
 
-let updatedMonth = (new Date()).getMonth();
-let updatedYear = (new Date()).getFullYear();
+let updatedMonth = new Date().getMonth();
+let updatedYear = new Date().getFullYear();
 function addMonth(year, month, boolean) {
   boolean ? month++ : month--;
-  updatedYear = render.updateDate(year,month).year;
-  updatedMonth = render.updateDate(year,month).month;
-  swapTemplate("month","calendar");
-  render.renderMonth(updatedYear,updatedMonth);
+  updatedYear = render.updateDate(year, month).year;
+  updatedMonth = render.updateDate(year, month).month;
+  swapTemplate("month", "calendar");
+  render.renderMonth(updatedYear, updatedMonth);
   render.addTag(updatedYear, updatedMonth);
+  render.highlightToday(year, month);
+  render.renderEvents(year, month);
 }
