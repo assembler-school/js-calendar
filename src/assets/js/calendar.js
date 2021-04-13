@@ -1,4 +1,5 @@
 const date = new Date();
+const modalDivs = document.getElementById("modal-event-div");
 /* * Set the current date in header */
 function setCurrentDate () {
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -80,14 +81,17 @@ const renderCalendar = (direction) => {
 document.querySelector("#prevMonth").addEventListener("click", () => {
     date.setMonth(date.getMonth() - 1);
     renderCalendar("left");
+    addEachListener();
 });
 
 document.querySelector("#nextMonth").addEventListener("click", () => {
     date.setMonth(date.getMonth() + 1);
     renderCalendar("right");
+    addEachListener();
 });
 
 renderCalendar("");
+addEachListener();
 // adding wheel  to change month
 window.addEventListener('wheel', function (event) {
     if (event.deltaY < 0) {
