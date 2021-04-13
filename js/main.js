@@ -199,15 +199,18 @@ function saveEvent() {
     }
     saveEventData();//save data
     hideModal();
-    displayEventsInMonth(idMonth, calendarEvents);
+    clearMonthCalendar();
+    calendarMonthConstructor(month);
 }
 
 function removeEvent(initialDate, id) {
     let dayId = formatDate(new Date(initialDate));
-    calendarEvents[dayId] = calendarEvents[dayId].filter((e) => {
-        return e.id !== id;
-    });
-    reminders = reminders.filter((reminder) => {
-        return reminder.id !== id;
-    });
+    calendarEvents = Object.values(calendarEvents).forEach((dayEvents) => {
+        dayEvents.filter((e) => {
+            return e.id !== id;
+        });
+    })
+    // reminders = reminders.filter((reminder) => {
+    //     return reminder.id !== id;
+    // });
 }
