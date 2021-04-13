@@ -16,6 +16,8 @@ document.getElementById('monthView-btn').addEventListener("click", (event)=>{
         event.target.disabled=true;
         document.getElementById("yearView-btn").disabled=false;
         updateTemplate("year-section","main-content-section","month-template");
+        calendarMonthConstructor();
+        displayEventsInMonth(currentMonthDisplay, eventsCalendar);
     }
 });
 document.getElementById('yearView-btn').addEventListener("click", (event)=>{
@@ -67,12 +69,21 @@ function setValueTime(date = new Date()) {
 
 function showModal() {
     let modal = document.getElementById("modalDiv");
+    let mainContentForBlur = document.querySelector('#main-content-section');
+    let currentDateForBlur = document.querySelector('.currentDate-section');
+    mainContentForBlur.style.filter = 'blur(5px)';
+    currentDateForBlur.style.filter = 'blur(5px)';
     modal.classList.add('showUp');
     document.getElementById('initialDateId').setAttribute('min', setValueTime());
 }
 
 function hideModal() {
     let modal = document.getElementById("modalDiv");
+    let mainContentForBlur = document.querySelector('#main-content-section');
+    let currentDateForBlur = document.querySelector('.currentDate-section');
+    mainContentForBlur.removeAttribute('style');
+    currentDateForBlur.removeAttribute('style');
+    modal.classList.remove('showUp')
     modal.classList.remove('showUp');
 }
 
@@ -153,7 +164,7 @@ function saveEventData() {
     });
 
     if (endDateChecked) {
-        let extraDays = (new Date(endDate).getDay() - new Date(initialDate).getDay());
+        let extraDays = (new Date(endDate).getTime() - new Date(initialDate).getTime())/86400000;
         let initialDateDate = new Date(initialDate);
         for (let i = 0; i < extraDays; i++) {
             initialDateDate.setDate(initialDateDate.getDate() + 1);
