@@ -47,7 +47,7 @@
   background-color: var(--bg);
 }
 
-.day:hover {
+.days:hover {
   background-color: rgba(166, 175, 175, 0.425);
   border-radius: 20%;
   border-radius: 50%;
