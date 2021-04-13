@@ -86,7 +86,9 @@ function calendarMonthConstructor(changeMonth) {
     createMonthGrid();
     populateMonth(month);
     // today(currentDay,currentMonth,currentYear);
-    updateMonthAndYearHeader(monthsNames[month], year)
+    updateMonthAndYearHeader(monthsNames[month], year);
+    displayEventsInMonth(month, calendarEvents);
+
 }
 
 // function today(month,currentDay,currentMonth,currentYear){
