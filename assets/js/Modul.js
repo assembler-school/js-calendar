@@ -1,3 +1,19 @@
+//***********************************************/
+//---------------GLOBAL VARIABLES---------------/
+//**********************************************/
+
+// Local storage input and output testing
+let inputTitleKey = document.getElementById("titleBox")
+let inputDateValue = document.getElementById("initialCal")
+let inputDateEndValue = document.getElementById("endCal")
+let inputTimedValue = document.getElementById("timeSelector")
+let inputReminderValue = document.getElementById("reminderSelect")
+let inputEventTypeValue = document.getElementById("eventSelect")
+let inputDescriptionValue = document.getElementById("textAreaDescription")
+let buttonSubmit = document.getElementById("createBtn")
+let eventOutput = document.querySelector(".event__display")
+let localStorageEvents = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
+const calendar = document.querySelector('.calendar');
 
 // Get the modal
 let modal = document.getElementById("myModal");
@@ -5,25 +21,22 @@ let modal = document.getElementById("myModal");
 // Get the button that opens the modal
 let btn = document.getElementById("openButton");
 
+
 // Get the <span> element that closes the modal
 let span = document.getElementsByClassName("close")[0];
 
-// cogemos el boton create
-let btn__create = document.getElementById("createBtn");
 
+//*************************************************/
+//--------------Modal Functions-------------------/
+/************************************************/
 // When the user clicks the button, open the modal
 openButton.onclick = function() {
   modal.style.display = "flex";
-}
-
-function closeForm() {
-  document.getElementById("myModal").style.display = "none";
 }
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
   modal.style.display = "none";
 }
-
 
 // Set current date on Caledar
 let today = new Date().toISOString().substr(0, 10);
@@ -60,18 +73,29 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+/* *********************************/
+//---------- BUTTON FUNCTIONS --------
+//********************************* */
+//funcion que envia el formulario y ademas nos crea el objeto
+buttonSubmit.onclick = function () {
 
-// Local storage input and output testing
-let inputTitleKey = document.getElementById("titleBox")
-let inputDateValue = document.getElementById("initialCal")
-let inputDateEndValue = document.getElementById("endCal")
-let inputTimedValue = document.getElementById("timeSelector")
-let inputReminderValue = document.getElementById("reminderSelect")
-let inputEventTypeValue = document.getElementById("eventSelect")
-let inputDescriptionValue = document.getElementById("textAreaDescription")
-let buttonSubmit = document.getElementById("createBtn")
-let eventOutput = document.querySelector(".event__display")
+  const supuestafecha = new Event(`${inputTitleKey.value}`,`${inputDateValue.value}`,`${inputDateEndValue.value}`,`${inputTimedValue.value}`,`${inputReminderValue.value}`,`${inputEventTypeValue.value}`,`${inputDescriptionValue.value}`);
+  console.log(supuestafecha);
+  supuestafecha.sentJSON();
 
+};
+// Saves event at the event output 
+buttonSubmit.addEventListener("click", createEvent);
+
+
+// Close form 
+function closeForm() {
+  document.getElementById("myModal").style.display = "none";
+}
+
+/* *********************************
+---------- EVENT FUNCTIONS --------
+********************************* */
 //Aquí he creado una clase cosntructora de ventos donde se tendrían que almacenar todos su valores y posteriormente convertirlos en JSONS
 class Event {
   constructor(titulo, dateValue, dateEndValue, timedValue, reminderValue, eventType, descriptionValue) {
@@ -108,44 +132,7 @@ function getID(clicked){
   console.log(selected);
 }
 
-//funcion que envia el formulario y ademas nos crea el objeto
-buttonSubmit.onclick = function () {
 
-  const supuestafecha = new Event(`${inputTitleKey.value}`,`${inputDateValue.value}`,`${inputDateEndValue.value}`,`${inputTimedValue.value}`,`${inputReminderValue.value}`,`${inputEventTypeValue.value}`,`${inputDescriptionValue.value}`);
-  console.log(supuestafecha);
-  supuestafecha.sentJSON();
-
-
-  // let key = inputTitleKey.value;
-  // let value = [inputDescriptionValue.value ,
-  //   inputDateValue.value,
-  //   inputDateEndValue.value,
-  //   inputTimedValue.value,
-  //   inputReminderValue.value,
-  //   inputEventTypeValue.value]
-
-
-
-
-  // if (key && value) {
-  //   localStorage.setItem(key, value);
-  // }
-};
-
-// for (let i = 0; i < localStorage.length; i++) {
-//   let key = localStorage.key(i);
-//   let value = localStorage.getItem(key);
-
-  //eventOutput.innerHTML += `${key}: ${value}<br />`;
-  //console.log(key)
-  //console.log(value)
-//
-
-/* *********************************
----------- EVENTOS -----------------
-********************************* */
-
-btn__create.addEventListener("click", createEvent);
 
 // Pesco el div donde se guardaran los eventos
 let events = document.querySelector(".events");
@@ -159,7 +146,7 @@ function createEvent (){
 }
 
 /* *********************************
----------- DARCK MODE -----------------
+---------- DARK MODE -----------------
 ********************************* */
 const toggleSwitch = document.querySelector('.switch input[type="checkbox"]');
 
@@ -172,3 +159,34 @@ function changeTheme() {
     document.documentElement.setAttribute("mode-changes", "dark");
   }
 }
+
+
+
+
+ 
+//  eventOutput.innerHTML += `${key}: ${value}<br />`;
+// //  console.log(key)
+//  console.log(value)
+
+
+
+// let key = inputTitleKey.value;
+// let value = supuestafecha;
+// //  [inputDescriptionValue.value ,
+//  //   inputDateValue.value,
+//  //   inputDateEndValue.value,
+//  //   inputTimedValue.value,
+//  //   inputReminderValue.value,
+//  //   inputEventTypeValue.value]
+
+
+
+
+//  if (key && value) {
+//  localStorage.setItem(key, value);
+// }
+
+// for (let i = 0; i < localStorage.length; i++) {
+//   let key = localStorage.key(i);
+//   let value = localStorage.getItem(key);
+// }
