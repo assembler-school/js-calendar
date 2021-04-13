@@ -94,6 +94,7 @@ function showMeTheEndDate(){
         document.getElementById("endDate").removeAttribute("disabled");
     } else{
         document.getElementById("endDate").disabled = true;
+        document.getElementById("endDate").classList.remove("incorrect");
     }
 }
 
