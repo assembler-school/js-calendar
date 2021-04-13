@@ -78,31 +78,27 @@ const renderCalendar = (direction) => {
     /* Injecting all elements to DOM */
     monthDays.innerHTML = days;
     renderEvent () ;
+    addEachListener();
 };
 document.querySelector("#prevMonth").addEventListener("click", () => {
     date.setMonth(date.getMonth() - 1);
     renderCalendar("left");
-    addEachListener();
 });
 
 document.querySelector("#nextMonth").addEventListener("click", () => {
     date.setMonth(date.getMonth() + 1);
     renderCalendar("right");
-    addEachListener();
 });
 
 renderCalendar("");
-addEachListener();
 // adding wheel  to change month
 window.addEventListener('wheel', function (event) {
     if (event.deltaY < 0) {
         date.setMonth(date.getMonth() - 1);
         renderCalendar("left");
-        addEachListener();
     } else if (event.deltaY > 0) {
         date.setMonth(date.getMonth() + 1);
         renderCalendar("right");
-        addEachListener();
     }
 });
 

@@ -21,7 +21,7 @@ const expresiones = {
     document.getElementById('title').addEventListener('keyup',validarTitulo);
     document.getElementById('initialDate').addEventListener('keyup',validarInitialDate);
     document.getElementById('endDate').addEventListener('keyup',validarEndDate);
-    document.getElementById('description').addEventListener('keyup',validarDescription);
+    document.getElementById('description').addEventListener('focus',validarDescription);
 function validarFormulario() {
   if(validarTitulo() && validarInitialDate() &&  validarEndDate() && validarDescription()){
         createButton.removeAttribute("disabled");
