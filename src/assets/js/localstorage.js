@@ -3,7 +3,11 @@ var eventsByDate = {};
 var eventsById = [];
 var remindersByDate = {};
 var remindersById = [];
-var eventIndex = 0;
+if (!localStorage.getItem("eventIndex")) {
+    var eventIndex = 0;
+} else {
+    eventIndex = JSON.parse(localStorage.getItem("eventIndex"));
+}
 let calendarEvent = class {
     constructor (title,startDate,endDate, reminder, description, eventType, id) {
         this.title = title;
@@ -90,6 +94,7 @@ function createEvent() {
     localStorage.setItem("remindersByDate", JSON.stringify(remindersByDate));
     //console.log(titleF,iniDateF,enDateF,reminderF,descriptionF,eventTF);
     eventIndex += 1;
+    localStorage.setItem("eventIndex", JSON.stringify(eventIndex));
 }
 /* createEvent(); */
 /* function getModalData (titleF, iniDateF, enDateF, reminderF, descriptionF, eventTF) {
