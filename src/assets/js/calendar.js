@@ -76,6 +76,7 @@ const renderCalendar = (direction) => {
     }
     /* Injecting all elements to DOM */
     monthDays.innerHTML = days;
+    renderEvent () ;
 };
 document.querySelector("#prevMonth").addEventListener("click", () => {
     date.setMonth(date.getMonth() - 1);
@@ -100,8 +101,8 @@ window.addEventListener('wheel', function (event) {
 });
 
 function renderEvent () {
-    const daysContainer = document.getElementById("modal-event-div").children;
-    const currentMonth = date.getMonth();
+    const daysContainer = document.querySelectorAll(".day-number");
+    const currentMonth = date.getMonth() + 1;
     const currentYear = date.getFullYear();
     //* To know days of month
     const lastDay = new Date(
@@ -109,22 +110,39 @@ function renderEvent () {
         date.getMonth() + 1,
         0
     ).getDate();
-
-
-
-
-
-
-    let newEvent = document.createElement("div");
-    newEvent.classList.add("event-in-calendar");
-    newEvent.classList.add("blue-event");
-    newEvent.innerHTML = "Evento Prueba";
-    newEvent.addEventListener('click', eventModal);
-
-
-    daysContainer[5].appendChild(newEvent);
-    const allEvents = document.querySelectorAll(".event-in-calendar");
     
+    for (i = 1; i < lastDay; i++) {
+        if (!!eventsByDate[`${currentYear}-${currentMonth}-${i}`]) {
+            //* Access to event data
+            const eventId = eventsByDate[`${currentYear}-${currentMonth}-${i}`];
+            const eventTitle = eventsById[eventId].title;
+            const eventType = eventsById[eventId].eventType;
+            //* Create of the event element
+            let newEvent = document.createElement("div");
+            newEvent.classList.add("event-in-calendar");
+            newEvent.innerHTML = eventTitle;
+            switch (eventType) {
+                case 'Study':
+                    newEvent.classList.add("blue-event");
+                    break;
+                case 'Meeting':
+                    newEvent.classList.add("green-event");
+                    break;
+                case 'Personal':
+                    newEvent.classList.add("orange-event");
+                    break;
+                default:
+                    break;
+            }
+            /* newEvent.addEventListener('click', eventModal); */
+            //* Attach of element to DOM
+            for (let div of daysContainer) {
+                if (div.innerHTML == i) {
+                    div.insertAdjacentElement('afterend',newEvent);
+                }
+            }
+        }
+    }
     /*
     ! This code may be usable for later
     for (let event of allEvents) {
