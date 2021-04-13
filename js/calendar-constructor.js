@@ -1,28 +1,8 @@
-let currentDate = new Date;
-let currentWeekDay = currentDate.getDay();
-let currentDay = currentDate.getDate();
-let currentMonth = currentDate.getMonth();
-let currentYear = currentDate.getFullYear();
-
-
-//INPUTS TO CONTROLL THE CALENDAR
-let year = currentYear;
-let month = currentMonth;
-
-
-var shortDays = ['M','T','W','T','F','S','S'];
-var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday"];
-var monthsNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
 console.log(days[currentWeekDay] + ' ' + currentDay + ' ' + monthsNames[currentMonth] + ' ' + currentYear);
 
 // console.log(firstOfJanuary(2021));
 // console.log('First week day: ' + new Date(year,month).getDay());
 // console.log(getMonthDays(2021,5));
-
-var shortDays = ['M','T','W','T','F','S','S'];
-var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday"];
-var monthsNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 
 //GET DAY,MONTH,YEAR DATA
@@ -45,7 +25,7 @@ function getMonthDays(year,month){
 
 
 //CALENDAR CONSTRUCTOR
-function calendarConstructor(){
+function calendarConstructor(changeYear){
   var yearView = document.querySelector('#year-section');
   //Create year-rows
   for(i=0;i<3;i++){
@@ -66,11 +46,11 @@ function calendarConstructor(){
 
   //Create row for month name
   var months = document.querySelectorAll('.month');
-  months.forEach((month) => {
+  months.forEach((element) => {
     for(i=0;i<2;i++){
       let div = document.createElement('div');
       div.setAttribute('class','week');
-      month.appendChild(div);
+      element.appendChild(div);
     };
   });
 
@@ -85,21 +65,21 @@ function calendarConstructor(){
   });
 
   //Setting month-name class
-  months.forEach((month) => {
-    month.firstChild.classList.add('month-name');
+  months.forEach((element) => {
+    element.firstChild.classList.add('month-name');
   });
   //Setting month names
   var monthName = document.querySelectorAll('.month-name');
-  monthName.forEach((month,i=0) => {
-    month.innerHTML = monthsNames[i];
+  monthName.forEach((element,i=0) => {
+    element.innerHTML = monthsNames[i];
     i++;
   });
 
 
   //Setting week-days class
   var months = document.querySelectorAll('.month');
-  months.forEach((month) => {
-    let secondChild = month.childNodes
+  months.forEach((element) => {
+    let secondChild = element.childNodes
     secondChild[1].classList.add('week-days');
   });
   //Setting week-days names
@@ -112,26 +92,33 @@ function calendarConstructor(){
       i++;
     });
   });
-  populateCalendar(year);
+  populateCalendar(changeYear);
 };
 
 
 
 //POPULATE CALENDAR DAYS
-function populateCalendar(year){
+function populateCalendar(changeYear){
   //Body of the calendar
   var months = document.querySelectorAll('.month');
 
+  //Change between years
+  if(!changeYear || changeYear == currentYear){
+    year = currentYear;
+  }else{
+    year = currentYear + changeYear;
+  };
+  console.log(year);
+
   var iMonth = 1;
-  months.forEach((month) => {
-    //month counter
+  months.forEach((element) => {
 
     let date = 1;
 
     //Dates checker
-    console.log('iMonth-' + iMonth);
-    console.log('Month days-' + getMonthDays(year,iMonth))
-    console.log('First week day-' + (getFirstMonthDay(year,iMonth-1)));
+    // console.log('iMonth-' + iMonth);
+    // console.log('Month days-' + getMonthDays(year,iMonth))
+    // console.log('First week day-' + (getFirstMonthDay(year,iMonth-1)));
 
     for (let i = 0; i < 6; i++) {
       // creates a table row
@@ -161,15 +148,17 @@ function populateCalendar(year){
           }
         }
       }
-      month.appendChild(row); // appending each row into calendar body.
+      element.appendChild(row); // appending each row into calendar body.
     }
     iMonth++;
   });
-  today(currentDay,currentMonth,currentYear);
+  // today(month,currentDay,currentMonth,currentYear);
 };
 
 
 //COLORING CURRENT DAY IN CALENDAR
-function today(currentDay,currentMonth,currentYear){
-  document.querySelector('[id="' + currentYear + '/' + (currentMonth + 1) + '/' + currentDay + '"]').classList += ' current';
-};
+// function today(month,currentDay,currentMonth,currentYear){
+//   if(month === currentMonth){
+//     document.querySelector('[id="' + currentYear + '/' + (currentMonth + 1) + '/' + currentDay + '"]').classList += ' year-current-day';
+//   }
+// }

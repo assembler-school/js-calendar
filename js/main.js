@@ -15,6 +15,9 @@ document.getElementById('monthView-btn').addEventListener("click", (event)=>{
         updateTemplate("year-section","main-content-section","month-template");
         calendarMonthConstructor();
         displayEventsInMonth(currentMonthDisplay, eventsCalendar);
+        //Calendar view
+        calendarView = 'month-view';
+        console.log(calendarView);
     }
 });
 document.getElementById('yearView-btn').addEventListener("click", (event)=>{
@@ -23,6 +26,9 @@ document.getElementById('yearView-btn').addEventListener("click", (event)=>{
         document.getElementById("monthView-btn").disabled=false;
         updateTemplate("month-section","main-content-section","year-template");
         calendarConstructor();
+        //Calendar view
+        calendarView = 'year-view';
+        console.log(calendarView);
     }
 });
 addNewTemplate("main-content-section", "month-template");
