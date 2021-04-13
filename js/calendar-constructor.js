@@ -28,12 +28,18 @@ var monthsNames = ["January", "February", "March", "April", "May", "June", "July
 //GET DAY,MONTH,YEAR DATA
 //Get first day of month
 function getFirstMonthDay(year,month){
-  return new Date(year, month).getDay();
+  let date = new Date(year, month).getDay();
+  //return 7 because in calendar week start on monday and get day starts on sunday
+  if(date == 0){
+    return 7;
+  }else{
+    return date;
+  }
 };
 
 //Get number of days in month
 function getMonthDays(year,month){
-  return new Date(year,month, 0).getDate();
+  return new Date(year,month, 0).getDate()
 };
 
 
@@ -123,9 +129,9 @@ function populateCalendar(year){
     let date = 1;
 
     //Dates checker
-    // console.log('iMonth-' + iMonth);
-    // console.log('Month days-' + getMonthDays(year,iMonth))
-    // console.log('First week day-' + getFirstMonthDay(year,iMonth-1));
+    console.log('iMonth-' + iMonth);
+    console.log('Month days-' + getMonthDays(year,iMonth))
+    console.log('First week day-' + (getFirstMonthDay(year,iMonth-1)));
 
     for (let i = 0; i < 6; i++) {
       // creates a table row
@@ -136,7 +142,7 @@ function populateCalendar(year){
       //creating individual cells, filing them up with data.
       for (let j = 0; j < 7; j++) {
         if(date <= getMonthDays(year, iMonth)){
-          if (i === 0 && j < getFirstMonthDay(year,iMonth-1) - 1) {
+          if (i === 0 && (j+1) < getFirstMonthDay(year,iMonth-1)) {
             let cell = document.createElement('div');
             cell.setAttribute('class','days');
             cellText = document.createTextNode("");
