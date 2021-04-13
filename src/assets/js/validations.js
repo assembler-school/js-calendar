@@ -17,18 +17,17 @@ const expresiones = {
     title: /^[a-zA-ZÀ-ÿ\s\d]{4,10}$/,
     description: /^[a-zA-ZÀ-ÿ\s\d]{1,40}$/
 };
+
     document.getElementById('title').addEventListener('keyup',validarTitulo);
     document.getElementById('initialDate').addEventListener('keyup',validarInitialDate);
     document.getElementById('endDate').addEventListener('keyup',validarEndDate);
-    document.getElementById('description').addEventListener('keyup',validarDescription);
-function validarFormulario(){
+    document.getElementById('description').addEventListener('focus',validarDescription);
+function validarFormulario() {
   if(validarTitulo() && validarInitialDate() &&  validarEndDate() && validarDescription()){
-    createButton.classList.remove('m-action-buttonHidden');     
-    createButton.classList.add('m-action-button');
+        createButton.removeAttribute("disabled");
     }
     else{
-
-        createButton.classList.add('m-action-buttonHidden');  
+        createButton.disabled = true;
     }
 }
 
