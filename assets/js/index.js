@@ -76,7 +76,7 @@ const renderCalendar = () =>{
             days += `<div class="today no-event-day" id="${i}-${actual_month}-${actual_year}">${i}</div>`;
         } else {
             /*De lo contrario, te coge el numero almacenado en la variable lastDay y te va restando y crrando los Divs necesarios */
-            days += `<div class="no-event-day" id="${i}-${actual_month}-${actual_year}">${i}</div>`;
+            days += `<div class="no-event-day" id="${actual_year}-${actual_month}-${i}">${i}</div>`;
         }
 
         monthDays.innerHTML = days;

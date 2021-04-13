@@ -25,6 +25,12 @@ let inputDescriptionValue = document.getElementById("textAreaDescription");
 let buttonSubmit = document.getElementById("createBtn");
 // Event Output
 let eventOutput = document.querySelector(".event__display");
+//Pesco la fecha seleccionada en el calendario de Einar
+let fechaSeleccionada = document.querySelector(".fechaSeleccionada");
+
+//Pesco la fecha actual
+const exactlyToday = new Date().getDate();
+console.log(exactlyToday, "La fecha actual wey");
 
 
 let localStorageEvents = localStorage.getItem(inputDateValue.value) ? JSON.parse(localStorage.getItem(inputDateValue.value)) : [];
@@ -44,7 +50,6 @@ let span = document.getElementsByClassName("close")[0];
 // Set current date on Caledar
 let today = new Date().toISOString().substr(0, 10);
 document.querySelector("#initialCal").value = today;
-console.log(today);
 
 
 /**********************************************/
@@ -156,6 +161,7 @@ class Event {
   }
 }
 
+//
 Event.prototype.sentJSON = function (){
 
     // let miJSON = JSON.stringify(supuestafecha);
@@ -164,6 +170,7 @@ Event.prototype.sentJSON = function (){
 }
 
 let days = document.querySelectorAll(".days div");
+days = Array.from(days);
 console.log(days);
 
 days.forEach(function(divs){
@@ -174,9 +181,9 @@ days.forEach(function(divs){
 
 function getID(clicked){
 
-  selected = clicked.target;
-  selected= selected.getAttribute("id").value;
-  console.log(selected);
+  selectedDay = clicked.target;
+  fechaSeleccionada.innerHTML = "la fecha seleccionada: "+selectedDay.id;
+
 }
 
 // Pesco el div donde se guardaran los eventos
@@ -200,10 +207,16 @@ function changeTheme() {
   }
 }
 
+function isToday (){
 
+  if (exactlyToday != supuestafecha.timedValue){
+    console.log("me cogio bien la fecha?");
+    return
 
+  }
+  return
+}
 
- 
 //  eventOutput.innerHTML += `${key}: ${value}<br />`;
 // //  console.log(key)
 //  console.log(value)
