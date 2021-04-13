@@ -17,9 +17,32 @@ function displayEventInDate(dateID,eventTitle){
 }
 
 
+function inicializeRemindersList(){
+    for (reminderID in reminders){
+        remindersList.push(reminders[reminderID]);
+      }
+}
+function sortRemindersList(){
+    remindersList.sort(function (a, b) {
+        if (a['reminderDate'] > b['reminderDate']) {
+          return 1;
+        }
+        if (a['reminderDate'] < b['reminderDate']) {
+          return -1;
+        }
+        // a must be equal to b
+        return 0;
+      });
+}
+
+function setNextAlarmTimeout(){
+  let timeLeft = Date.parse(remindersList[0].reminderDate) - Date.now();
+  setTimeout(function(){ alert("Hello"); }, timeLeft);
+}
 
 
-eventsList.sort(function (a, b) {
+/*
+remindersList.sort(function (a, b) {
     if (a.name > b.name) {
       return 1;
     }
@@ -29,27 +52,4 @@ eventsList.sort(function (a, b) {
     // a must be equal to b
     return 0;
   });
-
-
-/** INITIAL FUNCTION CALLS */
-
-displayEventsInMonth(currentMonthDisplay, eventsCalendar);
-
-
-/*
-
-function setReminder(eventTitle, eventDate, reminderDate){
-    eventsCalendar[eventDate][eventTitle]['reminderDate'] = reminderDate;
-    localStorage.setItem("calendarMock", JSON.stringify(eventsCalendar) );
-
-}
-
-eventDate = "2021/4/17";
-eventTitle = 'nombreEvento1';
-reminderDate = "ALERTAAAAAAAA"
-console.log(eventsCalendar[eventDate][eventTitle]['reminder']);
-
-setReminder(eventTitle, eventDate, reminderDate);
-
-*/
-
+  */

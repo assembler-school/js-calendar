@@ -1,5 +1,7 @@
-var calendarEvents = localStorage.getItem('calendarEvents') || {};
-var reminders = localStorage.getItem('reminders') || {};
+var calendarEvents = JSON.parse(localStorage.getItem('calendarEvents')) || {};
+var reminders = JSON.parse(localStorage.getItem('reminders')) || {};
+var remindersList = [];
+
 
 function addNewTemplate(containerId, templateId) {
     const templateContent = document.querySelector(`#${templateId}`).content;
