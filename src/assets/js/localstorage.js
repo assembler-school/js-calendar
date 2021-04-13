@@ -101,7 +101,7 @@ function createEvent() {
     //console.log(titleF,iniDateF,enDateF,reminderF,descriptionF,eventTF);
     eventIndex += 1;
     localStorage.setItem("eventIndex", JSON.stringify(eventIndex));
-    renderEvent ();
+    renderCalendar();
 }
 /* createEvent(); */
 /* function getModalData (titleF, iniDateF, enDateF, reminderF, descriptionF, eventTF) {
