@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link
-			rel="stylesheet"
-			href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-			integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
-			crossorigin="anonymous"
-		/>
-		<link rel="stylesheet" href="./assets/css/style.css" />
-		<title>Calendar Js</title>
-	</head>
 
-	<body>
-		<!-- <header>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Calendar Js</title>
+</head>
+
+<body>
+    <!-- <header>
         <h1>Js Calendar</h1>
         <button id="create-event"> <i class="fas fa-plus"></i> Add event</button>
     </header> -->
@@ -63,44 +60,44 @@
             </div>
         </div>
     </section>
-<!-- <hr> -->
+    <!-- <hr> -->
     <section id="calendar">
 
     </section>
 
     <section id="modal-section">
-
+        
     </section>
 
     <!-- ? MOBILE NAV -->
     <template id="template__mobile">
-                <div id="navClose" class="nav__mobile--btn-close">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <hr>
-                <div class="nav__mobile--container">
-                    <div class="nav__mobile--containerBtn">
-                        <button>Day</button>
-                        <button>Week</button>
-                        <button class="nav__mobile--selected">Month</button>
-                        <button>Year</button>
-                    </div>
-                    <hr>
-                    <div class="nav__mobile--event">
-                        <span class="nav__mobile--event--span">Cumpleaños Pepe</span>
-                        <span class="nav__mobile--event--span">Cumpleaños Marta</span>
-                        <span class="nav__mobile--event--span">Cumpleaños Antonio</span>
-                        <span class="nav__mobile--event--span">Cumpleaños Javi</span>
-                        <span class="nav__mobile--event--span">Cumpleaños Laura</span>
-                    </div>
-                    <hr>
-                    <div class="nav__mobile--btnEvent">
-                        <button id="create-event">
-                            <i class="fas fa-plus"></i>
-                            <p>Add event</p>
-                        </button>
-                    </div>
-                </div>
+        <div id="navClose" class="nav__mobile--btn-close">
+            <i class="fas fa-bars"></i>
+        </div>
+        <hr>
+        <div class="nav__mobile--container">
+            <div class="nav__mobile--containerBtn">
+                <button>Day</button>
+                <button>Week</button>
+                <button class="nav__mobile--selected">Month</button>
+                <button>Year</button>
+            </div>
+            <hr>
+            <div class="nav__mobile--event">
+                <span class="nav__mobile--event--span">Cumpleaños Pepe</span>
+                <span class="nav__mobile--event--span">Cumpleaños Marta</span>
+                <span class="nav__mobile--event--span">Cumpleaños Antonio</span>
+                <span class="nav__mobile--event--span">Cumpleaños Javi</span>
+                <span class="nav__mobile--event--span">Cumpleaños Laura</span>
+            </div>
+            <hr>
+            <div class="nav__mobile--btnEvent">
+                <button id="create-event">
+                    <i class="fas fa-plus"></i>
+                    <p>Add event</p>
+                </button>
+            </div>
+        </div>
     </template>
 
     <!-- ? Month Template -->
@@ -136,7 +133,8 @@
                 <form action="">
                     <div class="shadow__input--stretch">
                         <label for="title">Title:</label>
-                        <input class="" type="text" name="title" title="This field is required" max-length="60" required>
+                        <input class="" type="text" name="title" title="This field is required" max-length="60"
+                            required>
                     </div>
 
                     <div class="shadow__input--stretch">
@@ -171,7 +169,7 @@
 
                     <div class="shadow__input--stretch">
                         <label for="description">Description:</label>
-                        <textarea name="description" cols="30" rows="10"></textarea>
+                        <textarea name="description" cols="30" rows="10" maxlength="500"></textarea>
                     </div>
 
                     <div class="shadow__input--stretch">
@@ -192,34 +190,40 @@
         </div>
     </template>
 
-			<!-- ? Alert Event Template -->
-			<template>
-				<div id="alert__shadow">
-					<div class="alert__event">
-						<div class="alert__icons">
-							<i class="fas fa-pencil-alt"></i>
-							<i class="fas fa-times"></i>
-						</div>
-						<h2 class="event__title">Birthday Jordi</h2>
-						<hr>
-						<p id="init__date__hour">
-							<span id="init__date" class="initial__date">Tuesday, April 13 </span>
-							<span>&nbsp;-&nbsp;</span>
-							<span id="init__hour" class="initial__hour">15:00</span>
-						</p>
-						<p id="end__date__hour">
-							<span id="end__date" class="end__date"></span>
-							<span>&nbsp;-&nbsp;</span>
-							<span id="end__hour" class="end__hour"></span>
-						</p>
-						<p id="event__reminder"><i class="far fa-bell"></i>&nbsp;<span class="event__reminder">5 min before</span></p>
-						<p id="type__event" class="type__event">Birthday</p>
-						<div id="event__description"><span id="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto ut atque quis magnam adipisci, reiciendis laborum quia necessitatibus possimus quasi voluptates earum pariatur sequi ullam ex! Asperiores reprehenderit praesentium eaque.
-						Tempore eligendi fugit tempora in voluptatem incidunt quam, deserunt iure similique quis facere ad quas provident eius illum excepturi quae est animi ullam deleniti soluta esse commodi quo minus! Velit.</span></div>
-					</div>
-				</div>
-			</template>
+    <!-- ? Alert Event Template -->
+    <template>
+        <div id="alert__shadow">
+            <div class="alert__event">
+                <div class="alert__icons">
+                    <i class="fas fa-pencil-alt"></i>
+                    <i class="fas fa-times"></i>
+                </div>
+                <h2 class="event__title">Birthday Jordi</h2>
+                <hr>
+                <p id="init__date__hour">
+                    <span id="init__date" class="initial__date">Tuesday, April 13 </span>
+                    <span>&nbsp;-&nbsp;</span>
+                    <span id="init__hour" class="initial__hour">15:00</span>
+                </p>
+                <p id="end__date__hour">
+                    <span id="end__date" class="end__date"></span>
+                    <span>&nbsp;-&nbsp;</span>
+                    <span id="end__hour" class="end__hour"></span>
+                </p>
+                <p id="event__reminder"><i class="far fa-bell"></i>&nbsp;<span class="event__reminder">5 min
+                        before</span></p>
+                <p id="type__event" class="type__event">Birthday</p>
+                <div id="event__description"><span id="description">Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Architecto ut atque quis magnam adipisci, reiciendis laborum quia necessitatibus possimus
+                        quasi voluptates earum pariatur sequi ullam ex! Asperiores reprehenderit praesentium eaque.
+                        Tempore eligendi fugit tempora in voluptatem incidunt quam, deserunt iure similique quis facere
+                        ad quas provident eius illum excepturi quae est animi ullam deleniti soluta esse commodi quo
+                        minus! Velit.</span></div>
+            </div>
+        </div>
+    </template>
 
     <script src="assets/js/calendar.js" type="module"></script>
-    </body>
+</body>
+
 </html>

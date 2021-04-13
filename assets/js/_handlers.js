@@ -86,7 +86,7 @@ export function handleDocumentEvents(e) {
     }
 
     /*
-     * 
+     *
      */
     if (e.target.matches(".calendar__week > div")) {
       const dia = e.target.id;
