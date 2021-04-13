@@ -34,8 +34,13 @@ export function handleDocumentEvents(e) {
       if (!formValidation(e, true)) {
         const data = calendarEvent.getDataFromModal("#modal form");
         calendarEvent.toLocalStorage(data);
+<<<<<<< HEAD
         render.renderEvents(updatedYear,updatedMonth);
         //console.log(calendarEvent.fromLocalStorage(data));
+=======
+        
+        // console.log(calendarEvent.generateUUID());
+>>>>>>> bd4de64a68f497897c06e87be5cee80cc266fd40
         // calendarEvent.probando();
       }
     }
