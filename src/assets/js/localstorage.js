@@ -8,6 +8,12 @@ if (!localStorage.getItem("eventIndex")) {
 } else {
     eventIndex = JSON.parse(localStorage.getItem("eventIndex"));
 }
+if (!!localStorage.getItem("eventsById")) {
+    eventsById = JSON.parse(localStorage.getItem("eventsById"));
+}
+if (!!localStorage.getItem("eventsByDate")) {
+    eventsByDate = JSON.parse(localStorage.getItem("eventsByDate"));
+}
 let calendarEvent = class {
     constructor (title,startDate,endDate, reminder, description, eventType, id) {
         this.title = title;
