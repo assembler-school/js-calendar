@@ -16,9 +16,7 @@ function showCalendar(year, month) {
   render.addTag(year, month);
   render.renderMonth(year, month);
   render.highlightToday(year, month);
+  render.renderEvents(year, month);
   // Listeners
   handleDocumentEvents();
-  /*
-   * call function to add events to the month here
-   */
 }

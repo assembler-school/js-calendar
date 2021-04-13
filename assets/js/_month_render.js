@@ -1,4 +1,6 @@
 //
+import { calendarEvent } from "./_events.js";
+
 /* Dynamic render of month */
 export function renderMonth(year, month) {
     /* Get the first day of month and number of days in month */
@@ -36,9 +38,22 @@ export function renderMonth(year, month) {
     });
 }
 
-/* blablabla */
-export function handleEvent(){
-
+/* Render events in the month of parameter */
+export function renderEvents(year, month) {
+    let allEvents = calendarEvent.fromLocalStorage();
+    let monthEvents = allEvents.filter ((allEvents) => new Date(allEvents["init-date"]).getFullYear() === year && new Date(allEvents["init-date"]).getMonth() === month);
+    //!! fix duplicating events
+    monthEvents.forEach(function (monthEvents){
+        document.getElementById(new Date(monthEvents["init-date"]).getDate()).innerHTML='';
+    });
+    /* Create the events in calendar and set its attributes */
+    monthEvents.forEach(function (monthEvents){
+        let eventDiv = document.createElement("div");
+        eventDiv.setAttribute("id","event" + monthEvents.id);
+        eventDiv.setAttribute("class","event--type--" + monthEvents["select-event"]);
+        eventDiv.innerHTML = monthEvents.title;
+        document.getElementById(new Date(monthEvents["init-date"]).getDate()).appendChild(eventDiv);
+    });
 }
 
 export function updateDate(year,month) {
@@ -74,3 +89,4 @@ export function compareMonth(year,month,year2,month2){
     if (year===year2 && month===month2) {sameMonth=true};
     return sameMonth;
 }
+

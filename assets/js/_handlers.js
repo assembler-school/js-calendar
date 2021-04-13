@@ -34,6 +34,7 @@ export function handleDocumentEvents(e) {
       if (!formValidation(e, true)) {
         const data = calendarEvent.getDataFromModal("#modal form");
         calendarEvent.toLocalStorage(data);
+        render.renderEvents(updatedYear,updatedMonth);
       }
     }
 
@@ -97,4 +98,6 @@ function addMonth(year, month, boolean) {
   swapTemplate("month", "calendar");
   render.renderMonth(updatedYear, updatedMonth);
   render.addTag(updatedYear, updatedMonth);
+  render.highlightToday(year,month);
+  render.renderEvents(year,month);
 }
