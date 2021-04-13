@@ -51,14 +51,15 @@ function displayEventsInMonth(currentMonthDisplay, eventsCalendar){
     for (date in eventsCalendar){
         if(currentMonthDisplay == date.split("/")[1]){
             eventsCalendar[date].forEach((element) => {
-                displayEventInDate(date,element.eventTitle);
+                displayEventInDate(date, element.eventTitle, element.id);
             });
         }
     }
 }
 
-function displayEventInDate(dateID,eventTitle){
-    let displayedEvent = document.createElement("P");
+function displayEventInDate(dateID,eventTitle, eventId) {
+    let displayedEvent = document.createElement("p");
+    displayedEvent.id = eventId;
     let eventTitleTextNode = document.createTextNode(eventTitle);
     displayedEvent.appendChild(eventTitleTextNode);
     displayedEvent.className = "event-text";
