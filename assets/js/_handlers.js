@@ -45,6 +45,8 @@ export function handleDocumentEvents(e) {
      */
     if (e.target.matches(".fa-chevron-right")) {
       addMonth(updatedYear, updatedMonth, true);
+      // document.getElementById("calendar").classList.add("slide-top");
+      document.getElementById("calendar").classList.add("swing-right-fwd");
     }
     if (e.target.matches(".fa-chevron-left")) {
       addMonth(updatedYear, updatedMonth, false);
