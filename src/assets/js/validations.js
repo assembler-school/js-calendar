@@ -22,7 +22,7 @@ const expresiones = {
     document.getElementById('initialDate').addEventListener('keyup',validarInitialDate);
     document.getElementById('endDate').addEventListener('keyup',validarEndDate);
     document.getElementById('description').addEventListener('keyup',validarDescription);
-function validarFormulario(){
+function validarFormulario() {
   if(validarTitulo() && validarInitialDate() &&  validarEndDate() && validarDescription()){
         createButton.removeAttribute("disabled");
     }
