@@ -54,3 +54,24 @@ export function updateDate(year,month) {
     month%=12;
     return {year : year,month : month};
 }
+
+export function addTag(year, month) {
+    let monthTag = document.getElementById('nav__tag');
+    let yearTag = document.getElementById('nav__year');
+    let monthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+    monthTag.innerHTML = monthList[month];
+    yearTag.innerHTML = year;
+}
+
+/* Function and events to change the month showed */
+// let updatedMonth = currentMonth;
+// let updatedYear = currentYear;
+// export function addMonth(year, month, boolean) {
+//     boolean ? month++ : month--;
+//     updatedYear = render.updateDate(year,month).year;
+//     updatedMonth = render.updateDate(year,month).month;
+//     swapTemplate("month","calendar");
+//     render.renderMonth(updatedYear,updatedMonth);
+//     addTag(updatedYear, updatedMonth);
+// }
