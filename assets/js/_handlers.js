@@ -35,7 +35,7 @@ export function handleDocumentEvents(e) {
         const data = calendarEvent.getDataFromModal("#modal form");
         calendarEvent.toLocalStorage(data);
         
-        console.log(calendarEvent.fromLocalStorage(data));
+        // console.log(calendarEvent.generateUUID());
         // calendarEvent.probando();
       }
     }
