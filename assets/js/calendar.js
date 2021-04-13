@@ -2,6 +2,7 @@
 import * as render from "./_month_render.js";
 import { swapTemplate } from "./_templates.js";
 import { handleDocumentEvents } from "./_handlers.js";
+//import { prueba } from "./_reminder.js";
 
 let currentDate = new Date();
 let currentMonth = currentDate.getMonth();
