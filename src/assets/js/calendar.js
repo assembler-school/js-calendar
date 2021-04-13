@@ -97,8 +97,10 @@ window.addEventListener('wheel', function (event) {
     if (event.deltaY < 0) {
         date.setMonth(date.getMonth() - 1);
         renderCalendar("left");
+        addEachListener();
     } else if (event.deltaY > 0) {
         date.setMonth(date.getMonth() + 1);
         renderCalendar("right");
+        addEachListener();
     }
 });
