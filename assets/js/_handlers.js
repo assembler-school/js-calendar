@@ -34,9 +34,6 @@ export function handleDocumentEvents(e) {
       if (!formValidation(e, true)) {
         const data = calendarEvent.getDataFromModal("#modal form");
         calendarEvent.toLocalStorage(data);
-        
-        // console.log(calendarEvent.generateUUID());
-        // calendarEvent.probando();
       }
     }
 
@@ -46,10 +43,12 @@ export function handleDocumentEvents(e) {
     if (e.target.matches(".fa-chevron-right")) {
       addMonth(updatedYear, updatedMonth, true);
       // document.getElementById("calendar").classList.add("slide-top");
-      document.getElementById("calendar").classList.add("swing-right-fwd");
+      // document.getElementById("calendar").classList.add("swing-right-fwd");
+      document.querySelector(".calendar__month").classList.add("swing-right-fwd");
     }
     if (e.target.matches(".fa-chevron-left")) {
       addMonth(updatedYear, updatedMonth, false);
+      document.querySelector(".calendar__month").classList.add("swing-left-fwd");
     }
 
     /*
