@@ -47,20 +47,26 @@
   background-color: var(--bg);
 }
 
-.day:hover {
+.days:hover {
   background-color: rgba(166, 175, 175, 0.425);
-  border-radius: 20%;
   border-radius: 50%;
 }
 
-.current {
+.year-current-day {
   color: var(--bg);
   background-color: var(--green);
-  border-radius: 10px;
+  border-radius: 50%;
 }
 
-.current:hover {
+.year-current-day:hover {
   background-color: var(--bg);
   color: var(--textLightGray);
   border-radius: 50%;
 }
+
+.month-current-day {
+  color: var(--bg);
+  background-color: var(--green);
+  border-radius: 20%;
+}
+

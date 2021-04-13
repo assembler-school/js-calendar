@@ -1,17 +1,17 @@
-function calendarMonthConstructor() {
-    let weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+function calendarMonthConstructor(changeMonth) {
     const monthSection = document.querySelector('#month-section');
-    let currentDate = new Date;
-    let currentWeekDay = currentDate.getDay();
-    let currentDay = currentDate.getDate();
-    let currentMonth = currentDate.getMonth();
-    let currentYear = currentDate.getFullYear();
-    
-    let month = currentMonth;
-    let year = currentYear;
+
+    //Change between months
+    if(!changeMonth || changeMonth == currentMonth){
+        month = currentMonth;
+    }else{
+        month = currentMonth + changeMonth;
+    };
+
     // January is 0;
 
-    // Creates the name of the weeks 
+
+    // Creates the name of the weeks
     function createWeekRow() {
         let weekRow = document.createElement('div');
         let dayOfWeek;
@@ -85,14 +85,14 @@ function calendarMonthConstructor() {
     createWeekRow();
     createMonthGrid();
     populateMonth(month);
-    today(currentDay,currentMonth,currentYear);
+    // today(currentDay,currentMonth,currentYear);
     updateMonthAndYearHeader(monthsNames[month], year)
 }
 
-function today(currentDay,currentMonth,currentYear){
-    document.querySelector('[id="' + currentYear + '/' + (currentMonth + 1) + '/' + currentDay + '"]').classList += ' current';
-  }
+// function today(month,currentDay,currentMonth,currentYear){
+//     if(month === currentMonth){
+//         document.querySelector('[id="' + currentYear + '/' + (currentMonth + 1) + '/' + currentDay + '"]').classList += ' month-current-day';
+//     }
+// }
 
 calendarMonthConstructor()
-
-
