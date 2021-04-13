@@ -339,7 +339,7 @@ main{
   position: fixed;
   z-index: 1;
   left: 0;
-  top: -30px;
+  top: -80px;
   height: 200vh;
   width: 100vw;
   background-color: rgba(0,0,0,0.4);
@@ -400,6 +400,7 @@ main{
   justify-content: space-around;
 }
 .m-action-button {
+  display: block;
   color: whitesmoke;
   background-color: var(--darkestGray);
   font-size: large;
