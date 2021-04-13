@@ -1,32 +1,87 @@
 import { swapTemplate, removeTemplate } from "./_templates.js";
-/*
- * All listeners are listed here, ipmport
- * what you need.
- */
-export function handleCreateEvent() {
-  swapTemplate("modal-template", "modal-section");
+import { formValidation } from "./_form_validation.js";
+import { calendarEvent } from "./_events.js";
+import * as render from "./_month_render.js";
 
-  document.querySelectorAll(".close").forEach((element) => {
-    element.addEventListener("click", function (e) {
+/*
+ * All listeners are listed here
+ *
+ */
+export function handleDocumentEvents(e) {
+  // click event
+  document.addEventListener("click", (e) => {
+    /*
+     * show / hide modal popup
+     */
+    // show modal
+    if (
+      e.target.matches("button#create-event") ||
+      e.target.matches("button#create-event *")
+    ) {
+      swapTemplate("modal-template", "modal-section");
+    }
+    // close modal
+    if (e.target.matches(".close")) {
       removeTemplate("modal-template", "modal-section");
-    });
+    }
+
+    /*
+     * form validation
+     */
+    if (e.target.matches('input[type="submit"]')) {
+      e.preventDefault();
+
+      if (!formValidation(e, true)) {
+        const data = calendarEvent.getDataFromModal("#modal form");
+        calendarEvent.toLocalStorage(data);
+      }
+    }
+
+    /*
+     * buttons to switch month
+     */
+    if (e.target.matches(".fa-chevron-right")) {
+      addMonth(updatedYear, updatedMonth, true);
+      // document.getElementById("calendar").classList.add("slide-top");
+      // document.getElementById("calendar").classList.add("swing-right-fwd");
+      document.querySelector(".calendar__month").classList.add("swing-right-fwd");
+    }
+    if (e.target.matches(".fa-chevron-left")) {
+      addMonth(updatedYear, updatedMonth, false);
+      document.querySelector(".calendar__month").classList.add("swing-left-fwd");
+    }
+
+    /*
+     * Mobile burguer menu
+     */
+    if (e.target.matches("#navOpen") || e.target.matches("#navOpen *")) {
+      document.getElementById("main").style.display = "block";
+      swapTemplate("template__mobile", "main");
+    }
+    if (e.target.matches("#navClose") || e.target.matches("#navClose *")) {
+      removeTemplate("template__mobile", "main");
+      document.getElementById("main").style.display = "none";
+    }
   });
 
-  // stop propagation from modal to shadow
-  document.getElementById("modal").addEventListener("click", function (e) {
-    e.stopPropagation();
+  // focusot event
+  document.addEventListener("focusout", (e) => {
+    /*
+     * form validation
+     */
+    if (e.target.matches("input[required]")) {
+      formValidation(e, false);
+    }
   });
 }
 
-/*
- * Function to open the nav bar for mobiles
- */
-export function handleMobileNav() {
-  document.getElementById('main').style.display = 'block';
-  swapTemplate("template__mobile", "main");
-
-  document.getElementById("navClose").addEventListener("click", function (e) {
-      removeTemplate("template__mobile", "main");
-      document.getElementById('main').style.display = 'none';
-    });
+let updatedMonth = (new Date()).getMonth();
+let updatedYear = (new Date()).getFullYear();
+function addMonth(year, month, boolean) {
+  boolean ? month++ : month--;
+  updatedYear = render.updateDate(year,month).year;
+  updatedMonth = render.updateDate(year,month).month;
+  swapTemplate("month","calendar");
+  render.renderMonth(updatedYear,updatedMonth);
+  render.addTag(updatedYear, updatedMonth);
 }
