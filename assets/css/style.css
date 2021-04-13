@@ -519,19 +519,31 @@ i.fa-times-circle {
      ! event styles
   ===================================
   */
-.event {
-  display: flex;
-  white-space: nowrap;
-  align-items: center;
-  height: 1rem;
+
+  .event {
+	display: flex;
+	white-space: nowrap;
+	align-items: center;
+	height: 1rem;
+	color: white;
+	background-color: #ff6010;
+	border-radius: 10px;
+	overflow-x: hidden;
+	padding: 0.6rem 0.4rem;
+	margin: 0.5rem 0;
+	font-size: 0.8rem;
+	cursor: pointer;
+  }
+
+.event__type--meeting {
   color: white;
   background-color: #ff6010;
-  border-radius: 10px;
-  overflow-x: hidden;
-  padding: 0.6rem 0.4rem;
-  margin: 0.5rem 0;
-  font-size: 0.8rem;
 }
+
+.event__type--birthday {
+	color: white;
+	background-color: #ff6010;
+  }  
 
 .more__event {
   text-align: center;

@@ -50,7 +50,7 @@ export function renderEvents(year, month) {
     monthEvents.forEach(function (monthEvents){
         let eventDiv = document.createElement("div");
         eventDiv.setAttribute("data-eventid","event" + monthEvents.id);
-        eventDiv.setAttribute("class","event__type--" + monthEvents["select-event"]);
+        eventDiv.setAttribute("class","event event__type--" + monthEvents["select-event"]);
         eventDiv.innerHTML = monthEvents.title;
         if (!d.querySelector(`[data-eventid="event${monthEvents.id}"]`)) {
             d.getElementById(new Date(monthEvents["init-date"]).getDate()).appendChild(eventDiv);

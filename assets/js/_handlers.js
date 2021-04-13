@@ -84,8 +84,15 @@ export function handleDocumentEvents(e) {
       swapTemplate("modal-template", "modal-section");
       calendarEvent.printDataToModal("#modal form", _event);
     }
-  });
 
+    /*
+     * 
+     */
+    if (e.target.matches(".calendar__week > div")) {
+      const dia = e.target.id;
+      console.log(dia);
+    }
+  });
 
   // focusot event
   document.addEventListener("focusout", (e) => {
