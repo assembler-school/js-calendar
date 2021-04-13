@@ -31,27 +31,28 @@
     <main>
         <!-- MODAL ----------------------- -->
     <div class="modal" id="modalDiv">
+        <div class="modalOut"></div>
         <div class="modalDialog">
             <button id="cancelBtn" class="close-btn">✕</button>
             <section class="modalContent">
                 <label for="eventTitleId"></label><input type="text" id="eventTitleId" placeholder="New Event">
-                <label for="initialDateId">Initial Date</label><input type="date" id="initialDateId">
+                <label for="initialDateId">Initial Date</label><input type="datetime-local" id="initialDateId" required>
                 <div class="end-date-container checkbox-container">
                     <input type="checkbox" id="endDateCheckboxId">
-                    <input type="date" id="endDateId" disabled>
-                    <label for="endDateCheckboxId">End date</label>
+                    <input type="datetime-local" id="endDateId" disabled>
+                    <label>End date</label>
                 </div>  
                 <div class="reminder-container checkbox-container">
                     <input type="checkbox" id="reminderCheckboxId">
-                    <input type="date" id="reminderId" disabled>
-                    <label for="reminderCheckboxId">Reminder</label>
+                    <input type="datetime-local" id="reminderId" disabled>
+                    <label>Reminder</label>
                 </div>
 
                 <label for="description"></label><textarea id="description" placeholder="Description"></textarea>
                 <label for="eventTypeSelect"></label>
                 <select id="eventTypeSelect">
-                    <option value="Meeting">EventType1</option>
-                    <option value="Meeting">EventType2</option>
+                    <option value="EventType1">EventType1</option>
+                    <option value="EventType2">EventType2</option>
                 </select>
                 <button id="saveBtn">Save</button>
             </section>
@@ -87,8 +88,10 @@
     <section id="year-section">
     </section>
 </template>
+<script src="js/Globals.js"></script>
+<script src="js/events-display.js"></script>
 <script src="js/main.js"></script>
 <script src="js/calendar-constructor.js"></script>
 <script src="js/calendar-month-constructor.js"></script>
-<script src="js/events-display.js"></script>
+<script src="js/set-calendar.js"></script>
 </html>
