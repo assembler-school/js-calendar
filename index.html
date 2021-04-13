@@ -18,7 +18,8 @@
     <body>
         <!---------------- INICIO HEAD ---------------->
 
-        <head></head>
+        <head>
+        </head>
         <!---------------- INICIO MAIN ---------------->
         <main class="main">
             <div class="container_calendar">
@@ -47,19 +48,16 @@
 								<div class="calendar__shadow__2"></div>
             </div>
             <div class="events">
-              <section class="event__display">
-                <h1>Day of the event (Monday)</h1>
-                <button class="btn__remove-event fas fa-trash" id="btn__remove__event"></button>
-              </section>
 
             </div>
         </main>
         <!---------------- INICIO ASIDE ---------------->
         <aside>
             <button id="openButton">+</button>
-       <form action="">
+
         <div id="myModal" class="modal">
             <div class="modal-content">
+              <form action="">
               <span class="close">&times;</span>
                 <div class="textContainer">
                     <h1>New Event</h1>
@@ -70,16 +68,16 @@
                 </div>
                 <div id="addDate">
                   <label id="initialText" for="">Initial date:</label>
-                  <input id="initialCal" type="date"></input> 
+                  <input id="initialCal" type="date"></input>
                 </div>
                 <div id="endDate">
-                  <input id="checkboxEnd"  type="checkbox" onclick="displayEnd ()">End date</input> 
-                  <input id="endCal" type="date"></input> 
+                  <input id="checkboxEnd"  type="checkbox" onclick="displayEnd ()">End date</input>
+                  <input id="endCal" type="date"></input>
 
                 </div>
                 <div id="timeSelect">
-                  <label for="">Initial Time:</label> 
-                  <input id="timeSelector" type="time"  name="" > 
+                  <label for="">Initial Time:</label>
+                  <input id="timeSelector" type="time"  name="" >
                 </div>
                 <div id="reminderBox">
                   <input id="reminderCheckBox"  type="checkbox" onclick="reminderShowSelectBox()">Remind me when this event expires
@@ -94,7 +92,7 @@
                 <div id="descriptionBox">
                   <textarea id="textAreaDescription" maxlength="500" rows="3" cols="52"  placeholder="Add a description..."></textarea>
                 </div>
-               
+
                 <div id="eventType">
                     <label for="events"> Event type:</label>
                   <select id="eventSelect">
@@ -103,18 +101,34 @@
                       <option value="Study">Study</option>
                   </select>
                 </div>
-                
+              </form>
                 <div id="buttonsPop">
                   <div><button id="createBtn" type="submit" class="buttons">Create</button></div>
                   <div><button id="cancelBtn" type="button" class="buttons" onclick="closeForm()">Cancel</button></div>
                 </div>
-               
             </div>
         </div>
-      </form>
+
         </aside>
         <!---------------- INICIO FOOTER ---------------->
-        <footer></footer>
+        <footer class="footer">
+          <div>
+            <h4>Einar, Sebastian, Erick</h4>
+          </div>
+          <div>
+            <h1>JS CALENDAR</h1>
+          </div>
+
+          <div class="float__checkbox">
+            <p id="timer-msg"></p>
+            <div class="switch-wrapper">
+            <label class="switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <div class="slider round"></div>
+            </label>
+            </div>
+          </div>
+        </footer>
         <!---------------- SCRIPT ZONE ---------------->
 
         <script src="assets/js/index.js"></script>

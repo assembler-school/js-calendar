@@ -73,10 +73,10 @@ const renderCalendar = () =>{
     for (let i = 1; i <= lastDay; i++) {
         /* Este if es solo un comparador que te compara el valor de la variable (date) con la fecha actual de un nuevo objeto Date y si coincide, le aplica la clase TODAY */
         if (i === new Date().getDate() && date.getMonth() === new Date().getMonth() && date.getFullYear() === new Date().getFullYear()) {
-            days += `<div class="today" id="${i}-${actual_month}-${actual_year}">${i}</div>`;
+            days += `<div class="today no-event-day" id="${i}-${actual_month}-${actual_year}">${i}</div>`;
         } else {
             /*De lo contrario, te coge el numero almacenado en la variable lastDay y te va restando y crrando los Divs necesarios */
-            days += `<div id="${i}-${actual_month}-${actual_year}">${i}</div>`;
+            days += `<div class="no-event-day" id="${i}-${actual_month}-${actual_year}">${i}</div>`;
         }
 
         monthDays.innerHTML = days;
@@ -104,6 +104,69 @@ var btnPrev = document.querySelector(".next").addEventListener("click", () => {
     date.setMonth(date.getMonth() + 1);
     renderCalendar();
 });
+
+//New code here
+
+//HOY
+//ls
+today = document.getElementsByClassName("today");
+//console.log(today)
+//today = today.addEventListener("click", showEventOfDayHere);
+
+//Otros dias
+day = document.querySelectorAll('.no-event-day');
+for (let d = 0; d < day.length; d++) {
+    day.item(d).addEventListener("click", showEventOfDayHere);
+}
+
+//Falta incluir today
+var hereMoreEvents = true;
+var meeting = false;
+var study = false;
+var personal = false;
+
+function showEventOfDayHere(ev) {
+    if (meeting == true) {
+        event.target.insertAdjacentHTML('beforeend', '<div class="event-inserted"><ul class="meetingList">M</ul></div>');
+        event.stopPropagation();
+    } else if (study == true) {
+        event.target.insertAdjacentHTML('beforeend', '<div class="event-inserted"><ul class="studyList">S</ul></div>');
+        event.stopPropagation();
+    } else if (personal == true) {
+        event.target.insertAdjacentHTML('beforeend', '<div class="event-inserted"><ul class="personalList">P</ul></div>');
+        event.stopPropagation();
+    } //else if (hereMoreEvents == true) {
+    //Unicamente ver todos los eventos de un dia si se clica encima
+    // document.body.click = addElement;
+    // document.currentDiv.click = addElement;
+
+    // function addElement() {
+    //     // crea un nuevo div
+    //     // y añade contenido
+    //     var newDiv = document.createElement("div");
+    //     var newContent = document.createTextNode("Hola!¿Qué tal?");
+    //     newDiv.appendChild(newContent); //añade texto al div creado.
+
+    //     // añade el elemento creado y su contenido al DOM
+    //     var currentDiv = document.getElementById("div1");
+    //     document.body.insertBefore(newDiv, currentDiv);
+    //}
+    else {
+        event.target.style.backgroundColor = "#ffa366";
+    }
+
+}
+
+stopEvent = true;
+
+function load() {
+    elem = document.getElementById("all-days");
+    elem.addEventListener("click", stopEvent, false);
+    //var meeting = false;
+    //var study = false;
+    //var personal = salse;
+
+}
 
 
 
