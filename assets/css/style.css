@@ -329,9 +329,17 @@ button#create-event i {
 
 .calendar__week > div {
 	height: 100%;
-	background-color: white;
 	padding: 0.5%;
 	border-right: #dadce0 1px solid;
+}
+
+.calendar__week div span {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 25px 25px;
+	height: 30px;
+	width: 30px;
 }
 
 .calendar__weekDay {
@@ -351,6 +359,22 @@ button#create-event i {
 	background-color: white;
 	padding: 0.5%;
 	border-right: #dadce0 1px solid;
+}
+
+.today {
+	background-color: var(--header-color);
+}
+
+.today span{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 25px 25px;
+	height: 30px;
+	width: 30px;
+	background-color: var(--text-color);
+	color: white;
+
 }
 
 /*
@@ -445,35 +469,56 @@ i.fa-times-circle {
   ===================================
   */
 
-.alert__event {
+#alert__shadow {
 	position: absolute;
+	top: 0;
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.alert__event {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
 	border-radius: 15px;
-	top: calc(50% - 100px);
-	left: calc(50% - 175px);
 	color: black;
 	background-color: white;
-	width: 350px;
-	height: 200px;
-	padding: 15px;
-	box-shadow: 5px 5px 15px;
+	width: 320px;
+	padding: 1rem;
+	box-shadow: 0 0 200px -50px;
 }
-
+.alert__event h2 {
+	font-size: 1.2rem;
+	margin: 0.5rem 0;
+}
 .alert__event p {
-	margin: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 0.8rem;
+	margin: 0.5rem 0;
 }
-
+.alert__event p *{
+	font-size: 0.8rem;
+}
+.alert__icons {
+	align-self: flex-end;
+}
 .fa-times {
-	position: absolute;
-	top: 15px;
-	right: 15px;
 	font-size: 1.2rem;
 }
-
 .fa-pencil-alt {
-	position: absolute;
-	top: 15px;
-	right: 40px;
 	font-size: 1rem;
+}
+.event__description {
+	font-size: 0.8rem;
+	max-height: 80px;
+	overflow-y: auto;
+	margin: 0.5rem 0;
+	padding: 0 0.4rem;
 }
 
 /*
@@ -501,6 +546,35 @@ i.fa-times-circle {
 	.shadow__input--start {
 		margin-bottom: 0.45rem;
 	}
+	.alert__event {
+		width: 280px;
+		padding: 1rem;
+		box-shadow: 0 0 200px -50px;
+	}
+	.alert__event h2 {
+		font-size: 1.2rem;
+		margin: 0.5rem 0;
+	}
+	.alert__event p {
+		font-size: 0.8rem;
+		margin: 0.5rem 0;
+	}
+	.alert__event p *{
+		font-size: 0.8rem;
+	}
+	.fa-times {
+		font-size: 1.2rem;
+	}
+	.fa-pencil-alt {
+		font-size: 1rem;
+	}
+	.event__description {
+		font-size: 0.8rem;
+		max-height: 80px;
+		overflow-y: auto;
+		margin: 0.5rem 0;
+		padding: 0 0.4rem;
+	}
 }
 
 /* Medium screen */
@@ -515,6 +589,37 @@ i.fa-times-circle {
 	#nav__mobile {
 		display: block;
 	}
+	.alert__event {
+		width: 360px;
+		padding: 1rem;
+		box-shadow: 0 0 200px -50px;
+	}
+	.alert__event h2 {
+		font-size: 1.6rem;
+		margin: 0.5rem 0;
+	}
+
+	.alert__event p {
+		font-size: 1rem;
+		margin: 0.5rem 0;
+	}
+
+	.alert__event p *{
+		font-size: 1rem;
+	}
+	.fa-times {
+		font-size: 1.2rem;
+	}
+	.fa-pencil-alt {
+		font-size: 1rem;
+	}
+	.event__description {
+		font-size: .9rem;
+		max-height: 100px;
+		overflow-y: auto;
+		margin: 0.5rem 0;
+		padding: 0 0.4rem;
+	}
 }
 
 /* Large screen */
@@ -528,6 +633,35 @@ i.fa-times-circle {
 	}
 	#nav__mobile {
 		display: none;
+	}
+	.alert__event {
+		width: 600px;
+		padding: 1.2rem;
+		box-shadow: 0 0 200px -50px;
+	}
+	.alert__event h2 {
+		font-size: 1.8rem;
+		margin: 0.5rem 0;
+	}
+	.alert__event p {
+		font-size: 1.2rem;
+		margin: 0.5rem 0;
+	}
+	.alert__event p *{
+		font-size: 1.2rem;
+	}
+	.fa-times {
+		font-size: 1.4rem;
+	}
+	.fa-pencil-alt {
+		font-size: 1.2rem;
+	}
+	.event__description {
+		font-size: 1.1rem;
+		max-height: 100px;
+		overflow-y: auto;
+		margin: 0.5rem 0;
+		padding: 0 0.4rem;
 	}
 }
 
