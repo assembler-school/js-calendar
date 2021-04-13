@@ -127,6 +127,7 @@ function renderEvent () {
             let newEvent = document.createElement("div");
             newEvent.classList.add("event-in-calendar");
             newEvent.innerHTML = eventTitle;
+            newEvent.setAttribute("divEventId", eventId);
             switch (eventType) {
                 case 'Study':
                     newEvent.classList.add("blue-event");
