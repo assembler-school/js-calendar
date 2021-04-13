@@ -2,13 +2,13 @@ calendarMock = {
     "2021/4/17" : {
         'nombreEvento1':{
           'endDate': '18/09/2021 12:31:22',
-          'reminder': '18/09/2021 11:31:22',
+          'reminder': '1/09/2021 11:31:22',
           'description': 'asdasdasd',
           'eventType': 'meeting'
         },
         'nombreEvento2222':{
             'endDate': '18/09/2021 12:31:22',
-            'reminder': '18/09/2021 11:31:22',
+            'reminder': '10/08/2021 11:31:22',
             'description': 'asdasdasd',
             'eventType': 'meeting'
           },
@@ -16,7 +16,7 @@ calendarMock = {
     "2021/4/21" : {
         'nombreEvento33333':{
             'endDate': '18/09/2021 12:31:22',
-            'reminder': '18/09/2021 11:31:22',
+            'reminder': '05/09/2021 11:31:22',
             'description': 'asdasdasd',
             'eventType': 'meeting'
           },
@@ -25,7 +25,7 @@ calendarMock = {
     "2021/5/29" : {
         'nombreEvento444':{
             'endDate': '18/09/2021 12:31:22',
-            'reminder': '18/09/2021 11:31:22',
+            'reminder': '04/07/2021 11:31:22',
             'description': 'asdasdasd',
             'eventType': 'meeting'
           },
@@ -56,3 +56,16 @@ function displayEventInDate(dateID,eventTitle){
     displayedEvent.className = "event-text";
     document.getElementById(dateID).appendChild(displayedEvent);
 }
+
+function setReminder(eventTitle, eventDate, reminderDate){
+    eventsCalendar[eventDate][eventTitle]['reminder'] = reminderDate;
+    localStorage.setItem("calendarMock", JSON.stringify(eventsCalendar) );
+
+}
+
+eventDate = "2021/4/17";
+eventTitle = 'nombreEvento1';
+reminderDate = "ALERTAAAAAAAA"
+console.log(eventsCalendar[eventDate][eventTitle]['reminder']);
+
+setReminder(eventTitle, eventDate, reminderDate);
