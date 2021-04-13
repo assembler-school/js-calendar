@@ -2,6 +2,7 @@ import { swapTemplate, removeTemplate } from "./_templates.js";
 import { formValidation } from "./_form_validation.js";
 import { calendarEvent } from "./_events.js";
 import * as render from "./_month_render.js";
+import * as reminder from "./_reminder.js";
 
 /*
  * All listeners are listed here
@@ -35,6 +36,7 @@ export function handleDocumentEvents(e) {
         const data = calendarEvent.getDataFromModal("#modal form");
         calendarEvent.toLocalStorage(data);
         render.renderEvents(updatedYear, updatedMonth);
+        reminder.setReminder();
       }
     }
 
