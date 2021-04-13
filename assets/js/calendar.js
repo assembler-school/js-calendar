@@ -6,12 +6,19 @@ import { handleDocumentEvents } from "./_handlers.js";
 let currentDate = new Date();
 let currentMonth = currentDate.getMonth();
 let currentYear = currentDate.getFullYear();
-const d= document;
+const d = document;
 
-render.addTag(currentYear, currentMonth);
+/* Initialize calendar */
+showCalendar(currentYear, currentMonth);
 
-swapTemplate("month","calendar");
-render.renderMonth(currentYear, currentMonth);
-
-// Listeners
-handleDocumentEvents();
+function showCalendar(year, month) {
+  swapTemplate("month", "calendar");
+  render.addTag(year, month);
+  render.renderMonth(year, month);
+  render.highlightToday(year, month);
+  // Listeners
+  handleDocumentEvents();
+  /*
+   * call function to add events to the month here
+   */
+}
