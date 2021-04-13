@@ -14,6 +14,7 @@ document.getElementById('monthView-btn').addEventListener("click", (event)=>{
         document.getElementById("yearView-btn").disabled=false;
         updateTemplate("year-section","main-content-section","month-template");
         calendarMonthConstructor();
+        displayEventsInMonth(currentMonthDisplay, eventsCalendar);
     }
 });
 document.getElementById('yearView-btn').addEventListener("click", (event)=>{
