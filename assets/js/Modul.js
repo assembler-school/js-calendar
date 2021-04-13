@@ -1,19 +1,35 @@
-//***********************************************/
+/***********************************************/
 //---------------GLOBAL VARIABLES---------------/
-//**********************************************/
+/**********************************************/
 
-// Local storage input and output testing
+//Title box Input
 let inputTitleKey = document.getElementById("titleBox")
+//Initial Calendar Input
 let inputDateValue = document.getElementById("initialCal")
+//End Calendar Input & checkbox
 let inputDateEndValue = document.getElementById("endCal")
+let endDate = document.getElementById("endCal");
+let checkboxEnd = document.getElementById("checkboxEnd")
+//Time Selector Input
 let inputTimedValue = document.getElementById("timeSelector")
+//Reminder Input
 let inputReminderValue = document.getElementById("reminderSelect")
+//Event type Input
 let inputEventTypeValue = document.getElementById("eventSelect")
-let inputDescriptionValue = document.getElementById("textAreaDescription")
-let buttonSubmit = document.getElementById("createBtn")
-let eventOutput = document.querySelector(".event__display")
-let localStorageEvents = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
+//Reminder Inputs
+let reminderCheckBox = document.getElementById("reminderCheckBox");
+let reminderTextArea = document.getElementById("reminderSelect");
+//TextArea Input
+let inputDescriptionValue = document.getElementById("textAreaDescription");
+//Create Button
+let buttonSubmit = document.getElementById("createBtn");
+// Event Output
+let eventOutput = document.querySelector(".event__display");
+
+
+let localStorageEvents = localStorage.getItem(inputDateValue.value) ? JSON.parse(localStorage.getItem(inputDateValue.value)) : [];
 const calendar = document.querySelector('.calendar');
+
 
 // Get the modal
 let modal = document.getElementById("myModal");
@@ -25,28 +41,22 @@ let btn = document.getElementById("openButton");
 // Get the <span> element that closes the modal
 let span = document.getElementsByClassName("close")[0];
 
-
-//*************************************************/
-//--------------Modal Functions-------------------/
-/************************************************/
-// When the user clicks the button, open the modal
-openButton.onclick = function() {
-  modal.style.display = "flex";
-}
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
 // Set current date on Caledar
 let today = new Date().toISOString().substr(0, 10);
 document.querySelector("#initialCal").value = today;
 console.log(today);
 
-// Show calendar when checkbox checked
-let checkboxEnd = document.getElementById("checkboxEnd")
-let endDate = document.getElementById("endCal");
 
+/**********************************************/
+//--------------- Functions --------------------
+/**********************************************/
+// Close form 
+function closeForm() {
+  document.getElementById("myModal").style.display = "none";
+  inputTitleKey.value = '';
+  inputTitleKey.classList.remove('error')
+}
+// Show calendar when checkbox checked 
 function displayEnd () {
   if(checkboxEnd.checked == true) {
       endDate.style.display = "block"
@@ -55,10 +65,8 @@ function displayEnd () {
   }
 } // End Function
 
-// Show Remind me select when checked
-let reminderCheckBox = document.getElementById("reminderCheckBox");
-let reminderTextArea = document.getElementById("reminderSelect");
 
+// Show Remind me select when checked
 function reminderShowSelectBox() {
   if (reminderCheckBox.checked == true) {
     reminderTextArea.style.display = "flex"
@@ -66,6 +74,48 @@ function reminderShowSelectBox() {
     reminderTextArea.style.display = "none"
   }
 } // End function
+//This function shows the event in the output box
+function createEvent (){
+
+  let section = document.createElement("section");
+
+  section.setAttribute("class", "event__display");
+  section.insertAdjacentHTML("afterbegin", `<h1>${inputTitleKey.value}</h1><button class="btn__remove-event fas fa-trash" id="btn__remove__event"></button><div>${inputDateValue.value}, ${inputDateEndValue.value},${inputEventTypeValue.value}, ${inputTimedValue.value}, ${inputReminderValue.value}, ${inputDescriptionValue.value}</div>`);
+  events.appendChild(section);
+}
+//This function saved the event in the local Stroage
+function saveEvent () {
+  if (inputTitleKey.value) {
+inputTitleKey.classList.remove('error');
+
+localStorageEvents.push({
+  title: inputTitleKey.value,
+  end_date: endDate.value,
+  time: inputTimedValue.value,
+  reminder: inputReminderValue.value,
+  event_type: inputEventTypeValue.value,
+  Description: inputDescriptionValue.value
+
+});
+localStorage.setItem(inputDateValue.value , JSON.stringify(localStorageEvents));
+  } else {
+inputTitleKey.classList.add('error');
+  }
+}
+
+
+/*************************************************/
+//--------------Modal Functions-------------------/
+/************************************************/
+// When the user clicks the button, open the modal
+openButton.onclick = function() {
+  modal.style.display = "flex";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
@@ -74,24 +124,21 @@ window.onclick = function(event) {
   }
 }
 /* *********************************/
-//---------- BUTTON FUNCTIONS --------
-//********************************* */
+//---------- BUTTON FUNCTIONS ------/
+/**********************************/
 //funcion que envia el formulario y ademas nos crea el objeto
+// Saves event at the event output 
 buttonSubmit.onclick = function () {
 
   const supuestafecha = new Event(`${inputTitleKey.value}`,`${inputDateValue.value}`,`${inputDateEndValue.value}`,`${inputTimedValue.value}`,`${inputReminderValue.value}`,`${inputEventTypeValue.value}`,`${inputDescriptionValue.value}`);
   console.log(supuestafecha);
   supuestafecha.sentJSON();
-
+  // buttonSubmit.addEventListener("click", createEvent);
+  createEvent();
+  saveEvent()
+  closeForm();
+ 
 };
-// Saves event at the event output 
-buttonSubmit.addEventListener("click", createEvent);
-
-
-// Close form 
-function closeForm() {
-  document.getElementById("myModal").style.display = "none";
-}
 
 /* *********************************
 ---------- EVENT FUNCTIONS --------
@@ -132,18 +179,11 @@ function getID(clicked){
   console.log(selected);
 }
 
-
-
 // Pesco el div donde se guardaran los eventos
 let events = document.querySelector(".events");
-function createEvent (){
 
-  let section = document.createElement("section");
 
-  section.setAttribute("class", "event__display");
-  section.insertAdjacentHTML("afterbegin", `<h1>${inputTitleKey.value}</h1><button class="btn__remove-event fas fa-trash" id="btn__remove__event"></button><div>${inputDateValue.value}, ${inputDateEndValue.value},${inputEventTypeValue.value}, ${inputTimedValue.value}, ${inputReminderValue.value}, ${inputDescriptionValue.value}</div>`);
-  events.appendChild(section);
-}
+
 
 /* *********************************
 ---------- DARK MODE -----------------
