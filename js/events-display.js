@@ -36,12 +36,12 @@ calendarMock = {
 localStorage.setItem("calendarMock", JSON.stringify(calendarMock) );
 
 var eventsCalendar = JSON.parse(localStorage.getItem('calendarMock'));
-var currentMonthDisplay = "4"
+var currentMonthDisplay = 4
 
 displayEventsInMonth(currentMonthDisplay, eventsCalendar);
 function displayEventsInMonth(currentMonthDisplay, eventsCalendar){
     for (date in eventsCalendar){
-        if(currentMonthDisplay === date.split("/")[1]){
+        if(currentMonthDisplay == date.split("/")[1]){
             for (eventName in eventsCalendar[date]){
                 displayEventInDate(date,eventName);
             }

@@ -8,8 +8,8 @@ function calendarMonthConstructor() {
     let currentYear = currentDate.getFullYear();
     
     let month = currentMonth;
+    let year = currentYear;
     // January is 0;
-
 
     // Creates the name of the weeks 
     function createWeekRow() {
@@ -70,10 +70,23 @@ function calendarMonthConstructor() {
         }
     }
 
+    function updateMonthAndYearHeader(monthText, yearText) {
+        let currentMonthText = document.querySelector('.currentMonth-text');
+        let currentYearText = document.querySelector('.currentYear-text');
+        if (!monthText) {
+            currentMonthText.innerHTML = monthText;
+        }   else {
+            currentMonthText.innerHTML = monthText;
+        }
+        currentYearText.innerHTML = yearText;
+
+    }
+
     createWeekRow();
     createMonthGrid();
     populateMonth(month);
     today(currentDay,currentMonth,currentYear);
+    updateMonthAndYearHeader(monthsNames[month], year)
 }
 
 function today(currentDay,currentMonth,currentYear){

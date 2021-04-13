@@ -106,6 +106,7 @@ function calendarConstructor(){
       i++;
     });
   });
+  updateYearHeader(year)
   populateCalendar(year);
 };
 
@@ -166,4 +167,11 @@ function populateCalendar(year){
 
 function today(currentDay,currentMonth,currentYear){
   document.querySelector('[id="' + currentYear + '/' + (currentMonth + 1) + '/' + currentDay + '"]').classList += ' current';
+}
+
+function updateYearHeader(yearText) {
+  let currentMonthText = document.querySelector('.currentMonth-text');
+  let currentYearText = document.querySelector('.currentYear-text');
+    currentMonthText.innerHTML = '';
+    currentYearText.innerHTML = yearText;
 }
