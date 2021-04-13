@@ -98,36 +98,3 @@ window.addEventListener('wheel', function (event) {
         renderCalendar("right");
     }
 });
-
-function renderEvent () {
-    const daysContainer = document.getElementById("modal-event-div").children;
-    const currentMonth = date.getMonth();
-    const currentYear = date.getFullYear();
-    //* To know days of month
-    const lastDay = new Date(
-        date.getFullYear(),
-        date.getMonth() + 1,
-        0
-    ).getDate();
-
-
-
-
-
-
-    let newEvent = document.createElement("div");
-    newEvent.classList.add("event-in-calendar");
-    newEvent.classList.add("blue-event");
-    newEvent.innerHTML = "Evento Prueba";
-    newEvent.addEventListener('click', eventModal);
-
-
-    daysContainer[5].appendChild(newEvent);
-    const allEvents = document.querySelectorAll(".event-in-calendar");
-    
-    /*
-    ! This code may be usable for later
-    for (let event of allEvents) {
-        event.addEventListener('click', eventModal);
-    } */
-}
