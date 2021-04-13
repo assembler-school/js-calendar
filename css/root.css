@@ -160,6 +160,7 @@ table {
 body {
   width: 100vw;
   display: flex;
+  overflow: hidden;
   flex-direction: column;
 }
 
