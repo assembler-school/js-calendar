@@ -5,20 +5,30 @@ TODO associate eventListener
 
 function eventModal (event) {
     event.stopPropagation(); // Needed to prevent execution of parent div
-    /* 
-    TODO Here it has to include some code to get the information from localStorage 
-    */
+    const eventId = event.target.getAttribute("divEventId");
+    const eventTitle = eventsById[eventId].title;
+    const eventInitialDate = new Date(eventsById[eventId].startDate);
+    const eventEndDate = new Date(eventsById[eventId].endDate);
+    let eventReminder;
+    if (!!eventsById[eventId].reminder) {
+        eventReminder = eventsById[eventId].reminder;
+    } else {
+        eventReminder = "no";
+    }
+    const eventType = eventsById[eventId].eventType;
+    const eventDescription = eventsById[eventId].description;
     /* 
     TODO it has to load the data inside the modal
    */
+
+    document.querySelector(".modal-event-title > h1").innerText = eventTitle;
+    document.getElementById("modal-event-initial-date").innerText = eventInitialDate.toLocaleString();
+    document.getElementById("modal-event-end-date").innerText = eventEndDate.toLocaleString();
+    document.getElementById("modal-event-reminder").innerText = eventReminder;
+    document.getElementById("modal-event-type").innerText = eventType;
+    document.getElementById("modal-event-description").innerText = eventDescription;
     //* constants in use
     const modalBackground = document.getElementById("modal-event-section");
-    const initialDate = document.getElementById("modal-event-initial-date");
-    const endDate = document.getElementById("modal-event-end-date");
-    const reminder = document.getElementById("modal-event-reminder");
-    const eventType = document.getElementById("modal-event-type");
-    const description = document.getElementById("modal-event-description");
-
      //* Adding eventListener to modal
     document.getElementById("modal-event-close-button").addEventListener('click', closeEventModal);
     document.getElementById("modal-event-edit-btn").addEventListener('click', editEventModal);
@@ -45,7 +55,7 @@ function editEventModal () {
 }
 // ! Function to add a mock event
 
-function addEventTesting () {
+/* function addEventTesting () {
     const daysContainer = document.getElementById("modal-event-div").children;
     let newEvent = document.createElement("div");
     newEvent.classList.add("event-in-calendar");
@@ -55,10 +65,10 @@ function addEventTesting () {
     daysContainer[5].appendChild(newEvent);
     const allEvents = document.querySelectorAll(".event-in-calendar");
     
-    /*
+    
     ! This code may be usable for later
     for (let event of allEvents) {
         event.addEventListener('click', eventModal);
-    } */
+    }
 }
-addEventTesting();
+addEventTesting(); */
