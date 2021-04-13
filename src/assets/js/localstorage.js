@@ -36,18 +36,44 @@ function createEvent() {
     const checkBoxReminder = document.getElementById("check-box-reminder").checked;
     //*converting date to Date object
     let formattedIniDate = new Date(iniDateF);
-    const startDate = formattedIniDate.getDate();
-    const startYear = formattedIniDate.getFullYear();
-    const startMonth = formattedIniDate.getMonth();
+    let formattedEndDate = new Date(enDateF);
+    let startDate = formattedIniDate.getDate();
+    let startYear = formattedIniDate.getFullYear();
+    let startMonth = formattedIniDate.getMonth() + 1;
     //* Saving in eventsById
     let newEvent = new calendarEvent(titleF, iniDateF, enDateF, reminderF, descriptionF, eventTF,eventIndex);
     eventsById.push(newEvent);
+    //* Calculate length of event in days
+    let miliSecsToEndDay = (60*60*24*1000)-(formattedIniDate.getHours()*60*60*1000 + formattedIniDate.getMinutes()*60*1000 + formattedIniDate.getSeconds()*1000 + formattedIniDate.getMilliseconds());
+    let daysDuration = 1;
+    while (miliSecsToEndDay < (formattedEndDate.getTime() - formattedIniDate.getTime())) {
+        daysDuration += 1;
+        miliSecsToEndDay += (60*60*24*1000);
+    }
 
     //* Saving in eventsByDate
-    if (!eventsByDate[`${startYear}-${startMonth}-${startDate}`]) {
-        eventsByDate[`${startYear}-${startMonth}-${startDate}`] = [];
+
+    for (i = 0; i < daysDuration; i++) {
+        if (!eventsByDate[`${startYear}-${startMonth}-${startDate}`]) {
+            eventsByDate[`${startYear}-${startMonth}-${startDate}`] = [];
+        }
+        eventsByDate[`${startYear}-${startMonth}-${startDate}`].push(eventIndex);
+        let lastDayOfMonth = new Date(startYear,startMonth + 1,0).getDate();
+        if (lastDayOfMonth === startDate) {
+            if (startMonth === 12){
+                startYear += 1;
+                startMonth = 1;
+                startDate = 1;
+            } else {
+                startMonth += 1;
+                startDate = 1;
+            }
+        } else {
+            startDate += 1;
+        }
     }
-    eventsByDate[`${startYear}-${startMonth}-${startDate}`].push(eventIndex);
+
+
 
     //* Save (or not) to reminders lists
     if (checkBoxReminder === true) {
