@@ -31,6 +31,7 @@ hideModal();
 document.getElementById("createEventBtn").addEventListener("click", showModal);
 document.getElementById("cancelBtn").addEventListener('click', hideModal);
 document.getElementById("saveBtn").addEventListener('click', saveEvent);
+document.querySelector('.modalOut').addEventListener('click', hideModal);
 
 document.addEventListener("keyup", e => {
     if (e.key === "Escape" && document.querySelector(".modal.showUp")) {
