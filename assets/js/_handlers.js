@@ -34,7 +34,7 @@ export function handleDocumentEvents(e) {
       if (!formValidation(e, true)) {
         const data = calendarEvent.getDataFromModal("#modal form");
         calendarEvent.toLocalStorage(data);
-        render.renderEvents(updatedYear,updatedMonth);
+        render.renderEvents(updatedYear, updatedMonth);
       }
     }
 
@@ -71,12 +71,21 @@ export function handleDocumentEvents(e) {
     /*
      * checkbox End-date
      */
-    if (e.target.matches('name="end-check"')) {
-      
-      document.querySelector('[name="end-date]"').disabled = false;
-      
+    if (e.target.matches('[name="end-check"]')) {
+      const check = document.querySelector('[name="end-date"]');
+      check.disabled ? (check.disabled = false) : (check.disabled = true);
+    }
+
+    /*
+     * Click in event
+     */
+    if (e.target.matches("[data-eventid]")) {
+      const [_event] = calendarEvent.getEvent(e.target.dataset.eventid);
+      swapTemplate("modal-template", "modal-section");
+      calendarEvent.printDataToModal("#modal form", _event);
     }
   });
+
 
   // focusot event
   document.addEventListener("focusout", (e) => {
@@ -98,6 +107,6 @@ function addMonth(year, month, boolean) {
   swapTemplate("month", "calendar");
   render.renderMonth(updatedYear, updatedMonth);
   render.addTag(updatedYear, updatedMonth);
-  render.highlightToday(year,month);
-  render.renderEvents(year,month);
+  render.highlightToday(year, month);
+  render.renderEvents(year, month);
 }

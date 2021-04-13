@@ -40,20 +40,23 @@ export function renderMonth(year, month) {
 
 /* Render events in the month of parameter */
 export function renderEvents(year, month) {
+    const d = document;
     let allEvents = calendarEvent.fromLocalStorage();
+
+    if (allEvents) {
     let monthEvents = allEvents.filter ((allEvents) => new Date(allEvents["init-date"]).getFullYear() === year && new Date(allEvents["init-date"]).getMonth() === month);
-    //!! fix duplicating events
-    monthEvents.forEach(function (monthEvents){
-        document.getElementById(new Date(monthEvents["init-date"]).getDate()).innerHTML='';
-    });
+
     /* Create the events in calendar and set its attributes */
     monthEvents.forEach(function (monthEvents){
         let eventDiv = document.createElement("div");
-        eventDiv.setAttribute("id","event" + monthEvents.id);
-        eventDiv.setAttribute("class","event--type--" + monthEvents["select-event"]);
+        eventDiv.setAttribute("data-eventid","event" + monthEvents.id);
+        eventDiv.setAttribute("class","event__type--" + monthEvents["select-event"]);
         eventDiv.innerHTML = monthEvents.title;
-        document.getElementById(new Date(monthEvents["init-date"]).getDate()).appendChild(eventDiv);
+        if (!d.querySelector(`[data-eventid="event${monthEvents.id}"]`)) {
+            d.getElementById(new Date(monthEvents["init-date"]).getDate()).appendChild(eventDiv);
+        }
     });
+}
 }
 
 export function updateDate(year,month) {

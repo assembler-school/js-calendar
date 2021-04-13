@@ -46,6 +46,29 @@ calendarEvent.fromLocalStorage = function () {
 };
 
 /*
+ * This selected event object from localstorage
+ */
+calendarEvent.getEvent = function (eventid) {
+  const data = calendarEvent.fromLocalStorage();
+  return data.filter(ev => `event${ev.id}` === eventid);
+};
+
+/*
+ * This selected event object from localstorage
+ */
+calendarEvent.printDataToModal = function (form, obj) {
+  const _form = document.querySelector(form);
+  _form.elements["title"].value = obj.title;
+  _form.elements["init-date"].value = obj["init-date"];
+  _form.elements["end-check"].checked = obj["end-check"];
+  _form.elements["end-date"].value = obj["end-date"];
+  _form.elements["reminder"].checked = obj["reminder"];
+  _form.elements["select-time"].value = obj["select-time"];
+  _form.elements["description"].value = obj.description;
+  _form.elements["select-event"].value = obj["select-event"];
+};
+
+/*
  * This generates unique ID from index array
  */
 calendarEvent.generateUUID = function () {
@@ -56,15 +79,3 @@ calendarEvent.generateUUID = function () {
   return 0;
 };
 
-// calendarEvent.probando = function () {
-//   const myObject1 = {};
-//   const myObject2 = {};
-//   const myArray = [];
-
-//   myObject1.name = "brahim";
-//   myObject2.name = "jordi";
-//   myArray.push(myObject1);
-//   myArray.push(myObject2);
-
-//   return localStorage.setItem("events", JSON.stringify(myArray));
-// };
