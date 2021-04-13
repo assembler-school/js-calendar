@@ -40,10 +40,6 @@ hr {
   opacity: 0.8;
   box-shadow: 0px 2px 18px 2px rgb(136, 136, 136);
 }
-/* ===========MODAL NEW EVENT (alvaro)============*/
-#close {
-  color: rgb(231, 13, 13);
-}
 
 label {
   font-size: 0.95rem;
@@ -66,11 +62,6 @@ input:focus {
   border-color: var(--color6);
 }
 
-input[type="date"] {
-  outline: none;
-}
-
-/*  TEXTAREA  */
 textarea {
   background-color: var(--header-color);
   /* opacity: 0.6; */
@@ -108,8 +99,22 @@ select:focus {
   border-color: var(--color6);
   background-color: rgba(255, 136, 0, 0.6);
 }
+
 select option {
   width: 52px;
+}
+
+/*
+===================================
+   ! MODAL NEW EVENT
+===================================
+*/
+#close {
+  color: rgb(231, 13, 13);
+}
+
+input[type="date"] {
+  outline: none;
 }
 
 /*    BOTONES ENVIO CANCELAR */
@@ -565,7 +570,7 @@ i.fa-times-circle {
 ===================================
 */
 .slide-top {
-  animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-top 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 @keyframes slide-top {
@@ -615,11 +620,11 @@ i.fa-times-circle {
   }
 }
 
-.slide-top {
-  animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+.slide-top-a {
+  animation: slide-top-a 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
-@keyframes slide-top {
+@keyframes slide-top-a {
   0% {
     transform: translateY(400px);
     opacity: 0;

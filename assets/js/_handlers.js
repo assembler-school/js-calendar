@@ -44,11 +44,15 @@ export function handleDocumentEvents(e) {
       addMonth(updatedYear, updatedMonth, true);
       // document.getElementById("calendar").classList.add("slide-top");
       // document.getElementById("calendar").classList.add("swing-right-fwd");
-      document.querySelector(".calendar__month").classList.add("swing-right-fwd");
+      document
+        .querySelector(".calendar__month")
+        .classList.add("swing-right-fwd");
     }
     if (e.target.matches(".fa-chevron-left")) {
       addMonth(updatedYear, updatedMonth, false);
-      document.querySelector(".calendar__month").classList.add("swing-left-fwd");
+      document
+        .querySelector(".calendar__month")
+        .classList.add("swing-left-fwd");
     }
 
     /*
@@ -61,6 +65,15 @@ export function handleDocumentEvents(e) {
     if (e.target.matches("#navClose") || e.target.matches("#navClose *")) {
       removeTemplate("template__mobile", "main");
       document.getElementById("main").style.display = "none";
+    }
+
+    /*
+     * checkbox End-date
+     */
+    if (e.target.matches('name="end-check"')) {
+      
+      document.querySelector('[name="end-date]"').disabled = false;
+      
     }
   });
 
@@ -75,13 +88,13 @@ export function handleDocumentEvents(e) {
   });
 }
 
-let updatedMonth = (new Date()).getMonth();
-let updatedYear = (new Date()).getFullYear();
+let updatedMonth = new Date().getMonth();
+let updatedYear = new Date().getFullYear();
 function addMonth(year, month, boolean) {
   boolean ? month++ : month--;
-  updatedYear = render.updateDate(year,month).year;
-  updatedMonth = render.updateDate(year,month).month;
-  swapTemplate("month","calendar");
-  render.renderMonth(updatedYear,updatedMonth);
+  updatedYear = render.updateDate(year, month).year;
+  updatedMonth = render.updateDate(year, month).month;
+  swapTemplate("month", "calendar");
+  render.renderMonth(updatedYear, updatedMonth);
   render.addTag(updatedYear, updatedMonth);
 }
