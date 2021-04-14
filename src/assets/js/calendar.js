@@ -57,7 +57,7 @@ const renderCalendar = (direction) => {
     let days = "";
     // creating div with prev days of calendar
     for (let x = firstDayIndex; x > 0; x--) {
-        days += `<div class="prev-date ${direction}"><div class = "next-date day day-number">${prevLastDay - x + 1}</div></div>`;
+        days += `<div class="prev-date day ${direction}"><div class = "day-number">${prevLastDay - x + 1}</div></div>`;
     }
     // creating div with days of calendar
     for (let i = 1; i <= lastDay; i++) {
@@ -73,7 +73,7 @@ const renderCalendar = (direction) => {
     }
 // creating div with next days of calendar
     for (let j = 1; j <= nextDays; j++) {
-        days += `<div class="${direction}"><div class = "next-date day day-number">${j}</div></div>`;
+        days += `<div class="next-date day ${direction}"><div class = "day-number">${j}</div></div>`;
     }
     /* Injecting all elements to DOM */
     removeEachListener();
@@ -119,6 +119,8 @@ window.onkeyup = function (event) {
 
 function renderEvent () {
     const daysContainer = document.querySelectorAll(".current-month-day");
+    const previousDaysContainer = document.querySelectorAll(".prev-date");
+    const nextDaysContainer = document.querySelectorAll(".next-date");
     const currentMonth = date.getMonth() + 1;
     const currentYear = date.getFullYear();
     //* Calendar days divs pass by
