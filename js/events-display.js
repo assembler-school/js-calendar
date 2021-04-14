@@ -48,13 +48,14 @@ function sortRemindersList(remindersList, sign){
 }
 
 function startNextAlarmTimeout(){
-  if(!!nextRemindersList.length){
-    let timeLeft = Date.parse(nextRemindersList[0].reminderDate) - Date.now();
-    setTimeout(function(){
-        alert("Hello, reminder for " + nextRemindersList[0].eventTitle);
-        pastRemindersList.unshift(nextRemindersList.shift());
-        startNextAlarmTimeout();
-      }, timeLeft);
-      console.log(timeLeft);
-  }
+    if(!!nextRemindersList.length){
+        let timeLeft = Date.parse(nextRemindersList[0].reminderDate) - Date.now();
+        setTimeout(function(){
+            alert("Hello, reminder for " + nextRemindersList[0].eventTitle);
+            console.log(nextRemindersList[0].eventTitle);
+            pastRemindersList.unshift(nextRemindersList.shift());
+            startNextAlarmTimeout();
+        }, timeLeft);
+        console.log(timeLeft);
+    }
 }
