@@ -168,7 +168,7 @@ function eventDivsInjector (divsNodeList, monthGap) {
                 //* choosing event color depending of event type
                 switch (eventType) {
                     case 'Study':
-                        newEvent.classList.add("blue-event");
+                        newEvent.classList.add("yellow-event");
                         break;
                     case 'Meeting':
                         newEvent.classList.add("green-event");
