@@ -1,13 +1,14 @@
 // Display the event's details when click on it --------------------
-
-let elementEvent = document.querySelectorAll('.event-text');
-elementEvent.forEach(element => {
-    element.addEventListener('click', function() {
-        let eventId = element.getAttribute('class');
-        eventId = eventId.split(' ')[0];
-        let dateId = element.parentNode.children[0].getAttribute('id');
-        displayDetailsOfEvent(eventId, dateId);
-    })});
+function loadListennersForDetails() {
+    let elementEvent = document.querySelectorAll('.event-text');
+    elementEvent.forEach(element => {
+        element.addEventListener('click', function() {
+            let eventId = element.getAttribute('class');
+            eventId = eventId.split(' ')[1];
+            let dateId = element.parentNode.parentNode.children[0].getAttribute('id');
+            displayDetailsOfEvent(eventId, dateId);
+        })});
+}
 
 function displayDetailsOfEvent(eventId, dateId) {
         for (let i = 0; i < calendarEvents[dateId].length; i++) {
@@ -38,6 +39,6 @@ Type of event: ${eventTypeText}`)
         }
 }
 
-function removeThisEvent(element) {
-    element.remove();
-}
+// loadListennersForDetails()
+
+// removeEvent(id) // Pasarle el id del evento que tiene que borrar.
