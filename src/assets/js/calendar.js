@@ -76,6 +76,7 @@ const renderCalendar = (direction) => {
         days += `<div class="${direction}"><div class = "next-date day day-number">${j}</div></div>`;
     }
     /* Injecting all elements to DOM */
+    removeEachListener();
     monthDays.innerHTML = days;
     renderEvent () ;
     addEachListener();
@@ -91,16 +92,28 @@ document.querySelector("#nextMonth").addEventListener("click", () => {
 });
 
 renderCalendar("");
-// adding wheel  to change month
-window.addEventListener('wheel', function (event) {
-    if (event.deltaY < 0) {
+
+window.onkeyup = function (event) {
+    let leftNow = event.keyCode || event.which;
+    let rightNow = event.keyCode || event.which;
+    if (leftNow == 37) {
         date.setMonth(date.getMonth() - 1);
         renderCalendar("left");
-    } else if (event.deltaY > 0) {
-        date.setMonth(date.getMonth() + 1);
-        renderCalendar("right");
+    } if (rightNow == 39) {
+    date.setMonth(date.getMonth() + 1);
+    renderCalendar("right");
     }
-});
+};
+//adding wheel  to change month
+// window.addEventListener('wheel', function (event) {
+//     if (event.deltaY < 0) {
+//         date.setMonth(date.getMonth() - 1);
+//         renderCalendar("left");
+//     } else if (event.deltaY > 0) {
+//         date.setMonth(date.getMonth() + 1);
+//         renderCalendar("right");
+//     }
+// });
 
 function renderEvent () {
     const daysContainer = document.querySelectorAll(".day-number");

@@ -40,6 +40,12 @@ function addEachListener (event) {
     }
 }
 
+function removeEachListener() {
+    for (let div of modalDivs.children) {
+        div.removeEventListener('click', justFunc);
+    }
+}
+
 // Show de modal event. Open and close it.
 
 modalOpenButton.onclick = function() {

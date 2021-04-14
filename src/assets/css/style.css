@@ -29,6 +29,9 @@ html {
   font-family: 'Arimo', sans-serif;
   box-sizing: border-box;
 }
+main {
+  overflow: hidden;
+}
 
 /*
 !=======================================
@@ -44,6 +47,7 @@ header {
   background-color: var(--lightestGray);
   border-bottom: solid var(--lightestGray) 1px;
   position: relative;
+  overflow: hidden;
 }
 h1 {
   font-size: 2rem;
