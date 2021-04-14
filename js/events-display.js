@@ -22,7 +22,7 @@ function inicializeRemindersList(){
   pastRemindersList=[];
     for (reminderID in reminders){
         let reminder = reminders[reminderID];
-        //console.log(Date.parse(reminder.reminderDate))
+        reminder['reminderID'] = reminderID;
         if(Date.parse(reminder.reminderDate)>Date.now()){
             nextRemindersList.push(reminder);
         }else{
@@ -48,25 +48,13 @@ function sortRemindersList(remindersList, sign){
 }
 
 function startNextAlarmTimeout(){
-  let timeLeft = Date.parse(nextRemindersList[0].reminderDate) - Date.now();
-  setTimeout(function(){
-      alert("Hello, reminder for " + nextRemindersList[0].eventTitle);
-      pastRemindersList.unshift(nextRemindersList.shift());
-      startNextAlarmTimeout();
-    }, timeLeft);
-    console.log(timeLeft)
+  if(!!nextRemindersList.length){
+    let timeLeft = Date.parse(nextRemindersList[0].reminderDate) - Date.now();
+    setTimeout(function(){
+        alert("Hello, reminder for " + nextRemindersList[0].eventTitle);
+        pastRemindersList.unshift(nextRemindersList.shift());
+        startNextAlarmTimeout();
+      }, timeLeft);
+      console.log(timeLeft);
+  }
 }
-
-
-/*
-remindersList.sort(function (a, b) {
-    if (a.name > b.name) {
-      return 1;
-    }
-    if (a.name < b.name) {
-      return -1;
-    }
-    // a must be equal to b
-    return 0;
-  });
-  */

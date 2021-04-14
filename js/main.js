@@ -201,4 +201,5 @@ function saveEvent() {
         return false;
     }
     saveEventData();//save data
+    inicializeRemindersList();
 }
