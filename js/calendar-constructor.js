@@ -159,22 +159,6 @@ function populateCalendar(changeYear){
 };
 
 
-// function today(month,currentDay,currentMonth,currentYear){
-//   console.log(currentMonth + '-' + month);
-//   console.log(currentYear + '/' + idCurrentMonth + '/' + idCurrentDay)
-//   var idCurrentMonth = currentMonth + 1;
-//   var idCurrentDay = currentDay;
-//   if(idCurrentMonth < 10){
-//       idCurrentMonth = '0' + idCurrentMonth
-//   };
-//   if(idCurrentDay < 10){
-//       idCurrentDay = '0' + idCurrentDay;
-//   };
-//   if(month === currentMonth){
-//       document.querySelector('[id="' + currentYear + '/' + idCurrentMonth + '/' + idCurrentDay + '"]').classList += ' year-current-day';
-//   };
-// };
-
 function updateYearHeader(yearText) {
   let currentMonthText = document.querySelector('.currentMonth-text');
   let currentYearText = document.querySelector('.currentYear-text');

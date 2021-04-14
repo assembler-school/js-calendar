@@ -18,7 +18,6 @@ document.getElementById('monthView-btn').addEventListener("click", (event)=>{
         calendarMonthConstructor();
         //Calendar view
         calendarView = 'month-view';
-        console.log(calendarView);
     }
 });
 document.getElementById('yearView-btn').addEventListener("click", (event)=>{
@@ -29,7 +28,6 @@ document.getElementById('yearView-btn').addEventListener("click", (event)=>{
         calendarConstructor();
         //Calendar view
         calendarView = 'year-view';
-        console.log(calendarView);
     }
 });
 addNewTemplate("main-content-section", "month-template");

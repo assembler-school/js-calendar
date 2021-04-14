@@ -53,7 +53,7 @@
 }
 
 .month-current-day {
-
   border:5px solid rgb(102, 174, 175) !important;
+  border-radius:none;
 }
 

@@ -107,16 +107,3 @@ function getFirstMonthDay(year,month){
 
 
 
-function today(month,currentDay,currentMonth,currentYear){
-    var idCurrentMonth = currentMonth + 1;
-    var idCurrentDay = currentDay;
-    if(idCurrentMonth < 10){
-        idCurrentMonth = '0' + idCurrentMonth
-    };
-    if(idCurrentDay < 10){
-        idCurrentDay = '0' + idCurrentDay;
-    };
-    if(month === currentMonth){
-        document.querySelector('[id="' + currentYear + '/' + idCurrentMonth + '/' + idCurrentDay + '"]').parentNode.classList += ' month-current-day';
-    };
-};

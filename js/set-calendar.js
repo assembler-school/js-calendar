@@ -5,13 +5,11 @@ document.querySelector('.goNext-btn').addEventListener('click',nextButton);
 //Go to previous or next calendar
 function previousButton(){
   if(calendarView == '' || calendarView == 'month-view'){
-    console.log('-1')
     month -= 1;
     clearMonthCalendar();
     calendarMonthConstructor(month);
   };
   if(calendarView == 'year-view'){
-    console.log('-1')
     year -= 1;
     clearYearCalendar();
     calendarConstructor(year);
@@ -33,13 +31,11 @@ function todayButton(){
 
 function nextButton(){
   if(calendarView == '' || calendarView == 'month-view'){
-    console.log('+1')
     month += 1;
     clearMonthCalendar();
     calendarMonthConstructor(month);
   };
   if(calendarView == 'year-view'){
-    console.log('+1')
     year += 1;
     clearYearCalendar();
     calendarConstructor(year);
@@ -56,5 +52,31 @@ function clearYearCalendar(){
 }
 
 
-//Check calendar view
-document.querySelector('#month-section');
+//Select today
+function today(month,currentDay,currentMonth,currentYear){
+  if(document.querySelector(".main-content-section").firstElementChild.id === "month-section"){
+      var idCurrentMonth = currentMonth + 1;
+      var idCurrentDay = currentDay;
+      if(idCurrentMonth < 10){
+          idCurrentMonth = '0' + idCurrentMonth
+      }
+      if(idCurrentDay < 10){
+          idCurrentDay = '0' + idCurrentDay;
+      }
+      if(month === currentMonth){
+          document.querySelector('[id="' + currentYear + '/' + idCurrentMonth + '/' + idCurrentDay + '"]').parentNode.classList += ' month-current-day';
+      }
+  }else{
+    var idCurrentMonth = currentMonth + 1;
+    var idCurrentDay = currentDay;
+    if(idCurrentMonth < 10){
+        idCurrentMonth = '0' + idCurrentMonth
+    }
+    if(idCurrentDay < 10){
+        idCurrentDay = '0' + idCurrentDay;
+    }
+    if(month === currentMonth){
+      document.querySelector('[id="' + currentYear + '/' + idCurrentMonth + '/' + idCurrentDay + '"]').classList += ' month-current-day';
+    }
+  }
+}
