@@ -1,3 +1,9 @@
+(function initVars() {
+    if (localStorage.getItem('calendarEvents') && localStorage.getItem('calendarEvents') !== 'undefined') {
+        calendarEvents = JSON.parse(localStorage.getItem('calendarEvents'));
+    }
+})();
+
 function addNewTemplate(containerId, templateId) {
     const templateContent = document.querySelector(`#${templateId}`).content;
     document.getElementById(containerId).appendChild(document.importNode(templateContent, true));
@@ -16,7 +22,6 @@ document.getElementById('monthView-btn').addEventListener("click", (event)=>{
         calendarMonthConstructor();
         //Calendar view
         calendarView = 'month-view';
-        console.log(calendarView);
     }
 });
 document.getElementById('yearView-btn').addEventListener("click", (event)=>{
@@ -27,7 +32,6 @@ document.getElementById('yearView-btn').addEventListener("click", (event)=>{
         calendarConstructor();
         //Calendar view
         calendarView = 'year-view';
-        console.log(calendarView);
     }
 });
 addNewTemplate("main-content-section", "month-template");
@@ -124,7 +128,7 @@ function addReminder(eventId, reminderDate, eventTitle, initialDate) {
 function addEventToCalendar(eventParams) {
     let dateId = formatDate(new Date(eventParams.initialDate));
     let validFields = {
-        'id': new Date().getTime(),
+        'id': eventParams.id,
         'eventTitle': eventParams.eventTitle,
         'initialDate': eventParams.initialDate,
         'description': eventParams.description,
@@ -155,7 +159,9 @@ function saveEventData() {
     let description = document.getElementById('description').value;
     let eventType = document.getElementById('eventTypeSelect').value;
     //añadir reminder solo al primer dia si dura varios dias el evento
+    let eventId = new Date().getTime();
     addEventToCalendar({
+        id: eventId,
         eventTitle: eventTitle,
         initialDate: initialDate,
         endDateChecked: endDateChecked,
@@ -172,6 +178,7 @@ function saveEventData() {
         for (let i = 0; i < extraDays; i++) {
             initialDateDate.setDate(initialDateDate.getDate() + 1);
             addEventToCalendar({
+                id: eventId,
                 eventTitle: eventTitle,
                 initialDate: initialDateDate,
                 endDateChecked: endDateChecked,
@@ -203,35 +210,22 @@ function saveEvent() {
     calendarMonthConstructor(month);
 }
 
-function removeEvent(initialDate, id) {
-    let dayId = formatDate(new Date(initialDate));
-    calendarEvents = Object.values(calendarEvents).forEach((dayEvents) => {
-        dayEvents.filter((e) => {
-            return e.id !== id;
+function removeEvent(id) {
+    for(let day in calendarEvents) {
+        calendarEvents[day] = calendarEvents[day].filter(event => {
+            return event.id !== id;
         });
-    })
-    // reminders = reminders.filter((reminder) => {
-    //     return reminder.id !== id;
-    // });
+        if (!calendarEvents[day].length) {
+            delete calendarEvents[day];
+        }
+    }
+    document.querySelectorAll(`p[class~="${id}"]`).forEach(e => {e.remove()});
+
+    if (reminders[id]) {
+        delete reminders[id];
+    }
+
+    localStorage.setItem('calendarEvents', JSON.stringify(calendarEvents));
+    localStorage.setItem('reminders', JSON.stringify(reminders));
 }
 
-
-let elementEvent = document.querySelectorAll('.event-text');
-elementEvent.forEach(element => {
-    element.addEventListener('click', function(){
-        let id = element.getAttribute('class');
-        // let element = document.getElementsByClassName(id);
-        element.remove();
-        // removeThisEvent(element)
-    });
-});
-
-function displayEventsDetails(id) {
-    alert('este es el evento con la id ' + id);
-};
-
-function removeThisEvent(element) {
-    element.remove()
-}
-
-// document.querySelectorAll('p[class~="1618329939128"]');

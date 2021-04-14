@@ -134,7 +134,7 @@ function populateCalendar(changeYear){
             let cell = document.createElement('div');
             cell.setAttribute('class','days');
             
-            var idMonth = month + 1;
+            var idMonth = iMonth;
             var idDay = date;
             if(idMonth < 10){
                idMonth = '0' + idMonth
@@ -158,22 +158,6 @@ function populateCalendar(changeYear){
   today(month,currentDay,currentMonth,currentYear);
 };
 
-
-function today(month,currentDay,currentMonth,currentYear){
-  console.log(currentMonth + '-' + month);
-  console.log(currentYear + '/' + idCurrentMonth + '/' + idCurrentDay)
-  var idCurrentMonth = currentMonth + 1;
-  var idCurrentDay = currentDay;
-  if(idCurrentMonth < 10){
-      idCurrentMonth = '0' + idCurrentMonth
-  };
-  if(idCurrentDay < 10){
-      idCurrentDay = '0' + idCurrentDay;
-  };
-  if(month === currentMonth){
-      document.querySelector('[id="' + currentYear + '/' + idCurrentMonth + '/' + idCurrentDay + '"]').classList += ' year-current-day';
-  };
-};
 
 function updateYearHeader(yearText) {
   let currentMonthText = document.querySelector('.currentMonth-text');
