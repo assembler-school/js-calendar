@@ -16,5 +16,5 @@ var monthsNames = ["January", "February", "March", "April", "May", "June", "July
 
 var calendarView = '';
 
-var calendarEvents = JSON.parse(localStorage.getItem('calendarEvents')) || {};
+var calendarEvents = {};
 var reminders = {};

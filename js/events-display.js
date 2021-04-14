@@ -59,9 +59,9 @@ function displayEventsInMonth(currentMonthDisplay, eventsCalendar){
 
 function displayEventInDate(dateID,eventTitle, eventId) {
     let displayedEvent = document.createElement("p");
-    displayedEvent.id = eventId;
+    displayedEvent.className += eventId;
     let eventTitleTextNode = document.createTextNode(eventTitle);
     displayedEvent.appendChild(eventTitleTextNode);
-    displayedEvent.className = "event-text";
+    displayedEvent.className += " event-text";
     document.getElementById(dateID).parentNode.appendChild(displayedEvent);
 }

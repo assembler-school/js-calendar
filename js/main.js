@@ -1,3 +1,9 @@
+(function initVars() {
+    if (localStorage.getItem('calendarEvents') && localStorage.getItem('calendarEvents') !== 'undefined') {
+        calendarEvents = JSON.parse(localStorage.getItem('calendarEvents'));
+    }
+})();
+
 function addNewTemplate(containerId, templateId) {
     const templateContent = document.querySelector(`#${templateId}`).content;
     document.getElementById(containerId).appendChild(document.importNode(templateContent, true));
@@ -122,7 +128,7 @@ function addReminder(eventId, reminderDate, eventTitle, initialDate) {
 function addEventToCalendar(eventParams) {
     let dateId = formatDate(new Date(eventParams.initialDate));
     let validFields = {
-        'id': new Date().getTime(),
+        'id': eventParams.id,
         'eventTitle': eventParams.eventTitle,
         'initialDate': eventParams.initialDate,
         'description': eventParams.description,
@@ -153,7 +159,9 @@ function saveEventData() {
     let description = document.getElementById('description').value;
     let eventType = document.getElementById('eventTypeSelect').value;
     //añadir reminder solo al primer dia si dura varios dias el evento
+    let eventId = new Date().getTime();
     addEventToCalendar({
+        id: eventId,
         eventTitle: eventTitle,
         initialDate: initialDate,
         endDateChecked: endDateChecked,
@@ -170,6 +178,7 @@ function saveEventData() {
         for (let i = 0; i < extraDays; i++) {
             initialDateDate.setDate(initialDateDate.getDate() + 1);
             addEventToCalendar({
+                id: eventId,
                 eventTitle: eventTitle,
                 initialDate: initialDateDate,
                 endDateChecked: endDateChecked,
@@ -201,14 +210,21 @@ function saveEvent() {
     calendarMonthConstructor(month);
 }
 
-function removeEvent(initialDate, id) {
-    let dayId = formatDate(new Date(initialDate));
-    calendarEvents = Object.values(calendarEvents).forEach((dayEvents) => {
-        dayEvents.filter((e) => {
-            return e.id !== id;
+function removeEvent(id) {
+    for(let day in calendarEvents) {
+        calendarEvents[day] = calendarEvents[day].filter(event => {
+            return event.id !== id;
         });
-    })
+        if (!calendarEvents[day].length) {
+            delete calendarEvents[day];
+        }
+    }
+    document.querySelectorAll(`p[class~="${id}"]`).forEach(e => {e.remove()});
+
     // reminders = reminders.filter((reminder) => {
     //     return reminder.id !== id;
     // });
+
+    localStorage.setItem('calendarEvents', JSON.stringify(calendarEvents));
+    localStorage.setItem('reminders', JSON.stringify(reminders));
 }
