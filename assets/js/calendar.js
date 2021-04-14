@@ -11,12 +11,14 @@ const d = document;
 /* Initialize calendar */
 showCalendar(currentYear, currentMonth);
 
+handleDocumentEvents();
+
 function showCalendar(year, month) {
   swapTemplate("month", "calendar");
   render.addTag(year, month);
   render.renderMonth(year, month);
+  render.renderYear();
   render.highlightToday(year, month);
   render.renderEvents(year, month);
   // Listeners
-  handleDocumentEvents();
 }
