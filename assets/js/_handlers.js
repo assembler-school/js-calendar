@@ -117,3 +117,38 @@ function addMonth(year, month, boolean) {
   render.highlightToday(year, month);
   render.renderEvents(year, month);
 }
+
+/* 
+*  Accesibility from the modal with TAB or SHIFT + TAB 
+*/
+//Adding the event listener
+document.addEventListener("keydown", accessKeyboard);
+
+export function accessKeyboard(e) {
+  const focusableInputs = document.querySelectorAll(".shadow__input--stretch");
+  //Create an array from the node list
+  const focusable = [focusableInputs];
+  //Get the index of current item
+  const index = focusable.indexOf(document.activeElement);
+  // Create a variable to store the index of the next item to be focused
+  let nextIndex = 0;
+  // tab key
+  if (e.key === 9) {
+    e.preventDefault();
+    //decreasing the value of index. The previous focusable element in the array can be focused using the method focus
+    nextIndex = index > 0 ? index-1 : 0;
+    focusableInputs[nextIndex].focus();
+  }
+  // Tab + shift keys
+  else if (e.key === 16 + 9) {
+    e.preventDefault();
+    //increasing the value of index, to focus on the next focusable element
+    nextIndex = index+1 < focusable.lenght ? index+1 : index;
+    focusableInputs[nextIndex].focus();
+  }
+}
+
+
+
+
+
