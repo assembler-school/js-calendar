@@ -117,6 +117,6 @@ function today(month,currentDay,currentMonth,currentYear){
         idCurrentDay = '0' + idCurrentDay;
     };
     if(month === currentMonth){
-        document.querySelector('[id="' + currentYear + '/' + idCurrentMonth + '/' + idCurrentDay + '"]').classList += ' month-current-day';
+        document.querySelector('[id="' + currentYear + '/' + idCurrentMonth + '/' + idCurrentDay + '"]').parentNode.classList += ' month-current-day';
     };
 };
