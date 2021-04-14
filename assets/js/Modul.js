@@ -27,11 +27,8 @@ let buttonSubmit = document.getElementById("createBtn");
 let eventOutput = document.querySelector(".event__display");
 //Pesco la fecha seleccionada en el calendario de Einar
 let fechaSeleccionada = document.querySelector(".fechaSeleccionada");
-
-//Pesco la fecha actual
-const exactlyToday = new Date().getDate();
-//console.log(exactlyToday, "La fecha actual wey");
-
+// Pesco el div donde se guardaran los eventos
+let events = document.querySelector(".events");
 
 let localStorageEvents = localStorage.getItem(inputDateValue.value) ? JSON.parse(localStorage.getItem(inputDateValue.value)) : [];
 const calendar = document.querySelector('.calendar');
@@ -51,17 +48,18 @@ let span = document.getElementsByClassName("close")[0];
 let today = new Date().toISOString().substr(0, 10);
 document.querySelector("#initialCal").value = today;
 
-
 /**********************************************/
 //--------------- Functions --------------------
 /**********************************************/
-// Close form 
+
+// Close form
 function closeForm() {
     document.getElementById("myModal").style.display = "none";
     inputTitleKey.value = '';
     inputTitleKey.classList.remove('error')
 }
-// Show calendar when checkbox checked 
+
+// Show calendar when checkbox checked
 function displayEnd() {
     if (checkboxEnd.checked == true) {
         endDate.style.display = "block"
@@ -79,21 +77,13 @@ function reminderShowSelectBox() {
         reminderTextArea.style.display = "none"
     }
 } // End function
-//This function shows the event in the output box
-function createEvent() {
-
-    let section = document.createElement("section");
-
-    section.setAttribute("class", "event__display");
-    section.insertAdjacentHTML("afterbegin", `<h1>${inputTitleKey.value}</h1><button class="btn__remove-event fas fa-trash" id="btn__remove__event"></button><div>${inputDateValue.value}, ${inputDateEndValue.value},${inputEventTypeValue.value}, ${inputTimedValue.value}, ${inputReminderValue.value}, ${inputDescriptionValue.value}</div>`);
-    events.appendChild(section);
-}
 //This function saved the event in the local Stroage
 function saveEvent() {
     if (inputTitleKey.value) {
         inputTitleKey.classList.remove('error');
 
         localStorageEvents.push({
+            //this VDEF13
             title: inputTitleKey.value,
             end_date: endDate.value,
             time: inputTimedValue.value,
@@ -107,7 +97,6 @@ function saveEvent() {
         inputTitleKey.classList.add('error');
     }
 }
-
 
 /*************************************************/
 //--------------Modal Functions-------------------/
@@ -132,14 +121,12 @@ window.onclick = function(event) {
     //---------- BUTTON FUNCTIONS ------/
     /**********************************/
     //funcion que envia el formulario y ademas nos crea el objeto
-    // Saves event at the event output 
+    // Saves event at the event output
 buttonSubmit.onclick = function() {
 
     const supuestafecha = new Event(`${inputTitleKey.value}`, `${inputDateValue.value}`, `${inputDateEndValue.value}`, `${inputTimedValue.value}`, `${inputReminderValue.value}`, `${inputEventTypeValue.value}`, `${inputDescriptionValue.value}`);
     //console.log(supuestafecha);
-    supuestafecha.sentJSON();
-    // buttonSubmit.addEventListener("click", createEvent);
-    createEvent();
+
     saveEvent()
     closeForm();
 
@@ -179,18 +166,15 @@ days.forEach(function(divs) {
 
 });
 
-function getID(clicked) {
 
-    selectedDay = clicked.target;
-    fechaSeleccionada.innerHTML = "la fecha seleccionada: " + selectedDay.id;
+function getID(event) {
+
+    selectedDay = event.target.id;
+    fechaSeleccionada.innerHTML = "la fecha seleccionada: " + selectedDay;
+    renderEvents();
+    return selectedDay;
 
 }
-
-// Pesco el div donde se guardaran los eventos
-let events = document.querySelector(".events");
-
-
-
 
 /* *********************************
 ---------- DARK MODE -----------------
@@ -207,39 +191,62 @@ function changeTheme() {
     }
 }
 
-function isToday() {
+//Funcion IMPORTANTE!! que renderiza y elimina los eventos del día seleccionado
+function renderEvents() {
+    var selectedDay = event.target.id;
+    //lo traemos del local storage y al mismo tiempo lo reconvertimos en un objeto
+    let renderSection = JSON.parse(localStorage.getItem(selectedDay));
+    console.log(renderSection);
 
-    if (exactlyToday != supuestafecha.timedValue) {
-        console.log("me cogio bien la fecha?");
-        return
+    //Si al seleccionar un dia, No hay objetos dentro, me dice que no hay nada, de lo contrario, si encuentra cosas, me las imprime
+    if (renderSection != null) {
+        //con esto, convertimos el objeto en un array para posteriormente iterar en el
+        let myArray = Object.entries(renderSection);
+        //console.log(myArray[1][1]);
 
+        //una vez covertido el objeto en array, tenemos que iterar por cada uno de sus posiciones, nunca sabremos cuantos eventos tenemos guardados ese dia, por lo tanto crearemos secciones por cada evento que encuentre.
+        myArray.forEach((element) => {
+
+            let section = document.createElement("section");
+            section.setAttribute("class", "event__display");
+            //aquí es donde metemos exactamente lo que queremos del array y ponemos posicion [1] ya que es allá donde se encuentran los datos que necesitamos y al mismo tiempo llamamos al parametro que queremos de dentro del objeto inicial.
+            section.insertAdjacentHTML("afterbegin", `<h1>${element[1].title}</h1>`);
+            events.appendChild(section);
+            console.info(">>>>Titulo de mi evento:" + element[1].title);
+            console.info("Tipo de evento:" + element[1].end_date);
+            console.info("Tipo de evento:" + element[1].time);
+            console.info("Tipo de evento:" + element[1].reminder);
+            console.info("Tipo de evento:" + element[1].event_type);
+        });
+        //Von el else que viene a continuación, eliminamos todos los eventos de la lista, si es que no hay eventos.
+    } else {
+        let event_displays = document.querySelectorAll(".event__display");
+        event_displays.forEach((e) => {
+            e.remove(this);
+        })
+        console.info("en el día seleccionado, no hay nada");
     }
-    return
 }
 
-//  eventOutput.innerHTML += `${key}: ${value}<br />`;
-// //  console.log(key)
-//  console.log(value)
+function renderToday() {
+
+    let today__event = JSON.parse(localStorage.getItem(today));
+
+    if (today__event != undefined) {
+        let myArray = Object.entries(today__event);
+        myArray.forEach((element) => {
+
+            let section = document.createElement("section");
+            section.setAttribute("class", "event__display");
+            section.insertAdjacentHTML("afterbegin", `<h1>${element[1].title}</h1>`);
+            events.appendChild(section);
+        });
+        //console.log(today__event)
+
+    } else {
+        console.log("HOY no hay nada wey");
+    }
 
 
-
-// let key = inputTitleKey.value;
-// let value = supuestafecha;
-// //  [inputDescriptionValue.value ,
-//  //   inputDateValue.value,
-//  //   inputDateEndValue.value,
-//  //   inputTimedValue.value,
-//  //   inputReminderValue.value,
-//  //   inputEventTypeValue.value]
-
-
-
-
-//  if (key && value) {
-//  localStorage.setItem(key, value);
-// }
-
-// for (let i = 0; i < localStorage.length; i++) {
-//   let key = localStorage.key(i);
-//   let value = localStorage.getItem(key);
-// }
+}
+renderToday();

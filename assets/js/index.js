@@ -96,13 +96,18 @@ renderCalendar();
 //Detecta el boton PREV y setea el mes en -1 y vuelve a renderizar el calendario
 var btnPrev = document.querySelector(".prev").addEventListener("click", () => {
     date.setMonth(date.getMonth() - 1);
+    //showEventOfDayHere();
     renderCalendar();
+
+    //Meter todas las funcioines en una general para llamar a todas desde aqui
 });
 
 //Detecta el boton NEXT y setea el mes en +1 y vuelve a renderizar el calendario
 var btnPrev = document.querySelector(".next").addEventListener("click", () => {
     date.setMonth(date.getMonth() + 1);
+    //showEventOfDayHere();
     renderCalendar();
+
 });
 
 //Detecta todos los divs del calendario con la clase no-event-day y ejecuta las funciones pertinentes mediante los listeners pertinentes.
@@ -118,32 +123,40 @@ for (let d = 0; d < day.length; d++) {
 function bringDataFromLocalStorageToMainCalendar(ev) {
     //Esta variable selecciona lo clicado al llamar al event listener y lo posiciona como target
     var clickedDivId = event.target.id;
-
-    //Cogemos los datos STORAGE del div clicado
-    var datafromLocalStorage = localStorage.getItem(clickedDivId)
-
-    //Si los datos son diferentes a nulos...
+    console.info("Esta es la ID del dia seleccionado " + clickedDivId)
+        //Cogemos los datos STORAGE del div clicado y lo parseamos
+    var datafromLocalStorage = JSON.parse(localStorage.getItem(clickedDivId));
+    console.info("Esta es la informacion extraida y parseada del ID dia clicado >>> " + datafromLocalStorage)
+    console.info(Object.values(datafromLocalStorage))
+    console.info("Este mensaje solo aparece si el objeto anterior ha sido extraido correctamente")
     if (datafromLocalStorage !== null) {
-        //Si detro del array datafromLocalStorage existe meeting, study o meeting, crear una variable x is true
+        console.info('INNN F()')
+            //Si detro del array datafromLocalStorage existe meeting, study o meeting, crear una variable x is true
         meetingIsTrue = datafromLocalStorage.includes('meeting');
-        //console.log(meetingIsTrue)
+        console.log("Meeting is " + meetingIsTrue)
         studyIsTrue = datafromLocalStorage.includes('study');
-        //console.log(studyIsTrue)
+        console.log("Study is " + studyIsTrue)
         personalIsTrue = datafromLocalStorage.includes('personal');
-        //console.log(personalIsTrue)
+        console.log("Personal is " + personalIsTrue)
     } else if ((datafromLocalStorage == null)) {
-        swal('No tienes ningun evento este dia ^^');
-        console.info('No tienes ningun evento este dia ^^')
+        //swal('No tienes ningun evento este dia ^^');
+        console.info('La informacion es nula, no tienes ningun evento el dia seleccionado en el calendario')
             //alert('datafromLocalStorage es NULO');
     } else {
-        console.warn('La insersión de tipo de evento desde el formulario no ha llegado correctamente');
+        //console.warn('La insersión de tipo de evento desde el formulario no ha llegado correctamente');
     }
 }
 //END F()bringDataFromLocalStorageToMainCalendar
+//Devlopgit
 
 
 
 function showEventOfDayHere(ev) {
+
+    var meetingIsTrue = false
+    var studyIsTrue = false
+    var personalIsTrue = false
+
     var clickedDiv = event.target;
 
     if (meetingIsTrue == true) {
@@ -168,17 +181,18 @@ function showEventOfDayHere(ev) {
         //event.stopPropagation();
 
     } else {
-        console.info('showEventOfDayHere - revisa su funcionalidad en la linea 146')
-        swal('No llega ningun dato aqui')
+        console.info('showEventOfDayHere - revisa su funcionalidad')
+            // swal('No llega ningun dato aqui')
     }
 
 }
 
 
 stopEvent = true;
-
-
+//Guardar array de json con multiples fechas
+//pad stat
 //DE lado 
+//padStart()
 function load() {
     elem = document.getElementById("all-days");
     elem.addEventListener("click", stopEvent, false);
