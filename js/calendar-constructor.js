@@ -124,7 +124,7 @@ function populateCalendar(changeYear){
         if(date <= getMonthDays(year, iMonth)){
           if (i === 0 && (j+1) < getFirstMonthDay(year,iMonth-1)) {
             let cell = document.createElement('div');
-            cell.setAttribute('class','days');
+            cell.setAttribute('class','not-days');
             cellText = document.createTextNode("");
             cell.appendChild(cellText);
             row.appendChild(cell);
