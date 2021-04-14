@@ -48,8 +48,9 @@
 // */
 //displayEventsInMonth(currentMonthDisplay, eventsCalendar);
 function displayEventsInMonth(currentMonthDisplay, eventsCalendar){
+    console.log(currentMonthDisplay);
     for (date in eventsCalendar){
-        if(currentMonthDisplay == date.split("/")[1]){
+        if(currentMonthDisplay == date.split("/")[1] && year == date.split("/")[0]){
             eventsCalendar[date].forEach((element) => {
                 displayEventInDate(date, element.eventTitle, element.id, element.eventType);
                 // displayEventsInYearCalendar(date,element)

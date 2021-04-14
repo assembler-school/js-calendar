@@ -20,27 +20,28 @@ function todayButton(){
   if(calendarView == '' || calendarView == 'month-view'){
     clearMonthCalendar();
     month = currentMonth;
+    year = currentYear;
     calendarMonthConstructor(year,month);
-  };
+  }
   if(calendarView == 'year-view'){
     clearYearCalendar();
     year = currentYear;
     calendarConstructor(year);
-  };
-};
+  }
+}
 
 function nextButton(){
   if(calendarView == '' || calendarView == 'month-view'){
     month += 1;
     clearMonthCalendar();
     calendarMonthConstructor(month);
-  };
+  }
   if(calendarView == 'year-view'){
     year += 1;
     clearYearCalendar();
     calendarConstructor(year);
-  };
-};
+  }
+}
 
 
 //Remove month and year calendars
