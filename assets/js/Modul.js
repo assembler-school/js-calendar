@@ -19,6 +19,12 @@ let inputEventTypeValue = document.getElementById("eventSelect")
 //Reminder Inputs
 let reminderCheckBox = document.getElementById("reminderCheckBox");
 let reminderTextArea = document.getElementById("reminderSelect");
+//Remind me interval variables
+let fiveMin = document.getElementById('fiveMin');
+let tenMin = document.getElementById('tenMin');
+let fiveTenMin = document.getElementById('fiveTenMin');
+let threeTeneMin = document.getElementById('threeTenMin');
+let oneHour = document.getElementById('oneHour');
 //TextArea Input
 let inputDescriptionValue = document.getElementById("textAreaDescription");
 //Create Button
@@ -59,6 +65,9 @@ document.querySelector("#initialCal").value = today;
 function closeForm() {
   document.getElementById("myModal").style.display = "none";
   inputTitleKey.value = '';
+  inputDescriptionValue.value = '';
+  
+
   inputTitleKey.classList.remove('error')
 }
 // Show calendar when checkbox checked 
@@ -79,6 +88,7 @@ function reminderShowSelectBox() {
     reminderTextArea.style.display = "none"
   }
 } // End function
+
 //This function shows the event in the output box
 function createEvent (){
 
@@ -88,7 +98,8 @@ function createEvent (){
   section.insertAdjacentHTML("afterbegin", `<h1>${inputTitleKey.value}</h1><button class="btn__remove-event fas fa-trash" id="btn__remove__event"></button><div>${inputDateValue.value}, ${inputDateEndValue.value},${inputEventTypeValue.value}, ${inputTimedValue.value}, ${inputReminderValue.value}, ${inputDescriptionValue.value}</div>`);
   events.appendChild(section);
 }
-//This function saved the event in the local Stroage
+
+//This function saves the event in the local Stroage
 function saveEvent () {
   if (inputTitleKey.value) {
 inputTitleKey.classList.remove('error');
@@ -106,7 +117,20 @@ localStorage.setItem(inputDateValue.value , JSON.stringify(localStorageEvents));
   } else {
 inputTitleKey.classList.add('error');
   }
+ 
 }
+// Hace falta repasar
+// function reLoad (){
+//   if(inputDateValue.value === inputDateValue.value ) {
+//     saveEvent()
+//   } else {
+//     location.reload
+//   }
+// }
+
+//Reminder Functions 
+//Set interval of diferents options
+
 
 
 /*************************************************/
@@ -128,23 +152,6 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
-/* *********************************/
-//---------- BUTTON FUNCTIONS ------/
-/**********************************/
-//funcion que envia el formulario y ademas nos crea el objeto
-// Saves event at the event output 
-buttonSubmit.onclick = function () {
-
-  const supuestafecha = new Event(`${inputTitleKey.value}`,`${inputDateValue.value}`,`${inputDateEndValue.value}`,`${inputTimedValue.value}`,`${inputReminderValue.value}`,`${inputEventTypeValue.value}`,`${inputDescriptionValue.value}`);
-  console.log(supuestafecha);
-  supuestafecha.sentJSON();
-  // buttonSubmit.addEventListener("click", createEvent);
-  createEvent();
-  saveEvent()
-  closeForm();
- 
-};
-
 /* *********************************
 ---------- EVENT FUNCTIONS --------
 ********************************* */
@@ -189,8 +196,21 @@ function getID(clicked){
 // Pesco el div donde se guardaran los eventos
 let events = document.querySelector(".events");
 
+/* *********************************/
+//---------- BUTTON FUNCTIONS ------/
+/**********************************/
+//funcion que envia el formulario y ademas nos crea el objeto
+// Saves event at the event output 
+buttonSubmit.onclick = function () {
 
-
+  const supuestafecha = new Event(`${inputTitleKey.value}`,`${inputDateValue.value}`,`${inputDateEndValue.value}`,`${inputTimedValue.value}`,`${inputReminderValue.value}`,`${inputEventTypeValue.value}`,`${inputDescriptionValue.value}`);
+  console.log(supuestafecha);
+  supuestafecha.sentJSON();
+  // buttonSubmit.addEventListener("click", createEvent);
+  createEvent();
+  saveEvent();
+  closeForm();
+};
 
 /* *********************************
 ---------- DARK MODE -----------------
@@ -242,4 +262,5 @@ function isToday (){
 // for (let i = 0; i < localStorage.length; i++) {
 //   let key = localStorage.key(i);
 //   let value = localStorage.getItem(key);
-// }
+// 
+
