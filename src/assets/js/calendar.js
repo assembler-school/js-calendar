@@ -102,66 +102,45 @@ window.addEventListener('wheel', function (event) {
     }
 });
 
+//? Function to render events inside of calendar
+
 function renderEvent () {
-    const daysContainer = document.querySelectorAll(".day-number");
+    const daysContainer = document.querySelectorAll(".current-month-day");
     const currentMonth = date.getMonth() + 1;
     const currentYear = date.getFullYear();
-    //* To know days of month
-    const lastDay = new Date(
-        date.getFullYear(),
-        date.getMonth() + 1,
-        0
-    ).getDate();
-    // ! quiero recorrer primero los días del calendario y después los de la memoria
     //* Calendar days divs pass by
     for (let div of daysContainer) {
-
-
-
-
-
-
-        if (div.innerHTML == i) {
-            div.insertAdjacentElement('afterend',newEvent);
-        }
-    }
-
-
-
-
-
-
-    for (i = 1; i < lastDay; i++) {
-        if (!!eventsByDate[`${currentYear}-${currentMonth}-${i}`]) {
-            //* Access to event data
-            const eventId = eventsByDate[`${currentYear}-${currentMonth}-${i}`];
-            const eventTitle = eventsById[eventId].title;
-            const eventType = eventsById[eventId].eventType;
-            //* Create of the event element
-            let newEvent = document.createElement("div");
-            newEvent.classList.add("event-in-calendar");
-            newEvent.innerHTML = eventTitle;
-            newEvent.setAttribute("divEventId", eventId);
-            switch (eventType) {
-                case 'Study':
-                    newEvent.classList.add("blue-event");
-                    break;
-                case 'Meeting':
-                    newEvent.classList.add("green-event");
-                    break;
-                case 'Personal':
-                    newEvent.classList.add("orange-event");
-                    break;
-                default:
-                    break;
+        const dayNumber = div.firstChild.innerHTML;
+        //* checking that day has events
+        if (!!eventsByDate[`${currentYear}-${currentMonth}-${dayNumber}`]) {
+            //* Looping thru events in array
+            for (let eventObjectId of eventsByDate[`${currentYear}-${currentMonth}-${dayNumber}`]){
+                //* Access to event data
+                const eventTitle = eventsById[eventObjectId].title;
+                const eventType = eventsById[eventObjectId].eventType;
+                //* Create of the event element
+                let newEvent = document.createElement("div");
+                newEvent.classList.add("event-in-calendar");
+                newEvent.innerHTML = eventTitle;
+                newEvent.setAttribute("divEventId", eventObjectId);
+                //* choosing event color depending of event type
+                switch (eventType) {
+                    case 'Study':
+                        newEvent.classList.add("blue-event");
+                        break;
+                    case 'Meeting':
+                        newEvent.classList.add("green-event");
+                        break;
+                    case 'Personal':
+                        newEvent.classList.add("orange-event");
+                        break;
+                    default:
+                        break;
+                }
+                newEvent.addEventListener('click', eventModal);
+                //* Insert element in DOM
+                div.firstChild.insertAdjacentElement('afterend',newEvent);
             }
-            newEvent.addEventListener('click', eventModal);
-            //* Attach of element to DOM
         }
     }
-    /*
-    ! This code may be usable for later
-    for (let event of allEvents) {
-        event.addEventListener('click', eventModal);
-    } */
 }
