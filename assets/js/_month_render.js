@@ -50,7 +50,7 @@ export function renderEvents(year, month) {
     monthEvents.forEach(function (monthEvents){
         let eventDiv = document.createElement("div");
         eventDiv.setAttribute("data-eventid","event" + monthEvents.id);
-        eventDiv.setAttribute("class","event event__type--" + monthEvents["select-event"]);
+        eventDiv.setAttribute("class","event fade-in event__type--" + monthEvents["select-event"]);
         eventDiv.innerHTML = monthEvents.title;
         if (!d.querySelector(`[data-eventid="event${monthEvents.id}"]`)) {
             d.getElementById(new Date(monthEvents["init-date"]).getDate()).appendChild(eventDiv);
@@ -73,10 +73,14 @@ export function updateDate(year,month) {
 export function addTag(year, month) {
     let monthTag = document.getElementById('nav__tag');
     let yearTag = document.getElementById('nav__year');
+    let monthMobileTag = document.getElementById('nav__mobile--tag');
+    let yearMobileTag = document.getElementById('nav__mobile--year');
     let monthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
     monthTag.innerHTML = monthList[month];
     yearTag.innerHTML = year;
+    monthMobileTag.innerHTML = monthList[month];
+    yearMobileTag.innerHTML = year;
 }
 
 export function highlightToday(year, month){
