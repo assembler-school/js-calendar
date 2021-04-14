@@ -152,6 +152,7 @@ table {
   font-family: "Open Sans", sans-serif;
   /* outline: 1px solid red !important; */
   box-sizing: border-box;
+  cursor: default;
 }
 
 *:focus {
