@@ -18,6 +18,8 @@ function displayEventInDate(dateID,eventTitle){
 
 
 function inicializeRemindersList(){
+  nextRemindersList=[];
+  pastRemindersList=[];
     for (reminderID in reminders){
         let reminder = reminders[reminderID];
         //console.log(Date.parse(reminder.reminderDate))
@@ -26,28 +28,33 @@ function inicializeRemindersList(){
         }else{
             pastRemindersList.push(reminder);
         }
-
-        }
+        
+      }
+    sortRemindersList(nextRemindersList,1);
+    sortRemindersList(pastRemindersList,-1);
+    startNextAlarmTimeout();
 }
-function sortRemindersList(remindersList){
+function sortRemindersList(remindersList, sign){
   remindersList.sort(function (a, b) {
         if (a['reminderDate'] > b['reminderDate']) {
-          return 1;
+          return 1*sign;
         }
         if (a['reminderDate'] < b['reminderDate']) {
-          return -1;
+          return -1*sign;
         }
         // a must be equal to b
         return 0;
       });
 }
 
-function setNextAlarmTimeout(){
+function startNextAlarmTimeout(){
   let timeLeft = Date.parse(nextRemindersList[0].reminderDate) - Date.now();
-  setTimeout(function(){ 
-      alert("Hello"); 
-    
+  setTimeout(function(){
+      alert("Hello, reminder for " + nextRemindersList[0].eventTitle);
+      pastRemindersList.unshift(nextRemindersList.shift());
+      startNextAlarmTimeout();
     }, timeLeft);
+    console.log(timeLeft)
 }
 
 
