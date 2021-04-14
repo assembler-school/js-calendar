@@ -444,6 +444,48 @@ button#create-event i {
 }
 
 /*
+===================================
+        CALENDAR YEAR
+===================================
+*/
+.calendar__year--row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  /* Ocultar el height a 100% y mostrar el calc */
+  height: 100%;
+  gap: 1% 2%;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  /*height: calc(100% - 55px);*/
+}
+.calendar__year--month {
+  display: grid;
+  width: 100%;
+  padding: 0.2rem;
+  border: #dadce0 1px solid;
+}
+.calendar__year--tittle {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.calendar__year--tittle h2 {
+  font-size: 1.2rem;
+}
+.calendar__year--date {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  gap: 4px;
+  width: 100%;
+  font-size: 0.8rem;
+}
+
+
+
+
+/*
   ===================================
      ! Modal styles
   ===================================
@@ -696,6 +738,25 @@ i.fa-times-circle {
     border-radius: 10rem;
     margin: 0.5rem 0;
   }
+  /*
+  ========================
+    CSS MONTH OF YEARS
+  ========================
+  */
+  .calendar__year--row {
+    gap:2%;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  }
+  .calendar__year--month {
+    padding: 0;
+  }
+  .calendar__year--tittle h2 {
+    font-size: 1rem;
+  }
+  .calendar__year--date {
+    gap: 0px;
+    font-size: 0.9rem;
+  }
 }
 
 /* Medium screen */
@@ -716,11 +777,9 @@ i.fa-times-circle {
     margin: 0.5rem 0;
     font-size: 0.8rem;
   }
-
   .more__event {
     font-size: 0.8rem;
   }
-
   #calendar {
     padding: 0.5rem 0.5rem 0.5rem 0.5rem;
   }
@@ -737,12 +796,10 @@ i.fa-times-circle {
     font-size: 1.6rem;
     margin: 0.5rem 0;
   }
-
   .alert__event p {
     font-size: 1rem;
     margin: 0.5rem 0;
   }
-
   .alert__event p * {
     font-size: 1rem;
   }
@@ -758,6 +815,23 @@ i.fa-times-circle {
     overflow-y: auto;
     margin: 0.5rem 0;
     padding: 0 0.4rem;
+  }
+  /*
+  ========================
+    CSS MONTH OF YEARS
+  ========================
+  */
+  .calendar__year--row {
+    gap:4%;
+    padding: 0.5rem 1rem 1rem 1rem;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .calendar__year--tittle h2 {
+    font-size: 1.4rem;
+  }
+  .calendar__year--date {
+    gap: 6px;
+    font-size: 1rem;
   }
 }
 
@@ -820,7 +894,28 @@ i.fa-times-circle {
     /*max-width: 340px;*/
     box-shadow: 0px 0px 899px 380px rgb(136 136 136);
   }
-  
+  /*
+  ========================
+    CSS MONTH OF YEARS
+  ========================
+  */
+  .calendar__year--row {
+    grid-template-columns: repeat(4, 1fr);
+    gap:4%;
+    padding: 0.5rem 2rem 2rem 2rem;
+    /*height: calc(100% - 55px);*/
+  }
+  .calendar__year--month {
+    padding: 0.2rem;
+  }
+  .calendar__year--tittle h2 {
+    font-size: 1.4rem;
+  }
+  .calendar__year--date {
+    gap: 10px;
+    width: 100%;
+    font-size: 1rem;
+  }
 }
 
 /*
