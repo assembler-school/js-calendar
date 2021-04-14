@@ -221,9 +221,9 @@ function removeEvent(id) {
     }
     document.querySelectorAll(`p[class~="${id}"]`).forEach(e => {e.remove()});
 
-    // reminders = reminders.filter((reminder) => {
-    //     return reminder.id !== id;
-    // });
+    if (reminders[id]) {
+        delete reminders[id];
+    }
 
     localStorage.setItem('calendarEvents', JSON.stringify(calendarEvents));
     localStorage.setItem('reminders', JSON.stringify(reminders));
