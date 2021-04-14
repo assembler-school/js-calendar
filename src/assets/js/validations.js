@@ -14,21 +14,22 @@ const day = Newdate.getDate();
 const toDay = day + '/' + month + '/' + year;
 
 const expresiones = {
-    title: /^[a-zA-ZÀ-ÿ\s\d]{4,10}$/,
+    title: /^[a-zA-ZÀ-ÿ\s\d]{1,60}$/,
     description: /^[a-zA-ZÀ-ÿ\s\d]{1,40}$/
 };
-    document.getElementById('title').addEventListener('keyup',validarTitulo);
-    document.getElementById('initialDate').addEventListener('keyup',validarInitialDate);
-    document.getElementById('endDate').addEventListener('keyup',validarEndDate);
-    document.getElementById('description').addEventListener('keyup',validarDescription);
-function validarFormulario(){
-  if(validarTitulo() && validarInitialDate() &&  validarEndDate() && validarDescription()){
-    createButton.classList.remove('m-action-buttonHidden');     
-    createButton.classList.add('m-action-button');
+
+    document.getElementById('title').addEventListener('onkeyup',validarTitulo);
+    document.getElementById('initialDate').addEventListener('onkeyup',validarInitialDate);
+    document.getElementById('endDate').addEventListener('onkeyup',validarEndDate);
+    // document.getElementById('description').addEventListener('focus',validarDescription);
+function validarFormulario() {
+  if(validarTitulo() && validarInitialDate() &&  validarEndDate()){
+        createButton.removeAttribute("disabled");
+        createButton.style.opacity = 1;
     }
     else{
-
-        createButton.classList.add('m-action-buttonHidden');  
+        createButton.disabled = true;
+        createButton.style.opacity = 0.5;
     }
 }
 
@@ -74,20 +75,5 @@ function validarEndDate(){
             inputs[3].classList.remove("incorrect");
             return true;
         }
-    }
-    
-}
-function validarDescription(){
-
-    //Validacion Descripcion
-    if(desc.value === null || desc.value === ""){
-        inputs[1].classList.add("incorrect");
-        return false;
-    }else if(!expresiones.description.test(inputs[1].value)){
-        inputs[1].classList.add("incorrect");
-        return false;
-    }else{
-        inputs[1].classList.remove("incorrect");
-        return true;
     }
 }

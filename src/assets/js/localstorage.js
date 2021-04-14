@@ -70,7 +70,7 @@ function createEvent() {
             eventsByDate[`${startYear}-${startMonth}-${startDate}`] = [];
         }
         eventsByDate[`${startYear}-${startMonth}-${startDate}`].push(eventIndex);
-        let lastDayOfMonth = new Date(startYear,startMonth + 1,0).getDate();
+        let lastDayOfMonth = new Date(startYear,startMonth,0).getDate();
         if (lastDayOfMonth === startDate) {
             if (startMonth === 12){
                 startYear += 1;
@@ -90,4 +90,5 @@ function createEvent() {
     localStorage.setItem("remindersByDate", JSON.stringify(remindersByDate));
     eventIndex += 1;
     localStorage.setItem("eventIndex", JSON.stringify(eventIndex));
+    renderCalendar();
 }

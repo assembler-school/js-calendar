@@ -1,6 +1,9 @@
 
+
 // ctes declaration
-const modalForm = document.getElementById("form");
+
+const form = document.getElementById("form");
+const createEventM = document.getElementById("m-createBtn");
 
 const modalSection = document.getElementById("modal-section");
 
@@ -10,47 +13,78 @@ const modalCloseButton = document.querySelector(".modal-button.fa-window-close")
 
 const modalCancelButton = document.getElementById("m-cancelBtn");
 
-const modalDivs = document.getElementById("modal-event-div");
 
 
+function justFunc(event) {
+    modalSection.classList.remove("hidden");
+    var divsDate = new Date();
+    var divsActualMonth = date.getMonth() + 1;
+    var todayHour = divsDate.getHours();
+    var todayMinutes = divsDate.getMinutes();
+    var todayDate = event.target.firstChild.textContent;
+    if (todayDate < 10)
+        todayDate ='0' + todayDate;
+    if (todayHour < 10)
+        todayHour = "0" + todayHour;
+    if (todayMinutes < 10)
+        todayMinutes  = "0" + todayMinutes;
+    if (divsActualMonth < 10)
+        divsActualMonth ='0' + divsActualMonth;
+    document.getElementById("initialDate").value =
+        `${date.getFullYear()}-${divsActualMonth}-${todayDate}T${todayHour}:${todayMinutes}`;
+};
+
+function addEachListener (event) {
+    for (let div of modalDivs.children) {
+        div.addEventListener('click', justFunc);
+    }
+}
 
 // Show de modal event. Open and close it.
 
-    modalOpenButton.onclick = function() {
-        modalSection.classList.remove("hidden");
-    }
-
-    modalCloseButton.onclick = function() {
-        modalSection.classList.add("hidden");
-        modalForm.reset();
-    }
-
-    modalCancelButton.onclick = function() {
-        modalSection.classList.add("hidden");
-        modalForm.reset();
-    }
-
-    window.onclick = function(event) {
-        if (event.target == modalSection){
-            modalSection.classList.add("hidden");
-            modalForm.reset();
-        }
-    }
-    document.onkeydown = function (evt) {
-        evt = evt || window.event;
-        if (evt.keyCode == 27) {
-            modalSection.classList.add("hidden");
-            modalForm.reset();
-        }
-    };
-
-    // Display modal event when div has been clicked
-
-for (let div of modalDivs.children) {
-    div.addEventListener('click', justFunc);
-}
-function justFunc(event) {
+modalOpenButton.onclick = function() {
     modalSection.classList.remove("hidden");
+    var divsDate = new Date();
+    var divsActualMonth = divsDate.getMonth() + 1;
+    var todayDate = divsDate.getDate()
+    var todayYear = divsDate.getFullYear();
+    var todayHour = divsDate.getHours();
+    var todayMinutes = divsDate.getMinutes();
+
+    if (todayDate < 10)
+        todayDate ='0' + todayDate;
+    if (todayHour < 10)
+        todayHour = "0" + todayHour;
+    if (todayMinutes < 10)
+        todayMinutes  = "0" + todayMinutes;
+    if (divsActualMonth < 10)
+        divsActualMonth ='0' + divsActualMonth;
+        document.getElementById("initialDate").value = `${todayYear}-${divsActualMonth}-${todayDate}T${todayHour}:${todayMinutes}`;
+}
+
+modalCloseButton.onclick = function() {
+    modalSection.classList.add("hidden");
+    document.getElementById("form").reset();
+}
+
+modalCancelButton.onclick = function() {
+    modalSection.classList.add("hidden");
+    document.getElementById("form").reset();
+}
+
+window.onclick = function(event) {
+    if (event.target == modalSection){
+        modalSection.classList.add("hidden");
+        document.getElementById("form").reset();
+    }
+}
+
+window.onkeyup = function(event) {
+    let escNow = event.keyCode || event.which;
+    if (escNow == 27){
+        modalSection.classList.add("hidden");
+        document.getElementById("form").reset();
+    }
 }
 
 // Show or hidden the checkbox info
@@ -60,6 +94,7 @@ function showMeTheEndDate(){
         document.getElementById("endDate").removeAttribute("disabled");
     } else{
         document.getElementById("endDate").disabled = true;
+        document.getElementById("endDate").classList.remove("incorrect");
     }
 }
 
@@ -70,14 +105,6 @@ function showMeTheReminder(){
         document.getElementById("time").disabled = true;
     }
 }
-
-// Match the same day in checkboxes when divs has been clicked
-
-const divsDate = new Date();
-
-const divsActualMonth = divsDate.getMonth() + 1;
-
-const todayDate = divsDate.getDate() + "/" + divsActualMonth + "/" + divsDate.getFullYear();
 
 
 
