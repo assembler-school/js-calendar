@@ -137,10 +137,10 @@ function populateCalendar(changeYear){
             var idMonth = iMonth;
             var idDay = date;
             if(idMonth < 10){
-               idMonth = '0' + idMonth
+              idMonth = '0' + idMonth
             };
             if(idDay < 10){
-                idDay = '0' + idDay;
+              idDay = '0' + idDay;
             };
 
             cell.setAttribute('id',year + '/' + idMonth + '/' + idDay);

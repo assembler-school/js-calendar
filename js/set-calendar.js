@@ -66,7 +66,7 @@ function today(month,currentDay,currentMonth,currentYear){
       if(month === currentMonth){
           document.querySelector('[id="' + currentYear + '/' + idCurrentMonth + '/' + idCurrentDay + '"]').parentNode.classList += ' month-current-day';
       }
-  }else{
+  }else if(document.querySelector(".main-content-section").firstElementChild.id === "year-section"){
     var idCurrentMonth = currentMonth + 1;
     var idCurrentDay = currentDay;
     if(idCurrentMonth < 10){
@@ -76,7 +76,10 @@ function today(month,currentDay,currentMonth,currentYear){
         idCurrentDay = '0' + idCurrentDay;
     }
     if(month === currentMonth){
-      document.querySelector('[id="' + currentYear + '/' + idCurrentMonth + '/' + idCurrentDay + '"]').classList += ' month-current-day';
+      console.log(document.querySelector('[id="' + currentYear + '/' + idMonth + '/' + idCurrentDay + '"]').classList);
+      console.log(currentYear + '/' + idMonth + '/' + idCurrentDay);
+      document.querySelector('[id="' + currentYear + '/' + idCurrentMonth + '/' + idCurrentDay + '"]').classList.add('year-current-day');
+      console.log(document.querySelector('[id="' + currentYear + '/' + idMonth + '/' + idCurrentDay + '"]'));
     }
   }
 }

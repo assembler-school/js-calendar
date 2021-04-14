@@ -62,7 +62,11 @@
 }
 
 .month-current-day {
-  border:5px solid rgb(102, 174, 175) !important;
-  border-radius:none;
+  border:5px solid rgb(102, 174, 175);
+}
+
+.year-current-day{
+  color:var(--textLightGray);
+  border:3px solid rgb(102, 174, 175);
 }
 
