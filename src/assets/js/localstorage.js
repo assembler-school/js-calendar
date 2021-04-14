@@ -3,7 +3,6 @@ var eventsByDate = {};
 var eventsById = [];
 var remindersByDate =
     localStorage.getItem('remindersByDate') ? JSON.parse(localStorage.getItem('remindersByDate')) : {};
-var remindersById = [];
 if (!localStorage.getItem("eventIndex")) {
     var eventIndex = 0;
 } else {
@@ -88,7 +87,6 @@ function createEvent() {
 
     localStorage.setItem("eventsById", JSON.stringify(eventsById));
     localStorage.setItem("eventsByDate", JSON.stringify(eventsByDate));
-    localStorage.setItem("remindersById", JSON.stringify(remindersById));
     localStorage.setItem("remindersByDate", JSON.stringify(remindersByDate));
     eventIndex += 1;
     localStorage.setItem("eventIndex", JSON.stringify(eventIndex));
