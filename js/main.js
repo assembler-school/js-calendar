@@ -214,3 +214,24 @@ function removeEvent(initialDate, id) {
     //     return reminder.id !== id;
     // });
 }
+
+
+let elementEvent = document.querySelectorAll('.event-text');
+elementEvent.forEach(element => {
+    element.addEventListener('click', function(){
+        let id = element.getAttribute('class');
+        // let element = document.getElementsByClassName(id);
+        element.remove();
+        // removeThisEvent(element)
+    });
+});
+
+function displayEventsDetails(id) {
+    alert('este es el evento con la id ' + id);
+};
+
+function removeThisEvent(element) {
+    element.remove()
+}
+
+// document.querySelectorAll('p[class~="1618329939128"]');
