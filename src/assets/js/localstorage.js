@@ -25,9 +25,6 @@ let calendarEvent = class {
         this.eventType = eventType;
         this.id = id;
     }
-    /* get idNum () {
-        return this.id;
-    } */
 }
 
 // TODO validate verification before createEvent
@@ -37,14 +34,13 @@ let createBtn = document.getElementById("m-createBtn");
 createBtn.addEventListener('click', createEvent);
 
 function createEvent() {
-    /* getModalData (titleF, iniDateF. enDateF, reminderF, descriptionF, eventTF); */
     titleF = document.getElementById("title").value;
     iniDateF = document.getElementById("initialDate").value;
     const enDateF = document.getElementById("endDate").value;
-    const reminderF = document.getElementById("time").value;
     const descriptionF = document.getElementById("description").value;
     const eventTF = document.getElementById("event-type").value;
     const checkBoxReminder = document.getElementById("check-box-reminder").checked;
+    const reminderF = (checkBoxReminder) ? document.getElementById("time").value : '';
     //*converting date to Date object
     let formattedIniDate = new Date(iniDateF);
     let formattedEndDate = new Date(enDateF);
@@ -69,9 +65,7 @@ function createEvent() {
         }
         remindersByDate[`${startYear}-${startMonth}-${startDate}`].push(eventIndex);
     }
-
     //* Saving in eventsByDate
-
     for (i = 0; i < daysDuration; i++) {
         if (!eventsByDate[`${startYear}-${startMonth}-${startDate}`]) {
             eventsByDate[`${startYear}-${startMonth}-${startDate}`] = [];
@@ -96,15 +90,6 @@ function createEvent() {
     localStorage.setItem("eventsByDate", JSON.stringify(eventsByDate));
     localStorage.setItem("remindersById", JSON.stringify(remindersById));
     localStorage.setItem("remindersByDate", JSON.stringify(remindersByDate));
-    //console.log(titleF,iniDateF,enDateF,reminderF,descriptionF,eventTF);
     eventIndex += 1;
     localStorage.setItem("eventIndex", JSON.stringify(eventIndex));
 }
-/* createEvent(); */
-/* function getModalData (titleF, iniDateF, enDateF, reminderF, descriptionF, eventTF) {
-
-
-
-
-} */
-
