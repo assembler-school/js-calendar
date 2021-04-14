@@ -103,14 +103,6 @@ function populateCalendar(changeYear){
   //Body of the calendar
   var months = document.querySelectorAll('.month');
 
-  //Change between years
-  if(!changeYear || changeYear == currentYear){
-    year = currentYear;
-  }else{
-    year = currentYear + changeYear;
-  };
-  console.log(year);
-
   var iMonth = 1;
   months.forEach((element) => {
 
@@ -132,7 +124,7 @@ function populateCalendar(changeYear){
         if(date <= getMonthDays(year, iMonth)){
           if (i === 0 && (j+1) < getFirstMonthDay(year,iMonth-1)) {
             let cell = document.createElement('div');
-            cell.setAttribute('class','days');
+            cell.setAttribute('class','not-days');
             cellText = document.createTextNode("");
             cell.appendChild(cellText);
             row.appendChild(cell);
@@ -141,7 +133,17 @@ function populateCalendar(changeYear){
           else {
             let cell = document.createElement('div');
             cell.setAttribute('class','days');
-            cell.setAttribute('id',year + '/' + iMonth + '/' + date);
+            
+            var idMonth = iMonth;
+            var idDay = date;
+            if(idMonth < 10){
+              idMonth = '0' + idMonth
+            };
+            if(idDay < 10){
+              idDay = '0' + idDay;
+            };
+
+            cell.setAttribute('id',year + '/' + idMonth + '/' + idDay);
             let cellText = document.createTextNode(date);
             cell.appendChild(cellText);
             row.appendChild(cell);
@@ -153,14 +155,9 @@ function populateCalendar(changeYear){
     }
     iMonth++;
   });
-  // today(month,currentDay,currentMonth,currentYear);
+  today(month,currentDay,currentMonth,currentYear);
 };
 
-
-
-// function today(currentDay,currentMonth,currentYear){
-//   document.querySelector('[id="' + currentYear + '/' + (currentMonth + 1) + '/' + currentDay + '"]').classList += ' current';
-// }
 
 function updateYearHeader(yearText) {
   let currentMonthText = document.querySelector('.currentMonth-text');

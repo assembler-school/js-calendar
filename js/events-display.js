@@ -1,23 +1,29 @@
 function displayEventsInMonth(currentMonthDisplay, eventsCalendar){
+    console.log(currentMonthDisplay);
     for (date in eventsCalendar){
-        if(currentMonthDisplay == date.split("/")[1]){
-            for (eventName in eventsCalendar[date]){
-                displayEventInDate(date,eventName);
-            }
+        if(currentMonthDisplay == date.split("/")[1] && year == date.split("/")[0]){
+            eventsCalendar[date].forEach((element) => {
+                displayEventInDate(date, element.eventTitle, element.id, element.eventType);
+                // displayEventsInYearCalendar(date,element)
+            });
         }
     }
 }
 
-function displayEventInDate(dateID,eventTitle){
-    let displayedEvent = document.createElement("P");
+function displayEventInDate(dateID,eventTitle, eventId,eventType) {
+    let displayedEvent = document.createElement("p");
+    setColorTypeOfEvent(displayedEvent,eventType)
+    displayedEvent.className += eventId;
     let eventTitleTextNode = document.createTextNode(eventTitle);
     displayedEvent.appendChild(eventTitleTextNode);
-    displayedEvent.className = "event-text";
-    document.getElementById(dateID).appendChild(displayedEvent);
+    displayedEvent.className += " event-text";
+    document.getElementById(dateID).parentNode.lastChild.appendChild(displayedEvent);
 }
 
 
-function inicializeRemindersList(){
+
+
+function initRemindersList(){
   nextRemindersList=[];
   pastRemindersList=[];
     for (reminderID in reminders){
@@ -60,3 +66,18 @@ function startNextAlarmTimeout(){
         }, timeLeft);
     }
 }
+
+//Color for event types
+function setColorTypeOfEvent(displayedEvent,eventType){
+    switch(eventType){
+        case 'EventType1':
+            displayedEvent.className = 'event-type-1 ';
+            break;
+        case 'EventType2':
+            displayedEvent.className = 'event-type-2 ';
+            break;
+    }}
+
+// function displayEventsInYearCalendar(){
+
+// }

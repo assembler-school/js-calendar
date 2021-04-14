@@ -6,6 +6,8 @@ var currentYear = currentDate.getFullYear();
 
 var month = currentMonth;
 var year = currentYear;
+var idMonth
+var idDay
 
 var shortDays = ['M','T','W','T','F','S','S'];
 var weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
@@ -14,7 +16,8 @@ var monthsNames = ["January", "February", "March", "April", "May", "June", "July
 
 var calendarView = '';
 
-var reminders = JSON.parse(localStorage.getItem('reminders')) || {};
 var nextRemindersList = [];
 var pastRemindersList = [];
 var currentTimeout;
+var calendarEvents = {};
+var reminders = {};

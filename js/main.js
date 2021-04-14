@@ -1,5 +1,11 @@
-var calendarEvents = JSON.parse(localStorage.getItem('calendarEvents')) || {};
-
+(function initVars() {
+    if (localStorage.getItem('calendarEvents') && localStorage.getItem('calendarEvents') !== 'undefined') {
+        calendarEvents = JSON.parse(localStorage.getItem('calendarEvents'));
+    }
+    if (localStorage.getItem('reminders') && localStorage.getItem('reminders') !== 'undefined') {
+        reminders = JSON.parse(localStorage.getItem('reminders'));
+    }
+})();
 
 function addNewTemplate(containerId, templateId) {
     const templateContent = document.querySelector(`#${templateId}`).content;
@@ -19,7 +25,6 @@ document.getElementById('monthView-btn').addEventListener("click", (event)=>{
         calendarMonthConstructor();
         //Calendar view
         calendarView = 'month-view';
-        console.log(calendarView);
     }
 });
 document.getElementById('yearView-btn').addEventListener("click", (event)=>{
@@ -30,11 +35,10 @@ document.getElementById('yearView-btn').addEventListener("click", (event)=>{
         calendarConstructor();
         //Calendar view
         calendarView = 'year-view';
-        console.log(calendarView);
     }
 });
 addNewTemplate("main-content-section", "month-template");
-
+calendarMonthConstructor();
 hideModal();
 
 function setCheckboxVisibility(event) {
@@ -115,9 +119,8 @@ function formatDate(date) {
     return date.toLocaleDateString('en-ZA'); //format YYYY/MM/DD
 }
 
-function addReminder(reminderDate, eventTitle, initialDate) {
-    let reminderId = new Date().getTime();
-    reminders[reminderId] = {
+function addReminder(eventId, reminderDate, eventTitle, initialDate) {
+    reminders[eventId] = {
         'eventTitle': eventTitle,
         'reminderDate': reminderDate,
         'initialDate': initialDate
@@ -128,6 +131,7 @@ function addReminder(reminderDate, eventTitle, initialDate) {
 function addEventToCalendar(eventParams) {
     let dateId = formatDate(new Date(eventParams.initialDate));
     let validFields = {
+        'id': eventParams.id,
         'eventTitle': eventParams.eventTitle,
         'initialDate': eventParams.initialDate,
         'description': eventParams.description,
@@ -139,7 +143,7 @@ function addEventToCalendar(eventParams) {
     }
     if (eventParams.reminderChecked) {
         validFields['reminderDate'] = eventParams.reminderDate;
-        addReminder(eventParams.reminderDate, eventParams.eventTitle, eventParams.initialDate);
+        addReminder(validFields.id, eventParams.reminderDate, eventParams.eventTitle, eventParams.initialDate);
     }
     if (!calendarEvents.hasOwnProperty(dateId)) {
         calendarEvents[dateId] = [];
@@ -158,7 +162,9 @@ function saveEventData() {
     let description = document.getElementById('description').value;
     let eventType = document.getElementById('eventTypeSelect').value;
     //añadir reminder solo al primer dia si dura varios dias el evento
+    let eventId = new Date().getTime();
     addEventToCalendar({
+        id: eventId,
         eventTitle: eventTitle,
         initialDate: initialDate,
         endDateChecked: endDateChecked,
@@ -175,6 +181,7 @@ function saveEventData() {
         for (let i = 0; i < extraDays; i++) {
             initialDateDate.setDate(initialDateDate.getDate() + 1);
             addEventToCalendar({
+                id: eventId,
                 eventTitle: eventTitle,
                 initialDate: initialDateDate,
                 endDateChecked: endDateChecked,
@@ -188,12 +195,12 @@ function saveEventData() {
 
 function saveEvent() {
     if (!document.getElementById('eventTitleId').value) {
-        alert('The event tittle is required.')
+        alert('The event tittle is required')
         return false;
     }
 
     if (endDateValidation()) { // endDate > startDate
-        alert('The start date must be before the end date.')
+        alert('The start date must be before the end date')
         return false;
     }
     if (reminderValidation()) { //reminder > currentDate  && reminder < initialDate
@@ -201,5 +208,27 @@ function saveEvent() {
         return false;
     }
     saveEventData();//save data
-    inicializeRemindersList();
+    initRemindersList();
+    hideModal();
+    clearMonthCalendar();
+    calendarMonthConstructor(month);
+}
+
+function removeEvent(id) {
+    for(let day in calendarEvents) {
+        calendarEvents[day] = calendarEvents[day].filter(event => {
+            return event.id !== id;
+        });
+        if (!calendarEvents[day].length) {
+            delete calendarEvents[day];
+        }
+    }
+    document.querySelectorAll(`p[class~="${id}"]`).forEach(e => {e.remove()});
+
+    if (reminders[id]) {
+        delete reminders[id];
+    }
+
+    localStorage.setItem('calendarEvents', JSON.stringify(calendarEvents));
+    localStorage.setItem('reminders', JSON.stringify(reminders));
 }
