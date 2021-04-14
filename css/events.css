@@ -35,3 +35,35 @@
   background:var(--textLightGray);
   border-radius: 10px;
 }
+
+
+/* EVENT TYPES */
+.event-type-2{
+  background-color:rgb(251, 163, 137);
+  color:var(--bg);
+}
+
+.event-type-2:hover{
+  background-color:rgb(255, 102, 51);
+  color:var(--bg);
+}
+
+.event-type-3{
+  background-color:rgba(177, 233, 255, 0.945);
+}
+
+.event-type-3:hover{
+  background-color:rgba(15, 185, 252, 0.945);
+  color:var(--bg);
+}
+
+.event-type-4{
+  background-color:rgba(187, 251, 185, 0.945);
+}
+
+.event-type-4:hover{
+  background-color:rgba(100, 253, 95, 0.945);
+  color:var(--bg);
+}
+
+/* 

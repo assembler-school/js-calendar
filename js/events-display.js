@@ -51,17 +51,34 @@ function displayEventsInMonth(currentMonthDisplay, eventsCalendar){
     for (date in eventsCalendar){
         if(currentMonthDisplay == date.split("/")[1]){
             eventsCalendar[date].forEach((element) => {
-                displayEventInDate(date, element.eventTitle, element.id);
+                displayEventInDate(date, element.eventTitle, element.id, element.eventType);
+                // displayEventsInYearCalendar(date,element)
             });
         }
     }
 }
 
-function displayEventInDate(dateID,eventTitle, eventId) {
+function displayEventInDate(dateID,eventTitle, eventId,eventType) {
     let displayedEvent = document.createElement("p");
+    setColorTypeOfEvent(displayedEvent,eventType)
     displayedEvent.className += eventId;
     let eventTitleTextNode = document.createTextNode(eventTitle);
     displayedEvent.appendChild(eventTitleTextNode);
     displayedEvent.className += " event-text";
     document.getElementById(dateID).parentNode.lastChild.appendChild(displayedEvent);
 }
+
+//Color for event types
+function setColorTypeOfEvent(displayedEvent,eventType){
+    switch(eventType){
+        case 'EventType1':
+            displayedEvent.className = 'event-type-1 ';
+            break;
+        case 'EventType2':
+            displayedEvent.className = 'event-type-2 ';
+            break;
+    }}
+
+// function displayEventsInYearCalendar(){
+
+// }
