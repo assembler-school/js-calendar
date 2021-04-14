@@ -26,6 +26,7 @@ function todayButton(){
   if(calendarView == 'year-view'){
     clearYearCalendar();
     year = currentYear;
+    month = currentMonth;
     calendarConstructor(year);
   }
 }
