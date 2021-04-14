@@ -1,22 +1,22 @@
 //Cogemos la fecha de hoy
 const date = new Date();
 
-//Pesco la fecha actual
-var exactlyToday = date.toISOString().substr(8,2);
-console.log(exactlyToday, "La fecha actual wey");
-
-//coge el numero exacto del mes actual
-var actual_month = date.toISOString().substr(5,2);
-console.log(actual_month, "mes actual");
-
-//coge el numero exacto del año
-var actual_year = date.toISOString().substr(0,4);
-console.log(actual_year, "año actual");
-
-const renderCalendar = () => {
+function renderCalendar() {
 
   date.setDate(1);
   //Detecta el primer dia del mes y encuentra la resta entre el mismo y 0
+
+  //Pesco la fecha actual
+  const exactlyToday = new Date().toISOString().substr(8,2);
+  console.log(exactlyToday, "La fecha actual wey");
+
+  //coge el numero exacto del mes actual
+  const actual_month = date.toISOString().substr(5,2);
+  console.log(actual_month, "el mes actual wey");
+
+  //coge el numero exacto del año
+  const actual_year = new Date().toISOString().substr(0,4);
+  console.log(actual_year, "año actual");
 
   //Recoge el DIV con la clase .days
   const monthDays = document.querySelector(".days")
@@ -70,34 +70,55 @@ const renderCalendar = () => {
 
   /* Bucle que crea los dias anteriores al numero obtenido con el firstDayIndex y les añade la clase prev-date*/
   for (let x = firstDayIndex; x > 0; x--) {
-      days += `<div class = "prev-date" id="${prevLastDay - x+1}-${actual_month-1}-${actual_year}">${prevLastDay - x+1}</div>`;
+    // Convierto el dia en un numero de un digito a dos digitos
+    let i = x.toString();
+    let y = i.padStart(2, "0");
+    // Convierto el mes en un numero de un digito a dos digitos
+    let h = parseInt(actual_month - 1);
+    let m = h.toString();
+    let o = m.padStart(2, "0");
+    days += `<div class = "prev-date" id="${prevLastDay - y+1}-${o}-${actual_year}">${prevLastDay - x+1}</div>`;
   }
 
- var myDayArray = [01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32]
-  /* Bucle para crear todos los Divs que necesitamos para el día del mes */
-  for (i = myDayArray[0]; i <= lastDay; i++) {
+ /* Bucle para crear todos los Divs que necesitamos para el día del mes */
+  for (let i = 1; i <= lastDay; i++) {
+    let x = i.toString();
+    let y = x.padStart(2, "0");
       /* Este if es solo un comparador que te compara el valor de la variable (date) con la fecha actual de un nuevo objeto Date y si coincide, le aplica la clase TODAY */
-      if (i === new Date().getDate() && date.getMonth() === new Date().getMonth() && date.getFullYear() === new Date().getFullYear()) {
-          days += `<div class="today no-event-day" id="${i}-${actual_month}-${actual_year}">${i}</div>`;
+      if (y === new Date().getDate() && actual_month === new Date().getMonth() && date.getFullYear() === new Date().getFullYear()) {
+        // Convierto el mes en un numero de un digito a dos digitos
+        let h = parseInt(actual_month);
+        let x = h.toString();
+        let o = x.padStart(2, "0");
+        days += `<div class="today no-event-day" id="${y}-${o}-${actual_year}">${y}</div>`;
       } else {
-          /*De lo contrario, te coge el numero almacenado en la variable lastDay y te va restando y crrando los Divs necesarios */
-          days += `<div class="no-event-day" id="${actual_year}-${actual_month}-${i}">${i}</div>`;
+        /*De lo contrario, te coge el numero almacenado en la variable lastDay y te va restando y crrando los Divs necesarios */
+        // Convierto el mes en un numero de un digito a dos digitos
+        let h = parseInt(actual_month);
+        let x = h.toString();
+        let o = x.padStart(2, "0");
+        days += `<div class="no-event-day" id="${actual_year}-${o}-${y}">${y}</div>`;
       }
-
       monthDays.innerHTML = days;
   }
 
   /* Con la variable nexDays, te está creando tantos DIVS como el nextdays tenga de dias restamtes de semana */
   for (let j = 1; j <= nextDays; j++) {
-      days += `<div class = "next-date" id="${j}-${actual_month +1}-${actual_year}">${j}</div>`;
-      monthDays.innerHTML = days;
+    // Convierto el dia en un numero de un digito a dos digitos
+    let i = j.toString();
+    let y = i.padStart(2, "0");
+    // Convierto el mes en un numero de un digito a dos digitos
+    let h = parseInt(actual_month) + 1;
+    let x = h.toString();
+    let o = x.padStart(2, "0");
+    days += `<div class = "next-date" id="${actual_year}-${o}-${y}">${j}</div>`;
+    monthDays.innerHTML = days;
   }
 
 }
 
 //Esta funcion renderiza el calendario por primera vez
 renderCalendar();
-
 //Detecta el boton PREV y setea el mes en -1 y vuelve a renderizar el calendario
 var btnPrev = document.querySelector(".prev").addEventListener("click", () => {
   date.setMonth(date.getMonth() - 1);
@@ -105,12 +126,10 @@ var btnPrev = document.querySelector(".prev").addEventListener("click", () => {
 });
 
 //Detecta el boton NEXT y setea el mes en +1 y vuelve a renderizar el calendario
-var btnPrev = document.querySelector(".next").addEventListener("click", () => {
+var btnNext = document.querySelector(".next").addEventListener("click", () => {
   date.setMonth(date.getMonth() + 1);
   renderCalendar();
 });
-
-
 
 /*************************************************************/
 //--------------Einar function on calendar-------------------/

@@ -192,38 +192,6 @@ function changeTheme() {
 }
 
 //Funcion IMPORTANTE!! que renderiza y elimina los eventos del día seleccionado
-function renderEvents (){
-
-  //lo traemos del local storage y al mismo tiempo lo reconvertimos en un objeto
-    let renderSection = JSON.parse(localStorage.getItem(selectedDay));
-    //console.log(renderSection);
-
-    //Si al seleccionar un dia, No hay objetos dentro, me dice que no hay nada, de lo contrario, si encuentra cosas, me las imprime
-    if (renderSection != null){
-      //con esto, convertimos el objeto en un array para posteriormente iterar en el
-      let myArray = Object.entries(renderSection);
-      //console.log(myArray[1][1]);
-
-      //una vez covertido el objeto en array, tenemos que iterar por cada uno de sus posiciones, nunca sabremos cuantos eventos tenemos guardados ese dia, por lo tanto crearemos secciones por cada evento que encuentre.
-      myArray.forEach((element)=>{
-
-        let section = document.createElement("section");
-        section.setAttribute("class", "event__display");
-        //aquí es donde metemos exactamente lo que queremos del array y ponemos posicion [1] ya que es allá donde se encuentran los datos que necesitamos y al mismo tiempo llamamos al parametro que queremos de dentro del objeto inicial.
-        section.insertAdjacentHTML("afterbegin",`<h1>${element[1].title}</h1>`);
-        events.appendChild(section);
-        //console.log(element[1].title);
-      });
-      //Von el else que viene a continuación, eliminamos todos los eventos de la lista, si es que no hay eventos.
-  } else {
-    let event_displays = document.querySelectorAll(".event__display");
-    event_displays.forEach((e)=>{
-      e.remove(this);
-    })
-    console.log("en el día seleccionado, no hay nada");
-  }
-}
-
 function renderToday(){
 
   let today__event =JSON.parse(localStorage.getItem(today));
@@ -246,3 +214,37 @@ function renderToday(){
 
 }
 renderToday();
+
+function renderEvents (){
+
+  //lo traemos del local storage y al mismo tiempo lo reconvertimos en un objeto
+    let renderSection = JSON.parse(localStorage.getItem(selectedDay));
+    //console.log(renderSection);
+
+    //Si al seleccionar un dia, No hay objetos dentro, me dice que no hay nada, de lo contrario, si encuentra cosas, me las imprime
+    if (renderSection != null){
+      //con esto, convertimos el objeto en un array para posteriormente iterar en el
+      let myArray = Object.entries(renderSection);
+      //console.log(myArray[1][1]);
+
+      //una vez covertido el objeto en array, tenemos que iterar por cada uno de sus posiciones, nunca sabremos cuantos eventos tenemos guardados ese dia, por lo tanto crearemos secciones por cada evento que encuentre.
+      myArray.forEach((element)=>{
+
+        let section = document.createElement("section");
+        section.setAttribute("class", "event__display");
+        //aquí es donde metemos exactamente lo que queremos del array y ponemos posicion [1] ya que es allá donde se encuentran los datos que necesitamos y al mismo tiempo llamamos al parametro que queremos de dentro del objeto inicial.
+        section.insertAdjacentHTML("afterbegin",`<h1>${element[1].title}<div></h1><div>${element[1].eventType}</div></div><div>${element[1].time}</div><div>${element[1].end_date}</div><div>${element[1].Description}</div>`);
+        events.appendChild(section);
+        //console.log(element[1].title);
+      });
+      //Von el else que viene a continuación, eliminamos todos los eventos de la lista, si es que no hay eventos.
+  } else {
+    let event_displays = document.querySelectorAll(".event__display");
+    event_displays.forEach((e)=>{
+      e.remove(this);
+    })
+    console.log("en el día seleccionado, no hay nada");
+  }
+}
+
+
