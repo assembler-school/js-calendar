@@ -3,9 +3,6 @@ const date = new Date();
 
 function renderCalendar() {
 
-  date.setDate(1);
-  //Detecta el primer dia del mes y encuentra la resta entre el mismo y 0
-
   //Pesco la fecha actual
   const exactlyToday = new Date().toISOString().substr(8,2);
   console.log(exactlyToday, "La fecha actual wey");
@@ -37,33 +34,32 @@ function renderCalendar() {
   const lastDayIndex = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDay();
   console.log(lastDayIndex, "lastDayIndex");
 
-  /* Para saber cuantos dias mostrar en el calendario, esta cogiendo el ÑastDay Index y le resta los 7 días de la semana y así le queda la resta para en el futuro, con un bucle crear especificamente dichos DIVS */
-  const nextDays = 7 - lastDayIndex - 1;
-  console.log(nextDays, "nextDays");
-
   //Siempre se aumenta 1, puesto que la variable empieza a contar desde 0
   const months = [
-      "Enero",
-      "Febrero",
-      "Marzo",
-      "Abril",
-      "Mayo",
-      "Junio",
-      "Julio",
-      "Agosto",
-      "Septiembre",
-      "Octubre",
-      "Noviembre",
-      "Diciembre",
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre",
   ]
-
 
   //Mes actual
   //date.getMonth(), nos trae el mes en el que estamos ahora mismo y en esta linea sdemás la inserta en el h2
   document.querySelector(".date h2").innerHTML = months[date.getMonth()];
 
   //Recoge el día actual de la variable date y la inserta en el P
-  document.querySelector(".date p").innerHTML = date.toDateString();
+  document.querySelector(".date p").innerHTML = date.toDateString().substr(11,4);;
+
+  /* Para saber cuantos dias mostrar en el calendario, esta cogiendo el ÑastDay Index y le resta los 7 días de la semana y así le queda la resta para en el futuro, con un bucle crear especificamente dichos DIVS */
+  const nextDays = 7 - lastDayIndex;
+  console.log(nextDays, "nextDays");
 
   /* Esta es una variable vacia con la que vamos a almacenar todos los dias con bucles y mostrarlos */
   let days = "";
@@ -84,8 +80,11 @@ function renderCalendar() {
   for (let i = 1; i <= lastDay; i++) {
     let x = i.toString();
     let y = x.padStart(2, "0");
+    let h = parseInt(actual_month);
+    let j = h.toString();
+    let o = j.padStart(2, "0");
       /* Este if es solo un comparador que te compara el valor de la variable (date) con la fecha actual de un nuevo objeto Date y si coincide, le aplica la clase TODAY */
-      if (y === new Date().getDate() && actual_month === new Date().getMonth() && date.getFullYear() === new Date().getFullYear()) {
+      if (i === new Date().getDate() && date.getMonth() == new Date().getMonth() && date.getFullYear() === new Date().getFullYear()) {
         // Convierto el mes en un numero de un digito a dos digitos
         let h = parseInt(actual_month);
         let x = h.toString();
@@ -141,66 +140,87 @@ today = document.getElementsByClassName("today");
 //console.log(today)
 //today = today.addEventListener("click", showEventOfDayHere);
 
-//Otros dias
+//Detecta todos los divs del calendario con la clase no-event-day y ejecuta las funciones pertinentes mediante los listeners pertinentes.
 day = document.querySelectorAll('.no-event-day');
 for (let d = 0; d < day.length; d++) {
+    //day.item(d).addEventListener("click", showEventOfDayHere);
+    day.item(d).addEventListener("click", bringDataFromLocalStorageToMainCalendar);
     day.item(d).addEventListener("click", showEventOfDayHere);
+
 }
 
-//Falta incluir today
-var hereMoreEvents = true;
-var meeting = false;
-var study = false;
-var personal = false;
+//Interactuamos con los datos de Local Storage - Application
+function bringDataFromLocalStorageToMainCalendar(ev) {
+    //Esta variable selecciona lo clicado al llamar al event listener y lo posiciona como target
+    var clickedDivId = event.target.id;
+    console.info("Esta es la ID del dia seleccionado " + clickedDivId)
+        //Cogemos los datos STORAGE del div clicado y lo parseamos
+    var datafromLocalStorage = JSON.parse(localStorage.getItem(clickedDivId));
+    console.info("Esta es la informacion extraida y parseada del ID dia clicado >>> " + datafromLocalStorage)
+    console.info(Object.values(datafromLocalStorage))
+    console.info("Este mensaje solo aparece si el objeto anterior ha sido extraido correctamente")
+    if (datafromLocalStorage !== null) {
+        console.info('INNN F()')
+            //Si detro del array datafromLocalStorage existe meeting, study o meeting, crear una variable x is true
+        meetingIsTrue = datafromLocalStorage.includes('meeting');
+        console.log("Meeting is " + meetingIsTrue)
+        studyIsTrue = datafromLocalStorage.includes('study');
+        console.log("Study is " + studyIsTrue)
+        personalIsTrue = datafromLocalStorage.includes('personal');
+        console.log("Personal is " + personalIsTrue)
+    } else if ((datafromLocalStorage == null)) {
+        //swal('No tienes ningun evento este dia ^^');
+        console.info('La informacion es nula, no tienes ningun evento el dia seleccionado en el calendario')
+            //alert('datafromLocalStorage es NULO');
+    } else {
+        //console.warn('La insersión de tipo de evento desde el formulario no ha llegado correctamente');
+    }
+}
+//END F()bringDataFromLocalStorageToMainCalendar
+//Devlopgit
 
 function showEventOfDayHere(ev) {
-    if (meeting == true) {
-        event.target.insertAdjacentHTML('beforeend', '<div class="event-inserted"><ul class="meetingList">M</ul></div>');
-        event.stopPropagation();
-    } else if (study == true) {
-        event.target.insertAdjacentHTML('beforeend', '<div class="event-inserted"><ul class="studyList">S</ul></div>');
-        event.stopPropagation();
-    } else if (personal == true) {
-        event.target.insertAdjacentHTML('beforeend', '<div class="event-inserted"><ul class="personalList">P</ul></div>');
-        event.stopPropagation();
-    } //else if (hereMoreEvents == true) {
-    //Unicamente ver todos los eventos de un dia si se clica encima
-    // document.body.click = addElement;
-    // document.currentDiv.click = addElement;
 
-    // function addElement() {
-    //     // crea un nuevo div
-    //     // y añade contenido
-    //     var newDiv = document.createElement("div");
-    //     var newContent = document.createTextNode("Hola!¿Qué tal?");
-    //     newDiv.appendChild(newContent); //añade texto al div creado.
+    var meetingIsTrue = false
+    var studyIsTrue = false
+    var personalIsTrue = false
 
-    //     // añade el elemento creado y su contenido al DOM
-    //     var currentDiv = document.getElementById("div1");
-    //     document.body.insertBefore(newDiv, currentDiv);
-    //}
-    else {
-        event.target.style.backgroundColor = "#ffa366";
+    var clickedDiv = event.target;
+
+    if (meetingIsTrue == true) {
+        console.info(meetingIsTrue + ' MEETING IS TRUE')
+        var clickedDiv = event.target;
+
+        clickedDiv.insertAdjacentHTML('beforeend', '<div class="event-inserted"><ul class="meetingList">M</ul></div>');
+        //event.stopPropagation();
+
+    } else if (studyIsTrue == true) {
+        console.info(studyIsTrue + ' STUDY IS TRUE');
+        var clickedDiv = event.target;
+
+        clickedDiv.insertAdjacentHTML('beforeend', '<div class="event-inserted"><ul class="studyList">S</ul></div>');
+        //event.stopPropagation();
+
+    } else if (personalIsTrue == true) {
+        console.info(personalIsTrue + ' PERSONAL IS TRUE')
+        var clickedDiv = event.target;
+
+        clickedDiv.insertAdjacentHTML('beforeend', '<div class="event-inserted"><ul class="personalList">P</ul></div>');
+        //event.stopPropagation();
+
+    } else {
+        console.info('showEventOfDayHere - revisa su funcionalidad')
+            // swal('No llega ningun dato aqui')
     }
 
 }
 
 stopEvent = true;
-
+//Guardar array de json con multiples fechas
+//pad stat
+//DE lado
+//padStart()
 function load() {
     elem = document.getElementById("all-days");
     elem.addEventListener("click", stopEvent, false);
-    //var meeting = false;
-    //var study = false;
-    //var personal = salse;
-
 }
-
-
-
-
-
-
-
-
-

@@ -5,15 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>JS-CALENDAR</title>
+    <title>JS-CALENDAR</title>
 
     <!---------------- LINKS ---------------->
     <link rel="stylesheet" href="assets/style/style.css">
     <!-- Font aswesome link de Erick-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-
-
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <body>
         <!---------------- INICIO HEAD ---------------->
@@ -25,112 +23,111 @@
             <div class="container_calendar">
                 <div class="calendar">
                     <div class="month">
-                      <i class="fas fa-arrow-left prev"></i>
-                      <div class="date">
-                        <h2></h2>
-                        <p></p>
-                      </div>
-                      <i class="fas fa-arrow-right next"></i>
+                        <i class="fas fa-arrow-left prev"></i>
+                        <div class="date">
+                            <h2></h2>
+                            <p></p>
+                        </div>
+                        <i class="fas fa-arrow-right next"></i>
                     </div>
                     <div class="weekdays">
-                      <div>Dom</div>
-                      <div>Lun</div>
-                      <div>Mar</div>
-                      <div>Mie</div>
-                      <div>Jue</div>
-                      <div>Vie</div>
-                      <div>Sab</div>
+                        <div>Lun</div>
+                        <div>Mar</div>
+                        <div>Mie</div>
+                        <div>Jue</div>
+                        <div>Vie</div>
+                        <div>Sab</div>
+                        <div>Dom</div>
                     </div>
                     <div class="days">
                     </div>
                 </div>
-								<div class="calendar__shadow"></div>
-								<div class="calendar__shadow__2"></div>
+                <div class="calendar__shadow"></div>
+                <div class="calendar__shadow__2"></div>
             </div>
-        <!-- Events -->
-          <div class="events">
-            <h1 class="fechaSeleccionada">La fecha seleccionada: </h1>
-
-        </div>
+            <!-- Events -->
+            <div class="events">
+                <h1 class="fechaSeleccionada">La fecha seleccionada: </h1>
+            </div>
 
         </main>
         <!---------------- INICIO ASIDE ---------------->
         <aside>
             <button id="openButton">+</button>
 
-        <div id="myModal" class="modal">
-            <div class="modal-content">
-              <form action="">
-              <span class="close">&times;</span>
-                <div class="textContainer">
-                    <h1>New Event</h1>
-                </div>
-                <div id="addTitle">
-                  <label for="title"></label>
-                  <input id="titleBox" type="text" placeholder="Add title" name="Add title" maxlength="60" required >
-                </div>
-                <div id="addDate">
-                  <label id="initialText" for="">Initial date:</label>
-                  <input id="initialCal" type="date"></input>
-                </div>
-                <div id="endDate">
-                  <input id="checkboxEnd"  type="checkbox" onclick="displayEnd ()">End date</input>
-                  <input id="endCal" type="date"></input>
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <form action="">
+                        <span class="close">&times;</span>
+                        <div class="textContainer">
+                            <h1>New Event</h1>
+                        </div>
+                        <div id="addTitle">
+                            <label for="title"></label>
+                            <input id="titleBox" type="text" placeholder="Add title" name="Add title" maxlength="60" required>
+                        </div>
+                        <div id="addDate">
+                            <label id="initialText" for="">Initial date:</label>
+                            <input id="initialCal" type="date"></input>
+                        </div>
+                        <div id="endDate">
+                            <input id="checkboxEnd" type="checkbox" onclick="displayEnd ()">End date</input>
+                            <input id="endCal" type="date"></input>
 
-                </div>
-                <div id="timeSelect">
-                  <label for="">Initial Time:</label>
-                  <input id="timeSelector" type="time"  name="" >
-                </div>
-                <div id="reminderBox">
-                  <input id="reminderCheckBox"  type="checkbox" onclick="reminderShowSelectBox()">Remind me when this event expires
-                  <select id="reminderSelect">
+                        </div>
+                        <div id="timeSelect">
+                            <label for="">Initial Time:</label>
+                            <input id="timeSelector" type="time" name="">
+                        </div>
+                        <div id="reminderBox">
+                            <input id="reminderCheckBox" type="checkbox" onclick="reminderShowSelectBox()">Remind me when this event expires
+                            <select id="reminderSelect">
                     <option value="5 minutes before">5 minutes before</option>
                     <option value="10 minutes before">10 minutes before</option>
                     <option value="15 minutes before">15 minutes before</option>
                     <option value="30 minutes before">30 minutes before</option>
                     <option value="1 hour before">1 hour before</option>
                 </select> </input>
-                </div>
-                <div id="descriptionBox">
-                  <textarea id="textAreaDescription" maxlength="500" rows="3" cols="52"  placeholder="Add a description..."></textarea>
-                </div>
+                        </div>
+                        <div id="descriptionBox">
+                            <textarea id="textAreaDescription" maxlength="500" rows="3" cols="52" placeholder="Add a description..."></textarea>
+                        </div>
 
-                <div id="eventType">
-                    <label for="events"> Event type:</label>
-                  <select id="eventSelect">
+                        <div id="eventType">
+                            <label for="events"> Event type:</label>
+                            <select id="eventSelect">
                       <option value="meeting">Meeting</option>
                       <option value="Personal">Personal</option>
                       <option value="Study">Study</option>
                   </select>
-                </div>
-              </form>
-                <div id="buttonsPop">
-                  <div><button id="createBtn" type="submit" class="buttons">Create</button></div>
-                  <div><button id="cancelBtn" type="button" class="buttons" onclick="closeForm()">Cancel</button></div>
+                        </div>
+                    </form>
+                    <div id="buttonsPop">
+                        <div><button id="createBtn" type="submit" class="buttons">Create</button></div>
+                        <div><button id="cancelBtn" type="button" class="buttons" onclick="closeForm()">Cancel</button></div>
+                    </div>
                 </div>
             </div>
-        </div>
 
         </aside>
         <!---------------- INICIO FOOTER ---------------->
         <footer class="footer">
-          <div>
-            <h4>Einar, Sebastian, Erick</h4>
-          </div>
-          <div>
-            <h1>JS CALENDAR</h1>
-          </div>
+            <div>
+                <h4>Einar, Sebastian, Erick</h4>
+            </div>
+            <div>
+                <h1>JS CALENDAR</h1>
+            </div>
 
-          <div class="float__checkbox">
-            <p id="timer-msg"></p>
-            <div class="switch-wrapper">
-            <label class="switch" for="checkbox">
+            <div class="float__checkbox">
+                <p id="timer-msg"></p>
+                <div class="switch-wrapper">
+                    <label class="switch" for="checkbox">
             <input type="checkbox" id="checkbox" />
             <div class="slider round"></div>
             </label>
+                </div>
             </div>
-          </div>
         </footer>
 
         <!---------------- SCRIPT ZONE ---------------->
