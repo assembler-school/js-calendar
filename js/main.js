@@ -1,6 +1,4 @@
 var calendarEvents = JSON.parse(localStorage.getItem('calendarEvents')) || {};
-var reminders = JSON.parse(localStorage.getItem('reminders')) || {};
-var remindersList = [];
 
 
 function addNewTemplate(containerId, templateId) {
