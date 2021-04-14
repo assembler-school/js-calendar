@@ -20,27 +20,29 @@ function todayButton(){
   if(calendarView == '' || calendarView == 'month-view'){
     clearMonthCalendar();
     month = currentMonth;
-    calendarMonthConstructor(month);
-  };
+    year = currentYear;
+    calendarMonthConstructor(year,month);
+  }
   if(calendarView == 'year-view'){
     clearYearCalendar();
     year = currentYear;
+    month = currentMonth;
     calendarConstructor(year);
-  };
-};
+  }
+}
 
 function nextButton(){
   if(calendarView == '' || calendarView == 'month-view'){
     month += 1;
     clearMonthCalendar();
     calendarMonthConstructor(month);
-  };
+  }
   if(calendarView == 'year-view'){
     year += 1;
     clearYearCalendar();
     calendarConstructor(year);
-  };
-};
+  }
+}
 
 
 //Remove month and year calendars
@@ -63,10 +65,10 @@ function today(month,currentDay,currentMonth,currentYear){
       if(idCurrentDay < 10){
           idCurrentDay = '0' + idCurrentDay;
       }
-      if(month === currentMonth){
+      if(month === currentMonth && year == currentYear){
           document.querySelector('[id="' + currentYear + '/' + idCurrentMonth + '/' + idCurrentDay + '"]').parentNode.classList += ' month-current-day';
       }
-  }else{
+  }else if(document.querySelector(".main-content-section").firstElementChild.id === "year-section"){
     var idCurrentMonth = currentMonth + 1;
     var idCurrentDay = currentDay;
     if(idCurrentMonth < 10){
@@ -75,8 +77,11 @@ function today(month,currentDay,currentMonth,currentYear){
     if(idCurrentDay < 10){
         idCurrentDay = '0' + idCurrentDay;
     }
-    if(month === currentMonth){
-      document.querySelector('[id="' + currentYear + '/' + idCurrentMonth + '/' + idCurrentDay + '"]').classList += ' month-current-day';
+    if(year === currentYear){
+      console.log(document.querySelector('[id="' + currentYear + '/' + idCurrentMonth + '/' + idCurrentDay + '"]').classList);
+      console.log(currentYear + '/' + idCurrentMonth + '/' + idCurrentDay);
+      document.querySelector('[id="' + currentYear + '/' + idCurrentMonth + '/' + idCurrentDay + '"]').classList.add('year-current-day');
+      console.log(document.querySelector('[id="' + currentYear + '/' + idCurrentMonth + '/' + idCurrentDay + '"]'));
     }
   }
 }

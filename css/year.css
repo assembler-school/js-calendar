@@ -31,6 +31,15 @@
   justify-content: center;
 }
 
+.not-days {
+  color: var(--textLightGray);
+  display: flex;
+  width: 14.2%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
 /* STYLES */
 .month-name {
   padding: 5%;
@@ -48,12 +57,22 @@
 }
 
 .days:hover {
-  background-color: rgba(166, 175, 175, 0.425);
+  /* background-color: rgba(166, 175, 175, 0.151); */
   border-radius: 50%;
+  border:2px solid var(--textLightGray);
 }
 
 .month-current-day {
-  border:5px solid rgb(102, 174, 175) !important;
-  border-radius:none;
+  border:5px solid #66aeaf;
 }
 
+.year-current-day{
+  color:var(--textLightGray);
+  border:2px solid var(--blueTitle);
+}
+
+.year-current-day:hover{
+  color:var(--textLightGray);
+  border:2px solid var(--textLightGray);
+  border-radius:0%;
+}

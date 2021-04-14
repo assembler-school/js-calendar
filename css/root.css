@@ -145,6 +145,7 @@ table {
   --textLightGray: #b0b0b0;
   --pink: #c07d7d;
   --green: #b8cead;
+  --blueTitle: #66aeaf;
 }
 
 * {
@@ -273,10 +274,4 @@ h1 {
   font-size: 16px;
   font-weight: 300;
   color: var(--green);
-}
-
-.event-text {
-  font-size: 16px;
-  font-weight: 300;
-  color: white;
 }

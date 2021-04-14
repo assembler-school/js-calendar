@@ -37,9 +37,12 @@ function calendarMonthConstructor(setCalendarMonthCounter) {
         for (let i = 0; i < 42; i++) {
             let dayOfMonth = document.createElement('div');
             let numberOfDayContainer = document.createElement('div');
+            let eventContainer = document.createElement('div');
             dayOfMonth.classList.add('day_box');
             numberOfDayContainer.classList.add('month_day_number');
+            eventContainer.classList.add('event-container');
             dayOfMonth.appendChild(numberOfDayContainer);
+            dayOfMonth.appendChild(eventContainer);
             monthContainer.appendChild(dayOfMonth);
         }
         monthSection.appendChild(monthContainer)
@@ -100,5 +103,5 @@ function getFirstMonthDay(year,month){
     today(month,currentDay,currentMonth,currentYear);
 
     updateMonthAndYearHeader(monthsNames[month], year);
-    displayEventsInMonth(idMonth, calendarEvents);
+    displayEventsInMonth(idMonth, calendarEvents,year);
 }

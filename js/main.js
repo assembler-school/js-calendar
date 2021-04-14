@@ -2,6 +2,9 @@
     if (localStorage.getItem('calendarEvents') && localStorage.getItem('calendarEvents') !== 'undefined') {
         calendarEvents = JSON.parse(localStorage.getItem('calendarEvents'));
     }
+    if (localStorage.getItem('reminders') && localStorage.getItem('reminders') !== 'undefined') {
+        reminders = JSON.parse(localStorage.getItem('reminders'));
+    }
 })();
 
 function addNewTemplate(containerId, templateId) {

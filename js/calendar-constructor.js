@@ -124,7 +124,7 @@ function populateCalendar(changeYear){
         if(date <= getMonthDays(year, iMonth)){
           if (i === 0 && (j+1) < getFirstMonthDay(year,iMonth-1)) {
             let cell = document.createElement('div');
-            cell.setAttribute('class','days');
+            cell.setAttribute('class','not-days');
             cellText = document.createTextNode("");
             cell.appendChild(cellText);
             row.appendChild(cell);
@@ -137,10 +137,10 @@ function populateCalendar(changeYear){
             var idMonth = iMonth;
             var idDay = date;
             if(idMonth < 10){
-               idMonth = '0' + idMonth
+              idMonth = '0' + idMonth
             };
             if(idDay < 10){
-                idDay = '0' + idDay;
+              idDay = '0' + idDay;
             };
 
             cell.setAttribute('id',year + '/' + idMonth + '/' + idDay);
