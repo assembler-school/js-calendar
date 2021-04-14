@@ -1,18 +1,11 @@
-//Function that sets an alert when the event begins
+let timeoutArr = [];
 
-function setAlarm(eventObject, time) {
-     setTimeout(function() {
-          alert(`Que empiece la fiesta de ${eventObject.title}`);
-          console.log('Ha entrado');
-     }, time);
-}
+//Function to get a filtered list of elements from the localStorage
 
-// Function to change the style of the expired events
-
-function expired(eventObject) {
-     let expiredObject = document.querySelector(`div [data-eventid = "${eventObject.id}"]`);
-     console.log('hola ' + eventObject.title);
-     console.log(expiredObject);
+function reminderArr() {
+     const eventData = localStorage.getItem("events");
+     console.log(eventData);
+     return JSON.parse(eventData).filter(calendarEvents => calendarEvents.reminder == 'on');
 }
 
 // Function that sets the alarm for the reminders
@@ -20,35 +13,18 @@ function expired(eventObject) {
 
 export function setReminder() {
      let actualDate = new Date();
-     if (localStorage.length != 0) {
-          const eventData = localStorage.getItem("events");
-          console.log(eventData);
-          let objArray = JSON.parse(eventData).filter(calendarEvents => calendarEvents.reminder == 'on');
+     if (localStorage.length) {
+          let objArray = reminderArr();
 
           objArray.forEach(obj => {
-               let remindingTime = new Date(obj["init-date"]) - actualDate;
-               console.log(new Date(obj["init-date"]) + '-' + actualDate + '=' + remindingTime);
+               let differenceTime = new Date(obj["init-date"]) - actualDate;
+               let remindingTime = differenceTime - (obj["select-time"] * 60000);
                console.log(remindingTime);
-               if (remindingTime <= 7200000) {
-                    setAlarm(obj, remindingTime);
+               if (remindingTime < 60000 && remindingTime > -60000) {
+                    alert(`El evento  ${obj["title"]}`);
                }
           });
      }
 }
-
-function expiredArr() {
-     let actualDate = new Date();
-     if (localStorage.length != 0) {
-          const eventData = localStorage.getItem("events");
-          let expiredEvents = JSON.parse(eventData).filter(calendarEvents => calendarEvents["end-check"] == 'on');
-
-          expiredEvents.forEach(obj => {
-               if (new Date(obj["end-date"] - actualDate < 0)) {
-                    expired(obj);
-               }
-          });
-     }
-}
-
 setReminder();
-expiredArr();
+setInterval(setReminder, 60000);
