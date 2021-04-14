@@ -1,5 +1,3 @@
-
-
 function addNewTemplate(containerId, templateId) {
     const templateContent = document.querySelector(`#${templateId}`).content;
     document.getElementById(containerId).appendChild(document.importNode(templateContent, true));
@@ -31,9 +29,7 @@ document.getElementById('yearView-btn').addEventListener("click", (event)=>{
     }
 });
 addNewTemplate("main-content-section", "month-template");
-calendarMonthConstructor()
-
-
+calendarMonthConstructor();
 hideModal();
 
 function setCheckboxVisibility(event) {
@@ -114,9 +110,8 @@ function formatDate(date) {
     return date.toLocaleDateString('en-ZA'); //format YYYY/MM/DD
 }
 
-function addReminder(reminderDate, eventTitle, initialDate) {
-    let reminderId = new Date().getTime();
-    reminders[reminderId] = {
+function addReminder(eventId, reminderDate, eventTitle, initialDate) {
+    reminders[eventId] = {
         'eventTitle': eventTitle,
         'reminderDate': reminderDate,
         'initialDate': initialDate
@@ -127,6 +122,7 @@ function addReminder(reminderDate, eventTitle, initialDate) {
 function addEventToCalendar(eventParams) {
     let dateId = formatDate(new Date(eventParams.initialDate));
     let validFields = {
+        'id': new Date().getTime(),
         'eventTitle': eventParams.eventTitle,
         'initialDate': eventParams.initialDate,
         'description': eventParams.description,
@@ -138,7 +134,7 @@ function addEventToCalendar(eventParams) {
     }
     if (eventParams.reminderChecked) {
         validFields['reminderDate'] = eventParams.reminderDate;
-        addReminder(eventParams.reminderDate, eventParams.eventTitle, eventParams.initialDate);
+        addReminder(validFields.id, eventParams.reminderDate, eventParams.eventTitle, eventParams.initialDate);
     }
     if (!calendarEvents.hasOwnProperty(dateId)) {
         calendarEvents[dateId] = [];
@@ -187,12 +183,12 @@ function saveEventData() {
 
 function saveEvent() {
     if (!document.getElementById('eventTitleId').value) {
-        alert('The event tittle is required.')
+        alert('The event tittle is required')
         return false;
     }
 
     if (endDateValidation()) { // endDate > startDate
-        alert('The start date must be before the end date.')
+        alert('The start date must be before the end date')
         return false;
     }
     if (reminderValidation()) { //reminder > currentDate  && reminder < initialDate
@@ -200,4 +196,19 @@ function saveEvent() {
         return false;
     }
     saveEventData();//save data
+    hideModal();
+    clearMonthCalendar();
+    calendarMonthConstructor(month);
+}
+
+function removeEvent(initialDate, id) {
+    let dayId = formatDate(new Date(initialDate));
+    calendarEvents = Object.values(calendarEvents).forEach((dayEvents) => {
+        dayEvents.filter((e) => {
+            return e.id !== id;
+        });
+    })
+    // reminders = reminders.filter((reminder) => {
+    //     return reminder.id !== id;
+    // });
 }

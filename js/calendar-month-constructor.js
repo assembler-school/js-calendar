@@ -1,7 +1,6 @@
 function calendarMonthConstructor(setCalendarMonthCounter) {
     const monthSection = document.querySelector('#month-section');
-
-    if(setCalendarMonthCounter == 12){
+    if(setCalendarMonthCounter == 12) {
         month = 0;
         year += 1;
     }else if(setCalendarMonthCounter < 0){
@@ -49,7 +48,7 @@ function calendarMonthConstructor(setCalendarMonthCounter) {
     // Gives you the amount of days on the month (the first month is 1)
     function getMonthDays(currentYear,currentMonth){
         return new Date(currentYear,currentMonth + 1, 0).getDate();
-    };
+    }
 
     // Gives you the first day of the month (0 is Sunday, the first month is 0)
 function getFirstMonthDay(year,month){
@@ -60,7 +59,7 @@ function getFirstMonthDay(year,month){
     }else{
       return day;
     }
-  };
+  }
 
     // Assign a number for each day. It should check what month is and display the number on the right day.
     function populateMonth(month) {
@@ -76,10 +75,10 @@ function getFirstMonthDay(year,month){
                 idDay = day;
                 if(idMonth < 10){
                    idMonth = '0' + idMonth
-                };
+                }
                 if(idDay < 10){
                     idDay = '0' + idDay;
-                };
+                }
 
                 numberOfDay[i].setAttribute('id',year + '/' + idMonth + '/' + idDay);
                 day++
@@ -92,7 +91,6 @@ function getFirstMonthDay(year,month){
         let currentYearText = document.querySelector('.currentYear-text');
         currentMonthText.innerHTML = monthText;
         currentYearText.innerHTML = yearText;
-
     }
 
     createWeekRow();
@@ -102,8 +100,5 @@ function getFirstMonthDay(year,month){
     today(month,currentDay,currentMonth,currentYear);
 
     updateMonthAndYearHeader(monthsNames[month], year);
-    displayEventsInMonth(idMonth, eventsCalendar);
+    displayEventsInMonth(idMonth, calendarEvents);
 }
-
-
-
