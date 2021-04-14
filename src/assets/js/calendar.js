@@ -66,9 +66,9 @@ const renderCalendar = (direction) => {
             date.getMonth() === new Date().getMonth() &&
             date.getFullYear() === new Date().getFullYear()
         ) {
-            days += `<div class="day today ${direction}"><div class = "day-number">${i}</div></div>`;
+            days += `<div class="day today current-month-day ${direction}"><div class = "day-number">${i}</div></div>`;
         } else {
-            days += `<div class = "day ${direction}"><div class = "day-number">${i}</div></div>`;
+            days += `<div class = "day current-month-day ${direction}"><div class = "day-number">${i}</div></div>`;
         }
     }
 // creating div with next days of calendar
@@ -112,7 +112,25 @@ function renderEvent () {
         date.getMonth() + 1,
         0
     ).getDate();
-    
+    // ! quiero recorrer primero los días del calendario y después los de la memoria
+    //* Calendar days divs pass by
+    for (let div of daysContainer) {
+
+
+
+
+
+
+        if (div.innerHTML == i) {
+            div.insertAdjacentElement('afterend',newEvent);
+        }
+    }
+
+
+
+
+
+
     for (i = 1; i < lastDay; i++) {
         if (!!eventsByDate[`${currentYear}-${currentMonth}-${i}`]) {
             //* Access to event data
@@ -139,11 +157,6 @@ function renderEvent () {
             }
             newEvent.addEventListener('click', eventModal);
             //* Attach of element to DOM
-            for (let div of daysContainer) {
-                if (div.innerHTML == i) {
-                    div.insertAdjacentElement('afterend',newEvent);
-                }
-            }
         }
     }
     /*
