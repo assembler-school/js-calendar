@@ -90,14 +90,14 @@ function renderCalendar() {
         let h = parseInt(actual_month);
         let x = h.toString();
         let o = x.padStart(2, "0");
-        days += `<div class="today no-event-day" id="${y}-${o}-${actual_year}">${y}</div>`;
+        days += `<div class="today no-event-day" id="${y}-${o}-${actual_year}">${i}</div>`;
       } else {
         /*De lo contrario, te coge el numero almacenado en la variable lastDay y te va restando y crrando los Divs necesarios */
         // Convierto el mes en un numero de un digito a dos digitos
         let h = parseInt(actual_month);
         let x = h.toString();
         let o = x.padStart(2, "0");
-        days += `<div class="no-event-day" id="${actual_year}-${o}-${y}">${y}</div>`;
+        days += `<div class="no-event-day" id="${actual_year}-${o}-${y}">${i}</div>`;
       }
       monthDays.innerHTML = days;
   }
