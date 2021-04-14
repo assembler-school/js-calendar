@@ -34,6 +34,7 @@ body {
   height: 100vh;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 16px;
+  background-color: var(--header-color);
 }
 
 hr {
@@ -49,7 +50,6 @@ label {
 
 input {
   padding: 0.4rem 0;
-  /* font-size: 1rem; */
   border-top-style: hidden;
   border-right-style: hidden;
   border-bottom-style: solid;
@@ -66,7 +66,6 @@ input:focus {
 
 textarea {
   background-color: var(--header-color);
-  /* opacity: 0.6; */
   border: var(--text-color);
   outline: none;
   height: 80px;
@@ -86,7 +85,6 @@ textarea:focus {
 
 select {
   padding: 0.4rem 0;
-  /* font-size: 1rem; */
   border-top-style: hidden;
   border-right-style: hidden;
   border-bottom-style: solid;
@@ -106,21 +104,14 @@ select option {
   width: 52px;
 }
 
-.reminder-time{
-  max-height: 0px;
-  /* transform: scaleY(0); */
-  /* transform-origin: top; */
-  /* transition: transform 0.2s; */
-  transition: max-height 0.2s;
+section {
+  /* max-width: 1400px; */
+  margin: 0 auto;
+  background-color: var(--header-color);
 }
 
-.height-reset {
-  max-height: 80px;
-  /* transform: scaleY(1); */
-  /* transform-origin: top; */
-  /* transition: transform 0.2s; */
-  transition: max-height 0.2s;
-
+.cal-padding{
+  padding: 0.5rem;
 }
 /*
 ===================================
@@ -135,7 +126,6 @@ select option {
 .shadow__btn > input {
   color: var(--text-color);
   background-color: transparent;
-  /* padding: 4px 6px; */
   width: 60px;
   height: 30px;
   border-radius: var(--br-radius);
@@ -169,6 +159,7 @@ select option {
 #nav__web {
   display: none;
 }
+
 #nav__web h2 {
   font-size: 1.2rem;
   margin: 0 0.5rem;
@@ -178,14 +169,13 @@ select option {
   justify-content: space-evenly;
   align-items: center;
 }
+
 .nav__month {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  padding-top: 1%;
-  padding-bottom: 1%;
-  background-color: #fff;
+  padding: 0.5rem 0;
   min-height: 55px;
 }
 
@@ -223,15 +213,17 @@ select option {
   display: flex;
   justify-content: center;
   width: 194px;
+  font-size: 1rem;
 }
 
 .nav__center > button {
-  padding: 5px;
   margin: 0;
   border-radius: var(--br-radius);
   border: none;
   background-color: transparent;
-  padding: 0.3rem 1rem;
+  padding: 0.5rem 0.5rem;
+  height: 100%;
+  text-align: center;
   font-size: 1rem;
 }
 
@@ -257,18 +249,14 @@ button#create-event i {
 
 .month-list {
   position: absolute;
-  /* width: 100%;
-  height: 100%; */
   top: 0.5rem;
   left: 0.5rem;
   bottom: 0.5rem;
   right: 0.5rem;
-  background-color:white;
-  border-right:#dadce0 1px solid;
-  border-bottom:#dadce0 1px solid;
-  /* padding: 20px; */
+  background-color: white;
+  border: #dadce0 1px solid;
+  border-radius: 10px;
   grid-template-columns: repeat(3, auto);
-  /* gap: 5px; */
   display: grid;
   transform: scale(1.5);
   visibility: hidden;
@@ -279,12 +267,18 @@ button#create-event i {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top:#dadce0 1px solid;
-  border-left:#dadce0 1px solid;
+  border-bottom: #dadce0 1px solid;
+  border-right: #dadce0 1px solid;
+  font-size: 1.2rem;
+}
+
+.month-list:nth-child(3) {
+  border-bottom: none;
+  border-right: none;
 }
 
 .month-list > div:hover {
-  background-color:var(--header-color);
+  background-color: var(--header-color);
   cursor: pointer;
 }
 
@@ -314,7 +308,6 @@ button#create-event i {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #fff;
   min-height: 55px;
 }
 
@@ -346,12 +339,12 @@ button#create-event i {
   position: absolute;
   height: 100%;
   width: 70%;
-  /*max-width: 340px;*/
   background-color: var(--header-color);
   top: 0;
   right: 0;
   box-shadow: 0px 0px 599px 180px rgb(136 136 136);
-  animation:sliderMain 1.6s alternate;
+  z-index: 1;
+  animation: sliderMain 1.6s alternate;
 }
 .nav__mobile--btn-close {
   display: flex;
@@ -359,6 +352,7 @@ button#create-event i {
   justify-content: center;
   align-items: flex-end;
   padding: 1rem;
+  padding-right: 2rem;
   height: 50px;
 }
 .nav__mobile--container {
@@ -435,28 +429,36 @@ button#create-event i {
   position: relative;
   width: inherit;
   height: calc(100% - 55px);
-  padding: 0.5rem 0.2rem 0.2rem 0.2rem;
   overflow: hidden;
+  padding: 0.5rem;
 }
 
 .calendar__month {
   width: 100%;
-  height: 100%;
+  height: calc(100% - 25px);
+  background-color: white;
+  border: #dadce0 1px solid;
+  border-top: none;
+  border-radius: 0 0 10px 10px;
 }
 
 .calendar__week {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   width: 100%;
-  /* height: calc((100% - 25px) / 5); */
+  height: calc(100% / 5);
   border-bottom: #dadce0 1px solid;
-  border-left: #dadce0 1px solid;
+  /* border-right: #dadce0 1px solid; */
 }
 
 .calendar__week > div {
   height: 100%;
   padding: 0.5%;
   border-right: #dadce0 1px solid;
+}
+
+.calendar__week > div:last-child {
+  border-right: none;
 }
 
 .calendar__week div span {
@@ -473,11 +475,20 @@ button#create-event i {
   flex-direction: row;
   width: 100%;
   height: 25px;
+  padding-top: 0.5rem;
   align-items: center;
-  text-align: center;
+  text-align: end;
+  background-color: white;
   border-left: #dadce0 1px solid;
   border-top: #dadce0 1px solid;
-  /* border-radius: 6px 6px 0 0; */
+  border-right: #dadce0 1px solid;
+  border-radius: 0.8rem 0.8rem 0 0;
+}
+
+.calendar__weekDay * {
+  font-size: 1.1rem;
+  opacity: 0.5;
+  font-weight: bold;
 }
 
 .calendar__weekDay > div {
@@ -502,6 +513,10 @@ button#create-event i {
   color: white;
 }
 
+.spanDay {
+  font-size: 1.2rem;
+  padding: 1.2rem;
+}
 /*
   ===================================
      ! Modal styles
@@ -570,7 +585,7 @@ i.fa-times-circle {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   width: inherit;
 }
 
@@ -593,20 +608,20 @@ i.fa-times-circle {
      ! event styles
   ===================================
   */
-  .event {
-	display: flex;
-	white-space: nowrap;
-	align-items: center;
-	height: 1rem;
-	color: white;
-	background-color: #ff6010;
-	border-radius: 10px;
-	overflow-x: hidden;
-	padding: 0.6rem 0.4rem;
-	margin: 0.5rem 0;
-	font-size: 0.8rem;
-	cursor: pointer;
-  }
+.event {
+  display: flex;
+  white-space: nowrap;
+  align-items: center;
+  height: 1rem;
+  color: white;
+  background-color: #ff6010;
+  border-radius: 10px;
+  overflow-x: hidden;
+  padding: 0.6rem 0.4rem;
+  margin: 0.5rem 0;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
 
 .event__type--meeting {
   color: white;
@@ -707,8 +722,8 @@ i.fa-times-circle {
     margin-bottom: 0.45rem;
   }
 
-  #calendar {
-    padding: 0.5rem 0.2rem 0.2rem 0.2rem;
+  .cal-padding {
+    padding: 0.2rem;
   }
   .alert__event {
     width: 280px;
@@ -743,7 +758,7 @@ i.fa-times-circle {
     width: 70%;
     max-width: 280px;
     box-shadow: 0px 0px 109px 60px rgb(136 136 136);
-    right:0;
+    right: 0;
   }
   .nav__mobile--event--span {
     font-size: 0.7rem;
@@ -778,8 +793,8 @@ i.fa-times-circle {
     font-size: 0.8rem;
   }
 
-  #calendar {
-    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  .cal-padding {
+    padding: 0.5rem;
   }
   .nav__mobile--main {
     width: 70%;
@@ -820,12 +835,6 @@ i.fa-times-circle {
 
 /* Large screen */
 @media only screen and (min-width: 900px) {
-  #nav__web {
-    display: block;
-  }
-  #nav__mobile {
-    display: none;
-  }
   .event {
     height: 1rem;
     border-radius: 10px;
@@ -874,10 +883,14 @@ i.fa-times-circle {
   }
   .nav__mobile--main {
     width: 70%;
-    /*max-width: 340px;*/
     box-shadow: 0px 0px 899px 380px rgb(136 136 136);
   }
-  
+  .cal-padding {
+    padding: 1.5rem;
+  }
+  #calendar{
+    width: 70%;
+  }
 }
 
 /*
@@ -885,34 +898,42 @@ i.fa-times-circle {
      ! animations
 ===================================
 */
-.fade-in{
-  animation: fadein 2.6s;
+.fade-in {
+  animation: fadein 0.5s;
 }
 @keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-.fade-out{
-  animation: fadeout 2.6s;
+.fade-out {
+  animation: fadeout 1s;
   animation-fill-mode: forwards;
 }
 @keyframes fadeout {
-  from { opacity: 1; }
-  to   { opacity: 0.4; }
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.4;
+  }
 }
 
-.slider-main{
-  animation:sliderMain 1.6s alternate;
+.slider-main {
+  animation: sliderMain 0.5s alternate;
 }
 
 @keyframes sliderMain {
   from {
-    left: 200%;
- }
- to {
-    left:30%;
- }
+    left: 110%;
+  }
+  to {
+    left: 30%;
+  }
 }
 .slide-top {
   animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
@@ -979,3 +1000,32 @@ i.fa-times-circle {
     transform-origin: left;
   }
 }
+
+.reminder-time{
+  max-height: 0;
+}
+.height-reset{
+  max-height: 80px;
+  transition: max-height 0.2s ease-out;
+}
+
+/* .main-wrapper{
+  display: flex;
+}
+
+aside{
+  width: 30%;
+  height: 100%;
+  background-color: transparent;
+}
+aside > div{
+  display: flex;
+}
+
+main{
+  height: 100%;
+}
+
+.main-wrapper{
+  height: inherit;
+} */

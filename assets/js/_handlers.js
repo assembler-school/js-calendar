@@ -44,11 +44,11 @@ export function handleDocumentEvents(e) {
      */
     if (e.target.matches(".fa-chevron-right")) {
       addMonth(updatedYear, updatedMonth, true);
-      document.querySelector(".calendar__month").classList.add("swing-right-fwd");
+      document.querySelector("#calendar").classList.add("swing-right-fwd");
     }
     if (e.target.matches(".fa-chevron-left")) {
       addMonth(updatedYear, updatedMonth, false);
-      document.querySelector(".calendar__month").classList.add("swing-left-fwd");
+      document.querySelector("#calendar").classList.add("swing-left-fwd");
     }
 
     /*
@@ -58,7 +58,7 @@ export function handleDocumentEvents(e) {
       document.getElementById("main").style.display = "block";
       swapTemplate("template__mobile", "main");
     }
-    if (e.target.matches("#navClose") || e.target.matches("#navClose *")) {
+    if (e.target.matches("#navClose i") || e.target.matches("#navClose i *")) {
       removeTemplate("template__mobile", "main");
       document.getElementById("main").style.display = "none";
     }
@@ -127,6 +127,19 @@ export function handleDocumentEvents(e) {
     if (e.target.matches("input[required]")) {
       formValidation(e, false);
     }
+  });
+
+   // animation end
+   document.addEventListener("animationend", (e) => {
+    /*
+     * clear animations
+     */
+    const swing = document.querySelectorAll(".swing-right-fwd, .swing-left-fwd")
+    swing.forEach(element => {
+      const cls = element.classList;
+      cls.contains("swing-right-fwd") ? cls.remove("swing-right-fwd") : 0;
+      cls.contains("swing-left-fwd") ? cls.remove("swing-left-fwd") : 0;
+    });
   });
 }
 

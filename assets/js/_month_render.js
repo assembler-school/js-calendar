@@ -36,7 +36,7 @@ export function renderMonth(year, month) {
     }
     /* Adapts the height of the week rows to the total */
     document.querySelectorAll('.calendar__week').forEach((row)=> {
-        row.style.height = 'calc((100% - 25px) / ' + rowCont + ')'
+        row.style.height = 'calc(100%  / ' + rowCont + ')'
     });
 }
 
@@ -75,6 +75,8 @@ export function updateDate(year,month) {
 export function addTag(year, month) {
     let monthTag = document.getElementById('nav__tag');
     let yearTag = document.getElementById('nav__year');
+    let monthMobileTag = document.getElementById('nav__mobile--tag');
+    let yearMobileTag = document.getElementById('nav__mobile--year');
 
     monthTag.innerHTML = monthList[month];
     yearTag.innerHTML = year;
