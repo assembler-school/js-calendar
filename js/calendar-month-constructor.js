@@ -99,9 +99,8 @@ function getFirstMonthDay(year,month){
     createWeekRow();
     createMonthGrid();
     populateMonth(month);
-
     today(month,currentDay,currentMonth,currentYear);
-
     updateMonthAndYearHeader(monthsNames[month], year);
     displayEventsInMonth(idMonth, calendarEvents,year);
+    loadListennersForDetails()
 }

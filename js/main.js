@@ -232,3 +232,4 @@ function removeEvent(id) {
     localStorage.setItem('calendarEvents', JSON.stringify(calendarEvents));
     localStorage.setItem('reminders', JSON.stringify(reminders));
 }
+
