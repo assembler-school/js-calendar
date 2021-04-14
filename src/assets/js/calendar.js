@@ -112,7 +112,7 @@ function renderEvent () {
         date.getMonth() + 1,
         0
     ).getDate();
-    
+
     for (i = 1; i < lastDay; i++) {
         if (!!eventsByDate[`${currentYear}-${currentMonth}-${i}`]) {
             //* Access to event data
