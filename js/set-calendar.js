@@ -76,10 +76,10 @@ function today(month,currentDay,currentMonth,currentYear){
         idCurrentDay = '0' + idCurrentDay;
     }
     if(month === currentMonth){
-      console.log(document.querySelector('[id="' + currentYear + '/' + idMonth + '/' + idCurrentDay + '"]').classList);
-      console.log(currentYear + '/' + idMonth + '/' + idCurrentDay);
+      console.log(document.querySelector('[id="' + currentYear + '/' + idCurrentMonth + '/' + idCurrentDay + '"]').classList);
+      console.log(currentYear + '/' + idCurrentMonth + '/' + idCurrentDay);
       document.querySelector('[id="' + currentYear + '/' + idCurrentMonth + '/' + idCurrentDay + '"]').classList.add('year-current-day');
-      console.log(document.querySelector('[id="' + currentYear + '/' + idMonth + '/' + idCurrentDay + '"]'));
+      console.log(document.querySelector('[id="' + currentYear + '/' + idCurrentMonth + '/' + idCurrentDay + '"]'));
     }
   }
 }

@@ -63,5 +63,5 @@ function displayEventInDate(dateID,eventTitle, eventId) {
     let eventTitleTextNode = document.createTextNode(eventTitle);
     displayedEvent.appendChild(eventTitleTextNode);
     displayedEvent.className += " event-text";
-    document.getElementById(dateID).parentNode.appendChild(displayedEvent);
+    document.getElementById(dateID).parentNode.lastChild.appendChild(displayedEvent);
 }
