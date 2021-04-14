@@ -36,7 +36,6 @@ export function handleDocumentEvents(e) {
         const data = calendarEvent.getDataFromModal("#modal form");
         calendarEvent.toLocalStorage(data);
         render.renderEvents(updatedYear, updatedMonth);
-        reminder.setReminder();
       }
     }
 
