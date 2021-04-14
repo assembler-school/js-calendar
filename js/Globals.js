@@ -17,3 +17,4 @@ var calendarView = '';
 var reminders = JSON.parse(localStorage.getItem('reminders')) || {};
 var nextRemindersList = [];
 var pastRemindersList = [];
+var currentTimeout;

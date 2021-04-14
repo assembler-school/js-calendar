@@ -32,6 +32,9 @@ function inicializeRemindersList(){
       }
     sortRemindersList(nextRemindersList,1);
     sortRemindersList(pastRemindersList,-1);
+    if (currentTimeout) {
+        clearTimeout(currentTimeout);
+    }
     startNextAlarmTimeout();
 }
 function sortRemindersList(remindersList, sign){
@@ -50,12 +53,10 @@ function sortRemindersList(remindersList, sign){
 function startNextAlarmTimeout(){
     if(nextRemindersList.length){
         let timeLeft = Date.parse(nextRemindersList[0].reminderDate) - Date.now();
-        setTimeout(function(){
+        currentTimeout = setTimeout(function(){
             alert("Hello, reminder for " + nextRemindersList[0].eventTitle);
-            console.log(nextRemindersList[0].eventTitle);
             pastRemindersList.unshift(nextRemindersList.shift());
             startNextAlarmTimeout();
         }, timeLeft);
-        console.log(timeLeft);
     }
 }
