@@ -22,7 +22,7 @@ function inicializeRemindersList(){
   pastRemindersList=[];
     for (reminderID in reminders){
         let reminder = reminders[reminderID];
-        reminder['reminderID'] = reminderID;
+        reminder['id'] = reminderID;
         if(Date.parse(reminder.reminderDate)>Date.now()){
             nextRemindersList.push(reminder);
         }else{
@@ -48,7 +48,7 @@ function sortRemindersList(remindersList, sign){
 }
 
 function startNextAlarmTimeout(){
-    if(!!nextRemindersList.length){
+    if(nextRemindersList.length){
         let timeLeft = Date.parse(nextRemindersList[0].reminderDate) - Date.now();
         setTimeout(function(){
             alert("Hello, reminder for " + nextRemindersList[0].eventTitle);
