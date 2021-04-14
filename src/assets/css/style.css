@@ -466,4 +466,20 @@ main {
   border: 0.5px solid var(--lightGrey);
 }
 */
-
+.remindersSection {
+  position: fixed;
+  z-index: 1;
+  width: 240px;
+  top: 20 px;
+  right: 20px;
+}
+.reminderContainer {
+  border-radius: 5px;
+  background-color: var(--eventYellow);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  padding: 5px;
+  text-align: center;
+}
+.reminderBtn{
+  border-color: var(--eventOrange);
+}

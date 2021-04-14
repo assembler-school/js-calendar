@@ -1,7 +1,8 @@
 //! Objects
 var eventsByDate = {};
 var eventsById = [];
-var remindersByDate = {};
+var remindersByDate =
+    localStorage.getItem('remindersByDate') ? JSON.parse(localStorage.getItem('remindersByDate')) : {};
 var remindersById = [];
 if (!localStorage.getItem("eventIndex")) {
     var eventIndex = 0;
@@ -61,6 +62,14 @@ function createEvent() {
         miliSecsToEndDay += (60*60*24*1000);
     }
 
+    //* Save (or not) to reminders lists
+    if (checkBoxReminder === true) {
+        if (!remindersByDate[`${startYear}-${startMonth}-${startDate}`]) {
+            remindersByDate[`${startYear}-${startMonth}-${startDate}`] = [];
+        }
+        remindersByDate[`${startYear}-${startMonth}-${startDate}`].push(eventIndex);
+    }
+
     //* Saving in eventsByDate
 
     for (i = 0; i < daysDuration; i++) {
@@ -83,17 +92,6 @@ function createEvent() {
         }
     }
 
-
-
-    //* Save (or not) to reminders lists
-    if (checkBoxReminder === true) {
-        remindersById.push(newEvent);
-        if (!remindersByDate[`${startYear}-${startMonth}-${startDate}`]) {
-            remindersByDate[`${startYear}-${startMonth}-${startDate}`] = [];
-        }
-        remindersByDate[`${startYear}-${startMonth}-${startDate}`].push(eventIndex);
-    }
-
     localStorage.setItem("eventsById", JSON.stringify(eventsById));
     localStorage.setItem("eventsByDate", JSON.stringify(eventsByDate));
     localStorage.setItem("remindersById", JSON.stringify(remindersById));
@@ -104,7 +102,7 @@ function createEvent() {
 }
 /* createEvent(); */
 /* function getModalData (titleF, iniDateF, enDateF, reminderF, descriptionF, eventTF) {
-    
+
 
 
 

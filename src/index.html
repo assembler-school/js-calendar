@@ -18,14 +18,15 @@
 
 <body>
     <header>
-            <button class="btn-next-prev" id="prevMonth"><i class="fas fa-arrow-left"></i></button>
-            <h1 id="monthYear" class="page-title"></h1>
-            <button class="btn-next-prev" id="nextMonth"><i class="fas fa-arrow-right"></i></button>
-            <button id="modal-open-button" class="btn-add-event"><i class="far fa-calendar-plus"></i> New Event</button>
-            <div id="current-date">8 April 2021</div>
+        <button class="btn-next-prev" id="prevMonth"><i class="fas fa-arrow-left"></i></button>
+        <h1 id="monthYear" class="page-title"></h1>
+        <button class="btn-next-prev" id="nextMonth"><i class="fas fa-arrow-right"></i></button>
+        <button id="modal-open-button" class="btn-add-event"><i class="far fa-calendar-plus"></i> New Event</button>
+        <div id="current-date">8 April 2021</div>
 
     </header>
     <main>
+        <section id="remindersSection" class="remindersSection"></section>
         <section class="calendar">
             <div class="weekdays">
                 <div>Sun</div>
@@ -71,10 +72,10 @@
                 <div class="modal-input">
                     <label for="time">Time</label>
                     <select name="time" id="time" disabled>
-                        <option value="5 min">5 min</option>
-                        <option value="10 min">10 min</option>
-                        <option value="15 min">15 min</option>
-                        <option value="20 min">20 min</option>
+                        <option value="5">5 min</option>
+                        <option value="10">10 min</option>
+                        <option value="15">15 min</option>
+                        <option value="20">20 min</option>
                     </select>
                 </div>
                 <div class="modal-input">
@@ -100,10 +101,21 @@
             </form>
         </div>
     </section>
-    <script src="assets/js/calendar.js"></script>
-    <script src="assets/js/validations.js"></script>
-    <script src="assets/js/script.js"></script>
-    <script src="assets/js/localstorage.js"></script>
+    <audio id="beep">
+        <source src="assets/sounds/beep.mp3" type="audio/mpeg">
+    </audio>
 </body>
+
+<template id="reminderTemplate">
+    <label id="reminderEventName">Evento:</label>
+    <label id="reminderStartTime">Comenzará </label>
+    <button id="dismissBtn" class="reminderBtn" onclick='closeReminder(event)'>Got it!</button>
+</template>
+
+<script src="assets/js/calendar.js"></script>
+<script src="assets/js/validations.js"></script>
+<script src="assets/js/script.js"></script>
+<script src="assets/js/localstorage.js"></script>
+<script src="assets/js/reminder.js"></script>
 
 </html>
