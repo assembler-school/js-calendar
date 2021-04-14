@@ -23,13 +23,15 @@
                 <div>
                     <i class="fas fa-chevron-left"></i>
                 </div>
-                <h2><span id="nav__tag"></span> <span id="nav__year"></span></h2>
+                <h2>
+                    <span id="nav__tag"></span> 
+                    <span id="nav__year"></span>
+                </h2>
                 <div>
                     <i class="fas fa-chevron-right"></i>
                 </div>
             </div>
             <div class="nav__center">
-                <button>Day</button>
                 <button>Week</button>
                 <button class="nav__center--selected">Month</button>
                 <button>Year</button>
@@ -48,7 +50,10 @@
                 <div>
                     <i class="fas fa-chevron-left"></i>
                 </div>
-                <h2></h2>
+                <h2>
+                    <span id="nav__mobile--tag"></span>
+                    <span id="nav__mobile--year"></span>
+                </h2>
                 <div>
                     <i class="fas fa-chevron-right"></i>
                 </div>
@@ -56,7 +61,7 @@
             <div>
                 <i id="navOpen" class="fas fa-bars"></i>
             </div>
-            <div id="main" class="nav__mobile--main">
+            <div id="main" class="nav__mobile--main slider-main">
             </div>
         </div>
     </section>
@@ -77,10 +82,11 @@
         <hr>
         <div class="nav__mobile--container">
             <div class="nav__mobile--containerBtn">
-                <button>Day</button>
-                <button>Week</button>
-                <button class="nav__mobile--selected">Month</button>
-                <button>Year</button>
+                <div class="nav__mobile--center">
+                    <button>Week</button>
+                    <button class="nav__mobile--selected">Month</button>
+                    <button>Year</button>
+                </div>
             </div>
             <hr>
             <div class="nav__mobile--event">
@@ -219,7 +225,8 @@
                         quasi voluptates earum pariatur sequi ullam ex! Asperiores reprehenderit praesentium eaque.
                         Tempore eligendi fugit tempora in voluptatem incidunt quam, deserunt iure similique quis facere
                         ad quas provident eius illum excepturi quae est animi ullam deleniti soluta esse commodi quo
-                        minus! Velit.</span></div>
+                        minus! Velit.</span>
+                </div>
             </div>
         </div>
     </template>
