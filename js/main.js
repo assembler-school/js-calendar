@@ -183,7 +183,7 @@ function saveEventData() {
             addEventToCalendar({
                 id: eventId,
                 eventTitle: eventTitle,
-                initialDate: initialDateDate,
+                initialDate: setValueTime(initialDateDate),
                 endDateChecked: endDateChecked,
                 endDate: endDate,
                 description: description,
