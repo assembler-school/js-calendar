@@ -144,8 +144,10 @@ table {
   --textDarkGray: #707070;
   --textLightGray: #b0b0b0;
   --pink: #c07d7d;
+  --red: #c94d4d;
   --green: #b8cead;
   --blueTitle: #66aeaf;
+  --darkBlue: #3d989a;
 }
 
 * {
@@ -248,6 +250,7 @@ select {
 }
 
 h1 {
+  font-family: var(--font-display);
   font-size: 36px;
   color: var(--textLightGray);
   font-weight: 700;

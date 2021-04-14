@@ -14,31 +14,21 @@ function displayDetailsOfEvent(eventId, dateId) {
         for (let i = 0; i < calendarEvents[dateId].length; i++) {
             if (calendarEvents[dateId][i].id == eventId) {
                 let titleText = calendarEvents[dateId][i].eventTitle;
-                let initialDateText = calendarEvents[dateId][i].initialDate;
-                let endDateText
+                let initialDateText = calendarEvents[dateId][i].initialDate.split('T');
+                initialDateText = `${initialDateText[0]} ${initialDateText[1]}`
+                let endDateText;
                 if (calendarEvents[dateId][i].endDate !== undefined) {
-                    endDateText = calendarEvents[dateId][i].endDate;
-                } else {
-                    endDateText = '-';
-                }
+                    endDateText = calendarEvents[dateId][i].endDate.split('T');
+                    endDateText = `${endDateText[0]} ${endDateText[1]}`
+                }  
                 let descriptionText = calendarEvents[dateId][i].description;
                 let eventTypeText = calendarEvents[dateId][i].eventType;
                 let reminderDateText
                 if (calendarEvents[dateId][i].reminderDate !== undefined) {
-                    reminderDateText = calendarEvents[dateId][i].reminderDate;
-                } else {
-                    reminderDateText = '-';
+                    reminderDateText = calendarEvents[dateId][i].reminderDate.split('T');
+                    reminderDateText = `${reminderDateText[0]} ${reminderDateText[1]}`
                 }
-                alert(`Title: ${titleText},
-Initial date: ${initialDateText},
-End date: ${endDateText},
-Reminder: ${reminderDateText},
-Description: ${descriptionText},
-Type of event: ${eventTypeText}`)
+                modalForDetails(titleText, initialDateText, endDateText, reminderDateText, descriptionText, eventTypeText, eventId)
             }
         }
 }
-
-// loadListennersForDetails()
-
-// removeEvent(id) // Pasarle el id del evento que tiene que borrar.
