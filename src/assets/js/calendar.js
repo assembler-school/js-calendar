@@ -121,10 +121,37 @@ function renderEvent () {
     const daysContainer = document.querySelectorAll(".current-month-day");
     const previousDaysContainer = document.querySelectorAll(".prev-date");
     const nextDaysContainer = document.querySelectorAll(".next-date");
-    const currentMonth = date.getMonth() + 1;
+    eventDivsInjector (previousDaysContainer, -1);
+    eventDivsInjector (daysContainer, 0);
+    eventDivsInjector (nextDaysContainer, 1);
+}
+
+function eventDivsInjector (divsNodeList, monthGap) {
+    let currentMonth;
+    switch (monthGap) {
+        case 0:
+            currentMonth = date.getMonth() + 1;
+            break;
+        case -1:
+            if (date.getMonth() === 0) {
+                currentMonth = 12
+            } else {
+                currentMonth = date.getMonth();
+            }
+            break;
+        case 1:
+            if (date.getMonth() === 11) {
+                currentMonth = 1
+            } else {
+                currentMonth = date.getMonth() + 2;
+            }
+            break;
+        default:
+            break;
+    }
     const currentYear = date.getFullYear();
     //* Calendar days divs pass by
-    for (let div of daysContainer) {
+    for (let div of divsNodeList) {
         const dayNumber = div.firstChild.innerHTML;
         //* checking that day has events
         if (!!eventsByDate[`${currentYear}-${currentMonth}-${dayNumber}`]) {
