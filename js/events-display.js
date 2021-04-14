@@ -65,24 +65,3 @@ function displayEventInDate(dateID,eventTitle, eventId) {
     displayedEvent.className += " event-text";
     document.getElementById(dateID).parentNode.appendChild(displayedEvent);
 }
-
-// Display the event's details when click on it --------------------
-
-let elementEvent = document.querySelectorAll('.event-text');
-    elementEvent.forEach(element => {
-        element.addEventListener('click', function(){
-            let id = element.getAttribute('class');
-            // let element = document.getElementsByClassName(id);
-            element.remove();
-            // removeThisEvent(element)
-        });
-    });    
-
-
-function displayEventsDetails(id) {
-    alert('este es el evento con la id ' + id);
-};
-
-function removeThisEvent(element) {
-    element.remove()
-}
