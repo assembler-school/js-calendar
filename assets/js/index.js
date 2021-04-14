@@ -73,9 +73,9 @@ const renderCalendar = () => {
       days += `<div class = "prev-date" id="${prevLastDay - x+1}-${actual_month-1}-${actual_year}">${prevLastDay - x+1}</div>`;
   }
 
-  var myDayArray = [01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32]
+ var myDayArray = [01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32]
   /* Bucle para crear todos los Divs que necesitamos para el día del mes */
-  for (i = 01; i <= lastDay; i++) {
+  for (i = myDayArray[0]; i <= lastDay; i++) {
       /* Este if es solo un comparador que te compara el valor de la variable (date) con la fecha actual de un nuevo objeto Date y si coincide, le aplica la clase TODAY */
       if (i === new Date().getDate() && date.getMonth() === new Date().getMonth() && date.getFullYear() === new Date().getFullYear()) {
           days += `<div class="today no-event-day" id="${i}-${actual_month}-${actual_year}">${i}</div>`;

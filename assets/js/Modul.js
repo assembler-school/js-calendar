@@ -220,22 +220,29 @@ function renderEvents (){
     event_displays.forEach((e)=>{
       e.remove(this);
     })
-    console.log("aqui no hay nada wey");
+    console.log("en el día seleccionado, no hay nada");
   }
 }
 
 function renderToday(){
 
   let today__event =JSON.parse(localStorage.getItem(today));
-  let myArray = Object.entries(today__event);
-  myArray.forEach((element)=>{
 
-    let section = document.createElement("section");
-    section.setAttribute("class", "event__display");
-    section.insertAdjacentHTML("afterbegin",`<h1>${element[1].title}</h1>`);
-    events.appendChild(section);
-  });
-  //console.log(today__event)
+  if (today__event != undefined){
+    let myArray = Object.entries(today__event);
+    myArray.forEach((element)=>{
+
+      let section = document.createElement("section");
+      section.setAttribute("class", "event__display");
+      section.insertAdjacentHTML("afterbegin",`<h1>${element[1].title}</h1>`);
+      events.appendChild(section);
+    });
+    //console.log(today__event)
+
+  }else{
+    console.log("HOY no hay nada wey");
+  }
+
 
 }
 renderToday();
