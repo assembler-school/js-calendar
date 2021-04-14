@@ -6,9 +6,12 @@ function reminderArr() {
      return JSON.parse(eventData).filter(calendarEvents => calendarEvents.reminder == 'on');
 }
 
+
+
+
 // Function that sets the alarm for the reminders
 
-export function setReminder() {
+/* export function setReminder() {
      let actualDate = new Date();
      if (localStorage.length) {
           let objArray = reminderArr();
@@ -25,4 +28,4 @@ export function setReminder() {
 }
 
 setReminder();
-setInterval(setReminder, 1000);
+setInterval(setReminder, 1000); */
