@@ -128,3 +128,46 @@ export function renderYear(){
         month_list.appendChild(month);
     });
 }
+
+
+/*
+ * This checks event visibility
+ *
+ */
+export function checkEventsVisibility() {
+    const evContainer = document.querySelectorAll("[data-col]");
+    const getChildOffset = function (element) {
+      return (
+        element.offsetTop +
+        element.offsetHeight -
+        element.parentElement.offsetHeight + 15
+      );
+    };
+  
+    evContainer.forEach((container) => {
+      let evHidden = 0;
+      const ev = container.querySelectorAll("[data-eventid]");
+  
+      ev.forEach((v) => {
+        if (getChildOffset(v) > 0) {
+          evHidden++;
+          v.style.visibility = "hidden";
+        } else {
+          v.style.visibility = "visible";
+        }
+      });
+  
+      const existSpan = container.querySelector("span.hidden-events");
+      if (existSpan) {
+        existSpan.remove();
+      }
+  
+      if (evHidden) {
+        const span = document.createElement("span");
+        span.textContent = evHidden + " más";
+        span.classList.add("hidden-events");
+        container.appendChild(span);
+      }
+    });
+  }
+  

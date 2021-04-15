@@ -26,7 +26,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 body {
@@ -110,7 +110,7 @@ section {
   background-color: var(--header-color);
 }
 
-.cal-padding{
+.cal-padding {
   padding: 0.5rem;
 }
 
@@ -224,6 +224,7 @@ button#create-event i {
   transform: scale(1.5);
   visibility: hidden;
   pointer-events: none;
+  overflow: hidden;
 }
 
 .month-list > div {
@@ -403,6 +404,11 @@ button#create-event i {
   border: #dadce0 1px solid;
   border-top: none;
   border-radius: 0 0 10px 10px;
+  overflow: hidden;
+}
+
+.calendar__month *{
+  overflow: hidden;
 }
 
 .calendar__week {
@@ -424,14 +430,14 @@ button#create-event i {
   border-right: none;
 }
 
-.calendar__week div span {
+/* .calendar__week div span {
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 25px 25px;
   height: 30px;
   width: 30px;
-}
+} */
 
 .calendar__weekDay {
   display: flex;
@@ -441,6 +447,7 @@ button#create-event i {
   padding-top: 0.5rem;
   align-items: center;
   text-align: end;
+  overflow: hidden;
   background-color: white;
   border-left: #dadce0 1px solid;
   border-top: #dadce0 1px solid;
@@ -465,7 +472,7 @@ button#create-event i {
   background-color: var(--header-color);
 }
 
-.today span {
+.today span:first-child {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -479,6 +486,14 @@ button#create-event i {
 .spanDay {
   font-size: 1.2rem;
   padding: 1.2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px 25px;
+  height: 30px;
+  width: 30px;
+
 }
 
 /*
@@ -519,11 +534,11 @@ button#create-event i {
   margin-bottom: 1rem;
 }
 
-.reminder-time{
+.reminder-time {
   max-height: 0;
 }
 
-.height-reset{
+.height-reset {
   max-height: 80px;
   transition: max-height 0.2s ease-out;
 }
@@ -624,23 +639,31 @@ i.fa-times-circle {
   white-space: nowrap;
   align-items: center;
   height: 1rem;
+  /* width: 1rem; */
   color: white;
   background-color: #ff6010;
   border-radius: 10px;
   overflow-x: hidden;
-  padding: 0.6rem 0.4rem;
+  padding: 0.7rem 0.4rem;
   margin: 0.5rem 0;
   font-size: 0.8rem;
   cursor: pointer;
+  overflow-x: visible ;
 }
 
+/* .event__description {
+  font-size: 0.8rem;
+  max-height: 80px;
+  overflow-y: auto;
+  margin: 0.5rem 0;
+  padding: 0 0.4rem;
+} */
+
 .event__type--meeting {
-  color: white;
   background-color: #ff6010;
 }
 
 .event__type--birthday {
-  color: white;
   background-color: #ff6010;
 }
 
@@ -699,13 +722,6 @@ i.fa-times-circle {
 .fa-pencil-alt {
   font-size: 1rem;
 }
-.event__description {
-  font-size: 0.8rem;
-  max-height: 80px;
-  overflow-y: auto;
-  margin: 0.5rem 0;
-  padding: 0 0.4rem;
-}
 
 /*
   ===================================
@@ -758,13 +774,13 @@ i.fa-times-circle {
   .fa-pencil-alt {
     font-size: 1rem;
   }
-  .event__description {
+  /* .event__description {
     font-size: 0.8rem;
     max-height: 80px;
     overflow-y: auto;
     margin: 0.5rem 0;
     padding: 0 0.4rem;
-  }
+  } */
   .nav__mobile--main {
     width: 70%;
     max-width: 280px;
@@ -792,13 +808,13 @@ i.fa-times-circle {
   #nav__mobile {
     display: block;
   }
-  .event {
+  /* .event {
     height: 1rem;
     border-radius: 10px;
     padding: 0.8rem 0.6rem;
     margin: 0.5rem 0;
     font-size: 0.8rem;
-  }
+  } */
 
   .more__event {
     font-size: 0.8rem;
@@ -835,24 +851,24 @@ i.fa-times-circle {
   .fa-pencil-alt {
     font-size: 1rem;
   }
-  .event__description {
+  /* .event__description {
     font-size: 0.9rem;
     max-height: 100px;
     overflow-y: auto;
     margin: 0.5rem 0;
     padding: 0 0.4rem;
-  }
+  } */
 }
 
 /* Large screen */
 @media only screen and (min-width: 900px) {
-  .event {
+  /* .event {
     height: 1rem;
     border-radius: 10px;
     padding: 0.8rem 0.6rem;
     margin: 0.5rem 0;
     font-size: 1rem;
-  }
+  } */
 
   .more__event {
     font-size: 0.8rem;
@@ -1009,24 +1025,54 @@ i.fa-times-circle {
   }
 }
 
+.calendar__fraction {
+  min-height: 55px;
+  border-bottom: #dadce0 1px solid;
+}
 
-/* .main-wrapper{
+.week-hour-wr {
+  width: 2%;
+  font-size: 0.8rem;
+  opacity: 0.6;
+  min-width: 50px;
+}
+.week-hour-wr div {
+  min-height: 55px;
+  position: relative;
+  overflow: visible;
+}
+
+.week-hour-wr span {
+  position: absolute;
+  bottom: -0.4rem;
+  right: 0;
+}
+
+.fraction-wrapper {
+  width: 98%;
+}
+
+.calendar__week-view {
+  height: calc(100% - 25px);
   display: flex;
+  background-color: white;
+  overflow-y: scroll;
 }
 
-aside{
-  width: 30%;
-  height: 100%;
-  background-color: transparent;
-}
-aside > div{
-  display: flex;
+[data-col]{
+  position: relative;
 }
 
-main{
-  height: 100%;
+.hidden-events{
+  position: absolute;
+  bottom: 2px;
+  left: calc(50% - 20px);
+  color: #000;
+  font-size: 0.8rem;
+  cursor: pointer;
+  opacity: 1;
 }
 
-.main-wrapper{
-  height: inherit;
-} */
+.hidden-events:hover{
+  opacity: 0.7;
+}

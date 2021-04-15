@@ -12,6 +12,26 @@ export function handleDocumentEvents(e) {
   // click event
   document.addEventListener("click", (e) => {
     /*
+     * show week view
+     */
+    // show modal
+    if (e.target.matches("button#show-week")) {
+      swapTemplate("week-view", "calendar");
+      e.target.classList.add("nav__center--selected");
+      document
+        .querySelector(".nav__center:nth-child(2)")
+        .classList.remove("nav__center--selected");
+    }
+
+    /*
+     * button to view more events
+     */
+    // show modal
+    if (e.target.matches(".hidden-events")) {
+
+    }
+
+    /*
      * show / hide modal popup
      */
     // show modal
@@ -111,10 +131,10 @@ export function handleDocumentEvents(e) {
     }
     if (e.target.matches(".month-list *")) {
       const ev = e.target,
-       month = ev.dataset.month || ev.firstChild.dataset.month,
-       rm = document.querySelector(".month-list");
+        month = ev.dataset.month || ev.firstChild.dataset.month,
+        rm = document.querySelector(".month-list");
 
-       goToMonth(updatedYear,  parseInt(month));
+      goToMonth(updatedYear, parseInt(month));
       rm.classList.toggle("show");
     }
   });
@@ -129,13 +149,18 @@ export function handleDocumentEvents(e) {
     }
   });
 
-   // animation end
-   document.addEventListener("animationend", (e) => {
+  // resize
+  window.addEventListener("resize", render.checkEventsVisibility);
+
+  // animation end
+  document.addEventListener("animationend", (e) => {
     /*
      * clear animations
      */
-    const swing = document.querySelectorAll(".swing-right-fwd, .swing-left-fwd")
-    swing.forEach(element => {
+    const swing = document.querySelectorAll(
+      ".swing-right-fwd, .swing-left-fwd"
+    );
+    swing.forEach((element) => {
       const cls = element.classList;
       cls.contains("swing-right-fwd") ? cls.remove("swing-right-fwd") : 0;
       cls.contains("swing-left-fwd") ? cls.remove("swing-left-fwd") : 0;
@@ -155,6 +180,7 @@ function addMonth(year, month, boolean) {
   render.highlightToday(year, month);
   render.renderEvents(year, month);
   render.renderYear();
+  render.checkEventsVisibility();
 }
 
 /*
@@ -170,4 +196,5 @@ export function goToMonth(year, month) {
   render.highlightToday(year, month);
   render.renderEvents(year, month);
   render.renderYear();
+  render.checkEventsVisibility();
 }

@@ -22,6 +22,7 @@ function showCalendar(year, month) {
   render.renderYear();
   render.highlightToday(year, month);
   render.renderEvents(year, month);
+  render.checkEventsVisibility();
   // Listeners
 }
 
