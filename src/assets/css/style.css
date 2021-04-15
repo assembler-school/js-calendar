@@ -139,6 +139,10 @@ h1 {
   left: 10px;
   bottom: 10px;
   font-weight: 800;
+  background-color: var(--darkGray);
+  color: var(--lightestGray);
+  border-radius: 5px;
+  padding: 8px;
 }
 
 
