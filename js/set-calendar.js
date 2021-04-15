@@ -7,7 +7,7 @@ function previousButton(){
   if(calendarView == '' || calendarView == 'month-view'){
     month -= 1;
     clearMonthCalendar();
-    calendarMonthConstructor(month);
+    calendarMonthConstructor(month,year);
   };
   if(calendarView == 'year-view'){
     year -= 1;
@@ -21,7 +21,7 @@ function todayButton(){
     clearMonthCalendar();
     month = currentMonth;
     year = currentYear;
-    calendarMonthConstructor(year,month);
+    calendarMonthConstructor(month,year);
   }
   if(calendarView == 'year-view'){
     clearYearCalendar();
@@ -35,7 +35,7 @@ function nextButton(){
   if(calendarView == '' || calendarView == 'month-view'){
     month += 1;
     clearMonthCalendar();
-    calendarMonthConstructor(month);
+    calendarMonthConstructor(month,year);
   }
   if(calendarView == 'year-view'){
     year += 1;

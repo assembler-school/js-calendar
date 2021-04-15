@@ -22,7 +22,7 @@ document.getElementById('monthView-btn').addEventListener("click", (event)=>{
         event.target.disabled=true;
         document.getElementById("yearView-btn").disabled=false;
         updateTemplate("year-section","main-content-section","month-template");
-        calendarMonthConstructor();
+        calendarMonthConstructor(month,year);
     }
 });
 document.getElementById('yearView-btn').addEventListener("click", (event)=>{
@@ -34,7 +34,7 @@ document.getElementById('yearView-btn').addEventListener("click", (event)=>{
     }
 });
 addNewTemplate("main-content-section", "month-template");
-calendarMonthConstructor();
+calendarMonthConstructor(month,year);
 hideModal();
 initRemindersList();
 loadPastRemindersWarningCounter();

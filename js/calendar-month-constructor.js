@@ -1,4 +1,4 @@
-function calendarMonthConstructor(setCalendarMonthCounter){
+function calendarMonthConstructor(setCalendarMonthCounter,year){
     //Calendar view
     calendarView = 'month-view';
 
@@ -12,7 +12,6 @@ function calendarMonthConstructor(setCalendarMonthCounter){
     }
 
     // January is 0;
-
 
     // Creates the name of the weeks
     function createWeekRow() {
@@ -57,18 +56,19 @@ function calendarMonthConstructor(setCalendarMonthCounter){
     }
 
     // Gives you the first day of the month (0 is Sunday, the first month is 0)
-function getFirstMonthDay(year,month){
-    let day = new Date(year, month).getDay();
-    //return 7 because in calendar week start on monday and get day starts on sunday
-    if(day == 0){
-      return 7;
-    }else{
-      return day;
+    function getFirstMonthDay(year,month){
+        let day = new Date(year, month).getDay();
+        //return 7 because in calendar week start on monday and get day starts on sunday
+        if(day == 0){
+            return 7;
+        }else{
+            return day;
+        }
     }
-  }
 
     // Assign a number for each day. It should check what month is and display the number on the right day.
     function populateMonth(month) {
+        console.log(month);
         const numberOfDay = document.querySelectorAll('.month_day_number');
         let day = 1
         for (let i = 0; i < numberOfDay.length; i++) {
@@ -80,7 +80,7 @@ function getFirstMonthDay(year,month){
                 idMonth = month + 1;
                 idDay = day;
                 if(idMonth < 10){
-                   idMonth = '0' + idMonth
+                    idMonth = '0' + idMonth
                 }
                 if(idDay < 10){
                     idDay = '0' + idDay;
@@ -105,11 +105,12 @@ function getFirstMonthDay(year,month){
         currentYearText.innerHTML = yearText;
     }
 
+    clearMonthCalendar();
     createWeekRow();
     createMonthGrid();
     populateMonth(month);
-    today(month,currentDay,currentMonth,currentYear);
     updateMonthAndYearHeader(monthsNames[month], year);
+    today(month,currentDay,currentMonth,currentYear);
     displayEventsInMonth(idMonth, calendarEvents,year);
     loadListennersForDetails()
 }
