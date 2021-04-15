@@ -119,6 +119,57 @@
 
 /* unrelated styles */
 
+#details-reminder-content {
+  position: relative;
+  width: 300px;
+  background-color: var(--bg);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* padding: 15px; */
+}
+
+.reminder-header {
+  box-sizing: border-box;
+  width: 100%;
+  background-color: var(--red);
+  border-radius: 10px 10px 0px 0px;
+  padding: 15px;
+  border-bottom: 5px solid var(--blueTitle);
+  margin-bottom: 10px;
+  font-size: 30px;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--textLightGray);
+}
+
+.details-reminder-container {
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+}
+
+.div-for-reminder-btn {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+.ok-reminder-btn {
+  background-color: var(--blueTitle);
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 0px 10px;
+}
+
+.ok-reminder-btn:hover {
+  background-color: var(--darkBlue);
+}
+
 #mContainer {
   position: relative;
   width: 600px;

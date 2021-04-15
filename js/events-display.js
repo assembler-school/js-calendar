@@ -57,7 +57,12 @@ function startNextAlarmTimeout(){
     if(nextRemindersList.length){
         let timeLeft = Date.parse(nextRemindersList[0].reminderDate) - Date.now();
         currentTimeout = setTimeout(function(){
-            alert("Hello, reminder for " + nextRemindersList[0].eventTitle);
+            let id = nextRemindersList[0].id;
+            let title = nextRemindersList[0].eventTitle;
+            let initialDate = nextRemindersList[0].initialDate.split('T');
+            initialDate = `${initialDate[0]} ${initialDate[1]}`
+            modalForReminders(title, initialDate, id);
+
             pastRemindersList.unshift(nextRemindersList.shift());
             loadPastRemindersWarningCounter();
             startNextAlarmTimeout();
