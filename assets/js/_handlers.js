@@ -83,12 +83,15 @@ export function handleDocumentEvents(e) {
      * Mobile burguer menu
      */
     if (e.target.matches("#navOpen") || e.target.matches("#navOpen *")) {
+      document.getElementById("alert__shadowMain").style.display = "block";
       document.getElementById("main").style.display = "block";
       swapTemplate("template__mobile", "main");
     }
-    if (e.target.matches("#navClose") || e.target.matches("#navClose *")) {
-      removeTemplate("template__mobile", "main");
+    if (e.target.matches("#navClose") || e.target.matches("#navClose *") 
+    || e.target.matches("#alert__shadowMain")) {
       document.getElementById("main").style.display = "none";
+      document.getElementById("alert__shadowMain").style.display = "none";
+      removeTemplate("template__mobile", "main");
     }
 
     /*
@@ -103,17 +106,19 @@ export function handleDocumentEvents(e) {
      * Click in event
      */
     if (e.target.matches("[data-eventid]")) {
-      const [_event] = calendarEvent.getEvent(e.target.dataset.eventid);
-      swapTemplate("modal-template", "modal-section");
-      calendarEvent.printDataToModal("#modal form", _event);
+          const [_event] = calendarEvent.getEvent(e.target.dataset.eventid);
+          swapTemplate("modal-template", "modal-section");
+          calendarEvent.printDataToModal("#modal form", _event);       
     }
 
     /*
      *
      */
     if (e.target.matches(".calendar__week > div")) {
-      const dia = e.target.id;
-      console.log(dia);
+      if(e.target.id !== ""){
+        const dia = e.target.id;
+        console.log(dia);
+      }
     }
 
   });

@@ -12,11 +12,6 @@
 </head>
 
 <body>
-    <!-- <header>
-        <h1>Js Calendar</h1>
-        <button id="create-event"> <i class="fas fa-plus"></i> Add event</button>
-    </header> -->
-
     <section id="nav__web">
         <div class="nav__month">
             <div class="nav__left">
@@ -61,7 +56,10 @@
             <div>
                 <i id="navOpen" class="fas fa-bars"></i>
             </div>
-            <div id="main" class="nav__mobile--main slider-main">
+        </div>
+        <div  id="alert__shadowMain" >
+            <div id="main" class="nav__mobile--main slider-open-main">
+
             </div>
         </div>
     </section>
@@ -79,34 +77,34 @@
 
     <!-- ? MOBILE NAV -->
     <template id="template__mobile">
-        <div id="navClose" class="nav__mobile--btn-close">
-            <i class="fas fa-bars"></i>
-        </div>
-        <hr>
-        <div class="nav__mobile--container">
-            <div class="nav__mobile--containerBtn">
-                <div class="nav__mobile--center">
-                    <button>Week</button>
-                    <button id="btnMonth" class="nav__mobile--selected">Month</button>
-                    <button id="btnYear">Year</button>
+            <div id="navClose" class="nav__mobile--btn-close slider-closed-main">
+                <i class="fas fa-bars"></i>
+            </div>
+            <hr>
+            <div class="nav__mobile--container">
+                <div class="nav__mobile--containerBtn">
+                    <div class="nav__mobile--center">
+                        <button>Week</button>
+                        <button id="btnMonth" class="nav__mobile--selected">Month</button>
+                        <button id="btnYear">Year</button>
+                    </div>
+                </div>
+                <hr>
+                <div class="nav__mobile--event">
+                    <span class="nav__mobile--event--span">Cumpleaños Pepe</span>
+                    <span class="nav__mobile--event--span">Cumpleaños Marta</span>
+                    <span class="nav__mobile--event--span">Cumpleaños Antonio</span>
+                    <span class="nav__mobile--event--span">Cumpleaños Javi</span>
+                    <span class="nav__mobile--event--span">Cumpleaños Laura</span>
+                </div>
+                <hr>
+                <div class="nav__mobile--btnEvent">
+                    <button id="create-event">
+                        <i class="fas fa-plus"></i>
+                        <p>Add event</p>
+                    </button>
                 </div>
             </div>
-            <hr>
-            <div class="nav__mobile--event">
-                <span class="nav__mobile--event--span">Cumpleaños Pepe</span>
-                <span class="nav__mobile--event--span">Cumpleaños Marta</span>
-                <span class="nav__mobile--event--span">Cumpleaños Antonio</span>
-                <span class="nav__mobile--event--span">Cumpleaños Javi</span>
-                <span class="nav__mobile--event--span">Cumpleaños Laura</span>
-            </div>
-            <hr>
-            <div class="nav__mobile--btnEvent">
-                <button id="create-event">
-                    <i class="fas fa-plus"></i>
-                    <p>Add event</p>
-                </button>
-            </div>
-        </div>
     </template>
 
     <!-- ? Month Template -->
@@ -233,7 +231,7 @@
         </div>
     </template>
 
-    <!-- -->
+    <!-- ? Template Months of Year -->
     <template id="year">
         <div class="calendar__year--row">
             <div data-month="0" class="calendar__year--month">
