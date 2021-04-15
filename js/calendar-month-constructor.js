@@ -87,6 +87,12 @@ function getFirstMonthDay(year,month){
                 }
 
                 numberOfDay[i].setAttribute('id',year + '/' + idMonth + '/' + idDay);
+                let fullDateId = formatDate(new Date(`${year}/${idMonth}/${idDay}`));
+                numberOfDay[i].parentNode.addEventListener('click', (event) => {
+                    if (event.target.classList.contains('event-container')
+                        || event.target.classList.contains('event-text')) return;
+                    showModalWithDay(fullDateId);
+                });
                 day++
             }
         }
