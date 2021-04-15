@@ -523,6 +523,10 @@ button#create-event i {
   max-height: 0;
 }
 
+.ending-date{
+  max-height: 0;
+}
+
 .height-reset{
   max-height: 80px;
   transition: max-height 0.2s ease-out;

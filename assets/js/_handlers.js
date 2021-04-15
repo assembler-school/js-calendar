@@ -71,6 +71,8 @@ export function handleDocumentEvents(e) {
     if (e.target.matches('[name="end-check"]')) {
       const check = document.querySelector('[name="end-date"]');
       check.disabled ? (check.disabled = false) : (check.disabled = true);
+      const end = document.querySelector(".ending-date");
+      end.classList.toggle("height-reset");
     }
 
     /*
