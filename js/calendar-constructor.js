@@ -26,6 +26,9 @@ function getMonthDays(year,month){
 
 //CALENDAR CONSTRUCTOR
 function calendarConstructor(changeYear){
+  //Calendar view
+  calendarView = 'year-view';
+  
   var yearView = document.querySelector('#year-section');
   //Create year-rows
   for(i=0;i<3;i++){

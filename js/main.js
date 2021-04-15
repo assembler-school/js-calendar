@@ -23,8 +23,6 @@ document.getElementById('monthView-btn').addEventListener("click", (event)=>{
         document.getElementById("yearView-btn").disabled=false;
         updateTemplate("year-section","main-content-section","month-template");
         calendarMonthConstructor();
-        //Calendar view
-        calendarView = 'month-view';
     }
 });
 document.getElementById('yearView-btn').addEventListener("click", (event)=>{
@@ -33,8 +31,6 @@ document.getElementById('yearView-btn').addEventListener("click", (event)=>{
         document.getElementById("monthView-btn").disabled=false;
         updateTemplate("month-section","main-content-section","year-template");
         calendarConstructor();
-        //Calendar view
-        calendarView = 'year-view';
     }
 });
 addNewTemplate("main-content-section", "month-template");
@@ -210,8 +206,13 @@ function saveEvent() {
     saveEventData();//save data
     initRemindersList();
     hideModal();
-    clearMonthCalendar();
-    calendarMonthConstructor(month);
+    if(calendarView === 'month-view'){
+        clearMonthCalendar();
+        calendarMonthConstructor(month);
+    }else if(calendarView === 'year-view'){
+        clearYearCalendar()
+        calendarConstructor(year);
+    }
 }
 
 function removeEvent(id) {

@@ -1,4 +1,7 @@
 function calendarMonthConstructor(setCalendarMonthCounter) {
+    //Calendar view
+    calendarView = 'month-view';
+    
     const monthSection = document.querySelector('#month-section');
     if(setCalendarMonthCounter == 12) {
         month = 0;

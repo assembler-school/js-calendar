@@ -3,7 +3,6 @@ function displayEventsInMonth(currentMonthDisplay, eventsCalendar){
         if(currentMonthDisplay == date.split("/")[1] && year == date.split("/")[0]){
             eventsCalendar[date].forEach((element) => {
                 displayEventInDate(date, element.eventTitle, element.id, element.eventType);
-                // displayEventsInYearCalendar(date,element)
             });
         }
     }
@@ -79,7 +78,11 @@ function setColorTypeOfEvent(displayedEvent,eventType){
 }
 
 function displayEventsInYearCalendar(year,eventsCalendar){
-    let divDisplayEventsInYearCalendar = document.createElement("div");
-    divDisplayEventsInYearCalendar.classList.add('event-year-view');
-    document.querySelector('[id="2021/03/12"]').appendChild(divDisplayEventsInYearCalendar);
+    for (event in eventsCalendar){
+        if(year == event.split("/")[0]){
+            let divDisplayEventsInYearCalendar = document.createElement("div");
+            divDisplayEventsInYearCalendar.classList.add('event-year-view');
+            document.querySelector('[id="' + event + '"]').appendChild(divDisplayEventsInYearCalendar);
+        }
+    }
 }
