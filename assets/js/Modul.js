@@ -58,18 +58,9 @@ document.querySelector("#initialCal").value = today;
 
 // Close form
 function closeForm() {
-<<<<<<< HEAD
-  document.getElementById("myModal").style.display = "none";
-  inputTitleKey.value = '';
-  inputDescriptionValue.value = '';
-  
-
-  inputTitleKey.classList.remove('error')
-=======
     document.getElementById("myModal").style.display = "none";
     inputTitleKey.value = '';
     inputTitleKey.classList.remove('error')
->>>>>>> 9111cf893096f59035ea3ad4425082b5f8ecf48d
 }
 
 // Show calendar when checkbox checked
@@ -90,40 +81,6 @@ function reminderShowSelectBox() {
         reminderTextArea.style.display = "none"
     }
 } // End function
-<<<<<<< HEAD
-
-//This function shows the event in the output box
-function createEvent (){
-
-  let section = document.createElement("section");
-
-  section.setAttribute("class", "event__display");
-  section.insertAdjacentHTML("afterbegin", `<h1>${inputTitleKey.value}</h1><button class="btn__remove-event fas fa-trash" id="btn__remove__event"></button><div>${inputDateValue.value}, ${inputDateEndValue.value},${inputEventTypeValue.value}, ${inputTimedValue.value}, ${inputReminderValue.value}, ${inputDescriptionValue.value}</div>`);
-  events.appendChild(section);
-}
-
-//This function saves the event in the local Stroage
-
-//This function saved the event in the local Stroage
-function saveEvent () {
-  if (inputTitleKey.value) {
-inputTitleKey.classList.remove('error');
-
-localStorageEvents.push({
-  title: inputTitleKey.value,
-  end_date: endDate.value,
-  time: inputTimedValue.value,
-  reminder: inputReminderValue.value,
-  event_type: inputEventTypeValue.value,
-  Description: inputDescriptionValue.value
-
-});
-localStorage.setItem(inputDateValue.value , JSON.stringify(localStorageEvents));
-  } else {
-inputTitleKey.classList.add('error');
-  }
- 
-=======
 //This function saved the event in the local Stroage
 function saveEvent() {
     if (inputTitleKey.value) {
@@ -142,7 +99,6 @@ function saveEvent() {
     } else {
         inputTitleKey.classList.add('error');
     }
->>>>>>> 9111cf893096f59035ea3ad4425082b5f8ecf48d
 }
 // Hace falta repasar
 // function reLoad (){
@@ -225,25 +181,6 @@ days.forEach(function(divs) {
 
 });
 
-<<<<<<< HEAD
-
-/* *********************************/
-//---------- BUTTON FUNCTIONS ------/
-/**********************************/
-//funcion que envia el formulario y ademas nos crea el objeto
-// Saves event at the event output 
-buttonSubmit.onclick = function () {
-
-  const supuestafecha = new Event(`${inputTitleKey.value}`,`${inputDateValue.value}`,`${inputDateEndValue.value}`,`${inputTimedValue.value}`,`${inputReminderValue.value}`,`${inputEventTypeValue.value}`,`${inputDescriptionValue.value}`);
-  console.log(supuestafecha);
-  supuestafecha.sentJSON();
-  // buttonSubmit.addEventListener("click", createEvent);
-  createEvent();
-  saveEvent();
-  closeForm();
-};
-=======
->>>>>>> 9111cf893096f59035ea3ad4425082b5f8ecf48d
 function getID(event){
 
   selectedDay = event.target.id;
@@ -317,23 +254,10 @@ const toggleSwitch = document.querySelector('.switch input[type="checkbox"]');
 
 toggleSwitch.addEventListener("change", changeTheme);
 
-<<<<<<< HEAD
-
-//  if (key && value) {
-//  localStorage.setItem(key, value);
-// }
-
-// for (let i = 0; i < localStorage.length; i++) {
-//   let key = localStorage.key(i);
-//   let value = localStorage.getItem(key);
-// 
-
-=======
 function changeTheme() {
     if (toggleSwitch.checked) {
         document.documentElement.setAttribute("mode-changes", "light");
     } else {
         document.documentElement.setAttribute("mode-changes", "dark");
     }
->>>>>>> 9111cf893096f59035ea3ad4425082b5f8ecf48d
 }
