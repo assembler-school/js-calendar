@@ -115,9 +115,9 @@ function showMeTheEndDate(){
 
 function showMeTheReminder(){
     if (document.getElementById("check-box-reminder").checked){
-        document.getElementById("time").removeAttribute("disabled");
+        document.getElementById("modal-input-time").classList.remove('modal-inputDisabled');
     } else{
-        document.getElementById("time").disabled = true;
+        document.getElementById("modal-input-time").classList.add('modal-inputDisabled');
     }
 }
 
