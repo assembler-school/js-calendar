@@ -22,7 +22,16 @@ function displayDetailsOfEvent(eventId, dateId) {
                     endDateText = `${endDateText[0]} ${endDateText[1]}`
                 }  
                 let descriptionText = calendarEvents[dateId][i].description;
-                let eventTypeText = calendarEvents[dateId][i].eventType;
+                let eventTypeText;
+                if (calendarEvents[dateId][i].eventType === 'event-type') {
+                    eventTypeText = 'Default';
+                }   else if (calendarEvents[dateId][i].eventType === 'event-type-2') {
+                    eventTypeText = 'Personal';
+                }   else if (calendarEvents[dateId][i].eventType === 'event-type-3') {
+                    eventTypeText = 'Work';
+                }   else if (calendarEvents[dateId][i].eventType === 'event-type-4') {
+                    eventTypeText = 'Sport';
+                }
                 let reminderDateText
                 if (calendarEvents[dateId][i].reminderDate !== undefined) {
                     reminderDateText = calendarEvents[dateId][i].reminderDate.split('T');
