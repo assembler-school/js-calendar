@@ -16,7 +16,7 @@
 
 .event-container{
   /* outline: 1px solid red !important; */
-  max-height:100px;
+  height:9vh;
   overflow:auto;
 }
 

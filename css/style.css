@@ -213,6 +213,7 @@
   background-color: var(--bg);
   color: var(--textLightGray);
   min-width: 50px;
+  overflow:hidden;
 }
 
 .day_box:hover:not(.month-current-day) {
