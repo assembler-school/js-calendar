@@ -60,7 +60,7 @@ function validarInitialDate(){
     }
 }
 function validarEndDate(){
-    const check = document.getElementById('check-box');
+    const check = document.getElementById('check-box-end-date');
     //Validacion End Date
     if(check.checked == false){
         return true;

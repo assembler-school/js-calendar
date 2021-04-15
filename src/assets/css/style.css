@@ -174,13 +174,14 @@ main{
 
 .day{
   text-align: center;
-  padding: 5px;
+  /* padding: 5px; */
   border: 0.5px solid var(--lightGray);
   display: flex;
   flex-direction: column;
   position: relative;
   height: 100%;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   transition: box-shadow 0.3s cubic-bezier(.25,.8,.25,1);
 }
 .day:hover{
@@ -190,6 +191,7 @@ main{
 .day-number {
   font-weight: 900;
   font-size: 1.5rem;
+  margin: 5px 0;
 }
 .prev-date,
 .next-date {
@@ -204,17 +206,41 @@ main{
 
 /* * Events in calendar style */
 .event-in-calendar {
-  width: 80%;
-  border-radius: 2px;
+  width: 100%;
+  /* border-radius: 2px; */
   padding: 2px;
-  margin: 0.5px auto;
+  margin: 0.5px 0;
   font-size: 0.8rem;
   transition: transform 0.2s;
   user-select: none;
   z-index: 1;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
 }
-.event-in-calendar:hover{
-  transform: scale(1.05);
+
+.event-in-calendar:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 51%;
+  right: 51%;
+  bottom: 0;
+  background: var(--eventBlue);
+  height: 2px;
+  -webkit-transition-property: left, right;
+  transition-property: left, right;
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.event-in-calendar:hover:before, .event-in-calendar:focus:before, .event-in-calendar:active:before {
+  left: 0;
+  right: 0;
 }
 .event-in-calendar:active{
   transform: scale(0.95);

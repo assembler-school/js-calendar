@@ -26,16 +26,19 @@ let calendarEvent = class {
     }
 }
 
-// TODO validate verification before createEvent
-
 let createBtn = document.getElementById("m-createBtn");
-
 createBtn.addEventListener('click', createEvent);
 
 function createEvent() {
     titleF = document.getElementById("title").value;
     iniDateF = document.getElementById("initialDate").value;
-    const enDateF = document.getElementById("endDate").value;
+    const endDateCheckbox = document.getElementById("check-box-end-date").checked;
+    let enDateF;
+    if (endDateCheckbox) {
+        enDateF = document.getElementById("endDate").value;
+    } else {
+        enDateF = iniDateF;
+    }
     const descriptionF = document.getElementById("description").value;
     const eventTF = document.getElementById("event-type").value;
     const checkBoxReminder = document.getElementById("check-box-reminder").checked;

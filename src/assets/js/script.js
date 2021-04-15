@@ -96,7 +96,7 @@ window.onkeyup = function(event) {
 // Show or hidden the checkbox info
 
 function showMeTheEndDate(){
-    if (document.getElementById("check-box").checked){
+    if (document.getElementById("check-box-end-date").checked){
         document.getElementById("endDate").removeAttribute("disabled");
     } else{
         document.getElementById("endDate").disabled = true;
