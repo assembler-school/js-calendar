@@ -40,6 +40,8 @@ document.getElementById('yearView-btn').addEventListener("click", (event)=>{
 addNewTemplate("main-content-section", "month-template");
 calendarMonthConstructor();
 hideModal();
+initRemindersList();
+loadPastRemindersWarningCounter();
 
 function setCheckboxVisibility(event) {
     let id = event.target.id.replace('Checkbox', '');
@@ -227,9 +229,12 @@ function removeEvent(id) {
 
     if (reminders[id]) {
         delete reminders[id];
+
     }
 
     localStorage.setItem('calendarEvents', JSON.stringify(calendarEvents));
     localStorage.setItem('reminders', JSON.stringify(reminders));
+    initRemindersList();
+    loadPastRemindersWarningCounter();
 }
 

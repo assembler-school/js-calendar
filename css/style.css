@@ -20,6 +20,17 @@
   color: var(--textDarkGray);
 }
 
+.warningBox-btn-alert {
+  background-color: var(--red);
+  color: white;
+  font-weight: var(--bold);
+}
+
+.warningBox-btn-alert:hover {
+  background-color: var(--pink);
+}
+
+
 .header02-div {
   display: flex;
   gap: 5px;

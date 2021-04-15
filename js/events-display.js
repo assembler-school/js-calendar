@@ -24,24 +24,23 @@ function displayEventInDate(dateID,eventTitle, eventId,eventType) {
 
 
 function initRemindersList(){
-  nextRemindersList=[];
-  pastRemindersList=[];
-    for (reminderID in reminders){
-        let reminder = reminders[reminderID];
-        reminder['id'] = reminderID;
-        if(Date.parse(reminder.reminderDate)>Date.now()){
-            nextRemindersList.push(reminder);
-        }else{
-            pastRemindersList.push(reminder);
+    nextRemindersList=[];
+    pastRemindersList=[];
+        for (reminderID in reminders){
+            let reminder = reminders[reminderID];
+            reminder['id'] = reminderID;
+            if(Date.parse(reminder.reminderDate)>Date.now()){
+                nextRemindersList.push(reminder);
+            }else{
+                pastRemindersList.push(reminder);
+            }
         }
-        
-      }
-    sortRemindersList(nextRemindersList,1);
-    sortRemindersList(pastRemindersList,-1);
-    if (currentTimeout) {
-        clearTimeout(currentTimeout);
-    }
-    startNextAlarmTimeout();
+        sortRemindersList(nextRemindersList,1);
+        sortRemindersList(pastRemindersList,-1);
+        if (currentTimeout) {
+            clearTimeout(currentTimeout);
+        }
+        startNextAlarmTimeout();
 }
 function sortRemindersList(remindersList, sign){
   remindersList.sort(function (a, b) {
@@ -62,6 +61,7 @@ function startNextAlarmTimeout(){
         currentTimeout = setTimeout(function(){
             alert("Hello, reminder for " + nextRemindersList[0].eventTitle);
             pastRemindersList.unshift(nextRemindersList.shift());
+            loadPastRemindersWarningCounter();
             startNextAlarmTimeout();
         }, timeLeft);
     }
@@ -81,3 +81,16 @@ function setColorTypeOfEvent(displayedEvent,eventType){
 // function displayEventsInYearCalendar(){
 
 // }
+function loadPastRemindersWarningCounter(){
+    let warningBoxbtn = document.querySelector(".warningBox-btn");
+    if(pastRemindersList.length){
+        warningBoxbtn.innerHTML= '!'+ pastRemindersList.length;
+        warningBoxbtn.className+= " warningBox-btn-alert";
+    }else{
+        warningBoxbtn.innerHTML= 0;
+        warningBoxbtn.className = "warningBox-btn";
+
+    }
+}
+
+//console.log(warningBoxbtn.innerHTML);
