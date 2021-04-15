@@ -1,52 +1,53 @@
 /* Font import */
 @import url("https://fonts.googleapis.com/css2?family=Arimo&display=swap");
 /*
-=======================================
+!=======================================
 ! Custom properties
-=======================================
- */
+!=======================================
+*/
 :root {
-    --darkestGray: #313535;
-    --darkGray: #3D4141;
-    --lightGray: #7F817F;
-    --lightestGray: #9A9C9A;
-    --eventBlue: #264653;
-    --eventGreen: #2A9D8F;
-    --eventYellow: #E9C46A;
-    --eventOrange: #F4A261;
+  --darkestGray: #313535;
+  --darkGray: #3D4141;
+  --lightGray: #7F817F;
+  --lightestGray: #9A9C9A;
+  --eventBlue: #264653;
+  --eventGreen: #2A9D8F;
+  --eventYellow: #E9C46A;
+  --eventOrange: #F4A261;
 }
-/* For media responsive later */
 html {
-    font-size: 16px;
+  font-size: 16px;
 }
 /*
-=======================================
+!=======================================
 ! General Styles
-=======================================
- */
+!=======================================
+*/
 * {
-    padding: 0;
-    margin: 0;
-    font-family: 'Arimo', sans-serif;
-/*     outline: black 1px solid; */
-    box-sizing: border-box;
-    /* color: var(--darkestGray); */
+  padding: 0;
+  margin: 0;
+  font-family: 'Arimo', sans-serif;
+  box-sizing: border-box;
+}
+main {
+  overflow: hidden;
 }
 
 /*
-=======================================
+!=======================================
 ! Header
-=======================================
- */
+!=======================================
+*/
 header {
-    max-height: 150px;
-    min-height: 65px;
-    height: 10vh;
-    padding: 5px;
-    text-align: center;
-    background-color: var(--lightestGray);
-    border-bottom: solid var(--lightestGray) 1px;
-    position: relative;
+  max-height: 150px;
+  min-height: 65px;
+  height: 10vh;
+  padding: 5px;
+  text-align: center;
+  background-color: var(--lightestGray);
+  border-bottom: solid var(--lightestGray) 1px;
+  position: relative;
+  overflow: hidden;
 }
 .winterHeader{
   max-height: 150px;
@@ -89,58 +90,55 @@ header {
   position: relative;
 }
 h1 {
-    font-size: 2rem;
+  font-size: 2rem;
 }
-/* .header-top-container {
-    height: 60%;
-     */
 .btn-next-prev{
-    margin: 0 10px;
-    padding: 8px;
-    font-size: 1.8rem;
-    color: var(--lightestGray);
-    background-color: var(--darkGray);
-    border: none;
-    border-radius: 10px;
-    outline: none;
-    transition: transform 0.1s;
-    user-select: none;
+  margin: 0 10px;
+  padding: 8px;
+  font-size: 1.8rem;
+  color: var(--lightestGray);
+  background-color: var(--darkGray);
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  transition: transform 0.1s;
+  user-select: none;
 }
 .btn-next-prev:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 .btn-next-prev:active {
-    transform: scale(0.95);
+  transform: scale(0.95);
 }
 
 .page-title {
   display: inline-block;
 }
 .btn-add-event {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    font-size: 1.4rem;
-    color: var(--lightestGray);
-    background-color: var(--darkGray);
-    border: none;
-    border-radius: 10px;
-    padding: 10px;
-    outline: none;
-    transition: transform 0.1s;
-    user-select: none;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 1.4rem;
+  color: var(--lightestGray);
+  background-color: var(--darkGray);
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  outline: none;
+  transition: transform 0.1s;
+  user-select: none;
 }
 .btn-add-event:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 .btn-add-event:active {
-    transform: scale(0.95);
+  transform: scale(0.95);
 }
 #current-date{
-    position: absolute;
-    left: 10px;
-    bottom: 10px;
-    font-weight: 800;
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  font-weight: 800;
 }
 
 
@@ -148,54 +146,50 @@ h1 {
 !=======================================
 ! Calendar Area
 !=======================================
- */
+*/
 main{
-    height: 90vh;
-    width: 100vw;
+  height: 90vh;
+  width: 100vw;
 }
 .calendar{
-    margin: 0 auto 0 auto;
-    height: 100%;
-    width: 90%;
-    padding: 10px 0;
+  margin: 0 auto 0 auto;
+  height: 100%;
+  width: 90%;
+  padding: 10px 0;
 }
 .weekdays{
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: auto;
-    justify-items: center;
-    height: 5%;
-    font-weight: 900;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: auto;
+  justify-items: center;
+  height: 5%;
+  font-weight: 900;
 }
 .days-wrapper{
-    display: grid;
-    grid-auto-rows: 1fr;
-    grid-template-columns: repeat(7, 1fr);
-    height: 95%;
-    /* gap: 10px; */
+  display: grid;
+  grid-auto-rows: 1fr;
+  grid-template-columns: repeat(7, 1fr);
+  height: 95%;
 }
 
 .day{
-    text-align: center;
-    padding: 5px;
-    border: 0.5px solid var(--lightGray);
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    height: 100%;
-    overflow: auto;
-    transition: box-shadow 0.3s cubic-bezier(.25,.8,.25,1);
+  text-align: center;
+  padding: 5px;
+  border: 0.5px solid var(--lightGray);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100%;
+  overflow: auto;
+  transition: box-shadow 0.3s cubic-bezier(.25,.8,.25,1);
 }
 .day:hover{
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
 .day-number {
-    font-weight: 900;
-    font-size: 1.5rem;
-    /* position: absolute;
-    left: 2px;
-    top: 2px; */
+  font-weight: 900;
+  font-size: 1.5rem;
 }
 .prev-date,
 .next-date {
@@ -206,49 +200,50 @@ main{
 .today {
   background-color: var(--lightestGray);
   color: white;
-} 
+}
 
 /* * Events in calendar style */
 .event-in-calendar {
-    width: 80%;
-    border-radius: 2px;
-    padding: 2px;
-    margin: 0.5px auto;
-    font-size: 0.8rem;
-    transition: transform 0.2s;
-    user-select: none;
+  width: 80%;
+  border-radius: 2px;
+  padding: 2px;
+  margin: 0.5px auto;
+  font-size: 0.8rem;
+  transition: transform 0.2s;
+  user-select: none;
+  z-index: 1;
 }
 .event-in-calendar:hover{
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 .event-in-calendar:active{
-    transform: scale(0.95);
+  transform: scale(0.95);
 }
 .yellow-event {
-    background-color: var(--eventYellow);
-    color: var(--eventBlue);
+  background-color: var(--eventYellow);
+  color: var(--eventBlue);
 }
 .orange-event {
-    background-color: var(--eventOrange);
-    color: var(--eventBlue);
+  background-color: var(--eventOrange);
+  color: var(--eventBlue);
 }
 .green-event {
-    background-color: var(--eventGreen);
-    color: white;
+  background-color: var(--eventGreen);
+  color: white;
 }
 .blue-event {
-    background-color: var(--eventBlue);
-    color: var(--eventYellow);
+  background-color: var(--eventBlue);
+  color: var(--eventYellow);
 }
 /*
 !=======================================
 ! animation
 !=======================================
- */
- .left {
-   -webkit-animation: fade-in-left 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-   animation: fade-in-left 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-   }
+*/
+.left {
+  -webkit-animation: fade-in-left 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  animation: fade-in-left 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
 .right {
   -webkit-animation: fade-in-right 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
   animation: fade-in-right 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
@@ -370,7 +365,7 @@ main{
 !=======================================
 ! Modal
 !=======================================
- */
+*/
 #modal-section.hidden {
   display: none;
 }
@@ -447,63 +442,126 @@ main{
   padding: 5px 10px;
   border-radius: 5px;
 }
-
-
- /* 
-main {
-  height: 90vh;
-  width: 100vw;
-  background-color: bisque;
-}
-.calendar {
-  margin: 0 auto 0 auto;
-  height: 90%;
-  width: 90%;
-  background-color: rgb(230, 222, 216);
-  padding: 10px 0;
-}
-.weekdays {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: auto;
-  justify-items: center;
-  height: 5%;
-}
-.weekdays div {
-  font-size: 1.1rem;
-  font-weight: 400;
-  letter-spacing: 0.1rem;
-  justify-content: center;
-  align-items: center;
-  text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
-}
-.days-wrapper {
-  display: grid;
-  grid-auto-rows: 1fr;
-  grid-template-columns: repeat(7, 1fr);
-  height: 95%;
-  border: 0.5px solid var(--lightGrey);
-  gap: 10px;
-}
-.days-wrapper div {
-  font-size: 1.4rem;
-  border: 0.5px solid var(--lightGrey);
-  margin: 0.3rem;
-  justify-content: center;
-  align-items: center;
-  text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
-  transition: background-color 0.2s;
-}
-.days-wrapper div:hover {
-  background-color: #262626;
-  border: 0.2rem solid #777;
-  cursor: pointer;
+.incorrect {
+  border: 2px solid red;
 }
 
-.day {
-  text-align: center;
-  padding: 5px;
-  border: 0.5px solid var(--lightGrey);
+.inactivedButton {
+  display: none;
 }
+
+.error {
+
+  padding-top: 5px;
+  padding-bottom: 5px;
+  box-sizing: border-box;
+  height: 2%;
+  margin-bottom: auto;
+  color: red;
+}
+
+.m-action-button:disabled {
+  opacity: 0.5;
+}
+
+/*
+!============================
+! Modal Event Review
+!============================
 */
 
+#modal-event-section.hidden {
+display: none;
+}
+#modal-event-section {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0,0,0,0.4);
+}
+#modal-event-content {
+  display: flex;
+  flex-direction: column;
+  width: 90vw;
+  min-width: 320px;
+  max-width: 380px;
+  background-color: whitesmoke;
+  margin: 20vh auto;
+  padding: 20px;
+  border: 1px solid var(--darkestGray);
+  border-radius: 5px;
+  overflow: auto;
+}
+.modal-event-title {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.modal-event-title > h1 {
+  align-self: center;
+  text-align: center;
+  width: 100%;
+  margin-left: 32px;
+}
+.modal-event-button.fa-window-close {
+  align-self: flex-end;
+  font-size: xx-large;
+  color: var(--darkestGray);
+  background-color: transparent;
+}
+.modal-event-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+.modal-event-input.modal-event-cb {
+  justify-content: flex-start;
+}
+.modal-event-input > textarea {
+  vertical-align: top;
+  resize: none;
+  margin-left: 5px;
+}
+.modal-event-input > textarea:focus {
+  outline: none;
+}
+.modal-event-footer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+.m-action-button {
+  color: whitesmoke;
+  background-color: var(--darkestGray);
+  font-size: large;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+
+.remindersSection {
+  position: fixed;
+  z-index: 1;
+  width: 240px;
+  top: 20 px;
+  right: 20px;
+}
+.reminderContainer {
+  border-radius: 5px;
+  background-color: var(--eventYellow);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  padding: 5px;
+  text-align: center;
+}
+.reminderBtn{
+  border-color: var(--eventOrange);
+}

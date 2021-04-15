@@ -109,6 +109,7 @@ const renderCalendar = (direction) => {
         days += `<div class="${direction}"><div class = "next-date day day-number">${j}</div></div>`;
     }
     /* Injecting all elements to DOM */
+    removeEachListener();
     monthDays.innerHTML = days;
     renderEvent () ;
     addEachListener();
@@ -125,16 +126,28 @@ document.querySelector("#nextMonth").addEventListener("click", () => {
 });
 
 renderCalendar("");
-// adding wheel  to change month
-window.addEventListener('wheel', function (event) {
-    if (event.deltaY < 0) {
+
+window.onkeyup = function (event) {
+    let leftNow = event.keyCode || event.which;
+    let rightNow = event.keyCode || event.which;
+    if (leftNow == 37) {
         date.setMonth(date.getMonth() - 1);
         renderCalendar("left");
-    } else if (event.deltaY > 0) {
-        date.setMonth(date.getMonth() + 1);
-        renderCalendar("right");
+    } if (rightNow == 39) {
+    date.setMonth(date.getMonth() + 1);
+    renderCalendar("right");
     }
-});
+};
+//adding wheel  to change month
+// window.addEventListener('wheel', function (event) {
+//     if (event.deltaY < 0) {
+//         date.setMonth(date.getMonth() - 1);
+//         renderCalendar("left");
+//     } else if (event.deltaY > 0) {
+//         date.setMonth(date.getMonth() + 1);
+//         renderCalendar("right");
+//     }
+// });
 
 function renderEvent () {
     const daysContainer = document.querySelectorAll(".day-number");
@@ -146,7 +159,7 @@ function renderEvent () {
         date.getMonth() + 1,
         0
     ).getDate();
-    
+
     for (i = 1; i < lastDay; i++) {
         if (!!eventsByDate[`${currentYear}-${currentMonth}-${i}`]) {
             //* Access to event data
@@ -157,6 +170,7 @@ function renderEvent () {
             let newEvent = document.createElement("div");
             newEvent.classList.add("event-in-calendar");
             newEvent.innerHTML = eventTitle;
+            newEvent.setAttribute("divEventId", eventId);
             switch (eventType) {
                 case 'Study':
                     newEvent.classList.add("blue-event");
@@ -170,7 +184,7 @@ function renderEvent () {
                 default:
                     break;
             }
-            /* newEvent.addEventListener('click', eventModal); */
+            newEvent.addEventListener('click', eventModal);
             //* Attach of element to DOM
             for (let div of daysContainer) {
                 if (div.innerHTML == i) {

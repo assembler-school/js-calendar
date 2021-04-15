@@ -40,6 +40,12 @@ function addEachListener (event) {
     }
 }
 
+function removeEachListener() {
+    for (let div of modalDivs.children) {
+        div.removeEventListener('click', justFunc);
+    }
+}
+
 // Show de modal event. Open and close it.
 
 modalOpenButton.onclick = function() {
@@ -94,6 +100,7 @@ function showMeTheEndDate(){
         document.getElementById("endDate").removeAttribute("disabled");
     } else{
         document.getElementById("endDate").disabled = true;
+        document.getElementById("endDate").classList.remove("incorrect");
     }
 }
 
