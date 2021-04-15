@@ -63,6 +63,7 @@ export function renderMonthYear(year, month) {
             document.querySelector('.calendar__year--month').appendChild(workClone);
             /* Fill the clone for first time */
             document.querySelector('.calendar__year--date[data-row="' + weekCount + '"] div[data-col="' + weekDay + '"]').innerHTML = '<span class="spanDay">' + x + '</span>';
+            console.log('');
             document.querySelector('.calendar__year--date[data-row="' + weekCount + '"] div[data-col="' + weekDay + '"]').setAttribute("id",x);
         };
         if (!weekDay) {weekCount++};
