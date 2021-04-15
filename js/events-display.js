@@ -79,10 +79,10 @@ function loadPastRemindersWarningCounter(){
     let warningBoxbtn = document.querySelector(".warningBox-btn");
     if(pastRemindersList.length){
         warningBoxbtn.innerHTML= '!'+ pastRemindersList.length;
-        warningBoxbtn.className+= " warningBox-btn-alert";
+        warningBoxbtn.classList.add("warningBox-btn-alert");
     }else{
-        warningBoxbtn.innerHTML= 0;
-        warningBoxbtn.className = "warningBox-btn";
+        warningBoxbtn.innerHTML= '0';
+        warningBoxbtn.classList.remove("warningBox-btn-alert");
 
     }
 }

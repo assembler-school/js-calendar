@@ -84,7 +84,7 @@ function modalForDetails(title, initialDate, endDate, reminderDate, eventDescrip
 }
 
 function modalForReminders(title, initialDate, id) {
-    if(document.getElementById("alert-container")) return;
+    if(document.getElementById("alert-reminder-container")) return;
 
     let mainContentForBlur = document.querySelector('#main-content-section');
     let currentDateForBlur = document.querySelector('.currentDate-section');
@@ -92,7 +92,7 @@ function modalForReminders(title, initialDate, id) {
     currentDateForBlur.style.filter = 'blur(5px)';
 
     let alertContainer = document.getElementsByTagName('body')[0].appendChild(document.createElement('div'));
-    alertContainer.id = "alert-container";
+    alertContainer.id = "alert-reminder-container";
 
     let modDetailsContent = alertContainer.appendChild(document.createElement('div'));
     modDetailsContent.id = "details-reminder-content";
@@ -124,19 +124,26 @@ function modalForReminders(title, initialDate, id) {
     rmvBtn.innerHTML = 'Delete reminder';
     rmvBtn.onclick = function() {
         console.log(id);
-        // removeCustomAlert();
+        // removeCustomReminderAlert();
     }
     let okBtn = div6.appendChild(document.createElement("button"));
     okBtn.classList.add('ok-reminder-btn');
     okBtn.innerHTML = 'Got it!';
     okBtn.onclick = function() {
-        removeCustomAlert();
+        removeCustomReminderAlert();
     }
 }
 
-
 function removeCustomAlert() {
     document.getElementsByTagName("body")[0].removeChild(document.getElementById("alert-container"));
+    let mainContentForBlur = document.querySelector('#main-content-section');
+    let currentDateForBlur = document.querySelector('.currentDate-section');
+    mainContentForBlur.removeAttribute('style');
+    currentDateForBlur.removeAttribute('style');
+}
+
+function removeCustomReminderAlert() {
+    document.getElementsByTagName("body")[0].removeChild(document.getElementById("alert-reminder-container"));
     let mainContentForBlur = document.querySelector('#main-content-section');
     let currentDateForBlur = document.querySelector('.currentDate-section');
     mainContentForBlur.removeAttribute('style');
