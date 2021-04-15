@@ -221,6 +221,7 @@ main{
   transform: perspective(1px) translateZ(0);
   box-shadow: 0 0 1px rgba(0, 0, 0, 0);
   position: relative;
+  height: 25px;
 }
 
 .event-in-calendar:before {
