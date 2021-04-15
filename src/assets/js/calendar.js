@@ -171,16 +171,24 @@ function eventDivsInjector (divsNodeList, monthGap) {
         const dayNumber = div.firstChild.innerHTML;
         //* checking that day has events
         if (!!eventsByDate[`${currentYear}-${currentMonth}-${dayNumber}`]) {
-            //* Looping thru events in array
-            for (let eventObjectId of eventsByDate[`${currentYear}-${currentMonth}-${dayNumber}`]){
+            let eventArray = eventsByDate[`${currentYear}-${currentMonth}-${dayNumber}`];
+            //* sorting events in array
+            let eventIdsWithStartDate = [];
+            for (let eventObjectId of eventArray) {
+                const newEventObject = { id: eventObjectId, startDate: eventsById[eventObjectId].startDate};
+                eventIdsWithStartDate.push(newEventObject);
+            }
+            eventIdsWithStartDate.sort( compare );
+            //* Looping thru events in sorted array
+            for (let eventObject of eventIdsWithStartDate){
                 //* Access to event data
-                const eventTitle = eventsById[eventObjectId].title;
-                const eventType = eventsById[eventObjectId].eventType;
+                const eventTitle = eventsById[eventObject.id].title;
+                const eventType = eventsById[eventObject.id].eventType;
                 //* Create of the event element
                 let newEvent = document.createElement("div");
                 newEvent.classList.add("event-in-calendar");
                 newEvent.innerHTML = eventTitle;
-                newEvent.setAttribute("divEventId", eventObjectId);
+                newEvent.setAttribute("divEventId", eventObject.id);
                 //* choosing event color depending of event type
                 switch (eventType) {
                     case 'Study':
@@ -201,4 +209,14 @@ function eventDivsInjector (divsNodeList, monthGap) {
             }
         }
     }
+}
+//? Function to compare start dates for future sorting
+function compare( a, b ) {
+    if ( a.startDate < b.startDate ){
+      return 1;
+    }
+    if ( a.startDate > b.startDate ){
+      return -1;
+    }
+    return 0;
 }
