@@ -23,8 +23,6 @@ document.getElementById('monthView-btn').addEventListener("click", (event)=>{
         document.getElementById("yearView-btn").disabled=false;
         updateTemplate("year-section","main-content-section","month-template");
         calendarMonthConstructor();
-        //Calendar view
-        calendarView = 'month-view';
     }
 });
 document.getElementById('yearView-btn').addEventListener("click", (event)=>{
@@ -33,8 +31,6 @@ document.getElementById('yearView-btn').addEventListener("click", (event)=>{
         document.getElementById("monthView-btn").disabled=false;
         updateTemplate("month-section","main-content-section","year-template");
         calendarConstructor();
-        //Calendar view
-        calendarView = 'year-view';
     }
 });
 addNewTemplate("main-content-section", "month-template");
@@ -64,9 +60,9 @@ document.addEventListener("keyup", e => {
 document.getElementById("endDateCheckboxId").addEventListener('click', setCheckboxVisibility);
 document.getElementById("reminderCheckboxId").addEventListener('click', setCheckboxVisibility);
 
-function showModalWithDay() { //set calendar with selected day
+function showModalWithDay(id) { //set calendar with selected day
     showModal();
-    document.getElementById('initialDateId').value = setValueTime(); // falta recibir el dia por parametros de la funcion y settearlo
+    document.getElementById('initialDateId').value = setValueTime(new Date(id));
 }
 
 function setValueTime(date = new Date()) {
@@ -89,6 +85,18 @@ function showModal() {
     document.getElementById('initialDateId').setAttribute('min', setValueTime());
 }
 
+function clearModalContent() {
+    document.getElementById('eventTitleId').value = '';
+    document.getElementById('initialDateId').value = '';
+    document.getElementById('endDateCheckboxId').checked = false;
+    document.getElementById('endDateId').value = '';
+    document.getElementById('reminderCheckboxId').checked = false;
+    document.getElementById('reminderId').value = '';
+    document.getElementById('description').value = '';
+    document.getElementById('eventTypeSelect').options[0].selected = true;
+
+}
+
 function hideModal() {
     let modal = document.getElementById("modalDiv");
     let mainContentForBlur = document.querySelector('#main-content-section');
@@ -97,6 +105,7 @@ function hideModal() {
     currentDateForBlur.removeAttribute('style');
     modal.classList.remove('showUp')
     modal.classList.remove('showUp');
+    clearModalContent();
 }
 
 function endDateValidation() {
@@ -212,14 +221,19 @@ function saveEvent() {
     saveEventData();//save data
     initRemindersList();
     hideModal();
-    clearMonthCalendar();
-    calendarMonthConstructor(month);
+    if(calendarView === 'month-view'){
+        clearMonthCalendar();
+        calendarMonthConstructor(month);
+    }else if(calendarView === 'year-view'){
+        clearYearCalendar()
+        calendarConstructor(year);
+    }
 }
 
 function removeEvent(id) {
     for(let day in calendarEvents) {
         calendarEvents[day] = calendarEvents[day].filter(event => {
-            return event.id !== id;
+            return event.id !== Number(id);
         });
         if (!calendarEvents[day].length) {
             delete calendarEvents[day];
@@ -229,12 +243,11 @@ function removeEvent(id) {
 
     if (reminders[id]) {
         delete reminders[id];
-
+        localStorage.setItem('reminders', JSON.stringify(reminders));
+        initRemindersList();
+        loadPastRemindersWarningCounter();
     }
 
     localStorage.setItem('calendarEvents', JSON.stringify(calendarEvents));
-    localStorage.setItem('reminders', JSON.stringify(reminders));
-    initRemindersList();
-    loadPastRemindersWarningCounter();
 }
 

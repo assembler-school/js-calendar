@@ -15,17 +15,20 @@ function getFirstMonthDay(year,month){
   }else{
     return date;
   }
-};
+}
 
 //Get number of days in month
 function getMonthDays(year,month){
   return new Date(year,month, 0).getDate()
-};
+}
 
 
 
 //CALENDAR CONSTRUCTOR
 function calendarConstructor(changeYear){
+  //Calendar view
+  calendarView = 'year-view';
+  
   var yearView = document.querySelector('#year-section');
   //Create year-rows
   for(i=0;i<3;i++){
@@ -51,29 +54,33 @@ function calendarConstructor(changeYear){
       let div = document.createElement('div');
       div.setAttribute('class','week');
       element.appendChild(div);
-    };
-  });
+    }
+  })
 
   //Create week days
   var weeks = document.querySelectorAll('.week');
   weeks.forEach((week) =>{
     for(i=0;i<7;i++){
       let div = document.createElement('div');
-      div.setAttribute('class','days');
+      div.setAttribute('class','not-days');
       week.appendChild(div);
-    };
-  });
+    }
+  })
 
   //Setting month-name class
   months.forEach((element) => {
     element.firstChild.classList.add('month-name');
-  });
+  })
   //Setting month names
   var monthName = document.querySelectorAll('.month-name');
   monthName.forEach((element,i=0) => {
     element.innerHTML = monthsNames[i];
+    /*element.parentNode.addEventListener('click', () => {
+      updateTemplate("year-section","main-content-section","month-template");
+      calendarMonthConstructor(year,i);
+    });*/
     i++;
-  });
+  })
 
 
   //Setting week-days class
@@ -81,7 +88,7 @@ function calendarConstructor(changeYear){
   months.forEach((element) => {
     let secondChild = element.childNodes
     secondChild[1].classList.add('week-days');
-  });
+  })
   //Setting week-days names
   var weekDays = document.querySelectorAll('.week-days');
   weekDays.forEach((week) => {
@@ -90,11 +97,11 @@ function calendarConstructor(changeYear){
     childs.forEach((child) => {
       child.innerHTML += shortDays[i];
       i++;
-    });
-  });
+    })
+  })
   updateYearHeader(year)
   populateCalendar(changeYear);
-};
+}
 
 
 
@@ -133,7 +140,7 @@ function populateCalendar(changeYear){
           else {
             let cell = document.createElement('div');
             cell.setAttribute('class','days');
-            
+
             var idMonth = iMonth;
             var idDay = date;
             if(idMonth < 10){
@@ -154,9 +161,10 @@ function populateCalendar(changeYear){
       element.appendChild(row); // appending each row into calendar body.
     }
     iMonth++;
-  });
+  })
   today(month,currentDay,currentMonth,currentYear);
-};
+  displayEventsInYearCalendar(year,calendarEvents);
+}
 
 
 function updateYearHeader(yearText) {

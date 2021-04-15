@@ -1,4 +1,7 @@
-function calendarMonthConstructor(setCalendarMonthCounter) {
+function calendarMonthConstructor(setCalendarMonthCounter){
+    //Calendar view
+    calendarView = 'month-view';
+
     const monthSection = document.querySelector('#month-section');
     if(setCalendarMonthCounter == 12) {
         month = 0;
@@ -84,6 +87,12 @@ function getFirstMonthDay(year,month){
                 }
 
                 numberOfDay[i].setAttribute('id',year + '/' + idMonth + '/' + idDay);
+                let fullDateId = formatDate(new Date(`${year}/${idMonth}/${idDay}`));
+                numberOfDay[i].parentNode.addEventListener('click', (event) => {
+                    if (event.target.classList.contains('event-container')
+                        || event.target.classList.contains('event-text')) return;
+                    showModalWithDay(fullDateId);
+                });
                 day++
             }
         }

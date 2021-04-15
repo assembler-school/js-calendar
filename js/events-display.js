@@ -1,10 +1,8 @@
 function displayEventsInMonth(currentMonthDisplay, eventsCalendar){
-    console.log(currentMonthDisplay);
     for (date in eventsCalendar){
         if(currentMonthDisplay == date.split("/")[1] && year == date.split("/")[0]){
             eventsCalendar[date].forEach((element) => {
                 displayEventInDate(date, element.eventTitle, element.id, element.eventType);
-                // displayEventsInYearCalendar(date,element)
             });
         }
     }
@@ -76,11 +74,9 @@ function setColorTypeOfEvent(displayedEvent,eventType){
         case 'EventType2':
             displayedEvent.className = 'event-type-2 ';
             break;
-    }}
+    }
+}
 
-// function displayEventsInYearCalendar(){
-
-// }
 function loadPastRemindersWarningCounter(){
     let warningBoxbtn = document.querySelector(".warningBox-btn");
     if(pastRemindersList.length){
@@ -92,5 +88,12 @@ function loadPastRemindersWarningCounter(){
 
     }
 }
-
-//console.log(warningBoxbtn.innerHTML);
+function displayEventsInYearCalendar(year,eventsCalendar){
+    for (element in eventsCalendar){
+        if(year == element.split("/")[0]){
+            let divDisplayEventsInYearCalendar = document.createElement("div");
+            divDisplayEventsInYearCalendar.classList.add('event-year-view');
+            document.querySelector('[id="' + element + '"]').appendChild(divDisplayEventsInYearCalendar);
+        }
+    }
+}
