@@ -72,14 +72,7 @@ function startNextAlarmTimeout(){
 
 //Color for event types
 function setColorTypeOfEvent(displayedEvent,eventType){
-    switch(eventType){
-        case 'EventType1':
-            displayedEvent.className = 'event-type-1 ';
-            break;
-        case 'EventType2':
-            displayedEvent.className = 'event-type-2 ';
-            break;
-    }
+    displayedEvent.classList.add(eventType);
 }
 
 function loadPastRemindersWarningCounter(){

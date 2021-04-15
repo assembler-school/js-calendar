@@ -77,7 +77,7 @@ function calendarConstructor(changeYear){
     element.innerHTML = monthsNames[i];
     /*element.parentNode.addEventListener('click', () => {
       updateTemplate("year-section","main-content-section","month-template");
-      calendarMonthConstructor(year,i);
+      calendarMonthConstructor(i,year);
     });*/
     i++;
   })
