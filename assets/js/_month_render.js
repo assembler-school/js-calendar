@@ -78,12 +78,14 @@ export function renderMonthYear(year, month) {
 
 export function renderYear(year) {
     let nameMonth = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    for (let index = 0; index < 12; index++) {
-        renderMonthYear(year, index);
+    
+    for (let index = 0; index < 11; index++) {
         let listMonth = document.querySelector('.calendar__year--month').cloneNode(true);
-        document.querySelectorAll('#monthTittle h2')[index].innerHTML = nameMonth[index];
+        console.log(listMonth);
         document.querySelector('.calendar__year--row').appendChild(listMonth);
-        document.querySelectorAll('.calendar__year--month')[index].setAttribute("data-month", index+1);
+        document.querySelectorAll('.monthTittle h2')[index].innerHTML = nameMonth[index];
+        document.querySelectorAll('.calendar__year--month')[index+1].setAttribute("data-month", index+1);
+        //renderMonthYear(year, index);
     }
 
 }
