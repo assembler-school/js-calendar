@@ -153,18 +153,17 @@ function removeCustomReminderAlert() {
 function modalWarningBoxEnters() {
     console.log('enters warningbox');
     let warningBox = document.querySelector('.warningBox-btn');
-    warningBox.innerHTML ='';
-    warningBox.id = "past-reminders-container";
-    //warningBox.appendChild(document.createElement('div'));
-
+    warningBox.innerHTML = '';
+    warningBox.style.transition = 'all 0.8s ease-in';
+    warningBox.id = "past-reminders-container";//changes heigth and width inits transition
+    warningBox.addEventListener('mouseleave', modalWarningBoxLeaves);
 }
 
 function modalWarningBoxLeaves() {
     console.log('leaves warningbox');
-    
     let warningBox = document.querySelector('.warningBox-btn');
-    //warningBox.removeChild(document.getElementById("past-reminders-container"));
-    warningBox.id = ''
-    warningBox.innerHTML ='0';
-
+    warningBox.style.transition = 'none';
+    warningBox.removeEventListener('mouseleave', modalWarningBoxLeaves);
+    warningBox.id = '';
+    loadPastRemindersWarningCounter();
 }

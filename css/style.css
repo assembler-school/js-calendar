@@ -4,6 +4,7 @@
   display: flex;
   gap: 5px;
   position: relative;
+  min-width: 61px;
 }
 
 .newEvent-btn {
@@ -33,16 +34,17 @@
 }
 
 #past-reminders-container{
+  width: 200px;
+  height: 300px;
   position: absolute;
-  width: 100px;
-  height: 100px;
   top: 0px;
-  left: 115%;
+  left: 53%;
   z-index: 9999;
   display: flex;
   justify-content: center;
   align-items: center;  
   background-color: var(--red);
+
 }
 
 
