@@ -10,33 +10,14 @@ const changeHeaderBackground = () =>{
     const head = document.getElementById('header');
     const actualMonth = date.getMonth()+1;
 
-    if(actualMonth == 12 || actualMonth == 1 || actualMonth == 2 ){
-        console.log('winter');
-        head.classList.remove('fallHeader');
-        head.classList.remove('springHeader');
-        head.classList.remove('summerHeader');
-        head.classList.add('winterHeader');
-        
-    }else if(actualMonth == 3 || actualMonth == 4 || actualMonth == 5 ){
-        console.log('spring');
-        head.classList.remove('fallHeader');
-        head.classList.remove('winterHeader');
-        head.classList.remove('summerHeader');
-        head.classList.add('springHeader');
-        
-    }else if(actualMonth == 6 || actualMonth == 7 || actualMonth == 8 ){
-        console.log('summer');
-        head.classList.remove('fallHeader');
-        head.classList.remove('winterHeader');
-        head.classList.remove('springHeader');
-        head.classList.add('summerHeader');
-        
-    }else if(actualMonth == 9 || actualMonth == 10 || actualMonth == 11 ){
-        console.log('fall');
-        head.classList.remove('winterHeader');
-        head.classList.remove('springHeader');
-        head.classList.remove('summerHeader');
-        head.classList.add('fallHeader');
+    if(actualMonth > 11 || actualMonth < 3){
+        head.className = 'winterHeader';
+    }else if( actualMonth > 2 && actualMonth < 6 ){
+        head.className = 'springHeader';
+    }else if(actualMonth > 5 && actualMonth < 9 ){
+        head.className = 'summerHeader';
+    }else if(actualMonth > 8 && actualMonth < 12  ){
+        head.className = 'fallHeader';
     }
 }
 /*
@@ -126,6 +107,7 @@ document.querySelector("#nextMonth").addEventListener("click", () => {
 });
 
 renderCalendar("");
+
 
 window.onkeyup = function (event) {
     let leftNow = event.keyCode || event.which;
