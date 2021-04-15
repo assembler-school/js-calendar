@@ -212,11 +212,11 @@ function renderEvents() {
             //aquí es donde metemos exactamente lo que queremos del array y ponemos posicion [1] ya que es allá donde se encuentran los datos que necesitamos y al mismo tiempo llamamos al parametro que queremos de dentro del objeto inicial.
             section.insertAdjacentHTML("afterbegin", `<h1>${element[1].title}</h1>`);
             events.appendChild(section);
-            console.info(">>>>Titulo de mi evento:" + element[1].title);
-            console.info("Tipo de evento:" + element[1].end_date);
-            console.info("Tipo de evento:" + element[1].time);
-            console.info("Tipo de evento:" + element[1].reminder);
-            console.info("Tipo de evento:" + element[1].event_type);
+            //console.info(">>>>Titulo de mi evento:" + element[1].title);
+            //console.info("Tipo de evento:" + element[1].end_date);
+            //console.info("Tipo de evento:" + element[1].time);
+            //console.info("Tipo de evento:" + element[1].reminder);
+            //console.info("Tipo de evento:" + element[1].event_type);
         });
         //Von el else que viene a continuación, eliminamos todos los eventos de la lista, si es que no hay eventos.
     } else {
