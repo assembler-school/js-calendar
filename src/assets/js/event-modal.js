@@ -1,5 +1,6 @@
 const modalBackground = document.getElementById("modal-event-section");
 function eventModal (event) {
+    disabledArrowKeys();
     event.stopPropagation(); // Needed to prevent execution of parent div
     const eventId = event.target.getAttribute("divEventId");
     const eventTitle = eventsById[eventId].title;
@@ -26,17 +27,19 @@ function eventModal (event) {
     //* Showing the modal
     modalBackground.classList.remove("hidden");
 }
-//* close event modal pressing esc key
+ //* close event modal pressing esc key
 window.onkeyup = function (event) {
     let escNow = event.keyCode || event.which;
     if (escNow == 27) {
         modalBackground.classList.add("hidden");
+        enableArrowKeys();
     }
 }
 //* close event modal clicking outside
 window.onclick = function (event) {
     if (event.target == modalBackground) {
         modalBackground.classList.add("hidden");
+        enableArrowKeys();
     }
 }
 
@@ -47,6 +50,7 @@ function closeEventModal () {
     document.getElementById("modal-event-close-button").removeEventListener('click', closeEventModal);
     document.getElementById("modal-event-edit-btn").removeEventListener('click', editEventModal);
     modalBackground.classList.add("hidden");
+    enableArrowKeys();
 }
 
 //* Edit event modal function

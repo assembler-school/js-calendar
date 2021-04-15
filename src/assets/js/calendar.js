@@ -108,29 +108,28 @@ document.querySelector("#nextMonth").addEventListener("click", () => {
 
 renderCalendar("");
 
+function enableArrowKeys() {
+    window.addEventListener('keyup',keyChanger);
+}
 
-window.onkeyup = function (event) {
+function disabledArrowKeys() {
+    window.removeEventListener('keyup', keyChanger);
+}
+
+function keyChanger(event) {
     let leftNow = event.keyCode || event.which;
     let rightNow = event.keyCode || event.which;
     if (leftNow == 37) {
         date.setMonth(date.getMonth() - 1);
         renderCalendar("left");
-    } if (rightNow == 39) {
-    date.setMonth(date.getMonth() + 1);
-    renderCalendar("right");
     }
-};
-//adding wheel  to change month
-// window.addEventListener('wheel', function (event) {
-//     if (event.deltaY < 0) {
-//         date.setMonth(date.getMonth() - 1);
-//         renderCalendar("left");
-//     } else if (event.deltaY > 0) {
-//         date.setMonth(date.getMonth() + 1);
-//         renderCalendar("right");
-//     }
-// });
+    if (rightNow == 39) {
+        date.setMonth(date.getMonth() + 1);
+        renderCalendar("right");
+    };
+}
 
+enableArrowKeys();
 //? Function to render events inside of calendar
 
 function renderEvent () {

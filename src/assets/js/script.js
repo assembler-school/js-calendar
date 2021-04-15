@@ -16,6 +16,7 @@ const modalCancelButton = document.getElementById("m-cancelBtn");
 
 
 function justFunc(event) {
+    window.removeEventListener('keyup', keyChanger);
     modalSection.classList.remove("hidden");
     var divsDate = new Date();
     var divsActualMonth = date.getMonth() + 1;
@@ -49,6 +50,7 @@ function removeEachListener() {
 // Show de modal event. Open and close it.
 
 modalOpenButton.onclick = function() {
+    window.removeEventListener('keyup', keyChanger);
     modalSection.classList.remove("hidden");
     var divsDate = new Date();
     var divsActualMonth = divsDate.getMonth() + 1;
@@ -71,17 +73,20 @@ modalOpenButton.onclick = function() {
 modalCloseButton.onclick = function() {
     modalSection.classList.add("hidden");
     document.getElementById("form").reset();
+    enableArrowKeys();
 }
 
 modalCancelButton.onclick = function() {
     modalSection.classList.add("hidden");
     document.getElementById("form").reset();
+    enableArrowKeys();
 }
 
 window.onclick = function(event) {
     if (event.target == modalSection){
         modalSection.classList.add("hidden");
         document.getElementById("form").reset();
+        enableArrowKeys();
     }
 }
 
@@ -90,6 +95,7 @@ window.onkeyup = function(event) {
     if (escNow == 27){
         modalSection.classList.add("hidden");
         document.getElementById("form").reset();
+        enableArrowKeys();
     }
 }
 
