@@ -11,8 +11,15 @@ const modalCancelButton = document.getElementById("m-cancelBtn");
 function justFunc(event) {
     window.removeEventListener('keyup', keyChanger);
     modalSection.classList.remove("hidden");
-    var divsDate = new Date();
-    var divsActualMonth = date.getMonth() + 1;
+    let divsDate = new Date();
+    let divsActualMonth;
+    if (event.target.classList.contains('day current-month-day')) {
+        divsActualMonth = date.getMonth() + 1;
+    } else if (event.target.classList.contains('prev-date')) {
+        divsActualMonth = date.getMonth();
+    } else if (event.target.classList.contains('next-date')) {
+        divsActualMonth = date.getMonth() + 2;
+    }
     var todayHour = divsDate.getHours();
     var todayMinutes = divsDate.getMinutes();
     var todayDate = event.target.firstChild.textContent;
@@ -29,7 +36,7 @@ function justFunc(event) {
         document.getElementById("title").focus();
 };
 
-function addEachListener (event) {
+function addEachListener () {
     for (let div of modalDivs.children) {
         div.addEventListener('click', justFunc);
     }
