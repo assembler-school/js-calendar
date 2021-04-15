@@ -99,6 +99,7 @@ window.onkeyup = function(event) {
 function showMeTheEndDate(){
     if (document.getElementById("check-box-end-date").checked){
         document.getElementById('EndDateModal').classList.remove('modal-inputDisabled');
+        document.getElementById("endDate").value = document.getElementById("initialDate").value;
     } else{
         document.getElementById('EndDateModal').classList.add('modal-inputDisabled');
         document.getElementById("endDate").classList.remove("incorrect");
