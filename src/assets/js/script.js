@@ -97,9 +97,9 @@ window.onkeyup = function(event) {
 
 function showMeTheEndDate(){
     if (document.getElementById("check-box-end-date").checked){
-        document.getElementById("endDate").removeAttribute("disabled");
+        document.getElementById('EndDateModal').classList.remove('modal-inputDisabled');
     } else{
-        document.getElementById("endDate").disabled = true;
+        document.getElementById('EndDateModal').classList.add('modal-inputDisabled');
         document.getElementById("endDate").classList.remove("incorrect");
     }
 }

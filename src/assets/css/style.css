@@ -442,6 +442,8 @@ main{
   flex-direction: row;
   justify-content: space-between;
   margin: 5px 0;
+  transition: opacity 0.8s;
+  opacity: 1;
 }
 .modal-input.modal-cb {
   justify-content: flex-start;
@@ -450,6 +452,9 @@ main{
   vertical-align: top;
   resize: none;
   margin-left: 5px;
+}
+.modal-inputDisabled{
+  opacity: 0;
 }
 .modal-input> input[type=checkbox] {
   margin: 2px;
