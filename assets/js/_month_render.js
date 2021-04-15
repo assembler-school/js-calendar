@@ -46,7 +46,7 @@ export function renderEvents(year, month) {
     if (allEvents) {
     let monthEvents = allEvents.filter ((allEvents) => new Date(allEvents["init-date"]).getFullYear() === year && new Date(allEvents["init-date"]).getMonth() === month);
 
-    /* Create the events in calendar and set its attributes */
+    /* Create the events in calendar and set its HTML attributes */
     monthEvents.forEach(function (monthEvents){
         let eventDiv = document.createElement("div");
         eventDiv.setAttribute("data-eventid","event" + monthEvents.id);
@@ -59,6 +59,7 @@ export function renderEvents(year, month) {
 }
 }
 
+/* Update month and year to use normally */
 export function updateDate(year,month) {
     if (month === 12) {
         year++;
@@ -70,6 +71,7 @@ export function updateDate(year,month) {
     return {year : year,month : month};
 }
 
+/* Add year and month in the calendar nav bar */
 export function addTag(year, month) {
     let monthTag = document.getElementById('nav__tag');
     let yearTag = document.getElementById('nav__year');
@@ -79,17 +81,11 @@ export function addTag(year, month) {
     yearTag.innerHTML = year;
 }
 
+/* Give a class to today to highlight */
 export function highlightToday(year, month){
     let date = new Date();
-    if (compareMonth(year,month,date.getFullYear(),date.getMonth())) {
+    if (year === date.getFullYear() && month===date.getMonth()) {
         document.getElementById((new Date()).getDate()).className += 'today';
         document.getElementById((new Date()).getDate()).childNodes[0].innerHTML = date.getDate();
     }
 }
-
-export function compareMonth(year,month,year2,month2){
-    let sameMonth = false;
-    if (year===year2 && month===month2) {sameMonth=true};
-    return sameMonth;
-}
-

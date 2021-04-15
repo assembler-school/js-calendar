@@ -7,7 +7,7 @@ import * as render from "./_month_render.js";
  * All listeners are listed here
  *
  */
-export function handleDocumentEvents(e) {
+export function handleDocumentEvents() {
   // click event
   document.addEventListener("click", (e) => {
     /*
@@ -43,8 +43,6 @@ export function handleDocumentEvents(e) {
      */
     if (e.target.matches(".fa-chevron-right")) {
       addMonth(updatedYear, updatedMonth, true);
-      // document.getElementById("calendar").classList.add("slide-top");
-      // document.getElementById("calendar").classList.add("swing-right-fwd");
       document
         .querySelector(".calendar__month")
         .classList.add("swing-right-fwd");
@@ -80,9 +78,25 @@ export function handleDocumentEvents(e) {
      * Click in event
      */
     if (e.target.matches("[data-eventid]")) {
-      const [_event] = calendarEvent.getEvent(e.target.dataset.eventid);
+      [_event] = calendarEvent.getEvent(e.target.dataset.eventid);
+      swapTemplate("alert-template", "modal-section");
+      calendarEvent.printDataToAlert(_event);
+    }
+
+    /*
+     * Click in edit event
+     */
+    if (e.target.matches(".edit")) {
       swapTemplate("modal-template", "modal-section");
-      calendarEvent.printDataToModal("#modal form", _event);
+      calendarEvent.printDataToEdit(_event);
+    }
+
+    /*
+     * Click in remove event
+     */
+    if (e.target.matches(".remove")) {
+      removeTemplate("alert-template", "modal-section");
+      calendarEvent.removeEvent(_event);
     }
 
     /*
@@ -90,7 +104,6 @@ export function handleDocumentEvents(e) {
      */
     if (e.target.matches(".calendar__week > div")) {
       const dia = e.target.id;
-      console.log(dia);
     }
   });
 
@@ -105,10 +118,11 @@ export function handleDocumentEvents(e) {
   });
 }
 
+let _event;
 let updatedMonth = new Date().getMonth();
 let updatedYear = new Date().getFullYear();
-function addMonth(year, month, boolean) {
-  boolean ? month++ : month--;
+function addMonth(year, month, direction) {
+  direction ? month++ : month--;
   updatedYear = render.updateDate(year, month).year;
   updatedMonth = render.updateDate(year, month).month;
   swapTemplate("month", "calendar");

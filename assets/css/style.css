@@ -535,15 +535,30 @@ i.fa-times-circle {
 	cursor: pointer;
   }
 
-.event__type--meeting {
+.event__type--Meeting {
   color: white;
   background-color: #ff6010;
 }
 
-.event__type--birthday {
+.event__type--Birthday {
+	color: rgb(61, 61, 61);
+	background-color: #dbff10;
+  }
+
+.event__type--Personal {
+	color: rgb(61, 61, 61);
+	background-color: #48ff10;
+  }
+
+.event__type--Study {
 	color: white;
-	background-color: #ff6010;
-  }  
+	background-color: #1014ff;
+  }
+  
+.event__type--Other {
+	color: white;
+	background-color: #252525;
+  }
 
 .more__event {
   text-align: center;
@@ -593,12 +608,19 @@ i.fa-times-circle {
 }
 .alert__icons {
   align-self: flex-end;
+  width: 100%;
 }
 .fa-times {
   font-size: 1.2rem;
+  display: flex;
+  justify-content: flex-end;
 }
 .fa-pencil-alt {
   font-size: 1rem;
+}
+.fa-trash-alt {
+  font-size: 1.1rem;
+  margin-left: 3%;
 }
 .event__description {
   font-size: 0.8rem;
@@ -655,9 +677,15 @@ i.fa-times-circle {
   }
   .fa-times {
     font-size: 1.2rem;
+    display: flex;
+    justify-content: flex-end;
   }
   .fa-pencil-alt {
     font-size: 1rem;
+  }
+  .fa-trash-alt {
+    font-size: 1rem;
+    margin-left: 3%;
   }
   .event__description {
     font-size: 0.8rem;
@@ -731,9 +759,15 @@ i.fa-times-circle {
   }
   .fa-times {
     font-size: 1.2rem;
+    display: flex;
+    justify-content: flex-end;
   }
   .fa-pencil-alt {
     font-size: 1rem;
+  }
+  .fa-trash-alt {
+    font-size: 1.1rem;
+    margin-left: 3%;  
   }
   .event__description {
     font-size: 0.9rem;
@@ -785,9 +819,15 @@ i.fa-times-circle {
   }
   .fa-times {
     font-size: 1.4rem;
+    display: flex;
+    justify-content: flex-end;
   }
   .fa-pencil-alt {
     font-size: 1.2rem;
+  }
+  .fa-trash-alt {
+    font-size: 1.3rem;
+    margin-left: 3%;
   }
   .event__description {
     font-size: 1.1rem;
