@@ -45,10 +45,13 @@ let span = document.getElementsByClassName("close")[0];
 // Set current date on Caledar
 let today = new Date().toISOString().substr(0, 10);
 document.querySelector("#initialCal").value = today;
+document.getElementById("endCal").value = today;
 
-// Exact time Modal is opened 
-let timeFunction = new Date();
-let timeNow = timeFunction.getHours() + ":" + timeFunction.getMinutes() + ":" + timeFunction.getSeconds();
+// Set current time when calender open 
+let todayTime = new Date();
+let timeNow = todayTime.getHours() + ":" + todayTime.getMinutes() + ":" + todayTime.getSeconds();
+document.getElementById("timeSelector").value = timeNow;
+
 
 /**********************************************/
 //--------------- Functions --------------------
