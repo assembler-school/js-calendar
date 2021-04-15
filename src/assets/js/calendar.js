@@ -6,6 +6,7 @@ function setCurrentDate () {
     document.querySelector("#current-date").innerHTML = new Date().toLocaleDateString('en-GB', options);
 }
 setCurrentDate();
+//Change Background
 const changeHeaderBackground = () =>{
     const head = document.getElementById('header');
     const actualMonth = date.getMonth()+1;

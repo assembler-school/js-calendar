@@ -68,7 +68,7 @@ function validarEndDate(){
         if(endDate.value === null || endDate.value === ""){
             inputs[3].classList.add("incorrect");
             return false;
-        }else if(endDate.value < initialDate.value){
+        }else if(endDate.value <= initialDate.value){
             inputs[3].classList.add("incorrect");
             return false;
         }else{
