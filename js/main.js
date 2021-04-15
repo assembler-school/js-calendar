@@ -223,7 +223,7 @@ function saveEvent() {
     hideModal();
     if(calendarView === 'month-view'){
         clearMonthCalendar();
-        calendarMonthConstructor(month);
+        calendarMonthConstructor(month, year);
     }else if(calendarView === 'year-view'){
         clearYearCalendar()
         calendarConstructor(year);

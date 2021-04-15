@@ -11,10 +11,10 @@ function displayEventsInMonth(currentMonthDisplay, eventsCalendar){
 function displayEventInDate(dateID,eventTitle, eventId,eventType) {
     let displayedEvent = document.createElement("p");
     setColorTypeOfEvent(displayedEvent,eventType)
-    displayedEvent.className += eventId;
+    displayedEvent.classList.add(eventId);
     let eventTitleTextNode = document.createTextNode(eventTitle);
     displayedEvent.appendChild(eventTitleTextNode);
-    displayedEvent.className += " event-text";
+    displayedEvent.classList.add('event-text');
     document.getElementById(dateID).parentNode.lastChild.appendChild(displayedEvent);
 }
 
