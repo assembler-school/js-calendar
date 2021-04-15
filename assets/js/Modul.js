@@ -196,7 +196,7 @@ function renderEvents() {
     var selectedDay = event.target.id;
     //lo traemos del local storage y al mismo tiempo lo reconvertimos en un objeto
     let renderSection = JSON.parse(localStorage.getItem(selectedDay));
-    console.log(renderSection);
+    //console.log(renderSection);
 
     //Si al seleccionar un dia, No hay objetos dentro, me dice que no hay nada, de lo contrario, si encuentra cosas, me las imprime
     if (renderSection != null) {
@@ -244,7 +244,7 @@ function renderToday() {
         //console.log(today__event)
 
     } else {
-        console.log("HOY no hay nada wey");
+        //console.log("HOY no hay nada wey");
     }
 
 

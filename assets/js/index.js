@@ -76,7 +76,7 @@ const renderCalendar = () => {
             days += `<div class="today no-event-day" id="${i}-${actual_month}-${actual_year}">${i}</div>`;
         } else {
             /*De lo contrario, te coge el numero almacenado en la variable lastDay y te va restando y crrando los Divs necesarios */
-            days += `<div class="no-event-day" id="${actual_year}-${actual_month}-${i}">${i}</div>`;
+            days += `<div class="no-event-day" id="${actual_year}-0${actual_month}-0${i}">${i}</div>`;
         }
 
         monthDays.innerHTML = days;
@@ -115,14 +115,13 @@ day = document.querySelectorAll('.no-event-day');
 for (let d = 0; d < day.length; d++) {
     //day.item(d).addEventListener("LOAD", showEventOfDayHere);
     day.item(d).addEventListener("click", bringDataFromLocalStorageToMainCalendar);
-
-
 }
 
 //Interactuamos con los datos de Local Storage - Application
 function bringDataFromLocalStorageToMainCalendar(ev) {
     //Esta variable selecciona lo clicado al llamar al event listener y lo posiciona como target
     var clickedDivId = event.target.id;
+    var clickedDiv = event.target;
     console.info("Esta es la ID del dia seleccionado " + clickedDivId)
 
     //Cogemos los datos STORAGE del div clicado y lo parseamos
@@ -130,9 +129,10 @@ function bringDataFromLocalStorageToMainCalendar(ev) {
     console.info("INFO extraida y parseada del dia clicado >>> " + datafromLocalStorage)
 
     //Returns ARR
-    MydatafromLocalStorage = Object.entries(datafromLocalStorage);
+    var MydatafromLocalStorage = Object.entries(datafromLocalStorage);
 
     //Turn ARR into var's
+    //First
     var myTitle = MydatafromLocalStorage[0][1].title
     var myEndDate = MydatafromLocalStorage[0][1].end_date
     var myTime = MydatafromLocalStorage[0][1].time
@@ -140,25 +140,23 @@ function bringDataFromLocalStorageToMainCalendar(ev) {
     var myEventType = MydatafromLocalStorage[0][1].event_type
     var myDescription = MydatafromLocalStorage[0][1].description
 
-    var clickedDiv = event.target;
-
-    console.log(MydatafromLocalStorage[0][1].event_type)
-        //console.log(MydatafromLocalStorage[1][1].event_type)
+    console.log(myEventType)
 
     if (myEventType == "meeting") {
-        swal("Soy un meeting")
+        swal("Soy un meeting");
         clickedDiv.insertAdjacentHTML('beforeend', '<div class="event-inserted"><ul class="meetingList">M</ul></div>');
         //event.stopPropagation();
-    } else if (myEventType == "study") {
-        swal("Soy un study")
+    } else if (myEventType == "Study") {
+        swal("Soy un study");
         clickedDiv.insertAdjacentHTML('beforeend', '<div class="event-inserted"><ul class="studyList">S</ul></div>');
 
     } else if (myEventType == "Personal") {
-        swal("Soy un personal")
+        swal("Soy un personal");
         clickedDiv.insertAdjacentHTML('beforeend', '<div class="event-inserted"><ul class="personalList">P</ul></div>');
 
     } else {
         console.warn('La insersión de tipo de evento desde el formulario no ha llegado correctamente');
+        //break;
     }
 }
 
