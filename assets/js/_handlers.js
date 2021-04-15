@@ -11,6 +11,27 @@ import * as reminder from "./_reminder.js";
 export function handleDocumentEvents(e) {
   // click event
   document.addEventListener("click", (e) => {
+
+        /*
+     * Click btn year 
+     */
+        if (e.target.matches("button#btnYear")) {
+          let newDate = new Date();
+          let year = newDate.getFullYear();
+          swapTemplate("year", "calendar");
+          render.renderYear(year);
+        }
+        /*
+         * Click btn month 
+         */
+        if (e.target.matches("button#btnMonth")) {
+          let newDate = new Date();
+          let month = newDate.getMonth();
+          let year = newDate.getFullYear();
+          swapTemplate("month", "calendar");
+          render.renderMonth(year, month);
+        }
+
     /*
      * show / hide modal popup
      */
@@ -94,6 +115,7 @@ export function handleDocumentEvents(e) {
       const dia = e.target.id;
       console.log(dia);
     }
+
   });
 
   // focusot event
