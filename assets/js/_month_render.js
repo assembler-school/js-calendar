@@ -1,6 +1,8 @@
 //
 import { calendarEvent } from "./_events.js";
 
+let monthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
 /* Dynamic render of month */
 export function renderMonth(year, month) {
     /* Get the first day of month and number of days in month */
@@ -34,7 +36,7 @@ export function renderMonth(year, month) {
     }
     /* Adapts the height of the week rows to the total */
     document.querySelectorAll('.calendar__week').forEach((row)=> {
-        row.style.height = 'calc((100% - 25px) / ' + rowCont + ')'
+        row.style.height = 'calc(100%  / ' + rowCont + ')'
     });
 }
 
@@ -75,7 +77,6 @@ export function addTag(year, month) {
     let yearTag = document.getElementById('nav__year');
     let monthMobileTag = document.getElementById('nav__mobile--tag');
     let yearMobileTag = document.getElementById('nav__mobile--year');
-    let monthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
     monthTag.innerHTML = monthList[month];
     yearTag.innerHTML = year;
@@ -97,3 +98,33 @@ export function compareMonth(year,month,year2,month2){
     return sameMonth;
 }
 
+/*
+ * This gets dateTime local
+ */
+export function getDateTimeFormat(year, month, day ){
+    const _fngetMonth = function (_month) {
+        return monthList.findIndex((month) => month === _month);
+      };
+      
+    if (day) {
+        const _curTime = new Date().toLocaleTimeString(),
+        pr = new Date(year, _fngetMonth(month), parseInt(day) + 1).toISOString(),
+        res = pr.slice(0, 11);
+        return (res + _curTime).slice(0,16);
+    }
+}
+
+/*
+ * This render year list
+ */
+export function renderYear(){
+    const month_list = document.querySelector('.month-list');
+    monthList.forEach((e, index) => {
+        let month = document.createElement('div');
+        let inMonth = document.createElement('div');
+        inMonth.dataset.month = index;
+        inMonth.textContent = e;
+        month.appendChild(inMonth);
+        month_list.appendChild(month);
+    });
+}

@@ -46,17 +46,11 @@ export function handleDocumentEvents(e) {
      */
     if (e.target.matches(".fa-chevron-right")) {
       addMonth(updatedYear, updatedMonth, true);
-      // document.getElementById("calendar").classList.add("slide-top");
-      // document.getElementById("calendar").classList.add("swing-right-fwd");
-      document
-        .querySelector(".calendar__month")
-        .classList.add("swing-right-fwd");
+      document.querySelector("#calendar").classList.add("swing-right-fwd");
     }
     if (e.target.matches(".fa-chevron-left")) {
       addMonth(updatedYear, updatedMonth, false);
-      document
-        .querySelector(".calendar__month")
-        .classList.add("swing-left-fwd");
+      document.querySelector("#calendar").classList.add("swing-left-fwd");
     }
 
     /*
@@ -66,7 +60,7 @@ export function handleDocumentEvents(e) {
       document.getElementById("main").style.display = "block";
       swapTemplate("template__mobile", "main");
     }
-    if (e.target.matches("#navClose") || e.target.matches("#navClose *")) {
+    if (e.target.matches("#navClose i") || e.target.matches("#navClose i *")) {
       removeTemplate("template__mobile", "main");
       document.getElementById("main").style.display = "none";
     }
@@ -89,11 +83,41 @@ export function handleDocumentEvents(e) {
     }
 
     /*
-     *
+     * Click on day to show modal
      */
     if (e.target.matches(".calendar__week > div")) {
-      const dia = e.target.id;
-      console.log(dia);
+      const day = e.target.id,
+        month = document.querySelector("#nav__tag").textContent,
+        year = document.querySelector("#nav__year").textContent;
+
+      swapTemplate("modal-template", "modal-section");
+      const initDate = document.querySelector('[name="init-date"]');
+      initDate.value = render.getDateTimeFormat(year, month, day);
+    }
+
+    /*
+     * Click on reminder
+     */
+    if (e.target.matches('[name="reminder"]')) {
+      const rm = document.querySelector(".reminder-time");
+      // rm.classList.toggle("height-anim");
+      rm.classList.toggle("height-reset");
+    }
+
+    /*
+     * Click month tag
+     */
+    if (e.target.matches("#nav__tag, #nav__year")) {
+      const rm = document.querySelector(".month-list");
+      rm.classList.toggle("show");
+    }
+    if (e.target.matches(".month-list *")) {
+      const ev = e.target,
+       month = ev.dataset.month || ev.firstChild.dataset.month,
+       rm = document.querySelector(".month-list");
+
+       goToMonth(updatedYear,  parseInt(month));
+      rm.classList.toggle("show");
     }
   });
 
@@ -105,6 +129,19 @@ export function handleDocumentEvents(e) {
     if (e.target.matches("input[required]")) {
       formValidation(e, false);
     }
+  });
+
+   // animation end
+   document.addEventListener("animationend", (e) => {
+    /*
+     * clear animations
+     */
+    const swing = document.querySelectorAll(".swing-right-fwd, .swing-left-fwd")
+    swing.forEach(element => {
+      const cls = element.classList;
+      cls.contains("swing-right-fwd") ? cls.remove("swing-right-fwd") : 0;
+      cls.contains("swing-left-fwd") ? cls.remove("swing-left-fwd") : 0;
+    });
   });
 }
 
@@ -119,4 +156,20 @@ function addMonth(year, month, boolean) {
   render.addTag(updatedYear, updatedMonth);
   render.highlightToday(year, month);
   render.renderEvents(year, month);
+  render.renderYear();
+}
+
+/*
+ * This render month without adding
+ * To add month use _handlers.js/addMonth
+ */
+export function goToMonth(year, month) {
+  updatedYear = year;
+  updatedMonth = month;
+  swapTemplate("month", "calendar");
+  render.renderMonth(year, month);
+  render.addTag(year, month);
+  render.highlightToday(year, month);
+  render.renderEvents(year, month);
+  render.renderYear();
 }
