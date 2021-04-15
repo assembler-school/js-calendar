@@ -41,8 +41,8 @@ main {
 header {
   max-height: 150px;
   min-height: 65px;
-  height: 10vh;
   padding: 5px;
+  height: 20vh;
   text-align: center;
   background-color: var(--lightestGray);
   border-bottom: solid var(--lightestGray) 1px;
@@ -52,7 +52,6 @@ header {
 .winterHeader{
   max-height: 150px;
   min-height: 65px;
-  height: 10vh;
   padding: 5px;
   text-align: center;
   background-image: url("/src/assets/img/invierno.png");
@@ -62,7 +61,6 @@ header {
 .springHeader{
   max-height: 150px;
   min-height: 65px;
-  height: 10vh;
   padding: 5px;
   text-align: center;
   background-image: url("/src/assets/img/primavera.png");
@@ -72,7 +70,6 @@ header {
 .fallHeader{
   max-height: 150px;
   min-height: 65px;
-  height: 10vh;
   padding: 5px;
   text-align: center;
   background-image: url("/src/assets/img/otno.png");
@@ -82,7 +79,6 @@ header {
 .summerHeader{
   max-height: 150px;
   min-height: 65px;
-  height: 10vh;
   padding: 5px;
   text-align: center;
   background-image: url("/src/assets/img/verano.png");
@@ -153,7 +149,7 @@ h1 {
 !=======================================
 */
 main{
-  height: 90vh;
+  height: 80vh;
   width: 100vw;
 }
 .calendar{
@@ -345,8 +341,12 @@ main{
     html {
         font-size: 12px;
     }
+    header > h1 {
+      font-size: 18px;
+    }
     .btn-add-event {
       height: 44px;
+      top: 65px;
     }
     .btn-next-prev {
       height: 44px;
@@ -601,14 +601,6 @@ display: none;
   justify-content: space-around;
   margin-top: 10px;
 }
-/* .m-action-button {
-  color: whitesmoke;
-  background-color: var(--darkestGray);
-  font-size: large;
-  padding: 5px 10px;
-  border-radius: 5px;
-} */
-
 
 .remindersSection {
   position: fixed;
