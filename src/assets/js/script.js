@@ -3,17 +3,10 @@
 // ctes declaration
 
 const form = document.getElementById("form");
-const createEventM = document.getElementById("m-createBtn");
-
 const modalSection = document.getElementById("modal-section");
-
 const modalOpenButton = document.getElementById("modal-open-button");
-
 const modalCloseButton = document.querySelector(".modal-button.fa-window-close");
-
 const modalCancelButton = document.getElementById("m-cancelBtn");
-
-
 
 function justFunc(event) {
     window.removeEventListener('keyup', keyChanger);
@@ -33,6 +26,7 @@ function justFunc(event) {
         divsActualMonth ='0' + divsActualMonth;
     document.getElementById("initialDate").value =
         `${date.getFullYear()}-${divsActualMonth}-${todayDate}T${todayHour}:${todayMinutes}`;
+        document.getElementById("title").focus();
 };
 
 function addEachListener (event) {
@@ -58,6 +52,7 @@ modalOpenButton.onclick = function() {
     var todayYear = divsDate.getFullYear();
     var todayHour = divsDate.getHours();
     var todayMinutes = divsDate.getMinutes();
+    document.getElementById("title").focus();
 
     if (todayDate < 10)
         todayDate ='0' + todayDate;
