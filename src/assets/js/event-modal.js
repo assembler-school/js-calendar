@@ -23,7 +23,9 @@ function eventModal (event) {
     document.getElementById("modal-event-description").innerText = eventDescription;
      //* Adding eventListener to modal
     document.getElementById("modal-event-close-button").addEventListener('click', closeEventModal);
-    document.getElementById("modal-event-edit-btn").addEventListener('click', editEventModal);
+    let deleteEventBtn = document.getElementById("modal-event-edit-btn");
+    deleteEventBtn.addEventListener('click', deleteEvent);
+    deleteEventBtn.setAttribute("deletingEventId", eventId);
     //* Showing the modal
     modalBackground.classList.remove("hidden");
 }
@@ -48,7 +50,7 @@ window.onclick = function (event) {
 function closeEventModal () {
     //* Remove event listeners
     document.getElementById("modal-event-close-button").removeEventListener('click', closeEventModal);
-    document.getElementById("modal-event-edit-btn").removeEventListener('click', editEventModal);
+    document.getElementById("modal-event-edit-btn").removeEventListener('click', deleteEvent);
     modalBackground.classList.add("hidden");
     enableArrowKeys();
 }
@@ -57,4 +59,26 @@ function closeEventModal () {
 function editEventModal () {
     //! TODO has to open normal modal and insert this event values
     closeEventModal();
+}
+
+function deleteEventDatesData (data, storageIndex) {
+    for (const date in data) {
+        data[date] = data[date].filter(event => {
+            return event !== parseInt(eventId);
+        });
+        if (!data[date].length) {
+            delete data[date];
+        }
+    }
+    localStorage.setItem(storageIndex, JSON.stringify(data));
+}
+
+function deleteEvent (deletingEvent) {
+    eventId = deletingEvent.target.getAttribute("deletingEventId");
+    delete eventsById[eventId];
+    localStorage.setItem("eventsById", JSON.stringify(eventsById));
+    deleteEventDatesData(eventsByDate, 'eventsByDate');
+    deleteEventDatesData(remindersByDate, 'remindersByDate');
+    closeEventModal();
+    renderCalendar('');
 }
