@@ -12,24 +12,22 @@
 </head>
 
 <body>
-    <!-- <header>
-        <h1>Js Calendar</h1>
-        <button id="create-event"> <i class="fas fa-plus"></i> Add event</button>
-    </header> -->
-
+    <!-- ? Header -->
     <section id="nav__web">
         <div class="nav__month">
             <div class="nav__left">
                 <div>
                     <i class="fas fa-chevron-left"></i>
                 </div>
-                <h2><span id="nav__tag"></span> <span id="nav__year"></span></h2>
+                <h2>
+                    <span id="nav__tag"></span>
+                    <span id="nav__year"></span>
+                </h2>
                 <div>
                     <i class="fas fa-chevron-right"></i>
                 </div>
             </div>
             <div class="nav__center">
-                <button>Day</button>
                 <button>Week</button>
                 <button class="nav__center--selected">Month</button>
                 <button>Year</button>
@@ -48,7 +46,10 @@
                 <div>
                     <i class="fas fa-chevron-left"></i>
                 </div>
-                <h2></h2>
+                <h2>
+                    <span id="nav__mobile--tag"></span>
+                    <span id="nav__mobile--year"></span>
+                </h2>
                 <div>
                     <i class="fas fa-chevron-right"></i>
                 </div>
@@ -56,18 +57,19 @@
             <div>
                 <i id="navOpen" class="fas fa-bars"></i>
             </div>
-            <div id="main" class="nav__mobile--main">
+            <div id="main" class="nav__mobile--main slider-main">
             </div>
         </div>
     </section>
-    <!-- <hr> -->
-    <section id="calendar">
 
+
+    <section id="calendar" class="cal-padding">
     </section>
+    </div>
 
     <section id="modal-section">
-        
     </section>
+
 
     <!-- ? MOBILE NAV -->
     <template id="template__mobile">
@@ -77,10 +79,11 @@
         <hr>
         <div class="nav__mobile--container">
             <div class="nav__mobile--containerBtn">
-                <button>Day</button>
-                <button>Week</button>
-                <button class="nav__mobile--selected">Month</button>
-                <button>Year</button>
+                <div class="nav__mobile--center">
+                    <button>Week</button>
+                    <button class="nav__mobile--selected">Month</button>
+                    <button>Year</button>
+                </div>
             </div>
             <hr>
             <div class="nav__mobile--event">
@@ -122,6 +125,7 @@
                 <div data-col="0"></div>
             </div>
         </div>
+        <div class="month-list"></div>
     </template>
 
     <!-- ? Modal Template -->
@@ -148,7 +152,11 @@
 
                     <div class="shadow__input--stretch">
                         <label for="end-date">End date:</label>
+<<<<<<< HEAD
                         <input class="focus" type="date" name="end-date" disabled>
+=======
+                        <input type="datetime-local" name="end-date" disabled>
+>>>>>>> develop
                     </div>
 
                     <div class="shadow__input--start">
@@ -156,7 +164,11 @@
                         <label for="reminder">Add reminder</label>
                     </div>
 
+<<<<<<< HEAD
                     <div class="shadow__input--stretch ">
+=======
+                    <div class="shadow__input--stretch reminder-time">
+>>>>>>> develop
                         <label for="select-time">Time:</label>
                         <select class="focus" name="select-time">
                             <option value="5">5 minutes</option>
@@ -217,7 +229,8 @@
                         quasi voluptates earum pariatur sequi ullam ex! Asperiores reprehenderit praesentium eaque.
                         Tempore eligendi fugit tempora in voluptatem incidunt quam, deserunt iure similique quis facere
                         ad quas provident eius illum excepturi quae est animi ullam deleniti soluta esse commodi quo
-                        minus! Velit.</span></div>
+                        minus! Velit.</span>
+                </div>
             </div>
         </div>
     </template>

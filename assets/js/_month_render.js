@@ -1,6 +1,8 @@
 //
 import { calendarEvent } from "./_events.js";
 
+let monthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
 /* Dynamic render of month */
 export function renderMonth(year, month) {
     /* Get the first day of month and number of days in month */
@@ -34,7 +36,7 @@ export function renderMonth(year, month) {
     }
     /* Adapts the height of the week rows to the total */
     document.querySelectorAll('.calendar__week').forEach((row)=> {
-        row.style.height = 'calc((100% - 25px) / ' + rowCont + ')'
+        row.style.height = 'calc(100%  / ' + rowCont + ')'
     });
 }
 
@@ -50,7 +52,7 @@ export function renderEvents(year, month) {
     monthEvents.forEach(function (monthEvents){
         let eventDiv = document.createElement("div");
         eventDiv.setAttribute("data-eventid","event" + monthEvents.id);
-        eventDiv.setAttribute("class","event event__type--" + monthEvents["select-event"]);
+        eventDiv.setAttribute("class","event fade-in event__type--" + monthEvents["select-event"]);
         eventDiv.innerHTML = monthEvents.title;
         if (!d.querySelector(`[data-eventid="event${monthEvents.id}"]`)) {
             d.getElementById(new Date(monthEvents["init-date"]).getDate()).appendChild(eventDiv);
@@ -73,10 +75,13 @@ export function updateDate(year,month) {
 export function addTag(year, month) {
     let monthTag = document.getElementById('nav__tag');
     let yearTag = document.getElementById('nav__year');
-    let monthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    let monthMobileTag = document.getElementById('nav__mobile--tag');
+    let yearMobileTag = document.getElementById('nav__mobile--year');
 
     monthTag.innerHTML = monthList[month];
     yearTag.innerHTML = year;
+    monthMobileTag.innerHTML = monthList[month];
+    yearMobileTag.innerHTML = year;
 }
 
 export function highlightToday(year, month){
@@ -93,3 +98,33 @@ export function compareMonth(year,month,year2,month2){
     return sameMonth;
 }
 
+/*
+ * This gets dateTime local
+ */
+export function getDateTimeFormat(year, month, day ){
+    const _fngetMonth = function (_month) {
+        return monthList.findIndex((month) => month === _month);
+      };
+      
+    if (day) {
+        const _curTime = new Date().toLocaleTimeString(),
+        pr = new Date(year, _fngetMonth(month), parseInt(day) + 1).toISOString(),
+        res = pr.slice(0, 11);
+        return (res + _curTime).slice(0,16);
+    }
+}
+
+/*
+ * This render year list
+ */
+export function renderYear(){
+    const month_list = document.querySelector('.month-list');
+    monthList.forEach((e, index) => {
+        let month = document.createElement('div');
+        let inMonth = document.createElement('div');
+        inMonth.dataset.month = index;
+        inMonth.textContent = e;
+        month.appendChild(inMonth);
+        month_list.appendChild(month);
+    });
+}
