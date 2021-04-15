@@ -11,6 +11,8 @@
   --color5: #726775;
   --color6: #ff6010;
   --color7: #5727d2;
+  --color8: #dbff10;
+  --color9: #ce1590;
 
   --br-radius: 6px;
   --border: 1px solid #726775;
@@ -537,27 +539,28 @@ i.fa-times-circle {
 
 .event__type--Meeting {
   color: white;
-  background-color: #ff6010;
+  background-color: var(--color6);
 }
 
 .event__type--Birthday {
 	color: rgb(61, 61, 61);
-	background-color: #dbff10;
+	background-color: var(--color8);
   }
 
 .event__type--Personal {
 	color: rgb(61, 61, 61);
-	background-color: #48ff10;
+	background-color: var(--color7);
+  color: white;
   }
 
 .event__type--Study {
 	color: white;
-	background-color: #1014ff;
+	background-color: var(--color5);
   }
   
 .event__type--Other {
 	color: white;
-	background-color: #252525;
+	background-color: var(--color9);
   }
 
 .more__event {
