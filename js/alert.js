@@ -149,3 +149,22 @@ function removeCustomReminderAlert() {
     mainContentForBlur.removeAttribute('style');
     currentDateForBlur.removeAttribute('style');
 }
+
+function modalWarningBoxEnters() {
+    console.log('enters warningbox');
+    let warningBox = document.querySelector('.warningBox-btn');
+    warningBox.innerHTML ='';
+    warningBox.id = "past-reminders-container";
+    //warningBox.appendChild(document.createElement('div'));
+
+}
+
+function modalWarningBoxLeaves() {
+    console.log('leaves warningbox');
+    
+    let warningBox = document.querySelector('.warningBox-btn');
+    //warningBox.removeChild(document.getElementById("past-reminders-container"));
+    warningBox.id = ''
+    warningBox.innerHTML ='0';
+
+}

@@ -95,3 +95,5 @@ function displayEventsInYearCalendar(year,eventsCalendar){
         }
     }
 }
+
+
