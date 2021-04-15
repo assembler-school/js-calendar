@@ -13,7 +13,7 @@ function justFunc(event) {
     modalSection.classList.remove("hidden");
     let divsDate = new Date();
     let divsActualMonth;
-    if (event.target.classList.contains('day current-month-day')) {
+    if (event.target.classList.contains('current-month-day')) {
         divsActualMonth = date.getMonth() + 1;
     } else if (event.target.classList.contains('prev-date')) {
         divsActualMonth = date.getMonth();
