@@ -65,8 +65,8 @@ input:focus {
 }
 
 textarea {
-  background-color: var(--header-color);
-  border: var(--text-color);
+  /* background-color: var(--header-color); */
+  border: 1px solid var(--text-color);
   outline: none;
   height: 80px;
   width: inherit;
@@ -112,43 +112,6 @@ section {
 
 .cal-padding{
   padding: 0.5rem;
-}
-/*
-===================================
-   ! MODAL NEW EVENT
-===================================
-*/
-#close {
-  color: rgb(231, 13, 13);
-}
-
-/*    BOTONES ENVIO CANCELAR */
-.shadow__btn > input {
-  color: var(--text-color);
-  background-color: transparent;
-  width: 60px;
-  height: 30px;
-  border-radius: var(--br-radius);
-  border-color: var(--text-color);
-  border: solid 2px;
-  transition: border-color 0.6s linear 0.2s;
-}
-
-.shadow__btn > button {
-  color: rgb(231, 13, 13);
-  background-color: transparent;
-  /* padding: 4px 6px; */
-  width: 60px;
-  height: 30px;
-  border-radius: var(--br-radius);
-  border-color: rgb(231, 13, 13);
-}
-
-.shadow__btn {
-  display: flex;
-  justify-content: space-between;
-  min-width: 150px;
-  margin-bottom: 1rem;
 }
 
 /*
@@ -517,6 +480,54 @@ button#create-event i {
   font-size: 1.2rem;
   padding: 1.2rem;
 }
+
+/*
+===================================
+   ! MODAL NEW EVENT
+===================================
+*/
+#close {
+  color: rgb(231, 13, 13);
+}
+
+/*    BOTONES ENVIO CANCELAR */
+.shadow__btn > input {
+  color: var(--text-color);
+  background-color: transparent;
+  width: 60px;
+  height: 30px;
+  border-radius: var(--br-radius);
+  border-color: var(--text-color);
+  border: solid 2px;
+  transition: border-color 0.6s linear 0.2s;
+}
+
+.shadow__btn > button {
+  color: rgb(231, 13, 13);
+  background-color: transparent;
+  /* padding: 4px 6px; */
+  width: 60px;
+  height: 30px;
+  border-radius: var(--br-radius);
+  border-color: rgb(231, 13, 13);
+}
+
+.shadow__btn {
+  display: flex;
+  justify-content: space-between;
+  min-width: 150px;
+  margin-bottom: 1rem;
+}
+
+.reminder-time{
+  max-height: 0;
+}
+
+.height-reset{
+  max-height: 80px;
+  transition: max-height 0.2s ease-out;
+}
+
 /*
   ===================================
      ! Modal styles
@@ -888,9 +899,6 @@ i.fa-times-circle {
   .cal-padding {
     padding: 1.5rem;
   }
-  #calendar{
-    width: 70%;
-  }
 }
 
 /*
@@ -1001,13 +1009,6 @@ i.fa-times-circle {
   }
 }
 
-.reminder-time{
-  max-height: 0;
-}
-.height-reset{
-  max-height: 80px;
-  transition: max-height 0.2s ease-out;
-}
 
 /* .main-wrapper{
   display: flex;
