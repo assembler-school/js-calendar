@@ -29,6 +29,7 @@
   height: 100%;
   align-items: center;
   justify-content: center;
+  position:relative;
 }
 
 .not-days {
@@ -57,8 +58,6 @@
 }
 
 .days:hover {
-  /* background-color: rgba(166, 175, 175, 0.151); */
-  border-radius: 50%;
   border:2px solid var(--textLightGray);
 }
 

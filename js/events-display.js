@@ -1,5 +1,4 @@
 function displayEventsInMonth(currentMonthDisplay, eventsCalendar){
-    console.log(currentMonthDisplay);
     for (date in eventsCalendar){
         if(currentMonthDisplay == date.split("/")[1] && year == date.split("/")[0]){
             eventsCalendar[date].forEach((element) => {
@@ -76,8 +75,11 @@ function setColorTypeOfEvent(displayedEvent,eventType){
         case 'EventType2':
             displayedEvent.className = 'event-type-2 ';
             break;
-    }}
+    }
+}
 
-// function displayEventsInYearCalendar(){
-
-// }
+function displayEventsInYearCalendar(year,eventsCalendar){
+    let divDisplayEventsInYearCalendar = document.createElement("div");
+    divDisplayEventsInYearCalendar.classList.add('event-year-view');
+    document.querySelector('[id="2021/03/12"]').appendChild(divDisplayEventsInYearCalendar);
+}

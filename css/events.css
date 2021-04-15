@@ -67,4 +67,23 @@
   color:var(--bg);
 }
 
-/* 
+/* EVENTS IN YEAR VIEW */
+
+/* .event-year-view{
+  position:absolute;
+  top:10%;
+  left:75%;
+  width:5px;
+  height:5px;
+  background-color:var(--pink);
+  border-radius:50%;
+} */
+
+.event-year-view{
+  position:absolute;
+  top:75%;
+  left:25%;
+  width:50%;
+  height:5px;
+  background-color:var(--pink);
+}

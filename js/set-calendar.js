@@ -78,10 +78,7 @@ function today(month,currentDay,currentMonth,currentYear){
         idCurrentDay = '0' + idCurrentDay;
     }
     if(year === currentYear){
-      console.log(document.querySelector('[id="' + currentYear + '/' + idCurrentMonth + '/' + idCurrentDay + '"]').classList);
-      console.log(currentYear + '/' + idCurrentMonth + '/' + idCurrentDay);
       document.querySelector('[id="' + currentYear + '/' + idCurrentMonth + '/' + idCurrentDay + '"]').classList.add('year-current-day');
-      console.log(document.querySelector('[id="' + currentYear + '/' + idCurrentMonth + '/' + idCurrentDay + '"]'));
     }
   }
 }
