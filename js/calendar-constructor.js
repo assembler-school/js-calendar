@@ -72,6 +72,10 @@ function calendarConstructor(changeYear){
   var monthName = document.querySelectorAll('.month-name');
   monthName.forEach((element,i=0) => {
     element.innerHTML = monthsNames[i];
+    /*element.parentNode.addEventListener('click', () => {
+      updateTemplate("year-section","main-content-section","month-template");
+      calendarMonthConstructor(year,i);
+    });*/
     i++;
   });
 
