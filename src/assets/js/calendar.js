@@ -6,6 +6,39 @@ function setCurrentDate () {
     document.querySelector("#current-date").innerHTML = new Date().toLocaleDateString('en-GB', options);
 }
 setCurrentDate();
+const changeHeaderBackground = () =>{
+    const head = document.getElementById('header');
+    const actualMonth = date.getMonth()+1;
+
+    if(actualMonth == 12 || actualMonth == 1 || actualMonth == 2 ){
+        console.log('winter');
+        head.classList.remove('fallHeader');
+        head.classList.remove('springHeader');
+        head.classList.remove('summerHeader');
+        head.classList.add('winterHeader');
+        
+    }else if(actualMonth == 3 || actualMonth == 4 || actualMonth == 5 ){
+        console.log('spring');
+        head.classList.remove('fallHeader');
+        head.classList.remove('winterHeader');
+        head.classList.remove('summerHeader');
+        head.classList.add('springHeader');
+        
+    }else if(actualMonth == 6 || actualMonth == 7 || actualMonth == 8 ){
+        console.log('summer');
+        head.classList.remove('fallHeader');
+        head.classList.remove('winterHeader');
+        head.classList.remove('springHeader');
+        head.classList.add('summerHeader');
+        
+    }else if(actualMonth == 9 || actualMonth == 10 || actualMonth == 11 ){
+        console.log('fall');
+        head.classList.remove('winterHeader');
+        head.classList.remove('springHeader');
+        head.classList.remove('summerHeader');
+        head.classList.add('fallHeader');
+    }
+}
 /*
  * This function create calendar
  * set calendar
@@ -79,6 +112,7 @@ const renderCalendar = (direction) => {
     monthDays.innerHTML = days;
     renderEvent () ;
     addEachListener();
+    changeHeaderBackground();
 };
 document.querySelector("#prevMonth").addEventListener("click", () => {
     date.setMonth(date.getMonth() - 1);

@@ -48,6 +48,46 @@ header {
     border-bottom: solid var(--lightestGray) 1px;
     position: relative;
 }
+.winterHeader{
+  max-height: 150px;
+  min-height: 65px;
+  height: 10vh;
+  padding: 5px;
+  text-align: center;
+  background-image: url("/src/assets/img/invierno.png");
+  background-size: cover;
+  position: relative;
+}
+.springHeader{
+  max-height: 150px;
+  min-height: 65px;
+  height: 10vh;
+  padding: 5px;
+  text-align: center;
+  background-image: url("/src/assets/img/primavera.png");
+  background-size: cover;
+  position: relative;
+}
+.fallHeader{
+  max-height: 150px;
+  min-height: 65px;
+  height: 10vh;
+  padding: 5px;
+  text-align: center;
+  background-image: url("/src/assets/img/otno.png");
+  background-size: cover;
+  position: relative;
+}
+.summerHeader{
+  max-height: 150px;
+  min-height: 65px;
+  height: 10vh;
+  padding: 5px;
+  text-align: center;
+  background-image: url("/src/assets/img/verano.png");
+  background-size: cover;
+  position: relative;
+}
 h1 {
     font-size: 2rem;
 }
