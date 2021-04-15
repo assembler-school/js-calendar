@@ -81,6 +81,7 @@ function saveEvent() {
         inputTitleKey.classList.remove('error');
 
         localStorageEvents.push({
+            setDay: inputDateValue.value,
             title: inputTitleKey.value,
             end_date: endDate.value,
             time: inputTimedValue.value,
@@ -166,66 +167,86 @@ days.forEach(function(divs) {
 function getID(event){
 
   selectedDay = event.target.id;
-  fechaSeleccionada.innerHTML = "la fecha seleccionada: "+selectedDay;
+  fechaSeleccionada.innerHTML = "Eventos para la fecha: "+selectedDay;
   renderEvents();
   return selectedDay;
-
 }
 
 //Funcion IMPORTANTE!! que renderiza y elimina los eventos del día seleccionado
-function renderToday(){
+function renderTodayEvent(){
 
-  let today__event =JSON.parse(localStorage.getItem(today));
+  let today__event = JSON.parse(localStorage.getItem(today));
 
-  if (today__event != null){
-    let myArray = Object.entries(today__event);
-    myArray.forEach((element)=>{
-
-      let section = document.createElement("section");
-      section.setAttribute("class", "event__display");
-      section.insertAdjacentHTML("afterbegin",`<h1>${element[1].title}<div></h1><div>${element[1].event_type}</div></div><div>${element[1].time}</div><div>${element[1].end_date}</div><div>${element[1].Description}</div>`);
-      events.appendChild(section);
-    });
+  if (today__event == null){
+    console.log("HOY no hay nada wey");
     //console.log(today__event)
   }else{
-    console.log("HOY no hay nada wey");
+    let myArray = Object.entries(today__event);
+    let comparedDay = myArray[0][1].setDay;
+    //console.log(comparedDay)
+    //console.log(today)
+
+    if(comparedDay == today){
+        myArray.forEach((element)=>{
+          let section = document.createElement("section");
+          section.setAttribute("class", "event__display");
+          section.setAttribute("id", `${element[1].setDay}`);
+          section.insertAdjacentHTML("afterbegin",`<div><h1>${element[1].title}</h1><div>${element[1].event_type}</div></div><div>${element[1].time}</div><div>${element[1].reminder}</div><div>${element[1].end_date}</div><div>${element[1].Description}</div>`);
+          events.appendChild(section);
+        });
+    }
   }
 }
-renderToday();
+renderTodayEvent();
 
 function renderEvents() {
-  var selectedDay = event.target.id;
+  let selectedDay = event.target.id;
+  console.log(selectedDay);
   //lo traemos del local storage y al mismo tiempo lo reconvertimos en un objeto
   let renderSection = JSON.parse(localStorage.getItem(selectedDay));
-  console.log(renderSection);
 
-  //Si al seleccionar un dia, No hay objetos dentro, me dice que no hay nada, de lo contrario, si encuentra cosas, me las imprime
-  if (renderSection != null) {
+  if (renderSection == null) {
+    console.log("HOY no hay nada wey");
+
+  //Si al seleccionar un dia, hay objetos dentro, me las imprime y elimina los que no sean iguales a su id
+  } else {
     //con esto, convertimos el objeto en un array para posteriormente iterar en el
     let myArray = Object.entries(renderSection);
+    let comparedDay = myArray[0][1].setDay;
+    //console.log(comparedDay);
     //console.log(myArray[1][1]);
 
-    //una vez covertido el objeto en array, tenemos que iterar por cada uno de sus posiciones, nunca sabremos cuantos eventos tenemos guardados ese dia, por lo tanto crearemos secciones por cada evento que encuentre.
-    myArray.forEach((element) => {
+    if(comparedDay == selectedDay){
+      /*na vez covertido el objeto en array, tenemos que iterar por cada uno de sus posiciones, nunca sabremos cuantos eventos tenemos guardados ese dia, por lo tanto crearemos secciones por cada evento que encuentre y meteremos dentro lo que queramos*/
+      myArray.forEach((element) => {
+          let section = document.createElement("section");
+          section.setAttribute("class", "event__display");
+          section.setAttribute("id", `${element[1].setDay}`);
+          /*quí es donde metemos exactamente lo que queremos del array y ponemos posicion [1] ya que es allá donde se encuentran los datos que necesitamos y al mismo tiempo llamamos al parametro que queremos de dentro del objeto inicial*/
+          section.insertAdjacentHTML("afterbegin",`<div><h1>${element[1].title}</h1><div>${element[1].event_type}</div></div><div>${element[1].time}</div><div>${element[1].reminder}</div><div>${element[1].end_date}</div><div>${element[1].Description}</div>`);
+          events.appendChild(section);
+          // console.info(">>>>Titulo de mi evento: " + element[1].title);
+          // console.info("Final de fecha: " + element[1].end_date);
+          // console.info("La hora programada: " + element[1].time);
+          // console.info("Opción del reminder: " + element[1].reminder);
+          // console.info("Tipo de evento: " + element[1].event_type);
+      });
 
-        let section = document.createElement("section");
-        section.setAttribute("class", "event__display");
-        //aquí es donde metemos exactamente lo que queremos del array y ponemos posicion [1] ya que es allá donde se encuentran los datos que necesitamos y al mismo tiempo llamamos al parametro que queremos de dentro del objeto inicial.
-        section.insertAdjacentHTML("afterbegin",`<h1>${element[1].title}<div></h1><div>${element[1].event_type}</div></div><div>${element[1].time}</div><div>${element[1].end_date}</div><div>${element[1].Description}</div>`);
-        events.appendChild(section);
-        // console.info(">>>>Titulo de mi evento: " + element[1].title);
-        // console.info("Final de fecha: " + element[1].end_date);
-        // console.info("La hora programada: " + element[1].time);
-        // console.info("Opción del reminder: " + element[1].reminder);
-        // console.info("Tipo de evento: " + element[1].event_type);
-    });
-    //Von el else que viene a continuación, eliminamos todos los eventos de la lista, si es que no hay eventos.
-  } else {
-    let event_displays = document.querySelectorAll(".event__display");
-    event_displays.forEach((e) => {
-        e.remove(this);
-    })
-    console.info("en el día seleccionado, no hay nada");
+      //debo conseguir pescar el ID del section en especifico y hacer un condicional que me elimine todos los que NO son iguales
+      let event_display = document.querySelectorAll(".event__display");
+      //console.log(event_display);
+      // El objeto de arriba ,e devuelve un Nodelist y con lo de abajo lo convierto en Array para Iterar por cada uno de los elementos en el Array
+      let x = Array.from(event_display);
+      //console.log(x);
+      x.forEach((e)=>{
+        //Selecciono los que No sean igual al Dia seleccionado
+        if (e.id != selectedDay){
+          console.log(e);
+          //Lo elimino, chau
+          e.remove(this);
+        }
+      });
+    }
   }
 }
 
