@@ -3,6 +3,8 @@
 .header01-div {
   display: flex;
   gap: 5px;
+  position: relative;
+  min-width: 61px;
 }
 
 .newEvent-btn {
@@ -18,6 +20,8 @@
   font-size: 16px;
   font-weight: 400;
   color: var(--textDarkGray);
+  z-index: 999;
+  overflow: auto;
 }
 
 .warningBox-btn-alert {
@@ -28,6 +32,37 @@
 
 .warningBox-btn-alert:hover {
   background-color: var(--pink);
+}
+
+.past-reminders-container{
+  min-width: 200px;
+  /*width: 200px;*/
+  max-height: 300px;
+  height: fit-content;
+  width: fit-content;
+  position: absolute;
+  top: 0px;
+  left: 53%;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;  
+  background-color: var(--pink);
+}
+
+
+.warning-reminder-text{
+  font-size: 0.8rem;
+  font-weight: 500;
+  color:white;
+  background-color:var(--red);
+  margin:2% 5%;
+  padding:3%;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
 }
 
 .header02-div {
@@ -124,7 +159,7 @@
   width: 100vw;
   height: 100%;
   opacity: 0;
-  transition: all 0.35s ease-in;
+  /*transition: all 0.35s ease-in;*/
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -26,26 +26,47 @@ function getMonthDays(year,month){
 
 //CALENDAR CONSTRUCTOR
 function calendarConstructor(changeYear){
+  console.log(device);
   //Calendar view
   calendarView = 'year-view';
   
   var yearView = document.querySelector('#year-section');
-  //Create year-rows
-  for(i=0;i<3;i++){
-    let div = document.createElement('div');
-    div.setAttribute('class','year-row');
-    yearView.appendChild(div);
-  }
 
-  //Create months
-  var yearRows = document.querySelectorAll('.year-row');
-  yearRows.forEach((row) => {
-    for(i=0;i<4;i++){
+  if(device === 'mobile'){
+    //Create year-rows
+    for(i=0;i<12;i++){
       let div = document.createElement('div');
-      div.setAttribute('class','month');
-      row.appendChild(div);
+      div.setAttribute('class','mobile-year-row');
+      yearView.appendChild(div);
     }
-  })
+
+    //Create months
+    var yearRows = document.querySelectorAll('.mobile-year-row');
+    yearRows.forEach((row) => {
+      for(i=0;i<1;i++){
+        let div = document.createElement('div');
+        div.setAttribute('class','month');
+        row.appendChild(div);
+      }
+    })
+  }else if(device === 'computer'){
+    //Create year-rows
+    for(i=0;i<3;i++){
+      let div = document.createElement('div');
+      div.setAttribute('class','year-row');
+      yearView.appendChild(div);
+    }
+
+    //Create months
+    var yearRows = document.querySelectorAll('.year-row');
+    yearRows.forEach((row) => {
+      for(i=0;i<4;i++){
+        let div = document.createElement('div');
+        div.setAttribute('class','month');
+        row.appendChild(div);
+      }
+    })
+  }
 
   //Create row for month name
   var months = document.querySelectorAll('.month');

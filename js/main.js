@@ -135,6 +135,8 @@ document.getElementById("reminderId").addEventListener('change', (event) => {
     }
 });
 
+document.querySelector(".warningBox-btn").addEventListener('click', modalWarningBoxEnters);
+
 function showModalWithDay(id) { //set calendar with selected day
     showModal();
     document.getElementById('initialDateId').value = setValueTime(new Date(id));

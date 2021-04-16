@@ -48,13 +48,15 @@ function modalForDetails(title, initialDate, endDate, reminderDate, eventDescrip
         remindDateTxt.textContent = reminderDate;
     }
 
-    let div4 = detailsDiv.appendChild(document.createElement("div"));
-    let labelType = div4.appendChild(document.createElement('h4'));
-    labelType.classList.add('label-for-details');
-    labelType.innerText = 'Type of event:';
-    let typeOfEventTxt = div4.appendChild(document.createElement('h3'));
-    typeOfEventTxt.classList.add('detailed-event');
-    typeOfEventTxt.textContent = typeOfEvent;
+    if (typeOfEvent !== undefined) {
+        let div4 = detailsDiv.appendChild(document.createElement("div"));
+        let labelType = div4.appendChild(document.createElement('h4'));
+        labelType.classList.add('label-for-details');
+        labelType.innerText = 'Type of event:';
+        let typeOfEventTxt = div4.appendChild(document.createElement('h3'));
+        typeOfEventTxt.classList.add('detailed-event');
+        typeOfEventTxt.textContent = typeOfEvent;
+    }
 
     if (eventDescription !== '') {
         let div5 = detailsDiv.appendChild(document.createElement("div"));
@@ -101,14 +103,14 @@ function modalForReminders(title, initialDate, id) {
     let reminderHeader = modDetailsContent.appendChild(document.createElement("h1"));
     reminderHeader.classList.add('reminder-header');
     reminderHeader.innerHTML = 'Hey! remember:';
-  
+
     let detailsDiv = modDetailsContent.appendChild(document.createElement("div"));
     detailsDiv.classList.add('details-reminder-container');
 
     let titleOfEventTxt = detailsDiv.appendChild(document.createElement("h1"));
     titleOfEventTxt.classList.add('title-event');
     titleOfEventTxt.innerHTML = title;
-    
+
     let div1 = detailsDiv.appendChild(document.createElement("div"));
     let labelInit = div1.appendChild(document.createElement('h4'));
     labelInit.classList.add('label-for-details');
@@ -123,8 +125,8 @@ function modalForReminders(title, initialDate, id) {
     rmvBtn.classList.add('remove-btn');
     rmvBtn.innerHTML = 'Delete reminder';
     rmvBtn.onclick = function() {
-        console.log(id);
-        // removeCustomReminderAlert();
+        removeReminder(id);
+        removeCustomReminderAlert();
     }
     let okBtn = div6.appendChild(document.createElement("button"));
     okBtn.classList.add('ok-reminder-btn');
@@ -148,4 +150,37 @@ function removeCustomReminderAlert() {
     let currentDateForBlur = document.querySelector('.currentDate-section');
     mainContentForBlur.removeAttribute('style');
     currentDateForBlur.removeAttribute('style');
+}
+
+function modalWarningBoxEnters(event) {
+    //let warningBox = document.querySelector('.warningBox-btn');
+    let warningBox = event.target
+    warningBox.innerHTML = '';
+    warningBox.style.transition = '0.2s ease-in';
+    warningBox.classList.toggle("past-reminders-container");//changes heigth and width inits transition
+    for (reminder of pastRemindersList){
+        let displayedReminder = document.createElement("p");
+        displayedReminder.classList.add("warning-reminder-text");
+        warningBox.appendChild(displayedReminder);
+        displayedReminder.appendChild(document.createTextNode(reminder.eventTitle + ': ' + reminder.reminderDate));
+        displayedReminder.id = reminder.id;
+        displayedReminder.addEventListener('click', modalForWarningBoxReminders);
+    }
+    warningBox.removeEventListener('click', modalWarningBoxEnters);
+    warningBox.addEventListener('focusout', modalWarningBoxLeaves);
+}
+
+function modalWarningBoxLeaves() {
+    let warningBox = document.querySelector('.warningBox-btn');
+    warningBox.style.transition = 'none';
+    warningBox.removeEventListener('focusout', modalWarningBoxLeaves);
+    warningBox.classList.toggle("past-reminders-container");//changes heigth and width inits transition
+    loadPastRemindersWarningCounter();
+    warningBox.addEventListener('click', modalWarningBoxEnters);
+
+}
+
+function modalForWarningBoxReminders(event){
+    let displayedReminder = pastRemindersList.filter(reminder => reminder.id === event.target.id)[0];
+    modalForReminders(displayedReminder.eventTitle, displayedReminder.initialDate, displayedReminder.id);
 }
