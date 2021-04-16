@@ -13,7 +13,6 @@ const modalContent = document.getElementById("modal-content");
 
 function justFunc(event) {
     disabledArrowKeys();
-    modalSection.classList.remove("hidden");
     let divsDate = new Date();
     let divsActualMonth;
     if (event.target.classList.contains('current-month-day')) {
@@ -27,16 +26,16 @@ function justFunc(event) {
     var todayMinutes = divsDate.getMinutes();
     var todayDate = event.target.firstChild.textContent;
     if (todayDate < 10)
-        todayDate ='0' + todayDate;
+    todayDate ='0' + todayDate;
     if (todayHour < 10)
-        todayHour = "0" + todayHour;
+    todayHour = "0" + todayHour;
     if (todayMinutes < 10)
-        todayMinutes  = "0" + todayMinutes;
+    todayMinutes  = "0" + todayMinutes;
     if (divsActualMonth < 10)
-        divsActualMonth ='0' + divsActualMonth;
+    divsActualMonth ='0' + divsActualMonth;
     document.getElementById("initialDate").value =
-        `${date.getFullYear()}-${divsActualMonth}-${todayDate}T${todayHour}:${todayMinutes}`;
-    
+    `${date.getFullYear()}-${divsActualMonth}-${todayDate}T${todayHour}:${todayMinutes}`;
+    modalSection.classList.remove("hidden");
     document.querySelector(".modal-button.fa-window-close").addEventListener("click", closeFirstModal);
     document.getElementById("m-cancelBtn").addEventListener("click", closeFirstModal);
     document.getElementById("m-createBtn").addEventListener("click", closeFirstModal);
@@ -106,6 +105,14 @@ function closeFirstModal(){
     modalSection.classList.add("hidden");
     document.getElementById("form").reset();
     enableArrowKeys();
+    if (!document.getElementById("EndDateModal").classList.contains("modal-inputDisabled")){
+        document.getElementById("EndDateModal").classList.add("modal-inputDisabled");
+    }
+    if (!document.getElementById("modal-input-time").classList.contains("modal-inputDisabled")){
+        document.getElementById("modal-input-time").classList.add("modal-inputDisabled");
+    }
+    document.getElementById("m-createBtn").disabled = true;
+    createButton.style.opacity = 0.5;
 }
 
 window.addEventListener("keyup", closeEscOut);

@@ -341,7 +341,7 @@ main{
 }
 .prev-date,
 .next-date {
-  opacity: 1;
+  filter: opacity(0.8);
   font-weight: 150;
   color: var(--lightGray);
 }
@@ -384,6 +384,7 @@ main{
   transition-duration: 0.2s;
   -webkit-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
+  overflow-wrap: break-word;
 }
 .event-in-calendar:hover:before, .event-in-calendar:focus:before, .event-in-calendar:active:before {
   left: 0;
@@ -669,7 +670,12 @@ main{
   background-color: var(--darkestGray);
 }
 #modal-section.hidden {
-  display: none;
+  height: 0px;
+  overflow: hidden;
+  opacity: 0;
+  backdrop-filter: blur(0px);
+  transition: opacity 0.2s, backdrop-filter 0.2s, background-color 0.2s, opacity 0.2s, height 0s 0.4s;
+  background-color: rgba(255, 255, 255, 0);
 }
 input, select {
   height: 44px;
@@ -683,6 +689,9 @@ input, select {
   height: 200vh;
   width: 100vw;
   background-color: rgba(0,0,0,0.4);
+  transition: opacity 0.4s, background-color 0.4s 0.2s, backdrop-filter 0.8s 0.2s;
+  opacity: 1;
+  backdrop-filter: blur(3px);
 }
 #modal-content {
   display: flex;
@@ -719,6 +728,9 @@ label{
   font-size: xx-large;
   color: var(--darkestGray);
   background-color: transparent;
+}
+.modal-button.fa-window-close:hover {
+  transform: scale(1.05);
 }
 .modal-input {
   display: flex;
@@ -759,6 +771,9 @@ label{
   border-radius: 5px;
   height: 44px;
 }
+.m-action-button:hover {
+  transform: scale(1.05);
+}
 .incorrect {
   border: 2px solid red;
 }
@@ -779,6 +794,7 @@ label{
 
 .m-action-button:disabled {
   opacity: 0.5;
+  transform: scale(1);
 }
 
 /*
@@ -788,17 +804,25 @@ label{
 */
 
 #modal-event-section.hidden {
-display: none;
+  height: 0px;
+  overflow: hidden;
+  opacity: 0;
+  backdrop-filter: blur(0px);
+  transition: opacity 0.2s, backdrop-filter 0.2s, background-color 0.2s, opacity 0.2s, height 0s 0.4s;
+  background-color: rgba(255, 255, 255, 0);
 }
 #modal-event-section {
   display: block;
   position: fixed;
   z-index: 1;
   left: 0;
-  top: 0;
-  height: 100vh;
+  top: -80px;
+  height: 200vh;
   width: 100vw;
   background-color: rgba(0,0,0,0.4);
+  transition: opacity 0.4s, background-color 0.4s 0.2s, backdrop-filter 0.8s 0.2s;
+  opacity: 1;
+  backdrop-filter: blur(3px);
 }
 #modal-event-content {
   display: flex;
@@ -831,6 +855,9 @@ display: none;
   font-size: xx-large;
   color: var(--darkestGray);
   background-color: transparent;
+}
+.modal-event-button.fa-window-close:hover {
+  transform: scale(1.05);
 }
 .modal-event-input {
   display: flex;
