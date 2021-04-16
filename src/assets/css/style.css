@@ -620,6 +620,9 @@ input, select {
   color: var(--darkestGray);
   background-color: transparent;
 }
+.modal-button.fa-window-close:hover {
+  transform: scale(1.05);
+}
 .modal-input {
   display: flex;
   flex-direction: row;
@@ -659,6 +662,9 @@ input, select {
   border-radius: 5px;
   height: 44px;
 }
+.m-action-button:hover {
+  transform: scale(1.05);
+}
 .incorrect {
   border: 2px solid red;
 }
@@ -679,6 +685,7 @@ input, select {
 
 .m-action-button:disabled {
   opacity: 0.5;
+  transform: scale(1);
 }
 
 /*
