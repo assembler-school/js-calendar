@@ -213,13 +213,16 @@ renderTodayEvent();
 
 function renderPickedEvents() {
   let selectedDay = event.target.id;
-  console.log(selectedDay);
+  //console.log(selectedDay);
   //lo traemos del local storage y al mismo tiempo lo reconvertimos en un objeto
   let renderSection = JSON.parse(localStorage.getItem(selectedDay));
 
   if (renderSection == null) {
-    console.log("HOY no hay nada wey");
-
+    let event_displays = document.querySelectorAll(".event__display");
+    event_displays.forEach((e)=>{
+      e.remove(this);
+    })
+    console.log("aqui no hay nada wey");
   //Si al seleccionar un dia, hay objetos dentro, me las imprime y elimina los que no sean iguales a su id
   } else {
     //con esto, convertimos el objeto en un array para posteriormente iterar en el
@@ -253,7 +256,7 @@ function renderPickedEvents() {
       x.forEach((e)=>{
         //Selecciono los que No sean igual al Dia seleccionado
         if (e.id != selectedDay){
-          console.log(e);
+          //console.log(e);
           //Lo elimino, chau
           e.remove(this);
         }

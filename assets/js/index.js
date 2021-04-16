@@ -145,83 +145,67 @@ today = document.getElementsByClassName("today");
 //Detecta todos los divs del calendario con la clase no-event-day y ejecuta las funciones pertinentes mediante los listeners pertinentes.
 day = document.querySelectorAll('.no-event-day');
 for (let d = 0; d < day.length; d++) {
-    //day.item(d).addEventListener("click", showEventOfDayHere);
+    //day.item(d).addEventListener("LOAD", showEventOfDayHere);
     day.item(d).addEventListener("click", bringDataFromLocalStorageToMainCalendar);
-    day.item(d).addEventListener("click", showEventOfDayHere);
-
 }
 
 //Interactuamos con los datos de Local Storage - Application
 function bringDataFromLocalStorageToMainCalendar(ev) {
     //Esta variable selecciona lo clicado al llamar al event listener y lo posiciona como target
     var clickedDivId = event.target.id;
-    //console.info("Esta es la ID del dia seleccionado " + clickedDivId)
-        //Cogemos los datos STORAGE del div clicado y lo parseamos
-    var datafromLocalStorage = JSON.parse(localStorage.getItem(clickedDivId));
-    //console.info("Esta es la informacion extraida y parseada del ID dia clicado >>> " + datafromLocalStorage)
-    //console.info(Object.values(datafromLocalStorage))
-    //console.info("Este mensaje solo aparece si el objeto anterior ha sido extraido correctamente")
-    if (datafromLocalStorage !== null) {
-        //console.info('INNN F()')
-            //Si detro del array datafromLocalStorage existe meeting, study o meeting, crear una variable x is true
-        meetingIsTrue = datafromLocalStorage.includes('meeting');
-        //console.log("Meeting is " + meetingIsTrue)
-        studyIsTrue = datafromLocalStorage.includes('study');
-        //console.log("Study is " + studyIsTrue)
-        personalIsTrue = datafromLocalStorage.includes('personal');
-        //console.log("Personal is " + personalIsTrue)
-    } else if ((datafromLocalStorage == null)) {
-        //swal('No tienes ningun evento este dia ^^');
-        //console.info('La informacion es nula, no tienes ningun evento el dia seleccionado en el calendario')
-        //alert('datafromLocalStorage es NULO');
-    } else {
-        //console.warn('La insersión de tipo de evento desde el formulario no ha llegado correctamente');
-    }
-}
-//END F()bringDataFromLocalStorageToMainCalendar
-//Devlopgit
-
-function showEventOfDayHere(ev) {
-
-    var meetingIsTrue = false
-    var studyIsTrue = false
-    var personalIsTrue = false
-
     var clickedDiv = event.target;
+    //console.info("Esta es la ID del dia seleccionado " + clickedDivId)
 
-    if (meetingIsTrue == true) {
-        //console.info(meetingIsTrue + ' MEETING IS TRUE')
-        var clickedDiv = event.target;
+    //Cogemos los datos STORAGE del div clicado y lo parseamos
+    var datafromLocalStorage = JSON.parse(localStorage.getItem(clickedDivId));
+    //console.info("INFO extraida y parseada del dia clicado >>> " + datafromLocalStorage)
 
+    //Returns ARR
+    var MydatafromLocalStorage = Object.entries(datafromLocalStorage);
+
+    //ALL Object's
+    //console.log(MydatafromLocalStorage)
+
+    //Turn ARR into var 's
+
+    MydatafromLocalStorage.forEach(data => {
+        var myTitle = data[1].title
+        var myEndDate = data[1].end_date
+        var myTime = data[1].time
+        var myReminder = data[1].reminder
+        var myEventType = data[1].event_type
+        var myDescription = data[1].description
+        // console.log(myTitle)
+        // console.log(myEndDate)
+        // console.log(myTime)
+        // console.log(myReminder)
+        console.log(myEventType)
+        // console.log(myDescription)
+
+    });
+    //integrar correctamente los datos del foreach al IF() siguiente
+
+    //Si existe evento - boolean
+
+    if (myEventType == "meeting") {
+        swal("Soy un meeting");
         clickedDiv.insertAdjacentHTML('beforeend', '<div class="event-inserted"><ul class="meetingList">M</ul></div>');
         //event.stopPropagation();
-
-    } else if (studyIsTrue == true) {
-        //console.info(studyIsTrue + ' STUDY IS TRUE');
-        var clickedDiv = event.target;
-
+    } else if (myEventType == "Study") {
+        swal("Soy un study");
         clickedDiv.insertAdjacentHTML('beforeend', '<div class="event-inserted"><ul class="studyList">S</ul></div>');
-        //event.stopPropagation();
 
-    } else if (personalIsTrue == true) {
-        //console.info(personalIsTrue + ' PERSONAL IS TRUE')
-        var clickedDiv = event.target;
-
+    } else if (myEventType == "Personal") {
+        swal("Soy un personal");
         clickedDiv.insertAdjacentHTML('beforeend', '<div class="event-inserted"><ul class="personalList">P</ul></div>');
-        //event.stopPropagation();
 
     } else {
-        //console.info('showEventOfDayHere - revisa su funcionalidad')
-        // swal('No llega ningun dato aqui')
+        console.warn('La insersión de tipo de evento desde el formulario no ha llegado correctamente');
+        //break;
     }
-
 }
 
 stopEvent = true;
-//Guardar array de json con multiples fechas
-//pad stat
-//DE lado
-//padStart()
 function load() {
     elem = document.getElementById("all-days");
     elem.addEventListener("click", stopEvent, false);
