@@ -103,14 +103,14 @@ function modalForReminders(title, initialDate, id) {
     let reminderHeader = modDetailsContent.appendChild(document.createElement("h1"));
     reminderHeader.classList.add('reminder-header');
     reminderHeader.innerHTML = 'Hey! remember:';
-  
+
     let detailsDiv = modDetailsContent.appendChild(document.createElement("div"));
     detailsDiv.classList.add('details-reminder-container');
 
     let titleOfEventTxt = detailsDiv.appendChild(document.createElement("h1"));
     titleOfEventTxt.classList.add('title-event');
     titleOfEventTxt.innerHTML = title;
-    
+
     let div1 = detailsDiv.appendChild(document.createElement("div"));
     let labelInit = div1.appendChild(document.createElement('h4'));
     labelInit.classList.add('label-for-details');
@@ -182,7 +182,5 @@ function modalWarningBoxLeaves() {
 
 function modalForWarningBoxReminders(event){
     let displayedReminder = pastRemindersList.filter(reminder => reminder.id === event.target.id)[0];
-    console.log(displayedReminder.id + ' matches ' + event.target.id);
-
     modalForReminders(displayedReminder.eventTitle, displayedReminder.initialDate, displayedReminder.id);
 }
