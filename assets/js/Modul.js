@@ -117,15 +117,13 @@ function saveEvent() {
       keyName.push( localStorage.getItem(keys[i]) );
     }
     saveEvent()
+  
   console.log(keyName)
   console.log(inputDateValue.value)
 
+  // document.querySelector(".events").innerHTML = keyName;
+
 }
-
-
-
-
-
 
 
 /*************************************************/
@@ -206,6 +204,7 @@ function getID(event){
   return selectedDay;
 
 }
+
 
 //Funcion IMPORTANTE!! que renderiza y elimina los eventos del día seleccionado
 function renderToday(){
