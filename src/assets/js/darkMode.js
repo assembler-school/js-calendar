@@ -10,6 +10,7 @@ const intializeDarkMode =() =>{
     if(darkmodeEnabled){
         cal.classList.add('backgrounDark');
         Darkdays.classList.add('colorDark');
+        darkWeek.classList.add("colorDark");
         storage.setItem('checked',true);
         checkboxDm.checked = true;
     }
@@ -19,10 +20,12 @@ const checkedFunction = () =>{
     if(document.getElementById('checkboxDM').checked){
     cal.classList.add('backgrounDark');
     Darkdays.classList.add('colorDark');
+    darkWeek.classList.add("colorDark");
     storage.setItem('checked',true);
 }else{
     cal.classList.remove('backgrounDark');
     Darkdays.classList.remove('colorDark');
+    darkWeek.classList.remove("colorDark");
     storage.setItem('checked',false);
 }
 }

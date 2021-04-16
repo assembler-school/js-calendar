@@ -36,11 +36,6 @@ const setHeaderSeasonTheme = () => {
         setSeasonClass('fall');
     }
 }
-/*
- * This function create calendar
- * set calendar
- * @ Author: Armando
- */
 const renderCalendar = (direction) => {
     date.setDate(1);
     const monthDays = document.querySelector(".days-wrapper");
@@ -228,10 +223,10 @@ function eventDivsInjector (divsNodeList, monthGap) {
 //? Function to compare start dates for future sorting
 function compare( a, b ) {
     if ( a.startDate < b.startDate ){
-      return 1;
+        return 1;
     }
     if ( a.startDate > b.startDate ){
-      return -1;
+        return -1;
     }
     return 0;
 }

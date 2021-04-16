@@ -1,4 +1,4 @@
-/* Font import */
+
 @import url("https://fonts.googleapis.com/css2?family=Arimo&display=swap");
 /*
 !=======================================
@@ -10,7 +10,7 @@
   --darkGray: #3D4141;
   --lightGray: #7F817F;
   --lightestGray: #9A9C9A;
-  --eventBlue: #264653;
+  --eventBlue: #43a3c9;
   --eventGreen: #2A9D8F;
   --eventYellow: #E9C46A;
   --eventOrange: #F4A261;
@@ -43,7 +43,6 @@ main {
 !=======================================
 */
 header {
-  /*max-height: 150px;*/
   min-height: 65px;
   padding: 5px;
   height: 20vh;
@@ -66,77 +65,7 @@ header.fall{
 header.winter{
   background-image: url("/src/assets/img/bgWinter.png");
 }
-  /* Dark Mode */
-  .switch {
-    display: flex;
-    height: 36px;
-    position: relative;
-    width: 70px;
-    z-index: 1;
-  }
 
-  .switch input {
-    display:none;
-  }
-
-  .slider {
-    background-color: #FFF;
-    border:1px solid #000;
-    bottom: 0;
-    cursor: pointer;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    transition: .4s;
-  }
-
-  .slider:before {
-    background-color: #333;
-    border:1px solid #000;
-    bottom: 3px;
-    content: "";
-    height: 26px;
-    left: 4px;
-    position: absolute;
-    transition: .4s;
-    width: 26px;
-    z-index:421;
-  }
-
-  input:checked + .slider {
-    background-color: #101211;
-  }
-
-  input:checked + .slider:before {
-    transform: translateX(34px);
-    border-color:#CFCFCF;
-    background-color:#EFEFEF;
-  }
-
-  .slider.round {
-    border-radius: 34px;
-  }
-
-  .slider.round:before {
-    border-radius: 50%;
-  }
-
-  .toggle-moon, .toggle-sun {
-    width:50%;
-    text-align:center;
-    padding:0.25em;
-    position:relative;
-    z-index:420;
-  }
-
-  .backgrounDark{
-    background-color: var(--darkestGray);
-  }
-  .colorDark{
-    color: whitesmoke;
-  }
-    /* End Dark Mode */
 
 h1 {
   font-size: 2rem;
@@ -286,7 +215,82 @@ h1 {
   color: var(--darkestGray);
   background-color: var(--winterSnow);
 }
+/*
+!=======================================
+! dark-mode
+!=======================================
+*/
+.switch {
+  display: flex;
+  height: 36px;
+  position: relative;
+  width: 70px;
+  z-index: 1;
+}
 
+.switch input {
+  display: none;
+}
+
+.slider {
+  background-color: #FFF;
+  border: 1px solid #000;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .4s;
+}
+
+.slider:before {
+  background-color: #333;
+  border: 1px solid #000;
+  bottom: 3px;
+  content: "";
+  height: 26px;
+  left: 4px;
+  position: absolute;
+  transition: .4s;
+  width: 26px;
+  z-index: 421;
+}
+
+input:checked+.slider {
+  background-color: #101211;
+}
+
+input:checked+.slider:before {
+  transform: translateX(34px);
+  border-color: #CFCFCF;
+  background-color: #EFEFEF;
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.toggle-moon,
+.toggle-sun {
+  width: 50%;
+  text-align: center;
+  padding: 0.25em;
+  position: relative;
+  z-index: 420;
+}
+
+.backgrounDark {
+  background-color: var(--darkestGray);
+}
+
+.colorDark {
+  color: whitesmoke;
+}
 
 /*
 !=======================================
@@ -320,7 +324,6 @@ main{
 
 .day{
   text-align: center;
-  /* padding: 5px; */
   border: 0.5px solid var(--lightGray);
   display: flex;
   flex-direction: column;
@@ -346,14 +349,13 @@ main{
   color: var(--lightGray);
 }
 .today {
-  background-color: var(--eventGreen);
+  background-color: var(--eventBlue);
   color: white;
 }
 
 /* * Events in calendar style */
 .event-in-calendar {
   width: 100%;
-  /* border-radius: 2px; */
   padding: 2px;
   margin: 0.5px 0;
   font-size: 0.8rem;
@@ -477,199 +479,6 @@ main{
     opacity: 1;
   }
 }
-
-
-/*
-!=======================================
-! media query
-!=======================================
- */
-@media only screen and (max-width: 700px)  {
-    html {
-        font-size: 12px;
-    }
-    header > h1 {
-      font-size: 18px;
-    }
-    .btn-add-event {
-      height: 44px;
-      top: 65px;
-    }
-    .btn-next-prev {
-      height: 44px;
-      width: 44px;
-    }
-    .modal-header > h1 {
-      font-size: 22px;
-    }
-    label {
-      font-size: 12px;
-    }
-}
-@media only screen and (max-width: 550px)  {
-    html {
-        font-size: 11px;
-    }
-    header {
-        text-align: center;
-    }
-
-    .page-title{
-      width: 200px;
-    }
-
-    .btn-add-event{
-      height: 28px;
-      margin-top: 2.7em;
-      border-radius: 5px;
-      padding: 5px;
-      position: absolute;
-    }
-    #modal-content,
-    #modal-event-content {
-      min-width: 290px !important;
-      width: 160px !important;
-      height: auto;
-      font-size: 9px;
-    }
-
-    label{
-      margin-top: .5em;
-      margin-left: .2em;
-    }
-}
-@media only screen and (max-width: 400px)  {
-    html {
-        font-size: 8px;
-    }
-
-    #current-date {
-      font-size: 12px;
-    }
-
-    .weekdays {
-      font-size: 12px;
-    }
-
-    #modal-content,
-    #modal-event-content {
-      min-width: 270px !important;
-      width: 160px !important;
-      height: auto;
-      font-size: 9px;
-    }
-
-    header{
-      display: flex;
-      flex-direction: row;
-    }
-
-    .left-side{
-      display: flex;
-      width: 100%;
-      justify-content: center;
-      align-items: center;
-    }
-
-    #current-date{
-      font-size: 1em;
-    }
-
-    .dark-mode{
-      width: 40%;
-      margin-bottom: 3.5em;
-    }
-
-   .page-title{
-      width: 100px;
-      padding: 10px 20px;
-      font-size: 1.8em;
-      text-align: center;
-      margin-bottom: 1.9em;
-    }
-
-    .btn-add-event{
-      position: absolute;
-      right: 10px;
-      top: 77px;
-      font-size: 1.3rem;
-    }
-
-    .btn-next-prev{
-      height: 40px;
-      margin-bottom: 2em;
-    }
-}
-
-@media only screen and (height: 640px){
-  .btn-add-event{
-    position: absolute;
-    right: 10px;
-    top: 65px;
-    font-size: 1.1rem;
-  }
-
-  .btn-next-prev{
-    height: 30px;
-    margin-bottom: 2em;
-  }
-
-  .page-title{
-    margin-top: .5em;
-  }
-
-}
-
-@media only screen and (height: 568px){
-  .btn-add-event{
-    position: absolute;
-    right: 10px;
-    top: 51px;
-    font-size: 1.1rem;
-  }
-
-  .btn-next-prev{
-    height: 30px;
-    margin-bottom: 2em;
-  }
-
-  .page-title{
-    margin-top: .5em;
-  }
-
-  #modal-content{
-    min-width: 230px !important;
-    width: 160px !important;
-    height: 540px;
-    font-size: 9px;
-    padding: 10px !important;
-    margin: 92px auto 0 auto !important;
-  }
-
-  #modal-event-content{
-    font-size: 1.5em;
-  }
-}
-
-@media only screen and (max-width: 300px) {
-  html {
-    font-size: 7px;
-  }
-
-  .btn-add-event {
-    position: absolute;
-    right: 10px;
-    top: 70px;
-    font-size: 1.1rem;
-  }
-  #current-date {
-    font-size: 1em;
-  }
-  .weekdays {
-    font-size: 12px;
-  }
-}
-
 
 /*
 !=======================================
@@ -909,6 +718,7 @@ label{
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
   padding: 5px;
   text-align: center;
+  margin: 2px;
 }
 .reminderBtn{
   padding: 2px;
@@ -916,4 +726,227 @@ label{
   border-style: none;
   border-radius: 2px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+/*
+!=======================================
+! media query
+!=======================================
+ */
+@media only screen and (max-width: 800px) {
+  html {
+    font-size: 11px;
+  }
+  label {
+    font-size: 14px !important;
+  }
+  .btn-add-event {
+    height: 30px;
+    top: 50%;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+  }
+}
+@media only screen and (max-width: 700px) {
+  html {
+    font-size: 12px;
+  }
+
+  header>h1 {
+    font-size: 18px;
+  }
+
+  .btn-add-event {
+    height: 30px;
+    top: 50%;
+  }
+
+  .btn-next-prev {
+    height: 44px;
+    width: 44px;
+  }
+
+  .modal-header>h1 {
+    font-size: 22px;
+  }
+
+  label {
+    font-size: 12px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .btn-add-event {
+    height: 30px;
+    top: 52%;
+  }
+}
+@media only screen and (max-width: 550px) {
+  html {
+    font-size: 11px;
+  }
+
+  header {
+    text-align: center;
+  }
+
+  .page-title {
+    width: 200px;
+  }
+
+  .btn-add-event {
+    height: 30px;
+  }
+
+  #modal-content,
+  #modal-event-content {
+    min-width: 290px !important;
+    width: 160px !important;
+    height: auto;
+    font-size: 9px;
+  }
+
+  label {
+    margin-top: .5em;
+    margin-left: .2em;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  html {
+    font-size: 8px;
+  }
+
+  #current-date {
+    font-size: 12px;
+  }
+
+  .weekdays {
+    font-size: 12px;
+  }
+
+  #modal-content,
+  #modal-event-content {
+    min-width: 270px !important;
+    width: 160px !important;
+    height: auto;
+    font-size: 9px;
+  }
+
+  header {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .left-side {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #current-date {
+    font-size: 1em;
+  }
+
+  .dark-mode {
+    width: 40%;
+    margin-bottom: 10em;
+  }
+
+  .page-title {
+    width: 190px;
+    padding: 10px 20px;
+    font-size: 1.8em;
+    text-align: center;
+    margin-bottom: 1.9em;
+  }
+
+  .btn-add-event {
+    top: 57%;
+    font-size: 1.3rem;
+  }
+
+  .btn-next-prev {
+    height: 40px;
+    margin-bottom: 2em;
+  }
+}
+@media only screen and (max-width: 300px) {
+  html {
+    font-size: 8px;
+  }
+
+  .btn-add-event {
+    position: absolute;
+    top: 60%;
+    font-size: 1.1rem;
+  }
+
+  #current-date {
+    font-size: 1em;
+  }
+
+  .weekdays {
+    font-size: 12px;
+  }
+}
+@media only screen and (height: 731px) {
+  .btn-add-event {
+    position: absolute;
+    top: 51% !important;
+    font-size: 1.1rem;
+  }
+}
+@media only screen and (height: 640px) {
+  .btn-add-event {
+    position: absolute;
+    right: 10px;
+    top: 65px;
+    font-size: 1.1rem;
+  }
+
+  .btn-next-prev {
+    height: 30px;
+    margin-bottom: 2em;
+  }
+
+  .page-title {
+    margin-top: .5em;
+  }
+}
+
+@media only screen and (height: 568px) {
+  .btn-add-event {
+    position: absolute;
+    right: 10px;
+    top: 51px;
+    font-size: 1.1rem;
+  }
+
+  .btn-next-prev {
+    height: 30px;
+    margin-bottom: 2em;
+  }
+
+  .page-title {
+    margin-top: .5em;
+  }
+  .dark-mode {
+    width: 40%;
+    margin-bottom: 9em;
+  }
+
+  #modal-content {
+    min-width: 230px !important;
+    width: 160px !important;
+    height: 540px;
+    font-size: 9px;
+    padding: 10px !important;
+    margin: 92px auto 0 auto !important;
+  }
+
+  #modal-event-content {
+    font-size: 1.5em;
+  }
 }

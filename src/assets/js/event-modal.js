@@ -45,7 +45,7 @@ window.addEventListener("keyup", closeEscEventOut);
 function closeEscEventOut(event){
     const escEventNow = event.keyCode || event.which;
     if (escEventNow == 27){
-        closeEventModal();  
+        closeEventModal();
     }
 }
 
@@ -58,12 +58,6 @@ function closeEventModal () {
     modalBackground.classList.add("hidden");
     document.getElementById("modal-event-edit-btn").removeEventListener('click', deleteEvent);
     enableArrowKeys();
-}
-
-//* Edit event modal function
-function editEventModal () {
-    //! TODO has to open normal modal and insert this event values
-    closeEventModal();
 }
 
 function deleteEventDatesData (data, storageIndex) {
