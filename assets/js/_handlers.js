@@ -19,6 +19,8 @@ export function handleDocumentEvents(e) {
           let newDate = new Date();
           let year = newDate.getFullYear();
           swapTemplate("year", "calendar");
+          swapTemplate("buttons__year", "container__btn__weekMonthYear");
+          render.addTagYear(updatedYear);
           render.renderYear(year);
         }
         /*
@@ -29,6 +31,8 @@ export function handleDocumentEvents(e) {
           let month = newDate.getMonth();
           let year = newDate.getFullYear();
           swapTemplate("month", "calendar");
+          swapTemplate("buttons__month", "container__btn__weekMonthYear");
+          render.addTag(updatedYear, updatedMonth);
           render.renderMonth(year, month);
         }
 
@@ -64,7 +68,7 @@ export function handleDocumentEvents(e) {
     /*
      * buttons to switch month
      */
-    if (e.target.matches(".fa-chevron-right")) {
+    if (e.target.matches(".btn__month__right")) {
       addMonth(updatedYear, updatedMonth, true);
       // document.getElementById("calendar").classList.add("slide-top");
       // document.getElementById("calendar").classList.add("swing-right-fwd");
@@ -72,12 +76,28 @@ export function handleDocumentEvents(e) {
         .querySelector(".calendar__month")
         .classList.add("swing-right-fwd");
     }
-    if (e.target.matches(".fa-chevron-left")) {
+    if (e.target.matches(".btn__month__left")) {
       addMonth(updatedYear, updatedMonth, false);
       document
         .querySelector(".calendar__month")
         .classList.add("swing-left-fwd");
     }
+
+        /*
+     * buttons to switch year
+     */
+        if (e.target.matches(".btn__year__right")) {
+          addYear(updatedYear, true);
+          document
+            .querySelector(".calendar__year--row")
+            .classList.add("swing-right-fwd");
+        }
+        if (e.target.matches(".btn__year__left")) {
+          addYear(updatedYear, false);
+          document
+            .querySelector(".calendar__year--row")
+            .classList.add("swing-left-fwd");
+        }
 
     /*
      * Mobile burguer menu
@@ -145,4 +165,13 @@ function addMonth(year, month, boolean) {
   render.addTag(updatedYear, updatedMonth);
   render.highlightToday(year, month);
   render.renderEvents(year, month);
+}
+
+
+function addYear(year, boolean) {
+  boolean ? year++ : year--;
+  updatedYear = render.updateDate(year).year;
+  swapTemplate("year", "calendar");
+  render.addTagYear(updatedYear);
+  render.renderYear(updatedYear);
 }

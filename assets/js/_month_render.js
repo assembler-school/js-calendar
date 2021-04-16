@@ -136,6 +136,14 @@ export function addTag(year, month) {
     yearMobileTag.innerHTML = year;
 }
 
+export function addTagYear(year) {
+    let yearTag = document.getElementById('nav__year');
+    let yearMobileTag = document.getElementById('nav__mobile--year');
+
+    yearTag.innerHTML = year;
+    yearMobileTag.innerHTML = year;
+}
+
 export function highlightToday(year, month){
     let date = new Date();
     if (compareMonth(year,month,date.getFullYear(),date.getMonth())) {

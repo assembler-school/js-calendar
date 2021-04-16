@@ -14,16 +14,16 @@
 <body>
     <section id="nav__web">
         <div class="nav__month">
-            <div class="nav__left">
+            <div id="container__btn__weekMonthYear" class="nav__left">
                 <div>
-                    <i class="fas fa-chevron-left"></i>
+                    <i class="fas fa-chevron-left btn__month__left"></i>
                 </div>
                 <h2>
-                    <span id="nav__tag"></span> 
+                    <span id="nav__tag"></span>
                     <span id="nav__year"></span>
                 </h2>
                 <div>
-                    <i class="fas fa-chevron-right"></i>
+                    <i class="fas fa-chevron-right btn__month__right"></i>
                 </div>
             </div>
             <div class="nav__center">
@@ -250,6 +250,34 @@
             </div>
         </div>
     </template>
+
+    <!-- ? Btn render for month and years -->
+    <template id="buttons__month">
+        <div>
+            <i class="fas fa-chevron-left btn__month__left"></i>
+        </div>
+        <h2>
+            <span id="nav__tag"></span> 
+            <span id="nav__year"></span>
+        </h2>
+        <div>
+            <i class="fas fa-chevron-right btn__month__right"></i>
+        </div>
+    </template>
+
+        <!-- ? Btn render for only years -->
+        <template id="buttons__year">
+            <div>
+                <i class="fas fa-chevron-left btn__year__left"></i>
+            </div>
+            <h2>
+                <span id="nav__year"></span>
+            </h2>
+            <div>
+                <i class="fas fa-chevron-right btn__year__right"></i>
+            </div>
+        </template>
+
     <script src="assets/js/calendar.js" type="module"></script>
 </body>
 
