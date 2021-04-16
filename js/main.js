@@ -284,6 +284,13 @@ function saveEventData() {
     }
 }
 
+function failValidationShake() {
+    document.getElementById('saveBtn').classList.add("apply-shake");
+    document.getElementById('saveBtn').addEventListener("animationend", (e) => {
+        e.target.classList.remove("apply-shake");
+    });
+}
+
 function saveEvent() {
     if (!document.getElementById('eventTitleId').value) {
         if (!document.querySelector('.labelRequiredTitle')) {
@@ -293,6 +300,7 @@ function saveEvent() {
                 'eventTitleId'
             );
         }
+        failValidationShake();
         return false;
     }
 
@@ -304,6 +312,7 @@ function saveEvent() {
                 'endDateId'
             );
         }
+        failValidationShake();
         return false;
     }
     if (reminderValidation()) { //reminder > currentDate  && reminder < initialDate
@@ -314,15 +323,16 @@ function saveEvent() {
                 'reminderId'
             );
         }
+        failValidationShake();
         return false;
     }
-    saveEventData();//save data
+    saveEventData();
     initRemindersList();
     hideModal();
-    if(calendarView === 'month-view'){
+    if(calendarView === 'month-view') {
         clearMonthCalendar();
         calendarMonthConstructor(month, year);
-    }else if(calendarView === 'year-view'){
+    } else if(calendarView === 'year-view') {
         clearYearCalendar()
         calendarConstructor(year);
     }
