@@ -30,7 +30,7 @@ let fechaSeleccionada = document.querySelector(".fechaSeleccionada");
 // Pesco el div donde se guardaran los eventos
 let events = document.querySelector(".events");
 
-let localStorageEvents = localStorage.getItem(inputDateValue.value) ? JSON.parse(localStorage.getItem(inputDateValue.value)) : [];
+let localStorageEvents = localStorage.getItem('Events') ? JSON.parse(localStorage.getItem('Events')) : [];
 const calendar = document.querySelector('.calendar');
 
 // Get the modal
@@ -45,6 +45,13 @@ let span = document.getElementsByClassName("close")[0];
 // Set current date on Caledar
 let today = new Date().toISOString().substr(0, 10);
 document.querySelector("#initialCal").value = today;
+document.getElementById("endCal").value = today;
+
+// Set current time when calender open 
+let todayTime = new Date();
+let timeNow = todayTime.getHours() + ":" + todayTime.getMinutes() + ":" + todayTime.getSeconds();
+document.getElementById("timeSelector").value = timeNow;
+
 
 /**********************************************/
 //--------------- Functions --------------------
@@ -54,6 +61,10 @@ document.querySelector("#initialCal").value = today;
 function closeForm() {
     document.getElementById("myModal").style.display = "none";
     inputTitleKey.value = '';
+    inputDescriptionValue.value = "";
+    
+
+
     inputTitleKey.classList.remove('error')
 }
 
@@ -83,6 +94,7 @@ function saveEvent() {
         localStorageEvents.push({
             setDay: inputDateValue.value,
             title: inputTitleKey.value,
+            inicialDate: inputDateValue.value,
             end_date: endDate.value,
             time: inputTimedValue.value,
             reminder: inputReminderValue.value,
@@ -90,11 +102,30 @@ function saveEvent() {
             Description: inputDescriptionValue.value
 
         });
-        localStorage.setItem(inputDateValue.value, JSON.stringify(localStorageEvents));
+        localStorage.setItem('Events', JSON.stringify(localStorageEvents));
     } else {
         inputTitleKey.classList.add('error');
     }
 }
+
+  function allStorage() {
+
+    let keyName = [],
+        keys = Object.keys(localStorage),
+        i = keys.length;
+
+    while ( i-- ) {
+      keyName.push( localStorage.getItem(keys[i]) );
+    }
+    saveEvent()
+  
+  console.log(keyName)
+  console.log(inputDateValue.value)
+
+  // document.querySelector(".events").innerHTML = keyName;
+
+}
+
 
 /*************************************************/
 //--------------Modal Functions-------------------/
@@ -102,6 +133,7 @@ function saveEvent() {
 // When the user clicks the button, open the modal
 openButton.onclick = function() {
     modal.style.display = "flex";
+  
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -124,12 +156,13 @@ buttonSubmit.onclick = function () {
 
   const supuestafecha = new Event(`${inputTitleKey.value}`,`${inputDateValue.value}`,`${inputDateEndValue.value}`,`${inputTimedValue.value}`,`${inputReminderValue.value}`,`${inputEventTypeValue.value}`,`${inputDescriptionValue.value}`);
   //console.log(supuestafecha);
-
-  saveEvent()
+  
+  allStorage()
   closeForm();
+ 
 
 };
-
+ 
 /* *********************************
 ---------- EVENT FUNCTIONS --------
 ********************************* */
@@ -171,6 +204,7 @@ function getID(event){
   renderPickedEvents();
   return selectedDay;
 }
+
 
 //Funcion IMPORTANTE!! que renderiza y elimina los eventos del día seleccionado
 function renderTodayEvent(){
