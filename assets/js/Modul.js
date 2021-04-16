@@ -30,8 +30,9 @@ let fechaSeleccionada = document.querySelector(".fechaSeleccionada");
 // Pesco el div donde se guardaran los eventos
 let events = document.querySelector(".events");
 
-let localStorageEvents = localStorage.getItem(inputDateValue.value) ? JSON.parse(localStorage.getItem(inputDateValue.value)) : [];
-const calendar = document.querySelector('.calendar');
+let localStorageEvents = [];
+// let localStorageEvents = localStorage.getItem(inputDateValue.value) ? JSON.parse(localStorage.getItem(inputDateValue.value)) : [];
+// const calendar = document.querySelector('.calendar');
 
 // Get the modal
 let modal = document.getElementById("myModal");
@@ -45,6 +46,13 @@ let span = document.getElementsByClassName("close")[0];
 // Set current date on Caledar
 let today = new Date().toISOString().substr(0, 10);
 document.querySelector("#initialCal").value = today;
+document.getElementById("endCal").value = today;
+
+// Set current time when calender open
+let todayTime = new Date();
+let timeNow = todayTime.getHours() + ":" + todayTime.getMinutes() + ":" + todayTime.getSeconds();
+document.getElementById("timeSelector").value = timeNow;
+
 
 /**********************************************/
 //--------------- Functions --------------------
@@ -54,7 +62,7 @@ document.querySelector("#initialCal").value = today;
 function closeForm() {
     document.getElementById("myModal").style.display = "none";
     inputTitleKey.value = '';
-    inputTitleKey.classList.remove('error')
+    inputDescriptionValue.value = "";
 }
 
 // Show calendar when checkbox checked
@@ -77,24 +85,46 @@ function reminderShowSelectBox() {
 } // End function
 //This function saved the event in the local Stroage
 function saveEvent() {
-    if (inputTitleKey.value) {
-        inputTitleKey.classList.remove('error');
+    let picked_Day = JSON.parse(localStorage.getItem(inputDateValue.value));
+    console.log(picked_Day);
+    //if (inputDateValue && p){}
+    if(picked_Day == null){
 
-        localStorageEvents.push({
-            setDay: inputDateValue.value,
-            title: inputTitleKey.value,
-            end_date: endDate.value,
-            time: inputTimedValue.value,
-            reminder: inputReminderValue.value,
-            event_type: inputEventTypeValue.value,
-            Description: inputDescriptionValue.value
+      picked_Day = [];
 
-        });
-        localStorage.setItem(inputDateValue.value, JSON.stringify(localStorageEvents));
-    } else {
-        inputTitleKey.classList.add('error');
     }
+    picked_Day.push({
+      setDay: inputDateValue.value,
+      title: inputTitleKey.value,
+      end_date: endDate.value,
+      time: inputTimedValue.value,
+      reminder: inputReminderValue.value,
+      event_type: inputEventTypeValue.value,
+      Description: inputDescriptionValue.value
+
+    });
+    localStorage.setItem(inputDateValue.value, JSON.stringify(picked_Day));
+    //location.reload();
 }
+
+  function allStorage() {
+
+    let keyName = [],
+        keys = Object.keys(localStorage),
+        i = keys.length;
+
+    while ( i-- ) {
+      keyName.push( localStorage.getItem(keys[i]) );
+    }
+    saveEvent()
+  
+  console.log(keyName)
+  console.log(inputDateValue.value)
+
+  // document.querySelector(".events").innerHTML = keyName;
+
+}
+
 
 /*************************************************/
 //--------------Modal Functions-------------------/
@@ -102,6 +132,7 @@ function saveEvent() {
 // When the user clicks the button, open the modal
 openButton.onclick = function() {
     modal.style.display = "flex";
+  
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -124,12 +155,13 @@ buttonSubmit.onclick = function () {
 
   const supuestafecha = new Event(`${inputTitleKey.value}`,`${inputDateValue.value}`,`${inputDateEndValue.value}`,`${inputTimedValue.value}`,`${inputReminderValue.value}`,`${inputEventTypeValue.value}`,`${inputDescriptionValue.value}`);
   //console.log(supuestafecha);
-
-  saveEvent()
+  
+  allStorage()
   closeForm();
+ 
 
 };
-
+ 
 /* *********************************
 ---------- EVENT FUNCTIONS --------
 ********************************* */
@@ -168,9 +200,10 @@ function getID(event){
 
   selectedDay = event.target.id;
   fechaSeleccionada.innerHTML = "Eventos para la fecha: "+selectedDay;
-  renderEvents();
+  renderPickedEvents();
   return selectedDay;
 }
+
 
 //Funcion IMPORTANTE!! que renderiza y elimina los eventos del día seleccionado
 function renderTodayEvent(){
@@ -187,19 +220,19 @@ function renderTodayEvent(){
     //console.log(today)
 
     if(comparedDay == today){
-        myArray.forEach((element)=>{
-          let section = document.createElement("section");
-          section.setAttribute("class", "event__display");
-          section.setAttribute("id", `${element[1].setDay}`);
-          section.insertAdjacentHTML("afterbegin",`<div><h1>${element[1].title}</h1><div>${element[1].event_type}</div></div><div>${element[1].time}</div><div>${element[1].reminder}</div><div>${element[1].end_date}</div><div>${element[1].Description}</div>`);
-          events.appendChild(section);
-        });
+      myArray.forEach((element)=>{
+        let section = document.createElement("section");
+        section.setAttribute("class", "event__display");
+        section.setAttribute("id", `${element[1].setDay}`);
+        section.insertAdjacentHTML("afterbegin",`<div><h1>${element[1].title}</h1><div>${element[1].event_type}</div></div><div>${element[1].time}</div><div>${element[1].reminder}</div><div>${element[1].end_date}</div><div>${element[1].Description}</div>`);
+        events.appendChild(section);
+      });
     }
   }
 }
 renderTodayEvent();
 
-function renderEvents() {
+function renderPickedEvents() {
   let selectedDay = event.target.id;
   console.log(selectedDay);
   //lo traemos del local storage y al mismo tiempo lo reconvertimos en un objeto
