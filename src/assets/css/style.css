@@ -14,6 +14,10 @@
   --eventGreen: #2A9D8F;
   --eventYellow: #E9C46A;
   --eventOrange: #F4A261;
+  --springGreen: #bcf66c;
+  --summerSand: #ffd184;
+  --autumnOrange: #faa410;
+  --winterSnow: #fdfdfd;
 }
 html {
   font-size: 16px;
@@ -47,47 +51,20 @@ header {
   background-color: var(--lightestGray);
   border-bottom: solid var(--lightestGray) 1px;
   position: relative;
+  background-size: cover;
   overflow: hidden;
 }
-.winterHeader{
-  max-height: 150px;
-  min-height: 65px;
-  height: 10vh;
-  padding: 5px;
-  text-align: center;
-  background-image: url("/src/assets/img/invierno.png");
-  background-size: cover;
-  position: relative;
+header.spring{
+  background-image: url("/src/assets/img/bgSpring.png");
 }
-.springHeader{
-  max-height: 150px;
-  min-height: 65px;
-  height: 10vh;
-  padding: 5px;
-  text-align: center;
-  background-image: url("/src/assets/img/primavera.png");
-  background-size: cover;
-  position: relative;
+header.summer{
+  background-image: url("/src/assets/img/bgSummer.png");
 }
-.fallHeader{
-  max-height: 150px;
-  min-height: 65px;
-  height: 10vh;
-  padding: 5px;
-  text-align: center;
-  background-image: url("/src/assets/img/otno.png");
-  background-size: cover;
-  position: relative;
+header.fall{
+  background-image: url("/src/assets/img/bgAutumn.png");
 }
-.summerHeader{
-  max-height: 150px;
-  min-height: 65px;
-  height: 10vh;
-  padding: 5px;
-  text-align: center;
-  background-image: url("/src/assets/img/verano.png");
-  background-size: cover;
-  position: relative;
+header.winter{
+  background-image: url("/src/assets/img/bgWinter.png");
 }
 h1 {
   font-size: 2rem;
@@ -110,9 +87,46 @@ h1 {
 .btn-next-prev:active {
   transform: scale(0.95);
 }
+.btn-next-prev.spring {
+  color: var(--darkestGray);
+  background-color: var(--springGreen);
+}
+.btn-next-prev.summer {
+  color: var(--darkestGray);
+  background-color: var(--summerSand);
+}
+.btn-next-prev.fall {
+  color: var(--darkestGray);
+  background-color: var(--autumnOrange);
+}
+.btn-next-prev.winter {
+  color: var(--darkestGray);
+  background-color: var(--winterSnow);
+}
 
 .page-title {
   display: inline-block;
+  background-color: var(--darkGray);
+  color: var(--lightestGray);
+  border-radius: 10px;
+  padding: 7px;
+  user-select: none;
+}
+.page-title.spring {
+  color: var(--darkestGray);
+  background-color: var(--springGreen);
+}
+.page-title.summer {
+  color: var(--darkestGray);
+  background-color: var(--summerSand);
+}
+.page-title.fall {
+  color: var(--darkestGray);
+  background-color: var(--autumnOrange);
+}
+.page-title.winter {
+  color: var(--darkestGray);
+  background-color: var(--winterSnow);
 }
 .btn-add-event {
   position: absolute;
@@ -134,6 +148,39 @@ h1 {
 .btn-add-event:active {
   transform: scale(0.95);
 }
+.btn-add-event.spring {
+  color: var(--darkestGray);
+  background-color: var(--springGreen);
+}
+.btn-add-event.summer {
+  color: var(--darkestGray);
+  background-color: var(--summerSand);
+}
+.btn-add-event.fall {
+  color: var(--darkestGray);
+  background-color: var(--autumnOrange);
+}
+.btn-add-event.winter {
+  color: var(--darkestGray);
+  background-color: var(--winterSnow);
+}
+
+#modal-open-button.spring{
+  color: var(--darkestGray);
+  background-color: var(--springGreen);
+}
+#modal-open-button.summer {
+  color: var(--darkestGray);
+  background-color: var(--summerSand);
+}
+#modal-open-button.fall {
+  color: var(--darkestGray);
+  background-color: var(--autumnOrange);
+}
+#modal-open-button.winter {
+  color: var(--darkestGray);
+  background-color: var(--winterSnow);
+}
 #current-date{
   position: absolute;
   left: 10px;
@@ -143,6 +190,23 @@ h1 {
   color: var(--lightestGray);
   border-radius: 5px;
   padding: 8px;
+  user-select: none;
+}
+#current-date.spring{
+  color: var(--darkestGray);
+  background-color: var(--springGreen);
+}
+#current-date.summer {
+  color: var(--darkestGray);
+  background-color: var(--summerSand);
+}
+#current-date.fall {
+  color: var(--darkestGray);
+  background-color: var(--autumnOrange);
+}
+#current-date.winter {
+  color: var(--darkestGray);
+  background-color: var(--winterSnow);
 }
 
 
