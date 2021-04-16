@@ -29,7 +29,7 @@ const renderCalendar = () => {
   console.log(prevLastDay, "prevLastDay");
 
   /* El metodo getDay() lo que te dice es en que dia de la semana cae ese día. Si una semana tiene 7 dias, del uno al 7, en que posición caerá?*/
-  const firstDayIndex = date.getDay() ;
+  const firstDayIndex = date.getDay() - 1;
   console.log(firstDayIndex, "firstdayindex");
 
   /* Nuevamente, con el getDay() está recogiendo el ultimo día del mes 31/28/ lo que sea y está avergiuando que dia de los 7 días a la semana caerá*/
@@ -37,7 +37,9 @@ const renderCalendar = () => {
   console.log(lastDayIndex, "lastDayIndex");
 
   /* Para saber cuantos dias mostrar en el calendario, esta cogiendo el lastDay Index y le resta los 7 días de la semana y así le queda la resta para en el futuro, con un bucle crear especificamente dichos DIVS */
-  const nextDays = 7 - lastDayIndex - 1;
+  let nextDays = 7 - lastDayIndex;
+  //En el mes de agosto el firstDayIndex cae a -1 y eso nos hace mal en el calendario, de ahí la función de abajo, Por eso al last Index le restamos uno, para que el next days empeice en 0 siempre
+  if(firstDayIndex == -1){nextDays = 7 - lastDayIndex - 1;}
   console.log(nextDays, "nextDays");
 
   //Siempre se aumenta 1, puesto que la variable empieza a contar desde 0
@@ -75,7 +77,7 @@ const renderCalendar = () => {
     let h = parseInt(actual_month - 1);
     let m = h.toString();
     let o = m.padStart(2, "0");
-    days += `<div class = "prev-date" id=${actual_year}-${o}-${prevLastDay - y+1}">${prevLastDay - x + 1}</div>`;
+    days += `<div class = "prev-date" id=${actual_year}-${o}-${prevLastDay - y+1}>${prevLastDay - x + 1}</div>`;
   }
 
  /* Bucle para crear todos los Divs que necesitamos para el día del mes */

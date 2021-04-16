@@ -183,7 +183,6 @@ function getID(event){
   return selectedDay;
 }
 
-
 //Funcion IMPORTANTE!! que renderiza y elimina los eventos del día seleccionado
 function renderTodayEvent(){
 
