@@ -36,11 +36,6 @@ const setHeaderSeasonTheme = () => {
         setSeasonClass('fall');
     }
 }
-/*
- * This function create calendar
- * set calendar
- * @ Author: Armando
- */
 const renderCalendar = (direction) => {
     date.setDate(1);
     const monthDays = document.querySelector(".days-wrapper");
