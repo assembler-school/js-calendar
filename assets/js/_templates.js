@@ -9,9 +9,8 @@ export function swapTemplate(templateId, parentId) {
   parent.appendChild(document.importNode(template.content, true));
 }
 
-/* remove selected template in selected parent */
+/* Remove selected template in selected parent (templateId not needed) */
 export function removeTemplate(templateId, parentId) {
-  let template = document.getElementById(templateId);
   let parent = document.getElementById(parentId);
 
   parent.innerHTML = "";

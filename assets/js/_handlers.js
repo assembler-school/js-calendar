@@ -8,12 +8,12 @@ import { setReminder } from "./_reminder.js";
  * All listeners are listed here
  *
  */
-export function handleDocumentEvents(e) {
+export function handleDocumentEvents() {
   // click event
   document.addEventListener("click", (e) => {
 
         /*
-     * Click btn year 
+     * Click btn year
      */
         if (e.target.matches("button#btnYear")) {
           let newDate = new Date();
@@ -21,10 +21,10 @@ export function handleDocumentEvents(e) {
           swapTemplate("year", "calendar");
           swapTemplate("buttons__year", "container__btn__weekMonthYear");
           render.addTagYear(updatedYear);
-          render.renderYear(year);
+          render.renderYear(updatedYear);
         }
         /*
-         * Click btn month 
+         * Click btn month
          */
         if (e.target.matches("button#btnMonth")) {
           let newDate = new Date();
@@ -33,7 +33,8 @@ export function handleDocumentEvents(e) {
           swapTemplate("month", "calendar");
           swapTemplate("buttons__month", "container__btn__weekMonthYear");
           render.addTag(updatedYear, updatedMonth);
-          render.renderMonth(year, month);
+          render.renderMonth(updatedYear, updatedMonth);
+          render.renderEvents(updatedYear, updatedMonth);
         }
 
     /*
@@ -92,7 +93,7 @@ export function handleDocumentEvents(e) {
     /*
      * form validation
      */
-    if (e.target.matches('input[type="submit"]')) {
+    if (e.target.matches('input[value="Create"]')) {
       e.preventDefault();
 
       if (!formValidation(e, true)) {
@@ -166,9 +167,38 @@ export function handleDocumentEvents(e) {
       if (clnModal) {
         clnModal.remove();
       }
-      const [_event] = calendarEvent.getEvent(e.target.dataset.eventid);
-      swapTemplate("modal-template", "modal-section");
-      calendarEvent.printDataToModal("#modal form", _event);
+      [_event] = calendarEvent.getEvent(e.target.dataset.eventid);
+      swapTemplate("alert-template", "modal-section");
+      calendarEvent.printDataToAlert(_event);
+    }
+
+    /*
+     * Click in edit event
+     */
+    if (e.target.matches(".edit")) {
+      swapTemplate("edit-template", "modal-section");
+      calendarEvent.printDataToEdit(_event);
+    }
+
+    /*
+     * Form validation for edit
+     */
+    if (e.target.matches('input[value="Save"]')) {
+      e.preventDefault();
+
+      if (!formValidation(e, true)) {
+        calendarEvent.modifyEvent(_event);
+        removeTemplate("edit-template", "modal-section");
+        render.renderEvents(updatedYear, updatedMonth);
+      }
+    }
+
+    /*
+     * Click in remove event
+     */
+    if (e.target.matches(".remove")) {
+      removeTemplate("alert-template", "modal-section");
+      calendarEvent.removeEvent(_event);
     }
 
     /*
@@ -293,10 +323,11 @@ export function handleDocumentEvents(e) {
   // });
 }
 
+let _event;
 let updatedMonth = new Date().getMonth();
 let updatedYear = new Date().getFullYear();
-function addMonth(year, month, boolean) {
-  boolean ? month++ : month--;
+function addMonth(year, month, direction) {
+  direction ? month++ : month--;
   updatedYear = render.updateDate(year, month).year;
   updatedMonth = render.updateDate(year, month).month;
   swapTemplate("month", "calendar");
@@ -305,6 +336,7 @@ function addMonth(year, month, boolean) {
   render.highlightToday(year, month);
   render.renderEvents(year, month);
   render.renderMonthList();
+  render.checkEventsVisibility();
 }
 
 /*
