@@ -253,27 +253,23 @@ label {
 }
 
 textarea {
-  resize: vertical;
+  resize: none;
   height: min-content;
   background-color: transparent;
   border: none;
   border-bottom: 1px solid var(--textLightGray);
-  padding: 0px;
-  min-height: 80px;
+  padding: 0;
   margin-bottom: 10px;
   color: var(--textLightGray);
   font-family: var(--font-display);
   font-size: 16px;
   font-weight: var(--semi-bold);
   position: relative;
-  min-height: 50px;
+  min-height: 100px;
 }
 
 textarea::placeholder {
-  font-size: 16px;
   position: absolute;
-  min-height: 50px;
-  bottom: 0px;
   color: var(--btnGrey);
   font-family: var(--font-display);
   font-size: 14px;

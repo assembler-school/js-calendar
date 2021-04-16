@@ -86,3 +86,7 @@
   height: 5px;
   background-color: var(--pink);
 }
+
+.labelRequiredTitle, .labelRequiredInitialDate, .labelRequiredEndDate, .labelRequiredReminder {
+  color: var(--red);
+}
