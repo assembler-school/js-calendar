@@ -110,6 +110,10 @@ footer{
     transition:var(--transition_high);
 }
 
+.month i:hover{
+    color:var(--arrow_hover);
+}
+
 .month h2 {
     font-size: 3rem;
     font-weight: bolder;
@@ -283,6 +287,7 @@ html[mode-changes = "light"] {
     --month_title:rgb(233, 233, 233);
     --year_title:rgb(163, 0, 0);
     --arrows:rgb(255, 255, 255);
+    --arrow_hover:rgb(235, 138, 230);
     /*------ Gradients Colors --------*/
     --gradient-pinky:linear-gradient(
         45deg,
@@ -298,7 +303,7 @@ html[mode-changes = "light"] {
     --calendar_main_bg:rgb(0, 0, 0);
     --month_main_bg:rgb(70, 22, 30);
     --days_main_bg:black;
-    --shadow_1:rgba(95, 95, 95, 0.8);
+    --shadow_1:rgba(58, 58, 58, 0.8);
     --shadow_2:rgba(65, 65, 65, 0.5);
     --transition_low:background ease-in 1000ms;
     --transition_high:background ease-in 500ms;
@@ -316,6 +321,7 @@ html[mode-changes = "light"] {
     --month_title:rgb(255, 255, 255);
     --year_title:black;
     --arrows:rgb(0, 0, 0);
+    --arrow_hover:orange;
     /*------ Gradients Colors --------*/
 	--gradient-pinky:linear-gradient(
 			45deg,
@@ -324,25 +330,6 @@ html[mode-changes = "light"] {
 			#202020);
 }
 
-.fun{
-	border:white 2px solid;
-	cursor:pointer;
-	background-image: var(--month_title);
-	background-size: 300%;
-	background-position: left;
-	transition: background-position 1s;
-}
-
-.fun:hover, .fun:focus {
-	background-position:right;
-}
-
-.funTitle{
-	-webkit-background-clip: text; /*edge no soporta esta funcion a no ser que se le añada el webkit*/
-	color: transparent;
-	background-size: 300%;
-	animation: title-animation 3s infinite alternate;
-}
 @keyframes title-animation{
 	0%{background-position:left;}
 	100%{background-position:right;}
@@ -377,9 +364,11 @@ html[mode-changes = "light"] {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     column-gap: 2%;
+    row-gap: 2%;
     min-height: 100px;
     width: 100%;
     height: fit-content;
+    font-size: 130%;
     outline: rgb(138, 138, 138) solid 1px;
     color: var(--general_p);
     border-radius: 20%;
