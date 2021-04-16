@@ -51,9 +51,11 @@ export function renderMonthYear(year, month) {
     /* Loop to fill calendar */
     for (let x = 1; x < daysInMonth + 1; x++) {
         /* Fill the calendar divs with day number */
+        debugger;
         try { 
-            document.querySelector('.calendar__year--date[data-row="' + weekCount + '"] div[data-col="' + weekDay + '"]').innerHTML = '<span class="spanDay">' + x + '</span>';
-            document.querySelector('.calendar__year--date[data-row="' + weekCount + '"] div[data-col="' + weekDay + '"]').setAttribute("id",x);
+            debugger;
+            document.querySelector('.calendar__year--month[data-month="'+ month +'"] .calendar__year--date[data-row="' + weekCount + '"] div[data-col="' + weekDay + '"]').innerHTML = x;
+            document.querySelector('.calendar__year--month[data-month="'+ month +'"] .calendar__year--date[data-row="' + weekCount + '"] div[data-col="' + weekDay + '"]').setAttribute("id",x);
         }
         catch(err) {
             /* Create the week clone to show in calendar */
@@ -62,9 +64,10 @@ export function renderMonthYear(year, month) {
             workClone.setAttribute("data-row",rowCont);
             document.querySelector('.calendar__year--month[data-month="'+ month +'"]').appendChild(workClone);
             /* Fill the clone for first time */
-            document.querySelector('.calendar__year--date[data-row="' + weekCount + '"] div[data-col="' + weekDay + '"]').innerHTML = '<span class="spanDay">' + x + '</span>';
+            debugger;
+            document.querySelector('.calendar__year--month[data-month="'+ month +'"] .calendar__year--date[data-row="' + weekCount + '"] div[data-col="' + weekDay + '"]').innerHTML = x;
             //console.log('');
-            document.querySelector('.calendar__year--date[data-row="' + weekCount + '"] div[data-col="' + weekDay + '"]').setAttribute("id",x);
+            document.querySelector('.calendar__year--month[data-month="'+ month +'"] .calendar__year--date[data-row="' + weekCount + '"] div[data-col="' + weekDay + '"]').setAttribute("id",x);
         };
         if (!weekDay) {weekCount++};
         weekDay++;
@@ -78,14 +81,18 @@ export function renderMonthYear(year, month) {
 
 export function renderYear(year) {
     let nameMonth = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    
+    //let listMonth = "";
+    let listMonth = document.querySelector('.calendar__year--month').cloneNode(true);
+    renderMonthYear(year, 0);
     for (let index = 0; index < 11; index++) {
-        let listMonth = document.querySelector('.calendar__year--month').cloneNode(true);
+        //let listMonthClone = "";
+        let listMonthClone = listMonth.cloneNode(true);
         console.log(listMonth);
-        document.querySelector('.calendar__year--row').appendChild(listMonth);
-        document.querySelectorAll('.monthTittle h2')[index].innerHTML = nameMonth[index];
+        console.log(listMonthClone);
+        document.querySelector('.calendar__year--row').appendChild(listMonthClone);
+        document.querySelectorAll('.monthTittle h2')[index+1].innerHTML = nameMonth[index+1];
         document.querySelectorAll('.calendar__year--month')[index+1].setAttribute("data-month", index+1);
-        //renderMonthYear(year, index);
+        renderMonthYear(year, index);
     }
 
 }
