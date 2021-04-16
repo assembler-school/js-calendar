@@ -54,40 +54,92 @@ calendarEvent.getEvent = function (eventid) {
 };
 
 /*
- * This selected event object from localstorage
+ * This prints event info in alert popup (bad structure, this shouldnt be implemented here)
  */
-calendarEvent.printDataToModal = function (form, obj) {
-  const _form = document.querySelector(form);
-  _form.elements["title"].value = obj.title;
-  _form.elements["init-date"].value = obj["init-date"];
-  _form.elements["end-check"].checked = obj["end-check"];
-  _form.elements["end-date"].value = obj["end-date"];
-  _form.elements["reminder"].checked = obj["reminder"];
-  _form.elements["select-time"].value = obj["select-time"];
-  _form.elements["description"].value = obj.description;
-  _form.elements["select-event"].value = obj["select-event"];
+calendarEvent.printDataToAlert = function (obj) {
+  const d = document;
+  let title = d.getElementById("modal__title");
+  let date = d.getElementById("init__date");
+  let hour = d.getElementById("init__hour");
+  let edate = d.getElementById("end__date");
+  let ehour = d.getElementById("end__hour");
+  let reminder = d.getElementById("span__reminder");
+  let type = d.getElementById("type__event");
+  let description = d.getElementById("event__description");
+
+  title.innerHTML = obj["title"];
+  const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  let initDate = new Date(obj["init-date"]);
+  date.innerHTML = days[initDate.getDay()] + ', ' + months[initDate.getMonth()] + ' ' + initDate.getDate();
+  hour.innerHTML = initDate.getHours() + ':' + initDate.getMinutes();
+  if(obj["end-date"]) {
+    let endDate = new Date(obj["end-date"]);
+    edate.innerHTML = days[endDate.getDay()] + ', ' + months[endDate.getMonth()] + ' ' + endDate.getDate();
+    ehour.innerHTML = endDate.getHours() + ':' + endDate.getMinutes();
+  } else {
+    d.getElementById("end__hide").setAttribute("hidden",true);
+  }
+  if (obj["reminder"]){
+    reminder.innerHTML = obj["select-time"];
+  } else {
+    d.getElementById("event__reminder__hide").style.display = "none";
+  }
+  type.innerHTML = obj["select-event"];
+  description.innerHTML = obj["description"];
 };
 
 /*
- * This generates unique ID from index array
+ * This lets you edit an event (bad structure, this shouldnt be implemented here)
+ */
+calendarEvent.printDataToEdit = function (obj) {
+  /* Change elements of 'New event' modal to 'Edit event' modal */
+  const form = document.getElementById("edit__form");
+  form.elements["title"].value = obj.title;
+  form.elements["init-date"].value = obj["init-date"];
+  form.elements["end-check"].checked = obj["end-check"];
+  form.elements["end-date"].value = obj["end-date"];
+  form.elements["reminder"].checked = obj["reminder"];
+  form.elements["select-time"].value = obj["select-time"];
+  form.elements["description"].value = obj.description;
+  form.elements["select-event"].value = obj["select-event"];
+};
+
+/*
+ * This removes an event from localstorage and from DOM  
+ */
+calendarEvent.removeEvent = function (obj) {
+  let allEvents = calendarEvent.fromLocalStorage();
+  allEvents = allEvents.filter ((ev) => ev.id !== obj.id);
+  localStorage.setItem('events', JSON.stringify(allEvents));
+
+  const removed = document.querySelector('[data-eventid="event' + obj.id + '"]')
+  removed.remove();
+};
+
+/*
+ * This modifies stored event
+ */
+calendarEvent.modifyEvent = function (obj) {
+  const form = document.getElementById("edit__form");
+  obj.title           =form.elements["title"].value;
+  obj["init-date"]    =form.elements["init-date"].value;
+  obj["end-check"]    =form.elements["end-check"].checked;
+  obj["end-date"]     =form.elements["end-date"].value;
+  obj["reminder"]     =form.elements["reminder"].checked;
+  obj["select-time"]  =form.elements["select-time"].value;
+  obj.description     =form.elements["description"].value;
+  obj["select-event"] =form.elements["select-event"].value;
+
+  let allEvents = calendarEvent.fromLocalStorage();
+  const index = allEvents.findIndex(ev => ev.id === obj.id);
+  allEvents[index]=obj;
+  localStorage.setItem("events", JSON.stringify(allEvents));
+};
+
+/*
+ * This generates unique
  */
 calendarEvent.generateUUID = function () {
-  const ls = localStorage;
-  if (ls.getItem("events")) {
-    return JSON.parse(ls.getItem("events")).length;
-  }
-  return 0;
-};
-
-/*
- * This modified stored event
- */
-calendarEvent.modifyEvent = function (id, obj) {
-  const ls = localStorage;
-  const _data = calendarEvent.fromLocalStorage(),
-    _dataFiltered = _data.filter((ev) => ev.id === id),
-    [_event] = _dataFiltered;
-
-  _data[_event.id] = obj;
-  ls.setItem("events", JSON.stringify(_data));
+  return new Date().getTime();
 };

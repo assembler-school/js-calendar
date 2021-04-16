@@ -99,10 +99,13 @@ export function renderEvents(year, month) {
     let allEvents = calendarEvent.fromLocalStorage();
 
     if (allEvents) {
-    let monthEvents = allEvents.filter ((allEvents) => new Date(allEvents["init-date"]).getFullYear() === year && new Date(allEvents["init-date"]).getMonth() === month);
+    let monthEvents = allEvents.filter ((ev) => new Date(ev["init-date"]).getFullYear() === year && new Date(ev["init-date"]).getMonth() === month);
 
-    /* Create the events in calendar and set its attributes */
+    /* Create the events in calendar and set its HTML attributes */
     monthEvents.forEach(function (monthEvents){
+        if(d.querySelector(`[data-eventid="event${monthEvents.id}"]`)) {
+            d.querySelector(`[data-eventid="event${monthEvents.id}"]`).remove()
+        }
         let eventDiv = document.createElement("div");
         eventDiv.setAttribute("data-eventid","event" + monthEvents.id);
         eventDiv.setAttribute("class","event fade-in event__type--" + monthEvents["select-event"]);
@@ -114,6 +117,7 @@ export function renderEvents(year, month) {
 }
 }
 
+/* Update month and year to use normally */
 export function updateDate(year,month) {
     if (month === 12) {
         year++;
@@ -125,6 +129,7 @@ export function updateDate(year,month) {
     return {year : year,month : month};
 }
 
+/* Add year and month in the calendar nav bar */
 export function addTag(year, month) {
     let monthTag = document.getElementById('nav__tag');
     let yearTag = document.getElementById('nav__year');
@@ -145,18 +150,13 @@ export function addTagYear(year) {
     yearMobileTag.innerHTML = year;
 }
 
+/* Give a class to today to highlight */
 export function highlightToday(year, month){
     let date = new Date();
-    if (compareMonth(year,month,date.getFullYear(),date.getMonth())) {
+    if (year === date.getFullYear() && month===date.getMonth()) {
         document.getElementById((new Date()).getDate()).className += 'today';
         document.getElementById((new Date()).getDate()).childNodes[0].innerHTML = date.getDate();
     }
-}
-
-export function compareMonth(year,month,year2,month2){
-    let sameMonth = false;
-    if (year===year2 && month===month2) {sameMonth=true};
-    return sameMonth;
 }
 
 /*

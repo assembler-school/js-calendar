@@ -11,6 +11,8 @@
   --color5: #726775;
   --color6: #ff6010;
   --color7: #5727d2;
+  --color8: #dbff10;
+  --color9: #ce1590;
 
   --br-radius: 6px;
   --border: 1px solid #726775;
@@ -688,15 +690,30 @@ i.fa-times-circle {
   cursor: pointer;
 }
 
-.event__type--meeting {
+.event__type--Meeting {
   color: white;
-  background-color: #ff6010;
+  background-color: var(--color6);
 }
 
-.event__type--birthday {
+.event__type--Birthday {
+	color: rgb(61, 61, 61);
+	background-color: var(--color8);
+  }
+
+.event__type--Personal {
+	background-color: var(--color7);
   color: white;
-  background-color: #ff6010;
-}
+  }
+
+.event__type--Study {
+	color: white;
+	background-color: var(--color5);
+  }
+  
+.event__type--Other {
+	color: white;
+	background-color: var(--color9);
+  }
 
 .more__event {
   text-align: center;
@@ -745,13 +762,37 @@ i.fa-times-circle {
   font-size: 0.8rem;
 }
 .alert__icons {
-  align-self: flex-end;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.alert__icons--left {
+  width: inherit;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+}
+.alert__icons--right {
+  width: inherit;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
 }
 .fa-times {
   font-size: 1.2rem;
+  margin-right: 5%;
 }
 .fa-pencil-alt {
   font-size: 1rem;
+  margin-left: 5%;
+}
+.fa-trash-alt {
+  font-size: 1.1rem;
+  margin-left: 15%;
 }
 .event__description {
   font-size: 0.8rem;
@@ -827,9 +868,15 @@ i.fa-times-circle {
   }
   .fa-times {
     font-size: 1.2rem;
+    margin-right: 5%;
   }
   .fa-pencil-alt {
     font-size: 1rem;
+    margin-left: 5%;
+  }
+  .fa-trash-alt {
+    font-size: 1.1rem;
+    margin-left: 15%;
   }
   .event__description {
     font-size: 0.8rem;
@@ -920,9 +967,15 @@ i.fa-times-circle {
   }
   .fa-times {
     font-size: 1.2rem;
+    margin-right: 5%;
   }
   .fa-pencil-alt {
     font-size: 1rem;
+    margin-left: 5%;
+  }
+  .fa-trash-alt {
+    font-size: 1.1rem;
+    margin-left: 15%;
   }
   .event__description {
     font-size: 0.9rem;
@@ -980,10 +1033,16 @@ i.fa-times-circle {
     font-size: 1.2rem;
   }
   .fa-times {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
+    margin-right: 5%;
   }
   .fa-pencil-alt {
-    font-size: 1.2rem;
+    font-size: 1rem;
+    margin-left: 5%;
+  }
+  .fa-trash-alt {
+    font-size: 1.1rem;
+    margin-left: 15%;
   }
   .event__description {
     font-size: 1.1rem;

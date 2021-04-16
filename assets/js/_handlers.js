@@ -8,7 +8,7 @@ import { setReminder } from "./_reminder.js";
  * All listeners are listed here
  *
  */
-export function handleDocumentEvents(e) {
+export function handleDocumentEvents() {
   // click event
   document.addEventListener("click", (e) => {
 
@@ -55,7 +55,7 @@ export function handleDocumentEvents(e) {
     /*
      * form validation
      */
-    if (e.target.matches('input[type="submit"]')) {
+    if (e.target.matches('input[value="Create"]')) {
       e.preventDefault();
 
       if (!formValidation(e, true)) {
@@ -124,9 +124,38 @@ export function handleDocumentEvents(e) {
      * Click in event
      */
     if (e.target.matches("[data-eventid]")) {
-          const [_event] = calendarEvent.getEvent(e.target.dataset.eventid);
-          swapTemplate("modal-template", "modal-section");
-          calendarEvent.printDataToModal("#modal form", _event);
+      [_event] = calendarEvent.getEvent(e.target.dataset.eventid);
+      swapTemplate("alert-template", "modal-section");
+      calendarEvent.printDataToAlert(_event);
+    }
+
+    /*
+     * Click in edit event
+     */
+    if (e.target.matches(".edit")) {
+      swapTemplate("edit-template", "modal-section");
+      calendarEvent.printDataToEdit(_event);
+    }
+
+    /*
+     * Form validation for edit
+     */
+    if (e.target.matches('input[value="Save"]')) {
+      e.preventDefault();
+
+      if (!formValidation(e, true)) {
+        calendarEvent.modifyEvent(_event);
+        removeTemplate("edit-template", "modal-section");
+        render.renderEvents(updatedYear, updatedMonth);
+      }
+    }
+
+    /*
+     * Click in remove event
+     */
+    if (e.target.matches(".remove")) {
+      removeTemplate("alert-template", "modal-section");
+      calendarEvent.removeEvent(_event);
     }
 
     /*
@@ -238,10 +267,11 @@ export function handleDocumentEvents(e) {
   });
 }
 
+let _event;
 let updatedMonth = new Date().getMonth();
 let updatedYear = new Date().getFullYear();
-function addMonth(year, month, boolean) {
-  boolean ? month++ : month--;
+function addMonth(year, month, direction) {
+  direction ? month++ : month--;
   updatedYear = render.updateDate(year, month).year;
   updatedMonth = render.updateDate(year, month).month;
   swapTemplate("month", "calendar");
