@@ -45,8 +45,8 @@ main {
 header {
   max-height: 150px;
   min-height: 65px;
-  height: 10vh;
   padding: 5px;
+  height: 20vh;
   text-align: center;
   background-color: var(--lightestGray);
   border-bottom: solid var(--lightestGray) 1px;
@@ -66,11 +66,86 @@ header.fall{
 header.winter{
   background-image: url("/src/assets/img/bgWinter.png");
 }
+  /* Dark Mode */
+  .container{
+    margin-top: 8px;
+    margin-left: 5px;
+  }
+  .switch {
+    display: flex;
+    height: 36px;
+    position: relative;
+    width: 70px;
+  }
+
+  .switch input {
+    display:none;
+  }
+
+  .slider {
+    background-color: #FFF;
+    border:1px solid #000;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+  }
+
+  .slider:before {
+    background-color: #333;
+    border:1px solid #000;
+    bottom: 3px;
+    content: "";
+    height: 26px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 26px;
+    z-index:421;
+  }
+
+  input:checked + .slider {
+    background-color: #101211;
+  }
+
+  input:checked + .slider:before {
+    transform: translateX(34px);
+    border-color:#CFCFCF;
+    background-color:#EFEFEF;
+  }
+
+  .slider.round {
+    border-radius: 34px;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  .toggle-moon, .toggle-sun {
+    width:50%;
+    text-align:center;
+    padding:0.25em;
+    position:relative;
+    z-index:420;
+  }
+
+  .backgrounDark{
+    background-color: var(--darkestGray);
+  }
+  .colorDark{
+    color: whitesmoke;
+  }
+    /* End Dark Mode */
+
 h1 {
   font-size: 2rem;
 }
 .btn-next-prev{
-  margin: 0 10px;
+  margin: 10px 10px;
   padding: 8px;
   font-size: 1.8rem;
   color: var(--lightestGray);
@@ -80,6 +155,7 @@ h1 {
   outline: none;
   transition: transform 0.1s;
   user-select: none;
+  width: 44px;
 }
 .btn-next-prev:hover {
   transform: scale(1.05);
@@ -106,6 +182,7 @@ h1 {
 
 .page-title {
   display: inline-block;
+  width: 238px;
   background-color: var(--darkGray);
   color: var(--lightestGray);
   border-radius: 10px;
@@ -130,6 +207,7 @@ h1 {
 }
 .btn-add-event {
   position: absolute;
+  margin: 10px 0;
   right: 10px;
   top: 10px;
   font-size: 1.4rem;
@@ -216,7 +294,7 @@ h1 {
 !=======================================
 */
 main{
-  height: 90vh;
+  height: 80vh;
   width: 100vw;
 }
 .calendar{
@@ -288,6 +366,7 @@ main{
   transform: perspective(1px) translateZ(0);
   box-shadow: 0 0 1px rgba(0, 0, 0, 0);
   position: relative;
+  height: 25px;
 }
 
 .event-in-calendar:before {
@@ -408,6 +487,23 @@ main{
     html {
         font-size: 12px;
     }
+    header > h1 {
+      font-size: 18px;
+    }
+    .btn-add-event {
+      height: 44px;
+      top: 65px;
+    }
+    .btn-next-prev {
+      height: 44px;
+      width: 44px;
+    }
+    .modal-header > h1 {
+      font-size: 22px;
+    }
+    label {
+      font-size: 12px;
+    }
 }
 @media only screen and (max-width: 550px)  {
     html {
@@ -432,12 +528,14 @@ main{
     .weekdays {
       font-size: 12px;
     }
-    #modal-content {
+    #modal-content,
+    #modal-event-content {
       min-width: 240px !important;
       width: 160px !important;
       height: auto;
       font-size: 9px;
     }
+
 }
 @media only screen and (max-width: 300px) {
   html {
@@ -460,8 +558,16 @@ main{
 ! Modal
 !=======================================
 */
+.x-button {
+  height: 44px;
+  width: 44px;
+  background-color: var(--darkestGray);
+}
 #modal-section.hidden {
   display: none;
+}
+input, select {
+  height: 44px;
 }
 #modal-section {
   display: block;
@@ -526,6 +632,8 @@ main{
 }
 .modal-input> input[type=checkbox] {
   margin: 2px;
+  height: 20px;
+  width: 20px;
 }
 .modal-footer {
   display: flex;
@@ -540,6 +648,7 @@ main{
   font-size: large;
   padding: 5px 10px;
   border-radius: 5px;
+  height: 44px;
 }
 .incorrect {
   border: 2px solid red;
@@ -638,14 +747,6 @@ display: none;
   justify-content: space-around;
   margin-top: 10px;
 }
-.m-action-button {
-  color: whitesmoke;
-  background-color: var(--darkestGray);
-  font-size: large;
-  padding: 5px 10px;
-  border-radius: 5px;
-}
-
 
 .remindersSection {
   position: fixed;

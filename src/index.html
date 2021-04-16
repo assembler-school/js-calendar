@@ -17,6 +17,14 @@
 
 <body>
     <header id="header">
+            <div class="container">
+                <label class="switch" for="checkboxDM">
+                <input type="checkbox" id="checkboxDM" />
+                <div class="slider round"></div>
+                <div class="toggle-moon"></div>
+                <div class="toggle-sun"></div>
+                </label>
+            </div>
             <button class="btn-next-prev" id="prevMonth"><i class="fas fa-arrow-left"></i></button>
             <h1 id="monthYear" class="page-title"></h1>
             <button class="btn-next-prev" id="nextMonth"><i class="fas fa-arrow-right"></i></button>
@@ -24,7 +32,7 @@
             <div id="current-date">8 April 2021</div>
 
     </header>
-    <main>
+    <main id="main">
         <section id="remindersSection" class="remindersSection"></section>
         <section class="calendar">
             <div class="weekdays">
@@ -61,12 +69,12 @@
                     <label for="endDate-cb">End date</label>
                 </div>
                 <div class="modal-input modal-inputDisabled" id="EndDateModal">
-                    <label for="end-date" >End date</label>
+                    <label for="end-date" ></label>
                     <input type="datetime-local" name="end-date" id="endDate">
                 </div>
                 <div class="modal-input modal-cb">
                     <input id="check-box-reminder" type="checkbox" name="remind" onclick="showMeTheReminder()">
-                    <label for="remind">Remind me when this event expires</label>
+                    <label for="remind">Reminder</label>
                 </div>
                 <div class="modal-input modal-inputDisabled" id="modal-input-time">
                     <label for="time">Time</label>
@@ -79,7 +87,7 @@
                 </div>
                 <div class="modal-input">
                     <label for="description">Description</label>
-                    <textarea name="description" id="description" cols="30" rows="10"></textarea>
+                    <textarea name="description" id="description" cols="30" rows="10" maxlength="500"></textarea>
                 </div>
                 <div class="modal-input">
                     <label for="event-type">Event type</label>
@@ -125,7 +133,7 @@
                 <textarea name="description" id="modal-event-description" cols="30" rows="10" readonly>Description</textarea>
             </div>
             <div class="modal-event-footer">
-                <button id="modal-event-edit-btn" class="m-action-button">Edit</button>
+                <button id="modal-event-edit-btn" class="m-action-button">delete</button>
             </div>
         </div>
     </section>
@@ -146,5 +154,5 @@
 <script src="assets/js/calendar.js"></script>
 <script src="assets/js/validations.js"></script>
 <script src="assets/js/reminder.js"></script>
-
+<script src="assets/js/darkMode.js"></script>
 </html>

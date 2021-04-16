@@ -2,18 +2,21 @@
 
 // ctes declaration
 
-const form = document.getElementById("form");
+const createEventBtn = document.getElementById("m-createBtn");
 const modalSection = document.getElementById("modal-section");
 const modalOpenButton = document.getElementById("modal-open-button");
 const modalCloseButton = document.querySelector(".modal-button.fa-window-close");
 const modalCancelButton = document.getElementById("m-cancelBtn");
+const modalSectionEvent = document.getElementById("modal-event-section");
+const modalContent = document.getElementById("modal-content");
+
 
 function justFunc(event) {
-    window.removeEventListener('keyup', keyChanger);
+    disabledArrowKeys();
     modalSection.classList.remove("hidden");
     let divsDate = new Date();
     let divsActualMonth;
-    if (event.target.classList.contains('day current-month-day')) {
+    if (event.target.classList.contains('current-month-day')) {
         divsActualMonth = date.getMonth() + 1;
     } else if (event.target.classList.contains('prev-date')) {
         divsActualMonth = date.getMonth();
@@ -33,8 +36,18 @@ function justFunc(event) {
         divsActualMonth ='0' + divsActualMonth;
     document.getElementById("initialDate").value =
         `${date.getFullYear()}-${divsActualMonth}-${todayDate}T${todayHour}:${todayMinutes}`;
-        document.getElementById("title").focus();
+    
+    document.querySelector(".modal-button.fa-window-close").addEventListener("click", closeFirstModal);
+    document.getElementById("m-cancelBtn").addEventListener("click", closeFirstModal);
+    document.getElementById("m-createBtn").addEventListener("click", closeFirstModal);
+    modalSection.addEventListener("click", closeFirstModal);
+    modalContent.addEventListener("click", modalStopPropagation);
+    document.getElementById("title").focus();
 };
+
+function modalStopPropagation(event){
+    event.stopPropagation();
+}
 
 function addEachListener () {
     for (let div of modalDivs.children) {
@@ -51,7 +64,7 @@ function removeEachListener() {
 // Show de modal event. Open and close it.
 
 modalOpenButton.onclick = function() {
-    window.removeEventListener('keyup', keyChanger);
+    disabledArrowKeys();
     modalSection.classList.remove("hidden");
     var divsDate = new Date();
     var divsActualMonth = divsDate.getMonth() + 1;
@@ -69,35 +82,38 @@ modalOpenButton.onclick = function() {
         todayMinutes  = "0" + todayMinutes;
     if (divsActualMonth < 10)
         divsActualMonth ='0' + divsActualMonth;
-        document.getElementById("initialDate").value = `${todayYear}-${divsActualMonth}-${todayDate}T${todayHour}:${todayMinutes}`;
+    document.getElementById("initialDate").value = `${todayYear}-${divsActualMonth}-${todayDate}T${todayHour}:${todayMinutes}`;
+    document.querySelector(".modal-button.fa-window-close").addEventListener("click", closeFirstModal);
+    document.getElementById("m-cancelBtn").addEventListener("click", closeFirstModal);
+    document.getElementById("m-createBtn").addEventListener("click", closeFirstModal);
+    modalSection.addEventListener("click", closeFirstModal);
+    modalContent.addEventListener("click", modalStopPropagation);
+    document.getElementById("title").focus();
 }
-
+/*
 modalCloseButton.onclick = function() {
     modalSection.classList.add("hidden");
     document.getElementById("form").reset();
     enableArrowKeys();
 }
-
-modalCancelButton.onclick = function() {
+*/
+function closeFirstModal(){
+    document.querySelector(".modal-button.fa-window-close").removeEventListener("click", closeFirstModal);
+    document.getElementById("m-cancelBtn").removeEventListener("click", closeFirstModal);
+    document.getElementById("m-createBtn").removeEventListener("click", closeFirstModal);
+    modalSection.removeEventListener("click", closeFirstModal);
+    modalContent.removeEventListener("click", modalStopPropagation);
     modalSection.classList.add("hidden");
     document.getElementById("form").reset();
     enableArrowKeys();
 }
 
-window.onclick = function(event) {
-    if (event.target == modalSection){
-        modalSection.classList.add("hidden");
-        document.getElementById("form").reset();
-        enableArrowKeys();
-    }
-}
+window.addEventListener("keyup", closeEscOut);
 
-window.onkeyup = function(event) {
-    let escNow = event.keyCode || event.which;
+function closeEscOut(event){
+    const escNow = event.keyCode || event.which;
     if (escNow == 27){
-        modalSection.classList.add("hidden");
-        document.getElementById("form").reset();
-        enableArrowKeys();
+        closeFirstModal();  
     }
 }
 
@@ -120,6 +136,7 @@ function showMeTheReminder(){
         document.getElementById("modal-input-time").classList.add('modal-inputDisabled');
     }
 }
+
 
 
 
