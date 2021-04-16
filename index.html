@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    <!-- ? Header -->
     <section id="nav__web">
         <div class="nav__month">
             <div id="container__btn__weekMonthYear" class="nav__left">
@@ -63,17 +64,17 @@
             </div>
         </div>
     </section>
-    
-    <section id="calendar">
 
+
+    <section id="calendar" class="cal-padding">
     </section>
     <section id="mounthYear" style="height:calc(100% - 55px);">
-           
+
     </section>
 
     <section id="modal-section">
-        
     </section>
+
 
     <!-- ? MOBILE NAV -->
     <template id="template__mobile">
@@ -129,6 +130,7 @@
                 <div data-col="0"></div>
             </div>
         </div>
+        <div class="month-list"></div>
     </template>
 
     <!-- ? Modal Template -->
@@ -140,13 +142,12 @@
                 <form action="">
                     <div class="shadow__input--stretch">
                         <label for="title">Title:</label>
-                        <input class="" type="text" name="title" title="This field is required" max-length="60"
+                        <input class="focus" type="text" name="title" title="This field is required" max-length="60"
                             required>
                     </div>
-
                     <div class="shadow__input--stretch">
                         <label for="init-date">Initial date:</label>
-                        <input type="datetime-local" name="init-date" title="Please enter a valid date" required>
+                        <input class="focus" type="datetime-local" name="init-date" title="Please enter a valid date" required>
                     </div>
 
                     <div class="shadow__input--start">
@@ -154,9 +155,9 @@
                         <label for="end-check">End date</label>
                     </div>
 
-                    <div class="shadow__input--stretch">
+                    <div class="shadow__input--stretch ending-date">
                         <label for="end-date">End date:</label>
-                        <input type="date" name="end-date" disabled>
+                        <input class="focus" type="datetime-local" name="end-date" disabled>
                     </div>
 
                     <div class="shadow__input--start">
@@ -164,9 +165,9 @@
                         <label for="reminder">Add reminder</label>
                     </div>
 
-                    <div class="shadow__input--stretch">
+                    <div class="shadow__input--stretch reminder-time">
                         <label for="select-time">Time:</label>
-                        <select name="select-time">
+                        <select class="focus" name="select-time">
                             <option value="5">5 minutes</option>
                             <option value="15">15 minutes</option>
                             <option value="30">30 minutes</option>
@@ -176,12 +177,12 @@
 
                     <div class="shadow__input--stretch">
                         <label for="description">Description:</label>
-                        <textarea name="description" cols="30" rows="10" maxlength="500"></textarea>
+                        <textarea class="focus" name="description" cols="30" rows="10" maxlength="500"></textarea>
                     </div>
 
                     <div class="shadow__input--stretch">
                         <label for="select-event">Event type:</label>
-                        <select name="select-event">
+                        <select class="focus" name="select-event">
                             <option value="meeting">Meeting</option>
                             <option value="birthday">Birthday</option>
                             <option value="date">Date</option>

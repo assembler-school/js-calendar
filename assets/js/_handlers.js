@@ -2,7 +2,7 @@ import { swapTemplate, removeTemplate } from "./_templates.js";
 import { formValidation } from "./_form_validation.js";
 import { calendarEvent } from "./_events.js";
 import * as render from "./_month_render.js";
-import * as reminder from "./_reminder.js";
+import { setReminder } from "./_reminder.js";
 
 /*
  * All listeners are listed here
@@ -61,7 +61,8 @@ export function handleDocumentEvents(e) {
         const data = calendarEvent.getDataFromModal("#modal form");
         calendarEvent.toLocalStorage(data);
         render.renderEvents(updatedYear, updatedMonth);
-        reminder.setReminder();
+        let remindersArr = [];
+        setReminder(remindersArr);
       }
     }
 
@@ -70,17 +71,11 @@ export function handleDocumentEvents(e) {
      */
     if (e.target.matches(".btn__month__right")) {
       addMonth(updatedYear, updatedMonth, true);
-      // document.getElementById("calendar").classList.add("slide-top");
-      // document.getElementById("calendar").classList.add("swing-right-fwd");
-      document
-        .querySelector(".calendar__month")
-        .classList.add("swing-right-fwd");
+      document.querySelector("#calendar").classList.add("swing-right-fwd");
     }
     if (e.target.matches(".btn__month__left")) {
       addMonth(updatedYear, updatedMonth, false);
-      document
-        .querySelector(".calendar__month")
-        .classList.add("swing-left-fwd");
+      document.querySelector("#calendar").classList.add("swing-left-fwd");
     }
 
         /*
@@ -107,8 +102,8 @@ export function handleDocumentEvents(e) {
       document.getElementById("main").style.display = "block";
       swapTemplate("template__mobile", "main");
     }
-    if (e.target.matches("#navClose") || e.target.matches("#navClose *") 
-    || e.target.matches("#alert__shadowMain")) {
+    if (e.target.matches("#navClose i") || e.target.matches("#navClose i *")) {
+      removeTemplate("template__mobile", "main");
       document.getElementById("main").style.display = "none";
       document.getElementById("alert__shadowMain").style.display = "none";
       removeTemplate("template__mobile", "main");
@@ -120,6 +115,8 @@ export function handleDocumentEvents(e) {
     if (e.target.matches('[name="end-check"]')) {
       const check = document.querySelector('[name="end-date"]');
       check.disabled ? (check.disabled = false) : (check.disabled = true);
+      const end = document.querySelector(".ending-date");
+      end.classList.toggle("height-reset");
     }
 
     /*
@@ -132,13 +129,41 @@ export function handleDocumentEvents(e) {
     }
 
     /*
-     *
+     * Click on day to show modal
      */
     if (e.target.matches(".calendar__week > div")) {
-      if(e.target.id !== ""){
-        const dia = e.target.id;
-        console.log(dia);
-      }
+      const day = e.target.id,
+        month = document.querySelector("#nav__tag").textContent,
+        year = document.querySelector("#nav__year").textContent;
+
+      swapTemplate("modal-template", "modal-section");
+      const initDate = document.querySelector('[name="init-date"]');
+      initDate.value = render.getDateTimeFormat(year, month, day);
+    }
+
+    /*
+     * Click on reminder
+     */
+    if (e.target.matches('[name="reminder"]')) {
+      const rm = document.querySelector(".reminder-time");
+      // rm.classList.toggle("height-anim");
+      rm.classList.toggle("height-reset");
+    }
+
+    /*
+     * Click month tag
+     */
+    if (e.target.matches("#nav__tag, #nav__year")) {
+      const rm = document.querySelector(".month-list");
+      rm.classList.toggle("show");
+    }
+    if (e.target.matches(".month-list *")) {
+      const ev = e.target,
+        month = ev.dataset.month || ev.firstChild.dataset.month,
+        rm = document.querySelector(".month-list");
+
+      goToMonth(updatedYear, parseInt(month));
+      rm.classList.toggle("show");
     }
 
   });
@@ -151,6 +176,64 @@ export function handleDocumentEvents(e) {
     if (e.target.matches("input[required]")) {
       formValidation(e, false);
     }
+  });
+
+  /*
+   *  Accesibility from the modal with TAB or SHIFT + TAB
+   */
+  document.addEventListener("keydown", accessKeyboard);
+  function accessKeyboard(e) {
+    const focusableInputs = document.querySelectorAll(".focus");
+    const focusable = Array.from(focusableInputs);
+    let index = focusable.indexOf(document.activeElement);
+    let nextIndex = 0;
+
+    // tab key
+    if (e.keyCode === 9) {
+      e.preventDefault();
+      if (index >= 0) {
+        nextIndex = index + 1;
+      } else {
+        nextIndex = 0;
+      }
+      if (index == 5) {
+        nextIndex = 0;
+      }
+      //shift + tab
+      if (e.keyCode === 16) {
+        e.preventDefault();
+        if (index >= 0) {
+          nextIndex = index + 1;
+        } else {
+          nextIndex = 0;
+        }
+        if (index == 5) {
+          nextIndex = 0;
+        }
+      }
+    }
+    // Escape to close modal
+    if (e.keyCode === 27) {
+      removeTemplate("modal-template", "modal-section");
+    }
+
+    focusableInputs[nextIndex].focus();
+    e.stopPropagation();
+  }
+
+  // animation end
+  document.addEventListener("animationend", (e) => {
+    /*
+     * clear animations
+     */
+    const swing = document.querySelectorAll(
+      ".swing-right-fwd, .swing-left-fwd"
+    );
+    swing.forEach((element) => {
+      const cls = element.classList;
+      cls.contains("swing-right-fwd") ? cls.remove("swing-right-fwd") : 0;
+      cls.contains("swing-left-fwd") ? cls.remove("swing-left-fwd") : 0;
+    });
   });
 }
 
@@ -165,6 +248,22 @@ function addMonth(year, month, boolean) {
   render.addTag(updatedYear, updatedMonth);
   render.highlightToday(year, month);
   render.renderEvents(year, month);
+  render.renderMonthList();
+}
+
+/*
+ * This render month without adding
+ * To add month use _handlers.js/addMonth
+ */
+export function goToMonth(year, month) {
+  updatedYear = year;
+  updatedMonth = month;
+  swapTemplate("month", "calendar");
+  render.renderMonth(year, month);
+  render.addTag(year, month);
+  render.highlightToday(year, month);
+  render.renderEvents(year, month);
+  render.renderMonthList();
 }
 
 
