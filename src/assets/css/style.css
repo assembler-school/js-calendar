@@ -637,6 +637,18 @@ main{
     margin-top: .5em;
   }
 
+  #modal-content{
+    min-width: 230px !important;
+    width: 160px !important;
+    height: 540px;
+    font-size: 9px;
+    padding: 10px !important;
+    margin: 92px auto 0 auto !important;
+  }
+
+  #modal-event-content{
+    font-size: 1.5em;
+  }
 }
 
 @media only screen and (max-width: 300px) {
