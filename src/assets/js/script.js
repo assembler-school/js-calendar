@@ -2,8 +2,7 @@
 
 // ctes declaration
 
-const form = document.getElementById("form");
-const createEventM = document.getElementById("m-createBtn");
+const createEventBtn = document.getElementById("m-createBtn");
 
 const modalSection = document.getElementById("modal-section");
 
@@ -13,6 +12,9 @@ const modalCloseButton = document.querySelector(".modal-button.fa-window-close")
 
 const modalCancelButton = document.getElementById("m-cancelBtn");
 
+const modalSectionEvent = document.getElementById("modal-event-section");
+
+const modalContent = document.getElementById("modal-content");
 
 
 function justFunc(event) {
@@ -32,7 +34,17 @@ function justFunc(event) {
         divsActualMonth ='0' + divsActualMonth;
     document.getElementById("initialDate").value =
         `${date.getFullYear()}-${divsActualMonth}-${todayDate}T${todayHour}:${todayMinutes}`;
+    
+    document.querySelector(".modal-button.fa-window-close").addEventListener("click", closeFirstModal);
+    document.getElementById("m-cancelBtn").addEventListener("click", closeFirstModal);
+    document.getElementById("m-createBtn").addEventListener("click", closeFirstModal);
+    modalSection.addEventListener("click", closeFirstModal);
+    modalContent.addEventListener("click", modalStopPropagation);
 };
+
+function modalStopPropagation(event){
+    event.stopPropagation();
+}
 
 function addEachListener (event) {
     for (let div of modalDivs.children) {
@@ -65,31 +77,31 @@ modalOpenButton.onclick = function() {
         todayMinutes  = "0" + todayMinutes;
     if (divsActualMonth < 10)
         divsActualMonth ='0' + divsActualMonth;
-        document.getElementById("initialDate").value = `${todayYear}-${divsActualMonth}-${todayDate}T${todayHour}:${todayMinutes}`;
+    document.getElementById("initialDate").value = `${todayYear}-${divsActualMonth}-${todayDate}T${todayHour}:${todayMinutes}`;
+    document.querySelector(".modal-button.fa-window-close").addEventListener("click", closeFirstModal);
+    document.getElementById("m-cancelBtn").addEventListener("click", closeFirstModal);
+    document.getElementById("m-createBtn").addEventListener("click", closeFirstModal);
+    modalSection.addEventListener("click", closeFirstModal);
+    modalContent.addEventListener("click", modalStopPropagation);
 }
 
-modalCloseButton.onclick = function() {
+
+function closeFirstModal(){
+    document.querySelector(".modal-button.fa-window-close").removeEventListener("click", closeFirstModal);
+    document.getElementById("m-cancelBtn").removeEventListener("click", closeFirstModal);
+    document.getElementById("m-createBtn").removeEventListener("click", closeFirstModal);
+    modalSection.removeEventListener("click", closeFirstModal);
+    modalContent.removeEventListener("click", modalStopPropagation);
     modalSection.classList.add("hidden");
     document.getElementById("form").reset();
 }
 
-modalCancelButton.onclick = function() {
-    modalSection.classList.add("hidden");
-    document.getElementById("form").reset();
-}
+window.addEventListener("keyup", closeEscOut);
 
-window.onclick = function(event) {
-    if (event.target == modalSection){
-        modalSection.classList.add("hidden");
-        document.getElementById("form").reset();
-    }
-}
-
-window.onkeyup = function(event) {
-    let escNow = event.keyCode || event.which;
+function closeEscOut(event){
+    const escNow = event.keyCode || event.which;
     if (escNow == 27){
-        modalSection.classList.add("hidden");
-        document.getElementById("form").reset();
+        closeFirstModal();  
     }
 }
 
@@ -111,6 +123,7 @@ function showMeTheReminder(){
         document.getElementById("time").disabled = true;
     }
 }
+
 
 
 
