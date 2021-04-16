@@ -901,7 +901,7 @@ label{
   z-index: 1;
   width: 240px;
   top: 20 px;
-  right: 20px;
+  right: 0.5vw;
 }
 .reminderContainer {
   border-radius: 5px;
@@ -911,5 +911,9 @@ label{
   text-align: center;
 }
 .reminderBtn{
-  border-color: var(--eventOrange);
+  padding: 2px;
+  background-color: var(--eventOrange);
+  border-style: none;
+  border-radius: 2px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 }

@@ -84,6 +84,7 @@ function deleteEvent (deletingEvent) {
     localStorage.setItem("eventsById", JSON.stringify(eventsById));
     deleteEventDatesData(eventsByDate, 'eventsByDate');
     deleteEventDatesData(remindersByDate, 'remindersByDate');
+    checkTodayReminders();
     closeEventModal();
     renderCalendar('');
 }
