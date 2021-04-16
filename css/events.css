@@ -16,8 +16,12 @@
 
 .event-container {
   /* outline: 1px solid red !important; */
+  height:9vh;
+  overflow:auto;
   height: 9vh;
   overflow: auto;
+  overflow-x:hidden;
+  padding-bottom:10px;
 }
 
 /* width */

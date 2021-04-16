@@ -19,18 +19,22 @@ function updateTemplate(previousStep, containerId, templateId) {
 
 document.getElementById('monthView-btn').addEventListener("click", (event)=>{
     if(document.querySelector(".main-content-section").firstElementChild.id === "year-section"){
+        calendarView = 'month-view';
         event.target.disabled = true;
         document.getElementById("yearView-btn").disabled = false;
         updateTemplate("year-section","main-content-section","month-template");
         calendarMonthConstructor(month,year);
+        console.log(device);
     }
 });
 document.getElementById('yearView-btn').addEventListener("click", (event)=>{
     if(document.querySelector(".main-content-section").firstElementChild.id === "month-section"){
+        calendarView = 'year-view';
         event.target.disabled = true;
         document.getElementById("monthView-btn").disabled = false;
         updateTemplate("month-section","main-content-section","year-template");
-        calendarConstructor();
+        calendarConstructor(year);
+        console.log(device);
     }
 });
 addNewTemplate("main-content-section", "month-template");
