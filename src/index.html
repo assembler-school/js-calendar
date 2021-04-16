@@ -54,15 +54,14 @@
                 </div>
                 <div class="modal-input">
                     <label for="initial-date">Initial date</label>
-                    <input type="datetime-local" name="initial-date" id="initialDate">
-                </div>
+                    <input type="datetime-local" name="initial-date" id="initialDate"  max="9999-12-31T23:59">                </div>
                 <div class="modal-input modal-cb">
                     <input id="check-box-end-date" type="checkbox" name="endDate-cb" onclick="showMeTheEndDate()">
                     <label for="endDate-cb">End date</label>
                 </div>
                 <div class="modal-input modal-inputDisabled" id="EndDateModal">
                     <label for="end-date" ></label>
-                    <input type="datetime-local" name="end-date" id="endDate">
+                    <input type="datetime-local" name="end-date" id="endDate"  max="9999-12-31T23:59">
                 </div>
                 <div class="modal-input modal-cb">
                     <input id="check-box-reminder" type="checkbox" name="remind" onclick="showMeTheReminder()">
