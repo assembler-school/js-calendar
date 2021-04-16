@@ -113,7 +113,7 @@ document.getElementById("initialDateId").addEventListener('change', (event) => {
     }
 });
 
-document.getElementById("endDateId").addEventListener('change', (event) => {
+document.getElementById("endDateId").addEventListener('change', () => {
     document.querySelector('.labelRequiredEndDate')?.remove();
     if (endDateValidation()) {
         addInputValidationLabel(
@@ -124,7 +124,7 @@ document.getElementById("endDateId").addEventListener('change', (event) => {
     }
 });
 
-document.getElementById("reminderId").addEventListener('change', (event) => {
+document.getElementById("reminderId").addEventListener('change', () => {
     document.querySelector('.labelRequiredReminder')?.remove();
     if (reminderValidation()) {
         addInputValidationLabel(

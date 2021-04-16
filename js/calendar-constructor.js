@@ -34,7 +34,7 @@ function calendarConstructor(changeYear){
 
   if(device === 'mobile'){
     //Create year-rows
-    for(i=0;i<12;i++){
+    for(let i=0;i<12;i++){
       let div = document.createElement('div');
       div.setAttribute('class','mobile-year-row');
       yearView.appendChild(div);
@@ -43,7 +43,7 @@ function calendarConstructor(changeYear){
     //Create months
     var yearRows = document.querySelectorAll('.mobile-year-row');
     yearRows.forEach((row) => {
-      for(i=0;i<1;i++){
+      for(let i=0;i<1;i++){
         let div = document.createElement('div');
         div.setAttribute('class','month');
         row.appendChild(div);
@@ -51,7 +51,7 @@ function calendarConstructor(changeYear){
     })
   }else if(device === 'computer'){
     //Create year-rows
-    for(i=0;i<3;i++){
+    for(let i=0;i<3;i++){
       let div = document.createElement('div');
       div.setAttribute('class','year-row');
       yearView.appendChild(div);
@@ -60,7 +60,7 @@ function calendarConstructor(changeYear){
     //Create months
     var yearRows = document.querySelectorAll('.year-row');
     yearRows.forEach((row) => {
-      for(i=0;i<4;i++){
+      for(let i=0;i<4;i++) {
         let div = document.createElement('div');
         div.setAttribute('class','month');
         row.appendChild(div);
@@ -71,7 +71,7 @@ function calendarConstructor(changeYear){
   //Create row for month name
   var months = document.querySelectorAll('.month');
   months.forEach((element) => {
-    for(i=0;i<2;i++){
+    for(let i=0;i<2;i++){
       let div = document.createElement('div');
       div.setAttribute('class','week');
       element.appendChild(div);
@@ -81,7 +81,7 @@ function calendarConstructor(changeYear){
   //Create week days
   var weeks = document.querySelectorAll('.week');
   weeks.forEach((week) =>{
-    for(i=0;i<7;i++){
+    for(let i=0;i<7;i++){
       let div = document.createElement('div');
       div.setAttribute('class','not-days');
       week.appendChild(div);
@@ -96,10 +96,14 @@ function calendarConstructor(changeYear){
   var monthName = document.querySelectorAll('.month-name');
   monthName.forEach((element,i=0) => {
     element.innerHTML = monthsNames[i];
-    /*element.parentNode.addEventListener('click', () => {
-      updateTemplate("year-section","main-content-section","month-template");
-      calendarMonthConstructor(i,year);
-    });*/
+    element.parentNode.addEventListener('dblclick', () => {
+      if(document.querySelector(".main-content-section").firstElementChild.id === "year-section"){
+        calendarView = 'month-view';
+        document.getElementById("yearView-btn").disabled = false;
+        updateTemplate("year-section","main-content-section","month-template");
+        calendarMonthConstructor(i-1,year);
+      }
+    });
     i++;
   })
 
@@ -164,12 +168,12 @@ function populateCalendar(changeYear){
 
             var idMonth = iMonth;
             var idDay = date;
-            if(idMonth < 10){
+            if(idMonth < 10) {
               idMonth = '0' + idMonth
-            };
-            if(idDay < 10){
+            }
+            if(idDay < 10) {
               idDay = '0' + idDay;
-            };
+            }
 
             cell.setAttribute('id',year + '/' + idMonth + '/' + idDay);
             let cellText = document.createTextNode(date);
