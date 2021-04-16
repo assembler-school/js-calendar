@@ -157,15 +157,6 @@ export function highlightToday(year, month){
         document.getElementById((new Date()).getDate()).className += 'today';
         document.getElementById((new Date()).getDate()).childNodes[0].innerHTML = date.getDate();
     }
-<<<<<<< HEAD
-}
-=======
-}
-
-export function compareMonth(year,month,year2,month2){
-    let sameMonth = false;
-    if (year===year2 && month===month2) {sameMonth=true};
-    return sameMonth;
 }
 
 /*
@@ -198,4 +189,3 @@ export function renderMonthList(){
         month_list.appendChild(month);
     });
 }
->>>>>>> develop
