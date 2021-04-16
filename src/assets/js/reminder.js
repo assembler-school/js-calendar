@@ -45,5 +45,3 @@ function checkTodayReminders() {
     }
     return false;
 }
-
-checkTodayReminders();
