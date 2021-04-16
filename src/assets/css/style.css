@@ -419,7 +419,9 @@ main{
   background-color: var(--darkestGray);
 }
 #modal-section.hidden {
-  display: none;
+  height: 0px;
+  overflow: hidden;
+  opacity: 0;
 }
 input, select {
   height: 44px;
@@ -433,6 +435,9 @@ input, select {
   height: 200vh;
   width: 100vw;
   background-color: rgba(0,0,0,0.4);
+  transition: opacity 0.5s;
+  /* transition-delay: height 0.2s; */
+  opacity: 1;
 }
 #modal-content {
   display: flex;
