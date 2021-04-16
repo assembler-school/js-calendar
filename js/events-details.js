@@ -14,19 +14,27 @@ function displayDetailsOfEvent(eventId, dateId) {
         for (let i = 0; i < calendarEvents[dateId].length; i++) {
             if (calendarEvents[dateId][i].id == eventId) {
                 let titleText = calendarEvents[dateId][i].eventTitle;
-                let initialDateText = calendarEvents[dateId][i].initialDate.split('T');
-                initialDateText = `${initialDateText[0]} ${initialDateText[1]}`
+                let optDate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: "2-digit", minute: "2-digit" };
+                let initialDateText = calendarEvents[dateId][i].initialDate;
+                initialDateText = new Date(initialDateText).toLocaleString('en-UK', optDate);
                 let endDateText;
                 if (calendarEvents[dateId][i].endDate !== undefined) {
-                    endDateText = calendarEvents[dateId][i].endDate.split('T');
-                    endDateText = `${endDateText[0]} ${endDateText[1]}`
+                    endDateText = calendarEvents[dateId][i].endDate;
+                    endDateText = new Date(endDateText).toLocaleString('en-UK', optDate);
                 }  
                 let descriptionText = calendarEvents[dateId][i].description;
-                let eventTypeText = calendarEvents[dateId][i].eventType;
+                let eventTypeText;
+                if (calendarEvents[dateId][i].eventType === 'event-type-2') {
+                    eventTypeText = 'Personal';
+                }   else if (calendarEvents[dateId][i].eventType === 'event-type-3') {
+                    eventTypeText = 'Work';
+                }   else if (calendarEvents[dateId][i].eventType === 'event-type-4') {
+                    eventTypeText = 'Sport';
+                }
                 let reminderDateText
                 if (calendarEvents[dateId][i].reminderDate !== undefined) {
-                    reminderDateText = calendarEvents[dateId][i].reminderDate.split('T');
-                    reminderDateText = `${reminderDateText[0]} ${reminderDateText[1]}`
+                    reminderDateText = calendarEvents[dateId][i].reminderDate;
+                    reminderDateText = new Date(reminderDateText).toLocaleString('en-UK', optDate);
                 }
                 modalForDetails(titleText, initialDateText, endDateText, reminderDateText, descriptionText, eventTypeText, eventId)
             }

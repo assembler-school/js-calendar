@@ -19,16 +19,16 @@ function updateTemplate(previousStep, containerId, templateId) {
 
 document.getElementById('monthView-btn').addEventListener("click", (event)=>{
     if(document.querySelector(".main-content-section").firstElementChild.id === "year-section"){
-        event.target.disabled=true;
-        document.getElementById("yearView-btn").disabled=false;
+        event.target.disabled = true;
+        document.getElementById("yearView-btn").disabled = false;
         updateTemplate("year-section","main-content-section","month-template");
         calendarMonthConstructor(month,year);
     }
 });
 document.getElementById('yearView-btn').addEventListener("click", (event)=>{
     if(document.querySelector(".main-content-section").firstElementChild.id === "month-section"){
-        event.target.disabled=true;
-        document.getElementById("monthView-btn").disabled=false;
+        event.target.disabled = true;
+        document.getElementById("monthView-btn").disabled = false;
         updateTemplate("month-section","main-content-section","year-template");
         calendarConstructor();
     }
@@ -57,8 +57,79 @@ document.addEventListener("keyup", e => {
     }
 });
 
-document.getElementById("endDateCheckboxId").addEventListener('click', setCheckboxVisibility);
-document.getElementById("reminderCheckboxId").addEventListener('click', setCheckboxVisibility);
+document.getElementById("endDateCheckboxId").addEventListener('click', (event) => {
+    document.querySelector('.labelRequiredEndDate')?.remove();
+    if (endDateValidation()) {
+        addInputValidationLabel(
+            'labelRequiredEndDate',
+            'End Date must be greater than Initial Date',
+            'endDateId'
+        );
+    }
+    setCheckboxVisibility(event);
+});
+document.getElementById("reminderCheckboxId").addEventListener('click', (event) => {
+    document.querySelector('.labelRequiredReminder')?.remove();
+    if (reminderValidation()) {
+        addInputValidationLabel(
+            'labelRequiredReminder',
+            'Reminder alert must be after current date and before initial Date',
+            'reminderId'
+        );
+    }
+    setCheckboxVisibility(event);
+});
+
+function addInputValidationLabel(labelClass, labelElementMsg, beforeElementId) {
+    let labelRequired = document.createElement('label');
+    labelRequired.classList.add(labelClass);
+    labelRequired.textContent = labelElementMsg;
+    document.querySelector('.modalContent').insertBefore(labelRequired, document.getElementById(beforeElementId));
+}
+
+document.getElementById("eventTitleId").addEventListener('keyup', (event) => {
+    document.querySelector('.labelRequiredTitle')?.remove();
+    if (!event.target?.value) {
+        addInputValidationLabel(
+            'labelRequiredTitle',
+            'Event title cannot be empty',
+            'eventTitleId'
+        );
+    }
+});
+
+document.getElementById("initialDateId").addEventListener('change', (event) => {
+    document.querySelector('.labelRequiredInitialDate')?.remove();
+    if (event.target.value < setValueTime()) {
+        addInputValidationLabel(
+            'labelRequiredInitialDate',
+            'Initial Date must be greater than current date',
+            'initialDateId'
+        );
+    }
+});
+
+document.getElementById("endDateId").addEventListener('change', (event) => {
+    document.querySelector('.labelRequiredEndDate')?.remove();
+    if (endDateValidation()) {
+        addInputValidationLabel(
+            'labelRequiredEndDate',
+            'End Date must be greater than Initial Date',
+            'endDateId'
+        );
+    }
+});
+
+document.getElementById("reminderId").addEventListener('change', (event) => {
+    document.querySelector('.labelRequiredReminder')?.remove();
+    if (reminderValidation()) {
+        addInputValidationLabel(
+            'labelRequiredReminder',
+            'Reminder alert must be after current date and before initial Date',
+            'reminderId'
+        );
+    }
+});
 
 document.querySelector(".warningBox-btn").addEventListener('click', modalWarningBoxEnters);
 
@@ -96,6 +167,10 @@ function clearModalContent() {
     document.getElementById('reminderId').value = '';
     document.getElementById('description').value = '';
     document.getElementById('eventTypeSelect').options[0].selected = true;
+    document.querySelector('.labelRequiredTitle')?.remove();
+    document.querySelector('.labelRequiredInitialDate')?.remove();
+    document.querySelector('.labelRequiredEndDate')?.remove();
+    document.querySelector('.labelRequiredReminder')?.remove();
 
 }
 
@@ -105,7 +180,6 @@ function hideModal() {
     let currentDateForBlur = document.querySelector('.currentDate-section');
     mainContentForBlur.removeAttribute('style');
     currentDateForBlur.removeAttribute('style');
-    modal.classList.remove('showUp')
     modal.classList.remove('showUp');
     clearModalContent();
 }
@@ -208,16 +282,34 @@ function saveEventData() {
 
 function saveEvent() {
     if (!document.getElementById('eventTitleId').value) {
-        alert('The event tittle is required')
+        if (!document.querySelector('.labelRequiredTitle')) {
+            addInputValidationLabel(
+                'labelRequiredTitle',
+                'Event title cannot be empty',
+                'eventTitleId'
+            );
+        }
         return false;
     }
 
     if (endDateValidation()) { // endDate > startDate
-        alert('The start date must be before the end date')
+        if (!document.querySelector('.labelRequiredEndDate')) {
+            addInputValidationLabel(
+                'labelRequiredEndDate',
+                'End Date must be greater than Initial Date',
+                'endDateId'
+            );
+        }
         return false;
     }
     if (reminderValidation()) { //reminder > currentDate  && reminder < initialDate
-        alert('Reminder alert must be after current date and before initial date')
+        if (!document.querySelector('.labelRequiredReminder')) {
+            addInputValidationLabel(
+                'labelRequiredReminder',
+                'Reminder alert must be after current date and before initial Date',
+                'reminderId'
+            );
+        }
         return false;
     }
     saveEventData();//save data
@@ -232,6 +324,15 @@ function saveEvent() {
     }
 }
 
+function removeReminder(id) {
+    if (reminders[id]) {
+        delete reminders[id];
+        localStorage.setItem('reminders', JSON.stringify(reminders));
+        initRemindersList();
+        loadPastRemindersWarningCounter();
+    }
+}
+
 function removeEvent(id) {
     for(let day in calendarEvents) {
         calendarEvents[day] = calendarEvents[day].filter(event => {
@@ -241,15 +342,9 @@ function removeEvent(id) {
             delete calendarEvents[day];
         }
     }
+
     document.querySelectorAll(`p[class~="${id}"]`).forEach(e => {e.remove()});
-
-    if (reminders[id]) {
-        delete reminders[id];
-        localStorage.setItem('reminders', JSON.stringify(reminders));
-        initRemindersList();
-        loadPastRemindersWarningCounter();
-    }
-
+    removeReminder(id);
     localStorage.setItem('calendarEvents', JSON.stringify(calendarEvents));
 }
 

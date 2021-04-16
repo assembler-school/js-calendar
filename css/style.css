@@ -180,6 +180,35 @@
   position: relative;
 }
 
+#eventTitleId {
+  width: 100%;
+  border-bottom: 1px solid var(--textLightGray);
+  font-size: 25px;
+  font-weight: 700;
+  padding: 0px;
+  color: var(--textLightGray);
+}
+
+#eventTitleId::placeholder {
+  color: var(--btnGrey);
+}
+
+#saveBtn {
+  margin-top: 5px;
+  padding: 0px 20px;
+  width: max-content;
+  background-color: var(--blueTitle);
+  border: none;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  align-self: flex-start;
+}
+
+#saveBtn:hover {
+  background-color: var(--darkBlue);
+}
+
 .close-btn {
   border: none;
   position: absolute;
@@ -193,15 +222,15 @@
   flex-direction: column;
 }
 
-.modalContent>*,.modalContent>*>*{
+/* .modalContent>*,.modalContent>*>*{
   color:var(--textLightGray);
-}
+} */
 
 .checkbox-container {
-  color:var(--textLightGray);
+  color: var(--textLightGray);
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 
 .modal.showUp {
@@ -258,7 +287,7 @@
   background-color: var(--bg);
   color: var(--textLightGray);
   min-width: 50px;
-  overflow:hidden;
+  overflow: hidden;
 }
 
 .day_box:hover:not(.month-current-day) {
@@ -268,8 +297,18 @@
 .month_day_number {
   text-align: right;
   margin-right: 5%;
+  margin-left: 5%;
   margin-top: 3%;
   margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.month_day_number:hover {
+  background-image: url(../img/plus-icon.png);
+  background-position: left;
+  background-size: 9%;
+  background-repeat: no-repeat;
+  padding-left: 5px;
 }
 
 .event_alarm {

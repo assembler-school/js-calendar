@@ -29,11 +29,11 @@
   height: 100%;
   align-items: center;
   justify-content: center;
-  position:relative;
+  position: relative;
 }
 
 .not-days {
-  color: var(--textLightGray);
+  color: var(--pink);
   display: flex;
   width: 14.2%;
   height: 100%;
@@ -46,7 +46,7 @@
   padding: 5%;
   font-size: 1.5em;
   font-weight: bold;
-  color:var(--blueTitle);
+  color: var(--blueTitle);
 }
 
 .week-days {
@@ -58,20 +58,20 @@
 }
 
 .days:hover {
-  border:2px solid var(--textLightGray);
+  border: 2px solid var(--textLightGray);
 }
 
 .month-current-day {
-  border:5px solid #66aeaf;
+  border: 5px solid #66aeaf;
 }
 
-.year-current-day{
-  color:var(--textLightGray);
-  border:2px solid var(--blueTitle);
+.year-current-day {
+  color: var(--textLightGray);
+  border: 2px solid var(--blueTitle);
 }
 
-.year-current-day:hover{
-  color:var(--textLightGray);
-  border:2px solid var(--textLightGray);
-  border-radius:0%;
+.year-current-day:hover {
+  color: var(--textLightGray);
+  border: 2px solid var(--textLightGray);
+  border-radius: 0%;
 }

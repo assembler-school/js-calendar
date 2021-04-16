@@ -48,13 +48,15 @@ function modalForDetails(title, initialDate, endDate, reminderDate, eventDescrip
         remindDateTxt.textContent = reminderDate;
     }
 
-    let div4 = detailsDiv.appendChild(document.createElement("div"));
-    let labelType = div4.appendChild(document.createElement('h4'));
-    labelType.classList.add('label-for-details');
-    labelType.innerText = 'Type of event:';
-    let typeOfEventTxt = div4.appendChild(document.createElement('h3'));
-    typeOfEventTxt.classList.add('detailed-event');
-    typeOfEventTxt.textContent = typeOfEvent;
+    if (typeOfEvent !== undefined) {
+        let div4 = detailsDiv.appendChild(document.createElement("div"));
+        let labelType = div4.appendChild(document.createElement('h4'));
+        labelType.classList.add('label-for-details');
+        labelType.innerText = 'Type of event:';
+        let typeOfEventTxt = div4.appendChild(document.createElement('h3'));
+        typeOfEventTxt.classList.add('detailed-event');
+        typeOfEventTxt.textContent = typeOfEvent;
+    }
 
     if (eventDescription !== '') {
         let div5 = detailsDiv.appendChild(document.createElement("div"));
@@ -123,8 +125,8 @@ function modalForReminders(title, initialDate, id) {
     rmvBtn.classList.add('remove-btn');
     rmvBtn.innerHTML = 'Delete reminder';
     rmvBtn.onclick = function() {
-        console.log(id);
-        // removeCustomReminderAlert();
+        removeReminder(id);
+        removeCustomReminderAlert();
     }
     let okBtn = div6.appendChild(document.createElement("button"));
     okBtn.classList.add('ok-reminder-btn');
