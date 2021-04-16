@@ -1,29 +1,30 @@
-.event-text{
+.event-text {
   font-size: 0.8rem;
-  font-weight: 500;
-  color:var(--bg);
-  background-color:var(--textLightGray);
-  margin:2% 5%;
-  padding:3%;
+  font-weight: 600;
+  color: var(--bg);
+  background-color: var(--textLightGray);
+  margin: 2% 5%;
+  padding: 3%;
   border-radius: 5px;
   cursor: pointer;
 }
 
-.event-text:hover{
-  color:var(--textLightGray);
-  background-color:var(--textDarkGray);
+.event-text:hover {
+  color: var(--textLightGray);
+  background-color: var(--textDarkGray);
 }
 
-.event-container{
+.event-container {
   /* outline: 1px solid red !important; */
   height:9vh;
   overflow:auto;
-  overflow-x: hidden;
+  height: 9vh;
+  overflow: auto;
 }
 
 /* width */
 ::-webkit-scrollbar {
-  width:5px;
+  width: 5px;
 }
 
 /* Track */
@@ -34,38 +35,37 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background:var(--textLightGray);
+  background: var(--textLightGray);
   border-radius: 10px;
 }
 
-
 /* EVENT TYPES */
-.event-type{
-  background-color:var(--pink);
-  color:var(--bg);
+.event-type-2 {
+  background-color: var(--pink);
+  color: var(--bg);
 }
 
-.event-type:hover{
-  background-color:var(--red);
-  color:var(--bg);
+.event-type-2:hover {
+  background-color: var(--red);
+  color: var(--bg);
 }
 
-.event-type-3{
-  background-color:var(--blueTitle);
+.event-type-3 {
+  background-color: var(--blueTitle);
 }
 
-.event-type-3:hover{
-  background-color:var(--darkBlue);
-  color:var(--bg);
+.event-type-3:hover {
+  background-color: var(--darkBlue);
+  color: var(--bg);
 }
 
-.event-type-4{
-  background-color:var(--green);
+.event-type-4 {
+  background-color: var(--green);
 }
 
-.event-type-4:hover{
-  background-color:var;
-  color:var(--bg);
+.event-type-4:hover {
+  background-color: var(--darkGreen);
+  color: var(--bg);
 }
 
 /* EVENTS IN YEAR VIEW */
@@ -80,11 +80,15 @@
   border-radius:50%;
 } */
 
-.event-year-view{
-  position:absolute;
-  top:75%;
-  left:25%;
-  width:50%;
-  height:5px;
-  background-color:var(--pink);
+.event-year-view {
+  position: absolute;
+  top: 75%;
+  left: 25%;
+  width: 50%;
+  height: 5px;
+  background-color: var(--pink);
+}
+
+.labelRequiredTitle, .labelRequiredInitialDate, .labelRequiredEndDate, .labelRequiredReminder {
+  color: var(--red);
 }

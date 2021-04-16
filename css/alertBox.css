@@ -52,8 +52,8 @@
 .label-for-details {
   font-family: var(--font);
   font-size: 13px;
-  color: var(--textDarkGray);
-  font-weight: 600;
+  color: var(--blueTitle);
+  font-weight: 400;
   margin-bottom: 5px;
 }
 

@@ -38,24 +38,28 @@
         <div class="modalDialog">
             <button id="cancelBtn" class="close-btn">✕</button>
             <section class="modalContent">
-                <label for="eventTitleId"></label><input type="text" id="eventTitleId" placeholder="New Event">
-                <label for="initialDateId">Initial Date</label><input type="datetime-local" id="initialDateId" required>
+                <label for="eventTitleId">Event title: </label>
+                <input type="text" id="eventTitleId" placeholder="New Event">
+                <label for="initialDateId">Starts: </label>
+                <input type="datetime-local" id="initialDateId" required>
                 <div class="end-date-container checkbox-container">
                     <input type="checkbox" id="endDateCheckboxId">
-                    <input type="datetime-local" id="endDateId" disabled>
-                    <label>End date</label>
+                    <label for="endDateCheckboxId">Ends: </label>
                 </div>  
+                <input type="datetime-local" id="endDateId" disabled>
                 <div class="reminder-container checkbox-container">
                     <input type="checkbox" id="reminderCheckboxId">
-                    <input type="datetime-local" id="reminderId" disabled>
-                    <label>Reminder</label>
+                    <label for="reminderCheckboxId">Alert: </label>
                 </div>
-
-                <label for="description"></label><textarea id="description" placeholder="Description"></textarea>
-                <label for="eventTypeSelect"></label>
+                <input type="datetime-local" id="reminderId" disabled>
+                <label for="description">Add a description: </label>
+                <textarea id="description" placeholder="Description goes here" maxlength="500"></textarea>
+                <label for="eventTypeSelect">Type of event: </label>
                 <select id="eventTypeSelect">
-                    <option value="EventType1">EventType1</option>
-                    <option value="EventType2">EventType2</option>
+                    <option value="event-type" disabled selected>Choose a type</option>
+                    <option value="event-type-2">Personal</option>
+                    <option value="event-type-3">Work</option>
+                    <option value="event-type-4">Sport</option>
                 </select>
                 <button id="saveBtn">Save</button>
             </section>
