@@ -134,6 +134,8 @@ function modalForReminders(title, initialDate, id) {
     okBtn.onclick = function() {
         removeCustomReminderAlert();
     }
+    document.querySelector('#alert-reminder-container').addEventListener('click', removeCustomReminderAlert);
+    document.querySelector('#details-reminder-content').addEventListener('click', e => e.stopPropagation());
 }
 
 function removeCustomAlert() {
@@ -158,7 +160,7 @@ function modalWarningBoxEnters(event) {
     warningBox.innerHTML = '';
     warningBox.style.transition = '0.2s ease-in';
     warningBox.classList.toggle("past-reminders-container");//changes heigth and width inits transition
-    for (reminder of pastRemindersList){
+    for (let reminder of pastRemindersList){
         let displayedReminder = document.createElement("p");
         displayedReminder.classList.add("warning-reminder-text");
         warningBox.appendChild(displayedReminder);
