@@ -168,7 +168,7 @@ function getID(event){
 
   selectedDay = event.target.id;
   fechaSeleccionada.innerHTML = "Eventos para la fecha: "+selectedDay;
-  renderEvents();
+  renderPickedEvents();
   return selectedDay;
 }
 
@@ -187,19 +187,19 @@ function renderTodayEvent(){
     //console.log(today)
 
     if(comparedDay == today){
-        myArray.forEach((element)=>{
-          let section = document.createElement("section");
-          section.setAttribute("class", "event__display");
-          section.setAttribute("id", `${element[1].setDay}`);
-          section.insertAdjacentHTML("afterbegin",`<div><h1>${element[1].title}</h1><div>${element[1].event_type}</div></div><div>${element[1].time}</div><div>${element[1].reminder}</div><div>${element[1].end_date}</div><div>${element[1].Description}</div>`);
-          events.appendChild(section);
-        });
+      myArray.forEach((element)=>{
+        let section = document.createElement("section");
+        section.setAttribute("class", "event__display");
+        section.setAttribute("id", `${element[1].setDay}`);
+        section.insertAdjacentHTML("afterbegin",`<div><h1>${element[1].title}</h1><div>${element[1].event_type}</div></div><div>${element[1].time}</div><div>${element[1].reminder}</div><div>${element[1].end_date}</div><div>${element[1].Description}</div>`);
+        events.appendChild(section);
+      });
     }
   }
 }
 renderTodayEvent();
 
-function renderEvents() {
+function renderPickedEvents() {
   let selectedDay = event.target.id;
   console.log(selectedDay);
   //lo traemos del local storage y al mismo tiempo lo reconvertimos en un objeto
