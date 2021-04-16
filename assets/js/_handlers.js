@@ -2,7 +2,7 @@ import { swapTemplate, removeTemplate } from "./_templates.js";
 import { formValidation } from "./_form_validation.js";
 import { calendarEvent } from "./_events.js";
 import * as render from "./_month_render.js";
-import * as reminder from "./_reminder.js";
+import { setReminder } from "./_reminder.js";
 
 /*
  * All listeners are listed here
@@ -11,6 +11,14 @@ import * as reminder from "./_reminder.js";
 export function handleDocumentEvents(e) {
   // click event
   document.addEventListener("click", (e) => {
+    /*
+     * clear all modals
+     */
+    const clnModal = document.querySelector(".cloned-day");
+    if (clnModal) {
+      clnModal.remove();
+    }
+
     /*
      * show week view
      */
@@ -29,7 +37,7 @@ export function handleDocumentEvents(e) {
     // show modal
     if (e.target.matches(".hidden-events")) {
       const d = document;
-      showPopupEvents(e,"#calendar");
+      showPopupEvents(e, "#calendar");
       setTimeout(() => {
         d.querySelector(".cloned-day").classList.add("scaling");
       }, 0);
@@ -39,7 +47,7 @@ export function handleDocumentEvents(e) {
      */
     // show modal
     if (e.target.matches("span.retract")) {
-      document.querySelector(".cloned-day").remove();;
+      document.querySelector(".cloned-day").remove();
     }
 
     /*
@@ -68,6 +76,8 @@ export function handleDocumentEvents(e) {
         calendarEvent.toLocalStorage(data);
         render.renderEvents(updatedYear, updatedMonth);
         render.checkEventsVisibility();
+        let remindersArr = [];
+        setReminder(remindersArr);
       }
     }
 
@@ -101,6 +111,8 @@ export function handleDocumentEvents(e) {
     if (e.target.matches('[name="end-check"]')) {
       const check = document.querySelector('[name="end-date"]');
       check.disabled ? (check.disabled = false) : (check.disabled = true);
+      const end = document.querySelector(".ending-date");
+      end.classList.toggle("height-reset");
     }
 
     /*
@@ -164,6 +176,47 @@ export function handleDocumentEvents(e) {
   // resize
   window.addEventListener("resize", render.checkEventsVisibility);
 
+  // keyboard
+  document.addEventListener("keydown", accessKeyboard);
+  function accessKeyboard(e) {
+    const focusableInputs = document.querySelectorAll(".focus");
+    const focusable = Array.from(focusableInputs);
+    let index = focusable.indexOf(document.activeElement);
+    let nextIndex = 0;
+
+    // tab key
+    if (e.keyCode === 9) {
+      e.preventDefault();
+      if (index >= 0) {
+        nextIndex = index + 1;
+      } else {
+        nextIndex = 0;
+      }
+      if (index == 5) {
+        nextIndex = 0;
+      }
+      //shift + tab
+      if (e.keyCode === 16) {
+        e.preventDefault();
+        if (index >= 0) {
+          nextIndex = index + 1;
+        } else {
+          nextIndex = 0;
+        }
+        if (index == 5) {
+          nextIndex = 0;
+        }
+      }
+    }
+    // Escape to close modal
+    if (e.keyCode === 27) {
+      removeTemplate("modal-template", "modal-section");
+    }
+
+    focusableInputs[nextIndex].focus();
+    e.stopPropagation();
+  }
+
   // animation end
   document.addEventListener("animationend", (e) => {
     /*
@@ -177,6 +230,11 @@ export function handleDocumentEvents(e) {
       cls.contains("swing-right-fwd") ? cls.remove("swing-right-fwd") : 0;
       cls.contains("swing-left-fwd") ? cls.remove("swing-left-fwd") : 0;
     });
+  });
+
+  // mouse over event
+  document.addEventListener("mouseover", (e) => {
+    
   });
 }
 
@@ -215,15 +273,16 @@ export function goToMonth(year, month) {
  * This render month without adding
  * To add month use _handlers.js/addMonth
  */
-function showPopupEvents(e,parent) {
+function showPopupEvents(e, parent) {
   let itm = e.target.parentElement;
   let cln = itm.cloneNode(true);
 
   // replace "ver mas" -> "ver menos"
   for (const iterator of cln.children) {
     if (iterator.classList.contains("hidden-events")) {
-      iterator.textContent = "Ver menos";
-      iterator.className = "retract";
+      // iterator.textContent = "Ver menos";
+      // iterator.className = "retract";
+      iterator.remove();
     }
   }
 
