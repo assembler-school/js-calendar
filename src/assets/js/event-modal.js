@@ -60,12 +60,6 @@ function closeEventModal () {
     enableArrowKeys();
 }
 
-//* Edit event modal function
-function editEventModal () {
-    //! TODO has to open normal modal and insert this event values
-    closeEventModal();
-}
-
 function deleteEventDatesData (data, storageIndex) {
     for (const date in data) {
         data[date] = data[date].filter(event => {
