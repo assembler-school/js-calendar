@@ -11,42 +11,44 @@ import { setReminder } from "./_reminder.js";
 export function handleDocumentEvents() {
   // click event
   document.addEventListener("click", (e) => {
-
-        /*
+    /*
      * Click btn year
      */
-        if (e.target.matches("button#btnYear")) {
-          let newDate = new Date();
-          let year = newDate.getFullYear();
-          swapTemplate("year", "calendar");
-          swapTemplate("buttons__year", "container__btn__weekMonthYear");
-          render.addTagYear(updatedYear);
-          render.renderYear(updatedYear);
-        }
-        /*
-         * Click btn month
-         */
-        if (e.target.matches("button#btnMonth")) {
-          let newDate = new Date();
-          let month = newDate.getMonth();
-          let year = newDate.getFullYear();
-          swapTemplate("month", "calendar");
-          swapTemplate("buttons__month", "container__btn__weekMonthYear");
-          render.addTag(updatedYear, updatedMonth);
-          render.renderMonth(updatedYear, updatedMonth);
-          render.renderEvents(updatedYear, updatedMonth);
-        }
+    if (e.target.matches("button#btnYear")) {
+      clearSelectedBtn();
+      swapTemplate("year", "calendar");
+      swapTemplate("buttons__year", "container__btn__weekMonthYear");
+      render.addTagYear(updatedYear);
+      render.renderYear(updatedYear);
+      e.target.classList.add("nav__center--selected");
+    }
+    /*
+     * Click btn month
+     */
+    if (e.target.matches("button#btnMonth")) {
+      clearSelectedBtn();
+      swapTemplate("month", "calendar");
+      swapTemplate("buttons__month", "container__btn__weekMonthYear");
+      render.addTag(updatedYear, updatedMonth);
+      render.renderMonth(updatedYear, updatedMonth);
+      render.renderEvents(updatedYear, updatedMonth);
+      render.highlightToday(updatedYear, updatedMonth);
+      render.checkEventsVisibility();
+      e.target.classList.add("nav__center--selected");
+    }
 
     /*
-     * show week view
+     * Click btn week
      */
     // show modal
     if (e.target.matches("button#show-week")) {
+      clearSelectedBtn();
       swapTemplate("week-view", "calendar");
       e.target.classList.add("nav__center--selected");
       document
         .querySelector(".nav__center:nth-child(2)")
         .classList.remove("nav__center--selected");
+      e.target.classList.add("nav__center--selected");
     }
 
     /*
@@ -118,21 +120,21 @@ export function handleDocumentEvents() {
       document.querySelector("#calendar").classList.add("swing-left-fwd");
     }
 
-        /*
+    /*
      * buttons to switch year
      */
-        if (e.target.matches(".btn__year__right")) {
-          addYear(updatedYear, true);
-          document
-            .querySelector(".calendar__year--row")
-            .classList.add("swing-right-fwd");
-        }
-        if (e.target.matches(".btn__year__left")) {
-          addYear(updatedYear, false);
-          document
-            .querySelector(".calendar__year--row")
-            .classList.add("swing-left-fwd");
-        }
+    if (e.target.matches(".btn__year__right")) {
+      addYear(updatedYear, true);
+      document
+        .querySelector(".calendar__year--row")
+        .classList.add("swing-right-fwd");
+    }
+    if (e.target.matches(".btn__year__left")) {
+      addYear(updatedYear, false);
+      document
+        .querySelector(".calendar__year--row")
+        .classList.add("swing-left-fwd");
+    }
 
     /*
      * Mobile burguer menu
@@ -154,7 +156,7 @@ export function handleDocumentEvents() {
      */
     if (e.target.matches('[name="end-check"]')) {
       const check = document.querySelector('[name="end-date"]');
-      check.disabled ? (check.disabled = false) : (check.disabled = true);
+      // check.disabled ? (check.disabled = false) : (check.disabled = true);
       const end = document.querySelector(".ending-date");
       end.classList.toggle("height-reset");
     }
@@ -243,7 +245,6 @@ export function handleDocumentEvents() {
       goToMonth(updatedYear, parseInt(month));
       rm.classList.toggle("show");
     }
-
   });
 
   // focusot event
@@ -397,11 +398,19 @@ function showPopupEvents(e, parent) {
   p.appendChild(container);
 }
 
-
 function addYear(year, boolean) {
   boolean ? year++ : year--;
   updatedYear = render.updateDate(year).year;
   swapTemplate("year", "calendar");
   render.addTagYear(updatedYear);
   render.renderYear(updatedYear);
+}
+
+function clearSelectedBtn(){
+  const buttons = document.querySelectorAll(".nav__center button");
+  buttons.forEach(el => {
+    if (el.classList.contains("nav__center--selected")) {
+      el.classList.remove("nav__center--selected");
+    }
+  });
 }

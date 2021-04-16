@@ -661,6 +661,7 @@ button#create-event i {
   width: 100%;
   padding: 0.2rem;
   border: #dadce0 1px solid;
+  background-color: white;
 }
 .calendar__year--tittle {
   display: flex;
@@ -788,7 +789,6 @@ i.fa-times-circle {
   margin: 0.5rem 0;
   font-size: 0.8rem;
   cursor: pointer;
-  overflow-x: visible;
 }
 
 .event__description {
@@ -824,11 +824,11 @@ i.fa-times-circle {
 	background-color: var(--color9);
   }
 
-.more__event {
+/* .more__event {
   text-align: center;
   color: var(--text-color);
   font-size: 0.8rem;
-}
+} */
 
 /*
      ! ALERT EVENT
