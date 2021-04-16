@@ -97,4 +97,5 @@ function createEvent() {
     enableArrowKeys();
     document.getElementById("m-createBtn").disabled = true;
     createButton.style.opacity = 0.5;
+    checkTodayReminders();
 }

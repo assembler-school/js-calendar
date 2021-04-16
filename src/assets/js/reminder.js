@@ -2,7 +2,7 @@ const now = new Date();
 const todayYear = now.getFullYear();
 const todayMonth = now.getMonth() + 1;
 const todayMonthDay = now.getDate();
-const todayReminders = [];
+var todayReminders = [];
 
 function closeReminder(event) {
     event.target.parentElement?.remove();
@@ -21,18 +21,24 @@ function showReminder(reminderEvent) {
     document.getElementById('remindersSection').appendChild(newReminder);
 }
 
-function setTodayReminder(reminder) {
+function clearTodayReminders() {
     todayReminders.forEach(reminder => {
         clearTimeout(reminder);
     });
+    todayReminders = [];
+}
+
+function setTodayReminder(reminder) {
+    const rightNow = new Date();
     reminderEvent = eventsById[reminder];
-    timeToReminder = new Date(reminderEvent.startDate) - now - (parseInt(reminderEvent.reminder) * 60000);
+    timeToReminder = new Date(reminderEvent.startDate) - rightNow - (parseInt(reminderEvent.reminder) * 60000);
     if (timeToReminder > 0) {
         todayReminders.push(setTimeout(showReminder, timeToReminder, reminderEvent));
     }
 }
 
 function setTodayReminders() {
+    clearTodayReminders();
     remindersByDate[`${todayYear}-${todayMonth}-${todayMonthDay}`].forEach(reminder => {
         setTodayReminder(reminder);
     });
@@ -41,9 +47,9 @@ function setTodayReminders() {
 function checkTodayReminders() {
     if (!!remindersByDate[`${todayYear}-${todayMonth}-${todayMonthDay}`]) {
         setTodayReminders();
-        return true;
+    } else {
+        clearTodayReminders();
     }
-    return false;
 }
 
 checkTodayReminders();
