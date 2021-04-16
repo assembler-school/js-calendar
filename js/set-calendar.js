@@ -2,12 +2,26 @@ document.querySelector('.goPrevious-btn').addEventListener('click',previousButto
 document.querySelector('.goToday-btn').addEventListener('click',todayButton);
 document.querySelector('.goNext-btn').addEventListener('click',nextButton);
 
+
+//Transform month and year
+function transformMonth(month){
+  
+}
+
 //Go to previous or next calendar
 function previousButton(){
   if(calendarView == '' || calendarView == 'month-view'){
     month -= 1;
+    if(month === 12) {
+      month = 0;
+      year += 1;
+    }else if(month === 0){
+      month = 11;
+      year -= 1;
+    }
     clearMonthCalendar();
     calendarMonthConstructor(month,year);
+    console.log(month);
   };
   if(calendarView == 'year-view'){
     year -= 1;
@@ -34,6 +48,13 @@ function todayButton(){
 function nextButton(){
   if(calendarView == '' || calendarView == 'month-view'){
     month += 1;
+    if(month === 12) {
+      month = 0;
+      year += 1;
+    }else if(month === 0){
+      month = 11;
+      year -= 1;
+    }
     clearMonthCalendar();
     calendarMonthConstructor(month,year);
   }

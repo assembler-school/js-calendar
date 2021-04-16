@@ -84,10 +84,12 @@
 /* CURRENT TYPE OF DATE SECTION --------------------------- */
 
 .currentDate-section {
-  width: 100%;
+  position:absolute;
+  left:2.5%;
+  width: 95%;
   max-height: 9vh;
   height: 9vh;
-  min-height: 90px;
+  min-height: 9vh;
   display: flex;
   position: relative;
 }
@@ -178,8 +180,10 @@
 /* END OF MODAL STYLES -------------------- */
 
 /*MONTH SECTION TEMPLATE ---------------------------*/
-
 .section-month {
+  position:absolute;
+  left:2.5%;
+  width:95%;
   height: 85vh;
   font-family: var(--font);
   padding: 20px 0px;

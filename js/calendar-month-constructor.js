@@ -1,15 +1,8 @@
-function calendarMonthConstructor(setCalendarMonthCounter,year){
+function calendarMonthConstructor(month,year){
     //Calendar view
     calendarView = 'month-view';
 
     const monthSection = document.querySelector('#month-section');
-    if(setCalendarMonthCounter == 12) {
-        month = 0;
-        year += 1;
-    }else if(setCalendarMonthCounter < 0){
-        month = 11;
-        year -= 1;
-    }
 
     // January is 0;
 
@@ -68,7 +61,6 @@ function calendarMonthConstructor(setCalendarMonthCounter,year){
 
     // Assign a number for each day. It should check what month is and display the number on the right day.
     function populateMonth(month) {
-        console.log(month);
         const numberOfDay = document.querySelectorAll('.month_day_number');
         let day = 1
         for (let i = 0; i < numberOfDay.length; i++) {
@@ -113,4 +105,6 @@ function calendarMonthConstructor(setCalendarMonthCounter,year){
     today(month,currentDay,currentMonth,currentYear);
     displayEventsInMonth(idMonth, calendarEvents,year);
     loadListennersForDetails()
+    console.log(month);
+    console.log(year);
 }

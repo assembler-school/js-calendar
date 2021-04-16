@@ -21,3 +21,5 @@ var pastRemindersList = [];
 var currentTimeout;
 var calendarEvents = {};
 var reminders = {};
+
+var device

@@ -18,6 +18,7 @@
   /* outline: 1px solid red !important; */
   height:9vh;
   overflow:auto;
+  overflow-x: hidden;
 }
 
 /* width */

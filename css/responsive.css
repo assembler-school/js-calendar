@@ -1,0 +1,43 @@
+.mobile-currentDate-section {
+  position:absolute;
+  left:2.5%;
+  width: 95%;
+  max-height: 9vh;
+  height: 9vh;
+  min-height: 9vh;
+  display: flex;
+  position: relative;
+  justify-content:center;
+}
+
+.mobile-goPrevious-btn {
+  height:100%;
+  font-size: 16px;
+  font-weight: 400;
+  background-image: url("../img/left-arrow.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 8px;
+  background-color: var(--btnActive);
+  border: none;
+  color: white;
+}
+
+.mobile-goNext-btn {
+  height:100%;
+  font-size: 16px;
+  font-weight: 400;
+  background-image: url("../img/right-arrow.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 8px;
+  background-color: var(--btnActive);
+  border: none;
+  color: white;
+}
+
+
+/* Year calendar */
+.mobile-days{
+  font-size:0.1rem;
+}
