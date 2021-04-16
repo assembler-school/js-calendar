@@ -34,6 +34,7 @@ export function handleDocumentEvents(e) {
           swapTemplate("buttons__month", "container__btn__weekMonthYear");
           render.addTag(updatedYear, updatedMonth);
           render.renderMonth(updatedYear, updatedMonth);
+          render.renderEvents(updatedYear, updatedMonth);
         }
 
     /*
