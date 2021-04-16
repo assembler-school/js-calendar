@@ -11,6 +11,7 @@ import { setReminder } from "./_reminder.js";
 export function handleDocumentEvents() {
   // click event
   document.addEventListener("click", (e) => {
+
     /*
      * Click btn year
      */
@@ -201,6 +202,7 @@ export function handleDocumentEvents() {
     if (e.target.matches(".remove")) {
       removeTemplate("alert-template", "modal-section");
       calendarEvent.removeEvent(_event);
+      render.checkEventsVisibility();
     }
 
     /*

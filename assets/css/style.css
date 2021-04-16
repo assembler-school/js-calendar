@@ -488,23 +488,23 @@ button#create-event i {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 25px 25px;
-  height: 30px;
-  width: 30px;
+  border-radius: 50%;
+  height: 1.5rem;
+  width: 1.5rem;
   background-color: var(--text-color);
   color: white;
 }
 
 .spanDay {
-  font-size: 1.2rem;
-  padding: 1.2rem;
-
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 25px 25px;
   height: 30px;
   width: 30px;
+  font-size: 1.2rem;
+  padding: 1.2rem;
+  margin-bottom: 0.1rem;
 }
 
 .reminder__popup {
@@ -568,7 +568,7 @@ button#create-event i {
 } */
 
 .scaling {
-  transform: scale(1.2);
+  transform: scale(1.1);
   transition: transform 0.2s ease-out;
 }
 
@@ -784,9 +784,9 @@ i.fa-times-circle {
   color: white;
   background-color: #ff6010;
   border-radius: 10px;
-  overflow-x: hidden;
+  overflow: hidden;
   padding: 0.5rem 0.4rem;
-  margin: 0.5rem 0;
+  margin-bottom: 0.5rem;
   font-size: 0.8rem;
   cursor: pointer;
 }
@@ -1067,7 +1067,7 @@ i.fa-times-circle {
     height: 1rem;
     border-radius: 10px;
     padding: 0.8rem 0.6rem;
-    margin: 0.5rem 0;
+    margin-bottom: 0.5rem;
     font-size: 0.8rem;
   }
   .more__event {
@@ -1147,7 +1147,7 @@ i.fa-times-circle {
     height: 1rem;
     border-radius: 10px;
     padding: 0.8rem 0.6rem;
-    margin: 0.5rem 0;
+    margin-bottom: 0.5rem;
     font-size: 1rem;
   }
 
