@@ -2,7 +2,7 @@ import { swapTemplate, removeTemplate } from "./_templates.js";
 import { formValidation } from "./_form_validation.js";
 import { calendarEvent } from "./_events.js";
 import * as render from "./_month_render.js";
-import {setReminder} from "./_reminder.js";
+import { setReminder } from "./_reminder.js";
 
 /*
  * All listeners are listed here
@@ -115,10 +115,10 @@ export function handleDocumentEvents(e) {
     }
     if (e.target.matches(".month-list *")) {
       const ev = e.target,
-       month = ev.dataset.month || ev.firstChild.dataset.month,
-       rm = document.querySelector(".month-list");
+        month = ev.dataset.month || ev.firstChild.dataset.month,
+        rm = document.querySelector(".month-list");
 
-       goToMonth(updatedYear,  parseInt(month));
+      goToMonth(updatedYear, parseInt(month));
       rm.classList.toggle("show");
     }
   });
@@ -133,13 +133,58 @@ export function handleDocumentEvents(e) {
     }
   });
 
-   // animation end
-   document.addEventListener("animationend", (e) => {
+  /*
+   *  Accesibility from the modal with TAB or SHIFT + TAB
+   */
+  document.addEventListener("keydown", accessKeyboard);
+  function accessKeyboard(e) {
+    const focusableInputs = document.querySelectorAll(".focus");
+    const focusable = Array.from(focusableInputs);
+    let index = focusable.indexOf(document.activeElement);
+    let nextIndex = 0;
+
+    // tab key
+    if (e.keyCode === 9) {
+      e.preventDefault();
+      if (index >= 0) {
+        nextIndex = index + 1;
+      } else {
+        nextIndex = 0;
+      }
+      if (index == 5) {
+        nextIndex = 0;
+      }
+      //shift + tab
+      if (e.keyCode === 16) {
+        e.preventDefault();
+        if (index >= 0) {
+          nextIndex = index + 1;
+        } else {
+          nextIndex = 0;
+        }
+        if (index == 5) {
+          nextIndex = 0;
+        }
+      }
+    }
+    // Escape to close modal
+    if (e.keyCode === 27) {
+      removeTemplate("modal-template", "modal-section");
+    }
+
+    focusableInputs[nextIndex].focus();
+    e.stopPropagation();
+  }
+
+  // animation end
+  document.addEventListener("animationend", (e) => {
     /*
      * clear animations
      */
-    const swing = document.querySelectorAll(".swing-right-fwd, .swing-left-fwd")
-    swing.forEach(element => {
+    const swing = document.querySelectorAll(
+      ".swing-right-fwd, .swing-left-fwd"
+    );
+    swing.forEach((element) => {
       const cls = element.classList;
       cls.contains("swing-right-fwd") ? cls.remove("swing-right-fwd") : 0;
       cls.contains("swing-left-fwd") ? cls.remove("swing-left-fwd") : 0;
