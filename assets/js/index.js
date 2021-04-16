@@ -131,16 +131,29 @@ function bringDataFromLocalStorageToMainCalendar(ev) {
     //Returns ARR
     var MydatafromLocalStorage = Object.entries(datafromLocalStorage);
 
-    //Turn ARR into var's
-    //First
-    var myTitle = MydatafromLocalStorage[0][1].title
-    var myEndDate = MydatafromLocalStorage[0][1].end_date
-    var myTime = MydatafromLocalStorage[0][1].time
-    var myReminder = MydatafromLocalStorage[0][1].reminder
-    var myEventType = MydatafromLocalStorage[0][1].event_type
-    var myDescription = MydatafromLocalStorage[0][1].description
+    //ALL Object's
+    console.log(MydatafromLocalStorage)
 
-    console.log(myEventType)
+    //Turn ARR into var 's
+
+    MydatafromLocalStorage.forEach(data => {
+        var myTitle = data[1].title
+        var myEndDate = data[1].end_date
+        var myTime = data[1].time
+        var myReminder = data[1].reminder
+        var myEventType = data[1].event_type
+        var myDescription = data[1].description
+        console.log(myTitle)
+        console.log(myEndDate)
+        console.log(myTime)
+        console.log(myReminder)
+        console.log(myEventType)
+        console.log(myDescription)
+
+    });
+    //integrar correctamente los datos del foreach al IF() siguiente
+
+    //Si existe evento - boolean
 
     if (myEventType == "meeting") {
         swal("Soy un meeting");
