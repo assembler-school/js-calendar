@@ -10,7 +10,7 @@
   --darkGray: #3D4141;
   --lightGray: #7F817F;
   --lightestGray: #9A9C9A;
-  --eventBlue: #264653;
+  --eventBlue: #43a3c9;
   --eventGreen: #2A9D8F;
   --eventYellow: #E9C46A;
   --eventOrange: #F4A261;
@@ -346,7 +346,7 @@ main{
   color: var(--lightGray);
 }
 .today {
-  background-color: var(--eventGreen);
+  background-color: var(--eventBlue);
   color: white;
 }
 
