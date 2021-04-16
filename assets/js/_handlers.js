@@ -34,6 +34,7 @@ export function handleDocumentEvents() {
       render.renderMonth(updatedYear, updatedMonth);
       render.renderEvents(updatedYear, updatedMonth);
       render.highlightToday(updatedYear, updatedMonth);
+      render.renderMonthList();
       render.checkEventsVisibility();
       e.target.classList.add("nav__center--selected");
     }
@@ -193,6 +194,7 @@ export function handleDocumentEvents() {
         calendarEvent.modifyEvent(_event);
         removeTemplate("edit-template", "modal-section");
         render.renderEvents(updatedYear, updatedMonth);
+        render.checkEventsVisibility();
       }
     }
 
