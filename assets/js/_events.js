@@ -9,7 +9,7 @@ calendarEvent.getDataFromModal = function (form) {
   const _arrData = Array.from(_data.entries());
   const _obj = {};
 
-  _obj.id = calendarEvent.generateUUID(); 
+  _obj.id = calendarEvent.generateUUID();
 
   for (const [name, value] of _arrData) {
     _obj[name] = value;
@@ -24,7 +24,7 @@ calendarEvent.getDataFromModal = function (form) {
 calendarEvent.toLocalStorage = function (data) {
   const _fnToLocalStorage = function (data) {
     const _arr = [],
-    ls= localStorage;
+      ls = localStorage;
 
     if (data) {
       data.push(calendarEvent.data);
@@ -50,7 +50,7 @@ calendarEvent.fromLocalStorage = function () {
  */
 calendarEvent.getEvent = function (eventid) {
   const data = calendarEvent.fromLocalStorage();
-  return data.filter(ev => `event${ev.id}` === eventid);
+  return data.filter((ev) => `event${ev.id}` === eventid);
 };
 
 /*

@@ -36,6 +36,7 @@ body {
   height: 100vh;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 16px;
+  background-color: var(--header-color);
 }
 
 hr {
@@ -45,13 +46,12 @@ hr {
 
 /* ===========MODAL NEW EVENT (alvaro)============*/
 
- label {
+label {
   font-size: 0.95rem;
 }
 
 input {
   padding: 0.4rem 0;
-  /* font-size: 1rem; */
   border-top-style: hidden;
   border-right-style: hidden;
   border-bottom-style: solid;
@@ -67,9 +67,8 @@ input:focus {
 }
 
 textarea {
-  background-color: var(--header-color);
-  /* opacity: 0.6; */
-  border: var(--text-color);
+  /* background-color: var(--header-color); */
+  border: 1px solid var(--text-color);
   outline: none;
   height: 80px;
   width: inherit;
@@ -88,7 +87,6 @@ textarea:focus {
 
 select {
   padding: 0.4rem 0;
-  /* font-size: 1rem; */
   border-top-style: hidden;
   border-right-style: hidden;
   border-bottom-style: solid;
@@ -108,43 +106,14 @@ select option {
   width: 52px;
 }
 
-/*
-===================================
-   ! MODAL NEW EVENT
-===================================
-*/
-#close {
-  color: rgb(231, 13, 13);
+section {
+  /* max-width: 1400px; */
+  margin: 0 auto;
+  background-color: var(--header-color);
 }
 
-/*    BOTONES ENVIO CANCELAR */
-.shadow__btn > input {
-  color: var(--text-color);
-  background-color: transparent;
-  /* padding: 4px 6px; */
-  width: 60px;
-  height: 30px;
-  border-radius: var(--br-radius);
-  border-color: var(--text-color);
-  border: solid 2px;
-  transition: border-color 0.6s linear 0.2s;
-}
-
-.shadow__btn > button {
-  color: rgb(231, 13, 13);
-  background-color: transparent;
-  /* padding: 4px 6px; */
-  width: 60px;
-  height: 30px;
-  border-radius: var(--br-radius);
-  border-color: rgb(231, 13, 13);
-}
-
-.shadow__btn {
-  display: flex;
-  justify-content: space-between;
-  min-width: 150px;
-  margin-bottom: 1rem;
+.cal-padding{
+  padding: 0.5rem;
 }
 
 /*
@@ -155,6 +124,7 @@ select option {
 #nav__web {
   display: none;
 }
+
 #nav__web h2 {
   font-size: 1.2rem;
   margin: 0 0.5rem;
@@ -164,14 +134,13 @@ select option {
   justify-content: space-evenly;
   align-items: center;
 }
+
 .nav__month {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  padding-top: 1%;
-  padding-bottom: 1%;
-  background-color: #fff;
+  padding: 0.5rem 0;
   min-height: 55px;
 }
 
@@ -180,6 +149,7 @@ select option {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .nav__left > div {
@@ -207,15 +177,19 @@ select option {
   border-radius: var(--br-radius);
   display: flex;
   justify-content: center;
+  width: 194px;
+  font-size: 1rem;
 }
 
 .nav__center > button {
-  padding: 5px;
   margin: 0;
   border-radius: var(--br-radius);
   border: none;
   background-color: transparent;
-  padding: 0.3rem 1rem;
+  padding: 0.5rem 0.5rem;
+  height: 100%;
+  text-align: center;
+  font-size: 1rem;
 }
 
 .nav__center > .nav__center--selected {
@@ -237,6 +211,48 @@ button#create-event {
 button#create-event i {
   margin-right: 0.3rem;
 }
+
+.month-list {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  background-color: white;
+  border: #dadce0 1px solid;
+  border-radius: 10px;
+  grid-template-columns: repeat(3, auto);
+  display: grid;
+  transform: scale(1.5);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.month-list > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: #dadce0 1px solid;
+  border-right: #dadce0 1px solid;
+  font-size: 1.2rem;
+}
+
+.month-list:nth-child(3) {
+  border-bottom: none;
+  border-right: none;
+}
+
+.month-list > div:hover {
+  background-color: var(--header-color);
+  cursor: pointer;
+}
+
+.month-list.show {
+  transform: scale(1);
+  visibility: visible;
+  pointer-events: visible;
+  transition: all 0.2s ease-in-out;
+}
 /*
   ===================================
      ! nav mobile styles
@@ -257,7 +273,6 @@ button#create-event i {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #fff;
   min-height: 55px;
 }
 
@@ -281,7 +296,14 @@ button#create-event i {
 .nav__mobile--left i {
   color: var(--text-color);
 }
-
+#alert__shadowMain {
+  display:none;
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color:rgba(197, 151, 151, 0.233);
+}
 #main {
   display: none;
 }
@@ -289,11 +311,12 @@ button#create-event i {
   position: absolute;
   height: 100%;
   width: 70%;
-  max-width: 340px;
   background-color: var(--header-color);
   top: 0;
   right: 0;
-  box-shadow: 20px 20px 200px 100px rgb(136, 136, 136);
+  box-shadow: 0px 0px 599px 180px rgb(136 136 136);
+  z-index: 1;
+  animation: sliderMain 1.6s alternate;
 }
 .nav__mobile--btn-close {
   display: flex;
@@ -301,38 +324,52 @@ button#create-event i {
   justify-content: center;
   align-items: flex-end;
   padding: 1rem;
+  padding-right: 2rem;
   height: 50px;
+
 }
 .nav__mobile--container {
   background-color: white;
   height: calc(100% - 50px);
 }
 .nav__mobile--containerBtn {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: inherit;
-  max-height: 100px;
+  max-height: 60px;
   height: calc((100% - 25px) / 5);
   padding: 1rem;
-  /* ELIMINAR EL BORDER
-  border: #dadce0 4px solid; */
-}
-.nav__mobile--containerBtn > button {
-  padding: 5px;
-  margin: 0;
-  padding: 0.15rem;
-  background-color: var(--header-color);
-  border-radius: 10rem;
-  border: none;
-  box-shadow: 0px 0px 4px 01px rgb(136, 136, 136);
-  padding: 0.3rem 1rem;
-  outline: none;
 }
 .nav__mobile--containerBtn > .nav__mobile--selected {
   background-color: rgb(44, 139, 184);
   color: white;
 }
+/**/
+.nav__mobile--center {
+  padding: 0.15rem;
+  background-color: var(--color2);
+  border-radius: var(--br-radius);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 194px;
+}
+.nav__mobile--center > button {
+  padding: 5px;
+  margin: 0;
+  border-radius: var(--br-radius);
+  border: none;
+  background-color: transparent;
+  padding: 0.4rem 0.6rem;
+  font-size: 1rem;
+  outline: none;
+}
+.nav__mobile--center > .nav__mobile--selected {
+  background-color: var(--header-color);
+  color: var(--text-color);
+}
+
 .nav__mobile--event {
   display: flex;
   flex-direction: column;
@@ -362,29 +399,39 @@ button#create-event i {
   ===================================
   */
 #calendar {
+  position: relative;
   width: inherit;
   height: calc(100% - 55px);
-  padding: 0.5rem 0.2rem 0.2rem 0.2rem;
+  overflow: hidden;
+  padding: 0.5rem;
 }
 
 .calendar__month {
   width: 100%;
-  height: 100%;
+  height: calc(100% - 25px);
+  background-color: white;
+  border: #dadce0 1px solid;
+  border-top: none;
+  border-radius: 0 0 10px 10px;
 }
 
 .calendar__week {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   width: 100%;
-  /* height: calc((100% - 25px) / 5); */
+  height: calc(100% / 5);
   border-bottom: #dadce0 1px solid;
-  border-left: #dadce0 1px solid;
+  /* border-right: #dadce0 1px solid; */
 }
 
 .calendar__week > div {
   height: 100%;
   padding: 0.5%;
   border-right: #dadce0 1px solid;
+}
+
+.calendar__week > div:last-child {
+  border-right: none;
 }
 
 .calendar__week div span {
@@ -401,11 +448,20 @@ button#create-event i {
   flex-direction: row;
   width: 100%;
   height: 25px;
+  padding-top: 0.5rem;
   align-items: center;
-  text-align: center;
+  text-align: end;
+  background-color: white;
   border-left: #dadce0 1px solid;
   border-top: #dadce0 1px solid;
-  /* border-radius: 6px 6px 0 0; */
+  border-right: #dadce0 1px solid;
+  border-radius: 0.8rem 0.8rem 0 0;
+}
+
+.calendar__weekDay * {
+  font-size: 1.1rem;
+  opacity: 0.5;
+  font-weight: bold;
 }
 
 .calendar__weekDay > div {
@@ -429,6 +485,104 @@ button#create-event i {
   background-color: var(--text-color);
   color: white;
 }
+
+.spanDay {
+  font-size: 1.2rem;
+  padding: 1.2rem;
+}
+
+/*
+===================================
+   ! MODAL NEW EVENT
+===================================
+*/
+#close {
+  color: rgb(231, 13, 13);
+}
+
+/*    BOTONES ENVIO CANCELAR */
+.shadow__btn > input {
+  color: var(--text-color);
+  background-color: transparent;
+  width: 60px;
+  height: 30px;
+  border-radius: var(--br-radius);
+  border-color: var(--text-color);
+  border: solid 2px;
+  transition: border-color 0.6s linear 0.2s;
+}
+
+.shadow__btn > button {
+  color: rgb(231, 13, 13);
+  background-color: transparent;
+  /* padding: 4px 6px; */
+  width: 60px;
+  height: 30px;
+  border-radius: var(--br-radius);
+  border-color: rgb(231, 13, 13);
+}
+
+.shadow__btn {
+  display: flex;
+  justify-content: space-between;
+  min-width: 150px;
+  margin-bottom: 1rem;
+}
+
+.reminder-time{
+  max-height: 0;
+}
+
+.ending-date{
+  max-height: 0;
+}
+
+.height-reset{
+  max-height: 80px;
+  transition: max-height 0.2s ease-out;
+}
+
+/*
+===================================
+        CALENDAR YEAR
+===================================
+*/
+.calendar__year--row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  /* Ocultar el height a 100% y mostrar el calc */
+  height: 100%;
+  gap: 1% 2%;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  /*height: calc(100% - 55px);*/
+}
+.calendar__year--month {
+  display: grid;
+  width: 100%;
+  padding: 0.2rem;
+  border: #dadce0 1px solid;
+}
+.calendar__year--tittle {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.calendar__year--tittle h2 {
+  font-size: 1.2rem;
+}
+.calendar__year--date {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  gap: 4px;
+  width: 100%;
+  font-size: 0.8rem;
+}
+
+
+
 
 /*
   ===================================
@@ -498,7 +652,7 @@ i.fa-times-circle {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   width: inherit;
 }
 
@@ -521,21 +675,20 @@ i.fa-times-circle {
      ! event styles
   ===================================
   */
-
-  .event {
-	display: flex;
-	white-space: nowrap;
-	align-items: center;
-	height: 1rem;
-	color: white;
-	background-color: #ff6010;
-	border-radius: 10px;
-	overflow-x: hidden;
-	padding: 0.6rem 0.4rem;
-	margin: 0.5rem 0;
-	font-size: 0.8rem;
-	cursor: pointer;
-  }
+.event {
+  display: flex;
+  white-space: nowrap;
+  align-items: center;
+  height: 1rem;
+  color: white;
+  background-color: #ff6010;
+  border-radius: 10px;
+  overflow-x: hidden;
+  padding: 0.6rem 0.4rem;
+  margin: 0.5rem 0;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
 
 .event__type--Meeting {
   color: white;
@@ -649,6 +802,25 @@ i.fa-times-circle {
   padding: 0 0.4rem;
 }
 
+.reminder__popup {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 5%;
+  right: calc(50% - 150px);
+  width: 10%;
+  height: 10%;
+  min-width: 300px;
+  min-height: 100px;
+  border-radius: 15px;
+  padding: 1rem;
+  box-shadow: 0 0 200px -50px;
+  background-color: var(--color2);
+  border: #dadce0 1px solid;
+  z-index: 1;
+}
+
 /*
   ===================================
      ! media queries
@@ -675,8 +847,8 @@ i.fa-times-circle {
     margin-bottom: 0.45rem;
   }
 
-  #calendar {
-    padding: 0.5rem 0.2rem 0.2rem 0.2rem;
+  .cal-padding {
+    padding: 0.2rem;
   }
   .alert__event {
     width: 280px;
@@ -716,6 +888,8 @@ i.fa-times-circle {
   .nav__mobile--main {
     width: 70%;
     max-width: 280px;
+    box-shadow: 0px 0px 109px 60px rgb(136 136 136);
+    right: 0;
   }
   .nav__mobile--event--span {
     font-size: 0.7rem;
@@ -725,6 +899,25 @@ i.fa-times-circle {
     border-radius: 10rem;
     margin: 0.5rem 0;
   }
+  /*
+  ========================
+    CSS MONTH OF YEARS
+  ========================
+  */
+  .calendar__year--row {
+    gap:2%;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  }
+  .calendar__year--month {
+    padding: 0;
+  }
+  .calendar__year--tittle h2 {
+    font-size: 1rem;
+  }
+  .calendar__year--date {
+    gap: 0px;
+    font-size: 0.9rem;
+  }
 }
 
 /* Medium screen */
@@ -732,7 +925,6 @@ i.fa-times-circle {
   #modal > h2 {
     margin: 1rem 0;
   }
-  /*  Mantener CSS HEADER MOBILE  */
   #nav__web {
     display: none;
   }
@@ -746,17 +938,16 @@ i.fa-times-circle {
     margin: 0.5rem 0;
     font-size: 0.8rem;
   }
-
   .more__event {
     font-size: 0.8rem;
   }
 
-  #calendar {
-    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  .cal-padding {
+    padding: 0.5rem;
   }
   .nav__mobile--main {
     width: 70%;
-    max-width: 340px;
+    /*max-width: 340px;*/
   }
   .alert__event {
     width: 360px;
@@ -767,12 +958,10 @@ i.fa-times-circle {
     font-size: 1.6rem;
     margin: 0.5rem 0;
   }
-
   .alert__event p {
     font-size: 1rem;
     margin: 0.5rem 0;
   }
-
   .alert__event p * {
     font-size: 1rem;
   }
@@ -795,20 +984,27 @@ i.fa-times-circle {
     margin: 0.5rem 0;
     padding: 0 0.4rem;
   }
+  /*
+  ========================
+    CSS MONTH OF YEARS
+  ========================
+  */
+  .calendar__year--row {
+    gap:4%;
+    padding: 0.5rem 1rem 1rem 1rem;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .calendar__year--tittle h2 {
+    font-size: 1.4rem;
+  }
+  .calendar__year--date {
+    gap: 6px;
+    font-size: 1rem;
+  }
 }
 
 /* Large screen */
 @media only screen and (min-width: 900px) {
-  /* #modal {
-    width: 50%;
-    height: 60%;
-  } */
-  #nav__web {
-    display: block;
-  }
-  #nav__mobile {
-    display: none;
-  }
   .event {
     height: 1rem;
     border-radius: 10px;
@@ -863,8 +1059,39 @@ i.fa-times-circle {
   }
   .nav__mobile--main {
     width: 70%;
-    max-width: 340px;
+    box-shadow: 0px 0px 899px 380px rgb(136 136 136);
   }
+
+  .reminder__popup {
+    bottom: 30px;
+    right: 50px;
+  }
+  .cal-padding {
+    padding: 1.5rem;
+  }
+  /*
+  ========================
+    CSS MONTH OF YEARS
+  ========================
+  */
+  .calendar__year--row {
+    grid-template-columns: repeat(4, 1fr);
+    gap:4%;
+    padding: 0.5rem 2rem 2rem 2rem;
+    /*height: calc(100% - 55px);*/
+  }
+  .calendar__year--month {
+    padding: 0.2rem;
+  }
+  .calendar__year--tittle h2 {
+    font-size: 1.4rem;
+  }
+  .calendar__year--date {
+    gap: 10px;
+    width: 100%;
+    font-size: 1rem;
+  }
+
 }
 
 /*
@@ -872,6 +1099,43 @@ i.fa-times-circle {
      ! animations
 ===================================
 */
+.fade-in {
+  animation: fadein 0.5s;
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-out {
+  animation: fadeout 1s;
+  animation-fill-mode: forwards;
+}
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.4;
+  }
+}
+
+.slider-main {
+  animation: sliderMain 0.5s alternate;
+}
+
+@keyframes sliderMain {
+  from {
+    left: 110%;
+  }
+  to {
+    left: 30%;
+  }
+}
 .slide-top {
   animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
@@ -886,20 +1150,19 @@ i.fa-times-circle {
 }
 
 .slide-top-a {
-	animation: slide-top-a 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-top-a 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes slide-top-a {
+  0% {
+    transform: translateY(400px);
+    opacity: 0;
   }
-  
-  @keyframes slide-top-a {
-	0% {
-	  transform: translateY(400px);
-	  opacity: 0;
-	}
-	100% {
-	  transform: translateY(0);
-	  opacity: 1;
-	}
+  100% {
+    transform: translateY(0);
+    opacity: 1;
   }
-  
+}
 
 .swing-right-fwd {
   animation: swing-right-fwd 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
@@ -939,3 +1202,15 @@ i.fa-times-circle {
   }
 }
 
+.reminder__popup {
+  animation: slide-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes slide-bottom {
+  0% {
+    transform: translateY(200px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
