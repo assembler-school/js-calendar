@@ -30,8 +30,9 @@ let fechaSeleccionada = document.querySelector(".fechaSeleccionada");
 // Pesco el div donde se guardaran los eventos
 let events = document.querySelector(".events");
 
-let localStorageEvents = localStorage.getItem(inputDateValue.value) ? JSON.parse(localStorage.getItem(inputDateValue.value)) : [];
-const calendar = document.querySelector('.calendar');
+let localStorageEvents = [];
+// let localStorageEvents = localStorage.getItem(inputDateValue.value) ? JSON.parse(localStorage.getItem(inputDateValue.value)) : [];
+// const calendar = document.querySelector('.calendar');
 
 // Get the modal
 let modal = document.getElementById("myModal");
@@ -77,23 +78,26 @@ function reminderShowSelectBox() {
 } // End function
 //This function saved the event in the local Stroage
 function saveEvent() {
-    if (inputTitleKey.value) {
-        inputTitleKey.classList.remove('error');
+    let picked_Day = JSON.parse(localStorage.getItem(inputDateValue.value));
+    console.log(picked_Day);
+    //if (inputDateValue && p){}
+    if(picked_Day == null){
 
-        localStorageEvents.push({
-            setDay: inputDateValue.value,
-            title: inputTitleKey.value,
-            end_date: endDate.value,
-            time: inputTimedValue.value,
-            reminder: inputReminderValue.value,
-            event_type: inputEventTypeValue.value,
-            Description: inputDescriptionValue.value
+      picked_Day = [];
 
-        });
-        localStorage.setItem(inputDateValue.value, JSON.stringify(localStorageEvents));
-    } else {
-        inputTitleKey.classList.add('error');
     }
+    picked_Day.push({
+      setDay: inputDateValue.value,
+      title: inputTitleKey.value,
+      end_date: endDate.value,
+      time: inputTimedValue.value,
+      reminder: inputReminderValue.value,
+      event_type: inputEventTypeValue.value,
+      Description: inputDescriptionValue.value
+
+    });
+    localStorage.setItem(inputDateValue.value, JSON.stringify(picked_Day));
+    //location.reload();
 }
 
 /*************************************************/
