@@ -22,4 +22,4 @@ var currentTimeout;
 var calendarEvents = {};
 var reminders = {};
 
-var device
+var device = '';

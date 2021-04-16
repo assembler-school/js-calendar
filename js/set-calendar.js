@@ -17,18 +17,19 @@ function previousButton(){
     if(month === 12) {
       month = 0;
       year += 1;
-    }else if(month === 0){
+    }else if(month === -1){
       month = 11;
       year -= 1;
     }
     clearMonthCalendar();
     calendarMonthConstructor(month,year);
-    console.log(month);
   };
   if(calendarView == 'year-view'){
     year -= 1;
     clearYearCalendar();
     calendarConstructor(year);
+    checkResponsive();
+
   };
 };
 
