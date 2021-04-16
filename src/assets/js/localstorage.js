@@ -95,4 +95,7 @@ function createEvent() {
     localStorage.setItem("eventIndex", JSON.stringify(eventIndex));
     renderCalendar();
     enableArrowKeys();
+    document.getElementById("m-createBtn").disabled = true;
+    createButton.style.opacity = 0.5;
+    checkTodayReminders();
 }

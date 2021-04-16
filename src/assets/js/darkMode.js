@@ -2,6 +2,7 @@ const storage = window.localStorage;
 const cal = document.getElementById('main');
 const Darkdays = document.getElementById('modal-event-div');
 const checkboxDm = document.getElementById('checkboxDM');
+const darkWeek = document.querySelector(".weekdays");
 
 const intializeDarkMode =() =>{
     let darkmodeEnabled =

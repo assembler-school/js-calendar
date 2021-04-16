@@ -43,7 +43,7 @@ main {
 !=======================================
 */
 header {
-  max-height: 150px;
+  /*max-height: 150px;*/
   min-height: 65px;
   padding: 5px;
   height: 20vh;
@@ -67,15 +67,12 @@ header.winter{
   background-image: url("/src/assets/img/bgWinter.png");
 }
   /* Dark Mode */
-  .container{
-    margin-top: 8px;
-    margin-left: 5px;
-  }
   .switch {
     display: flex;
     height: 36px;
     position: relative;
     width: 70px;
+    z-index: 1;
   }
 
   .switch input {
@@ -182,7 +179,7 @@ h1 {
 
 .page-title {
   display: inline-block;
-  width: 238px;
+  width: 280px;
   background-color: var(--darkGray);
   color: var(--lightestGray);
   border-radius: 10px;
@@ -208,6 +205,7 @@ h1 {
 .btn-add-event {
   position: absolute;
   margin: 10px 0;
+  margin-top: 2em;
   right: 10px;
   top: 10px;
   font-size: 1.4rem;
@@ -259,6 +257,8 @@ h1 {
   color: var(--darkestGray);
   background-color: var(--winterSnow);
 }
+
+
 #current-date{
   position: absolute;
   left: 10px;
@@ -346,7 +346,7 @@ main{
   color: var(--lightGray);
 }
 .today {
-  background-color: var(--lightestGray);
+  background-color: var(--eventGreen);
   color: white;
 }
 
@@ -511,15 +511,36 @@ main{
         font-size: 11px;
     }
     header {
-        text-align: left;
+        text-align: center;
+    }
+
+    .page-title{
+      width: 200px;
+    }
+
+    .btn-add-event{
+      height: 28px;
+      margin-top: 2.7em;
+      border-radius: 5px;
+      padding: 5px;
+      position: absolute;
+    }
+    #modal-content,
+    #modal-event-content {
+      min-width: 290px !important;
+      width: 160px !important;
+      height: auto;
+      font-size: 9px;
+    }
+
+    label{
+      margin-top: .5em;
+      margin-left: .2em;
     }
 }
 @media only screen and (max-width: 400px)  {
     html {
         font-size: 8px;
-    }
-    .btn-add-event {
-      font-size: 1.2rem;
     }
 
     #current-date {
@@ -529,24 +550,120 @@ main{
     .weekdays {
       font-size: 12px;
     }
+
     #modal-content,
     #modal-event-content {
-      min-width: 240px !important;
+      min-width: 270px !important;
       width: 160px !important;
       height: auto;
       font-size: 9px;
     }
 
+    header{
+      display: flex;
+      flex-direction: row;
+    }
+
+    .left-side{
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #current-date{
+      font-size: 1em;
+    }
+
+    .dark-mode{
+      width: 40%;
+      margin-bottom: 3.5em;
+    }
+
+   .page-title{
+      width: 100px;
+      padding: 10px 20px;
+      font-size: 1.8em;
+      text-align: center;
+      margin-bottom: 1.9em;
+    }
+
+    .btn-add-event{
+      position: absolute;
+      right: 10px;
+      top: 77px;
+      font-size: 1.3rem;
+    }
+
+    .btn-next-prev{
+      height: 40px;
+      margin-bottom: 2em;
+    }
 }
+
+@media only screen and (height: 640px){
+  .btn-add-event{
+    position: absolute;
+    right: 10px;
+    top: 65px;
+    font-size: 1.1rem;
+  }
+
+  .btn-next-prev{
+    height: 30px;
+    margin-bottom: 2em;
+  }
+
+  .page-title{
+    margin-top: .5em;
+  }
+
+}
+
+@media only screen and (height: 568px){
+  .btn-add-event{
+    position: absolute;
+    right: 10px;
+    top: 51px;
+    font-size: 1.1rem;
+  }
+
+  .btn-next-prev{
+    height: 30px;
+    margin-bottom: 2em;
+  }
+
+  .page-title{
+    margin-top: .5em;
+  }
+
+  #modal-content{
+    min-width: 230px !important;
+    width: 160px !important;
+    height: 540px;
+    font-size: 9px;
+    padding: 10px !important;
+    margin: 92px auto 0 auto !important;
+  }
+
+  #modal-event-content{
+    font-size: 1.5em;
+  }
+}
+
 @media only screen and (max-width: 300px) {
   html {
     font-size: 7px;
   }
+
   .btn-add-event {
-    font-size: 1.2rem;
+    position: absolute;
+    right: 10px;
+    top: 70px;
+    font-size: 1.1rem;
   }
   #current-date {
-    font-size: 12px;
+    font-size: 1em;
   }
   .weekdays {
     font-size: 12px;
@@ -601,6 +718,10 @@ input, select {
   border-radius: 5px;
   overflow: auto;
 }
+label{
+  margin-left: .3em;
+  margin-top: .2em;
+}
 .modal-header {
   display: flex;
   flex-direction: row;
@@ -619,6 +740,9 @@ input, select {
   font-size: xx-large;
   color: var(--darkestGray);
   background-color: transparent;
+}
+.modal-button.fa-window-close:hover {
+  transform: scale(1.05);
 }
 .modal-input {
   display: flex;
@@ -659,6 +783,9 @@ input, select {
   border-radius: 5px;
   height: 44px;
 }
+.m-action-button:hover {
+  transform: scale(1.05);
+}
 .incorrect {
   border: 2px solid red;
 }
@@ -679,6 +806,7 @@ input, select {
 
 .m-action-button:disabled {
   opacity: 0.5;
+  transform: scale(1);
 }
 
 /*
@@ -740,6 +868,9 @@ input, select {
   color: var(--darkestGray);
   background-color: transparent;
 }
+.modal-event-button.fa-window-close:hover {
+  transform: scale(1.05);
+}
 .modal-event-input {
   display: flex;
   flex-direction: row;
@@ -770,7 +901,7 @@ input, select {
   z-index: 1;
   width: 240px;
   top: 20 px;
-  right: 20px;
+  right: 0.5vw;
 }
 .reminderContainer {
   border-radius: 5px;
@@ -780,5 +911,9 @@ input, select {
   text-align: center;
 }
 .reminderBtn{
-  border-color: var(--eventOrange);
+  padding: 2px;
+  background-color: var(--eventOrange);
+  border-style: none;
+  border-radius: 2px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 }
