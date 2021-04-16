@@ -53,6 +53,11 @@ function sortRemindersList(remindersList, sign){
       });
 }
 
+function alarmSound() {
+    let audio = new Audio('../sound/alarm.m4a');
+    audio.play();
+}
+
 function startNextAlarmTimeout(){
     if(nextRemindersList.length){
         let timeLeft = Date.parse(nextRemindersList[0].reminderDate) - Date.now();
@@ -63,7 +68,7 @@ function startNextAlarmTimeout(){
             let initialDate = nextRemindersList[0].initialDate;
             initialDate = new Date(initialDate).toLocaleString('en-UK', optDate);
             modalForReminders(title, initialDate, id);
-
+            alarmSound();
             pastRemindersList.unshift(nextRemindersList.shift());
             loadPastRemindersWarningCounter();
             startNextAlarmTimeout();
