@@ -158,16 +158,13 @@ function modalWarningBoxEnters(event) {
     warningBox.innerHTML = '';
     warningBox.style.transition = '0.2s ease-in';
     warningBox.classList.toggle("past-reminders-container");//changes heigth and width inits transition
-    let i=1;
     for (reminder of pastRemindersList){
-        
         let displayedReminder = document.createElement("p");
         displayedReminder.classList.add("warning-reminder-text");
         warningBox.appendChild(displayedReminder);
-        displayedReminder.appendChild(document.createTextNode(i+' '+reminder.eventTitle + ' - ' + reminder.reminderDate));
+        displayedReminder.appendChild(document.createTextNode(reminder.eventTitle + ': ' + reminder.reminderDate));
         displayedReminder.id = reminder.id;
         displayedReminder.addEventListener('click', modalForWarningBoxReminders);
-        i++;
     }
     warningBox.removeEventListener('click', modalWarningBoxEnters);
     warningBox.addEventListener('focusout', modalWarningBoxLeaves);
