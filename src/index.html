@@ -17,19 +17,26 @@
 
 <body>
     <header id="header">
-            <div class="container">
+        <div class="left-side">
+            <div class="dark-mode">
                 <label class="switch" for="checkboxDM">
                 <input type="checkbox" id="checkboxDM" />
                 <div class="slider round"></div>
                 <div class="toggle-moon"></div>
                 <div class="toggle-sun"></div>
                 </label>
-            </div>
-            <button class="btn-next-prev" id="prevMonth"><i class="fas fa-arrow-left"></i></button>
-            <h1 id="monthYear" class="page-title"></h1>
-            <button class="btn-next-prev" id="nextMonth"><i class="fas fa-arrow-right"></i></button>
-            <button id="modal-open-button" class="btn-add-event"><i class="far fa-calendar-plus"></i> New Event</button>
-            <div id="current-date">8 April 2021</div>
+            </div>   
+            
+        
+            
+                <button class="btn-next-prev" id="prevMonth"><i class="fas fa-arrow-left"></i></button>
+                <h1 id="monthYear" class="page-title"></h1>
+                <button class="btn-next-prev" id="nextMonth"><i class="fas fa-arrow-right"></i></button>
+                <div id="current-date">8 April 2021</div>
+            
+                <button id="modal-open-button" class="btn-add-event"><i class="far fa-calendar-plus"></i> New Event</button>
+        </div>   
+            
 
     </header>
     <main id="main">
@@ -86,7 +93,7 @@
                 </div>
                 <div class="modal-input">
                     <label for="description">Description</label>
-                    <textarea name="description" id="description" cols="30" rows="10" maxlength="500"></textarea>
+                    <textarea name="description" id="description" cols="30" rows="6" maxlength="500"></textarea>
                 </div>
                 <div class="modal-input">
                     <label for="event-type">Event type</label>
@@ -132,7 +139,7 @@
                 <textarea name="description" id="modal-event-description" cols="30" rows="10" readonly>Description</textarea>
             </div>
             <div class="modal-event-footer">
-                <button id="modal-event-edit-btn" class="m-action-button">delete</button>
+                <button id="modal-event-edit-btn" class="m-action-button">Delete</button>
             </div>
         </div>
     </section>
