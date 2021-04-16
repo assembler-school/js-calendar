@@ -548,7 +548,6 @@ i.fa-times-circle {
   }
 
 .event__type--Personal {
-	color: rgb(61, 61, 61);
 	background-color: var(--color7);
   color: white;
   }
@@ -610,20 +609,37 @@ i.fa-times-circle {
   font-size: 0.8rem;
 }
 .alert__icons {
-  align-self: flex-end;
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.alert__icons--left {
+  width: inherit;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+}
+.alert__icons--right {
+  width: inherit;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
 }
 .fa-times {
   font-size: 1.2rem;
-  display: flex;
-  justify-content: flex-end;
+  margin-right: 5%;
 }
 .fa-pencil-alt {
   font-size: 1rem;
+  margin-left: 5%;
 }
 .fa-trash-alt {
   font-size: 1.1rem;
-  margin-left: 3%;
+  margin-left: 15%;
 }
 .event__description {
   font-size: 0.8rem;
@@ -680,15 +696,15 @@ i.fa-times-circle {
   }
   .fa-times {
     font-size: 1.2rem;
-    display: flex;
-    justify-content: flex-end;
+    margin-right: 5%;
   }
   .fa-pencil-alt {
     font-size: 1rem;
+    margin-left: 5%;
   }
   .fa-trash-alt {
-    font-size: 1rem;
-    margin-left: 3%;
+    font-size: 1.1rem;
+    margin-left: 15%;
   }
   .event__description {
     font-size: 0.8rem;
@@ -762,15 +778,15 @@ i.fa-times-circle {
   }
   .fa-times {
     font-size: 1.2rem;
-    display: flex;
-    justify-content: flex-end;
+    margin-right: 5%;
   }
   .fa-pencil-alt {
     font-size: 1rem;
+    margin-left: 5%;
   }
   .fa-trash-alt {
     font-size: 1.1rem;
-    margin-left: 3%;  
+    margin-left: 15%;
   }
   .event__description {
     font-size: 0.9rem;
@@ -821,16 +837,16 @@ i.fa-times-circle {
     font-size: 1.2rem;
   }
   .fa-times {
-    font-size: 1.4rem;
-    display: flex;
-    justify-content: flex-end;
+    font-size: 1.2rem;
+    margin-right: 5%;
   }
   .fa-pencil-alt {
-    font-size: 1.2rem;
+    font-size: 1rem;
+    margin-left: 5%;
   }
   .fa-trash-alt {
-    font-size: 1.3rem;
-    margin-left: 3%;
+    font-size: 1.1rem;
+    margin-left: 15%;
   }
   .event__description {
     font-size: 1.1rem;

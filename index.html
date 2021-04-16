@@ -129,7 +129,7 @@
         <div id="shadow" class="close">
             <div id="modal" class="slide-top">
                 <i class="fas fa-times-circle close"></i>
-                <h2 id="modal__title">New event</h2>
+                <h2>New event</h2>
                 <form action="">
                     <div class="shadow__input--stretch">
                         <label for="title">Title:</label>
@@ -183,7 +183,74 @@
                         </select>
                     </div>
                     <div class="shadow__btn">
-                        <input id="modal__btn1" type="submit" value="Create">
+                        <input type="submit" value="Create">
+                        <button class="close">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </template>
+
+    <!-- ? Edit Template -->
+    <template id="edit-template">
+        <div id="shadow" class="close">
+            <div id="modal" class="slide-top">
+                <i class="fas fa-times-circle close"></i>
+                <h2>Edit event</h2>
+                <form id="edit__form" action="">
+                    <div class="shadow__input--stretch">
+                        <label for="title">Title:</label>
+                        <input class="" type="text" name="title" title="This field is required" max-length="60"
+                            required>
+                    </div>
+
+                    <div class="shadow__input--stretch">
+                        <label for="init-date">Initial date:</label>
+                        <input type="datetime-local" name="init-date" title="Please enter a valid date" required>
+                    </div>
+
+                    <div class="shadow__input--start">
+                        <input type="checkbox" name="end-check">
+                        <label for="end-check">End date</label>
+                    </div>
+
+                    <div class="shadow__input--stretch">
+                        <label for="end-date">End date:</label>
+                        <input type="date" name="end-date" disabled>
+                    </div>
+
+                    <div class="shadow__input--start">
+                        <input type="checkbox" name="reminder">
+                        <label for="reminder">Add reminder</label>
+                    </div>
+
+                    <div class="shadow__input--stretch">
+                        <label for="select-time">Time:</label>
+                        <select name="select-time">
+                            <option value="5">5 minutes</option>
+                            <option value="15">15 minutes</option>
+                            <option value="30">30 minutes</option>
+                            <option value="60">1 hour</option>
+                        </select>
+                    </div>
+
+                    <div class="shadow__input--stretch">
+                        <label for="description">Description:</label>
+                        <textarea name="description" cols="30" rows="10" maxlength="500"></textarea>
+                    </div>
+
+                    <div class="shadow__input--stretch">
+                        <label for="select-event">Event type:</label>
+                        <select name="select-event">
+                            <option value="Meeting">Meeting</option>
+                            <option value="Birthday">Birthday</option>
+                            <option value="Personal">Personal</option>
+                            <option value="Study">Study</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="shadow__btn">
+                        <input type="submit" value="Save">
                         <button class="close">Cancel</button>
                     </div>
                 </form>
@@ -196,9 +263,13 @@
         <div id="alert__shadow" class="close">
             <div class="alert__event">
                 <div class="alert__icons">
-                    <i class="fas fa-pencil-alt edit"></i>
-                    <i class="far fa-trash-alt remove"></i>
-                    <i class="fas fa-times close"></i>
+                    <div class="alert__icons--left">
+                        <i class="fas fa-pencil-alt edit"></i>
+                        <i class="far fa-trash-alt remove"></i>
+                    </div> 
+                    <div class="alert__icons--right">
+                        <i class="fas fa-times close"></i>
+                    </div>
                 </div>
                 <h2 id="modal__title" class="event__title"></h2>
                 <hr>

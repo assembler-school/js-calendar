@@ -44,10 +44,13 @@ export function renderEvents(year, month) {
     let allEvents = calendarEvent.fromLocalStorage();
 
     if (allEvents) {
-    let monthEvents = allEvents.filter ((allEvents) => new Date(allEvents["init-date"]).getFullYear() === year && new Date(allEvents["init-date"]).getMonth() === month);
+    let monthEvents = allEvents.filter ((ev) => new Date(ev["init-date"]).getFullYear() === year && new Date(ev["init-date"]).getMonth() === month);
 
     /* Create the events in calendar and set its HTML attributes */
     monthEvents.forEach(function (monthEvents){
+        if(d.querySelector(`[data-eventid="event${monthEvents.id}"]`)) {
+            d.querySelector(`[data-eventid="event${monthEvents.id}"]`).remove()
+        }
         let eventDiv = document.createElement("div");
         eventDiv.setAttribute("data-eventid","event" + monthEvents.id);
         eventDiv.setAttribute("class","event event__type--" + monthEvents["select-event"]);

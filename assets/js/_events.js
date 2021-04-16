@@ -94,10 +94,7 @@ calendarEvent.printDataToAlert = function (obj) {
  */
 calendarEvent.printDataToEdit = function (obj) {
   /* Change elements of 'New event' modal to 'Edit event' modal */
-  const d = document;
-  const form = document.querySelector("[action='']");
-  d.getElementById("modal__title").innerHTML = "Edit event";
-
+  const form = document.getElementById("edit__form");
   form.elements["title"].value = obj.title;
   form.elements["init-date"].value = obj["init-date"];
   form.elements["end-check"].checked = obj["end-check"];
@@ -106,20 +103,6 @@ calendarEvent.printDataToEdit = function (obj) {
   form.elements["select-time"].value = obj["select-time"];
   form.elements["description"].value = obj.description;
   form.elements["select-event"].value = obj["select-event"];
-
-  d.getElementById("modal__btn1").value = "Save";
-  /* Event listener to modify event */
-  d.getElementById("modal__btn1").addEventListener("click", function () {
-    obj.title=form.elements["title"].value;
-    obj["init-date"]=form.elements["init-date"].value;
-    obj["end-check"]=form.elements["end-check"].checked;
-    obj["end-date"]=form.elements["end-date"].value;
-    obj["reminder"]=form.elements["reminder"].checked;
-    obj["select-time"]=form.elements["select-time"].value;
-    obj.description=form.elements["description"].value;
-    obj["select-event"]=form.elements["select-event"].value;
-    console.log(obj);
-  });
 };
 
 /*
@@ -127,26 +110,31 @@ calendarEvent.printDataToEdit = function (obj) {
  */
 calendarEvent.removeEvent = function (obj) {
   let allEvents = calendarEvent.fromLocalStorage();
-  allEvents = allEvents.filter ((allEvents) => allEvents.id !== obj.id);
+  allEvents = allEvents.filter ((ev) => ev.id !== obj.id);
   localStorage.setItem('events', JSON.stringify(allEvents));
 
   const removed = document.querySelector('[data-eventid="event' + obj.id + '"]')
   removed.remove();
 };
 
-
-//!! modifyEvent deprecated
 /*
  * This modifies stored event
  */
-calendarEvent.modifyEvent = function (id, obj) {
-  const ls = localStorage;
-  const _data = calendarEvent.fromLocalStorage(),
-    _dataFiltered = _data.filter((ev) => ev.id === id),
-    [_event] = _dataFiltered;
-  _data[_event.id] = obj;
-  ls.setItem("events", JSON.stringify(_data));
+calendarEvent.modifyEvent = function (obj) {
+  const form = document.getElementById("edit__form");
+  obj.title           =form.elements["title"].value;
+  obj["init-date"]    =form.elements["init-date"].value;
+  obj["end-check"]    =form.elements["end-check"].checked;
+  obj["end-date"]     =form.elements["end-date"].value;
+  obj["reminder"]     =form.elements["reminder"].checked;
+  obj["select-time"]  =form.elements["select-time"].value;
+  obj.description     =form.elements["description"].value;
+  obj["select-event"] =form.elements["select-event"].value;
 
+  let allEvents = calendarEvent.fromLocalStorage();
+  const index = allEvents.findIndex(ev => ev.id === obj.id);
+  allEvents[index]=obj;
+  localStorage.setItem("events", JSON.stringify(allEvents));
 };
 
 /*

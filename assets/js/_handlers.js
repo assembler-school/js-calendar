@@ -28,7 +28,7 @@ export function handleDocumentEvents() {
     /*
      * form validation
      */
-    if (e.target.matches('input[type="submit"]')) {
+    if (e.target.matches('input[value="Create"]')) {
       e.preventDefault();
 
       if (!formValidation(e, true)) {
@@ -87,8 +87,21 @@ export function handleDocumentEvents() {
      * Click in edit event
      */
     if (e.target.matches(".edit")) {
-      swapTemplate("modal-template", "modal-section");
+      swapTemplate("edit-template", "modal-section");
       calendarEvent.printDataToEdit(_event);
+    }
+
+    /*
+     * Form validation for edit
+     */
+    if (e.target.matches('input[value="Save"]')) {
+      e.preventDefault();
+
+      if (!formValidation(e, true)) {
+        calendarEvent.modifyEvent(_event);
+        removeTemplate("edit-template", "modal-section");
+        render.renderEvents(updatedYear, updatedMonth);
+      }
     }
 
     /*
