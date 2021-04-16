@@ -150,20 +150,40 @@ function removeCustomReminderAlert() {
     currentDateForBlur.removeAttribute('style');
 }
 
-function modalWarningBoxEnters() {
-    console.log('enters warningbox');
-    let warningBox = document.querySelector('.warningBox-btn');
+function modalWarningBoxEnters(event) {
+    //let warningBox = document.querySelector('.warningBox-btn');
+    let warningBox = event.target
     warningBox.innerHTML = '';
-    warningBox.style.transition = 'all 0.8s ease-in';
-    warningBox.id = "past-reminders-container";//changes heigth and width inits transition
-    warningBox.addEventListener('mouseleave', modalWarningBoxLeaves);
+    warningBox.style.transition = '0.2s ease-in';
+    warningBox.classList.toggle("past-reminders-container");//changes heigth and width inits transition
+    let i=1;
+    for (reminder of pastRemindersList){
+        
+        let displayedReminder = document.createElement("p");
+        displayedReminder.classList.add("warning-reminder-text");
+        warningBox.appendChild(displayedReminder);
+        displayedReminder.appendChild(document.createTextNode(i+' '+reminder.eventTitle + ' - ' + reminder.reminderDate));
+        displayedReminder.id = reminder.id;
+        displayedReminder.addEventListener('click', modalForWarningBoxReminders);
+        i++;
+    }
+    warningBox.removeEventListener('click', modalWarningBoxEnters);
+    warningBox.addEventListener('focusout', modalWarningBoxLeaves);
 }
 
 function modalWarningBoxLeaves() {
-    console.log('leaves warningbox');
     let warningBox = document.querySelector('.warningBox-btn');
     warningBox.style.transition = 'none';
-    warningBox.removeEventListener('mouseleave', modalWarningBoxLeaves);
-    warningBox.id = '';
+    warningBox.removeEventListener('focusout', modalWarningBoxLeaves);
+    warningBox.classList.toggle("past-reminders-container");//changes heigth and width inits transition
     loadPastRemindersWarningCounter();
+    warningBox.addEventListener('click', modalWarningBoxEnters);
+
+}
+
+function modalForWarningBoxReminders(event){
+    let displayedReminder = pastRemindersList.filter(reminder => reminder.id === event.target.id)[0];
+    console.log(displayedReminder.id + ' matches ' + event.target.id);
+
+    modalForReminders(displayedReminder.eventTitle, displayedReminder.initialDate, displayedReminder.id);
 }

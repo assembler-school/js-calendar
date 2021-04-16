@@ -60,7 +60,7 @@ document.addEventListener("keyup", e => {
 document.getElementById("endDateCheckboxId").addEventListener('click', setCheckboxVisibility);
 document.getElementById("reminderCheckboxId").addEventListener('click', setCheckboxVisibility);
 
-document.querySelector(".warningBox-btn").addEventListener('mouseenter', modalWarningBoxEnters);
+document.querySelector(".warningBox-btn").addEventListener('click', modalWarningBoxEnters);
 
 function showModalWithDay(id) { //set calendar with selected day
     showModal();
