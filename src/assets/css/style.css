@@ -428,6 +428,8 @@ main{
   overflow: hidden;
   opacity: 0;
   backdrop-filter: blur(0px);
+  transition: opacity 0.2s, backdrop-filter 0.2s, background-color 0.2s, opacity 0.2s, height 0s 0.4s;
+  background-color: rgba(255, 255, 255, 0);
 }
 input, select {
   height: 44px;
@@ -441,11 +443,9 @@ input, select {
   height: 200vh;
   width: 100vw;
   background-color: rgba(0,0,0,0.4);
-  transition: opacity 0.4s;
-  transition: backdrop-filter 2s;
+  transition: opacity 0.4s, background-color 0.4s 0.4s, backdrop-filter 0.8s 0.4s;
   opacity: 1;
   backdrop-filter: blur(3px);
-  /* transition-delay: height 0.2s; */
 }
 #modal-content {
   display: flex;
@@ -551,18 +551,19 @@ input, select {
   overflow: hidden;
   opacity: 0;
   backdrop-filter: blur(0px);
+  transition: opacity 0.2s, backdrop-filter 0.2s, background-color 0.2s, opacity 0.2s, height 0s 0.4s;
+  background-color: rgba(255, 255, 255, 0);
 }
 #modal-event-section {
   display: block;
   position: fixed;
   z-index: 1;
   left: 0;
-  top: 0;
-  height: 100vh;
+  top: -80px;
+  height: 200vh;
   width: 100vw;
   background-color: rgba(0,0,0,0.4);
-  transition: opacity 0.4s;
-  transition: backdrop-filter 2s;
+  transition: opacity 0.4s, background-color 0.4s 0.4s, backdrop-filter 0.8s 0.4s;
   opacity: 1;
   backdrop-filter: blur(3px);
 }
