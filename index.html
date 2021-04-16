@@ -9,6 +9,8 @@
 
     <!---------------- LINKS ---------------->
     <link rel="stylesheet" href="assets/style/style.css">
+    <!-- Link a la web de GOOGLE ICONS para usar sus iconos via online-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Font aswesome link de Erick-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -48,6 +50,7 @@
             <!-- Events -->
             <div class="events">
                 <h1 class="fechaSeleccionada">Eventos para el dia de hoy: </h1>
+                <div class ="no_events_pickeds">No tienes eventos :(</div>
             </div>
 
         </main>
@@ -120,13 +123,12 @@
             </div>
 
             <div class="float__checkbox">
-                <p id="timer-msg"></p>
-                <div class="switch-wrapper">
-                    <label class="switch" for="checkbox">
-            <input type="checkbox" id="checkbox" />
-            <div class="slider round"></div>
-            </label>
-                </div>
+                <label class="switch" for="checkbox">
+                    <i class="material-icons moon">dark_mode</i>
+                    <i class="material-icons sun">brightness_medium</i>
+                    <input type="checkbox" id="checkbox"/>
+                    <div class="slider round"></div>
+                </label>
             </div>
         </footer>
 

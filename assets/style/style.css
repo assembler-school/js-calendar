@@ -10,6 +10,7 @@
 html {
     font-size: 62.5%;
     background-color:var(--main-background);
+    transition: all ease 1000ms;
 }
 
 main{
@@ -55,10 +56,11 @@ footer{
 .calendar {
     width: 100%;
     height: 100%;
-    background-color: rgb(0, 0, 0);
+    background-image: var(--gradient-pinky);
     border-radius: 1%;
-    color: var(--p);
     overflow: hidden;
+    background-size: 300%;
+	animation: title-animation 10s infinite alternate;
     z-index: 500;
 }
 
@@ -67,11 +69,12 @@ footer{
     height: 100%;
     position: absolute;
     left: 5%;
-    background-color: rgb(128, 128, 128);
+    background-color: var(--shadow_1);
     border-radius: 1%;
     overflow: hidden;
     z-index: 300;
     transform: scale(0.82);
+    transition:var(--transition_low);
 }
 
 .calendar__shadow__2 {
@@ -79,41 +82,47 @@ footer{
     height: 100%;
     position: absolute;
     left: 7%;
-    background-color: rgb(49, 49, 49);
+    background-color: var(--shadow_2);
     border-radius: 1%;
     overflow: hidden;
     z-index: 200;
     transform: scale(0.80);
+    transition:var(--transition_low);
 }
 
 .month {
     width: 100%;
     height: 15%;
-    background-color: rgb(92, 92, 92);
+    background-color: var(--month_main_bg);
     display: flex;
     justify-content: space-between;
     text-align: center;
     align-items: center;
+    transition:var(--transition_high);
 }
 
 .month i {
     font-size: 2.5rem;
     cursor: pointer;
     z-index: 600;
-    color: darkgoldenrod;
+    color: var(--arrows);
     padding: 0px 10%;
+    transition:var(--transition_high);
 }
 
 .month h2 {
     font-size: 3rem;
-    font-weight: 400;
+    font-weight: bolder;
     text-transform: uppercase;
+    color: var(--month_title);
     letter-spacing: 0.2rem;
     margin-bottom: 1rem;
 }
 
 .month p {
     font-size: 1.6rem;
+    color: var(--year_title);
+    transition: var(--transition_low);
 }
 
 .weekdays {
@@ -122,6 +131,7 @@ footer{
     padding: 0 0.4rem;
     display: flex;
     align-items: center;
+    background-color: transparent;
 }
 
 .weekdays div {
@@ -142,20 +152,23 @@ footer{
     flex-wrap: wrap;
     padding-left: 1%;
     padding-right: 1%;
+    background-color: transparent;
 }
 
 .days div {
-    font-size: 1.4rem;
+    font-size: 250%;
     width: calc(100%/7);
     display: flex;
     justify-content: center;
     align-items: center;
+    color: var(--general_p);
     transition: background-color 0.2s;
-    border: solid 1px white;
+    outline: solid 1px var(--general_p);
 }
 
 .days div:hover:not(today) {
-    background-color: rgb(168, 168, 168);
+    background-color: rgb(255, 255, 255);
+    color: black;
     cursor: pointer;
 }
 
@@ -168,23 +181,28 @@ footer{
     background-color: orange;
 }
 
-/* *********************************
--------------- DARCK MODE --------------
-********************************* */
-.float__checkbox{
-    position: absolute;
-    left:95%;
-    padding-bottom: 1%;
-    z-index: 10000;
+footer div h4{
+    font-size:150%;
+    font-weight:lighter;
+    color:var(--general_p);
 }
 
-.switch-wrapper {
-    text-align: right;
+footer div h1{
+    font-size: 200%;
+    font-weight: bold;
+    color: var(--general_p);
+}
+/* *********************************
+-------------- DARK MODE --------------
+********************************* */
+.float__checkbox{
+position: absolute;
+left:95%;
 }
 
 .switch {
-display: inline-block;
-height: 36px;
+display: flex;
+height: fit-content;
 position: relative;
 }
 
@@ -193,27 +211,20 @@ display: none;
 }
 
 .slider {
-background-color: rgba(134, 130, 130, 0.61);
-bottom: 0;
+background-color: rgb(177, 177, 177);
 cursor: pointer;
-left: 2px;
-position: absolute;
-right: 0;
-top: 15px;
+position: relative;
 transition: 0.4s;
 }
 
 .slider:before {
-background-color: #fff;
-bottom: 1px;
+background-color:var(--slider_ball);
+bottom: 0.8px;
 content: "";
 left: 1px;
 position: absolute;
 transition: 0.4s;
-}
-
-input:checked + .slider {
-background-color: #5050508f;
+z-index: 10;
 }
 
 input:checked + .slider:before {
@@ -232,24 +243,109 @@ height: 16px;
 width: 16px;
 }
 
-html[mode-changes = "light"] {
-    --main-background: rgb(255, 255, 255);
-    --p:black;
+.sun{
+    color: black;
+    transform: scale(.6);
+    z-index: 1;
+    position: absolute;
+    left: -3px;
+    top: -2.5px;
 
+}
+.moon{
+    color: black;
+    transform: scale(.6);
+    z-index: 1;
+    position: absolute;
+    top: -3px;
+    left: 14px;
+}
+
+html[mode-changes = "light"] {
+    /*------ Background colors --------*/
+    --main-background: rgb(255, 255, 255);
+    --calendar_main_bg:white;
+    --month_main_bg:rgb(5, 5, 5);
+    --days_main_bg:rgb(180, 180, 180);
+    --shadow_1:rgba(172, 114, 177, 0.6);
+    --shadow_2:rgba(191, 221, 250, 0.2);
+    --scrollbar:rgb(0, 0, 0);
+    --scrollbar_thumb:orange;
+    --slider_ball:rgb(255, 0, 191);
+    --meeting:rgb(235, 138, 230);
+    --study:orange;
+    --personal:rgb(0, 0, 0);
+    /*------ Letters colors --------*/
+    --general_p:black;
+    --general_p_inverted:white;
+    --fechaTitle:rgb(0, 0, 0);
+    --days_color_p:rgb(0, 0, 0);
+    --month_title:rgb(233, 233, 233);
+    --year_title:rgb(163, 0, 0);
+    --arrows:rgb(255, 255, 255);
+    /*------ Gradients Colors --------*/
+    --gradient-pinky:linear-gradient(
+        45deg,
+        #845ec2,
+        #d65db1,
+        #ffffe0);
 }
 
 /* variable customizada*/
 :root{
-    --main-background: rgb(38, 38, 59);
-    --p:white;
+    /*------ Background colors --------*/
+    --main-background: rgb(0, 0, 0);
+    --calendar_main_bg:rgb(0, 0, 0);
+    --month_main_bg:rgb(70, 22, 30);
+    --days_main_bg:black;
+    --shadow_1:rgba(95, 95, 95, 0.8);
+    --shadow_2:rgba(65, 65, 65, 0.5);
+    --transition_low:background ease-in 1000ms;
+    --transition_high:background ease-in 500ms;
+    --scrollbar:rgb(70, 22, 30);
+    --scrollbar_thumb:rgb(240, 0, 0);
+    --slider_ball:rgb(70, 22, 30);
+    --meeting:rgb(70, 22, 30);
+    --study:orange;
+    --personal:white;
+    /*------ Letters colors --------*/
+    --general_p:white;
+    --general_p_inverted:rgb(0, 0, 0);
+    --fechaTitle:white;
+    --days_color_p:white;
+    --month_title:rgb(255, 255, 255);
+    --year_title:black;
+    --arrows:rgb(0, 0, 0);
+    /*------ Gradients Colors --------*/
 	--gradient-pinky:linear-gradient(
 			45deg,
-			#845ec2,
-			#d65db1,
-			#ff6f91,
-			#ff9671,
-			#ffc75f,
-			#f9f871);
+			#b4b4b4,
+			#7a7a7a,
+			#202020);
+}
+
+.fun{
+	border:white 2px solid;
+	cursor:pointer;
+	background-image: var(--month_title);
+	background-size: 300%;
+	background-position: left;
+	transition: background-position 1s;
+}
+
+.fun:hover, .fun:focus {
+	background-position:right;
+}
+
+.funTitle{
+	-webkit-background-clip: text; /*edge no soporta esta funcion a no ser que se le añada el webkit*/
+	color: transparent;
+	background-size: 300%;
+	animation: title-animation 3s infinite alternate;
+}
+@keyframes title-animation{
+	0%{background-position:left;}
+	100%{background-position:right;}
 }
 
 /* *********************************
@@ -265,22 +361,60 @@ html[mode-changes = "light"] {
     order:2;
 }
 .events::-webkit-scrollbar{
-    background-color:rgb(0, 0, 0);
+    background-color:var(--scrollbar);
     width: 10px;
+    border-radius: 20px;
 }
 .events::-webkit-scrollbar-thumb{
-    background-color: darkmagenta;
+    background-color: var(--scrollbar_thumb);
     border-radius: 20px;
 }
 
 .event__display{
+    padding: 1% 2%;
     position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    column-gap: 2%;
     min-height: 100px;
     width: 100%;
     height: fit-content;
     outline: rgb(138, 138, 138) solid 1px;
-    color: var(--p);
-    border-radius: 20px;
+    color: var(--general_p);
+    border-radius: 20%;
+    margin-bottom:2%;
+}
+
+.event_type_div {
+    display: flex;
+    position: relative;
+    color: var(--general_p);
+    gap: 10px;
+}
+
+.event_type_div .Study{
+    background-color: var(--study);
+    height: fit-content;
+    padding: 1% 2%;
+    border-radius: 10%;
+    color: var(--general_p_inverted);
+}
+
+.event_type_div .Personal{
+    background-color: var(--personal);
+    height: fit-content;
+    padding: 1% 2%;
+    border-radius: 10%;
+    color: var(--general_p_inverted);
+}
+
+.event_type_div .meeting{
+    background-color: var(--meeting);
+    height: fit-content;
+    padding: 1% 2%;
+    border-radius: 10%;
+    color: var(--general_p);
 }
 
 .btn__remove-event{
@@ -291,8 +425,25 @@ html[mode-changes = "light"] {
     height: 20px;
 }
 
+.fechaSeleccionada{
+    padding-bottom: 2%;
+    font-size: 200%;
+    color:var(--fechaTitle);
+}
 
-/* ########## Pop up Modal ####### */
+.no_events_pickeds{
+    display: none;
+    flex-direction: column;
+    font-size: 300%;
+    text-align: center;
+    padding-top: 10%;
+    height: 100%;
+    opacity: 0.2;
+    color: var(--general_p);
+}
+/* *********************************
+---------- MODAL --------------
+********************************* */
 #openButton{
     height: 50px;
      width: 50px ;
@@ -435,7 +586,9 @@ textarea{
     cursor: pointer;
 }
 
-/* EINAR */
+/* *********************************
+---------- EINAR calendar ----------
+********************************* */
 
 .event-inserted {
     border-radius: 25%;
@@ -469,6 +622,10 @@ textarea{
     font-size: 1 rem;
 }
 
+
+/* **********************************
+-------- RESPONSIVE mobile ---------
+********************************* */
 @media only screen and (max-width:800px) {
 
 main{
@@ -496,9 +653,7 @@ main{
 .calendar {
     width: 100%;
     height: 100%;
-    background-color: rgb(0, 0, 0);
     border-radius: 1%;
-    color: var(--p);
     overflow: hidden;
     z-index: 500;
 }
@@ -509,7 +664,6 @@ main{
     position: absolute;
     left: 0%;
     top:49%;
-    background-color: rgb(128, 128, 128);
     border-radius: 1%;
     overflow: hidden;
     z-index: 300;
@@ -522,7 +676,6 @@ main{
     position: absolute;
     left: 0%;
     top:55%;
-    background-color: rgb(49, 49, 49);
     border-radius: 1%;
     overflow: hidden;
     z-index: 200;

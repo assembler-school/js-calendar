@@ -104,7 +104,7 @@ function saveEvent() {
 
     });
     localStorage.setItem(inputDateValue.value, JSON.stringify(picked_Day));
-    //location.reload();
+    location.reload();
 }
 
 /*************************************************/
@@ -190,7 +190,8 @@ function renderTodayEvent(){
   let today__event = JSON.parse(localStorage.getItem(today));
 
   if (today__event == null){
-    console.log("HOY no hay nada wey");
+    let no_events_pickeds = document.querySelector(".no_events_pickeds");
+    no_events_pickeds.style.display = "flex";
     //console.log(today__event)
   }else{
     let myArray = Object.entries(today__event);
@@ -203,10 +204,12 @@ function renderTodayEvent(){
         let section = document.createElement("section");
         section.setAttribute("class", "event__display");
         section.setAttribute("id", `${element[1].setDay}`);
-        section.insertAdjacentHTML("afterbegin",`<div><h1>${element[1].title}</h1><div>${element[1].event_type}</div></div><div>${element[1].time}</div><div>${element[1].reminder}</div><div>${element[1].end_date}</div><div>${element[1].Description}</div>`);
+        section.insertAdjacentHTML("afterbegin",`<div class = "event_type_div"><h1>${element[1].title}</h1><div class ="${element[1].event_type}">${element[1].event_type}</div></div><div>Hora de inicio del evento:<br>${element[1].time}</div><div>Avisar: ${element[1].reminder}</div><div>Termina el día: ${element[1].end_date}</div><div class = "description_div">Descripción:<br>${element[1].Description}</div>`);
         events.appendChild(section);
       });
     }
+    let no_events_pickeds = document.querySelector(".no_events_pickeds");
+    no_events_pickeds.style.display = "none";
   }
 }
 renderTodayEvent();
@@ -222,7 +225,8 @@ function renderPickedEvents() {
     event_displays.forEach((e)=>{
       e.remove(this);
     })
-    console.log("aqui no hay nada wey");
+    let no_events_pickeds = document.querySelector(".no_events_pickeds");
+    no_events_pickeds.style.display = "flex";
   //Si al seleccionar un dia, hay objetos dentro, me las imprime y elimina los que no sean iguales a su id
   } else {
     //con esto, convertimos el objeto en un array para posteriormente iterar en el
@@ -230,6 +234,8 @@ function renderPickedEvents() {
     let comparedDay = myArray[0][1].setDay;
     //console.log(comparedDay);
     //console.log(myArray[1][1]);
+    let no_events_pickeds = document.querySelector(".no_events_pickeds");
+    no_events_pickeds.style.display = "none";
 
     if(comparedDay == selectedDay){
       /*na vez covertido el objeto en array, tenemos que iterar por cada uno de sus posiciones, nunca sabremos cuantos eventos tenemos guardados ese dia, por lo tanto crearemos secciones por cada evento que encuentre y meteremos dentro lo que queramos*/
@@ -238,7 +244,7 @@ function renderPickedEvents() {
           section.setAttribute("class", "event__display");
           section.setAttribute("id", `${element[1].setDay}`);
           /*quí es donde metemos exactamente lo que queremos del array y ponemos posicion [1] ya que es allá donde se encuentran los datos que necesitamos y al mismo tiempo llamamos al parametro que queremos de dentro del objeto inicial*/
-          section.insertAdjacentHTML("afterbegin",`<div><h1>${element[1].title}</h1><div>${element[1].event_type}</div></div><div>${element[1].time}</div><div>${element[1].reminder}</div><div>${element[1].end_date}</div><div>${element[1].Description}</div>`);
+          section.insertAdjacentHTML("afterbegin",`<div class = "event_type_div"><h1>${element[1].title}</h1><div class ="${element[1].event_type}">${element[1].event_type}</div></div><div>Hora de inicio del evento:<br>${element[1].time}</div><div>Avisar: ${element[1].reminder}</div><div>Termina el día: ${element[1].end_date}</div><div class = "description_div">Descripción:<br>${element[1].Description}</div>`);
           events.appendChild(section);
           // console.info(">>>>Titulo de mi evento: " + element[1].title);
           // console.info("Final de fecha: " + element[1].end_date);
