@@ -1,8 +1,8 @@
 //! Objects
 var eventsByDate = {};
 var eventsById = [];
-var remindersByDate = {};
-var remindersById = [];
+var remindersByDate =
+    localStorage.getItem('remindersByDate') ? JSON.parse(localStorage.getItem('remindersByDate')) : {};
 if (!localStorage.getItem("eventIndex")) {
     var eventIndex = 0;
 } else {
@@ -24,26 +24,25 @@ let calendarEvent = class {
         this.eventType = eventType;
         this.id = id;
     }
-    /* get idNum () {
-        return this.id;
-    } */
 }
 
-// TODO validate verification before createEvent
-
 let createBtn = document.getElementById("m-createBtn");
-
 createBtn.addEventListener('click', createEvent);
 
 function createEvent() {
-    /* getModalData (titleF, iniDateF. enDateF, reminderF, descriptionF, eventTF); */
     titleF = document.getElementById("title").value;
     iniDateF = document.getElementById("initialDate").value;
-    const enDateF = document.getElementById("endDate").value;
-    const reminderF = document.getElementById("time").value;
+    const endDateCheckbox = document.getElementById("check-box-end-date").checked;
+    let enDateF;
+    if (endDateCheckbox) {
+        enDateF = document.getElementById("endDate").value;
+    } else {
+        enDateF = iniDateF;
+    }
     const descriptionF = document.getElementById("description").value;
     const eventTF = document.getElementById("event-type").value;
     const checkBoxReminder = document.getElementById("check-box-reminder").checked;
+    const reminderF = (checkBoxReminder) ? document.getElementById("time").value : '';
     //*converting date to Date object
     let formattedIniDate = new Date(iniDateF);
     let formattedEndDate = new Date(enDateF);
@@ -61,8 +60,14 @@ function createEvent() {
         miliSecsToEndDay += (60*60*24*1000);
     }
 
+    //* Save (or not) to reminders lists
+    if (checkBoxReminder === true) {
+        if (!remindersByDate[`${startYear}-${startMonth}-${startDate}`]) {
+            remindersByDate[`${startYear}-${startMonth}-${startDate}`] = [];
+        }
+        remindersByDate[`${startYear}-${startMonth}-${startDate}`].push(eventIndex);
+    }
     //* Saving in eventsByDate
-
     for (i = 0; i < daysDuration; i++) {
         if (!eventsByDate[`${startYear}-${startMonth}-${startDate}`]) {
             eventsByDate[`${startYear}-${startMonth}-${startDate}`] = [];
@@ -83,31 +88,14 @@ function createEvent() {
         }
     }
 
-
-
-    //* Save (or not) to reminders lists
-    if (checkBoxReminder === true) {
-        remindersById.push(newEvent);
-        if (!remindersByDate[`${startYear}-${startMonth}-${startDate}`]) {
-            remindersByDate[`${startYear}-${startMonth}-${startDate}`] = [];
-        }
-        remindersByDate[`${startYear}-${startMonth}-${startDate}`].push(eventIndex);
-    }
-
     localStorage.setItem("eventsById", JSON.stringify(eventsById));
     localStorage.setItem("eventsByDate", JSON.stringify(eventsByDate));
-    localStorage.setItem("remindersById", JSON.stringify(remindersById));
     localStorage.setItem("remindersByDate", JSON.stringify(remindersByDate));
-    //console.log(titleF,iniDateF,enDateF,reminderF,descriptionF,eventTF);
     eventIndex += 1;
     localStorage.setItem("eventIndex", JSON.stringify(eventIndex));
     renderCalendar();
+    enableArrowKeys();
+    document.getElementById("m-createBtn").disabled = true;
+    createButton.style.opacity = 0.5;
+    checkTodayReminders();
 }
-/* createEvent(); */
-/* function getModalData (titleF, iniDateF, enDateF, reminderF, descriptionF, eventTF) {
-    
-
-
-
-} */
-
