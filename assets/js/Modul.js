@@ -46,6 +46,13 @@ let span = document.getElementsByClassName("close")[0];
 // Set current date on Caledar
 let today = new Date().toISOString().substr(0, 10);
 document.querySelector("#initialCal").value = today;
+document.getElementById("endCal").value = today;
+
+// Set current time when calender open
+let todayTime = new Date();
+let timeNow = todayTime.getHours() + ":" + todayTime.getMinutes() + ":" + todayTime.getSeconds();
+document.getElementById("timeSelector").value = timeNow;
+
 
 /**********************************************/
 //--------------- Functions --------------------
@@ -55,7 +62,7 @@ document.querySelector("#initialCal").value = today;
 function closeForm() {
     document.getElementById("myModal").style.display = "none";
     inputTitleKey.value = '';
-    inputTitleKey.classList.remove('error')
+    inputDescriptionValue.value = "";
 }
 
 // Show calendar when checkbox checked
@@ -100,12 +107,32 @@ function saveEvent() {
     //location.reload();
 }
 
+  function allStorage() {
+
+    let keyName = [],
+        keys = Object.keys(localStorage),
+        i = keys.length;
+
+    while ( i-- ) {
+      keyName.push( localStorage.getItem(keys[i]) );
+    }
+    saveEvent()
+  
+  console.log(keyName)
+  console.log(inputDateValue.value)
+
+  // document.querySelector(".events").innerHTML = keyName;
+
+}
+
+
 /*************************************************/
 //--------------Modal Functions-------------------/
 /************************************************/
 // When the user clicks the button, open the modal
 openButton.onclick = function() {
     modal.style.display = "flex";
+  
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -128,12 +155,13 @@ buttonSubmit.onclick = function () {
 
   const supuestafecha = new Event(`${inputTitleKey.value}`,`${inputDateValue.value}`,`${inputDateEndValue.value}`,`${inputTimedValue.value}`,`${inputReminderValue.value}`,`${inputEventTypeValue.value}`,`${inputDescriptionValue.value}`);
   //console.log(supuestafecha);
-
-  saveEvent()
+  
+  allStorage()
   closeForm();
+ 
 
 };
-
+ 
 /* *********************************
 ---------- EVENT FUNCTIONS --------
 ********************************* */
@@ -175,6 +203,7 @@ function getID(event){
   renderPickedEvents();
   return selectedDay;
 }
+
 
 //Funcion IMPORTANTE!! que renderiza y elimina los eventos del día seleccionado
 function renderTodayEvent(){
