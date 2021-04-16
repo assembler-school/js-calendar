@@ -36,6 +36,7 @@ body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 16px;
   background-color: var(--header-color);
+  overflow: hidden;
 }
 
 hr {
@@ -114,6 +115,7 @@ section {
 .cal-padding {
   padding: 0.5rem;
 }
+
 
 /*
   ===================================
@@ -296,7 +298,14 @@ button#create-event i {
 .nav__mobile--left i {
   color: var(--text-color);
 }
-
+#alert__shadowMain {
+  display: none;
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(197, 151, 151, 0.233);
+}
 #main {
   display: none;
 }
@@ -408,7 +417,7 @@ button#create-event i {
   overflow: hidden;
 }
 
-.calendar__month *{
+.calendar__month * {
   overflow: hidden;
 }
 
@@ -494,7 +503,6 @@ button#create-event i {
   border-radius: 25px 25px;
   height: 30px;
   width: 30px;
-
 }
 
 .reminder__popup {
@@ -516,11 +524,11 @@ button#create-event i {
   z-index: 1;
 }
 
-[data-col]{
+[data-col] {
   position: relative;
 }
 
-.hidden-events{
+.hidden-events {
   position: absolute;
   bottom: 0;
   left: calc(50% - 20px);
@@ -531,15 +539,15 @@ button#create-event i {
   padding: 0.2rem 0.4rem;
 }
 
-.hidden-events:hover{
+.hidden-events:hover {
   opacity: 0.7;
 }
 
-.visibility-hidden{
+.visibility-hidden {
   visibility: hidden;
 }
 
-.cloned-day{
+.cloned-day {
   position: absolute;
   top: 0;
   left: 0;
@@ -557,12 +565,12 @@ button#create-event i {
   background-color: var(--color2) ;
 } */
 
-.scaling{
+.scaling {
   transform: scale(1.2);
   transition: transform 0.2s ease-out;
 }
 
-.retract{
+.retract {
   display: none;
   position: absolute;
   top: 0rem;
@@ -575,13 +583,9 @@ button#create-event i {
   padding: 0.5rem;
 }
 
-.retract:hover{
+.retract:hover {
   font-weight: bold;
   opacity: 0.6;
-}
-
-.reminder__popup {
-  animation: slide-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 /*
@@ -626,13 +630,52 @@ button#create-event i {
   max-height: 0;
 }
 
-.ending-date{
+.ending-date {
   max-height: 0;
 }
 
-.height-reset{
+.height-reset {
   max-height: 80px;
   transition: max-height 0.2s ease-out;
+}
+
+/*
+===================================
+        CALENDAR YEAR
+===================================
+*/
+.calendar__year--row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  /* Ocultar el height a 100% y mostrar el calc */
+  height: 100%;
+  gap: 1% 2%;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  /*height: calc(100% - 55px);*/
+}
+.calendar__year--month {
+  display: grid;
+  width: 100%;
+  padding: 0.2rem;
+  border: #dadce0 1px solid;
+}
+.calendar__year--tittle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.calendar__year--tittle h2 {
+  font-size: 1.2rem;
+}
+.calendar__year--date {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  gap: 4px;
+  width: 100%;
+  font-size: 0.8rem;
 }
 
 /*
@@ -743,7 +786,7 @@ i.fa-times-circle {
   margin: 0.5rem 0;
   font-size: 0.8rem;
   cursor: pointer;
-  overflow-x: visible ;
+  overflow-x: visible;
 }
 
 .event__description {
@@ -857,6 +900,17 @@ i.fa-times-circle {
   overflow-y: scroll;
 }
 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--text-color); 
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+
 /*
   ===================================
      ! media queries
@@ -928,6 +982,25 @@ i.fa-times-circle {
     border-radius: 10rem;
     margin: 0.5rem 0;
   }
+  /*
+  ========================
+    CSS MONTH OF YEARS
+  ========================
+  */
+  .calendar__year--row {
+    gap: 2%;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  }
+  .calendar__year--month {
+    padding: 0;
+  }
+  .calendar__year--tittle h2 {
+    font-size: 1rem;
+  }
+  .calendar__year--date {
+    gap: 0px;
+    font-size: 0.9rem;
+  }
 }
 
 /* Medium screen */
@@ -948,7 +1021,6 @@ i.fa-times-circle {
     margin: 0.5rem 0;
     font-size: 0.8rem;
   }
-
   .more__event {
     font-size: 0.8rem;
   }
@@ -968,12 +1040,10 @@ i.fa-times-circle {
     font-size: 1.6rem;
     margin: 0.5rem 0;
   }
-
   .alert__event p {
     font-size: 1rem;
     margin: 0.5rem 0;
   }
-
   .alert__event p * {
     font-size: 1rem;
   }
@@ -990,11 +1060,29 @@ i.fa-times-circle {
     margin: 0.5rem 0;
     padding: 0 0.4rem;
   }
-  .hidden-events{
+  .hidden-events {
     font-size: 0.8rem;
   }
-  .retract{
+  .retract {
     display: block;
+  }
+
+  /*
+  ========================
+    CSS MONTH OF YEARS
+  ========================
+  */
+  .calendar__year--row {
+    gap: 4%;
+    padding: 0.5rem 1rem 1rem 1rem;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .calendar__year--tittle h2 {
+    font-size: 1.4rem;
+  }
+  .calendar__year--date {
+    gap: 6px;
+    font-size: 1rem;
   }
 }
 
@@ -1055,6 +1143,28 @@ i.fa-times-circle {
   }
   .cal-padding {
     padding: 1.5rem;
+  }
+  /*
+  ========================
+    CSS MONTH OF YEARS
+  ========================
+  */
+  .calendar__year--row {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4%;
+    padding: 0.5rem 2rem 2rem 2rem;
+    /*height: calc(100% - 55px);*/
+  }
+  .calendar__year--month {
+    padding: 0.2rem;
+  }
+  .calendar__year--tittle h2 {
+    font-size: 1.4rem;
+  }
+  .calendar__year--date {
+    gap: 10px;
+    width: 100%;
+    font-size: 1rem;
   }
 }
 
@@ -1164,6 +1274,10 @@ i.fa-times-circle {
     transform: rotateY(0);
     transform-origin: left;
   }
+}
+
+.reminder__popup {
+  animation: slide-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 @keyframes slide-bottom {

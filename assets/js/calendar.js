@@ -19,7 +19,7 @@ function showCalendar(year, month) {
   swapTemplate("month", "calendar");
   render.addTag(year, month);
   render.renderMonth(year, month);
-  render.renderYear();
+  render.renderMonthList();
   render.highlightToday(year, month);
   render.renderEvents(year, month);
   render.checkEventsVisibility();

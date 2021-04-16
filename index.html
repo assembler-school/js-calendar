@@ -15,22 +15,22 @@
     <!-- ? Header -->
     <section id="nav__web">
         <div class="nav__month">
-            <div class="nav__left">
+            <div id="container__btn__weekMonthYear" class="nav__left">
                 <div>
-                    <i class="fas fa-chevron-left"></i>
+                    <i class="fas fa-chevron-left btn__month__left"></i>
                 </div>
                 <h2>
                     <span id="nav__tag"></span>
                     <span id="nav__year"></span>
                 </h2>
                 <div>
-                    <i class="fas fa-chevron-right"></i>
+                    <i class="fas fa-chevron-right btn__month__right"></i>
                 </div>
             </div>
             <div class="nav__center">
                 <button id="show-week">Week</button>
-                <button class="nav__center--selected">Month</button>
-                <button>Year</button>
+                <button id="btnMonth" class="nav__center--selected">Month</button>
+                <button id="btnYear">Year</button>
             </div>
             <div class="nav__right">
                 <button id="create-event">
@@ -57,7 +57,10 @@
             <div>
                 <i id="navOpen" class="fas fa-bars"></i>
             </div>
-            <div id="main" class="nav__mobile--main slider-main">
+        </div>
+        <div  id="alert__shadowMain" >
+            <div id="main" class="nav__mobile--main slider-open-main">
+
             </div>
         </div>
     </section>
@@ -65,7 +68,9 @@
 
     <section id="calendar" class="cal-padding">
     </section>
-    </div>
+    <section id="mounthYear" style="height:calc(100% - 55px);">
+
+    </section>
 
     <section id="modal-section">
     </section>
@@ -73,34 +78,34 @@
 
     <!-- ? MOBILE NAV -->
     <template id="template__mobile">
-        <div id="navClose" class="nav__mobile--btn-close">
-            <i class="fas fa-bars"></i>
-        </div>
-        <hr>
-        <div class="nav__mobile--container">
-            <div class="nav__mobile--containerBtn">
-                <div class="nav__mobile--center">
-                    <button>Week</button>
-                    <button class="nav__mobile--selected">Month</button>
-                    <button>Year</button>
+            <div id="navClose" class="nav__mobile--btn-close slider-closed-main">
+                <i class="fas fa-bars"></i>
+            </div>
+            <hr>
+            <div class="nav__mobile--container">
+                <div class="nav__mobile--containerBtn">
+                    <div class="nav__mobile--center">
+                        <button>Week</button>
+                        <button id="btnMonth" class="nav__mobile--selected">Month</button>
+                        <button id="btnYear">Year</button>
+                    </div>
+                </div>
+                <hr>
+                <div class="nav__mobile--event">
+                    <span class="nav__mobile--event--span">Cumpleaños Pepe</span>
+                    <span class="nav__mobile--event--span">Cumpleaños Marta</span>
+                    <span class="nav__mobile--event--span">Cumpleaños Antonio</span>
+                    <span class="nav__mobile--event--span">Cumpleaños Javi</span>
+                    <span class="nav__mobile--event--span">Cumpleaños Laura</span>
+                </div>
+                <hr>
+                <div class="nav__mobile--btnEvent">
+                    <button id="create-event">
+                        <i class="fas fa-plus"></i>
+                        <p>Add event</p>
+                    </button>
                 </div>
             </div>
-            <hr>
-            <div class="nav__mobile--event">
-                <span class="nav__mobile--event--span">Cumpleaños Pepe</span>
-                <span class="nav__mobile--event--span">Cumpleaños Marta</span>
-                <span class="nav__mobile--event--span">Cumpleaños Antonio</span>
-                <span class="nav__mobile--event--span">Cumpleaños Javi</span>
-                <span class="nav__mobile--event--span">Cumpleaños Laura</span>
-            </div>
-            <hr>
-            <div class="nav__mobile--btnEvent">
-                <button id="create-event">
-                    <i class="fas fa-plus"></i>
-                    <p>Add event</p>
-                </button>
-            </div>
-        </div>
     </template>
 
     <!-- ? Month Template -->
@@ -494,6 +499,53 @@
             </div>
         </div>
     </template>
+
+    <!-- ? Template Months of Year -->
+    <template id="year">
+        <div class="calendar__year--row">
+            <div data-month="0" class="calendar__year--month">
+                <div class="calendar__year--tittle monthTittle">
+                    <h2>January</h2>
+                </div>
+                <div id="dateMonth" class="calendar__year--date" data-row="1">
+                    <div data-col="1"></div>
+                    <div data-col="2"></div>
+                    <div data-col="3"></div>
+                    <div data-col="4"></div>
+                    <div data-col="5"></div>
+                    <div data-col="6"></div>
+                    <div data-col="0"></div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- ? Btn render for month and years -->
+    <template id="buttons__month">
+        <div>
+            <i class="fas fa-chevron-left btn__month__left"></i>
+        </div>
+        <h2>
+            <span id="nav__tag"></span> 
+            <span id="nav__year"></span>
+        </h2>
+        <div>
+            <i class="fas fa-chevron-right btn__month__right"></i>
+        </div>
+    </template>
+
+        <!-- ? Btn render for only years -->
+        <template id="buttons__year">
+            <div>
+                <i class="fas fa-chevron-left btn__year__left"></i>
+            </div>
+            <h2>
+                <span id="nav__year"></span>
+            </h2>
+            <div>
+                <i class="fas fa-chevron-right btn__year__right"></i>
+            </div>
+        </template>
 
     <script src="assets/js/calendar.js" type="module"></script>
 </body>
