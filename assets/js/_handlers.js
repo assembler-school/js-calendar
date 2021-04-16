@@ -13,7 +13,7 @@ export function handleDocumentEvents(e) {
   document.addEventListener("click", (e) => {
 
         /*
-     * Click btn year 
+     * Click btn year
      */
         if (e.target.matches("button#btnYear")) {
           let newDate = new Date();
@@ -21,10 +21,10 @@ export function handleDocumentEvents(e) {
           swapTemplate("year", "calendar");
           swapTemplate("buttons__year", "container__btn__weekMonthYear");
           render.addTagYear(updatedYear);
-          render.renderYear(year);
+          render.renderYear(updatedYear);
         }
         /*
-         * Click btn month 
+         * Click btn month
          */
         if (e.target.matches("button#btnMonth")) {
           let newDate = new Date();
@@ -33,7 +33,7 @@ export function handleDocumentEvents(e) {
           swapTemplate("month", "calendar");
           swapTemplate("buttons__month", "container__btn__weekMonthYear");
           render.addTag(updatedYear, updatedMonth);
-          render.renderMonth(year, month);
+          render.renderMonth(updatedYear, updatedMonth);
         }
 
     /*
@@ -125,7 +125,7 @@ export function handleDocumentEvents(e) {
     if (e.target.matches("[data-eventid]")) {
           const [_event] = calendarEvent.getEvent(e.target.dataset.eventid);
           swapTemplate("modal-template", "modal-section");
-          calendarEvent.printDataToModal("#modal form", _event);       
+          calendarEvent.printDataToModal("#modal form", _event);
     }
 
     /*
