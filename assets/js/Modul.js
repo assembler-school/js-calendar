@@ -107,32 +107,13 @@ function saveEvent() {
     //location.reload();
 }
 
-  function allStorage() {
-
-    let keyName = [],
-        keys = Object.keys(localStorage),
-        i = keys.length;
-
-    while ( i-- ) {
-      keyName.push( localStorage.getItem(keys[i]) );
-    }
-    saveEvent()
-  
-  console.log(keyName)
-  console.log(inputDateValue.value)
-
-  // document.querySelector(".events").innerHTML = keyName;
-
-}
-
-
 /*************************************************/
 //--------------Modal Functions-------------------/
 /************************************************/
 // When the user clicks the button, open the modal
 openButton.onclick = function() {
     modal.style.display = "flex";
-  
+
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -155,13 +136,11 @@ buttonSubmit.onclick = function () {
 
   const supuestafecha = new Event(`${inputTitleKey.value}`,`${inputDateValue.value}`,`${inputDateEndValue.value}`,`${inputTimedValue.value}`,`${inputReminderValue.value}`,`${inputEventTypeValue.value}`,`${inputDescriptionValue.value}`);
   //console.log(supuestafecha);
-  
-  allStorage()
+
+  saveEvent()
   closeForm();
- 
 
 };
- 
 /* *********************************
 ---------- EVENT FUNCTIONS --------
 ********************************* */
