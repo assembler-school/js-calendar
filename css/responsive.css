@@ -10,8 +10,16 @@
   justify-content:center;
 }
 
+.mobile-currentTypeofDate-container{
+  width:90%;
+  justify-content:center;
+}
+
 .mobile-goPrevious-btn {
-  height:100%;
+  position:relative;
+  top:10%;
+  width:5;
+  height:80%;
   font-size: 16px;
   font-weight: 400;
   background-image: url("../img/left-arrow.png");
@@ -24,7 +32,10 @@
 }
 
 .mobile-goNext-btn {
-  height:100%;
+  position:relative;
+  top:10%;
+  width:5%;
+  height:80%;
   font-size: 16px;
   font-weight: 400;
   background-image: url("../img/right-arrow.png");

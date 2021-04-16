@@ -1,6 +1,8 @@
 document.querySelector('.goPrevious-btn').addEventListener('click',previousButton);
+document.querySelector('.mobile-goPrevious-btn').addEventListener('click',previousButton);
 document.querySelector('.goToday-btn').addEventListener('click',todayButton);
 document.querySelector('.goNext-btn').addEventListener('click',nextButton);
+document.querySelector('.mobile-goNext-btn').addEventListener('click',nextButton);
 
 
 //Transform month and year

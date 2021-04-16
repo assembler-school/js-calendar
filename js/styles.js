@@ -1,7 +1,9 @@
 var x = window.matchMedia("(max-width: 400px)");
 
 //Elements
+
 var currentDateSection = document.querySelector('.currentDate-section');
+var currentTypeOfDateSection = document.querySelector('.currentTypeofDate-container');
 var currentTypeOfDate = document.querySelector('.currentDate-section');
 //Year calendar
 var yearDays = document.querySelector('.days');
@@ -32,6 +34,7 @@ responsive(device)
 function responsive(device){
   if(device === 'mobile'){
     currentDateSection.classList.add('mobile-currentDate-section');
+    currentTypeOfDateSection.classList.add('mobile-currentTypeofDate-container');
 
     //Change next previous buttons
     mobileGoPreviousBtn.style.display = 'block';
