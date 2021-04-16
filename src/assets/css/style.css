@@ -41,8 +41,8 @@ main {
 header {
   max-height: 150px;
   min-height: 65px;
-  height: 10vh;
   padding: 5px;
+  height: 20vh;
   text-align: center;
   background-color: var(--lightestGray);
   border-bottom: solid var(--lightestGray) 1px;
@@ -52,7 +52,6 @@ header {
 .winterHeader{
   max-height: 150px;
   min-height: 65px;
-  height: 10vh;
   padding: 5px;
   text-align: center;
   background-image: url("/src/assets/img/invierno.png");
@@ -62,7 +61,6 @@ header {
 .springHeader{
   max-height: 150px;
   min-height: 65px;
-  height: 10vh;
   padding: 5px;
   text-align: center;
   background-image: url("/src/assets/img/primavera.png");
@@ -72,7 +70,6 @@ header {
 .fallHeader{
   max-height: 150px;
   min-height: 65px;
-  height: 10vh;
   padding: 5px;
   text-align: center;
   background-image: url("/src/assets/img/otno.png");
@@ -82,7 +79,6 @@ header {
 .summerHeader{
   max-height: 150px;
   min-height: 65px;
-  height: 10vh;
   padding: 5px;
   text-align: center;
   background-image: url("/src/assets/img/verano.png");
@@ -103,6 +99,7 @@ h1 {
   outline: none;
   transition: transform 0.1s;
   user-select: none;
+  width: 44px;
 }
 .btn-next-prev:hover {
   transform: scale(1.05);
@@ -139,8 +136,12 @@ h1 {
 #current-date{
   position: absolute;
   left: 10px;
-  bottom: 30px;
+  bottom: 10px;
   font-weight: 800;
+  background-color: var(--darkGray);
+  color: var(--lightestGray);
+  border-radius: 5px;
+  padding: 8px;
 }
 
 
@@ -150,7 +151,7 @@ h1 {
 !=======================================
 */
 main{
-  height: 90vh;
+  height: 80vh;
   width: 100vw;
 }
 .calendar{
@@ -222,6 +223,7 @@ main{
   transform: perspective(1px) translateZ(0);
   box-shadow: 0 0 1px rgba(0, 0, 0, 0);
   position: relative;
+  height: 25px;
 }
 
 .event-in-calendar:before {
@@ -342,6 +344,23 @@ main{
     html {
         font-size: 12px;
     }
+    header > h1 {
+      font-size: 18px;
+    }
+    .btn-add-event {
+      height: 44px;
+      top: 65px;
+    }
+    .btn-next-prev {
+      height: 44px;
+      width: 44px;
+    }
+    .modal-header > h1 {
+      font-size: 22px;
+    }
+    label {
+      font-size: 12px;
+    }
 }
 @media only screen and (max-width: 550px)  {
     html {
@@ -366,12 +385,14 @@ main{
     .weekdays {
       font-size: 12px;
     }
-    #modal-content {
+    #modal-content,
+    #modal-event-content {
       min-width: 240px !important;
       width: 160px !important;
       height: auto;
       font-size: 9px;
     }
+
 }
 @media only screen and (max-width: 300px) {
   html {
@@ -394,8 +415,16 @@ main{
 ! Modal
 !=======================================
 */
+.x-button {
+  height: 44px;
+  width: 44px;
+  background-color: var(--darkestGray);
+}
 #modal-section.hidden {
   display: none;
+}
+input, select {
+  height: 44px;
 }
 #modal-section {
   display: block;
@@ -444,6 +473,8 @@ main{
   flex-direction: row;
   justify-content: space-between;
   margin: 5px 0;
+  transition: opacity 0.8s;
+  opacity: 1;
 }
 .modal-input.modal-cb {
   justify-content: flex-start;
@@ -453,8 +484,13 @@ main{
   resize: none;
   margin-left: 5px;
 }
+.modal-inputDisabled{
+  opacity: 0;
+}
 .modal-input> input[type=checkbox] {
   margin: 2px;
+  height: 20px;
+  width: 20px;
 }
 .modal-footer {
   display: flex;
@@ -469,6 +505,7 @@ main{
   font-size: large;
   padding: 5px 10px;
   border-radius: 5px;
+  height: 44px;
 }
 .incorrect {
   border: 2px solid red;
@@ -567,14 +604,6 @@ display: none;
   justify-content: space-around;
   margin-top: 10px;
 }
-.m-action-button {
-  color: whitesmoke;
-  background-color: var(--darkestGray);
-  font-size: large;
-  padding: 5px 10px;
-  border-radius: 5px;
-}
-
 
 .remindersSection {
   position: fixed;

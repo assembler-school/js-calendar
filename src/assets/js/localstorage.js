@@ -94,4 +94,5 @@ function createEvent() {
     eventIndex += 1;
     localStorage.setItem("eventIndex", JSON.stringify(eventIndex));
     renderCalendar();
+    enableArrowKeys();
 }

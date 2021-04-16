@@ -1,6 +1,7 @@
 const modalBackground = document.getElementById("modal-event-section");
 const modalEventContent = document.getElementById("modal-event-content");
 function eventModal (event) {
+    disabledArrowKeys();
     event.stopPropagation(); // Needed to prevent execution of parent div
     const eventId = event.target.getAttribute("divEventId");
     const eventTitle = eventsById[eventId].title;
@@ -53,10 +54,34 @@ function closeEventModal () {
     modalBackground.removeEventListener("click", closeEventModal);
     modalEventContent.removeEventListener("click", modalEventStopPropagation);
     modalBackground.classList.add("hidden");  
+    document.getElementById("modal-event-edit-btn").removeEventListener('click', deleteEvent);
+    enableArrowKeys();
 }
 
 //* Edit event modal function
 function editEventModal () {
     //! TODO has to open normal modal and insert this event values
     closeEventModal();
+}
+
+function deleteEventDatesData (data, storageIndex) {
+    for (const date in data) {
+        data[date] = data[date].filter(event => {
+            return event !== parseInt(eventId);
+        });
+        if (!data[date].length) {
+            delete data[date];
+        }
+    }
+    localStorage.setItem(storageIndex, JSON.stringify(data));
+}
+
+function deleteEvent (deletingEvent) {
+    eventId = deletingEvent.target.getAttribute("deletingEventId");
+    delete eventsById[eventId];
+    localStorage.setItem("eventsById", JSON.stringify(eventsById));
+    deleteEventDatesData(eventsByDate, 'eventsByDate');
+    deleteEventDatesData(remindersByDate, 'remindersByDate');
+    closeEventModal();
+    renderCalendar('');
 }

@@ -6,37 +6,19 @@ function setCurrentDate () {
     document.querySelector("#current-date").innerHTML = new Date().toLocaleDateString('en-GB', options);
 }
 setCurrentDate();
+//Change Background
 const changeHeaderBackground = () =>{
     const head = document.getElementById('header');
     const actualMonth = date.getMonth()+1;
 
-    if(actualMonth == 12 || actualMonth == 1 || actualMonth == 2 ){
-        console.log('winter');
-        head.classList.remove('fallHeader');
-        head.classList.remove('springHeader');
-        head.classList.remove('summerHeader');
-        head.classList.add('winterHeader');
-        
-    }else if(actualMonth == 3 || actualMonth == 4 || actualMonth == 5 ){
-        console.log('spring');
-        head.classList.remove('fallHeader');
-        head.classList.remove('winterHeader');
-        head.classList.remove('summerHeader');
-        head.classList.add('springHeader');
-        
-    }else if(actualMonth == 6 || actualMonth == 7 || actualMonth == 8 ){
-        console.log('summer');
-        head.classList.remove('fallHeader');
-        head.classList.remove('winterHeader');
-        head.classList.remove('springHeader');
-        head.classList.add('summerHeader');
-        
-    }else if(actualMonth == 9 || actualMonth == 10 || actualMonth == 11 ){
-        console.log('fall');
-        head.classList.remove('winterHeader');
-        head.classList.remove('springHeader');
-        head.classList.remove('summerHeader');
-        head.classList.add('fallHeader');
+    if(actualMonth > 11 || actualMonth < 3){
+        head.className = 'winterHeader';
+    }else if( actualMonth > 2 && actualMonth < 6 ){
+        head.className = 'springHeader';
+    }else if(actualMonth > 5 && actualMonth < 9 ){
+        head.className = 'summerHeader';
+    }else if(actualMonth > 8 && actualMonth < 12  ){
+        head.className = 'fallHeader';
     }
 }
 /*
@@ -127,28 +109,28 @@ document.querySelector("#nextMonth").addEventListener("click", () => {
 
 renderCalendar("");
 
-window.onkeyup = function (event) {
+function enableArrowKeys() {
+    window.addEventListener('keyup',keyChanger);
+}
+
+function disabledArrowKeys() {
+    window.removeEventListener('keyup', keyChanger);
+}
+
+function keyChanger(event) {
     let leftNow = event.keyCode || event.which;
     let rightNow = event.keyCode || event.which;
     if (leftNow == 37) {
         date.setMonth(date.getMonth() - 1);
         renderCalendar("left");
-    } if (rightNow == 39) {
-    date.setMonth(date.getMonth() + 1);
-    renderCalendar("right");
     }
-};
-//adding wheel  to change month
-// window.addEventListener('wheel', function (event) {
-//     if (event.deltaY < 0) {
-//         date.setMonth(date.getMonth() - 1);
-//         renderCalendar("left");
-//     } else if (event.deltaY > 0) {
-//         date.setMonth(date.getMonth() + 1);
-//         renderCalendar("right");
-//     }
-// });
+    if (rightNow == 39) {
+        date.setMonth(date.getMonth() + 1);
+        renderCalendar("right");
+    };
+}
 
+enableArrowKeys();
 //? Function to render events inside of calendar
 
 function renderEvent () {
@@ -189,16 +171,24 @@ function eventDivsInjector (divsNodeList, monthGap) {
         const dayNumber = div.firstChild.innerHTML;
         //* checking that day has events
         if (!!eventsByDate[`${currentYear}-${currentMonth}-${dayNumber}`]) {
-            //* Looping thru events in array
-            for (let eventObjectId of eventsByDate[`${currentYear}-${currentMonth}-${dayNumber}`]){
+            let eventArray = eventsByDate[`${currentYear}-${currentMonth}-${dayNumber}`];
+            //* sorting events in array
+            let eventIdsWithStartDate = [];
+            for (let eventObjectId of eventArray) {
+                const newEventObject = { id: eventObjectId, startDate: eventsById[eventObjectId].startDate};
+                eventIdsWithStartDate.push(newEventObject);
+            }
+            eventIdsWithStartDate.sort( compare );
+            //* Looping thru events in sorted array
+            for (let eventObject of eventIdsWithStartDate){
                 //* Access to event data
-                const eventTitle = eventsById[eventObjectId].title;
-                const eventType = eventsById[eventObjectId].eventType;
+                const eventTitle = eventsById[eventObject.id].title;
+                const eventType = eventsById[eventObject.id].eventType;
                 //* Create of the event element
                 let newEvent = document.createElement("div");
                 newEvent.classList.add("event-in-calendar");
                 newEvent.innerHTML = eventTitle;
-                newEvent.setAttribute("divEventId", eventObjectId);
+                newEvent.setAttribute("divEventId", eventObject.id);
                 //* choosing event color depending of event type
                 switch (eventType) {
                     case 'Study':
@@ -219,4 +209,14 @@ function eventDivsInjector (divsNodeList, monthGap) {
             }
         }
     }
+}
+//? Function to compare start dates for future sorting
+function compare( a, b ) {
+    if ( a.startDate < b.startDate ){
+      return 1;
+    }
+    if ( a.startDate > b.startDate ){
+      return -1;
+    }
+    return 0;
 }

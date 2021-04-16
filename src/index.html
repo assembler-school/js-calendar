@@ -60,17 +60,17 @@
                     <input id="check-box-end-date" type="checkbox" name="endDate-cb" onclick="showMeTheEndDate()">
                     <label for="endDate-cb">End date</label>
                 </div>
-                <div class="modal-input">
-                    <label for="end-date" >End date</label>
-                    <input type="datetime-local" name="end-date" id="endDate" disabled>
+                <div class="modal-input modal-inputDisabled" id="EndDateModal">
+                    <label for="end-date" ></label>
+                    <input type="datetime-local" name="end-date" id="endDate">
                 </div>
                 <div class="modal-input modal-cb">
                     <input id="check-box-reminder" type="checkbox" name="remind" onclick="showMeTheReminder()">
-                    <label for="remind">Remind me when this event expires</label>
+                    <label for="remind">Reminder</label>
                 </div>
-                <div class="modal-input">
+                <div class="modal-input modal-inputDisabled" id="modal-input-time">
                     <label for="time">Time</label>
-                    <select name="time" id="time" disabled>
+                    <select name="time" id="time" >
                         <option value="5">5 min</option>
                         <option value="10">10 min</option>
                         <option value="15">15 min</option>
@@ -125,7 +125,7 @@
                 <textarea name="description" id="modal-event-description" cols="30" rows="10" readonly>Description</textarea>
             </div>
             <div class="modal-event-footer">
-                <button id="modal-event-edit-btn" class="m-action-button">Edit</button>
+                <button id="modal-event-edit-btn" class="m-action-button">delete</button>
             </div>
         </div>
     </section>
