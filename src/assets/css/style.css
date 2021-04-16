@@ -747,6 +747,9 @@ input, select {
   color: var(--darkestGray);
   background-color: transparent;
 }
+.modal-event-button.fa-window-close:hover {
+  transform: scale(1.05);
+}
 .modal-event-input {
   display: flex;
   flex-direction: row;

@@ -50,6 +50,11 @@ function checkTodayReminders() {
     } else {
         clearTodayReminders();
     }
+<<<<<<< HEAD
 }
 
 checkTodayReminders();
+=======
+    return false;
+}
+>>>>>>> bfa69f939abceb9a43768ed7bd245c36e12cb452
