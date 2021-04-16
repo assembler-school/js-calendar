@@ -4,6 +4,9 @@ import { calendarEvent } from "./_events.js";
 import * as render from "./_month_render.js";
 import { setReminder } from "./_reminder.js";
 
+
+let remindersArr = [];
+
 /*
  * All listeners are listed here
  *
@@ -100,7 +103,6 @@ export function handleDocumentEvents() {
         const data = calendarEvent.getDataFromModal("#modal form");
         calendarEvent.toLocalStorage(data);
         render.checkEventsVisibility();
-        let remindersArr = [];
         setReminder(remindersArr);
         if(document.querySelector("#calendar > div").className != "calendar__year--row") {
           render.renderEvents(updatedYear, updatedMonth);
@@ -192,6 +194,7 @@ export function handleDocumentEvents() {
         calendarEvent.modifyEvent(_event);
         removeTemplate("edit-template", "modal-section");
         render.renderEvents(updatedYear, updatedMonth);
+        setReminder(remindersArr);
       }
     }
 
@@ -201,6 +204,7 @@ export function handleDocumentEvents() {
     if (e.target.matches(".remove")) {
       removeTemplate("alert-template", "modal-section");
       calendarEvent.removeEvent(_event);
+      setReminder(remindersArr);
     }
 
     /*
