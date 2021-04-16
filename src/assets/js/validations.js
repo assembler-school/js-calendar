@@ -23,7 +23,7 @@ const expresiones = {
     document.getElementById('endDate').addEventListener('onkeyup',validarEndDate);
     // document.getElementById('description').addEventListener('focus',validarDescription);
 function validarFormulario() {
-  if(validarTitulo() && validarInitialDate() &&  validarEndDate()){
+    if(validarTitulo() && validarInitialDate() &&  validarEndDate()){
         createButton.removeAttribute("disabled");
         createButton.style.opacity = 1;
     }
@@ -40,7 +40,7 @@ function validarTitulo(e){
     if(title.value === null || title.value === ""){
         inputs[0].classList.add("incorrect");
         return false;
-    }else if(!expresiones.title.test(inputs[0].value)){ 
+    }else if(!expresiones.title.test(inputs[0].value)){
         inputs[0].classList.add("incorrect");
         return false;
     }else{

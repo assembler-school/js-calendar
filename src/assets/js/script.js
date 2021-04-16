@@ -111,7 +111,8 @@ function closeFirstModal(){
     if (!document.getElementById("modal-input-time").classList.contains("modal-inputDisabled")){
         document.getElementById("modal-input-time").classList.add("modal-inputDisabled");
     }
-
+    document.getElementById("m-createBtn").disabled = true;
+    createButton.style.opacity = 0.5;
 }
 
 window.addEventListener("keyup", closeEscOut);
