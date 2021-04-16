@@ -1,4 +1,5 @@
 const modalBackground = document.getElementById("modal-event-section");
+const modalEventContent = document.getElementById("modal-event-content");
 function eventModal (event) {
     disabledArrowKeys();
     event.stopPropagation(); // Needed to prevent execution of parent div
@@ -23,35 +24,37 @@ function eventModal (event) {
     document.getElementById("modal-event-description").innerText = eventDescription;
      //* Adding eventListener to modal
     document.getElementById("modal-event-close-button").addEventListener('click', closeEventModal);
-    let deleteEventBtn = document.getElementById("modal-event-edit-btn");
-    deleteEventBtn.addEventListener('click', deleteEvent);
-    deleteEventBtn.setAttribute("deletingEventId", eventId);
+    document.getElementById("modal-event-edit-btn").addEventListener('click', editEventModal);
+    modalBackground.addEventListener("click", closeEventModal);
+    modalEventContent.addEventListener("click", modalEventStopPropagation);
     //* Showing the modal
     modalBackground.classList.remove("hidden");
 }
- //* close event modal pressing esc key
-window.onkeyup = function (event) {
-    let escNow = event.keyCode || event.which;
-    if (escNow == 27) {
-        modalBackground.classList.add("hidden");
-        enableArrowKeys();
-    }
-}
-//* close event modal clicking outside
-window.onclick = function (event) {
-    if (event.target == modalBackground) {
-        modalBackground.classList.add("hidden");
-        enableArrowKeys();
-    }
+
+function modalEventStopPropagation(event){
+    event.stopPropagation();
 }
 
+//* close event modal pressing esc key
+
+window.addEventListener("keyup", closeEscEventOut);
+
+function closeEscEventOut(event){
+    const escEventNow = event.keyCode || event.which;
+    if (escEventNow == 27){
+        closeEventModal();  
+    }
+}
 
 //* Close event modal function
 function closeEventModal () {
-    //* Remove event listeners
+    //* Remove event listeners    
     document.getElementById("modal-event-close-button").removeEventListener('click', closeEventModal);
+    document.getElementById("modal-event-edit-btn").removeEventListener('click', editEventModal);
+    modalBackground.removeEventListener("click", closeEventModal);
+    modalEventContent.removeEventListener("click", modalEventStopPropagation);
+    modalBackground.classList.add("hidden");  
     document.getElementById("modal-event-edit-btn").removeEventListener('click', deleteEvent);
-    modalBackground.classList.add("hidden");
     enableArrowKeys();
 }
 
