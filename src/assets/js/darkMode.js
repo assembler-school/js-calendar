@@ -11,7 +11,7 @@ const checkedFunction = () =>{
 }else{
     cal.classList.remove('backgrounDark');
     Darkdays.classList.remove('colorDark');
-    darkWeek.classList.add("colorDark")
+    darkWeek.classList.remove("colorDark")
 }
 }
 checkboxDm.addEventListener('click',checkedFunction);
