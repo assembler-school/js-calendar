@@ -99,10 +99,12 @@ export function handleDocumentEvents() {
       if (!formValidation(e, true)) {
         const data = calendarEvent.getDataFromModal("#modal form");
         calendarEvent.toLocalStorage(data);
-        render.renderEvents(updatedYear, updatedMonth);
         render.checkEventsVisibility();
         let remindersArr = [];
         setReminder(remindersArr);
+        if(document.querySelector("#calendar > div").className != "calendar__year--row") {
+          render.renderEvents(updatedYear, updatedMonth);
+        }
       }
     }
 
