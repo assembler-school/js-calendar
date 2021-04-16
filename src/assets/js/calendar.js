@@ -6,19 +6,34 @@ function setCurrentDate () {
     document.querySelector("#current-date").innerHTML = new Date().toLocaleDateString('en-GB', options);
 }
 setCurrentDate();
-//Change Background
-const changeHeaderBackground = () =>{
+
+const setSeasonClass = (season) => {
     const head = document.getElementById('header');
+    const addEventBtn = document.getElementById('modal-open-button');
+    const leftArrowKey = document.getElementById('prevMonth');
+    const rightArrowKey = document.getElementById('nextMonth');
+    const monthYearDisplay = document.getElementById('monthYear');
+    const currentDateDisplay = document.getElementById('current-date');
+
+    head.className = `${season}`;
+        addEventBtn.className = `btn-add-event ${season}`;
+        leftArrowKey.className = `btn-next-prev ${season}`;
+        rightArrowKey.className = `btn-next-prev ${season}`;
+        monthYearDisplay.className = `page-title ${season}`;
+        currentDateDisplay.className = `${season}`;
+}
+
+const setHeaderSeasonTheme = () => {
     const actualMonth = date.getMonth()+1;
 
     if(actualMonth > 11 || actualMonth < 3){
-        head.className = 'winterHeader';
+        setSeasonClass('winter');
     }else if( actualMonth > 2 && actualMonth < 6 ){
-        head.className = 'springHeader';
+        setSeasonClass('spring');
     }else if(actualMonth > 5 && actualMonth < 9 ){
-        head.className = 'summerHeader';
+        setSeasonClass('summer');
     }else if(actualMonth > 8 && actualMonth < 12  ){
-        head.className = 'fallHeader';
+        setSeasonClass('fall');
     }
 }
 /*
@@ -95,7 +110,7 @@ const renderCalendar = (direction) => {
     monthDays.innerHTML = days;
     renderEvent () ;
     addEachListener();
-    changeHeaderBackground();
+    setHeaderSeasonTheme();
 };
 document.querySelector("#prevMonth").addEventListener("click", () => {
     date.setMonth(date.getMonth() - 1);

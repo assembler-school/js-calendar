@@ -17,6 +17,14 @@
 
 <body>
     <header id="header">
+            <div class="container">
+                <label class="switch" for="checkboxDM">
+                <input type="checkbox" id="checkboxDM" />
+                <div class="slider round"></div>
+                <div class="toggle-moon"></div>
+                <div class="toggle-sun"></div>
+                </label>
+            </div>
             <button class="btn-next-prev" id="prevMonth"><i class="fas fa-arrow-left"></i></button>
             <h1 id="monthYear" class="page-title"></h1>
             <button class="btn-next-prev" id="nextMonth"><i class="fas fa-arrow-right"></i></button>
@@ -24,7 +32,7 @@
             <div id="current-date">8 April 2021</div>
 
     </header>
-    <main>
+    <main id="main">
         <section id="remindersSection" class="remindersSection"></section>
         <section class="calendar">
             <div class="weekdays">
@@ -145,5 +153,5 @@
 <script src="assets/js/calendar.js"></script>
 <script src="assets/js/validations.js"></script>
 <script src="assets/js/reminder.js"></script>
-
+<script src="assets/js/darkMode.js"></script>
 </html>

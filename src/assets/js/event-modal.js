@@ -24,7 +24,10 @@ function eventModal (event) {
     document.getElementById("modal-event-description").innerText = eventDescription;
      //* Adding eventListener to modal
     document.getElementById("modal-event-close-button").addEventListener('click', closeEventModal);
-    document.getElementById("modal-event-edit-btn").addEventListener('click', editEventModal);
+    let deleteEventBtn = document.getElementById("modal-event-edit-btn");
+    deleteEventBtn.addEventListener('click', deleteEvent);
+    deleteEventBtn.setAttribute("deletingEventId", eventId);
+    document.getElementById("modal-event-edit-btn").addEventListener('click', deleteEvent);
     modalBackground.addEventListener("click", closeEventModal);
     modalEventContent.addEventListener("click", modalEventStopPropagation);
     //* Showing the modal
@@ -48,12 +51,11 @@ function closeEscEventOut(event){
 
 //* Close event modal function
 function closeEventModal () {
-    //* Remove event listeners    
+    //* Remove event listeners
     document.getElementById("modal-event-close-button").removeEventListener('click', closeEventModal);
-    document.getElementById("modal-event-edit-btn").removeEventListener('click', editEventModal);
     modalBackground.removeEventListener("click", closeEventModal);
     modalEventContent.removeEventListener("click", modalEventStopPropagation);
-    modalBackground.classList.add("hidden");  
+    modalBackground.classList.add("hidden");
     document.getElementById("modal-event-edit-btn").removeEventListener('click', deleteEvent);
     enableArrowKeys();
 }
