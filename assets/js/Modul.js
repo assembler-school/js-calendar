@@ -56,7 +56,7 @@ document.getElementById("endCal").value = today;
 
 // Set current time when calender open
 let todayTime = new Date();
-let timeNow = todayTime.getHours() + ":" + todayTime.getMinutes() + ":" + todayTime.getSeconds();
+let timeNow = todayTime.getHours() + ":" + todayTime.getMinutes();
 document.getElementById("timeSelector").value = timeNow;
 
 
