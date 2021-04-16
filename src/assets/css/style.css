@@ -346,7 +346,7 @@ main{
   color: var(--lightGray);
 }
 .today {
-  background-color: var(--darkGray);
+  background-color: var(--eventGreen);
   color: white;
 }
 
