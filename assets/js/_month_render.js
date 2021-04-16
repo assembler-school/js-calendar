@@ -151,9 +151,9 @@ export function checkEventsVisibility() {
       ev.forEach((v) => {
         if (getChildOffset(v) > 0) {
           evHidden++;
-          v.style.visibility = "hidden";
-        } else {
-          v.style.visibility = "visible";
+          v.classList.add("visibility-hidden");
+        } else{
+            v.classList.remove("visibility-hidden");
         }
       });
   

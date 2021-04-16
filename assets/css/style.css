@@ -1065,14 +1065,43 @@ i.fa-times-circle {
 
 .hidden-events{
   position: absolute;
-  bottom: 2px;
+  bottom: 0;
   left: calc(50% - 20px);
   color: #000;
   font-size: 0.8rem;
-  cursor: pointer;
   opacity: 1;
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
 }
 
 .hidden-events:hover{
   opacity: 0.7;
+}
+
+.visibility-hidden{
+  visibility: hidden;
+}
+
+.cloned-day{
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: 0 0 200px -50px;
+  overflow: hidden;
+  transform: scale(0);
+}
+
+.scaling{
+  transform: scale(1.2);
+  transition: transform 0.2s ease-out;
+}
+
+.retract{
+  display: block;
+  text-align: center;
+  margin-right: 0.5rem auto;
+  font-size: 0.9rem;
+  cursor: pointer;
 }

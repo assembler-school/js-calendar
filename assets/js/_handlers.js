@@ -28,7 +28,18 @@ export function handleDocumentEvents(e) {
      */
     // show modal
     if (e.target.matches(".hidden-events")) {
-
+      const d = document;
+      showPopupEvents(e,"#calendar");
+      setTimeout(() => {
+        d.querySelector(".cloned-day").classList.add("scaling");
+      }, 0);
+    }
+    /*
+     * show / hide modal popup
+     */
+    // show modal
+    if (e.target.matches("span.retract")) {
+      document.querySelector(".cloned-day").remove();;
     }
 
     /*
@@ -56,6 +67,7 @@ export function handleDocumentEvents(e) {
         const data = calendarEvent.getDataFromModal("#modal form");
         calendarEvent.toLocalStorage(data);
         render.renderEvents(updatedYear, updatedMonth);
+        render.checkEventsVisibility();
       }
     }
 
@@ -197,4 +209,40 @@ export function goToMonth(year, month) {
   render.renderEvents(year, month);
   render.renderYear();
   render.checkEventsVisibility();
+}
+
+/*
+ * This render month without adding
+ * To add month use _handlers.js/addMonth
+ */
+function showPopupEvents(e,parent) {
+  let itm = e.target.parentElement;
+  let cln = itm.cloneNode(true);
+
+  // replace "ver mas" -> "ver menos"
+  for (const iterator of cln.children) {
+    if (iterator.classList.contains("hidden-events")) {
+      iterator.textContent = "Ver menos";
+      iterator.className = "retract";
+    }
+  }
+
+  // hide events based on height of container
+  const ev = cln.querySelectorAll("[data-eventid]");
+  ev.forEach((v) => {
+    if (v.classList.contains("visibility-hidden")) {
+      v.classList.remove("visibility-hidden");
+    }
+  });
+
+  // apply same dimensions and position of container
+  const container = document.createElement("div"),
+    p = document.querySelector(parent);
+  container.classList.add("cloned-day");
+  container.style.top = e.target.parentElement.offsetTop + "px";
+  container.style.left = e.target.parentElement.offsetLeft + "px";
+  container.style.width = e.target.parentElement.offsetWidth + "px";
+
+  container.appendChild(cln);
+  p.appendChild(container);
 }
