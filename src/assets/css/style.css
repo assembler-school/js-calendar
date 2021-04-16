@@ -85,6 +85,81 @@ header {
   background-size: cover;
   position: relative;
 }
+  /* Dark Mode */
+  .container{
+    margin-top: 8px;
+    margin-left: 5px;
+  }
+  .switch {
+    display: flex;
+    height: 36px;
+    position: relative;
+    width: 70px;
+  }
+  
+  .switch input {
+    display:none;
+  }
+  
+  .slider {
+    background-color: #FFF;
+    border:1px solid #000;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    background-color: #333;
+    border:1px solid #000;
+    bottom: 3px;
+    content: "";
+    height: 26px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 26px;
+    z-index:421;
+  }
+  
+  input:checked + .slider {
+    background-color: #101211;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(34px);
+    border-color:#CFCFCF;
+    background-color:#EFEFEF;
+  }
+  
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  
+  .toggle-moon, .toggle-sun {
+    width:50%;
+    text-align:center;
+    padding:0.25em;
+    position:relative;
+    z-index:420;
+  }
+
+  .backgrounDark{
+    background-color: var(--darkestGray);
+  }
+  .colorDark{
+    color: whitesmoke;
+  }
+    /* End Dark Mode */
+  
 h1 {
   font-size: 2rem;
 }
