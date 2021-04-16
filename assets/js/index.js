@@ -1,11 +1,13 @@
 //Cogemos la fecha de hoy
 const date = new Date();
 
-function renderCalendar() {
+const renderCalendar = () => {
+
+  date.setDate(1);
 
   //Pesco la fecha actual
-  const exactlyToday = new Date().toISOString().substr(8,2);
-  console.log(exactlyToday, "La fecha actual wey");
+   const exactlyToday = new Date().toISOString().substr(8,2);
+   console.log(exactlyToday, "La fecha actual wey");
 
   //coge el numero exacto del mes actual
   const actual_month = date.toISOString().substr(5,2);
@@ -27,12 +29,16 @@ function renderCalendar() {
   console.log(prevLastDay, "prevLastDay");
 
   /* El metodo getDay() lo que te dice es en que dia de la semana cae ese día. Si una semana tiene 7 dias, del uno al 7, en que posición caerá?*/
-  const firstDayIndex = date.getDay();
+  const firstDayIndex = date.getDay() ;
   console.log(firstDayIndex, "firstdayindex");
 
   /* Nuevamente, con el getDay() está recogiendo el ultimo día del mes 31/28/ lo que sea y está avergiuando que dia de los 7 días a la semana caerá*/
   const lastDayIndex = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDay();
   console.log(lastDayIndex, "lastDayIndex");
+
+  /* Para saber cuantos dias mostrar en el calendario, esta cogiendo el lastDay Index y le resta los 7 días de la semana y así le queda la resta para en el futuro, con un bucle crear especificamente dichos DIVS */
+  const nextDays = 7 - lastDayIndex - 1;
+  console.log(nextDays, "nextDays");
 
   //Siempre se aumenta 1, puesto que la variable empieza a contar desde 0
   const months = [
@@ -55,11 +61,7 @@ function renderCalendar() {
   document.querySelector(".date h2").innerHTML = months[date.getMonth()];
 
   //Recoge el día actual de la variable date y la inserta en el P
-  document.querySelector(".date p").innerHTML = date.toDateString().substr(11,4);;
-
-  /* Para saber cuantos dias mostrar en el calendario, esta cogiendo el ÑastDay Index y le resta los 7 días de la semana y así le queda la resta para en el futuro, con un bucle crear especificamente dichos DIVS */
-  const nextDays = 7 - lastDayIndex;
-  console.log(nextDays, "nextDays");
+  document.querySelector(".date p").innerHTML = date.toDateString().substr(11,4);
 
   /* Esta es una variable vacia con la que vamos a almacenar todos los dias con bucles y mostrarlos */
   let days = "";
@@ -73,7 +75,7 @@ function renderCalendar() {
     let h = parseInt(actual_month - 1);
     let m = h.toString();
     let o = m.padStart(2, "0");
-    days += `<div class = "prev-date" id="${prevLastDay - y+1}-${o}-${actual_year}">${prevLastDay - x+1}</div>`;
+    days += `<div class = "prev-date" id=${actual_year}-${o}-${prevLastDay - y+1}">${prevLastDay - x + 1}</div>`;
   }
 
  /* Bucle para crear todos los Divs que necesitamos para el día del mes */
@@ -89,7 +91,7 @@ function renderCalendar() {
         let h = parseInt(actual_month);
         let x = h.toString();
         let o = x.padStart(2, "0");
-        days += `<div class="today no-event-day" id="${y}-${o}-${actual_year}">${i}</div>`;
+        days += `<div class="today no-event-day" id="${actual_year}-${o}-${y}">${i}</div>`;
       } else {
         /*De lo contrario, te coge el numero almacenado en la variable lastDay y te va restando y crrando los Divs necesarios */
         // Convierto el mes en un numero de un digito a dos digitos
@@ -153,25 +155,25 @@ for (let d = 0; d < day.length; d++) {
 function bringDataFromLocalStorageToMainCalendar(ev) {
     //Esta variable selecciona lo clicado al llamar al event listener y lo posiciona como target
     var clickedDivId = event.target.id;
-    console.info("Esta es la ID del dia seleccionado " + clickedDivId)
+    //console.info("Esta es la ID del dia seleccionado " + clickedDivId)
         //Cogemos los datos STORAGE del div clicado y lo parseamos
     var datafromLocalStorage = JSON.parse(localStorage.getItem(clickedDivId));
-    console.info("Esta es la informacion extraida y parseada del ID dia clicado >>> " + datafromLocalStorage)
-    console.info(Object.values(datafromLocalStorage))
-    console.info("Este mensaje solo aparece si el objeto anterior ha sido extraido correctamente")
+    //console.info("Esta es la informacion extraida y parseada del ID dia clicado >>> " + datafromLocalStorage)
+    //console.info(Object.values(datafromLocalStorage))
+    //console.info("Este mensaje solo aparece si el objeto anterior ha sido extraido correctamente")
     if (datafromLocalStorage !== null) {
-        console.info('INNN F()')
+        //console.info('INNN F()')
             //Si detro del array datafromLocalStorage existe meeting, study o meeting, crear una variable x is true
         meetingIsTrue = datafromLocalStorage.includes('meeting');
-        console.log("Meeting is " + meetingIsTrue)
+        //console.log("Meeting is " + meetingIsTrue)
         studyIsTrue = datafromLocalStorage.includes('study');
-        console.log("Study is " + studyIsTrue)
+        //console.log("Study is " + studyIsTrue)
         personalIsTrue = datafromLocalStorage.includes('personal');
-        console.log("Personal is " + personalIsTrue)
+        //console.log("Personal is " + personalIsTrue)
     } else if ((datafromLocalStorage == null)) {
         //swal('No tienes ningun evento este dia ^^');
-        console.info('La informacion es nula, no tienes ningun evento el dia seleccionado en el calendario')
-            //alert('datafromLocalStorage es NULO');
+        //console.info('La informacion es nula, no tienes ningun evento el dia seleccionado en el calendario')
+        //alert('datafromLocalStorage es NULO');
     } else {
         //console.warn('La insersión de tipo de evento desde el formulario no ha llegado correctamente');
     }
@@ -188,29 +190,29 @@ function showEventOfDayHere(ev) {
     var clickedDiv = event.target;
 
     if (meetingIsTrue == true) {
-        console.info(meetingIsTrue + ' MEETING IS TRUE')
+        //console.info(meetingIsTrue + ' MEETING IS TRUE')
         var clickedDiv = event.target;
 
         clickedDiv.insertAdjacentHTML('beforeend', '<div class="event-inserted"><ul class="meetingList">M</ul></div>');
         //event.stopPropagation();
 
     } else if (studyIsTrue == true) {
-        console.info(studyIsTrue + ' STUDY IS TRUE');
+        //console.info(studyIsTrue + ' STUDY IS TRUE');
         var clickedDiv = event.target;
 
         clickedDiv.insertAdjacentHTML('beforeend', '<div class="event-inserted"><ul class="studyList">S</ul></div>');
         //event.stopPropagation();
 
     } else if (personalIsTrue == true) {
-        console.info(personalIsTrue + ' PERSONAL IS TRUE')
+        //console.info(personalIsTrue + ' PERSONAL IS TRUE')
         var clickedDiv = event.target;
 
         clickedDiv.insertAdjacentHTML('beforeend', '<div class="event-inserted"><ul class="personalList">P</ul></div>');
         //event.stopPropagation();
 
     } else {
-        console.info('showEventOfDayHere - revisa su funcionalidad')
-            // swal('No llega ningun dato aqui')
+        //console.info('showEventOfDayHere - revisa su funcionalidad')
+        // swal('No llega ningun dato aqui')
     }
 
 }
