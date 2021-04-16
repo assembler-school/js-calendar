@@ -111,6 +111,7 @@ h1 {
 .page-title {
   display: inline-block;
   width: 238px;
+  user-select: none;
 }
 .btn-add-event {
   position: absolute;
@@ -142,6 +143,7 @@ h1 {
   color: var(--lightestGray);
   border-radius: 5px;
   padding: 8px;
+  user-select: none;
 }
 
 
@@ -198,7 +200,7 @@ main{
 }
 .prev-date,
 .next-date {
-  opacity: 1;
+  filter: opacity(0.8);
   font-weight: 150;
   color: var(--lightGray);
 }
@@ -241,6 +243,7 @@ main{
   transition-duration: 0.2s;
   -webkit-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
+  overflow-wrap: break-word;
 }
 .event-in-calendar:hover:before, .event-in-calendar:focus:before, .event-in-calendar:active:before {
   left: 0;
@@ -424,6 +427,7 @@ main{
   height: 0px;
   overflow: hidden;
   opacity: 0;
+  backdrop-filter: blur(0px);
 }
 input, select {
   height: 44px;
@@ -437,9 +441,11 @@ input, select {
   height: 200vh;
   width: 100vw;
   background-color: rgba(0,0,0,0.4);
-  transition: opacity 0.5s;
-  /* transition-delay: height 0.2s; */
+  transition: opacity 0.4s;
+  transition: backdrop-filter 2s;
   opacity: 1;
+  backdrop-filter: blur(3px);
+  /* transition-delay: height 0.2s; */
 }
 #modal-content {
   display: flex;
@@ -541,7 +547,10 @@ input, select {
 */
 
 #modal-event-section.hidden {
-display: none;
+  height: 0px;
+  overflow: hidden;
+  opacity: 0;
+  backdrop-filter: blur(0px);
 }
 #modal-event-section {
   display: block;
@@ -552,6 +561,10 @@ display: none;
   height: 100vh;
   width: 100vw;
   background-color: rgba(0,0,0,0.4);
+  transition: opacity 0.4s;
+  transition: backdrop-filter 2s;
+  opacity: 1;
+  backdrop-filter: blur(3px);
 }
 #modal-event-content {
   display: flex;
