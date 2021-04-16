@@ -51,9 +51,7 @@ export function renderMonthYear(year, month) {
     /* Loop to fill calendar */
     for (let x = 1; x < daysInMonth + 1; x++) {
         /* Fill the calendar divs with day number */
-        debugger;
         try { 
-            debugger;
             document.querySelector('.calendar__year--month[data-month="'+ month +'"] .calendar__year--date[data-row="' + weekCount + '"] div[data-col="' + weekDay + '"]').innerHTML = x;
             document.querySelector('.calendar__year--month[data-month="'+ month +'"] .calendar__year--date[data-row="' + weekCount + '"] div[data-col="' + weekDay + '"]').setAttribute("id",x);
         }
@@ -64,7 +62,6 @@ export function renderMonthYear(year, month) {
             workClone.setAttribute("data-row",rowCont);
             document.querySelector('.calendar__year--month[data-month="'+ month +'"]').appendChild(workClone);
             /* Fill the clone for first time */
-            debugger;
             document.querySelector('.calendar__year--month[data-month="'+ month +'"] .calendar__year--date[data-row="' + weekCount + '"] div[data-col="' + weekDay + '"]').innerHTML = x;
             //console.log('');
             document.querySelector('.calendar__year--month[data-month="'+ month +'"] .calendar__year--date[data-row="' + weekCount + '"] div[data-col="' + weekDay + '"]').setAttribute("id",x);
@@ -74,24 +71,20 @@ export function renderMonthYear(year, month) {
         weekDay%=7;
     }
     /* Adapts the height of the week rows to the total */
-    document.querySelectorAll('.calendar__year--date').forEach((row)=> {
+/*     document.querySelectorAll('.calendar__year--date').forEach((row)=> {
         row.style.height = 'calc((100% - 25px) / ' + rowCont + ')';
-    });
+    }); */
 }
 
 export function renderYear(year) {
     let nameMonth = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    //let listMonth = "";
     let listMonth = document.querySelector('.calendar__year--month').cloneNode(true);
     renderMonthYear(year, 0);
-    for (let index = 0; index < 11; index++) {
-        //let listMonthClone = "";
+    for (let index = 1; index < 12; index++) {
         let listMonthClone = listMonth.cloneNode(true);
-        console.log(listMonth);
-        console.log(listMonthClone);
         document.querySelector('.calendar__year--row').appendChild(listMonthClone);
-        document.querySelectorAll('.monthTittle h2')[index+1].innerHTML = nameMonth[index+1];
-        document.querySelectorAll('.calendar__year--month')[index+1].setAttribute("data-month", index+1);
+        document.querySelectorAll('.monthTittle h2')[index].innerHTML = nameMonth[index];
+        document.querySelectorAll('.calendar__year--month')[index].setAttribute("data-month", index);
         renderMonthYear(year, index);
     }
 
