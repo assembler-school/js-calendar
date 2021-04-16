@@ -4,6 +4,7 @@ var x = window.matchMedia("(max-width: 400px)");
 var currentDateSection = document.querySelector('.currentDate-section');
 var currentTypeOfDateSection = document.querySelector('.currentTypeofDate-container');
 var currentTypeOfDate = document.querySelector('.currentDate-section');
+
 //Year calendar
 var yearDays = document.querySelector('.days');
 
@@ -48,5 +49,16 @@ function responsive(){
   if(calendarView === 'year-view'){
     clearYearCalendar();
     calendarConstructor(year);
+  }
+}
+
+//Buttons month year styles
+function buttonMonthYearStyle(){
+  if(calendarView === 'month-view'){
+    document.querySelector('.monthView-btn').classList.add('calendar-button');
+    document.querySelector('.yearView-btn').classList.remove('calendar-button');
+  }else if(calendarView === 'year-view'){
+    document.querySelector('.monthView-btn').classList.remove('calendar-button');
+    document.querySelector('.yearView-btn').classList.add('calendar-button');
   }
 }

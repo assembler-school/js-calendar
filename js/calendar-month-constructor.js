@@ -105,4 +105,5 @@ function calendarMonthConstructor(month,year){
     today(month,currentDay,currentMonth,currentYear);
     displayEventsInMonth(idMonth, calendarEvents,year);
     loadListennersForDetails()
+    buttonMonthYearStyle();
 }

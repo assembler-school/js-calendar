@@ -26,7 +26,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: 8px;
-  background-color: var(--btnActive);
+  /* background-color: var(--btnActive); */
   border: none;
   color: white;
 }
@@ -42,7 +42,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: 8px;
-  background-color: var(--btnActive);
+  /* background-color: var(--btnActive); */
   border: none;
   color: white;
 }

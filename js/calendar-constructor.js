@@ -26,7 +26,6 @@ function getMonthDays(year,month){
 
 //CALENDAR CONSTRUCTOR
 function calendarConstructor(changeYear){
-  console.log(device);
   //Calendar view
   calendarView = 'year-view';
   
@@ -122,6 +121,7 @@ function calendarConstructor(changeYear){
   })
   updateYearHeader(year)
   populateCalendar(changeYear);
+  buttonMonthYearStyle();
 }
 
 
