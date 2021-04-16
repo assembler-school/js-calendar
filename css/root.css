@@ -156,6 +156,7 @@ table {
   /* outline: 1px solid red !important; */
   box-sizing: border-box;
   cursor: default;
+  transition: 0.15s ease-out;
 }
 
 *:focus {
@@ -199,6 +200,8 @@ button {
 }
 
 button:focus {
+  border: 1px solid white;
+  transform: scale(1.1);
   outline: none;
 }
 
