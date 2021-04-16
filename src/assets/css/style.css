@@ -443,7 +443,7 @@ input, select {
   height: 200vh;
   width: 100vw;
   background-color: rgba(0,0,0,0.4);
-  transition: opacity 0.4s, background-color 0.4s 0.4s, backdrop-filter 0.8s 0.4s;
+  transition: opacity 0.4s, background-color 0.4s 0.2s, backdrop-filter 0.8s 0.2s;
   opacity: 1;
   backdrop-filter: blur(3px);
 }
@@ -563,7 +563,7 @@ input, select {
   height: 200vh;
   width: 100vw;
   background-color: rgba(0,0,0,0.4);
-  transition: opacity 0.4s, background-color 0.4s 0.4s, backdrop-filter 0.8s 0.4s;
+  transition: opacity 0.4s, background-color 0.4s 0.2s, backdrop-filter 0.8s 0.2s;
   opacity: 1;
   backdrop-filter: blur(3px);
 }
