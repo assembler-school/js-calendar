@@ -291,9 +291,23 @@ function saveEvent() {
     }
 
     if (endDateValidation()) { // endDate > startDate
+        if (!document.querySelector('.labelRequiredEndDate')) {
+            addInputValidationLabel(
+                'labelRequiredEndDate',
+                'End Date must be greater than Initial Date',
+                'endDateId'
+            );
+        }
         return false;
     }
     if (reminderValidation()) { //reminder > currentDate  && reminder < initialDate
+        if (!document.querySelector('.labelRequiredReminder')) {
+            addInputValidationLabel(
+                'labelRequiredReminder',
+                'Reminder alert must be after current date and before initial Date',
+                'reminderId'
+            );
+        }
         return false;
     }
     saveEventData();//save data
