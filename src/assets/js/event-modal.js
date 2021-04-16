@@ -45,7 +45,7 @@ window.addEventListener("keyup", closeEscEventOut);
 function closeEscEventOut(event){
     const escEventNow = event.keyCode || event.which;
     if (escEventNow == 27){
-        closeEventModal();  
+        closeEventModal();
     }
 }
 

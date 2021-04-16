@@ -120,7 +120,7 @@ window.addEventListener("keyup", closeEscOut);
 function closeEscOut(event){
     const escNow = event.keyCode || event.which;
     if (escNow == 27){
-        closeFirstModal();  
+        closeFirstModal();
     }
 }
 

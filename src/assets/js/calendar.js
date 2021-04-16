@@ -228,10 +228,10 @@ function eventDivsInjector (divsNodeList, monthGap) {
 //? Function to compare start dates for future sorting
 function compare( a, b ) {
     if ( a.startDate < b.startDate ){
-      return 1;
+        return 1;
     }
     if ( a.startDate > b.startDate ){
-      return -1;
+        return -1;
     }
     return 0;
 }
