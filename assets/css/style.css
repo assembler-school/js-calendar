@@ -550,17 +550,34 @@ button#create-event i {
   transform: scale(0);
 }
 
+/* .cloned-day span.spanDay:hover{
+  opacity: 0.7;
+  content: "X";
+  cursor: pointer;
+  background-color: var(--color2) ;
+} */
+
 .scaling{
   transform: scale(1.2);
   transition: transform 0.2s ease-out;
 }
 
 .retract{
-  display: block;
+  display: none;
+  position: absolute;
+  top: 0rem;
+  right: 0rem;
   text-align: center;
   margin-right: 0.5rem auto;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   cursor: pointer;
+  border-radius: 45%;
+  padding: 0.5rem;
+}
+
+.retract:hover{
+  font-weight: bold;
+  opacity: 0.6;
 }
 
 .reminder__popup {
@@ -729,13 +746,13 @@ i.fa-times-circle {
   overflow-x: visible ;
 }
 
-/* .event__description {
+.event__description {
   font-size: 0.8rem;
   max-height: 80px;
   overflow-y: auto;
   margin: 0.5rem 0;
   padding: 0 0.4rem;
-} */
+}
 
 .event__type--meeting {
   background-color: #ff6010;
@@ -890,13 +907,13 @@ i.fa-times-circle {
   .fa-pencil-alt {
     font-size: 1rem;
   }
-  /* .event__description {
+  .event__description {
     font-size: 0.8rem;
     max-height: 80px;
     overflow-y: auto;
     margin: 0.5rem 0;
     padding: 0 0.4rem;
-  } */
+  }
   .nav__mobile--main {
     width: 70%;
     max-width: 280px;
@@ -966,15 +983,18 @@ i.fa-times-circle {
   .fa-pencil-alt {
     font-size: 1rem;
   }
-  /* .event__description {
+  .event__description {
     font-size: 0.9rem;
     max-height: 100px;
     overflow-y: auto;
     margin: 0.5rem 0;
     padding: 0 0.4rem;
-  } */
+  }
   .hidden-events{
     font-size: 0.8rem;
+  }
+  .retract{
+    display: block;
   }
 }
 

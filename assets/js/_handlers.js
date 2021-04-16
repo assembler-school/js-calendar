@@ -12,14 +12,6 @@ export function handleDocumentEvents(e) {
   // click event
   document.addEventListener("click", (e) => {
     /*
-     * clear all modals
-     */
-    const clnModal = document.querySelector(".cloned-day");
-    if (clnModal) {
-      clnModal.remove();
-    }
-
-    /*
      * show week view
      */
     // show modal
@@ -47,7 +39,10 @@ export function handleDocumentEvents(e) {
      */
     // show modal
     if (e.target.matches("span.retract")) {
-      document.querySelector(".cloned-day").remove();
+      const clnModal = document.querySelector(".cloned-day");
+      if (clnModal) {
+        clnModal.remove();
+      }
     }
 
     /*
@@ -58,6 +53,10 @@ export function handleDocumentEvents(e) {
       e.target.matches("button#create-event") ||
       e.target.matches("button#create-event *")
     ) {
+      const clnModal = document.querySelector(".cloned-day");
+      if (clnModal) {
+        clnModal.remove();
+      }
       swapTemplate("modal-template", "modal-section");
     }
     // close modal
@@ -119,6 +118,10 @@ export function handleDocumentEvents(e) {
      * Click in event
      */
     if (e.target.matches("[data-eventid]")) {
+      const clnModal = document.querySelector(".cloned-day");
+      if (clnModal) {
+        clnModal.remove();
+      }
       const [_event] = calendarEvent.getEvent(e.target.dataset.eventid);
       swapTemplate("modal-template", "modal-section");
       calendarEvent.printDataToModal("#modal form", _event);
@@ -131,6 +134,11 @@ export function handleDocumentEvents(e) {
       const day = e.target.id,
         month = document.querySelector("#nav__tag").textContent,
         year = document.querySelector("#nav__year").textContent;
+
+      const clnModal = document.querySelector(".cloned-day");
+      if (clnModal) {
+        clnModal.remove();
+      }
 
       swapTemplate("modal-template", "modal-section");
       const initDate = document.querySelector('[name="init-date"]');
@@ -233,9 +241,11 @@ export function handleDocumentEvents(e) {
   });
 
   // mouse over event
-  document.addEventListener("mouseover", (e) => {
-    
-  });
+  // document.addEventListener("mouseover", (e) => {
+  //   const day =  document.querySelector(".cloned-day .spanDay");
+  //   day.textContent = "X";
+  //   console.log("hahaha");
+  // });
 }
 
 let updatedMonth = new Date().getMonth();
@@ -279,10 +289,15 @@ function showPopupEvents(e, parent) {
 
   // replace "ver mas" -> "ver menos"
   for (const iterator of cln.children) {
+    const clnModal = document.querySelector(".cloned-day");
+    if (clnModal) {
+      clnModal.remove();
+    }
+
     if (iterator.classList.contains("hidden-events")) {
-      // iterator.textContent = "Ver menos";
-      // iterator.className = "retract";
-      iterator.remove();
+      iterator.textContent = "X";
+      iterator.className = "retract";
+      // iterator.remove();
     }
   }
 
