@@ -63,41 +63,41 @@ const renderCalendar = () => {
   date.setDate(1);
 
   //Pesco la fecha actual
-   const exactlyToday = new Date().toISOString().substr(8,2);
-   console.log(exactlyToday, "La fecha actual wey");
+  const exactlyToday = new Date().toISOString().substr(8,2);
+  //console.log(exactlyToday, "La fecha actual wey");
 
   //coge el numero exacto del mes actual
   const actual_month = date.toISOString().substr(5,2);
-  console.log(actual_month, "el mes actual wey");
+  //console.log(actual_month, "el mes actual wey");
 
   //coge el numero exacto del año
   const actual_year = new Date().toISOString().substr(0,4);
-  console.log(actual_year, "año actual");
+  //console.log(actual_year, "año actual");
 
   //Recoge el DIV con la clase .days
   const monthDays = document.querySelector(".days")
 
   /*recoge la fecha actual de la variable (date), le recoge el mes SIGUIENTE al actual y se lo pone a dia 0. Al ponerselo a dia cero, lo que hace es que te coge el ultimo dia del mes pasado. Es decir, el dia 31 de cada mes, por lo tanto lo que obtenemos es el ultimo dia del mes ACTUAL*/
   const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
-  console.log(lastDay, "lastDay");
+  //console.log(lastDay, "lastDay");
 
   /* Te recoge el ultimo día del mes pasado al Actual, por lo tanto, sera el ultimo dia del mes pasado */
   const prevLastDay = new Date(date.getFullYear(), date.getMonth(), 0).getDate();
-  console.log(prevLastDay, "prevLastDay");
+  //console.log(prevLastDay, "prevLastDay");
 
   /* El metodo getDay() lo que te dice es en que dia de la semana cae ese día. Si una semana tiene 7 dias, del uno al 7, en que posición caerá?*/
   const firstDayIndex = date.getDay() - 1;
-  console.log(firstDayIndex, "firstdayindex");
+  //console.log(firstDayIndex, "firstdayindex");
 
   /* Nuevamente, con el getDay() está recogiendo el ultimo día del mes 31/28/ lo que sea y está avergiuando que dia de los 7 días a la semana caerá*/
   const lastDayIndex = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDay();
-  console.log(lastDayIndex, "lastDayIndex");
+  //console.log(lastDayIndex, "lastDayIndex");
 
   /* Para saber cuantos dias mostrar en el calendario, esta cogiendo el lastDay Index y le resta los 7 días de la semana y así le queda la resta para en el futuro, con un bucle crear especificamente dichos DIVS */
   let nextDays = 7 - lastDayIndex;
   //En el mes de agosto el firstDayIndex cae a -1 y eso nos hace mal en el calendario, de ahí la función de abajo, Por eso al last Index le restamos uno, para que el next days empeice en 0 siempre
   if(firstDayIndex == -1){nextDays = 7 - lastDayIndex - 1;}
-  console.log(nextDays, "nextDays");
+  //console.log(nextDays, "nextDays");
 
   //Siempre se aumenta 1, puesto que la variable empieza a contar desde 0
   const months = [
@@ -357,7 +357,24 @@ function renderPickedEvents() {
     no_events_pickeds.style.display = "none";
 
     if(comparedDay == selectedDay){
-      /*na vez covertido el objeto en array, tenemos que iterar por cada uno de sus posiciones, nunca sabremos cuantos eventos tenemos guardados ese dia, por lo tanto crearemos secciones por cada evento que encuentre y meteremos dentro lo que queramos*/
+      /*Una vez covertido el objeto en array, tenemos que iterar por cada uno de sus posiciones, nunca sabremos cuantos eventos tenemos guardados ese dia, por lo tanto crearemos secciones por cada evento que encuentre y meteremos dentro lo que queramos*/
+
+      //debo conseguir pescar el ID del section en especifico y hacer un condicional que me elimine todos los que NO son iguales
+      let event_display = document.querySelectorAll(".event__display");
+      //console.log(event_display);
+      // El objeto de arriba ,e devuelve un Nodelist y con lo de abajo lo convierto en Array para Iterar por cada uno de los elementos en el Array
+      let x = Array.from(event_display);
+      //console.log(x);
+
+      x.forEach((e)=>{
+        //Selecciono los que No sean igual al Dia seleccionado
+        if (e.id != selectedDay){
+          //console.log(e);
+          //Lo elimino, chau
+          e.remove(this);
+        }
+      });
+
       myArray.forEach((element) => {
           let section = document.createElement("section");
           section.setAttribute("class", "event__display");
@@ -370,21 +387,6 @@ function renderPickedEvents() {
           // console.info("La hora programada: " + element[1].time);
           // console.info("Opción del reminder: " + element[1].reminder);
           // console.info("Tipo de evento: " + element[1].event_type);
-      });
-
-      //debo conseguir pescar el ID del section en especifico y hacer un condicional que me elimine todos los que NO son iguales
-      let event_display = document.querySelectorAll(".event__display");
-      //console.log(event_display);
-      // El objeto de arriba ,e devuelve un Nodelist y con lo de abajo lo convierto en Array para Iterar por cada uno de los elementos en el Array
-      let x = Array.from(event_display);
-      //console.log(x);
-      x.forEach((e)=>{
-        //Selecciono los que No sean igual al Dia seleccionado
-        if (e.id != selectedDay){
-          //console.log(e);
-          //Lo elimino, chau
-          e.remove(this);
-        }
       });
     }
   }
@@ -469,10 +471,57 @@ function load() {
     elem.addEventListener("click", stopEvent, false);
 }
 
+/* **********************************************************
+---------- BOTONES NEXT Y PREV DEL CALENDAR ----------------
+********************************************************** */
+function lookEvents (){
+  let myDaysDivsNode = document.querySelectorAll(".days div")
+  let myDaysDivsArray = Array.from(myDaysDivsNode);
+  myDaysDivsArray.forEach((e)=>{
+    let x = JSON.parse(localStorage.getItem(e.id));
+    if (x != null){
+      let divContenerEvents = document.createElement("ul");
+      divContenerEvents.setAttribute("class", "event-inserted");
+
+      var myNewArrayFromObjects = Object.entries(x);
+      myNewArrayFromObjects.forEach((e)=>{
+        if(e[1].event_type == "meeting"){
+          let myDayWithEvent = document.getElementById(`${e[1].setDay}`);
+          divContenerEvents.insertAdjacentHTML('beforeend', '<li class="meetingList"></li>');
+          myDayWithEvent.appendChild(divContenerEvents);
+          //myDayWithEvent.classList.add("meetingList");
+          // console.log("esto es un meeting");
+          // console.log(e[1].setDay, "la fecha del meeting");
+        }
+        if(e[1].event_type == "Personal"){
+          let myDayWithEvent = document.getElementById(`${e[1].setDay}`);
+          divContenerEvents.insertAdjacentHTML('beforeend', '<li class="personalList"></li>');
+          myDayWithEvent.appendChild(divContenerEvents);
+          // console.log("esto es un personal")
+          // console.log(e[1].setDay, "la fecha del Personal")
+        }
+        if(e[1].event_type == "Study"){
+          let myDayWithEvent = document.getElementById(`${e[1].setDay}`);
+          divContenerEvents.insertAdjacentHTML('beforeend', '<li class="studyList"></li>');
+          myDayWithEvent.appendChild(divContenerEvents);
+          // console.log("esto es un Study")
+          // console.log(e[1].setDay, "la fecha del Study")
+        }
+      });
+    }
+  })
+}
+lookEvents();
+
+/* **********************************************************
+---------- BOTONES NEXT Y PREV DEL CALENDAR ----------------
+********************************************************** */
+
 //Detecta el boton PREV y setea el mes en -1 y vuelve a renderizar el calendario
 var btnPrev = document.querySelector(".prev").addEventListener("click", () => {
   date.setMonth(date.getMonth() - 1);
   renderCalendar();
+  lookEvents();
   let days = document.querySelectorAll(".days div");
   days = Array.from(days);
   //console.log(days);
@@ -488,6 +537,7 @@ var btnPrev = document.querySelector(".prev").addEventListener("click", () => {
 var btnNext = document.querySelector(".next").addEventListener("click", () => {
   date.setMonth(date.getMonth() + 1);
   renderCalendar();
+  lookEvents();
   let days = document.querySelectorAll(".days div");
   days = Array.from(days);
   //console.log(days);
