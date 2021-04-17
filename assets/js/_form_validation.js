@@ -57,7 +57,6 @@ export function formValidation(e, validateAll) {
   const endDate = document.querySelector('input[name="end-date"]');
   const initDate = document.querySelector('input[name="init-date"]').value;
   const endChecked = document.querySelector('input[name="end-check"]').checked;
-  endDate.disabled = true;
   endDate.style.opacity = '0.6';
   if (initDate) {
     endDate.disabled = false;
