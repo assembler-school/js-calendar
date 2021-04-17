@@ -98,8 +98,10 @@ calendarEvent.printDataToEdit = function (obj) {
   form.elements["title"].value = obj.title;
   form.elements["init-date"].value = obj["init-date"];
   form.elements["end-check"].checked = obj["end-check"];
+  if(form.elements["end-check"].checked) {document.querySelector(".ending-date").classList.toggle("height-reset")};
   form.elements["end-date"].value = obj["end-date"];
   form.elements["reminder"].checked = obj["reminder"];
+  if(form.elements["reminder"].checked) {document.querySelector(".reminder-time").classList.toggle("height-reset")};
   form.elements["select-time"].value = obj["select-time"];
   form.elements["description"].value = obj.description;
   form.elements["select-event"].value = obj["select-event"];
