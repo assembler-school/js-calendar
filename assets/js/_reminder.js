@@ -1,3 +1,4 @@
+import {calendarEvent} from "./_events.js";
 let timeoutArr = [];
 
 //Function to get a filtered list of elements from the localStorage
@@ -39,3 +40,4 @@ export function setReminder(alertsArr) {
 
 setReminder(timeoutArr);
 setInterval(setReminder, 3600000, timeoutArr);
+

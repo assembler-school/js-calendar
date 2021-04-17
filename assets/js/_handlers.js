@@ -26,6 +26,7 @@ export function handleDocumentEvents() {
       render.renderYear(updatedYear);
       e.target.classList.add("nav__center--selected");
     }
+
     /*
      * Click btn month
      */
@@ -39,6 +40,7 @@ export function handleDocumentEvents() {
       render.highlightToday(updatedYear, updatedMonth);
       render.renderMonthList();
       render.checkEventsVisibility();
+      render.checkExpiredEvents();
       e.target.classList.add("nav__center--selected");
     }
 
@@ -67,6 +69,7 @@ export function handleDocumentEvents() {
         d.querySelector(".cloned-day").classList.add("scaling");
       }, 0);
     }
+
     /*
      * show / hide modal popup
      */
@@ -106,10 +109,12 @@ export function handleDocumentEvents() {
       if (!formValidation(e, true)) {
         const data = calendarEvent.getDataFromModal("#modal form");
         calendarEvent.toLocalStorage(data);
-        render.checkEventsVisibility();
         setReminder(remindersArr);
+
         if(document.querySelector("#calendar > div").className != "calendar__year--row") {
           render.renderEvents(updatedYear, updatedMonth);
+          render.checkEventsVisibility();
+          render.checkExpiredEvents();
         }
       }
     }
@@ -350,6 +355,7 @@ function addMonth(year, month, direction) {
   render.renderEvents(year, month);
   render.renderMonthList();
   render.checkEventsVisibility();
+  render.checkExpiredEvents();
 }
 
 /*
@@ -366,6 +372,7 @@ export function goToMonth(year, month) {
   render.renderEvents(year, month);
   render.renderMonthList();
   render.checkEventsVisibility();
+  render.checkExpiredEvents();
 }
 
 /*
