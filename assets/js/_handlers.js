@@ -142,8 +142,7 @@ export function handleDocumentEvents() {
       document.getElementById("main").style.display = "block";
       swapTemplate("template__mobile", "main");
     }
-    if (e.target.matches("#navClose i") || e.target.matches("#navClose i *")) {
-      removeTemplate("template__mobile", "main");
+    if (e.target.matches("#navClose i") || e.target.matches("#navClose i *") || e.target.matches("#alert__shadowMain")) {
       document.getElementById("main").style.display = "none";
       document.getElementById("alert__shadowMain").style.display = "none";
       removeTemplate("template__mobile", "main");
