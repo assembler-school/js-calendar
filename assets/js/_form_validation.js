@@ -56,6 +56,7 @@ export function formValidation(e, validateAll) {
   // ending date to start from the beginning date
   const endDate = document.querySelector('input[name="end-date"]');
   const initDate = document.querySelector('input[name="init-date"]').value;
+  const endChecked = document.querySelector('input[name="end-check"]').checked;
   endDate.disabled = true;
   endDate.style.opacity = '0.6';
   if (initDate) {
@@ -63,6 +64,7 @@ export function formValidation(e, validateAll) {
     endDate.setAttribute('min', initDate);
     endDate.style.opacity = '1';
   }
+  if (!endChecked) {endDate.value = "";}
 
 
   // validate all form required input
