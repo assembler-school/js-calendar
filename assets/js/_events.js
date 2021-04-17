@@ -78,7 +78,6 @@ calendarEvent.printDataToAlert = function (obj) {
     edate.innerHTML = days[endDate.getDay()] + ', ' + months[endDate.getMonth()] + ' ' + endDate.getDate();
     ehour.innerHTML = endDate.getHours() + ':' + endDate.getMinutes();
   } else {
-    // d.getElementById("end__hide").setAttribute("hidden",true);
     d.getElementById("end__hide").textContent = "All day";
   }
   if (obj["reminder"]){

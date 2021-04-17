@@ -205,6 +205,7 @@ export function handleDocumentEvents() {
         render.renderEvents(updatedYear, updatedMonth);
         setReminder(remindersArr);
         render.checkEventsVisibility();
+        render.checkExpiredEvents();
       }
     }
 
