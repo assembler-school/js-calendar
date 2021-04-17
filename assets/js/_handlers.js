@@ -24,6 +24,7 @@ export function handleDocumentEvents() {
       swapTemplate("buttons__year", "container__btn__weekMonthYear");
       render.addTagYear(updatedYear);
       render.renderYear(updatedYear);
+      render.highlightTodayYear(updatedYear);
       e.target.classList.add("nav__center--selected");
     }
 
@@ -422,6 +423,7 @@ function addYear(year, boolean) {
   swapTemplate("year", "calendar");
   render.addTagYear(updatedYear);
   render.renderYear(updatedYear);
+  render.highlightTodayYear(year)
 }
 
 function clearSelectedBtn(){
