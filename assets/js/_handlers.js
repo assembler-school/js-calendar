@@ -256,7 +256,7 @@ export function handleDocumentEvents() {
     }
   });
 
-  // focusot event
+  // focusout event
   document.addEventListener("focusout", (e) => {
     /*
      * form validation
@@ -265,6 +265,9 @@ export function handleDocumentEvents() {
       formValidation(e, false);
     }
   });
+
+  //focus on description - fixed error
+  document.querySelector(".focus").focus();
 
   // resize
   window.addEventListener("resize", render.checkEventsVisibility);
