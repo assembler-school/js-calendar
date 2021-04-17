@@ -230,5 +230,7 @@ export function checkEventsVisibility() {
         container.appendChild(span);
       }
     });
+
+    console.log("KKKKKKKKKKK");
   }
   
