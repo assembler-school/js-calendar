@@ -32,6 +32,18 @@ export function formValidation(e, validateAll) {
     }
   };
 
+  // ending date to start from the beginning date
+  const endDate = document.querySelector('input[name="end-date"]');
+  const initDate = document.querySelector('input[name="init-date"]').value;
+  endDate.disabled = true;
+  endDate.style.opacity = '0.6';
+  if (initDate) {
+    endDate.disabled = false;
+    endDate.setAttribute('min', initDate);
+    endDate.style.opacity = '1';
+  }
+
+
   // validate all form required input
   const formValidation = function (e) {
     inputsRequired.forEach((element) => {
