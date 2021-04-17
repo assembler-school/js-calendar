@@ -1,7 +1,7 @@
 export const calendarEvent = {};
 
 /*
- * This gets data from from
+ * This gets data from form
  */
 calendarEvent.getDataFromModal = function (form) {
   const _form = document.querySelector(form);

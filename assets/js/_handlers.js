@@ -261,7 +261,7 @@ export function handleDocumentEvents() {
     }
   });
 
-  // focusot event
+  // focusout event
   document.addEventListener("focusout", (e) => {
     /*
      * form validation
@@ -270,6 +270,9 @@ export function handleDocumentEvents() {
       formValidation(e, false);
     }
   });
+
+  //focus on description - fixed error
+  //document.querySelector(".focus").focus();
 
   // resize
   window.addEventListener("resize", render.checkEventsVisibility);
@@ -293,7 +296,7 @@ export function handleDocumentEvents() {
       if (index == 5) {
         nextIndex = 0;
       }
-      //shift + tab
+      //shift key
       if (e.keyCode === 16) {
         e.preventDefault();
         if (index >= 0) {
@@ -305,14 +308,13 @@ export function handleDocumentEvents() {
           nextIndex = 0;
         }
       }
+      focusableInputs[nextIndex].focus();
+      e.stopPropagation();
     }
     // Escape to close modal
     if (e.keyCode === 27) {
       removeTemplate("modal-template", "modal-section");
     }
-
-    focusableInputs[nextIndex].focus();
-    e.stopPropagation();
   }
 
   // animation end
