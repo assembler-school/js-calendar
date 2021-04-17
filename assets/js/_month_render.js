@@ -167,11 +167,15 @@ export function getDateTimeFormat(year, month, day ){
         return monthList.findIndex((month) => month === _month);
       };
       
-    if (day) {
-        const _curTime = new Date().toLocaleTimeString(),
-        pr = new Date(year, _fngetMonth(month), parseInt(day) + 1).toISOString(),
-        res = pr.slice(0, 11);
-        return (res + _curTime).slice(0,16);
+    if (day) {    
+        const curTime = new Date(),
+        pr = new Date(year, _fngetMonth(month), parseInt(day) + 1),
+        resDate = pr.toISOString().slice(0, 11);
+
+        const prTime = pr.setHours(curTime.getHours(),curTime.getMinutes()),
+        resTime = new Date(prTime).toTimeString().slice(0,5);
+
+        return (resDate + resTime);
     }
 }
 
@@ -230,7 +234,50 @@ export function checkEventsVisibility() {
         container.appendChild(span);
       }
     });
-
-    console.log("KKKKKKKKKKK");
   }
   
+/*
+ * This function tracks expired events
+ * Set interval of 1 min
+ */
+let interval;
+export function checkExpiredEvents() {
+  const lsEvents = calendarEvent.fromLocalStorage();
+  const currTime = new Date().getTime();
+  const currDate = new Date();
+
+  // clear interval   
+  interval ? clearInterval(interval) : 0;
+
+  // check expired events - tracking
+  const _fnCheckExpired = function (events) {
+    events.forEach((el) => {
+      const evId = el.dataset.eventid.slice(5);
+      const evFiltered = lsEvents.filter((ev) => ev.id == evId);
+      let endTime;
+      
+      // tracking events with end-date
+      if (evFiltered.length) {
+        const initDt = evFiltered[0]["init-date"];
+        const endDt = evFiltered[0]["end-date"];
+
+        endTime = endDt? new Date(endDt).getTime() : new Date(initDt).setHours(23, 59, 59);
+
+      if (endTime - currTime <= 60000) {
+        const timeOut = setTimeout(() => {
+        //   console.log("******* Aviso evento:", evFiltered[0].title);
+          el.classList.add("expired", "fade-out");
+        }, endTime - currTime);
+      }
+    }
+  });
+}
+
+  const domEvents = document.querySelectorAll(".event:not(.expired)");
+  _fnCheckExpired(domEvents);
+
+  interval = setInterval(() => {
+    const domEvents = document.querySelectorAll(".event:not(.expired)");
+    _fnCheckExpired(domEvents);
+  }, 60000);
+};

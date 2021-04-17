@@ -590,6 +590,10 @@ button#create-event i {
   opacity: 0.6;
 }
 
+.expired{
+  /* opacity: 0.6; */
+  font-family: inherit;
+}
 /*
 ===================================
    ! MODAL NEW EVENT
