@@ -24,19 +24,14 @@ function alertReminder(object) {
 export function setReminder(alertsArr) {
      const actualDate = new Date();
      timeoutArr.forEach(clearTimeout);
-     console.log(timeoutArr);
      timeoutArr = [];
 
      if (localStorage.length) {
           const objArray = reminderArr();
-          console.log(objArray);
           objArray.forEach(obj => {
                let remindTime = new Date(obj["init-date"]) - actualDate - (obj["select-time"] * 60000);
-               console.log(new Date(obj["init-date"]) + '-' + actualDate + '-' + (obj["select-time"] * 60000) + '=' + remindTime);
                timeoutArr.push(setTimeout(alertReminder, remindTime, obj));
-               console.log(timeoutArr[0]);
           });
-          console.log(timeoutArr);
           return timeoutArr;
      }
 }
@@ -44,20 +39,3 @@ export function setReminder(alertsArr) {
 
 setReminder(timeoutArr);
 setInterval(setReminder, 3600000, timeoutArr);
-
-// Plan B
-/* export function setReminder() {
-     let actualDate = new Date();
-     if (localStorage.length) {
-          let objArray = reminderArr();
-
-          objArray.forEach(obj => {
-               let differenceTime = new Date(obj["init-date"]) - actualDate;
-               let remindingTime = differenceTime - (obj["select-time"] * 60000);
-               console.log(remindingTime);
-               if (remindingTime < 1000 && remindingTime > 0) {
-                    alert(`El evento  ${obj["title"]}`);
-               }
-          });
-     }
-}*/
