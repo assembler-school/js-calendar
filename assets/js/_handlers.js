@@ -4,6 +4,9 @@ import { calendarEvent } from "./_events.js";
 import * as render from "./_month_render.js";
 import { setReminder } from "./_reminder.js";
 
+
+let remindersArr = [];
+
 /*
  * All listeners are listed here
  *
@@ -106,11 +109,13 @@ export function handleDocumentEvents() {
       if (!formValidation(e, true)) {
         const data = calendarEvent.getDataFromModal("#modal form");
         calendarEvent.toLocalStorage(data);
-        render.renderEvents(updatedYear, updatedMonth);
-        render.checkEventsVisibility();
-        let remindersArr = [];
         setReminder(remindersArr);
-        render.checkExpiredEvents();
+
+        if(document.querySelector("#calendar > div").className != "calendar__year--row") {
+          render.renderEvents(updatedYear, updatedMonth);
+          render.checkEventsVisibility();
+          render.checkExpiredEvents();
+        }
       }
     }
 
@@ -150,8 +155,7 @@ export function handleDocumentEvents() {
       document.getElementById("main").style.display = "block";
       swapTemplate("template__mobile", "main");
     }
-    if (e.target.matches("#navClose i") || e.target.matches("#navClose i *")) {
-      removeTemplate("template__mobile", "main");
+    if (e.target.matches("#navClose i") || e.target.matches("#navClose i *") || e.target.matches("#alert__shadowMain")) {
       document.getElementById("main").style.display = "none";
       document.getElementById("alert__shadowMain").style.display = "none";
       removeTemplate("template__mobile", "main");
@@ -198,6 +202,7 @@ export function handleDocumentEvents() {
         calendarEvent.modifyEvent(_event);
         removeTemplate("edit-template", "modal-section");
         render.renderEvents(updatedYear, updatedMonth);
+        setReminder(remindersArr);
         render.checkEventsVisibility();
       }
     }
@@ -208,6 +213,7 @@ export function handleDocumentEvents() {
     if (e.target.matches(".remove")) {
       removeTemplate("alert-template", "modal-section");
       calendarEvent.removeEvent(_event);
+      setReminder(remindersArr);
       render.checkEventsVisibility();
     }
 
