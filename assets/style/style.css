@@ -269,6 +269,15 @@ width: 16px;
 html[mode-changes = "light"] {
     /*------ Background colors --------*/
     --main-background: rgb(255, 255, 255);
+    --p:black;
+    --modal-box-background:rgb(255, 255, 255);
+    --modal-input-background:white;
+    --modal-input-focus:#92969e5b;
+    --modal-input-text:black;
+    --modal-other-text:black;
+    --modal-borders:black 1px solid;
+    
+
     --calendar_main_bg:white;
     --month_main_bg:rgb(5, 5, 5);
     --days_main_bg:rgb(180, 180, 180);
@@ -292,11 +301,13 @@ html[mode-changes = "light"] {
     --arrows:rgb(255, 255, 255);
     --arrow_hover:rgb(235, 138, 230);
     /*------ Gradients Colors --------*/
-    --gradient-pinky:linear-gradient(
-        45deg,
-        #845ec2,
-        #d65db1,
-        #ffffe0);
+  
+      --gradient-pinky:linear-gradient(
+    45deg,
+    #845ec2,
+    #d65db1,
+    #ffffe0);
+    
 }
 
 /* variable customizada*/
@@ -328,11 +339,21 @@ html[mode-changes = "light"] {
     --arrows:rgb(0, 0, 0);
     --arrow_hover:orange;
     /*------ Gradients Colors --------*/
-	--gradient-pinky:linear-gradient(
-			45deg,
-			#b4b4b4,
-			#7a7a7a,
-			#202020);
+--gradient-pinky:linear-gradient(
+45deg,
+#b4b4b4,
+#7a7a7a,
+#202020);
+
+
+    --modal-box-background:#171E2E;
+    --modal-input-background:#313742;
+    --modal-input-focus:#3137425b;
+    --modal-input-text:#9DA0A6;
+    --modal-other-text:rgb(161, 161, 161);
+    --modal-borders:none;
+    
+			
 }
 
 @keyframes title-animation{
@@ -455,15 +476,34 @@ html[mode-changes = "light"] {
     top: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
-    background-color: rgba(35, 54, 54, 0.4); /* Black w/ opacity */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
   }
+  
+  input,select, textarea {
+      background-color:var(--modal-input-background);
+      color: var(--modal-input-text);
+      border: var(--modal-borders);
+      border-radius: 15px
+  }
+  input:focus,textarea:focus {
+    background-color: var(--modal-input-focus);
+    outline:none;
+}
+
+.buttons:focus{
+    height: 50px;
+    width: 70px;
+    outline: black;
+
+}
+
   /* Add styles to the modal container */
   .modal-content {
     flex-direction: column;
-    background-color: white;
+    color:var(--modal-other-text);
+    background-color:var(--modal-box-background);
     margin: auto;
     padding: 20px;
-    border: 1px solid black;
     border-radius: 5%;
     min-width: 300px;
     width: 30%;
@@ -477,8 +517,9 @@ html[mode-changes = "light"] {
   .textContainer , #addDate , #addTitle ,#endDate, #timeSelect, #reminderBox, #descriptionBox,#eventType, #buttonsPop{
      height: 50px;
      width: 100%;
-     /* outline: 1px black solid; */
+   
   }
+
   /* Space beetweeen the Create and Close buttons */
   #buttonsPop{
     display: flex;
@@ -494,10 +535,11 @@ html[mode-changes = "light"] {
 #titleBox{
     height: 40px;
     width: 100%;
+    padding-left: 10px;
 }
-#titleBox:focus {
-    background-color: #ddd;
-}
+
+
+
  /* Moving around of all the content inside the separate divs */
 #addDate{
     display: flex;
@@ -514,6 +556,7 @@ html[mode-changes = "light"] {
 #initialCal , #endCal{
 width: 80%;
 height: 70%;
+padding-left: 10px;
 }
 #endCal{
     display: none;
@@ -524,8 +567,10 @@ height: 70%;
 }
 #timeSelector{
 margin: 18px;
+margin-left: 41px;
 width: 20%;
 height: 70%;
+padding-left: 12px;
 
 }
 #reminderSelect{
@@ -536,9 +581,8 @@ height: 70%;
 textarea{
     resize: none;
     overflow: auto;
-    outline: none;
     box-sizing: border-box;
-    padding: 2px;
+    padding: 10px;
     height: 100%;
     width: 100%;
     
@@ -558,8 +602,8 @@ textarea{
 .buttons{
     height: 50px;
     width: 70px;
-    border-radius: 10%;
-    outline: none;
+    border-radius: 15px;
+    outline:none;
 }
 
 #createBtn {

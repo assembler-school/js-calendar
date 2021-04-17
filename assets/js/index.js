@@ -51,7 +51,7 @@ document.getElementById("endCal").value = today;
 
 // Set current time when calender open
 let todayTime = new Date();
-let timeNow = todayTime.getHours() + ":" + todayTime.getMinutes() + ":" + todayTime.getSeconds();
+let timeNow = todayTime.getHours() + ":" + todayTime.getMinutes();
 document.getElementById("timeSelector").value = timeNow;
 
 /**********************************************/
@@ -351,7 +351,7 @@ function renderPickedEvents() {
     //con esto, convertimos el objeto en un array para posteriormente iterar en el
     let myArray = Object.entries(renderSection);
     let comparedDay = myArray[0][1].setDay;
-    //console.log(comparedDay);
+    // console.log(comparedDay);
     //console.log(myArray[1][1]);
     let no_events_pickeds = document.querySelector(".no_events_pickeds");
     no_events_pickeds.style.display = "none";
@@ -361,7 +361,7 @@ function renderPickedEvents() {
 
       //debo conseguir pescar el ID del section en especifico y hacer un condicional que me elimine todos los que NO son iguales
       let event_display = document.querySelectorAll(".event__display");
-      //console.log(event_display);
+      console.log(event_display);
       // El objeto de arriba ,e devuelve un Nodelist y con lo de abajo lo convierto en Array para Iterar por cada uno de los elementos en el Array
       let x = Array.from(event_display);
       //console.log(x);
