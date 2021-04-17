@@ -55,7 +55,7 @@ export function renderMonthYear(year, month) {
         /* Fill the calendar divs with day number */
         try { 
             document.querySelector('.calendar__year--month[data-month="'+ month +'"] .calendar__year--date[data-row="' + weekCount + '"] div[data-col="' + weekDay + '"]').innerHTML = x;
-            document.querySelector('.calendar__year--month[data-month="'+ month +'"] .calendar__year--date[data-row="' + weekCount + '"] div[data-col="' + weekDay + '"]').setAttribute("id",x);
+            document.querySelector('.calendar__year--month[data-month="'+ month +'"] .calendar__year--date[data-row="' + weekCount + '"] div[data-col="' + weekDay + '"]').setAttribute("id",`${x}${month}`);
         }
         catch(err) {
             /* Create the week clone to show in calendar */
@@ -65,17 +65,12 @@ export function renderMonthYear(year, month) {
             document.querySelector('.calendar__year--month[data-month="'+ month +'"]').appendChild(workClone);
             /* Fill the clone for first time */
             document.querySelector('.calendar__year--month[data-month="'+ month +'"] .calendar__year--date[data-row="' + weekCount + '"] div[data-col="' + weekDay + '"]').innerHTML = x;
-            //console.log('');
-            document.querySelector('.calendar__year--month[data-month="'+ month +'"] .calendar__year--date[data-row="' + weekCount + '"] div[data-col="' + weekDay + '"]').setAttribute("id",x);
+            document.querySelector('.calendar__year--month[data-month="'+ month +'"] .calendar__year--date[data-row="' + weekCount + '"] div[data-col="' + weekDay + '"]').setAttribute("id",`${x}${month}`);
         };
         if (!weekDay) {weekCount++};
         weekDay++;
         weekDay%=7;
     }
-    /* Adapts the height of the week rows to the total */
-/*     document.querySelectorAll('.calendar__year--date').forEach((row)=> {
-        row.style.height = 'calc((100% - 25px) / ' + rowCont + ')';
-    }); */
 }
 
 export function renderYear(year) {
@@ -154,10 +149,18 @@ export function addTagYear(year) {
 export function highlightToday(year, month){
     let date = new Date();
     if (year === date.getFullYear() && month===date.getMonth()) {
-        document.getElementById((new Date()).getDate()).className += 'today';
-        document.getElementById((new Date()).getDate()).childNodes[0].innerHTML = date.getDate();
+        document.getElementById(date.getDate()).className += 'today';
+        document.getElementById(date.getDate()).childNodes[0].innerHTML = date.getDate();
     }
 }
+export function highlightTodayYear(year){
+    let date = new Date();
+    if (year === date.getFullYear()) {
+        document.getElementById(`${date.getDate()}${date.getMonth()}`).className += 'todayYear';
+        document.getElementById(`${date.getDate()}${date.getMonth()}`).innerHTML = '<span>' + date.getDate(); + '</span>';
+    }
+}
+
 
 /*
  * This gets dateTime local
@@ -230,7 +233,5 @@ export function checkEventsVisibility() {
         container.appendChild(span);
       }
     });
-
-    console.log("KKKKKKKKKKK");
   }
   

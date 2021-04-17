@@ -508,6 +508,15 @@ button#create-event i {
   margin-bottom: 0.1rem;
 }
 
+.todayYear span:first-child{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background-color: var(--text-color);
+  color: white;
+}
+
 .reminder__popup {
   position: fixed;
   display: flex;
