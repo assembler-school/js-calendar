@@ -369,6 +369,7 @@ export function goToMonth(year, month) {
   render.renderEvents(year, month);
   render.renderMonthList();
   render.checkEventsVisibility();
+  render.checkExpiredEvents();
 }
 
 /*

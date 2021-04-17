@@ -264,10 +264,11 @@ export function checkExpiredEvents() {
         endTime = endDt? new Date(endDt).getTime() : new Date(initDt).setHours(23, 59, 59);
 
       if (endTime - currTime <= 60000) {
+        const time = (endTime - currTime) > 0 ? (endTime - currTime) : 0;
         const timeOut = setTimeout(() => {
         //   console.log("******* Aviso evento:", evFiltered[0].title);
           el.classList.add("expired", "fade-out");
-        }, endTime - currTime);
+        }, time);
       }
     }
   });
