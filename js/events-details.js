@@ -14,7 +14,6 @@ function displayDetailsOfEvent(eventId, dateId) {
         for (let i = 0; i < calendarEvents[dateId].length; i++) {
             if (calendarEvents[dateId][i].id == eventId) {
                 let titleText = calendarEvents[dateId][i].eventTitle;
-                let optDate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: "2-digit", minute: "2-digit" };
                 let initialDateText = calendarEvents[dateId][i].initialDate;
                 initialDateText = new Date(initialDateText).toLocaleString('en-UK', optDate);
                 let endDateText;

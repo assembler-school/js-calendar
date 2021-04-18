@@ -64,7 +64,6 @@ function startNextAlarmTimeout(){
         currentTimeout = setTimeout(function(){
             let id = nextRemindersList[0].id;
             let title = nextRemindersList[0].eventTitle;
-            let optDate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: "2-digit", minute: "2-digit" };
             let initialDate = nextRemindersList[0].initialDate;
             initialDate = new Date(initialDate).toLocaleString('en-UK', optDate);
             modalForReminders(title, initialDate, id);

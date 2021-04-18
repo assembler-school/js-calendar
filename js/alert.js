@@ -14,7 +14,7 @@ function modalForDetails(title, initialDate, endDate, reminderDate, eventDescrip
     modDetailsContent.style.visiblity="visible";
 
     let titleOfEventTxt = modDetailsContent.appendChild(document.createElement("h1"));
-    titleOfEventTxt.classList.add('title-event')
+    titleOfEventTxt.classList.add('title-event');
     titleOfEventTxt.innerHTML = title;
 
     let detailsDiv = modDetailsContent.appendChild(document.createElement("div"));
@@ -152,19 +152,28 @@ function removeCustomReminderAlert() {
     currentDateForBlur.removeAttribute('style');
 }
 
-function modalWarningBoxEnters(event) {
-    //let warningBox = document.querySelector('.warningBox-btn');
-    let warningBox = event.target
-    warningBox.innerHTML = '';
-    warningBox.style.transition = '0.2s ease-in';
-    warningBox.classList.toggle("past-reminders-container");//changes heigth and width inits transition
+let warningBoxContainer;
+function modalWarningBoxEnters() {
+    let warningBox = document.querySelector('.warningBox-btn');
+    warningBoxContainer = document.getElementsByClassName('header01-div')[0].appendChild(document.createElement('div'));
+    warningBoxContainer.classList.add('past-reminders-container');
     for (reminder of pastRemindersList){
-        let displayedReminder = document.createElement("p");
-        displayedReminder.classList.add("warning-reminder-text");
-        warningBox.appendChild(displayedReminder);
-        displayedReminder.appendChild(document.createTextNode(reminder.eventTitle + ': ' + reminder.reminderDate));
-        displayedReminder.id = reminder.id;
-        displayedReminder.addEventListener('click', modalForWarningBoxReminders);
+        let reminderDiv = warningBoxContainer.appendChild(document.createElement('div'));
+        reminderDiv.classList.add('reminder-div');
+        let titleOfReminder = reminderDiv.appendChild(document.createElement('h4'));
+        let deleteReminderBtn = reminderDiv.appendChild(document.createElement('h4'));
+        let dateOfReminder = reminderDiv.appendChild(document.createElement('p'));
+        deleteReminderBtn.classList.add('delete-reminder-btn');
+        titleOfReminder.classList.add("title-reminder-text");
+        dateOfReminder.classList.add('date-reminder-text');
+        let remindDateFormat = reminder.reminderDate;
+        remindDateFormat = new Date(remindDateFormat).toLocaleString('en-UK', optDate);
+        titleOfReminder.innerHTML = reminder.eventTitle;
+        dateOfReminder.innerHTML = remindDateFormat;
+        reminderDiv.id = reminder.id;
+        let id = reminder.id;
+        titleOfReminder.addEventListener('click', modalForWarningBoxReminders);
+        // deleteReminderBtn.addEventListener('click', removeReminder(reminder.id));
     }
     warningBox.removeEventListener('click', modalWarningBoxEnters);
     warningBox.addEventListener('focusout', modalWarningBoxLeaves);
@@ -174,13 +183,14 @@ function modalWarningBoxLeaves() {
     let warningBox = document.querySelector('.warningBox-btn');
     warningBox.style.transition = 'none';
     warningBox.removeEventListener('focusout', modalWarningBoxLeaves);
-    warningBox.classList.toggle("past-reminders-container");//changes heigth and width inits transition
+    // warningBox.classList.toggle("past-reminders-container");//changes heigth and width inits transition
     loadPastRemindersWarningCounter();
     warningBox.addEventListener('click', modalWarningBoxEnters);
 
 }
 
+// let displayedReminderDiv;
 function modalForWarningBoxReminders(event){
-    let displayedReminder = pastRemindersList.filter(reminder => reminder.id === event.target.id)[0];
-    modalForReminders(displayedReminder.eventTitle, displayedReminder.initialDate, displayedReminder.id);
+    let reminderDiv = pastRemindersList.filter(reminder => reminder.id === event.target.parentElement.id)[0];
+    modalForReminders(reminderDiv.eventTitle, reminderDiv.initialDate, reminderDiv.id);
 }

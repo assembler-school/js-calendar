@@ -191,3 +191,78 @@
   border-top: 2px solid #000;
   border-bottom: 2px solid #000;
 }
+
+.warningBox-btn {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--textDarkGray);
+  z-index: 999;
+  overflow: auto;
+}
+
+.warningBox-btn-alert {
+  background-color: var(--red);
+  color: white;
+  font-weight: var(--bold);
+}
+
+.warningBox-btn-alert:hover {
+  background-color: var(--pink);
+}
+
+.past-reminders-container {
+  min-width: 250px;
+  max-height: 300px;
+  padding: 5px;
+  position: absolute;
+  top: 30px;
+  left: 53%;
+  border-radius: 10px;
+  z-index: 9999;
+  overflow: overlay;
+  background-color: var(--pink);
+}
+
+.reminder-div {
+  width: 100%;
+  padding: 5px;
+  height: max-content;
+  background-color: var(--red);
+  border-radius: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* WARNING BOX  */
+
+.title-reminder-text {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+  width: max-content;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.delete-reminder-btn {
+  width: 12px;
+  height: 12px;
+  background-image: url(../img/plus-icon.png);
+  background-size: cover;
+  transform: rotate(45deg);
+  margin-bottom: 5px;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+}
+
+.date-reminder-text {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 400;
+  color: white;
+  width: 95%;
+}
