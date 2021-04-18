@@ -94,22 +94,40 @@ export function renderEvents(year, month) {
     let allEvents = calendarEvent.fromLocalStorage();
 
     if (allEvents) {
-    let monthEvents = allEvents.filter ((ev) => new Date(ev["init-date"]).getFullYear() === year && new Date(ev["init-date"]).getMonth() === month);
+      let monthEvents = allEvents.filter ((ev) => new Date(ev["init-date"]).getFullYear() === year && new Date(ev["init-date"]).getMonth() === month);
 
-    /* Create the events in calendar and set its HTML attributes */
-    monthEvents.forEach(function (monthEvents){
+      /* Create the events in calendar and set its HTML attributes */
+      monthEvents.forEach(function (monthEvents){
         if(d.querySelector(`[data-eventid="event${monthEvents.id}"]`)) {
-            d.querySelector(`[data-eventid="event${monthEvents.id}"]`).remove()
+          d.querySelector(`[data-eventid="event${monthEvents.id}"]`).remove()
         }
         let eventDiv = document.createElement("div");
         eventDiv.setAttribute("data-eventid","event" + monthEvents.id);
         eventDiv.setAttribute("class","event fade-in event__type--" + monthEvents["select-event"]);
         eventDiv.innerHTML = monthEvents.title;
         if (!d.querySelector(`[data-eventid="event${monthEvents.id}"]`)) {
-            d.getElementById(new Date(monthEvents["init-date"]).getDate()).appendChild(eventDiv);
+          d.getElementById(new Date(monthEvents["init-date"]).getDate()).appendChild(eventDiv);
         }
-    });
+      });
+    }
 }
+
+export function renderNavEvents() {
+    let todayDate = new Date();
+    let allEvents = calendarEvent.fromLocalStorage()
+    if (allEvents) {
+      let todayEvents = allEvents.filter ((ev) => 
+        new Date(ev["init-date"]).getFullYear() === todayDate.getFullYear() && 
+        new Date(ev["init-date"]).getMonth() === todayDate.getMonth() && 
+        new Date(ev["init-date"]).getDate() === todayDate.getDate());
+      todayEvents.forEach(function (todayEvents){
+        let eventDiv = document.createElement("span");
+        eventDiv.setAttribute("data-eventid","event" + todayEvents.id);
+        eventDiv.setAttribute("class","event event__type--" + todayEvents["select-event"]);
+        eventDiv.innerHTML = todayEvents.title;
+        document.querySelector(".nav__mobile--event").appendChild(eventDiv);
+      });
+    }
 }
 
 /* Update month and year to use normally */

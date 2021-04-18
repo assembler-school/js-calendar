@@ -155,6 +155,7 @@ export function handleDocumentEvents() {
       document.getElementById("alert__shadowMain").style.display = "block";
       document.getElementById("main").style.display = "block";
       swapTemplate("template__mobile", "main");
+      render.renderNavEvents();
     }
     if (e.target.matches("#navClose i") || e.target.matches("#navClose i *") || e.target.matches("#alert__shadowMain")) {
       document.getElementById("main").style.display = "none";
