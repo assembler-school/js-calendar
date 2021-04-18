@@ -1,5 +1,4 @@
 var currentDate = new Date;
-var currentWeekDay = currentDate.getDay();
 var currentDay = currentDate.getDate();
 var currentMonth = currentDate.getMonth();
 var currentYear = currentDate.getFullYear();

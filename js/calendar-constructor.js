@@ -1,10 +1,3 @@
-console.log(days[currentWeekDay] + ' ' + currentDay + ' ' + monthsNames[currentMonth] + ' ' + currentYear);
-
-// console.log(firstOfJanuary(2021));
-// console.log('First week day: ' + new Date(year,month).getDay());
-// console.log(getMonthDays(2021,5));
-
-
 //GET DAY,MONTH,YEAR DATA
 //Get first day of month
 function getFirstMonthDay(year,month){
@@ -21,8 +14,6 @@ function getFirstMonthDay(year,month){
 function getMonthDays(year,month){
   return new Date(year,month, 0).getDate()
 }
-
-
 
 //CALENDAR CONSTRUCTOR
 function calendarConstructor(changeYear){
@@ -106,7 +97,6 @@ function calendarConstructor(changeYear){
     i++;
   })
 
-
   //Setting week-days class
   var months = document.querySelectorAll('.month');
   months.forEach((element) => {
@@ -128,8 +118,6 @@ function calendarConstructor(changeYear){
   buttonMonthYearStyle();
 }
 
-
-
 //POPULATE CALENDAR DAYS
 function populateCalendar(changeYear){
   //Body of the calendar
@@ -137,14 +125,8 @@ function populateCalendar(changeYear){
 
   var iMonth = 1;
   months.forEach((element) => {
-
     let date = 1;
-
     //Dates checker
-    // console.log('iMonth-' + iMonth);
-    // console.log('Month days-' + getMonthDays(year,iMonth))
-    // console.log('First week day-' + (getFirstMonthDay(year,iMonth-1)));
-
     for (let i = 0; i < 6; i++) {
       // creates a table row
       // let row = document.createElement("tr");
@@ -190,7 +172,6 @@ function populateCalendar(changeYear){
   today(month,currentDay,currentMonth,currentYear);
   displayEventsInYearCalendar(year,calendarEvents);
 }
-
 
 function updateYearHeader(yearText) {
   let currentMonthText = document.querySelector('.currentMonth-text');

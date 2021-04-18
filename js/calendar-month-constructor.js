@@ -1,11 +1,9 @@
 function calendarMonthConstructor(month,year){
     //Calendar view
     calendarView = 'month-view';
-
     const monthSection = document.querySelector('#month-section');
 
     // January is 0;
-
     // Creates the name of the weeks
     function createWeekRow() {
         let weekRow = document.createElement('div');
@@ -96,7 +94,6 @@ function calendarMonthConstructor(month,year){
         currentMonthText.innerHTML = monthText;
         currentYearText.innerHTML = yearText;
     }
-
     clearMonthCalendar();
     createWeekRow();
     createMonthGrid();

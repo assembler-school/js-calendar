@@ -1,5 +1,5 @@
 function displayEventsInMonth(currentMonthDisplay, eventsCalendar){
-    for (date in eventsCalendar){
+    for (let date in eventsCalendar){
         if(currentMonthDisplay == date.split("/")[1] && year == date.split("/")[0]){
             eventsCalendar[date].forEach((element) => {
                 displayEventInDate(date, element.eventTitle, element.id, element.eventType);
@@ -17,9 +17,6 @@ function displayEventInDate(dateID,eventTitle, eventId,eventType) {
     displayedEvent.classList.add('event-text');
     document.getElementById(dateID).parentNode.lastChild.appendChild(displayedEvent);
 }
-
-
-
 
 function initRemindersList(){
     nextRemindersList=[];
@@ -40,6 +37,7 @@ function initRemindersList(){
         }
         startNextAlarmTimeout();
 }
+
 function sortRemindersList(remindersList, sign){
   remindersList.sort(function (a, b) {
         if (a['reminderDate'] > b['reminderDate']) {
@@ -93,6 +91,7 @@ function loadPastRemindersWarningCounter(){
 
     }
 }
+
 function displayEventsInYearCalendar(year,eventsCalendar){
     for (element in eventsCalendar){
         if(year == element.split("/")[0]){
@@ -102,5 +101,3 @@ function displayEventsInYearCalendar(year,eventsCalendar){
         }
     }
 }
-
-

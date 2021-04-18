@@ -152,8 +152,6 @@ function removeCustomReminderAlert() {
     currentDateForBlur.removeAttribute('style');
 }
 
-
-
 let warningBoxContainer;
 function modalWarningBoxEnters() {
     let warningBox = document.querySelector('.warningBox-btn');
@@ -213,7 +211,6 @@ function modalWarningBoxLeaves() {
     
 }
 
-// let displayedReminderDiv;
 function modalForWarningBoxReminders(event){
     let reminderDiv = pastRemindersList.filter(reminder => reminder.id === event.target.parentElement.id)[0];
     let initialDateFormat = new Date(reminderDiv.initialDate).toLocaleString('en-UK', optDate);

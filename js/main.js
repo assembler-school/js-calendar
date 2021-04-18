@@ -72,6 +72,7 @@ document.getElementById("endDateCheckboxId").addEventListener('click', (event) =
     }
     setCheckboxVisibility(event);
 });
+
 document.getElementById("reminderCheckboxId").addEventListener('click', (event) => {
     document.querySelector('.labelRequiredReminder')?.remove();
     if (reminderValidation()) {
