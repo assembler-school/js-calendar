@@ -80,9 +80,9 @@ function modalForDetails(title, initialDate, endDate, reminderDate, eventDescrip
         removeCustomAlert()
     }
     okBtn.innerHTML = 'Ok'
-    okBtn.onclick = function() {
-        removeCustomAlert()
-    }
+    okBtn.onclick = removeCustomAlert;
+    document.querySelector('#alert-container').addEventListener('click', removeCustomAlert);
+    document.querySelector('#details-content').addEventListener('click', e => e.stopPropagation());
 }
 
 function modalForReminders(title, initialDate, id) {
@@ -131,9 +131,9 @@ function modalForReminders(title, initialDate, id) {
     let okBtn = div6.appendChild(document.createElement("button"));
     okBtn.classList.add('ok-reminder-btn');
     okBtn.innerHTML = 'Got it!';
-    okBtn.onclick = function() {
-        removeCustomReminderAlert();
-    }
+    okBtn.onclick = removeCustomReminderAlert;
+    document.querySelector('#alert-reminder-container').addEventListener('click', removeCustomReminderAlert);
+    document.querySelector('#details-reminder-content').addEventListener('click', e => e.stopPropagation());
 }
 
 function removeCustomAlert() {

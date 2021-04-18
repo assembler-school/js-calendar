@@ -219,8 +219,8 @@
   max-height: 300px;
   border: 5px solid var(--pink);
   position: absolute;
-  top: 30px;
-  left: 53%;
+  top: 32px;
+  margin-left: 32px;
   border-radius: 10px;
   z-index: 9999;
   overflow: overlay;

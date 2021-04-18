@@ -156,24 +156,33 @@ table {
   /* outline: 1px solid red !important; */
   box-sizing: border-box;
   cursor: default;
+  transition: 0.15s ease-out;
 }
 
 *:focus {
   outline: none;
 }
 
+html{
+  height:100vh;
+  max-height:100vh;
+  background-color: var(--bg);
+}
+
 body {
+  position:relative;
   display: flex;
-  overflow: hidden;
   flex-direction: column;
+  max-height:100vh;
 }
 
 header {
-  padding: 0px 25px;
+  position:inherit;
+  padding: 0px 2%;
   width: 100%;
   max-height: 6vh;
   height: 6vh;
-  min-height: 70px;
+  min-height: 6vh;
   background-color: var(--header);
   display: flex;
   justify-content: space-between;
@@ -181,10 +190,12 @@ header {
 }
 
 main {
-  padding: 0px 25px;
+  position:inherit;
   width: 100%;
-  height: 100%;
+  height: 94vh;
+  max-height: 94vh;
   background-color: var(--bg);
+  margin:0 auto;
 }
 
 button {
@@ -199,7 +210,8 @@ button {
 }
 
 button:focus {
-  outline: none;
+  border: 1px solid white;
+  transform: scale(1.1);
 }
 
 button:hover {
@@ -209,6 +221,15 @@ button:hover {
 button:active {
   background-color: var(--btnActive);
   color: white;
+}
+
+.calendar-button{
+  background-color: var(--blueTitle);
+  color:var(--bg);
+}
+
+.calendar-button:hover{
+  background-color: var(--darkBlue);
 }
 
 input {

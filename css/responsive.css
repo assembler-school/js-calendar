@@ -1,0 +1,71 @@
+.mobile-currentDate-section {
+  position:absolute;
+  left:2.5%;
+  width: 95%;
+  max-height: 9vh;
+  height: 9vh;
+  min-height: 9vh;
+  display: flex;
+  position: relative;
+  justify-content:center;
+}
+
+.mobile-currentTypeofDate-container{
+  width:90%;
+  justify-content:center;
+}
+
+.mobile-goPrevious-btn {
+  position:relative;
+  top:10%;
+  width:5;
+  height:80%;
+  font-size: 16px;
+  font-weight: 400;
+  background-image: url("../img/left-arrow.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 8px;
+  /* background-color: var(--btnActive); */
+  border: none;
+  color: white;
+}
+
+.mobile-goNext-btn {
+  position:relative;
+  top:10%;
+  width:5%;
+  height:80%;
+  font-size: 16px;
+  font-weight: 400;
+  background-image: url("../img/right-arrow.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 8px;
+  /* background-color: var(--btnActive); */
+  border: none;
+  color: white;
+}
+
+/* Year calendar */
+.mobile-year-row {
+  display: flex;
+  width: 100%;
+  height: 33.3%;
+}
+
+.mobile-year-row > .month {
+  width: 100%;
+  height: 100%;
+  padding: 0.8%;
+}
+
+.month > .week {
+  display: flex;
+  align-items: center;
+  height: 12%;
+}
+
+.mobile-days{
+  font-size:0.1rem;
+}

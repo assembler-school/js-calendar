@@ -19,18 +19,22 @@ function updateTemplate(previousStep, containerId, templateId) {
 
 document.getElementById('monthView-btn').addEventListener("click", (event)=>{
     if(document.querySelector(".main-content-section").firstElementChild.id === "year-section"){
+        calendarView = 'month-view';
         event.target.disabled = true;
         document.getElementById("yearView-btn").disabled = false;
         updateTemplate("year-section","main-content-section","month-template");
         calendarMonthConstructor(month,year);
+        buttonMonthYearStyle();
     }
 });
 document.getElementById('yearView-btn').addEventListener("click", (event)=>{
     if(document.querySelector(".main-content-section").firstElementChild.id === "month-section"){
+        calendarView = 'year-view';
         event.target.disabled = true;
         document.getElementById("monthView-btn").disabled = false;
         updateTemplate("month-section","main-content-section","year-template");
-        calendarConstructor();
+        calendarConstructor(year);
+        buttonMonthYearStyle();
     }
 });
 addNewTemplate("main-content-section", "month-template");
@@ -109,7 +113,7 @@ document.getElementById("initialDateId").addEventListener('change', (event) => {
     }
 });
 
-document.getElementById("endDateId").addEventListener('change', (event) => {
+document.getElementById("endDateId").addEventListener('change', () => {
     document.querySelector('.labelRequiredEndDate')?.remove();
     if (endDateValidation()) {
         addInputValidationLabel(
@@ -120,7 +124,7 @@ document.getElementById("endDateId").addEventListener('change', (event) => {
     }
 });
 
-document.getElementById("reminderId").addEventListener('change', (event) => {
+document.getElementById("reminderId").addEventListener('change', () => {
     document.querySelector('.labelRequiredReminder')?.remove();
     if (reminderValidation()) {
         addInputValidationLabel(
@@ -280,6 +284,13 @@ function saveEventData() {
     }
 }
 
+function failValidationShake() {
+    document.getElementById('saveBtn').classList.add("apply-shake");
+    document.getElementById('saveBtn').addEventListener("animationend", (e) => {
+        e.target.classList.remove("apply-shake");
+    });
+}
+
 function saveEvent() {
     if (!document.getElementById('eventTitleId').value) {
         if (!document.querySelector('.labelRequiredTitle')) {
@@ -289,6 +300,7 @@ function saveEvent() {
                 'eventTitleId'
             );
         }
+        failValidationShake();
         return false;
     }
 
@@ -300,6 +312,7 @@ function saveEvent() {
                 'endDateId'
             );
         }
+        failValidationShake();
         return false;
     }
     if (reminderValidation()) { //reminder > currentDate  && reminder < initialDate
@@ -310,15 +323,16 @@ function saveEvent() {
                 'reminderId'
             );
         }
+        failValidationShake();
         return false;
     }
-    saveEventData();//save data
+    saveEventData();
     initRemindersList();
     hideModal();
-    if(calendarView === 'month-view'){
+    if(calendarView === 'month-view') {
         clearMonthCalendar();
         calendarMonthConstructor(month, year);
-    }else if(calendarView === 'year-view'){
+    } else if(calendarView === 'year-view') {
         clearYearCalendar()
         calendarConstructor(year);
     }
