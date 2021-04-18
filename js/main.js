@@ -267,7 +267,7 @@ function saveEventData() {
     });
 
     if (endDateChecked) {
-        let extraDays = (new Date(endDate).getTime() - new Date(initialDate).getTime())/86400000;
+        let extraDays = Math.floor((new Date(endDate).getTime() - new Date(initialDate).getTime())/86400000);
         let initialDateDate = new Date(initialDate);
         for (let i = 0; i < extraDays; i++) {
             initialDateDate.setDate(initialDateDate.getDate() + 1);

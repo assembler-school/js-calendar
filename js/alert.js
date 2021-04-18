@@ -216,5 +216,6 @@ function modalWarningBoxLeaves() {
 // let displayedReminderDiv;
 function modalForWarningBoxReminders(event){
     let reminderDiv = pastRemindersList.filter(reminder => reminder.id === event.target.parentElement.id)[0];
-    modalForReminders(reminderDiv.eventTitle, reminderDiv.initialDate, reminderDiv.id);
+    let initialDateFormat = new Date(reminderDiv.initialDate).toLocaleString('en-UK', optDate);
+    modalForReminders(reminderDiv.eventTitle, initialDateFormat, reminderDiv.id);
 }
