@@ -160,6 +160,7 @@ footer{
 }
 
 .days div {
+    position: relative;
     font-size: 250%;
     width: calc(100%/7);
     display: flex;
@@ -286,7 +287,9 @@ html[mode-changes = "light"] {
     --scrollbar_thumb:orange;
     --slider_ball:rgb(255, 0, 191);
     --meeting:rgb(235, 138, 230);
+    --meeting-event:rgb(241, 20, 186);
     --study:orange;
+    --study-event:rgb(0, 255, 13);
     --personal:rgb(0, 0, 0);
     /*------ Letters colors --------*/
     --general_p:black;
@@ -322,7 +325,9 @@ html[mode-changes = "light"] {
     --scrollbar_thumb:rgb(240, 0, 0);
     --slider_ball:rgb(70, 22, 30);
     --meeting:rgb(70, 22, 30);
+    --meeting-event:rgb(70, 22, 30);
     --study:orange;
+    --study-event:rgb(0, 0, 0);
     --personal:white;
     /*------ Letters colors --------*/
     --general_p:white;
@@ -623,36 +628,37 @@ textarea{
 ---------- EINAR calendar ----------
 ********************************* */
 
-.event-inserted {
-    border-radius: 25%;
-    width: 100%;
-    height: 50px;
-    margin: 0px 0px 100px 50px;
-    overflow: hidden;
+.event-inserted{
+    position: absolute;
+    list-style: none;
+    top: 6%;
+    left: 5%;
+    display: flex;
+    gap: 3%;
+    flex-direction: row;
+    width: fit-content;
 }
 
 .meetingList {
-    align-items: initial;
-    width: 50px;
-    height: 50px;
-    background-color: rgb(38, 54, 199);
-    font-size: 1 rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--meeting-event);
+
 }
 
 .studyList {
-    align-items: initial;
-    width: 50px;
-    height: 50px;
-    background-color: rgb(175, 33, 33);
-    font-size: 1 rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--study-event);
 }
 
 .personalList {
-    align-items: initial;
-    width: 50px;
-    height: 50px;
-    background-color: rgb(30, 114, 27);
-    font-size: 1 rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--personal);
 }
 
 
