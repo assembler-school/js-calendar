@@ -152,41 +152,65 @@ function removeCustomReminderAlert() {
     currentDateForBlur.removeAttribute('style');
 }
 
+
+
 let warningBoxContainer;
 function modalWarningBoxEnters() {
     let warningBox = document.querySelector('.warningBox-btn');
-    warningBoxContainer = document.getElementsByClassName('header01-div')[0].appendChild(document.createElement('div'));
-    warningBoxContainer.classList.add('past-reminders-container');
-    for (reminder of pastRemindersList){
-        let reminderDiv = warningBoxContainer.appendChild(document.createElement('div'));
-        reminderDiv.classList.add('reminder-div');
-        let titleOfReminder = reminderDiv.appendChild(document.createElement('h4'));
-        let deleteReminderBtn = reminderDiv.appendChild(document.createElement('h4'));
-        let dateOfReminder = reminderDiv.appendChild(document.createElement('p'));
-        deleteReminderBtn.classList.add('delete-reminder-btn');
-        titleOfReminder.classList.add("title-reminder-text");
-        dateOfReminder.classList.add('date-reminder-text');
-        let remindDateFormat = reminder.reminderDate;
-        remindDateFormat = new Date(remindDateFormat).toLocaleString('en-UK', optDate);
-        titleOfReminder.innerHTML = reminder.eventTitle;
-        dateOfReminder.innerHTML = remindDateFormat;
-        reminderDiv.id = reminder.id;
-        let id = reminder.id;
-        titleOfReminder.addEventListener('click', modalForWarningBoxReminders);
-        // deleteReminderBtn.addEventListener('click', removeReminder(reminder.id));
+    if (warningBox.innerHTML !== '0') {
+        warningBox.innerHTML = '';
+        warningBox.style.backgroundImage = "url('./img/x-button.png')";
+        warningBox.style.backgroundSize = '10px';
+        warningBox.style.backgroundRepeat = 'no-repeat';
+        warningBox.style.backgroundPosition = 'center';
     }
-    warningBox.removeEventListener('click', modalWarningBoxEnters);
-    warningBox.addEventListener('focusout', modalWarningBoxLeaves);
+    if (pastRemindersList.length !== 0) {
+        warningBoxContainer = document.getElementsByClassName('header01-div')[0].appendChild(document.createElement('div'));
+        warningBoxContainer.classList.add('past-reminders-container');
+        for (reminder of pastRemindersList){
+            let reminderDiv = warningBoxContainer.appendChild(document.createElement('div'));
+            reminderDiv.classList.add('reminder-div');
+            let titleOfReminder = reminderDiv.appendChild(document.createElement('h4'));
+            let deleteReminderBtn = reminderDiv.appendChild(document.createElement('h4'));
+            let dateOfReminder = reminderDiv.appendChild(document.createElement('p'));
+            deleteReminderBtn.classList.add('delete-reminder-btn');
+            titleOfReminder.classList.add("title-reminder-text");
+            dateOfReminder.classList.add('date-reminder-text');
+            let remindDateFormat = reminder.reminderDate;
+            remindDateFormat = new Date(remindDateFormat).toLocaleString('en-UK', optDate);
+            titleOfReminder.innerHTML = reminder.eventTitle;
+            dateOfReminder.innerHTML = remindDateFormat;
+            reminderDiv.id = reminder.id;
+            let id = reminder.id;
+            titleOfReminder.addEventListener('click', modalForWarningBoxReminders);
+            if (reminderDiv) {
+                deleteReminderBtn.onclick = function(e) {
+                    e.stopPropagation();
+                    removeReminder(id);
+                    warningBoxContainer.removeChild(document.getElementById(id));
+                    if (warningBoxContainer.children.length === 0) {
+                        warningBoxContainer.remove();
+                        warningBox.removeAttribute('style');
+                    }
+                }
+            }
+        }
+        warningBox.removeEventListener('click', modalWarningBoxEnters);
+        warningBox.addEventListener('click', modalWarningBoxLeaves);
+    }
 }
 
 function modalWarningBoxLeaves() {
     let warningBox = document.querySelector('.warningBox-btn');
-    warningBox.style.transition = 'none';
-    warningBox.removeEventListener('focusout', modalWarningBoxLeaves);
-    // warningBox.classList.toggle("past-reminders-container");//changes heigth and width inits transition
+    warningBox.removeAttribute('style');
+    if (pastRemindersList.length !== 0) {
+        warningBoxContainer = document.querySelector('.past-reminders-container');
+        warningBoxContainer.remove();
+        warningBox.addEventListener('click', modalWarningBoxEnters);
+    }
+    warningBox.removeEventListener('click', modalWarningBoxLeaves);
     loadPastRemindersWarningCounter();
-    warningBox.addEventListener('click', modalWarningBoxEnters);
-
+    
 }
 
 // let displayedReminderDiv;

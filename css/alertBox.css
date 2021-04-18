@@ -210,10 +210,14 @@
   background-color: var(--pink);
 }
 
+.warningBox-btn-alert:active {
+  background-color: var(--red);
+}
+
 .past-reminders-container {
   min-width: 250px;
   max-height: 300px;
-  padding: 5px;
+  border: 5px solid var(--pink);
   position: absolute;
   top: 30px;
   left: 53%;
@@ -221,6 +225,17 @@
   z-index: 9999;
   overflow: overlay;
   background-color: var(--pink);
+  opacity: 1;
+  transition: 0.3s ease-out;
+}
+
+.prc-hidden {
+  min-width: 0px;
+  width: 0px;
+  max-height: 0px;
+  height: 0px;
+  opacity: 0;
+  transition: 0.3s ease-out;
 }
 
 .reminder-div {
@@ -233,6 +248,10 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.reminder-div:last-child {
+  margin-bottom: 0;
 }
 
 /* WARNING BOX  */

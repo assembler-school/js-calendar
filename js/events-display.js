@@ -54,7 +54,7 @@ function sortRemindersList(remindersList, sign){
 }
 
 function alarmSound() {
-    let audio = new Audio('../sound/alarm.m4a');
+    let audio = new Audio('./sound/alarm.mp4');
     audio.play();
 }
 
@@ -84,10 +84,12 @@ function loadPastRemindersWarningCounter(){
     let warningBoxbtn = document.querySelector(".warningBox-btn");
     if(pastRemindersList.length){
         warningBoxbtn.innerHTML= '!'+ pastRemindersList.length;
+        warningBoxbtn.addEventListener('click', modalWarningBoxEnters);
         warningBoxbtn.classList.add("warningBox-btn-alert");
     }else{
         warningBoxbtn.innerHTML= '0';
         warningBoxbtn.classList.remove("warningBox-btn-alert");
+        warningBoxbtn.removeEventListener('click', modalWarningBoxEnters);
 
     }
 }

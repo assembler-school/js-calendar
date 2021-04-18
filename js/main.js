@@ -131,7 +131,7 @@ document.getElementById("reminderId").addEventListener('change', (event) => {
     }
 });
 
-document.querySelector(".warningBox-btn").addEventListener('click', modalWarningBoxEnters);
+// document.querySelector(".warningBox-btn").addEventListener('click', modalWarningBoxEnters);
 
 function showModalWithDay(id) { //set calendar with selected day
     showModal();
@@ -329,7 +329,9 @@ function removeReminder(id) {
         delete reminders[id];
         localStorage.setItem('reminders', JSON.stringify(reminders));
         initRemindersList();
-        loadPastRemindersWarningCounter();
+        if (pastRemindersList.length === 0) {
+            loadPastRemindersWarningCounter();
+        }
     }
 }
 
