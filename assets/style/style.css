@@ -276,6 +276,9 @@ html[mode-changes = "light"] {
     --modal-input-text:black;
     --modal-other-text:black;
     --modal-borders:black 1px solid;
+    --modal-open-button:rgb(241, 20, 186);
+    --modal-button-text:white;
+    
     
 
     --calendar_main_bg:white;
@@ -352,7 +355,8 @@ html[mode-changes = "light"] {
     --modal-input-text:#9DA0A6;
     --modal-other-text:rgb(161, 161, 161);
     --modal-borders:none;
-    
+    --modal-open-button:rgb(70, 22, 30);
+    --modal-button-text:white;
 			
 }
 
@@ -462,11 +466,15 @@ html[mode-changes = "light"] {
 #openButton{
     height: 50px;
      width: 50px ;
-     background-color:white;
+     border-radius: 50%;
+     background-color:var(--modal-open-button);
+     color:var(--modal-button-text);
+     outline: none;
+     border: white;
      font-size: 30px;
      position: absolute;
      bottom:20%;
-     left: 80%;
+     left: 76%;
 }
 .modal {
     display: none; /* Hidden by default */
@@ -733,5 +741,21 @@ main{
     left:85%;
     padding-bottom: 2%;
     z-index: 10000;
+}
+#openButton{
+    height: 40px;
+     width: 40px ;
+     border-radius: 50%;
+     outline: none;
+     font-size: 30px;
+     position: absolute;
+     bottom:20%;
+     left: 68%;
+}
+.fechaSeleccionada{
+    margin-top: 20%;
+    padding-bottom: 2%;
+    font-size: 200%;
+    color:var(--fechaTitle);
 }
 }
