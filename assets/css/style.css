@@ -872,9 +872,13 @@ i.fa-times-circle {
   padding: 1rem;
   box-shadow: var(--shadow);
 }
-.alert__event h2 {
-  font-size: 1.2rem;
+
+.event__title{
+  font-size: 1rem;
   margin: 0.5rem 0;
+  overflow: hidden;
+  max-width: 300px;
+  text-align: center;
 }
 .alert__event p {
   display: flex;
@@ -929,7 +933,6 @@ i.fa-times-circle {
   min-height: 55px;
   border-bottom: #dadce0 1px solid;
 }
-
 .week-hour-wr {
   width: 2%;
   font-size: 0.8rem;
@@ -1004,9 +1007,8 @@ i.fa-times-circle {
     width: 280px;
     padding: 1rem;
   }
-  .alert__event h2 {
-    font-size: 1.2rem;
-    margin: 0.5rem 0;
+  .event__title{
+    font-size: 1rem;
   }
   .alert__event p {
     font-size: 0.8rem;
@@ -1102,9 +1104,8 @@ i.fa-times-circle {
     width: 360px;
     padding: 1rem;
   }
-  .alert__event h2 {
-    font-size: 1.6rem;
-    margin: 0.5rem 0;
+  .event__title{
+    font-size: 1.2rem;
   }
   .alert__event p {
     font-size: 1rem;
@@ -1175,9 +1176,8 @@ i.fa-times-circle {
     width: 600px;
     padding: 1.2rem;
   }
-  .alert__event h2 {
-    font-size: 1.8rem;
-    margin: 0.5rem 0;
+  .event__title{
+    font-size: 1.4rem;
   }
   .alert__event p {
     font-size: 1.2rem;
