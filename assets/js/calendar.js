@@ -16,6 +16,7 @@ showCalendar(currentYear, currentMonth);
 handleDocumentEvents();
 
 function showCalendar(year, month) {
+  
   swapTemplate("month", "calendar");
   render.addTag(year, month);
   render.renderMonth(year, month);
