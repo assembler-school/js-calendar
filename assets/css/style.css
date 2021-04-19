@@ -257,6 +257,12 @@ button#create-event i {
   pointer-events: visible;
   transition: all 0.2s ease-in-out;
 }
+.calendar__year--month .show--year {
+  transform: scale(1);
+  visibility: visible;
+  pointer-events: visible;
+  transition: all 0.2s ease-in-out;
+}
 /*
   ===================================
      ! nav mobile styles
@@ -579,6 +585,10 @@ button#create-event i {
 
 .scaling {
   transform: scale(1.1);
+  transition: transform 0.2s ease-out;
+}
+.scaling--out {
+  transform: scale(7.1);
   transition: transform 0.2s ease-out;
 }
 
