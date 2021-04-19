@@ -109,7 +109,7 @@ export function renderEvents(year, month) {
             d.getElementById(new Date(monthEvents["init-date"]).getDate()).appendChild(eventDiv);
         }
     });
-}
+  }
 }
 
 /* Update month and year to use normally */

@@ -180,6 +180,7 @@ section {
   border-radius: var(--br-radius);
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 194px;
   font-size: 1rem;
   cursor: pointer;
@@ -194,6 +195,7 @@ section {
   height: 100%;
   text-align: center;
   font-size: 1rem;
+  outline: none;
 }
 
 .nav__center > .nav__center--selected {
@@ -254,6 +256,12 @@ button#create-event i {
 }
 
 .month-list.show {
+  transform: scale(1);
+  visibility: visible;
+  pointer-events: visible;
+  transition: all 0.2s ease-in-out;
+}
+.calendar__year--month .show--year {
   transform: scale(1);
   visibility: visible;
   pointer-events: visible;
@@ -351,30 +359,7 @@ button#create-event i {
   background-color: rgb(44, 139, 184);
   color: white;
 }
-/**/
-.nav__mobile--center {
-  padding: 0.15rem;
-  background-color: var(--color2);
-  border-radius: var(--br-radius);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 194px;
-}
-.nav__mobile--center > button {
-  padding: 5px;
-  margin: 0;
-  border-radius: var(--br-radius);
-  border: none;
-  background-color: transparent;
-  padding: 0.4rem 0.6rem;
-  font-size: 1rem;
-  outline: none;
-}
-.nav__mobile--center > .nav__mobile--selected {
-  background-color: var(--header-color);
-  color: var(--text-color);
-}
+
 
 .nav__mobile--event {
   display: flex;
@@ -581,6 +566,10 @@ button#create-event i {
 
 .scaling {
   transform: scale(1.1);
+  transition: transform 0.2s ease-out;
+}
+.scaling--out {
+  transform: scale(7.1);
   transition: transform 0.2s ease-out;
 }
 
@@ -874,9 +863,13 @@ i.fa-times-circle {
   padding: 1rem;
   box-shadow: var(--shadow);
 }
-.alert__event h2 {
-  font-size: 1.2rem;
+
+.event__title{
+  font-size: 1rem;
   margin: 0.5rem 0;
+  overflow: hidden;
+  max-width: 300px;
+  text-align: center;
 }
 .alert__event p {
   display: flex;
@@ -931,7 +924,6 @@ i.fa-times-circle {
   min-height: 55px;
   border-bottom: #dadce0 1px solid;
 }
-
 .week-hour-wr {
   width: 2%;
   font-size: 0.8rem;
@@ -1006,9 +998,8 @@ i.fa-times-circle {
     width: 280px;
     padding: 1rem;
   }
-  .alert__event h2 {
-    font-size: 1.2rem;
-    margin: 0.5rem 0;
+  .event__title{
+    font-size: 1rem;
   }
   .alert__event p {
     font-size: 0.8rem;
@@ -1104,9 +1095,8 @@ i.fa-times-circle {
     width: 360px;
     padding: 1rem;
   }
-  .alert__event h2 {
-    font-size: 1.6rem;
-    margin: 0.5rem 0;
+  .event__title{
+    font-size: 1.2rem;
   }
   .alert__event p {
     font-size: 1rem;
@@ -1177,9 +1167,8 @@ i.fa-times-circle {
     width: 600px;
     padding: 1.2rem;
   }
-  .alert__event h2 {
-    font-size: 1.8rem;
-    margin: 0.5rem 0;
+  .event__title{
+    font-size: 1.4rem;
   }
   .alert__event p {
     font-size: 1.2rem;

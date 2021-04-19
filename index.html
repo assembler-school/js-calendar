@@ -42,7 +42,7 @@
     </section>
     <section id="nav__mobile">
         <div class="nav__mobile">
-            <div class="nav__mobile--left">
+            <div id="container__btn__weekMonthYear" class="nav__mobile--left">
                 <div>
                     <i class="fas fa-chevron-left"></i>
                 </div>
@@ -84,9 +84,9 @@
             <hr>
             <div class="nav__mobile--container">
                 <div class="nav__mobile--containerBtn">
-                    <div class="nav__mobile--center">
-                        <button>Week</button>
-                        <button id="btnMonth" class="nav__mobile--selected">Month</button>
+                    <div class="nav__center">
+                        <button id="show-week">Week</button>
+                        <button id="btnMonth" class="nav__center--selected">Month</button>
                         <button id="btnYear">Year</button>
                     </div>
                 </div>
@@ -133,6 +133,277 @@
         <div class="month-list"></div>
     </template>
 
+<<<<<<< HEAD
+=======
+    <!-- ? week Template -->
+    <template id="week-view">
+        <div class="calendar__weekDay">
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+            <div>Sun</div>
+        </div>
+        <div class="calendar__week-view">
+            <div class="week-hour-wr">
+                <div class="week-hour"> <span>00:00</span> </div>
+                <div class="week-hour"> <span>01:00</span> </div>
+                <div class="week-hour"> <span>02:00</span> </div>
+                <div class="week-hour"> <span>03:00</span> </div>
+                <div class="week-hour"> <span>04:00</span> </div>
+                <div class="week-hour"> <span>05:00</span> </div>
+                <div class="week-hour"> <span>06:00</span> </div>
+                <div class="week-hour"> <span>07:00</span> </div>
+                <div class="week-hour"> <span>08:00</span> </div>
+                <div class="week-hour"> <span>09:00</span> </div>
+                <div class="week-hour"> <span>10:00</span> </div>
+                <div class="week-hour"> <span>11:00</span> </div>
+                <div class="week-hour"> <span>12:00</span> </div>
+                <div class="week-hour"> <span>13:00</span> </div>
+                <div class="week-hour"> <span>14:00</span> </div>
+                <div class="week-hour"> <span>15:00</span> </div>
+                <div class="week-hour"> <span>16:00</span> </div>
+                <div class="week-hour"> <span>17:00</span> </div>
+                <div class="week-hour"> <span>18:00</span> </div>
+                <div class="week-hour"> <span>19:00</span> </div>
+                <div class="week-hour"> <span>20:00</span> </div>
+                <div class="week-hour"> <span>21:00</span> </div>
+                <div class="week-hour"> <span>22:00</span> </div>
+                <div class="week-hour"> <span>23:00</span> </div>
+            </div>
+            <div class="fraction-wrapper">
+                <div class="calendar__fraction" data-row="0">
+                    <div data-col="1"></div>
+                    <div data-col="2"></div>
+                    <div data-col="3"></div>
+                    <div data-col="4"></div>
+                    <div data-col="5"></div>
+                    <div data-col="6"></div>
+                    <div data-col="0"></div>
+                </div>
+                <div class="calendar__fraction" data-row="1">
+                    <div data-col="1"></div>
+                    <div data-col="2"></div>
+                    <div data-col="3"></div>
+                    <div data-col="4"></div>
+                    <div data-col="5"></div>
+                    <div data-col="6"></div>
+                    <div data-col="0"></div>
+                </div>
+                <div class="calendar__fraction" data-row="2">
+                    <div data-col="1"></div>
+                    <div data-col="2"></div>
+                    <div data-col="3"></div>
+                    <div data-col="4"></div>
+                    <div data-col="5"></div>
+                    <div data-col="6"></div>
+                    <div data-col="0"></div>
+                </div>
+                <div class="calendar__fraction" data-row="3">
+                    <div data-col="1"></div>
+                    <div data-col="2"></div>
+                    <div data-col="3"></div>
+                    <div data-col="4"></div>
+                    <div data-col="5"></div>
+                    <div data-col="6"></div>
+                    <div data-col="0"></div>
+                </div>
+                <div class="calendar__fraction" data-row="4">
+                    <div data-col="1"></div>
+                    <div data-col="2"></div>
+                    <div data-col="3"></div>
+                    <div data-col="4"></div>
+                    <div data-col="5"></div>
+                    <div data-col="6"></div>
+                    <div data-col="0"></div>
+                </div>
+                <div class="calendar__fraction" data-row="5">
+                    <div data-col="1"></div>
+                    <div data-col="2"></div>
+                    <div data-col="3"></div>
+                    <div data-col="4"></div>
+                    <div data-col="5"></div>
+                    <div data-col="6"></div>
+                    <div data-col="0"></div>
+                </div>
+                <div class="calendar__fraction" data-row="6">
+                    <div data-col="1"></div>
+                    <div data-col="2"></div>
+                    <div data-col="3"></div>
+                    <div data-col="4"></div>
+                    <div data-col="5"></div>
+                    <div data-col="6"></div>
+                    <div data-col="0"></div>
+                </div>
+                <div class="calendar__fraction" data-row="7">
+                    <div data-col="1"></div>
+                    <div data-col="2"></div>
+                    <div data-col="3"></div>
+                    <div data-col="4"></div>
+                    <div data-col="5"></div>
+                    <div data-col="6"></div>
+                    <div data-col="0"></div>
+                </div>
+                <div class="calendar__fraction" data-row="8">
+                    <div data-col="1"></div>
+                    <div data-col="2"></div>
+                    <div data-col="3"></div>
+                    <div data-col="4"></div>
+                    <div data-col="5"></div>
+                    <div data-col="6"></div>
+                    <div data-col="0"></div>
+                </div>
+                <div class="calendar__fraction" data-row="9">
+                    <div data-col="1"></div>
+                    <div data-col="2"></div>
+                    <div data-col="3"></div>
+                    <div data-col="4"></div>
+                    <div data-col="5"></div>
+                    <div data-col="6"></div>
+                    <div data-col="0"></div>
+                </div>
+                <div class="calendar__fraction" data-row="10">
+                    <div data-col="1"></div>
+                    <div data-col="2"></div>
+                    <div data-col="3"></div>
+                    <div data-col="4"></div>
+                    <div data-col="5"></div>
+                    <div data-col="6"></div>
+                    <div data-col="0"></div>
+                </div>
+                <div class="calendar__fraction" data-row="11">
+                    <div data-col="1"></div>
+                    <div data-col="2"></div>
+                    <div data-col="3"></div>
+                    <div data-col="4"></div>
+                    <div data-col="5"></div>
+                    <div data-col="6"></div>
+                    <div data-col="0"></div>
+                </div>
+                <div class="calendar__fraction" data-row="12">
+                    <div data-col="1"></div>
+                    <div data-col="2"></div>
+                    <div data-col="3"></div>
+                    <div data-col="4"></div>
+                    <div data-col="5"></div>
+                    <div data-col="6"></div>
+                    <div data-col="0"></div>
+                </div>
+                <div class="calendar__fraction" data-row="13">
+                    <div data-col="1"></div>
+                    <div data-col="2"></div>
+                    <div data-col="3"></div>
+                    <div data-col="4"></div>
+                    <div data-col="5"></div>
+                    <div data-col="6"></div>
+                    <div data-col="0"></div>
+                </div>
+                <div class="calendar__fraction" data-row="14">
+                    <div data-col="1"></div>
+                    <div data-col="2"></div>
+                    <div data-col="3"></div>
+                    <div data-col="4"></div>
+                    <div data-col="5"></div>
+                    <div data-col="6"></div>
+                    <div data-col="0"></div>
+                </div>
+                <div class="calendar__fraction" data-row="15">
+                    <div data-col="1"></div>
+                    <div data-col="2"></div>
+                    <div data-col="3"></div>
+                    <div data-col="4"></div>
+                    <div data-col="5"></div>
+                    <div data-col="6"></div>
+                    <div data-col="0"></div>
+                </div>
+                <div class="calendar__fraction" data-row="16">
+                    <div data-col="1"></div>
+                    <div data-col="2"></div>
+                    <div data-col="3"></div>
+                    <div data-col="4"></div>
+                    <div data-col="5"></div>
+                    <div data-col="6"></div>
+                    <div data-col="0"></div>
+                </div>
+                <div class="calendar__fraction" data-row="17">
+                    <div data-col="1"></div>
+                    <div data-col="2"></div>
+                    <div data-col="3"></div>
+                    <div data-col="4"></div>
+                    <div data-col="5"></div>
+                    <div data-col="6"></div>
+                    <div data-col="0"></div>
+                </div>
+                <div class="calendar__fraction" data-row="18">
+                    <div data-col="1"></div>
+                    <div data-col="2"></div>
+                    <div data-col="3"></div>
+                    <div data-col="4"></div>
+                    <div data-col="5"></div>
+                    <div data-col="6"></div>
+                    <div data-col="0"></div>
+                </div>
+                <div class="calendar__fraction" data-row="19">
+                    <div data-col="1"></div>
+                    <div data-col="2"></div>
+                    <div data-col="3"></div>
+                    <div data-col="4"></div>
+                    <div data-col="5"></div>
+                    <div data-col="6"></div>
+                    <div data-col="0"></div>
+                </div>
+                <div class="calendar__fraction" data-row="20">
+                    <div data-col="1"></div>
+                    <div data-col="2"></div>
+                    <div data-col="3"></div>
+                    <div data-col="4"></div>
+                    <div data-col="5"></div>
+                    <div data-col="6"></div>
+                    <div data-col="0"></div>
+                </div>
+                <div class="calendar__fraction" data-row="21">
+                    <div data-col="1"></div>
+                    <div data-col="2"></div>
+                    <div data-col="3"></div>
+                    <div data-col="4"></div>
+                    <div data-col="5"></div>
+                    <div data-col="6"></div>
+                    <div data-col="0"></div>
+                </div>
+                <div class="calendar__fraction" data-row="22">
+                    <div data-col="1"></div>
+                    <div data-col="2"></div>
+                    <div data-col="3"></div>
+                    <div data-col="4"></div>
+                    <div data-col="5"></div>
+                    <div data-col="6"></div>
+                    <div data-col="0"></div>
+                </div>
+                <div class="calendar__fraction" data-row="23">
+                    <div data-col="1"></div>
+                    <div data-col="2"></div>
+                    <div data-col="3"></div>
+                    <div data-col="4"></div>
+                    <div data-col="5"></div>
+                    <div data-col="6"></div>
+                    <div data-col="0"></div>
+                </div>
+                <div class="calendar__fraction" data-row="24">
+                    <div data-col="1"></div>
+                    <div data-col="2"></div>
+                    <div data-col="3"></div>
+                    <div data-col="4"></div>
+                    <div data-col="5"></div>
+                    <div data-col="6"></div>
+                    <div data-col="0"></div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+>>>>>>> 4c966d5ab77beec97b36d401c30a3ace7c610c0a
     <!-- ? Modal Template -->
     <template id="modal-template">
         <div id="shadow" class="close">
@@ -300,7 +571,7 @@
                 <div class="calendar__year--tittle monthTittle">
                     <h2>January</h2>
                 </div>
-                <div id="dateMonth" class="calendar__year--date" data-row="1">
+                <div id="dateMonth" class="calendar__year--date show--year" data-row="1">
                     <div data-col="1"></div>
                     <div data-col="2"></div>
                     <div data-col="3"></div>

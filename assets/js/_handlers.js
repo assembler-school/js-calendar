@@ -14,7 +14,6 @@ let remindersArr = [];
 export function handleDocumentEvents() {
   // click event
   document.addEventListener("click", (e) => {
-
     /*
      * Click btn year
      */
@@ -27,6 +26,8 @@ export function handleDocumentEvents() {
       render.highlightTodayYear(updatedYear);
       e.target.classList.add("nav__center--selected");
     }
+
+
 
     /*
      * Click btn month
@@ -225,18 +226,23 @@ export function handleDocumentEvents() {
      * Click on day to show modal
      */
     if (e.target.matches(".calendar__week > div")) {
-      const day = e.target.id,
-        month = document.querySelector("#nav__tag").textContent,
-        year = document.querySelector("#nav__year").textContent;
+      if(e.target.id !== ""){
+     
+        const day = e.target.id,
+          month = document.querySelector("#nav__tag").textContent,
+          year = document.querySelector("#nav__year").textContent,
+          monthMobile = document.querySelector("#nav__mobile--tag").textContent,
+          yearMobile = document.querySelector("#nav__mobile--year").textContent;
 
-      const clnModal = document.querySelector(".cloned-day");
-      if (clnModal) {
-        clnModal.remove();
+        const clnModal = document.querySelector(".cloned-day");
+        if (clnModal) {
+          clnModal.remove();
+        }
+
+        swapTemplate("modal-template", "modal-section");
+        const initDate = document.querySelector('[name="init-date"]');
+        initDate.value = render.getDateTimeFormat(year, month, day);
       }
-
-      swapTemplate("modal-template", "modal-section");
-      const initDate = document.querySelector('[name="init-date"]');
-      initDate.value = render.getDateTimeFormat(year, month, day);
     }
 
     /*
@@ -263,6 +269,7 @@ export function handleDocumentEvents() {
       goToMonth(updatedYear, parseInt(month));
       rm.classList.toggle("show");
     }
+    
   });
 
   // focusout event
