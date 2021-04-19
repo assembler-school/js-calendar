@@ -1,7 +1,7 @@
 export const calendarEvent = {};
 
 /*
- * This gets data from form
+ * This gets data from Modal form
  */
 calendarEvent.getDataFromModal = function (form) {
   const _form = document.querySelector(form);
@@ -140,7 +140,7 @@ calendarEvent.modifyEvent = function (obj) {
 };
 
 /*
- * This generates unique
+ * This generates unique ID
  */
 calendarEvent.generateUUID = function () {
   return new Date().getTime();
