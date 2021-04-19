@@ -103,17 +103,6 @@ document.getElementById("eventTitleId").addEventListener('keyup', (event) => {
     }
 });
 
-document.getElementById("initialDateId").addEventListener('change', (event) => {
-    document.querySelector('.labelRequiredInitialDate')?.remove();
-    if (event.target.value < setValueTime()) {
-        addInputValidationLabel(
-            'labelRequiredInitialDate',
-            'Initial Date must be greater than current date',
-            'initialDateId'
-        );
-    }
-});
-
 document.getElementById("endDateId").addEventListener('change', () => {
     document.querySelector('.labelRequiredEndDate')?.remove();
     if (endDateValidation()) {
@@ -160,7 +149,6 @@ function showModal() {
     mainContentForBlur.style.filter = 'blur(5px)';
     currentDateForBlur.style.filter = 'blur(5px)';
     modal.classList.add('showUp');
-    document.getElementById('initialDateId').setAttribute('min', setValueTime());
 }
 
 function clearModalContent() {
