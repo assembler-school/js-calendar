@@ -51,11 +51,13 @@ export function handleDocumentEvents() {
     // show modal
     if (e.target.matches("button#show-week")) {
       clearSelectedBtn();
-      swapTemplate("week-view", "calendar");
-      e.target.classList.add("nav__center--selected");
-      document
-        .querySelector(".nav__center:nth-child(2)")
-        .classList.remove("nav__center--selected");
+      // swapTemplate("week-view", "calendar");
+      // e.target.classList.add("nav__center--selected");
+      // document
+      //   .querySelector(".nav__center:nth-child(2)")
+      //   .classList.remove("nav__center--selected");
+      const view = document.querySelector("#calendar")
+      render.renderWeekView(view);
       e.target.classList.add("nav__center--selected");
     }
 

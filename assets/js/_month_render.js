@@ -2,7 +2,7 @@
 import { calendarEvent } from "./_events.js";
 
 let monthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
+const daysName = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 /* Dynamic render of month */
 export function renderMonth(year, month) {
     /* Get the first day of month and number of days in month */
@@ -285,3 +285,60 @@ export function checkExpiredEvents() {
     _fnCheckExpired(domEvents);
   }, 60000);
 };
+
+/*
+ * This function renders week view
+ * 
+ */
+export function renderWeekView(container){
+
+  // days name
+  const dayWrapper = document.createElement("div");
+  dayWrapper.classList.add("calendar__weekDay");
+  daysName.forEach(day => {
+  const div = document.createElement("div");
+    div.textContent = day;
+    dayWrapper.appendChild(div);
+  });
+  
+  // Global container
+  const  mainContainer = document.createElement("div");
+  mainContainer.classList.add("calendar__week-view");
+
+  // create Hours
+  const hoursWrapper = document.createElement("div");
+  hoursWrapper.classList.add("week-hour-wr");
+
+  for (let index = 0; index < 24; index++) {
+    const element = document.createElement("div");
+    const span = document.createElement("span");
+    span.textContent = "00:00";
+    element.classList.add("week-hour");
+    element.appendChild(span);
+    hoursWrapper.appendChild(element);
+  }
+
+    // create calendar
+  const fractionWrapper = document.createElement("div");
+  fractionWrapper.classList.add("fraction-wrapper");
+
+  for (let i = 0; i < 24; i++) {
+    const el = document.createElement("div");
+    el.classList.add("calendar__fraction");
+    el.setAttribute("data-row", i);
+    
+    for (let f = 0; f < 7; f++) {
+      const fraction = document.createElement("div");
+      fraction.setAttribute("data-col", f);
+      el.appendChild(fraction);
+    }
+    fractionWrapper.appendChild(el) ;
+  }
+
+  // apend wrappers
+  mainContainer.appendChild(hoursWrapper);
+  mainContainer.appendChild(fractionWrapper);
+  container.innerHTML = "";
+  container.appendChild(dayWrapper);
+  container.appendChild(mainContainer);
+}

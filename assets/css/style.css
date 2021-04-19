@@ -182,6 +182,7 @@ section {
   justify-content: center;
   width: 194px;
   font-size: 1rem;
+  cursor: pointer;
 }
 
 .nav__center > button {
@@ -209,6 +210,7 @@ button#create-event {
   color: white;
   border-radius: var(--br-radius);
   border: none;
+  cursor: pointer;
 }
 
 button#create-event i {
