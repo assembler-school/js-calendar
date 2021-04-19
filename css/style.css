@@ -228,7 +228,7 @@
 }
 
 .month-container {
-  width: 100%;
+  width: 101%;
   height: 98%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
