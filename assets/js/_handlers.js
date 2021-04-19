@@ -225,12 +225,12 @@ export function handleDocumentEvents() {
      */
     if (e.target.matches(".calendar__week > div")) {
       if(e.target.id !== ""){
-        //const dia = e.target.id;
-        //console.log(dia);
      
         const day = e.target.id,
           month = document.querySelector("#nav__tag").textContent,
-          year = document.querySelector("#nav__year").textContent;
+          year = document.querySelector("#nav__year").textContent,
+          monthMobile = document.querySelector("#nav__mobile--tag").textContent,
+          yearMobile = document.querySelector("#nav__mobile--year").textContent;
 
         const clnModal = document.querySelector(".cloned-day");
         if (clnModal) {

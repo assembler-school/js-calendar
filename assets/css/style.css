@@ -180,6 +180,7 @@ section {
   border-radius: var(--br-radius);
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 194px;
   font-size: 1rem;
 }
@@ -193,6 +194,7 @@ section {
   height: 100%;
   text-align: center;
   font-size: 1rem;
+  outline: none;
 }
 
 .nav__center > .nav__center--selected {
@@ -355,30 +357,7 @@ button#create-event i {
   background-color: rgb(44, 139, 184);
   color: white;
 }
-/**/
-.nav__mobile--center {
-  padding: 0.15rem;
-  background-color: var(--color2);
-  border-radius: var(--br-radius);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 194px;
-}
-.nav__mobile--center > button {
-  padding: 5px;
-  margin: 0;
-  border-radius: var(--br-radius);
-  border: none;
-  background-color: transparent;
-  padding: 0.4rem 0.6rem;
-  font-size: 1rem;
-  outline: none;
-}
-.nav__mobile--center > .nav__mobile--selected {
-  background-color: var(--header-color);
-  color: var(--text-color);
-}
+
 
 .nav__mobile--event {
   display: flex;
