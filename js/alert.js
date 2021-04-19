@@ -174,7 +174,7 @@ function modalWarningBoxEnters() {
             deleteReminderBtn.classList.add('delete-reminder-btn');
             titleOfReminder.classList.add("title-reminder-text");
             dateOfReminder.classList.add('date-reminder-text');
-            let remindDateFormat = reminder.reminderDate;
+            let remindDateFormat = reminder.initialDate;
             remindDateFormat = new Date(remindDateFormat).toLocaleString('en-UK', optDate);
             titleOfReminder.innerHTML = reminder.eventTitle;
             dateOfReminder.innerHTML = remindDateFormat;
