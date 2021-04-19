@@ -891,6 +891,7 @@ i.fa-times-circle {
   width: 320px;
   padding: 1rem;
   box-shadow: var(--shadow);
+  z-index:30;
 }
 
 .event__title{
