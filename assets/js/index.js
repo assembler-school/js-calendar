@@ -54,6 +54,9 @@ let todayTime = new Date();
 let timeNow = todayTime.getHours() + ":" + todayTime.getMinutes();
 document.getElementById("timeSelector").value = timeNow;
 
+//Set so you cannot select a past date
+
+
 /**********************************************/
 //--------------- Functions --------------------
 /**********************************************/
