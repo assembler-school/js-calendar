@@ -129,7 +129,6 @@ function populateCalendar(changeYear){
     //Dates checker
     for (let i = 0; i < 6; i++) {
       // creates a table row
-      // let row = document.createElement("tr");
       let row = document.createElement('div');
       row.setAttribute('class','week');
 
