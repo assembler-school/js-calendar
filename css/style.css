@@ -198,6 +198,7 @@
 
 /*MONTH SECTION TEMPLATE ---------------------------*/
 .section-month {
+  opacity:1;
   position: absolute;
   left: 2.5%;
   width: 95%;
@@ -208,6 +209,19 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  
+  animation-name: open;
+  animation-duration: 0.5s;
+}
+
+.section-year{
+  animation-name: open;
+  animation-duration: 0.5s;
+}
+
+@keyframes open {
+  from {opacity:0;}
+  to {opacity:1;}
 }
 
 .week-days-header {
