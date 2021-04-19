@@ -24,8 +24,4 @@ function showCalendar(year, month) {
   render.renderEvents(year, month);
   render.checkEventsVisibility();
   render.checkExpiredEvents();
-  // Listeners
 }
-
-
-

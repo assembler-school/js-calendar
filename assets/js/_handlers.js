@@ -12,11 +12,9 @@ let remindersArr = [];
  *
  */
 export function handleDocumentEvents() {
-  // click event
+  /* Click event */
   document.addEventListener("click", (e) => {
-    /*
-     * Click btn year
-     */
+    /* Click btn year */
     if (e.target.matches("button#btnYear")) {
       clearSelectedBtn();
       swapTemplate("year", "calendar");
@@ -27,11 +25,7 @@ export function handleDocumentEvents() {
       e.target.classList.add("nav__center--selected");
     }
 
-
-
-    /*
-     * Click btn month
-     */
+    /* Click btn month */
     if (e.target.matches("button#btnMonth")) {
       clearSelectedBtn();
       swapTemplate("month", "calendar");
@@ -46,26 +40,17 @@ export function handleDocumentEvents() {
       e.target.classList.add("nav__center--selected");
     }
 
-    /*
-     * Click btn week
-     */
-    // show modal
+    /* Click btn week */
+    // Show modal
     if (e.target.matches("button#show-week")) {
       clearSelectedBtn();
-      // swapTemplate("week-view", "calendar");
-      // e.target.classList.add("nav__center--selected");
-      // document
-      //   .querySelector(".nav__center:nth-child(2)")
-      //   .classList.remove("nav__center--selected");
       const view = document.querySelector("#calendar")
       render.renderWeekView(view);
       e.target.classList.add("nav__center--selected");
     }
 
-    /*
-     * button to view more events
-     */
-    // show modal
+    /* Button to view more events */
+    // Show modal
     if (e.target.matches(".hidden-events")) {
       const d = document;
       showPopupEvents(e, "#calendar");
@@ -74,9 +59,7 @@ export function handleDocumentEvents() {
       }, 0);
     }
 
-    /*
-     * show / hide modal popup
-     */
+    /* Show / hide modal popup */
     // show modal
     if (e.target.matches("span.retract")) {
       const clnModal = document.querySelector(".cloned-day");
@@ -85,9 +68,7 @@ export function handleDocumentEvents() {
       }
     }
 
-    /*
-     * show / hide modal popup
-     */
+    /* Show / hide modal popup */
     // show modal
     if (
       e.target.matches("button#create-event") ||
@@ -99,14 +80,12 @@ export function handleDocumentEvents() {
       }
       swapTemplate("modal-template", "modal-section");
     }
-    // close modal
+    /* Close modal */
     if (e.target.matches(".close")) {
       removeTemplate("modal-template", "modal-section");
     }
 
-    /*
-     * form validation
-     */
+    /* Form validation */
     if (e.target.matches('input[value="Create"]')) {
       e.preventDefault();
 
@@ -114,7 +93,7 @@ export function handleDocumentEvents() {
         const data = calendarEvent.getDataFromModal("#modal form");
         calendarEvent.toLocalStorage(data);
         setReminder(remindersArr);
-
+        removeTemplate("modal-template","modal-section")
         if(document.querySelector("#calendar > div").className != "calendar__year--row") {
           render.renderEvents(updatedYear, updatedMonth);
           render.checkEventsVisibility();
@@ -123,9 +102,7 @@ export function handleDocumentEvents() {
       }
     }
 
-    /*
-     * buttons to switch month
-     */
+    /* Buttons to switch month */
     if (e.target.matches(".btn__month__right")) {
       addMonth(updatedYear, updatedMonth, true);
       document.querySelector("#calendar").classList.add("swing-right-fwd");
@@ -135,9 +112,7 @@ export function handleDocumentEvents() {
       document.querySelector("#calendar").classList.add("swing-left-fwd");
     }
 
-    /*
-     * buttons to switch year
-     */
+    /* Buttons to switch year */
     if (e.target.matches(".btn__year__right")) {
       addYear(updatedYear, true);
       document
@@ -151,9 +126,7 @@ export function handleDocumentEvents() {
         .classList.add("swing-left-fwd");
     }
 
-    /*
-     * Mobile burguer menu
-     */
+    /* Mobile burguer menu */
     if (e.target.matches("#navOpen") || e.target.matches("#navOpen *")) {
       document.getElementById("alert__shadowMain").style.display = "block";
       document.getElementById("main").style.display = "block";
@@ -166,9 +139,7 @@ export function handleDocumentEvents() {
       removeTemplate("template__mobile", "main");
     }
 
-    /*
-     * checkbox End-date
-     */
+    /* Checkbox End-date */
     if (e.target.matches('[name="end-check"]')) {
       const check = document.querySelector('[name="end-date"]');
       // check.disabled ? (check.disabled = false) : (check.disabled = true);
@@ -176,9 +147,7 @@ export function handleDocumentEvents() {
       end.classList.toggle("height-reset");
     }
 
-    /*
-     * Click in event
-     */
+    /* Click in event */
     if (e.target.matches("[data-eventid]")) {
       const clnModal = document.querySelector(".cloned-day");
       if (clnModal) {
@@ -189,17 +158,13 @@ export function handleDocumentEvents() {
       calendarEvent.printDataToAlert(_event);
     }
 
-    /*
-     * Click in edit event
-     */
+    /* Click in edit event */
     if (e.target.matches(".edit")) {
       swapTemplate("edit-template", "modal-section");
       calendarEvent.printDataToEdit(_event);
     }
 
-    /*
-     * Form validation for edit
-     */
+    /* Form validation for edit */
     if (e.target.matches('input[value="Save"]')) {
       e.preventDefault();
 
@@ -213,9 +178,7 @@ export function handleDocumentEvents() {
       }
     }
 
-    /*
-     * Click in remove event
-     */
+    /* Click in remove event */
     if (e.target.matches(".remove")) {
       removeTemplate("alert-template", "modal-section");
       calendarEvent.removeEvent(_event);
@@ -223,9 +186,7 @@ export function handleDocumentEvents() {
       render.checkEventsVisibility();
     }
 
-    /*
-     * Click on day to show modal
-     */
+    /* Click on day to show modal */
     if (e.target.matches(".calendar__week > div")) {
       if(e.target.id !== ""){
      
@@ -246,18 +207,13 @@ export function handleDocumentEvents() {
       }
     }
 
-    /*
-     * Click on reminder
-     */
+    /* Click on reminder */
     if (e.target.matches('[name="reminder"]')) {
       const rm = document.querySelector(".reminder-time");
-      // rm.classList.toggle("height-anim");
       rm.classList.toggle("height-reset");
     }
 
-    /*
-     * Click month tag
-     */
+    /* Click month tag */
     if (e.target.matches("#nav__tag, #nav__year")) {
       const rm = document.querySelector(".month-list");
       rm.classList.toggle("show");
@@ -273,23 +229,17 @@ export function handleDocumentEvents() {
     
   });
 
-  // focusout event
+  /* Focusout event */
   document.addEventListener("focusout", (e) => {
-    /*
-     * form validation
-     */
     if (e.target.matches("input[required]")) {
       formValidation(e, false);
     }
   });
 
-  //focus on description - fixed error
-  //document.querySelector(".focus").focus();
-
-  // resize
+  /* Resize */
   window.addEventListener("resize", render.checkEventsVisibility);
 
-  // keyboard
+  /* Keyboard */
   document.addEventListener("keydown", accessKeyboard);
   function accessKeyboard(e) {
     const focusableInputs = document.querySelectorAll(".focus");
@@ -297,7 +247,7 @@ export function handleDocumentEvents() {
     let index = focusable.indexOf(document.activeElement);
     let nextIndex = 0;
 
-    // tab key
+    /* Tab key */
     if (e.keyCode === 9) {
       e.preventDefault();
       if (index >= 0) {
@@ -308,7 +258,7 @@ export function handleDocumentEvents() {
       if (index == 5) {
         nextIndex = 0;
       }
-      //shift key
+      /* Shift key */
       if (e.keyCode === 16) {
         e.preventDefault();
         if (index >= 0) {
@@ -323,17 +273,15 @@ export function handleDocumentEvents() {
       focusableInputs[nextIndex].focus();
       e.stopPropagation();
     }
-    // Escape to close modal
+    /* Escape to close modal */
     if (e.keyCode === 27) {
       removeTemplate("modal-template", "modal-section");
     }
   }
 
-  // animation end
+  /* Animation end */
   document.addEventListener("animationend", (e) => {
-    /*
-     * clear animations
-     */
+    /* Clear animations */
     const swing = document.querySelectorAll(
       ".swing-right-fwd, .swing-left-fwd"
     );
@@ -343,13 +291,6 @@ export function handleDocumentEvents() {
       cls.contains("swing-left-fwd") ? cls.remove("swing-left-fwd") : 0;
     });
   });
-
-  // mouse over event
-  // document.addEventListener("mouseover", (e) => {
-  //   const day =  document.querySelector(".cloned-day .spanDay");
-  //   day.textContent = "X";
-  //   console.log("hahaha");
-  // });
 }
 
 let _event;
@@ -369,10 +310,8 @@ function addMonth(year, month, direction) {
   render.checkExpiredEvents();
 }
 
-/*
- * This render month without adding
- * To add month use _handlers.js/addMonth
- */
+/* This render month without adding */
+// To add month use _handlers.js/addMonth
 export function goToMonth(year, month) {
   updatedYear = year;
   updatedMonth = month;
@@ -386,15 +325,13 @@ export function goToMonth(year, month) {
   render.checkExpiredEvents();
 }
 
-/*
- * This render month without adding
- * To add month use _handlers.js/addMonth
- */
+/* This render month without adding */
+// To add month use _handlers.js/addMonth
 function showPopupEvents(e, parent) {
   let itm = e.target.parentElement;
   let cln = itm.cloneNode(true);
 
-  // replace "ver mas" -> "ver menos"
+  /* Replace "ver mas" -> "ver menos" */
   for (const iterator of cln.children) {
     const clnModal = document.querySelector(".cloned-day");
     if (clnModal) {
@@ -404,11 +341,10 @@ function showPopupEvents(e, parent) {
     if (iterator.classList.contains("hidden-events")) {
       iterator.textContent = "X";
       iterator.className = "retract";
-      // iterator.remove();
     }
   }
 
-  // hide events based on height of container
+  /* Hide events based on height of container */
   const ev = cln.querySelectorAll("[data-eventid]");
   ev.forEach((v) => {
     if (v.classList.contains("visibility-hidden")) {
@@ -416,7 +352,7 @@ function showPopupEvents(e, parent) {
     }
   });
 
-  // apply same dimensions and position of container
+  /* Apply same dimensions and position of container */
   const container = document.createElement("div"),
     p = document.querySelector(parent);
   container.classList.add("cloned-day");

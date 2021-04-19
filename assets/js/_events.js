@@ -1,8 +1,6 @@
 export const calendarEvent = {};
 
-/*
- * This gets data from Modal form
- */
+/* This gets data from Modal form */
 calendarEvent.getDataFromModal = function (form) {
   const _form = document.querySelector(form);
   const _data = new FormData(_form);
@@ -18,9 +16,7 @@ calendarEvent.getDataFromModal = function (form) {
   return calendarEvent.data;
 };
 
-/*
- * This stores data to localstorage
- */
+/* This stores data to localstorage */
 calendarEvent.toLocalStorage = function (data) {
   const _fnToLocalStorage = function (data) {
     const _arr = [],
@@ -38,24 +34,18 @@ calendarEvent.toLocalStorage = function (data) {
   _fnToLocalStorage(calendarEvent.fromLocalStorage(data));
 };
 
-/*
- * This gets data from localstorage
- */
+/* This gets data from localstorage */
 calendarEvent.fromLocalStorage = function () {
   return JSON.parse(localStorage.getItem("events"));
 };
 
-/*
- * This selected event object from localstorage
- */
+/* This selected event object from localstorage */
 calendarEvent.getEvent = function (eventid) {
   const data = calendarEvent.fromLocalStorage();
   return data.filter((ev) => `event${ev.id}` === eventid);
 };
 
-/*
- * This prints event info in alert popup (bad structure, this shouldnt be implemented here)
- */
+/* This prints event info in alert popup (bad structure, this shouldnt be implemented here) */
 calendarEvent.printDataToAlert = function (obj) {
   const d = document;
   let title = d.getElementById("modal__title");
@@ -89,11 +79,8 @@ calendarEvent.printDataToAlert = function (obj) {
   description.innerHTML = obj["description"];
 };
 
-/*
- * This lets you edit an event (bad structure, this shouldnt be implemented here)
- */
+/* This lets you edit an event (bad structure, this shouldnt be implemented here) */
 calendarEvent.printDataToEdit = function (obj) {
-  /* Change elements of 'New event' modal to 'Edit event' modal */
   const form = document.getElementById("edit__form");
   form.elements["title"].value = obj.title;
   form.elements["init-date"].value = obj["init-date"];
@@ -107,9 +94,7 @@ calendarEvent.printDataToEdit = function (obj) {
   form.elements["select-event"].value = obj["select-event"];
 };
 
-/*
- * This removes an event from localstorage and from DOM  
- */
+/* This removes an event from localstorage and from DOM */
 calendarEvent.removeEvent = function (obj) {
   let allEvents = calendarEvent.fromLocalStorage();
   allEvents = allEvents.filter ((ev) => ev.id !== obj.id);
@@ -119,9 +104,7 @@ calendarEvent.removeEvent = function (obj) {
   removed.remove();
 };
 
-/*
- * This modifies stored event
- */
+/* This modifies stored event */
 calendarEvent.modifyEvent = function (obj) {
   const form = document.getElementById("edit__form");
   obj.title           =form.elements["title"].value;
@@ -139,9 +122,7 @@ calendarEvent.modifyEvent = function (obj) {
   localStorage.setItem("events", JSON.stringify(allEvents));
 };
 
-/*
- * This generates unique ID
- */
+/* This generates unique ID */
 calendarEvent.generateUUID = function () {
   return new Date().getTime();
 };

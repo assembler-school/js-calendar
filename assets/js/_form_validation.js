@@ -3,7 +3,7 @@ const validation = {};
 export function formValidation(e, validateAll) {
   const inputsRequired = document.querySelectorAll("input[required]");
 
-  // prevent default message
+  /* Prevent default message */
   document.addEventListener(
     "invalid",
     (function () {
@@ -14,21 +14,8 @@ export function formValidation(e, validateAll) {
     true
   );
 
-  // inject span with validation message
+  /* Inject span with validation message */
   const showSpanMessage = function (all, input) {
-    // if (all) {
-    //   inputsRequired.forEach((element) => {
-    //     if (element.nextSibling.localName !== "span") {
-    //       const span = document.createElement("span");
-    //       span.id = element.name;
-    //       span.textContent = element.title;
-    //       span.classList.add("title__error", "off");
-    //       element.insertAdjacentElement("afterend", span);
-    //     }
-    //   });
-    //   return;
-    // }
-
     if (input) {
       if (input.nextSibling.localName !== "span") {
         const span = document.createElement("span");
@@ -40,7 +27,7 @@ export function formValidation(e, validateAll) {
     }
   };
 
-  // validate focused input
+  /* Validate focused input */
   const inputValidation = function (e) {
     let input = e.target;
     const span = document.getElementById(input.name);
@@ -53,7 +40,7 @@ export function formValidation(e, validateAll) {
     }
   };
 
-  // ending date to start from the beginning date
+  /* Ending date to start from the beginning date */
   const endDate = document.querySelector('input[name="end-date"]');
   const initDate = document.querySelector('input[name="init-date"]').value;
   const endChecked = document.querySelector('input[name="end-check"]').checked;
@@ -66,7 +53,7 @@ export function formValidation(e, validateAll) {
   if (!endChecked) {endDate.value = "";}
 
 
-  // validate all form required input
+  /* Validate all form required input */
   const formValidation = function (e) {
     inputsRequired.forEach((element) => {
       const span = document.getElementById(element.name);
@@ -79,7 +66,7 @@ export function formValidation(e, validateAll) {
     });
   };
 
-  // choose validation
+  /* Choose validation */
   if (validateAll) {
     formValidation(e);
     let result = document.querySelector("span.on");

@@ -1,8 +1,7 @@
 import {calendarEvent} from "./_events.js";
 let timeoutArr = [];
 
-//Function to get a filtered list of elements from the localStorage
-
+/* Function to get a filtered list of elements from the localStorage */
 function reminderArr() {
      let eventData = JSON.parse(localStorage.getItem("events"));
      eventData = eventData.filter(calendarEvents => calendarEvents.reminder == 'on');
@@ -37,7 +36,5 @@ export function setReminder(alertsArr) {
      }
 }
 
-
 setReminder(timeoutArr);
 setInterval(setReminder, 3600000, timeoutArr);
-

@@ -108,14 +108,11 @@ export function renderEvents(year, month) {
         if (!d.querySelector(`[data-eventid="event${monthEvents.id}"]`)) {
           d.getElementById(new Date(monthEvents["init-date"]).getDate()).appendChild(eventDiv);
         }
-<<<<<<< HEAD
-    });
-  }
-=======
       });
     }
 }
 
+/* Render events of today in mobile menu */
 export function renderNavEvents() {
     let todayDate = new Date();
     let allEvents = calendarEvent.fromLocalStorage()
@@ -132,7 +129,6 @@ export function renderNavEvents() {
         document.querySelector(".nav__mobile--event").appendChild(eventDiv);
       });
     }
->>>>>>> F12
 }
 
 /* Update month and year to use normally */
@@ -185,9 +181,8 @@ export function highlightTodayYear(year){
 }
 
 
-/*
- * This gets dateTime local
- */
+
+/* This gets dateTime local */
 export function getDateTimeFormat(year, month, day ){
     const _fngetMonth = function (_month) {
         return monthList.findIndex((month) => month === _month);
@@ -205,9 +200,7 @@ export function getDateTimeFormat(year, month, day ){
     }
 }
 
-/*
- * This render year list
- */
+/* This render year list */
 export function renderMonthList(){
     const month_list = document.querySelector('.month-list');
     monthList.forEach((e, index) => {
@@ -221,10 +214,7 @@ export function renderMonthList(){
 }
 
 
-/*
- * This checks event visibility
- *
- */
+/* This checks event visibility */
 export function checkEventsVisibility() {
     const evContainer = document.querySelectorAll("[data-col]");
     const getChildOffset = function (element) {
@@ -262,27 +252,25 @@ export function checkEventsVisibility() {
     });
   }
   
-/*
- * This function tracks expired events
- * Set interval of 1 min
- */
+/* This function tracks expired events
+   Set interval of 1 min */
 let interval;
 export function checkExpiredEvents() {
   const lsEvents = calendarEvent.fromLocalStorage();
   const currTime = new Date().getTime();
   const currDate = new Date();
 
-  // clear interval   
+  /* clear interval */  
   interval ? clearInterval(interval) : 0;
 
-  // check expired events - tracking
+  /* check expired events - tracking */
   const _fnCheckExpired = function (events) {
     events.forEach((el) => {
       const evId = el.dataset.eventid.slice(5);
       const evFiltered = lsEvents.filter((ev) => ev.id == evId);
       let endTime;
       
-      // tracking events with end-date
+      /* Tracking events with end-date */
       if (evFiltered.length) {
         const initDt = evFiltered[0]["init-date"];
         const endDt = evFiltered[0]["end-date"];
@@ -292,7 +280,6 @@ export function checkExpiredEvents() {
       if (endTime - currTime <= 60000) {
         const time = (endTime - currTime) > 0 ? (endTime - currTime) : 0;
         const timeOut = setTimeout(() => {
-        //   console.log("******* Aviso evento:", evFiltered[0].title);
           el.classList.add("expired", "fade-out");
         }, time);
       }
@@ -309,13 +296,10 @@ export function checkExpiredEvents() {
   }, 60000);
 };
 
-/*
- * This function renders week view
- * 
- */
+/* This function renders week view */
 export function renderWeekView(container){
 
-  // days name
+  /* Days name */
   const dayWrapper = document.createElement("div");
   dayWrapper.classList.add("calendar__weekDay");
   daysName.forEach(day => {
@@ -324,11 +308,11 @@ export function renderWeekView(container){
     dayWrapper.appendChild(div);
   });
   
-  // Global container
+  /* Global container */
   const  mainContainer = document.createElement("div");
   mainContainer.classList.add("calendar__week-view");
 
-  // create Hours
+  /* Create Hours */
   const hoursWrapper = document.createElement("div");
   hoursWrapper.classList.add("week-hour-wr");
 
@@ -341,7 +325,7 @@ export function renderWeekView(container){
     hoursWrapper.appendChild(element);
   }
 
-    // create calendar
+    /* Create calendar */
   const fractionWrapper = document.createElement("div");
   fractionWrapper.classList.add("fraction-wrapper");
 
@@ -358,7 +342,7 @@ export function renderWeekView(container){
     fractionWrapper.appendChild(el) ;
   }
 
-  // apend wrappers
+  /* Append wrappers */
   mainContainer.appendChild(hoursWrapper);
   mainContainer.appendChild(fractionWrapper);
   container.innerHTML = "";
