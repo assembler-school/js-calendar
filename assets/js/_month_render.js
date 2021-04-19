@@ -108,10 +108,6 @@ export function renderEvents(year, month) {
         if (!d.querySelector(`[data-eventid="event${monthEvents.id}"]`)) {
           d.getElementById(new Date(monthEvents["init-date"]).getDate()).appendChild(eventDiv);
         }
-<<<<<<< HEAD
-    });
-  }
-=======
       });
     }
 }
@@ -132,7 +128,6 @@ export function renderNavEvents() {
         document.querySelector(".nav__mobile--event").appendChild(eventDiv);
       });
     }
->>>>>>> F12
 }
 
 /* Update month and year to use normally */

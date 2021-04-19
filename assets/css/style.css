@@ -359,10 +359,6 @@ button#create-event i {
   background-color: rgb(44, 139, 184);
   color: white;
 }
-<<<<<<< HEAD
-
-
-=======
 /**/
 .nav__mobile--center {
   padding: 0.15rem;
@@ -387,7 +383,6 @@ button#create-event i {
   background-color: var(--header-color);
   color: var(--text-color);
 }
->>>>>>> F12
 .nav__mobile--event {
   display: flex;
   flex-direction: column;
@@ -896,6 +891,7 @@ i.fa-times-circle {
   width: 320px;
   padding: 1rem;
   box-shadow: var(--shadow);
+  z-index:30;
 }
 
 .event__title{
