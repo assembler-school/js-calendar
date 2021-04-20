@@ -223,7 +223,7 @@
   margin-left: 32px;
   border-radius: 10px;
   z-index: 9999;
-  overflow: overlay;
+  overflow: auto;
   background-color: var(--pink);
   opacity: 1;
   transition: 0.3s ease-out;
@@ -269,7 +269,7 @@
 .delete-reminder-btn {
   width: 12px;
   height: 12px;
-  background-image: url(../img/plus-icon.png);
+  background-image: url("/assets/img/plus-icon.png");
   background-size: cover;
   transform: rotate(45deg);
   margin-bottom: 5px;

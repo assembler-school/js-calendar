@@ -1,4 +1,4 @@
-// Display the event's details when click on it --------------------
+// Display the event's details when click on it 
 function loadListennersForDetails() {
     let elementEvent = document.querySelectorAll('.event-text');
     elementEvent.forEach(element => {

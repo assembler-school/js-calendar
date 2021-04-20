@@ -1,5 +1,3 @@
-/* HEADER STYLES ------------------------- */
-
 .header01-div {
   display: flex;
   gap: 5px;
@@ -11,7 +9,7 @@
 .newEvent-btn {
   font-size: 23px;
   font-weight: 400;
-  background-image: url("../img/plus-icon.png");
+  background-image: url("/assets/img/plus-icon.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 12px;
@@ -39,7 +37,7 @@
 .goPrevious-btn {
   font-size: 16px;
   font-weight: 400;
-  background-image: url("../img/left-arrow.png");
+  background-image: url("/assets/img/left-arrow.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 8px;
@@ -60,7 +58,7 @@
 .goNext-btn {
   font-size: 16px;
   font-weight: 400;
-  background-image: url("../img/right-arrow.png");
+  background-image: url("/assets/img/right-arrow.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 8px;
@@ -68,8 +66,6 @@
   border: none;
   color: white;
 }
-
-/* CURRENT TYPE OF DATE SECTION --------------------------- */
 
 .currentDate-section {
   position: absolute;
@@ -95,14 +91,10 @@
   letter-spacing: -2px;
 }
 
-/* MAIN CONTENT SECTION --------------------------- */
-
 .main-content-section {
   width: 100%;
   min-height: 85vh;
 }
-
-/* MODAL STYLES -------------------- */
 
 .modal {
   z-index: 99999;
@@ -194,11 +186,8 @@
   opacity: 1;
 }
 
-/* END OF MODAL STYLES -------------------- */
-
-/*MONTH SECTION TEMPLATE ---------------------------*/
 .section-month {
-  opacity:1;
+  opacity: 1;
   position: absolute;
   left: 2.5%;
   width: 95%;
@@ -209,19 +198,23 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  
+
   animation-name: open;
   animation-duration: 0.5s;
 }
 
-.section-year{
+.section-year {
   animation-name: open;
   animation-duration: 0.5s;
 }
 
 @keyframes open {
-  from {opacity:0;}
-  to {opacity:1;}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .week-days-header {
@@ -276,7 +269,7 @@
 }
 
 .month_day_number:hover {
-  background-image: url(../img/plus-icon.png);
+  background-image: url("/assets/img/plus-icon.png");
   background-position: left;
   background-size: 9%;
   background-repeat: no-repeat;

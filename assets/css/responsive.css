@@ -1,28 +1,28 @@
 .mobile-currentDate-section {
-  position:absolute;
-  left:2.5%;
+  position: absolute;
+  left: 2.5%;
   width: 95%;
   max-height: 9vh;
   height: 9vh;
   min-height: 9vh;
   display: flex;
   position: relative;
-  justify-content:center;
+  justify-content: center;
 }
 
-.mobile-currentTypeofDate-container{
-  width:90%;
-  justify-content:center;
+.mobile-currentTypeofDate-container {
+  width: 90%;
+  justify-content: center;
 }
 
 .mobile-goPrevious-btn {
-  position:relative;
-  top:10%;
-  width:5;
-  height:80%;
+  position: relative;
+  top: 10%;
+  width: 5%;
+  height: 80%;
   font-size: 16px;
   font-weight: 400;
-  background-image: url("../img/left-arrow.png");
+  background-image: url("/assets/img/left-arrow.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 8px;
@@ -32,13 +32,13 @@
 }
 
 .mobile-goNext-btn {
-  position:relative;
-  top:10%;
-  width:5%;
-  height:80%;
+  position: relative;
+  top: 10%;
+  width: 5%;
+  height: 80%;
   font-size: 16px;
   font-weight: 400;
-  background-image: url("../img/right-arrow.png");
+  background-image: url("/assets/img/right-arrow.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 8px;
@@ -66,6 +66,6 @@
   height: 12%;
 }
 
-.mobile-days{
-  font-size:0.1rem;
+.mobile-days {
+  font-size: 0.1rem;
 }

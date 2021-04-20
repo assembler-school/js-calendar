@@ -157,7 +157,7 @@ function modalWarningBoxEnters() {
     let warningBox = document.querySelector('.warningBox-btn');
     if (warningBox.innerHTML !== '0') {
         warningBox.innerHTML = '';
-        warningBox.style.backgroundImage = "url('./img/x-button.png')";
+        warningBox.style.backgroundImage = "url('/assets/img/x-button.png')";
         warningBox.style.backgroundSize = '10px';
         warningBox.style.backgroundRepeat = 'no-repeat';
         warningBox.style.backgroundPosition = 'center';

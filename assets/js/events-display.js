@@ -52,7 +52,7 @@ function sortRemindersList(remindersList, sign){
 }
 
 function alarmSound() {
-    let audio = new Audio('./sound/alarm.mp4');
+    let audio = new Audio("/assets/sound/alarm.mp4");
     audio.play();
 }
 
