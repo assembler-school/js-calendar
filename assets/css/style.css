@@ -9,7 +9,7 @@
 .newEvent-btn {
   font-size: 23px;
   font-weight: 400;
-  background-image: url("/assets/img/plus-icon.png");
+  background-image: url("../img/plus-icon.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 12px;
@@ -37,7 +37,7 @@
 .goPrevious-btn {
   font-size: 16px;
   font-weight: 400;
-  background-image: url("/assets/img/left-arrow.png");
+  background-image: url("../img/left-arrow.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 8px;
@@ -58,7 +58,7 @@
 .goNext-btn {
   font-size: 16px;
   font-weight: 400;
-  background-image: url("/assets/img/right-arrow.png");
+  background-image: url("../img/right-arrow.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 8px;
@@ -269,7 +269,7 @@
 }
 
 .month_day_number:hover {
-  background-image: url("/assets/img/plus-icon.png");
+  background-image: url("../img/plus-icon.png");
   background-position: left;
   background-size: 9%;
   background-repeat: no-repeat;

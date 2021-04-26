@@ -1,110 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS Calendar</title>
-    <link rel="stylesheet" href="./assets/css/root.css">
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/year.css">
-    <link rel="stylesheet" href="./assets/css/events.css">
-    <link rel="stylesheet" href="./assets/css/alertBox.css">
-    <link rel="stylesheet" href="./assets/css/responsive.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel='shortcut icon' type='image/x-icon' href='/assets/img/favicon.ico'/>
-</head>
-<body>
+    <link rel="stylesheet" href="./assets/css/root.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/year.css" />
+    <link rel="stylesheet" href="./assets/css/events.css" />
+    <link rel="stylesheet" href="./assets/css/alertBox.css" />
+    <link rel="stylesheet" href="./assets/css/responsive.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="./assets/img/favicon.ico"
+    />
+  </head>
+  <body>
     <header>
-        <div class="header01-div">
-            <button id="createEventBtn" class="newEvent-btn" tabindex="1"></button>
-            <button class="warningBox-btn">!2</button>
-        </div>
-        <div class="header02-div">
-            <button class="monthView-btn" id="monthView-btn">Month</button>
-            <button class="yearView-btn" id="yearView-btn">Year</button>
-        </div>
-        <div class="header03-div">
-            <button class="goPrevious-btn"></button>
-            <button class="goToday-btn">Today</button>
-            <button class="goNext-btn"></button>
-        </div>
+      <div class="header01-div">
+        <button id="createEventBtn" class="newEvent-btn" tabindex="1"></button>
+        <button class="warningBox-btn">!2</button>
+      </div>
+      <div class="header02-div">
+        <button class="monthView-btn" id="monthView-btn">Month</button>
+        <button class="yearView-btn" id="yearView-btn">Year</button>
+      </div>
+      <div class="header03-div">
+        <button class="goPrevious-btn"></button>
+        <button class="goToday-btn">Today</button>
+        <button class="goNext-btn"></button>
+      </div>
     </header>
 
     <main>
-        <!-- MODAL FOR CREATE THE EVENT -->
-    <div class="modal" id="modalDiv">
+      <!-- MODAL FOR CREATE THE EVENT -->
+      <div class="modal" id="modalDiv">
         <div class="modalOut"></div>
         <div class="modalDialog">
-            <button id="cancelBtn" class="close-btn">✕</button>
-            <section class="modalContent">
-                <label for="eventTitleId">Event title: </label>
-                <input type="text" id="eventTitleId" placeholder="New Event">
-                <label for="initialDateId">Starts: </label>
-                <input type="datetime-local" id="initialDateId" required>
-                <div class="end-date-container checkbox-container">
-                    <input type="checkbox" id="endDateCheckboxId">
-                    <label for="endDateCheckboxId">Ends: </label>
-                </div>  
-                <input type="datetime-local" id="endDateId" disabled>
-                <div class="reminder-container checkbox-container">
-                    <input type="checkbox" id="reminderCheckboxId">
-                    <label for="reminderCheckboxId">Alert: </label>
-                </div>
-                <input type="datetime-local" id="reminderId" disabled>
-                <label for="description">Add a description: </label>
-                <textarea id="description" placeholder="Description goes here" maxlength="500"></textarea>
-                <label for="eventTypeSelect">Type of event: </label>
-                <select id="eventTypeSelect">
-                    <option value="event-type" disabled selected>Choose a type</option>
-                    <option value="event-type-2">Personal</option>
-                    <option value="event-type-3">Work</option>
-                    <option value="event-type-4">Sport</option>
-                </select>
-                <button id="saveBtn">Save</button>
-            </section>
-            <footer class="modalFooter"></footer>
+          <button id="cancelBtn" class="close-btn">✕</button>
+          <section class="modalContent">
+            <label for="eventTitleId">Event title: </label>
+            <input type="text" id="eventTitleId" placeholder="New Event" />
+            <label for="initialDateId">Starts: </label>
+            <input type="datetime-local" id="initialDateId" required />
+            <div class="end-date-container checkbox-container">
+              <input type="checkbox" id="endDateCheckboxId" />
+              <label for="endDateCheckboxId">Ends: </label>
+            </div>
+            <input type="datetime-local" id="endDateId" disabled />
+            <div class="reminder-container checkbox-container">
+              <input type="checkbox" id="reminderCheckboxId" />
+              <label for="reminderCheckboxId">Alert: </label>
+            </div>
+            <input type="datetime-local" id="reminderId" disabled />
+            <label for="description">Add a description: </label>
+            <textarea
+              id="description"
+              placeholder="Description goes here"
+              maxlength="500"
+            ></textarea>
+            <label for="eventTypeSelect">Type of event: </label>
+            <select id="eventTypeSelect">
+              <option value="event-type" disabled selected>
+                Choose a type
+              </option>
+              <option value="event-type-2">Personal</option>
+              <option value="event-type-3">Work</option>
+              <option value="event-type-4">Sport</option>
+            </select>
+            <button id="saveBtn">Save</button>
+          </section>
+          <footer class="modalFooter"></footer>
         </div>
-    </div>
-<!-- END OF MODAL -->
-<!-- CURRENT TYPE OF DATE -->
-    <section class="currentDate-section">
+      </div>
+      <!-- END OF MODAL -->
+      <!-- CURRENT TYPE OF DATE -->
+      <section class="currentDate-section">
         <button class="mobile-goPrevious-btn"></button>
         <div class="currentTypeofDate-container">
-            <h1 class="currentMonth-text">April</h1>
-            <h1 class="currentYear-text">2021</h1>
+          <h1 class="currentMonth-text">April</h1>
+          <h1 class="currentYear-text">2021</h1>
         </div>
         <button class="mobile-goNext-btn"></button>
-    </section>
-<!-- END CURRENT TYPE OF DATE -->
+      </section>
+      <!-- END CURRENT TYPE OF DATE -->
 
-<!-- TEMPLATES HERE!! -->
-        <section id="main-content-section" class="main-content-section">
+      <!-- TEMPLATES HERE!! -->
+      <section id="main-content-section" class="main-content-section"></section>
 
-        </section>
-
-<!-- END OF TEMPLATES -->
-
+      <!-- END OF TEMPLATES -->
     </main>
-</body>
+  </body>
 
-<template id="month-template">
-    <section class="section-month" id="month-section">
-    </section>
-</template>
+  <template id="month-template">
+    <section class="section-month" id="month-section"></section>
+  </template>
 
-<template id="year-template">
-    <section class="section-year" id="year-section">
-    </section>
-</template>
-<script src="./assets/js/Globals.js"></script>
-<script src="./assets/js/events-display.js"></script>
-<script src="./assets/js/events-details.js"></script>
-<script src="./assets/js/calendar-constructor.js"></script>
-<script src="./assets/js/calendar-month-constructor.js"></script>
-<script src="./assets/js/set-calendar.js"></script>
-<script src="./assets/js/alert.js"></script>
-<script src="./assets/js/styles.js"></script>
-<script src="./assets/js/main.js"></script>
+  <template id="year-template">
+    <section class="section-year" id="year-section"></section>
+  </template>
+  <script src="./assets/js/Globals.js"></script>
+  <script src="./assets/js/events-display.js"></script>
+  <script src="./assets/js/events-details.js"></script>
+  <script src="./assets/js/calendar-constructor.js"></script>
+  <script src="./assets/js/calendar-month-constructor.js"></script>
+  <script src="./assets/js/set-calendar.js"></script>
+  <script src="./assets/js/alert.js"></script>
+  <script src="./assets/js/styles.js"></script>
+  <script src="./assets/js/main.js"></script>
 </html>
