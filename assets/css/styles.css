@@ -1,20 +1,22 @@
 /* TYPOS */
-@font-face {
+
+/* @font-face {
   font-family: "Avenir-regular";
-  src: url(../fonts/AvenirNextLTPro-Regular.otf);
-}
+  src: url(../fonts/AvenirNextLTPro-Regular.otf) format("opentype");
+};
 
 @font-face {
   font-family: "Avenir-bold";
-  src: url(../fonts/AvenirNextLTPro-Bold.otf);
+  src: url(../fonts/AvenirNextLTPro-Bold.otf) format("opentype");
 }
 
 @font-face {
   font-family: "Avenir-italic";
-  src: url(../fonts/AvenirNextLTPro-It.otf);
-}
+  src: url(../fonts/AvenirNextLTPro-It.otf) format("opentype");
+} */
 
 /* COMMON */
+@import "./reset.css";
 @import "./common.css";
 
 /* MODULES */
