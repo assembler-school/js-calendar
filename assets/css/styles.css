@@ -1,0 +1,25 @@
+/* TYPOS */
+@font-face {
+  font-family: "Avenir-regular";
+  src: url(../fonts/AvenirNextLTPro-Regular.otf);
+}
+
+@font-face {
+  font-family: "Avenir-bold";
+  src: url(../fonts/AvenirNextLTPro-Bold.otf);
+}
+
+@font-face {
+  font-family: "Avenir-italic";
+  src: url(../fonts/AvenirNextLTPro-It.otf);
+}
+
+/* COMMON */
+@import "./common.css";
+
+/* MODULES */
+
+
+/* OTHER */
+
+
