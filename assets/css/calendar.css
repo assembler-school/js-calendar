@@ -1,0 +1,15 @@
+.calendar__weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+#daysMonth {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 0px 0px;
+}
+
+.header__date-title {
+  text-transform: capitalize;
+}

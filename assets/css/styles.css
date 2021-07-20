@@ -18,6 +18,7 @@
 /* COMMON */
 @import "./reset.css";
 @import "./common.css";
+@import "./calendar.css";
 
 /* MODALS */
 @import "./modal.css";

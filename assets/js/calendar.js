@@ -9,7 +9,7 @@ firstDay = function () {
 };
 
 lastDay = function () {
-  return new Date(currentYear, currentMonth - 1, 0).getDate();
+  return new Date(currentYear, currentMonth, 0).getDate(); // ! SI LE RESTAMOS UNO AL CURRENT MONTH NO FUNCIONA IGUAL QUE PARA GETDAY, Y CALCULA MAL EL MES
 };
 
 function insertBlankDays() {
@@ -31,7 +31,8 @@ function insertBlankDays() {
 
 function insertDays() {
   let daysMonth = document.getElementById("daysMonth");
-  for (let i = 0; i <= lastDay(); i++) {
+  console.log(lastDay())
+  for (let i = 0; i < lastDay(); i++) { // ! COMO CALCULAMOS BIEN LAST DAY, AHORA NO ES MENOR O IGUAL, SINO MENOR QUE
     let newBlank = document.createElement("div");
     newBlank.innerHTML = i + 1;
     daysMonth.appendChild(newBlank);
@@ -45,7 +46,6 @@ function nextButton() {
 
 function nextMonth() {
   currentMonth += 1;
-  console.log(currentMonth);
   let daysMonth = document.getElementById("daysMonth");
   daysMonth.innerHTML = "";
   insertBlankDays();
@@ -55,7 +55,7 @@ function nextMonth() {
 
 function monthTitle() {
   let calendarTitle = document.getElementById("calendar-title");
-  calendarTitle.innerHTML = currentDate.toLocaleString("es", { month: "long" });
+  calendarTitle.innerHTML = currentDate.toLocaleString("es", { month: "long" }); // ! FALLA PORQUE COGEMOS CURRENTDATE, QUE SIEMPRE ES LA FECHA ACTUAL
 }
 
 export { insertBlankDays, insertDays, nextButton, monthTitle };
