@@ -13,35 +13,50 @@
 </head>
 
 <body>
-    <!-- <div class="dark-mode">
-        <label>
-            <input type="checkbox">
-            <span class="check"></span>
-        </label>
-    </div> -->
-    <div class="calendar">
-        <nav class="calendar__nav">
-            <div class="calendar__item btn btn--burger_menu">&#9776;</div>
-            <div class="calendar__item calendar__item_month">Jan 2021</div>
-            <div class="calendar__item btn btn--today"></div>
-            <div class="calendar__item btn btn--prev">&#62;</div>
-            <div class="calendar__item btn btn--next">&#60;</div>
-        </nav>
-        <div class="calendar__month">
-            <div class="calendar__week">
-                <div class="calendar__day">M</div>
-                <div class="calendar__day">T</div>
-                <div class="calendar__day">W</div>
-                <div class="calendar__day">T</div>
-                <div class="calendar__day">F</div>
-                <div class="calendar__day">S</div>
-                <div class="calendar__day">S</div>
+
+    <!-- Main -->
+    <main class="main">
+
+        <!-- Menu -->
+        <section class="menu">
+            <!-- <div class="dark-mode">
+                <label>
+                    <input type="checkbox">
+                    <span class="check"></span>
+                </label>
+            </div> -->
+        </section><!-- Menu -->
+
+        <!-- Calendar -->
+        <section class="calendar">
+            <nav class="calendar__nav">
+                <div class="calendar__item btn btn--burger">&#9776;</div>
+                <div class="calendar__item"><span id="month">January</span> <span id="year">2021</span></div>
+                <div class="calendar__item btn btn--word">Today</div>
+                <div class="calendar__item btn btn--circle" id="prev-month">&#60;</div>
+                <div class="calendar__item btn btn--circle" id="next-month">&#62;</div>
+            </nav>
+            <div class="calendar__month">
+                <div class="calendar__week">
+                    <div class="calendar__day">M</div>
+                    <div class="calendar__day">T</div>
+                    <div class="calendar__day">W</div>
+                    <div class="calendar__day">T</div>
+                    <div class="calendar__day">F</div>
+                    <div class="calendar__day">S</div>
+                    <div class="calendar__day">S</div>
+                </div>
+                <div class="calendar__dates" id="dates"></div>
             </div>
-            <div class="calendar__dates"></div>
-        </div>
-    </div>
+        </section><!-- Calendar -->
 
+        <!-- Events -->
+        <section class="events">
+        </section><!-- Events -->
 
+    </main><!-- Main -->
+
+    <script src='assets/js/variables.js'></script>
     <script src='assets/js/calendar.js'></script>
     <script src='assets/js/events.js'></script>
     <script src='assets/js/help.js'></script>

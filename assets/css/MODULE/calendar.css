@@ -1,0 +1,29 @@
+/**
+ * MODULE - CALENDAR
+ */
+
+.calendar{
+  display: flex;
+  flex-direction: column;
+}
+
+/* nav */
+
+.calendar__nav{
+  display: flex;
+  flex-direction: row;
+}
+
+.calendar__item{}
+
+/* month */
+
+.calendar__month{
+  display: grid;
+}
+
+.calendar__week{}
+
+.calendar__day{}
+
+.calendar__dates{}
