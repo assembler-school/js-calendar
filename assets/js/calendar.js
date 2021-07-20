@@ -9,7 +9,7 @@ firstDay = function () {
 };
 
 lastDay = function () {
-  return new Date(currentYear, currentMonth, 0).getDate(); // ! SI LE RESTAMOS UNO AL CURRENT MONTH NO FUNCIONA IGUAL QUE PARA GETDAY, Y CALCULA MAL EL MES
+  return new Date(currentYear, currentMonth, 0).getDate(); //SI LE RESTAMOS UNO AL CURRENT MONTH NO FUNCIONA IGUAL QUE PARA GETDAY, Y CALCULA MAL EL MES
 };
 
 function insertBlankDays() {
@@ -31,8 +31,8 @@ function insertBlankDays() {
 
 function insertDays() {
   let daysMonth = document.getElementById("daysMonth");
-  console.log(lastDay())
-  for (let i = 0; i < lastDay(); i++) { // ! COMO CALCULAMOS BIEN LAST DAY, AHORA NO ES MENOR O IGUAL, SINO MENOR QUE
+  console.log(lastDay());
+  for (let i = 0; i < lastDay(); i++) {
     let newBlank = document.createElement("div");
     newBlank.innerHTML = i + 1;
     daysMonth.appendChild(newBlank);
@@ -42,6 +42,10 @@ function insertDays() {
 function nextButton() {
   let nextBtn = document.getElementById("next-btn");
   nextBtn.addEventListener("click", nextMonth);
+}
+function prevButton() {
+  let prevBtn = document.getElementById("prev-btn");
+  prevBtn.addEventListener("click", prevMonth);
 }
 
 function nextMonth() {
@@ -53,9 +57,28 @@ function nextMonth() {
   monthTitle();
 }
 
-function monthTitle() {
-  let calendarTitle = document.getElementById("calendar-title");
-  calendarTitle.innerHTML = currentDate.toLocaleString("es", { month: "long" }); // ! FALLA PORQUE COGEMOS CURRENTDATE, QUE SIEMPRE ES LA FECHA ACTUAL
+function prevMonth() {
+  currentMonth -= 1;
+  let daysMonth = document.getElementById("daysMonth");
+  daysMonth.innerHTML = "";
+  insertBlankDays();
+  insertDays();
+  monthTitle();
 }
 
-export { insertBlankDays, insertDays, nextButton, monthTitle };
+function monthTitle() {
+  let calendarTitle = document.getElementById("calendar-title");
+  calendarTitle.innerHTML = new Date(
+    currentYear,
+    currentMonth - 1
+  ).toLocaleString("en", { month: "long", year: "numeric" });
+}
+
+export {
+  insertBlankDays,
+  insertDays,
+  nextButton,
+  prevButton,
+  monthTitle,
+  firstDay,
+};

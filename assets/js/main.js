@@ -4,9 +4,11 @@ import {
   insertDays,
   nextButton,
   monthTitle,
+  prevButton,
 } from "./calendar.js";
 
 insertBlankDays();
 insertDays();
 nextButton();
 monthTitle();
+prevButton();
