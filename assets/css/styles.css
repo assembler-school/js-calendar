@@ -1,3 +1,2 @@
-* {
-  color: red;
-}
+@import "base.css";
+@import "utils.css";
