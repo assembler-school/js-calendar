@@ -59,10 +59,7 @@ To deliver this project you must follow the steps indicated in the document:
 - [JavaScript Timeout](https://www.w3schools.com/jsref/met_win_settimeout.asp)
 
 ## hello arantza
-<<<<<<< HEAD
 
 ## Hello Kike  <(^o^)>
-=======
 ## Hello Joel
->>>>>>> 1d2b330e8444d355f4b951ab34ad72e19d544863
 ## hello tam
