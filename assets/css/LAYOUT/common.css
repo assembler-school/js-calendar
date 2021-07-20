@@ -1,0 +1,18 @@
+/**
+ * LAYOUT - RESET
+ */
+ 
+.main {
+  display: flex;
+  flex-direction: row;
+  transform: translateX(0);
+  transition: 0.25s ease-in-out;
+}
+
+@media (max-width: 575px) {
+ 
+}
+
+@media (max-width: 450px) {
+  
+}

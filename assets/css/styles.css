@@ -1,0 +1,31 @@
+/**
+ * FONT FAMILIES
+ */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;900&display=swap");
+
+/**
+ * BASE FOLDER
+ */
+@import "BASE/reset.css";
+
+/**
+ * LAYOUT FOLDER
+ */
+@import "LAYOUT/common.css";
+
+/**
+ * MODULE FOLDER
+ */
+@import "MODULE/header.css";
+@import "MODULE/nav.css";
+@import "MODULE/buttons.css";
+
+/**
+ * STATUS FOLDER
+ */
+@import "STATUS/default.css";
+
+/**
+ * THEME FOLDER
+ */
+@import "THEME/vars.css";

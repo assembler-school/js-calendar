@@ -1,44 +1,50 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Calendar Project</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='styles\style.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='assets/css/styles.css'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <div class="calendarContainer">
-        <div class="calendarInfo">
-        <div class="list">&#9776;</div>
-        <div class="calendarContainer__prev" ><b>&#60;</b></div>
-        <div class="calendarContainer__month" style="font-size: 15px;">January 2021</div>
-        <div class="calendarContainer__year" ></div>
-        <div class="calendarContainer__next" ><b>&#62;</b></div>
-        <div class="dark-mode"> 
-            <label>
+    <!-- <div class="dark-mode">
+        <label>
             <input type="checkbox">
             <span class="check"></span>
-            </label>
+        </label>
+    </div> -->
+    <div class="calendar">
+        <nav class="calendar__nav">
+            <div class="calendar__item btn btn--burger_menu">&#9776;</div>
+            <div class="calendar__item calendar__item_month">Jan 2021</div>
+            <div class="calendar__item btn btn--today"></div>
+            <div class="calendar__item btn btn--prev">&#62;</div>
+            <div class="calendar__item btn btn--next">&#60;</div>
+        </nav>
+        <div class="calendar__month">
+            <div class="calendar__week">
+                <div class="calendar__day">M</div>
+                <div class="calendar__day">T</div>
+                <div class="calendar__day">W</div>
+                <div class="calendar__day">T</div>
+                <div class="calendar__day">F</div>
+                <div class="calendar__day">S</div>
+                <div class="calendar__day">S</div>
+            </div>
+            <div class="calendar__dates"></div>
         </div>
-        </div>
-        <div class="calendarWeekDays">
-            <div class="calendarWeek__day">M</div>
-            <div class="calendarWeek__day">T</div>
-            <div class="calendarWeek__day">W</div>
-            <div class="calendarWeek__day">T</div>
-            <div class="calendarWeek__day">F</div>
-            <div class="calendarWeek__day">S</div>
-            <div class="calendarWeek__day">S</div>
-        </div>
-        <div class="calendar__dates" ></div>
     </div>
-    
-    <script src='js\calendarFunctions.js'></script>
-    <script src='js\eventsFunctions.js'></script>
-    <script src='js\help.js'></script>
+
+
+    <script src='assets/js/calendar.js'></script>
+    <script src='assets/js/events.js'></script>
+    <script src='assets/js/help.js'></script>
 </body>
+
 </html>
