@@ -13,7 +13,7 @@ const endDateInput = document.getElementById("endDateInput");
 const remindInput = document.getElementById("remindInput");
 
 // --------- EVENT LISTENER --------
-
+window.addEventListener("keydown", pressEscape);
 buttonEvent.addEventListener("click", openModal);
 modalClose.addEventListener("click", closeModal);
 closeModalBtn.addEventListener("click", closeModal);
@@ -31,11 +31,20 @@ function closeModal() {
 endDate.addEventListener("click", displayStartDate);
 remind.addEventListener("click", displayRemindEvent);
 
+// Display start date input
 function displayStartDate() {
   endDateInput.classList.toggle("--is-hidden");
 }
 
+// Display time to remind
 function displayRemindEvent() {
   // remindInput.classList.replace("--is-hidden", "--is-visible");
   remindInput.classList.toggle("--is-hidden");
+}
+
+// Escape the modal window when pressing Escape
+function pressEscape(event) {
+  if(event.key === 'Escape') {
+    modal.classList.remove("--is-visible");
+  }
 }
