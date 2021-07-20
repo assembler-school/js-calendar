@@ -3,3 +3,12 @@
   justify-content: space-evenly;
 }
 
+
+.--is-visible {
+  display: block;
+}
+
+.--is-hidden {
+  display: none;
+}
+
