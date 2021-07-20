@@ -4,14 +4,14 @@
   right: 0;
   bottom: 0;
   left: 0;
-  opacity:0;
+  display: none;
   background: rgba(0, 0, 0, 0.8);
   transition: opacity 100ms ease-in;
-  pointer-events: none;
+  /* pointer-events: none; */
 }
 
 .modal--is-visible {
-  opacity: 1;
+  display: flex;
 }
 
 .modal__content {
