@@ -29,13 +29,28 @@
 
         <!-- Calendar -->
         <section class="calendar">
-            <nav class="calendar__nav">
-                <div class="calendar__item btn btn--burger">&#9776;</div>
-                <div class="calendar__item"><span id="month">January</span> <span id="year">2021</span></div>
-                <div class="calendar__item btn btn--word">Today</div>
-                <div class="calendar__item btn btn--circle" id="prev-month">&#60;</div>
-                <div class="calendar__item btn btn--circle" id="next-month">&#62;</div>
-            </nav>
+
+            <!-- Nav -->
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <button class="btn btn--burger">&#9776;</button>
+                    </li>
+                    <li class="nav__item nav__item--full">
+                        <span id="month">January</span> <span id="year">2021</span>
+                    </li>
+                    <li class="nav__item">
+                        <button class="btn btn--word">Today</button>
+                    </li>
+                    <li class="nav__item">
+                        <button class="btn btn--circle" id="prev-month">&#60;</button>
+                    </li>
+                    <li class="nav__item">
+                        <button class="btn btn--circle" id="next-month">&#62;</button>
+                    </li>
+                </ul>
+            </nav><!-- Nav -->
+
             <div class="calendar__month">
                 <div class="calendar__week">
                     <div class="calendar__day">M</div>
