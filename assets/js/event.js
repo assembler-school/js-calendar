@@ -1,29 +1,90 @@
 import { closeModal, MODALWINDOW } from "./modal-form.js";
 
 function renderAddEventForm() {
-
     MODALWINDOW.innerHTML = `
-        <div id="modal__overlay" class="modal__overlay"></div>
+        <div id="modalOverlay" class="modal__overlay"></div>
         <div class="modal__content">
-            <span id="modal__close" class="modal__close">&#10799;</span>
-            <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.      
-            </p>
-            <button id="modal__cancel" class="modal__cancel">Cancel</button>
+            <span id="modalClose" class="modal__close">&#10799;</span>
+            ${eventForm}
         </div>
     `;
 
     // To close the current Modal
-    document.getElementById('modal__close').addEventListener('click', closeModal);
-    document.getElementById('modal__overlay').addEventListener('click', closeModal);
-    document.getElementById('modal__cancel').addEventListener('click', closeModal);
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') closeModal();
-    })
+    document.getElementById("modalClose").addEventListener("click", closeModal);
+    document.getElementById("modalOverlay").addEventListener("click", closeModal);
+    document.getElementById("cancelEvent").addEventListener("click", closeModal);
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeModal();
+    });
 
+    // Dinamic form fields
+    document.getElementById("displayEnd").addEventListener("click", function() {
+        displayInputField("containerFinalDate");
+    });
+    document
+        .getElementById("displayReminder")
+        .addEventListener("click", function() {
+            displayInputField("containerSetRemainder");
+        });
 }
 
-
-export {
-    renderAddEventForm
+// Show and Hide elements in the form
+function displayInputField(element) {
+    document.getElementById(element).classList.toggle("display-none");
 }
+
+let eventForm = `
+<form>
+<div>
+    <label for="title">Title</label>
+    <input type="text" id="title" name="titleEvent" maxlength="60" required />
+</div>
+<div>
+    <label for="initialDate">Initial Date</label>
+    <input type="datetime-local" id="initialDate" required />
+</div>
+<div>
+    <label for="displayEnd">Do you need an end time?</label>
+    <input type="checkbox" id="displayEnd" name="displayEnd" />End date
+</div>
+<div id="containerFinalDate" class="container__finaldate display-none">
+    <label for="finalDate">Final Date</label>
+    <input type="datetime-local" id="finalDate" required />
+</div>
+<div>
+    <label for="displayReminder">Remind me when this event starts</label>
+    <input type="checkbox" id="displayReminder" name="displayReminder" />
+</div>
+<div id="containerSetRemainder" class="display-none">
+    <label for="setReminder">Time:</label>
+    <select id="setReminder">
+        <option value="5">5min</option>
+        <option value="10">10min</option>
+        <option value="15">15min</option>
+        <option value="30">30min</option>
+        <option value="60">60min</option>
+    </select>
+</div>
+<div>
+    <label for="textArea">Description</label>
+    <textarea id="textArea" name="textArea"></textarea>
+</div>
+<div>
+    <label for="eventType">Event Type</label>
+    <select id="eventType">
+      <option value="meeting">Meeting</option>
+      <option value="personal">Personal</option>
+      <option value="study">Study</option>
+      <option value="others">Others</option>
+    </select>
+</div>
+<div>
+    <button id="cancelEvent" class="form__button cancel">Cancel
+    </button>
+    <button type="submit" id="createEvent" class="form__button submit">Create
+    </button>
+</div>
+</form>
+`;
+
+export { renderAddEventForm };
