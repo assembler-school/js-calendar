@@ -1,14 +1,22 @@
 // ----------- VARIABLES --------
 let buttonEvent = document.querySelector("#calendarEvent");
 let modal = document.querySelector('#modal');
-let modalClose = document.querySelector('#button-close')
+let buttonClose = document.getElementById('button-close');
+
 
 // --------- EVENT LISTENER --------
 
 buttonEvent.addEventListener("click", openModal);
-// modalClose.addEventListener("click", closeModal);
+buttonClose.addEventListener('click', console.log('funchiona'))
+// buttonClose.addEventListener("click", function () {
+//   modal.classList.remove('modal--is-visible')
+// });
 
 function openModal() {
   modal.classList.add('modal--is-visible')
+
 }
 
+// function closeModal() {
+//   modal.classList.remove('modal--is-visible')
+// }

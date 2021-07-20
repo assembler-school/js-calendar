@@ -41,7 +41,3 @@
   box-shadow: 1px 1px 3px #000;
   padding-top: 5px;
 }
-
-.modal__close:hover {
-  background: #fa3f6f;
-}
