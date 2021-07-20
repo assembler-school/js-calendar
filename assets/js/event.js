@@ -1,4 +1,8 @@
 import { closeModal, MODALWINDOW } from "./modal-form.js";
+import { renderCalendar } from "./calendar.js";
+
+// Event identifiers
+let eventIds = [];
 
 function renderAddEventForm() {
     MODALWINDOW.innerHTML = `
@@ -21,12 +25,56 @@ function renderAddEventForm() {
     document.getElementById("displayEnd").addEventListener("click", function() {
         displayInputField("containerFinalDate");
     });
-    document
-        .getElementById("displayReminder")
-        .addEventListener("click", function() {
-            displayInputField("containerSetRemainder");
-        });
+    document.getElementById("displayReminder").addEventListener("click", function() {
+        displayInputField("containerSetRemainder");
+    });
+
+    // Submit addEventForm
+    document.getElementById('addEventForm').addEventListener('submit', formHandler);
+
 }
+
+function formHandler(event) {
+    //console.log(event);
+    event.preventDefault();
+    
+    let formData = new FormData(event.target);
+    
+    let eventObject = [];
+
+    // Display the key/value pairs
+    for (var pair of formData.entries()) {
+        //console.log(pair[0]+ ' -> '+ pair[1]);
+        eventObject.push([
+            pair[0],
+            pair[1]
+        ])
+    }
+
+    let currentIdEvent = new Date() // Unique
+
+    eventIds.push()
+
+    // Guardamos
+    setCurrentEvent(currentIdEvent, eventObject);
+
+    // Close Modal
+    closeModal()
+
+    // Render Calendar
+    //renderCalendar(currentIdEvent, startingDate, finalDate, titleEvent)
+    renderCalendar(currentIdEvent);
+
+}
+
+function setCurrentEvent(id, event) {
+    return window.localStorage.setItem(id, JSON.stringify(event))
+}
+
+function getCurrentEvent(id) {
+    return window.localStorage.getItem(id)
+}
+
 
 // Show and Hide elements in the form
 function displayInputField(element) {
@@ -34,14 +82,14 @@ function displayInputField(element) {
 }
 
 let eventForm = `
-<form>
+<form id="addEventForm">
 <div>
     <label for="title">Title</label>
     <input type="text" id="title" name="titleEvent" maxlength="60" required />
 </div>
 <div>
     <label for="initialDate">Initial Date</label>
-    <input type="datetime-local" id="initialDate" required />
+    <input type="datetime-local" id="initialDate" name="initialDate" required />
 </div>
 <div>
     <label for="displayEnd">Do you need an end time?</label>
@@ -49,7 +97,7 @@ let eventForm = `
 </div>
 <div id="containerFinalDate" class="container__finaldate display-none">
     <label for="finalDate">Final Date</label>
-    <input type="datetime-local" id="finalDate" required />
+    <input type="datetime-local" id="finalDate" name="finalDate" />
 </div>
 <div>
     <label for="displayReminder">Remind me when this event starts</label>
