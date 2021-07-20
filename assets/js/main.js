@@ -11,6 +11,7 @@ const endDate = document.getElementById("endDate");
 const remind = document.getElementById("remind");
 const endDateInput = document.getElementById("endDateInput");
 const remindInput = document.getElementById("remindInput");
+const modalContent = document.getElementById("modal-content");
 
 // --------- EVENT LISTENER --------
 window.addEventListener("keydown", pressEscape);
@@ -46,5 +47,17 @@ function displayRemindEvent() {
 function pressEscape(event) {
   if(event.key === 'Escape') {
     modal.classList.remove("--is-visible");
+  }
+}
+
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modalContent) {
+    modalContent.classList.add("--is-visible");
+  } 
+
+  if (event.target == modal) {
+    closeModal();
   }
 }
