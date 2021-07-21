@@ -56,9 +56,7 @@ window.onclick = function(event) {
   }
 }
 
-
 /**/
-
 /** FORM VALUES */
 
 let form = document.getElementById('modal-form')
@@ -108,6 +106,5 @@ function showResume() {
       <p>${myObject.eventType}</p>
     `
     infoEvents.innerHTML = html
-    console.log(myObject.name);
   }
 }
