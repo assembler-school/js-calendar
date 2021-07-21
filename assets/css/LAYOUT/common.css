@@ -27,6 +27,12 @@
     border-left: 1px solid lightgray;
 }
 
+/* flexbox */
+
+.justify-content-between{
+    justify-content: space-between;
+}
+
 /* @media (max-width: 575px) {}
 
 @media (max-width: 450px) {} */

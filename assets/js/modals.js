@@ -1,9 +1,9 @@
 'use strict'
 
-var calcMonth = document.querySelector(".calendar__month");
+var calendarMain = document.querySelector(".calendar__main");
 var addEventBtn = document.querySelector("#add-event");
 
-calcMonth.addEventListener("click", clickDate);
+calendarMain.addEventListener("click", clickDate);
 addEventBtn.addEventListener("click", clickDate);
 
 const addEvent = (e) => {

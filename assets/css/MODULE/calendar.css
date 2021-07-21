@@ -9,9 +9,13 @@
   height: 100%;
 }
 
-.calendar__month{
+.calendar__header{
+  padding: 0 20px;
+}
+
+.calendar__main{
   height: 100%;
-  padding: 15px 5px 35px;
+  padding: 15px 15px 60px;
 }
 
 .calendar__week,
@@ -21,8 +25,12 @@
   width: 100%;
 }
 
-.calendar__dates {
-  height: 100%;
+.calendar__week{
+  padding-bottom: 10px;
+}
+
+.calendar__day{
+  color: grey;
 }
 
 .calendar__day,
@@ -30,6 +38,10 @@
   text-align: center;
   border: 1px solid white;
   padding: 5px;
+}
+
+.calendar__dates {
+  height: 100%;
 }
 
 .calendar__date:hover:not(.calendar__prev){
