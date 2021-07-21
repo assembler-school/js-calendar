@@ -1,19 +1,6 @@
 /* TYPOS */
 
-/* @font-face {
-  font-family: "Avenir-regular";
-  src: url(../fonts/AvenirNextLTPro-Regular.otf) format("opentype");
-};
-
-@font-face {
-  font-family: "Avenir-bold";
-  src: url(../fonts/AvenirNextLTPro-Bold.otf) format("opentype");
-}
-
-@font-face {
-  font-family: "Avenir-italic";
-  src: url(../fonts/AvenirNextLTPro-It.otf) format("opentype");
-} */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;1,400&display=swap'); /* font-family: 'Nunito', sans-serif; */
 
 /* COMMON */
 @import "./reset.css";
@@ -24,5 +11,3 @@
 @import "./modal.css";
 
 /* OTHER */
-
-
