@@ -17,9 +17,24 @@
 .btn:hover{
 }
 
-.btn--word{}
+.btn--word{
+  background-color: transparent;
+  padding: 10px 40px;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 20px;
+  height: 36px;
+  width: 36px;
+}
 
-.btn--circle{}
+.btn--circle{
+  background-color: transparent;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 50%;
+  height: 36px;
+  width: 36px;
+}
 
 .btn--red{
   background-color: rgb(231, 97, 97);
