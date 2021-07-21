@@ -29,7 +29,6 @@ function getValues(e) {
   events.push(eventValue)
   localStorage.setItem('events', JSON.stringify(events))
 
-  console.log(events);
   form.reset()
 }
 
