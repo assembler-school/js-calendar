@@ -13,31 +13,43 @@
 </head>
 
 <body>
-
     <!-- Main -->
     <main class="main">
-
-        <!-- Menu -->
-        <section class="menu">
-            <!-- <div class="dark-mode">
+        <div class="before">
+            <!-- event types list -->
+            <div class=types_container>
+                <div class="types__title"><h3>Js Calendar</h3></div>
+                <div class="dark__mode"><h4>&#x1F441;Dark mode
                 <label>
                     <input type="checkbox">
                     <span class="check"></span>
                 </label>
-            </div> -->
-        </section><!-- Menu -->
+                </h4>
+                </div>
+                <div class="types__list">
+                    <ol class="types__ol">
+                        <li class="types__ol__li"> <input type="checkbox"> Meeting </li>
+                        <li class="types__ol__li"> <input type="checkbox">Call</li>
+                        <li class="types__ol__li"> <input type="checkbox">Coffe with</li>
+                        <li class="types__ol__li"> <input type="checkbox">Peer helping</li>
+                        <li class="types__ol__li__plus"><input type="button" value="+ New Type"></li>
+                    </ol>
+                </div>
+                <div class="add__type__btn"><input type="button" value="Add event"></div>
+            </div>
+        </div>
+        <!--  -->
 
-        <!-- Calendar -->
-        <section class="calendar">
-
+        <div class="middle">
+            <!-- Calendar -->
             <!-- Nav -->
             <nav class="nav">
                 <ul class="nav__list">
                     <li class="nav__item">
-                        <button class="btn btn--burger">&#9776;</button>
+                        <!-- <button class="btn btn--burger">&#9776;</button> -->
                     </li>
                     <li class="nav__item nav__item--full">
-                        <span id="month">January</span> <span id="year">2021</span>
+                        <span id="month">Jan</span> <span id="year">2021</span>
                     </li>
                     <li class="nav__item">
                         <button class="btn btn--word">Today</button>
@@ -49,27 +61,25 @@
                         <button class="btn btn--circle" id="next-month">&#62;</button>
                     </li>
                 </ul>
-            </nav><!-- Nav -->
-
-            <div class="calendar__month">
-                <div class="calendar__week">
-                    <div class="calendar__day">M</div>
-                    <div class="calendar__day">T</div>
-                    <div class="calendar__day">W</div>
-                    <div class="calendar__day">T</div>
-                    <div class="calendar__day">F</div>
-                    <div class="calendar__day">S</div>
-                    <div class="calendar__day">S</div>
-                </div>
-                <div class="calendar__dates" id="dates"></div>
+            </nav>
+            <!-- Nav -->
+            <div class="calendar__week">
+                <div class="calendar__day">M</div>
+                <div class="calendar__day">T</div>
+                <div class="calendar__day">W</div>
+                <div class="calendar__day">T</div>
+                <div class="calendar__day">F</div>
+                <div class="calendar__day">S</div>
+                <div class="calendar__day">S</div>
             </div>
-        </section><!-- Calendar -->
-
-        <!-- Events -->
-        <section class="events">
-        </section><!-- Events -->
-
-    </main><!-- Main -->
+            <div class="calendar__dates" id="dates"></div>
+        </div>
+        <!-- Events list -->
+        <div class="after">
+            <div class="events"> </div>
+        </div>
+    </main>
+    <!-- Main -->
 
     <script src='assets/js/variables.js'></script>
     <script src='assets/js/calendar.js'></script>

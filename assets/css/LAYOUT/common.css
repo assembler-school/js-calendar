@@ -2,8 +2,35 @@
  * LAYOUT - RESET
  */
 
-.main {}
+.main {
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
 
-@media (max-width: 575px) {}
+.before {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    height: 100%;
+    background-color: rgb(141, 141, 140);
+}
 
-@media (max-width: 450px) {}
+.middle {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height: 100%;
+}
+
+.after {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: 100%;
+    background-color: rgb(141, 141, 141);
+}
+/* @media (max-width: 575px) {}
+
+@media (max-width: 450px) {} */

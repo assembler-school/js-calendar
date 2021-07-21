@@ -21,6 +21,8 @@
 @import "MODULE/calendar.css";
 @import "MODULE/buttons.css";
 
+
+@import "assets/css/TYPES/eventType.css";
 /**
  * STATUS FOLDER
  */
@@ -30,3 +32,7 @@
  * THEME FOLDER
  */
 @import "THEME/vars.css";
+
+
+@import "EVENT TYPE/eventType.css";
+@import "assets/css/EVENTS LIST/eventsList.css";

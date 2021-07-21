@@ -7,3 +7,15 @@
 .btn--word{}
 
 .btn--circle{}
+
+.add__type__btn{
+display: flex;
+justify-content: center;
+
+}
+
+.add__type__btn [type="button"]{
+width: 15em;
+color: rgb(255, 255, 255);
+background-color: black;
+}
