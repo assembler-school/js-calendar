@@ -1,0 +1,20 @@
+/**
+ * MODULE - EVENTS
+ */
+
+.events {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  height: 100%;
+  border-left: 1px solid lightgray;
+}
+
+@media (max-width: 767px) {
+  .events {
+    position: absolute;
+    width: 100%;
+    transform: translateX(100%);
+  }
+}

@@ -1,5 +1,5 @@
 /**
- * LAYOUT - RESET
+ * LAYOUT - COMMON
  */
 
 .main {
@@ -9,28 +9,6 @@
     display: flex;
 }
 
-.before {
-    display: flex;
-    flex-direction: column;
-    width: 20%;
-    height: 100%;
-    background-color: rgb(141, 141, 140);
-}
-
-.middle {
-    display: flex;
-    flex-direction: column;
-    width: 60%;
-    height: 100%;
-}
-
-.after {
-    display: flex;
-    flex-direction: column;
-    width: 30%;
-    height: 100%;
-    background-color: rgb(141, 141, 141);
-}
 /* @media (max-width: 575px) {}
 
 @media (max-width: 450px) {} */

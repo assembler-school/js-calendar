@@ -18,12 +18,14 @@
  */
 @import "MODULE/header.css";
 @import "MODULE/nav.css";
+@import "MODULE/menu.css";
 @import "MODULE/modals.css";
 @import "MODULE/calendar.css";
 @import "MODULE/buttons.css";
+@import "MODULE/types.css";
+@import "MODULE/switch.css";
+@import "MODULE/events.css";
 
-
-@import "assets/css/TYPES/eventType.css";
 /**
  * STATUS FOLDER
  */
@@ -33,7 +35,3 @@
  * THEME FOLDER
  */
 @import "THEME/vars.css";
-
-
-@import "EVENT TYPE/eventType.css";
-@import "assets/css/EVENTS LIST/eventsList.css";

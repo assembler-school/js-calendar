@@ -30,7 +30,6 @@ html {
 section {
   padding: 0;
   position: relative;
-  min-width: 100%;
   overflow: auto;
 }
 

@@ -2,28 +2,48 @@
  * MODULE - CALENDAR
  */
 
-.calendar{
+.calendar {
   display: flex;
   flex-direction: column;
-  /* height: 100%;
-  width: 100%; */
+  width: 60%;
+  height: 100%;
 }
 
-/* month */
-
-.calendar__week{
-  justify-content: space-evenly;
-  display: flex;
-  font-size: larger;
-  background-color: rgb(214, 214, 214);
-
+.calendar__week,
+.calendar__dates {
+  display: grid;
+  grid-template: "auto auto auto auto auto auto auto";
+  width: 100%;
 }
-
-.calendar__day{}
 
 .calendar__dates {
-display: flex;
-background-color: darkgrey;
-width: 100%;
-height: 100%;
+  height: 100%;
+}
+
+.calendar__day,
+.calendar__date{
+  text-align: center;
+  border: 1px solid white;
+  padding: 5px;
+}
+
+.calendar__date:hover:not(.calendar__prev){
+  border: 1px solid grey;
+  border-radius: 4px;
+}
+
+.calendar__today{
+  background-color: black;
+  color: white;
+}
+
+.calendar__prev{
+  margin: 5px;
+  color: gray;
+}
+
+@media (max-width: 767px) {
+  .calendar {
+    width: 100%;
+  }
 }
