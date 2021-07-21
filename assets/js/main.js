@@ -50,13 +50,8 @@ function pressEscape(event) {
   }
 }
 
-
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-  if (event.target == modalContent) {
-    modalContent.classList.add("--is-visible");
-  } 
-
   if (event.target == modal) {
     closeModal();
   }
