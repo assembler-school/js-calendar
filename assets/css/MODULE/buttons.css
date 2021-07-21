@@ -2,14 +2,9 @@
  * MODULE - BUTTONS
  */
 
-.btn{}
-
-.btn--word{}
-
-.btn--circle{}
-
 .btn{
   display: flex;
+  justify-content: center;
   padding: 10px 20px;
   border-radius: 5px;
   font-size: 14px;
@@ -17,12 +12,14 @@
   cursor: pointer;
   outline: none;
   transition: all 0.3s ease-in-out;
-  box-shadow: 0 5px 10px -5px rgba(0,0,0,.15),0 10px 10px -5px rgba(0,0,0,.1);
 }
 
 .btn:hover{
-  box-shadow: 0 20px 25px -5px rgba(0,0,0,.15),0 10px 10px -5px rgba(0,0,0,.1);
 }
+
+.btn--word{}
+
+.btn--circle{}
 
 .btn--red{
   background-color: rgb(231, 97, 97);
