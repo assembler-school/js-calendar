@@ -18,12 +18,14 @@
     <main class="main">
 
         <!-- Menu -->
-        <section class="menu menu--gray">
+        <section class="menu border-right">
 
-            <h1 class="menu__title">Js Calendar</h1>
+            <header class="border-bottom">
+                <h1 class="menu__title">Js Calendar</h1>
+            </header>
 
             <!-- Types -->
-            <div class="types">
+            <main class="types">
                 <ol class="types__list">
                     <li class="types__item">
                         <label class="types__label">Dark mode</label>
@@ -49,52 +51,56 @@
                         <input type="button" value="+ New Type">
                     </li>
                 </ol>
-            </div><!-- Types -->
+            </main><!-- Types -->
 
-            <div class="btn btn--add_type"><input type="button" value="Add event"></div>
+            <footer class="btn btn--add_type"><input type="button" value="Add event"></footer>
 
         </section><!-- Menu -->
 
         <!-- Calendar -->
         <section class="calendar">
 
-            <!-- Nav -->
-            <nav class="nav">
-                <ul class="nav__list">
-                    <li class="nav__item">
-                        <!-- <button class="btn btn--burger">&#9776;</button> -->
-                    </li>
-                    <li class="nav__item nav__item--full">
-                        <span id="month">Jan</span> <span id="year">2021</span>
-                    </li>
-                    <li class="nav__item">
-                        <button class="btn btn--word">Today</button>
-                    </li>
-                    <li class="nav__item">
-                        <button class="btn btn--circle" id="prev-month">&#60;</button>
-                    </li>
-                    <li class="nav__item">
-                        <button class="btn btn--circle" id="next-month">&#62;</button>
-                    </li>
-                </ul>
-            </nav><!-- Nav -->
+            <header class="border-bottom">
+                <!-- Nav -->
+                <nav class="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <!-- <button class="btn btn--burger">&#9776;</button> -->
+                        </li>
+                        <li class="nav__item nav__item--full">
+                            <span id="month">Jan</span> <span id="year">2021</span>
+                        </li>
+                        <li class="nav__item">
+                            <button class="btn btn--word">Today</button>
+                        </li>
+                        <li class="nav__item">
+                            <button class="btn btn--circle" id="prev-month">&#60;</button>
+                        </li>
+                        <li class="nav__item">
+                            <button class="btn btn--circle" id="next-month">&#62;</button>
+                        </li>
+                    </ul>
+                </nav><!-- Nav -->
+            </header>
 
-            <div class="calendar__week">
-                <div class="calendar__day">M</div>
-                <div class="calendar__day">T</div>
-                <div class="calendar__day">W</div>
-                <div class="calendar__day">T</div>
-                <div class="calendar__day">F</div>
-                <div class="calendar__day">S</div>
-                <div class="calendar__day">S</div>
-            </div>
-            <div class="calendar__dates" id="dates">
+            <main class="calendar__month">
+                <div class="calendar__week">
+                    <div class="calendar__day">M</div>
+                    <div class="calendar__day">T</div>
+                    <div class="calendar__day">W</div>
+                    <div class="calendar__day">T</div>
+                    <div class="calendar__day">F</div>
+                    <div class="calendar__day">S</div>
+                    <div class="calendar__day">S</div>
+                </div>
+                <div class="calendar__dates" id="dates">
+                </div>
                 <!-- <button class="btn--modal" data-id="modal-example">Open modal</button> -->
-            </div>
-        </section>
+            </main>
+        </section><!-- Calendar -->
 
         <!-- Events -->
-        <section class="events"></section><!-- Events -->
+        <section class="events border-left"></section><!-- Events -->
 
     </main><!-- Main -->
 
@@ -105,7 +111,7 @@
         <div class="modal__container slide-from-bottom">
 
             <h4 class="modal__title">Create new event</h4>
-            <p class="modal__close" ></p>
+            <p class="modal__close"></p>
             <!-- Content container -->
             <div class="modal__content">
                 <div class="modal__items">
