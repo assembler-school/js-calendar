@@ -14,5 +14,5 @@ let year = document.getElementById('year');
 const prevMonthDOM = document.getElementById('prev-month');
 const nextMonthDOM = document.getElementById('next-month');
 
-prevMonthDOM.addEventListener('click', () => nextMonth());
-nextMonthDOM.addEventListener('click', () => nextMonth());
+prevMonthDOM.addEventListener('click', () => goToPrevMonth());
+nextMonthDOM.addEventListener('click', () => goToNextMonth());
