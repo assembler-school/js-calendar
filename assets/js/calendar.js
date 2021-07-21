@@ -70,3 +70,17 @@ const setNewDate = () => {
 }
 
 writeMonth(currentMonth);
+
+
+
+//FUNCION TO RETURN HOUR (hh:mm) - IT IS NOT COMPLETED AND I NEED TO SEARCH ABOUT IT MORE WHEN IT IS NECESSARY
+
+// const currentTime = new Date();
+// currentTime.toLocaleTimeString();
+// console.log(currentTime)
+
+
+// // WE CAN USE THIS AS A STAMP FOR STORAGE
+
+// let stampTime = newDate();
+// console.log(stampTime.getTime());

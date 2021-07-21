@@ -2,10 +2,13 @@
 
 const monthNames = ['January', 'Febrary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
+
 const currentDate = new Date();
 const currentDay = currentDate.getDate();
 const currentMonth = currentDate.getMonth();
 const currentYear = currentDate.getFullYear();
+// const currentTime declared as function in 
+
 
 let dates = document.getElementById('dates');
 let month = document.getElementById('month');

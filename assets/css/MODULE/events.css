@@ -18,3 +18,27 @@
     transform: translateX(100%);
   }
 }
+
+.events__date-container {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-top: 1rem;
+  margin-left: 2rem;
+}
+
+.events__list-container{
+  display: grid;
+  font-weight: bold;
+  
+}
+
+.event__container {
+  border: 1px solid lightgray;
+  align-self: center;
+}
+
+.event__item {
+  height: 8rem;
+  margin-left: 1rem;
+  height: 4rem;
+}
