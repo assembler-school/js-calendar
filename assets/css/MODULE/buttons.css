@@ -39,7 +39,13 @@
 }
 
 .btn--add_type [type="button"]{
-    width: 15em;
-    color: rgb(255, 255, 255);
-    background-color: black;
+  width: 15em;
+  color: rgb(255, 255, 255);
+  background-color: black;
+}
+
+@media (max-width: 767px) {
+  .btn{
+    margin: 5px;
+  }
 }

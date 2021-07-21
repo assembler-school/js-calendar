@@ -3,9 +3,18 @@
  */
 
 .events {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 30%;
   height: 100%;
   background-color: rgb(141, 141, 141);
+}
+
+@media (max-width: 767px) {
+  .events {
+    position: absolute;
+    width: 100%;
+    transform: translateX(100%);
+  }
 }

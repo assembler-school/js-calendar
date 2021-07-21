@@ -4,8 +4,7 @@
 
 .nav{
   display: flex;
-  background-color: rgb(128, 121, 112);
-  height: 20%;
+  border-bottom: 1px solid lightgray;
 }
 
 .nav__list {
@@ -14,7 +13,6 @@
   list-style: none;
   padding-left: 0;
   width: 100%;
-  background-color: rgb(85, 83, 80);
 }
 
 .nav__item {
