@@ -96,7 +96,6 @@ let myLocalStorage = JSON.parse(localStorage.getItem('events'))
 function showResume() {
   for (let i = 0; i < myLocalStorage.length; i++) {
     let myObject = myLocalStorage[0]
-
     let html = `
       <p>${myObject.name}</p>
       <p>${myObject.startDate}</p>
