@@ -15,7 +15,13 @@
 }
 
 .nav__item {
-  padding: 4px;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+
+.nav__item:last-child {
+  padding-right: 0;
 }
 
 .nav__item--full{

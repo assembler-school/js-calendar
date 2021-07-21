@@ -20,14 +20,14 @@
         <!-- Menu -->
         <section class="menu border-right">
 
-            <header class="border-bottom">
+            <header class="menu__header border-bottom">
                 <h1 class="menu__title">Js Calendar</h1>
             </header>
 
             <!-- Types -->
-            <main class="types">
+            <main class="menu__main types">
                 <ol class="types__list">
-                    <li class="types__item">
+                    <li class="types__item justify-content-between">
                         <label class="types__label">Dark mode</label>
                         <input class="switch" type="checkbox" id="toggle_classes" />
                     </li>
@@ -53,7 +53,7 @@
                 </ol>
             </main><!-- Types -->
 
-            <footer class="btn btn--add_type">
+            <footer class="menu__footer btn btn--add_type">
                 <button id="add-event" class="btn btn--full_width btn--black btn--modal" data-id="modal-example">
                     Add event
                 </button>
@@ -64,15 +64,15 @@
         <!-- Calendar -->
         <section class="calendar">
 
-            <header class="border-bottom">
+            <header class="calendar__header border-bottom">
                 <!-- Nav -->
                 <nav class="nav">
                     <ul class="nav__list">
-                        <li class="nav__item">
-                            <!-- <button class="btn btn--burger">&#9776;</button> -->
-                        </li>
+                        <!-- <li class="nav__item">
+                            <button class="btn btn--burger">&#9776;</button>
+                        </li> -->
                         <li class="nav__item nav__item--full">
-                            <span id="month">Jan</span> <span id="year">2021</span>
+                            <span id="month">January</span><span id="year">2021</span>
                         </li>
                         <li class="nav__item">
                             <button class="btn btn--word">Today</button>
@@ -87,7 +87,7 @@
                 </nav><!-- Nav -->
             </header>
 
-            <main class="calendar__month">
+            <main class="calendar__main">
                 <div class="calendar__week">
                     <div class="calendar__day">M</div>
                     <div class="calendar__day">T</div>
@@ -103,39 +103,37 @@
         </section><!-- Calendar -->
 
         <!-- Events -->
-        <section class="events border-left">
+        <section class="events">
 
-            <div class="events__date-container">
-                <h2 class="events__title">
-                    <span id="month">Jan</span> <span id="year">2021</span>
-                </h2>
-            </div>
+            <header class="events__header border-bottom">
+                <h2 class="events__title">Sunday 07</h2>
+            </header>
 
-            <div class="events__list-container">
-                <div class="event__container event__1-container">
-                    <div class="event__item event__1">
+            <main class="events__main">
+                <div class="event">
+                    <div class="event__item">
                         <p class="event__title">Event Title</p>
                         <span class="start__time">hh:mm</span><span> - </span>
                         <span class="end__time">hh:mm</span>
                     </div>
                 </div>
 
-                <div class="event__container event__2-container">
-                    <div class="event__item event__2">
+                <div class="event">
+                    <div class="event__item">
                         <p class="event__title">Event Title</p>
                         <span class="start__time">hh:mm</span><span> - </span>
                         <span class="end__time">hh:mm</span>
                     </div>
                 </div>
 
-
-                <div class="event__container event__3-container">
-                    <div class="event__item event__3">
+                <div class="event">
+                    <div class="event__item">
                         <p class="event__title">Event Title</p>
                         <span class="start__time">hh:mm</span><span> - </span>
                         <span class="end__time">hh:mm</span>
                     </div>
                 </div>
+            </main>
 
         </section><!-- Events -->
 
