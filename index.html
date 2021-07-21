@@ -18,9 +18,9 @@
     <main class="main">
 
         <!-- Menu -->
-        <section class="menu menu--gray">
+        <section class="menu border-right">
 
-            <h1 class="menu__title">Js Calendar</h1>
+            <h1 class="menu__title border-bottom">Js Calendar</h1>
 
             <!-- Types -->
             <div class="types">
@@ -59,7 +59,7 @@
         <section class="calendar">
 
             <!-- Nav -->
-            <nav class="nav">
+            <nav class="nav border-bottom">
                 <ul class="nav__list">
                     <li class="nav__item">
                         <!-- <button class="btn btn--burger">&#9776;</button> -->
@@ -79,22 +79,24 @@
                 </ul>
             </nav><!-- Nav -->
 
-            <div class="calendar__week">
-                <div class="calendar__day">M</div>
-                <div class="calendar__day">T</div>
-                <div class="calendar__day">W</div>
-                <div class="calendar__day">T</div>
-                <div class="calendar__day">F</div>
-                <div class="calendar__day">S</div>
-                <div class="calendar__day">S</div>
-            </div>
-            <div class="calendar__dates" id="dates">
+            <div class="calendar__month">
+                <div class="calendar__week">
+                    <div class="calendar__day">M</div>
+                    <div class="calendar__day">T</div>
+                    <div class="calendar__day">W</div>
+                    <div class="calendar__day">T</div>
+                    <div class="calendar__day">F</div>
+                    <div class="calendar__day">S</div>
+                    <div class="calendar__day">S</div>
+                </div>
+                <div class="calendar__dates" id="dates">
+                </div>
                 <!-- <button class="btn--modal" data-id="modal-example">Open modal</button> -->
             </div>
-        </section>
+        </section><!-- Calendar -->
 
         <!-- Events -->
-        <section class="events"></section><!-- Events -->
+        <section class="events border-left"></section><!-- Events -->
 
     </main><!-- Main -->
 
