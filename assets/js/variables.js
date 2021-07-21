@@ -5,15 +5,8 @@ const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'Jul
 
 const currentDate = new Date();
 const currentDay = currentDate.getDate();
-<<<<<<< HEAD
 const currentMonth = currentDate.getMonth();
 const currentYear = currentDate.getFullYear();
-// const currentTime declared as function in 
-
-=======
-var currentMonth = currentDate.getMonth();
-var currentYear = currentDate.getFullYear();
->>>>>>> develop
 
 let dates = document.getElementById('dates');
 let month = document.getElementById('month');
