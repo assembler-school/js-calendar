@@ -1,20 +1,43 @@
-//addEventListener on mouse click for opening modal on clas btn-modal
-document.addEventListener('click', function (e) {
+'use strict'
 
-  //check is the right element clicked
-  if (!e.target.matches('.btn--modal')) return;
-  else {
+var calcMonth = document.querySelector(".calendar__month");
+var addEventBtn = document.querySelector("#add-event");
 
-    //select right modal from id-data
-    var modal = document.querySelectorAll('#' + e.target.dataset.id);
-    Array.prototype.forEach.call(modal, function (el) {
+calcMonth.addEventListener("click", clickDate);
+addEventBtn.addEventListener("click", clickDate);
 
-      //add active class on modal
-      el.classList.add('active');
-    });
-  }
-});
+const addEvent = (e) => {
+  //select right modal from id-data
+  let modal = document.querySelectorAll('#modal-example');
+  Array.prototype.forEach.call(modal, function (el) {
 
+    //add active class on modal
+    el.classList.add('active');
+  });
+}
+
+const showEventsList = (e) => {
+  //select right modal from id-data
+  let modal = document.querySelectorAll('#' + e.target.dataset.id);
+  Array.prototype.forEach.call(modal, function (el) {
+
+    //add active class on modal
+    el.classList.add('active');
+  });
+}
+
+function clickDate(e) {
+
+  const el = e.target;
+
+  if (!el.matches(".btn--modal")) return null;
+
+  const keyId = el.dataset.id;
+
+  console.log(keyId)
+
+  addEvent(e);
+}
 
 //addEventListener on mouse click for closing modal on modal dark background
 document.addEventListener('click', function (e) {

@@ -53,7 +53,11 @@
                 </ol>
             </main><!-- Types -->
 
-            <footer class="btn btn--add_type"><input type="button" value="Add event"></footer>
+            <footer class="btn btn--add_type">
+                <button id="add-event" class="btn btn--full_width btn--black btn--modal" data-id="modal-example">
+                    Add event
+                </button>
+            </footer>
 
         </section><!-- Menu -->
 
@@ -95,7 +99,6 @@
                 </div>
                 <div class="calendar__dates" id="dates">
                 </div>
-                <!-- <button class="btn--modal" data-id="modal-example">Open modal</button> -->
             </main>
         </section><!-- Calendar -->
 
@@ -130,8 +133,8 @@
                     <hr>
                 </div>
                 <div class="modal__buttons">
-                    <button class="modal__save__btn"> Save</button>
-                    <button class="modal__cancel__btn"> Cancel</button>
+                    <button class="btn btn--full_width btn--black">Save</button>
+                    <button class="btn btn--full_width btn--black close-modal">Cancel</button>
                 </div>
             </div>
         </div>
@@ -140,8 +143,8 @@
     <script src='assets/js/variables.js'></script>
     <script src='assets/js/modals.js'></script>
     <script src='assets/js/calendar.js'></script>
-    <script src='assets/js/events.js'></script>
     <script src='assets/js/help.js'></script>
+    <script src='assets/js/events.js'></script>
 </body>
 
 </html>
