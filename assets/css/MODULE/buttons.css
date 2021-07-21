@@ -9,44 +9,55 @@
 .btn--circle{}
 
 .btn{
-    display: flex;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 14px;
-    margin: 5px;
-    cursor: pointer;
-    outline: none;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0 5px 10px -5px rgba(0,0,0,.15),0 10px 10px -5px rgba(0,0,0,.1);
+  display: flex;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 14px;
+  margin: 5px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 5px 10px -5px rgba(0,0,0,.15),0 10px 10px -5px rgba(0,0,0,.1);
 }
 
 .btn:hover{
-    box-shadow: 0 20px 25px -5px rgba(0,0,0,.15),0 10px 10px -5px rgba(0,0,0,.1);
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,.15),0 10px 10px -5px rgba(0,0,0,.1);
 }
 
 .btn--red{
-    background-color: rgb(231, 97, 97);
-    color: #fff;
+  background-color: rgb(231, 97, 97);
+  color: #fff;
 }
 
 .btn--red:hover{
-    background-color: rgb(224, 131, 131);
+  background-color: rgb(224, 131, 131);
 }
 
 .btn--blue{
-    background-color: rgb(56, 129, 224);
-    color: #fff;
+  background-color: rgb(56, 129, 224);
+  color: #fff;
 }
 
 .btn--blue:hover{
-    background-color: rgb(108, 163, 236);
+  background-color: rgb(108, 163, 236);
 }
 
 .btn--dark{
-    background-color: #262626;
-    color: #fff;
+  background-color: #262626;
+  color: #fff;
 }
 
 .btn--dark:hover{
-    background-color: #363636;
+  background-color: #363636;
+}
+
+.btn--add_type{
+  display: flex;
+  justify-content: center;
+}
+
+.btn--add_type [type="button"]{
+  width: 15em;
+  color: rgb(255, 255, 255);
+  background-color: black;
 }

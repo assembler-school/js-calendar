@@ -1,9 +1,14 @@
 /**
- * LAYOUT - RESET
+ * LAYOUT - COMMON
  */
 
-.main {}
+.main {
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
 
-@media (max-width: 575px) {}
+/* @media (max-width: 575px) {}
 
-@media (max-width: 450px) {}
+@media (max-width: 450px) {} */

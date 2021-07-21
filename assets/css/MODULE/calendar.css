@@ -2,19 +2,29 @@
  * MODULE - CALENDAR
  */
 
-.calendar{
+.calendar {
   display: flex;
   flex-direction: column;
+  width: 60%;
+  height: 100%;
 }
 
-/* month */
+/* week */
 
-.calendar__month{
-  display: grid;
+.calendar__week{
+  justify-content: space-evenly;
+  display: flex;
+  font-size: larger;
+  background-color: rgb(214, 214, 214);
 }
 
-.calendar__week{}
+/* day */
 
 .calendar__day{}
 
-.calendar__dates{}
+.calendar__dates {
+display: flex;
+background-color: darkgrey;
+width: 100%;
+height: 100%;
+}

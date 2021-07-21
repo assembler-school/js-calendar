@@ -18,13 +18,41 @@
     <main class="main">
 
         <!-- Menu -->
-        <section class="menu">
-            <!-- <div class="dark-mode">
-                <label>
-                    <input type="checkbox">
-                    <span class="check"></span>
-                </label>
-            </div> -->
+        <section class="menu menu--gray">
+
+            <h1 class="menu__title">Js Calendar</h1>
+
+            <!-- Types -->
+            <div class="types">
+                <ol class="types__list">
+                    <li class="types__item">
+                        <label class="types__label">Dark mode</label>
+                        <input class="switch" type="checkbox" id="toggle_classes" />
+                    </li>
+                    <li class="types__item">
+                        <input type="checkbox">
+                        <label class="types__label">Meeting</label>
+                    </li>
+                    <li class="types__item">
+                        <input type="checkbox">
+                        <label class="types__label">Call</label>
+                    </li>
+                    <li class="types__item">
+                        <input type="checkbox">
+                        <label class="types__label">Coffe with</label>
+                    </li>
+                    <li class="types__item">
+                        <input type="checkbox">
+                        <label class="types__label">Peer helping</label>
+                    </li>
+                    <li class="types__item__plus">
+                        <input type="button" value="+ New Type">
+                    </li>
+                </ol>
+            </div><!-- Types -->
+
+            <div class="btn btn--add_type"><input type="button" value="Add event"></div>
+
         </section><!-- Menu -->
 
         <!-- Calendar -->
@@ -34,10 +62,10 @@
             <nav class="nav">
                 <ul class="nav__list">
                     <li class="nav__item">
-                        <button class="btn btn--burger">&#9776;</button>
+                        <!-- <button class="btn btn--burger">&#9776;</button> -->
                     </li>
                     <li class="nav__item nav__item--full">
-                        <span id="month">January</span> <span id="year">2021</span>
+                        <span id="month">Jan</span> <span id="year">2021</span>
                     </li>
                     <li class="nav__item">
                         <button class="btn btn--word">Today</button>
@@ -51,27 +79,24 @@
                 </ul>
             </nav><!-- Nav -->
 
-            <div class="calendar__month">
-                <div class="calendar__week">
-                    <div class="calendar__day">M</div>
-                    <div class="calendar__day">T</div>
-                    <div class="calendar__day">W</div>
-                    <div class="calendar__day">T</div>
-                    <div class="calendar__day">F</div>
-                    <div class="calendar__day">S</div>
-                    <div class="calendar__day">S</div>
-                </div>
-                <div class="calendar__dates" id="dates"></div>
+            <div class="calendar__week">
+                <div class="calendar__day">M</div>
+                <div class="calendar__day">T</div>
+                <div class="calendar__day">W</div>
+                <div class="calendar__day">T</div>
+                <div class="calendar__day">F</div>
+                <div class="calendar__day">S</div>
+                <div class="calendar__day">S</div>
             </div>
-        </section><!-- Calendar -->
+            <div class="calendar__dates" id="dates">
+                <button class="btn--modal" data-id="modal-example">Open modal</button>
+            </div>
+        </section>
 
         <!-- Events -->
-        <section class="events">
-        </section><!-- Events -->
+        <section class="events"></section><!-- Events -->
 
     </main><!-- Main -->
-
-    <button class="btn--modal" data-id="modal-example">Open modal</button>
 
     <!-- Modal -->
     <div class="modal" id="modal-example">

@@ -10,6 +10,8 @@ html,
 body {
   margin: 0px;
   padding: 0px;
+  width:auto;
+  height: 100%;
 }
 
 html {
@@ -28,7 +30,6 @@ html {
 section {
   padding: 0;
   position: relative;
-  min-width: 100%;
   overflow: auto;
 }
 
@@ -46,10 +47,10 @@ button:focus {
   outline: none;
 }
 
-*,
-*:after,
+
+/* *:after,
 *:before {
   box-sizing: inherit;
   -webkit-box-sizing: inherit;
   -moz-box-sizing: inherit;
-}
+} */

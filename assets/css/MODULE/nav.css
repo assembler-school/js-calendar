@@ -2,16 +2,24 @@
  * MODULE - NAV
  */
 
-.nav{}
+.nav{
+  display: flex;
+  background-color: rgb(128, 121, 112);
+  height: 20%;
+}
 
 .nav__list {
   display: flex;
   flex-direction: row;
   list-style: none;
   padding-left: 0;
+  width: 100%;
+  background-color: rgb(85, 83, 80);
 }
 
-.nav__item {}
+.nav__item {
+  padding: 4px;
+}
 
 .nav__item--full{
   width: 100%;

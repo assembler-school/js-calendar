@@ -7,12 +7,12 @@ const currentDay = currentDate.getDate();
 const currentMonth = currentDate.getMonth();
 const currentYear = currentDate.getFullYear();
 
-var dates = document.getElementById('dates');
-var month = document.getElementById('month');
-var year = document.getElementById('year');
+let dates = document.getElementById('dates');
+let month = document.getElementById('month');
+let year = document.getElementById('year');
 
-var prevMonthDOM = document.getElementById('prev-month');
-var nextMonthDOM = document.getElementById('prev-month');
+let prevMonthDOM = document.getElementById('prev-month');
+let nextMonthDOM = document.getElementById('next-month');
 
 prevMonthDOM.addEventListener('click', () => lastMonth());
 nextMonthDOM.addEventListener('click', () => lastMonth());
