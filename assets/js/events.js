@@ -1,13 +1,13 @@
 'use strict';
 
-showEvents = (events) => { }
+// showEvents = (events) => { }
 
-showEvent = (event) => { }
+// showEvent = (event) => { }
 
-editEvent = (event) => { }
+// editEvent = (event) => { }
 
-setEvent = (event) => { }
+// setEvent = (event) => { }
 
-getEvent = (event) => { }
+// getEvent = (event) => { }
 
-deleteEvent = (event) => { }
+// deleteEvent = (event) => { }
