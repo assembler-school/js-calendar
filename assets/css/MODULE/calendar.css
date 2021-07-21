@@ -9,6 +9,11 @@
   height: 100%;
 }
 
+.calendar__month{
+  height: 100%;
+  padding: 15px 5px 35px;
+}
+
 .calendar__week,
 .calendar__dates {
   display: grid;

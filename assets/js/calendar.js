@@ -25,7 +25,6 @@ const getTotalDays = month => {
         return 30;
 
     } else {
-
         return isLeap() ? 29 : 28;
     }
 }
@@ -39,7 +38,7 @@ const startDay = () => {
     return ((start.getDay() - 1) === -1) ? 6 : start.getDay() - 1;
 }
 
-const lastMonth = () => {
+const goToPrevMonth = () => {
     if (currentMonth !== 0) {
         currentMonth--;
     } else {
@@ -50,7 +49,7 @@ const lastMonth = () => {
     setNewDate();
 }
 
-const nextMonth = () => {
+const goToNextMonth = () => {
     if (currentMonth !== 11) {
         currentMonth++;
     } else {
