@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="assets/css/styles.css" />
     <script src="assets/js/main.js" defer></script>
-    <script src="assets/js/form.js" defer></script>
     <title>Calendar</title>
   </head>
   <body>
@@ -15,6 +14,8 @@
       <button id="calendarEvent">Add Event</button>
     </header>
 
+    <!-- show info events-->
+    <div id="resumeEvent"></div>
     <!--modals-->
     <article id="modal" class="modal">
       <div class="modal__content" id="modal-content">
@@ -22,18 +23,18 @@
         <form id="modal-form">
           <div>
             <label for="name">Title :</label>
-            <input type="text" id="name" name="name" value="" maxlength="60" required>
+            <input type="text" id="name" name="name" value="" maxlength="60" >
           </div>
           <div>
             <label for="startDate">Start Date:</label>
-            <input type="datetime-local" id="startDate" name="startDate" value="" required>
+            <input type="datetime-local" id="startDate" name="startDate" value="" >
           </div>
           <div>
             <label for="endDate">End Date:</label>
             <input type="checkbox" id="endDate" name="endDate">
           </div>
           <div id="endDateInput" class="--is-hidden">
-            <input type="datetime-local" id="endDateInfo" name="endDate" value="" required>
+            <input type="datetime-local" id="endDateInfo" name="endDate" value="" >
           </div>
           <div>
             <label for="remind">Remind me when this event expire:</label>
