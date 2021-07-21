@@ -1,34 +1,39 @@
 /* IMPORT */
 
 /* GLOBAL VARIABLES */
-let currentMonth = new Date().getMonth() + 1; // We add one to more legible data retrieved (else we will have january as month number 0)
+let currentMonth = new Date().getMonth();
 let currentYear = new Date().getFullYear();
 let daysMonth = document.getElementById("daysMonth");
 
+let nextBtn = document.getElementById("next-btn");
+nextBtn.addEventListener("click", () => renderCalendar(1));
+let prevBtn = document.getElementById("prev-btn");
+prevBtn.addEventListener("click", () => renderCalendar(-1));
+
 /* CALENDAR FUNCTIONALITIES */
 let firstDay = function () { // We get the value (as number) of the weekday the first day in our month starts with
-  return new Date(currentYear, currentMonth - 1, 1).getDay();
+  return new Date(currentYear, currentMonth, 1).getDay();
 };
 
 let lastDay = function () { // We get the value (as number) of how many days our current month has
-  return new Date(currentYear, currentMonth, 0).getDate(); // * WE CAN'T SUBSTRACT 1 TO THE CURRENT MONTH WITH A GETDAY METHOD, OR WE WILL HAVE A WRONG DATA
+  return new Date(currentYear, currentMonth + 1, 0).getDate(); // * THE 0 INDICATES THE LAST DAY OF THE PREVIOUS MONTH, THEREFORE WE ADD 1 TO THE CURRENT MONTH
 };
 
-function renderCalendar() {
+function renderCalendar(month) {
   
   daysMonth.innerHTML = '';
+  currentMonth += month
 
-  //let eventIdsArray = JSON.parse(window.localStorage.getItem(currentMonth))
+  let monthEventsArray = window.localStorage.getItem(new Date(currentYear, currentMonth).getTime())
+  let monthEventsArrayParse = JSON.parse(monthEventsArray)
 
   insertBlankDays();
-  insertDays();
-  nextButton();
+  insertDays(monthEventsArrayParse);
   monthTitle();
-  prevButton();
-
+  console.log(currentYear);
+  console.log(currentMonth);
 
 }
-
 
 // In order to position the first day of the month in our grid, we display as many empty divs as previous days of the week to the first day of the month we have:
 function insertBlankDays() {
@@ -47,38 +52,32 @@ function insertBlankDays() {
   }
 }
 
-function insertDays() {
+function insertDays(monthEvents) {
   for (let i = 0; i < lastDay(); i++) {
     let newBlank = document.createElement("div");
     let day = i + 1;
-    // TO DO! Iterate trough every event from current Month in local storage
-    newBlank.innerHTML = `<div data-date="${ new Date(currentYear, currentMonth, day).getTime() }">${day}</div>`;
+    let tomorrow = day + 1
+    let dayUnix = new Date(currentYear, currentMonth, day).getTime();
+    let tomorrowUnix = new Date(currentYear, currentMonth, day+1).getTime();
+    newBlank.innerHTML += `<div>${day}`;
+    if (monthEvents != null) {
+      monthEvents.forEach((event) => {
+        let eventInitialDate = new Date(event.initialDate).getTime();
+        if (eventInitialDate >= dayUnix && eventInitialDate < tomorrowUnix) {
+          newBlank.innerHTML += `<div>${event.titleEvent}</div>`
+        }
+      });
+    }
+    newBlank.innerHTML += `</div>`;
     daysMonth.appendChild(newBlank);
   }
-}
-
-function nextButton() {
-  let nextBtn = document.getElementById("next-btn");
-  nextBtn.addEventListener("click", () => moveMonth(1));
-}
-function prevButton() {
-  let prevBtn = document.getElementById("prev-btn");
-  prevBtn.addEventListener("click", () => moveMonth(-1));
-}
-
-function moveMonth(month) {
-  currentMonth += month
-  daysMonth.innerHTML = "";
-  insertBlankDays();
-  insertDays();
-  monthTitle();
 }
 
 function monthTitle() {
   let calendarTitle = document.getElementById("calendar-title");
   calendarTitle.innerHTML = new Date(
     currentYear,
-    currentMonth - 1
+    currentMonth
   ).toLocaleString("en", { month: "long", year: "numeric" });
 }
 

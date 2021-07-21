@@ -72,7 +72,7 @@ function formHandler(event) {
   closeModal()
 
   // Render Calendar
-  renderCalendar();
+  renderCalendar(0); // PARAMETER 0 INDICATES THAT THE CURRENT MONTH HAS NO CHANGES
 
 }
 
