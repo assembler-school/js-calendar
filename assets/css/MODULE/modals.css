@@ -140,7 +140,10 @@ hr {
 }
 
 .modal__item--hours {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "a b c d";
+  width: 25rem;
   padding: 2%;
   }
 

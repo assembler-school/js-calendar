@@ -151,21 +151,29 @@
             <p class="modal__close"></p>
             <!-- Content container -->
             <div class="modal__content">
+
                 <div class="modal__items">
-                    <hr>
+
                     <label class="modal__item">Title</label>
-                    <hr>
-                    <label class="modal__item--hours">Start 
+                   
+                    <div class="modal__item--hours">
+
                         <label for="start">Start date:</label>
-                         <input type="date" id="start" name="trip-start"
+                        <input type="date" id="start" name="start"
                            value="2018-07-22"
-                           min="2018-01-01" max="2018-12-31">
+                           min="2018-01-01" max="2023-12-31">
+
+                        <label for="start__time"></label>
+                        <input type="time" id="start__time" name="start__time" min="09:00" max="18:00" required>
+
+                        <label for="end">End date</label>
+                        <input type="date" id="end" name="end" value="2018-07-22" min="2018-01-01" max="2023-12-31">
+                            
+                        <label for="end__time"></label>
+                        <input type="time" id="end__time" name="end__time" min="09:00" max="18:00" required>
+
                         
-                        
-                        
-                        
-                        
-                        <br> End</label>
+                        <br> </div>
                     <hr>
                     <label class="modal__item">Repeat</label>
                     <hr>
