@@ -81,7 +81,33 @@
     </main>
     <!-- Main -->
 
+    <button class="btn--modal" data-id="modal-example">Open modal</button>
+
+    <!-- Modal -->
+    <div class="modal" id="modal-example">
+
+        <!-- Content container -->
+        <div class="modal__container slide-from-bottom">
+
+            <h4 class="modal__title">Modal title</h4>
+            <p class="modal__close"></p>
+
+            <!-- Content container -->
+            <div class="modal__content">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, cumque.</p>
+
+                <!-- Footer container -->
+                <div class="modal__footer">
+                    <button class="btn btn--modal btn--red">Button</button>
+                    <button class="btn btn--modal btn--blue">Button</button>
+                    <button class="btn dark close-modal" data-id="modal-example">Close modal</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- Modal -->
+
     <script src='assets/js/variables.js'></script>
+    <script src='assets/js/modals.js'></script>
     <script src='assets/js/calendar.js'></script>
     <script src='assets/js/events.js'></script>
     <script src='assets/js/help.js'></script>
