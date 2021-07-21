@@ -3,6 +3,7 @@
  */
 
 .menu {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 20%;
@@ -17,4 +18,12 @@
   height: 5%;
   display: flex;
   padding-left: 5%;
+}
+
+@media (max-width: 991px) {
+  .menu {
+    position: absolute;
+    width: 100%;
+    transform: translateX(-100%);
+  }
 }

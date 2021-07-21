@@ -5,7 +5,7 @@
 .btn{
   display: flex;
   justify-content: center;
-  padding: 10px 20px;
+  padding: 10px 5px;
   border-radius: 5px;
   font-size: 14px;
   margin: 5px;
@@ -57,4 +57,10 @@
   width: 15em;
   color: rgb(255, 255, 255);
   background-color: black;
+}
+
+@media (max-width: 767px) {
+  .btn{
+    margin: 5px;
+  }
 }
