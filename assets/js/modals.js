@@ -2,7 +2,8 @@
 
 var calendarMain = document.querySelector(".calendar__main");
 var addEventBtn = document.querySelector("#add-event");
-
+var cancelModal = document.getElementById('modalCancel');
+var saveModal = document.getElementById('modalSave');
 calendarMain.addEventListener("click", clickDate);
 addEventBtn.addEventListener("click", clickDate);
 
@@ -84,8 +85,8 @@ document.addEventListener('click', function (e) {
   }
 });
 
-cancelBtn.addEventListener('click', closeButton);
- 
+cancelModal.addEventListener('click', closeButton);
+
 function closeButton(){
-document.getElementById('modal-example').classList.remove('active');
+  document.getElementById('modal-example').classList.remove('active');
 };
