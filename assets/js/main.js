@@ -118,7 +118,22 @@ let currentMonthHtml = document.getElementById("currentMY");
 
 currentMonthHtml.innerHTML = monthName[currentMonth] + " " + currentYear;
 
+let daysQuantity = new Date(currentYear, currentMonth + 1, 0).getDate();
+let firstDay = new Date (currentYear, currentMonth, 1)
 
+let dayName = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+let dayString = firstDay.toLocaleDateString("en-GB", {
+  weekday: "long", 
+})
+let indexFirstDay = dayName.indexOf(dayString); // 3
 
+for (let index = 1; index <= daysQuantity + indexFirstDay; index++) {
+  let createDiv = document.createElement("div")
+  if (index > indexFirstDay) {
+    createDiv.innerHTML = index - indexFirstDay;
+  }
+  let calendarDays = document.querySelector("#calendar-days");
+  calendarDays.appendChild(createDiv)
+}
 
-//console.log(monthName[currentMonth])
+console.log(indexFirstDay)
