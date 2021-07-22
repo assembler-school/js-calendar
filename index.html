@@ -13,32 +13,29 @@
       <h1>JS Calendar</h1>
       <button id="calendarEvent">Add Event</button>
     </header>
-<!-- Calendar-->
+    <!-- Calendar-->
 
-<div class="calendar-container">
-  <div class="calendar-info">
-    <button id="previousMonth">previous month</button>
-    <div id="currentMY">current month, year</div>
-    <button id="nextMonth">next month</button>
-  </div>
+    <div class="calendar-container">
+      <div class="calendar-info">
+        <button id="previousMonth">previous month</button>
+        <div id="currentMY">current month, year</div>
+        <button id="nextMonth">next month</button>
+      </div>
 
-  <div class="calendar-week">
-    <div>Monday</div>
-    <div>Tuesday</div>
-    <div>Wednesday</div>
-    <div>Thursday</div>
-    <div>Friday</div>
-    <div>Saturday</div>
-    <div>Sunday</div>
-  </div>
+      <div class="calendar-week">
+        <div>Monday</div>
+        <div>Tuesday</div>
+        <div>Wednesday</div>
+        <div>Thursday</div>
+        <div>Friday</div>
+        <div>Saturday</div>
+        <div>Sunday</div>
+      </div>
 
-  <div id="calendar-days" class="calendar-grid">
+      <div id="calendar-days" class="calendar-grid"></div>
+    </div>
 
-  </div>
-
-</div>
-
-<!-- Fin Calendar-->
+    <!-- Fin Calendar-->
     <!-- show info events-->
     <div id="resumeEvent"></div>
     <!--modals-->
@@ -48,22 +45,32 @@
         <form id="modal-form">
           <div>
             <label for="name">Title :</label>
-            <input type="text" id="name" name="name" value="" maxlength="60" >
+            <input type="text" id="name" name="name" value="" maxlength="60" />
           </div>
           <div>
             <label for="startDate">Start Date:</label>
-            <input type="datetime-local" id="startDate" name="startDate" value="" >
+            <input
+              type="datetime-local"
+              id="startDate"
+              name="startDate"
+              value=""
+            />
           </div>
           <div>
             <label for="endDate">End Date:</label>
-            <input type="checkbox" id="endDate" name="endDate">
+            <input type="checkbox" id="endDate" name="endDate" />
           </div>
           <div id="endDateInput" class="--is-hidden">
-            <input type="datetime-local" id="endDateInfo" name="endDate" value="" >
+            <input
+              type="datetime-local"
+              id="endDateInfo"
+              name="endDate"
+              value=""
+            />
           </div>
           <div>
             <label for="remind">Remind me when this event expire:</label>
-            <input type="checkbox" name="remind" id="remind">
+            <input type="checkbox" name="remind" id="remind" />
           </div>
           <div id="remindInput" class="--is-hidden">
             <label for="time">Time :</label>
@@ -76,7 +83,13 @@
           </div>
           <div>
             <label for="description">Description: </label>
-            <textarea name="description" id="description" rows="4" cols="50" maxlength="500"></textarea>
+            <textarea
+              name="description"
+              id="description"
+              rows="4"
+              cols="50"
+              maxlength="500"
+            ></textarea>
           </div>
           <div>
             <label for="eventType">Event type :</label>

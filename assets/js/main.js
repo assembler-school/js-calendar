@@ -110,10 +110,7 @@ function showResume() {
 
 //Calendar Functionality
 let calendarDays = document.querySelector("#calendar-days");
-calendarDays.innerHTML = "";
-let currentDate = new Date();
-let currentMonth = currentDate.getMonth();
-let currentYear = currentDate.getFullYear();
+
 let monthName = [
   "January",
   "February",
@@ -128,6 +125,9 @@ let monthName = [
   "November",
   "December",
 ];
+let currentDate = new Date();
+let currentMonth = currentDate.getMonth();
+let currentYear = currentDate.getFullYear();
 
 function renderCalendar() {
   let currentMonthHtml = document.getElementById("currentMY");
@@ -161,6 +161,7 @@ function renderCalendar() {
 }
 
 //flechas
+// let currentMonth = 0;
 function clickArrow() {
   let prevArrow = document.getElementById("previousMonth");
   let nextArrow = document.getElementById("nextMonth");
@@ -179,8 +180,8 @@ function clickArrow() {
     renderCalendar();
   });
 }
-clickArrow();
 
 renderCalendar();
+clickArrow();
 
 //console.log(indexFirstDay)
