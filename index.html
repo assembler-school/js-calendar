@@ -108,7 +108,7 @@
                 <h2 class="events__title">Sunday 07</h2>
             </header>
 
-            <main class="events__main">
+            <main class="events__main" id="eventsDay">
                 <div class="event">
                     <div class="event__item">
                         <p class="event__title">Event Title</p>
@@ -153,7 +153,7 @@
             <div class="modal__content">
 
                 <!-- Form -->
-                <form class="form">
+                <form class="form" onsubmit="return false">
                     <div class="modal__item modal__text--title border-bottom">
                         <i class="fas fa-tasks"></i>
                         <input type="text" class="modal__input--text" id="title" name="title" placeholder="Title"
@@ -187,13 +187,15 @@
                         <input type="text" class="modal__input--text" id="description" name="description"
                             placeholder="Description" maxlength="48" />
                     </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal__footer">
+                        <input type="submit" value="Save" class="btn btn--full_width btn--black--modal"
+                            id="modalSave" />
+                        <button class="btn btn--full_width btn--black--modal" id="modalCancel">Cancel</button>
+                    </div><!-- Modal footer -->
                 </form><!-- Form -->
 
-                <!-- Modal footer -->
-                <div class="modal__footer">
-                    <button class="btn btn--full_width btn--black--modal" id="modalSave">Save</button>
-                    <button class="btn btn--full_width btn--black--modal" id="modalCancel">Cancel</button>
-                </div><!-- Modal footer -->
             </div>
         </div>
     </div><!-- Modal -->

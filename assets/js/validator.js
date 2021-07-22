@@ -14,25 +14,13 @@ function validateOnSubmit(e) {
   // set the id in the eventNote object
   eventNote[`id`] = new Date().getTime();
 
-  // set the title in the eventNote object
+  // set the values in the eventNote object
   eventNote[`title`] = document.querySelector(`#title`).value;
-
-  // set the description in the eventNote object
   eventNote[`description`] = document.querySelector(`#description`).value;
-
-  // set the startDate in the eventNote object
   eventNote[`startDate`] = document.querySelector(`#startDate`).value;
-
-  // set the startTime in the eventNote object
   eventNote[`startTime`] = document.querySelector(`#startTime`).value;
-
-  // set the endDate in the eventNote object
   eventNote[`endDate`] = document.querySelector(`#endDate`).value;
-
-  // set the endTime in the eventNote object
   eventNote[`endTime`] = document.querySelector(`#endTime`).value;
-
-  console.log(eventNote);
 
   // save the eventNote in the eventsNotes array
   eventsNotes.push(eventNote);
@@ -43,11 +31,13 @@ function validateOnSubmit(e) {
   // save the eventsNotes in localStorage
   (() => localStorage.setItem("events", eventsString))();
 
-  // save the eventsNotes in localStorage
-  myEvents = JSON.parse(localStorage.getItem('events'));
+  // close the modal
+  closeModal()
+
+  // let day = eventNote[`startDate`];
 
   // write the event
-  // startGame();
+  writeEventsOfTheDay(dateSelected);
 }
 
 form.addEventListener('submit', validateOnSubmit);

@@ -2,6 +2,12 @@
 
 const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
+var todayDate = new Date();
+let todayDay = todayDate.getDate();
+var todayMonth = todayDate.getMonth();
+var todayYear = todayDate.getFullYear();
+var today = todayYear + "-" + todayMonth + "-" + todayDay;
+
 const currentDate = new Date();
 const currentDay = currentDate.getDate();
 var currentMonth = currentDate.getMonth();
@@ -21,3 +27,6 @@ var eventsNotes = [];
 var eventNote = {};
 
 const form = document.querySelector('.form');
+let eventsDay = document.getElementById('eventsDay');
+
+var dateSelected;

@@ -4,6 +4,7 @@ var calendarMain = document.querySelector(".calendar__main");
 var addEventBtn = document.querySelector("#add-event");
 var cancelModal = document.getElementById('modalCancel');
 var saveModal = document.getElementById('modalSave');
+
 calendarMain.addEventListener("click", clickDate);
 addEventBtn.addEventListener("click", clickDate);
 
@@ -33,9 +34,18 @@ function clickDate(e) {
 
   if (!el.matches(".btn--modal")) return null;
 
-  const keyId = el.dataset.id;
+  dateSelected = el.dataset.id;
 
-  console.log(keyId)
+  // get the day selected
+  console.log(dateSelected);
+
+  // clear form inputs
+  document.querySelector(`#title`).value = '';
+  document.querySelector(`#description`).value = '';
+  (dateSelected) ? document.querySelector(`#startDate`).value = dateSelected : document.querySelector(`#startDate`).value = '';
+  document.querySelector(`#startTime`).value = '';
+  document.querySelector(`#endDate`).value = '';
+  document.querySelector(`#endTime`).value = '';
 
   addEvent(e);
 }
@@ -85,8 +95,8 @@ document.addEventListener('click', function (e) {
   }
 });
 
-cancelModal.addEventListener('click', closeButton);
+cancelModal.addEventListener('click', closeModal);
 
-function closeButton(){
+function closeModal() {
   document.getElementById('modal-example').classList.remove('active');
 };

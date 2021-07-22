@@ -6,11 +6,26 @@ const writeMonth = (month) => {
         dates.innerHTML += ` <div class="calendar__date calendar__prev">${getTotalDays(currentMonth - 1) - (i - 1)}</div>`;
     }
 
-    for (let i = 1; i <= getTotalDays(month); i++) {
-        if (i === currentDay) {
-            dates.innerHTML += `<button class="calendar__date calendar__today btn btn--modal" data-id="modal-${i}">${i}</button>`;
+    for (let day = 1; day <= getTotalDays(month); day++) {
+
+        let dayId = day + 1;
+        (day <= 9) ? (dayId = "0" + day) : dayId = day;
+
+        let monthId = month + 1;
+        (month <= 9) ? (monthId = "0" + month) : monthId = month;
+
+        if (day === currentDay && todayMonth === currentMonth && todayYear === currentYear) {
+            dates.innerHTML += `
+                <button class="calendar__date calendar__today btn btn--modal" data-id="${currentYear}-${monthId}-${dayId}">
+                    ${day}
+                </button>
+            `;
         } else {
-            dates.innerHTML += `<button class="calendar__date btn btn--modal" data-id="modal-${i}">${i}</button>`;
+            dates.innerHTML += `
+                <button class="calendar__date btn btn--modal" data-id="${currentYear}-${monthId}-${dayId}">
+                    ${day}
+                </button>
+            `;
         }
     }
 }
