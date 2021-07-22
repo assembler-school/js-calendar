@@ -8,10 +8,10 @@
 
 const writeEventsOfTheDay = (day) => {
 
-  // clear events of the day
+  //clear events of the day
   eventsDay.innerHTML = ``;
 
-  // get the eventsNotes in localStorage
+  //get the eventsNotes in localStorage
   eventsNotes = JSON.parse(localStorage.getItem('events'));
 
   eventsNotes.forEach(event => {

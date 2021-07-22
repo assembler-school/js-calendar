@@ -2,12 +2,14 @@
 
 const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
+//get the today date
 var todayDate = new Date();
-let todayDay = todayDate.getDate();
+var todayDay = todayDate.getDate();
 var todayMonth = todayDate.getMonth();
 var todayYear = todayDate.getFullYear();
 var today = todayYear + "-" + todayMonth + "-" + todayDay;
 
+//get the current date
 const currentDate = new Date();
 const currentDay = currentDate.getDate();
 var currentMonth = currentDate.getMonth();
@@ -23,6 +25,7 @@ const nextMonthDOM = document.getElementById('next-month');
 prevMonthDOM.addEventListener('click', () => goToPrevMonth());
 nextMonthDOM.addEventListener('click', () => goToNextMonth());
 
+//events variables
 var eventsNotes = [];
 var eventNote = {};
 
