@@ -109,31 +109,59 @@ function showResume() {
 }
 
 //Calendar Functionality
+let calendarDays = document.querySelector("#calendar-days");
+calendarDays.innerHTML = "";
 
-let currentDate = new Date();
-let currentMonth = currentDate.getMonth();
-let currentYear = currentDate.getFullYear();
-let monthName = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-let currentMonthHtml = document.getElementById("currentMY");
-
-currentMonthHtml.innerHTML = monthName[currentMonth] + " " + currentYear;
-
-let daysQuantity = new Date(currentYear, currentMonth + 1, 0).getDate();
-let firstDay = new Date (currentYear, currentMonth, 1)
-
-let dayName = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-let dayString = firstDay.toLocaleDateString("en-GB", {
-  weekday: "long", 
-})
-let indexFirstDay = dayName.indexOf(dayString); // 3
-
-for (let index = 1; index <= daysQuantity + indexFirstDay; index++) {
-  let createDiv = document.createElement("div")
-  if (index > indexFirstDay) {
-    createDiv.innerHTML = index - indexFirstDay;
+function renderCalendar() {
+  let currentDate = new Date();
+  let currentMonth = currentDate.getMonth();
+  let currentYear = currentDate.getFullYear();
+  let monthName = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  let currentMonthHtml = document.getElementById("currentMY");
+  
+  
+  currentMonthHtml.innerHTML = monthName[currentMonth] + " " + currentYear;
+  
+  let daysQuantity = new Date(currentYear, currentMonth + 1, 0).getDate();
+  let firstDay = new Date (currentYear, currentMonth, 1)
+  
+  let dayName = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+  let dayString = firstDay.toLocaleDateString("en-GB", {
+    weekday: "long", 
+  })
+  let indexFirstDay = dayName.indexOf(dayString); // 3
+  
+  for (let index = 1; index <= daysQuantity + indexFirstDay; index++) {
+    let createDiv = document.createElement("div")
+    if (index > indexFirstDay) {
+      createDiv.innerHTML = index - indexFirstDay;
+    }
+    calendarDays.appendChild(createDiv)
   }
-  let calendarDays = document.querySelector("#calendar-days");
-  calendarDays.appendChild(createDiv)
 }
 
-console.log(indexFirstDay)
+//flechas
+let actualMonth = 0
+function clickArrow(){
+  let prevArrow = document.getElementById("previousMonth");
+  let nextArrow = document.getElementById("nextMonth");
+  
+  
+  nextArrow.addEventListener("click", ()=>{
+    actualMonth++;
+    
+    renderCalendar()
+  })
+
+  prevArrow.addEventListener("click", ()=>{
+    actualMonth--;
+
+    renderCalendar()
+  })
+}
+clickArrow();
+
+
+renderCalendar();
+
+//console.log(indexFirstDay)
