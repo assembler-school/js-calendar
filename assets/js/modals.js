@@ -34,12 +34,10 @@ function clickDate(e) {
 
   if (!el.matches(".btn--modal")) return null;
 
+  //get the day selected
   dateSelected = el.dataset.id;
 
-  // get the day selected
-  console.log(dateSelected);
-
-  // clear form inputs
+  //clear form inputs
   document.querySelector(`#title`).value = '';
   document.querySelector(`#description`).value = '';
   (dateSelected) ? document.querySelector(`#startDate`).value = dateSelected : document.querySelector(`#startDate`).value = '';
@@ -57,7 +55,7 @@ document.addEventListener('click', function (e) {
   if (!e.target.matches('.modal')) return;
   else {
 
-    // if modal have do-not-close class it will not close it self on background click
+    //if modal have do-not-close class it will not close it self on background click
     if (e.target.classList.contains('do-not-close')) return;
     else {
 
@@ -95,7 +93,7 @@ document.addEventListener('click', function (e) {
   }
 });
 
-// close modal 
+//close modal
 cancelModal.addEventListener('click', closeModal);
 
 function closeModal() {

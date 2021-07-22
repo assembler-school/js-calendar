@@ -1,20 +1,18 @@
 'use strict'
 
-var myEvents;
-
 /**
  * Validate on submit
  */
 function validateOnSubmit(e) {
   e.preventDefault();
 
-  // clear eventNote object
+  //clear eventNote object
   eventNote = {};
 
-  // set the id in the eventNote object
+  //set the id in the eventNote object
   eventNote[`id`] = new Date().getTime();
 
-  // set the values in the eventNote object
+  //set the values in the eventNote object
   eventNote[`title`] = document.querySelector(`#title`).value;
   eventNote[`description`] = document.querySelector(`#description`).value;
   eventNote[`startDate`] = document.querySelector(`#startDate`).value;
@@ -22,21 +20,19 @@ function validateOnSubmit(e) {
   eventNote[`endDate`] = document.querySelector(`#endDate`).value;
   eventNote[`endTime`] = document.querySelector(`#endTime`).value;
 
-  // save the eventNote in the eventsNotes array
+  //save the eventNote in the eventsNotes array
   eventsNotes.push(eventNote);
 
-  // convert eventsNotes to string
+  //convert eventsNotes to string
   let eventsString = JSON.stringify(eventsNotes);
 
-  // save the eventsNotes in localStorage
+  //save the eventsNotes in localStorage
   (() => localStorage.setItem("events", eventsString))();
 
-  // close the modal
+  //close the modal
   closeModal()
 
-  // let day = eventNote[`startDate`];
-
-  // write the event
+  //write the event
   writeEventsOfTheDay(dateSelected);
 }
 
