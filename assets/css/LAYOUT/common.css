@@ -33,6 +33,24 @@
     justify-content: space-between;
 }
 
+/* background colors */
+
+.bg--red{
+  background-color: red;
+}
+
+.bg--blue{
+  background-color: blue;
+}
+
+.bg--green{
+  background-color: green;
+}
+
+.bg--orange{
+  background-color: orange;
+}
+
 /* @media (max-width: 575px) {}
 
 @media (max-width: 450px) {} */
