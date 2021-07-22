@@ -26,7 +26,7 @@ prevMonthDOM.addEventListener('click', () => goToPrevMonth());
 nextMonthDOM.addEventListener('click', () => goToNextMonth());
 
 //events variables
-var eventsNotes = [];
+var eventsNotes = new Array();
 var eventNote = {};
 
 const form = document.querySelector('.form');
