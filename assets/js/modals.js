@@ -83,3 +83,9 @@ document.addEventListener('click', function (e) {
     e.target.parentElement.parentElement.classList.remove('active');
   }
 });
+
+cancelBtn.addEventListener('click', closeButton);
+ 
+function closeButton(){
+document.getElementById('modal-example').classList.remove('active');
+};
