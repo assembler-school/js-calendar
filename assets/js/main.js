@@ -107,3 +107,18 @@ function showResume() {
     infoEvents.innerHTML = html
   }
 }
+
+//Calendar Functionality
+
+let currentDate = new Date();
+let currentMonth = currentDate.getMonth();
+let currentYear = currentDate.getFullYear();
+let monthName = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+let currentMonthHtml = document.getElementById("currentMY");
+
+currentMonthHtml.innerHTML = monthName[currentMonth] + " " + currentYear;
+
+
+
+
+//console.log(monthName[currentMonth])
