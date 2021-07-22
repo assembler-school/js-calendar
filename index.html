@@ -10,6 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" 
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 
 <body>
@@ -146,24 +148,39 @@
             <p class="modal__close"></p>
             <!-- Content container -->
             <div class="modal__content">
+
                 <div class="modal__items">
-                    <hr>
-                    <label class="modal__item">Title</label>
-                    <hr>
-                    <label class="modal__item--hours">Start <br> End</label>
-                    <hr>
-                    <label class="modal__item">Repeat</label>
-                    <hr>
-                    <label class="modal__item">Task</label>
-                    <hr>
-                    <label class="modal__item">Reminder</label>
-                    <hr>
-                    <label class="modal__item">Description</label>
-                    <hr>
+                    <div class="modal__text--title">
+                    <label class="modal__item--title">Title</label>
+                    <label for="title" id="modal__item--title-text">
+                        <input type="text" id="modal__item--title-text" name="title" required
+                        minlength="4" maxlength="20" size="20"></label>
+                    </div>
+                    <div class="modal__item--hours">
+
+                        <label for="start">Start date:</label>
+                        <input type="date" id="start" name="start"value="" min="2018-01-01" max="2023-12-31">
+                        <label for="start__time"></label>
+                        <input type="time" id="start__time" name="start__time" min="09:00" max="18:00" required>
+                        <label for="end">End date</label>
+                        <input type="date" id="end" name="end" value="" min="2018-01-01" max="2023-12-31">
+                        <label for="end__time"></label>
+                        <input type="time" id="end__time" name="end__time" min="09:00" max="18:00" required>
+                        
+                        <br> </div>
+                    <label class="modal__item modal__item--top"> <i class="fas fa-redo-alt"></i>&nbsp;Repeat</label>
+                    <label class="modal__item "><i class="fas fa-tasks"></i>&nbsp; Task</label>
+                    <label class="modal__item"><i class="far fa-bell"></i>&nbsp; Reminder</label>
+                    <div class="modal__text">
+                    <label class="modal__item--description"><i class="fas fa-align-left"></i> &nbsp; Description</label>
+                    <label for="description" id="modal__item--description-text">
+                        <input type="text" id="modal__item--description-text" name="description" required
+                        minlength="4" maxlength="24" size="18"></label>
+                    </div>
                 </div>
                 <div class="modal__buttons">
-                    <button class="btn btn--full_width btn--black">Save</button>
-                    <button class="btn btn--full_width btn--black close-modal">Cancel</button>
+                    <button class="btn btn--full_width btn--black--modal">Save</button>
+                    <button class="btn btn--full_width btn--black--modal">Cancel</button>
                 </div>
             </div>
         </div>
