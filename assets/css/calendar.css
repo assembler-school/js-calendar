@@ -13,3 +13,42 @@
 .header__date-title {
   text-transform: capitalize;
 }
+
+.day {
+  background-color: #f7f7f7;
+  border-radius: 5px;
+}
+.day__today {
+  background-color: #b3b1b1;
+}
+.day__tittle {
+  text-align: center;
+  font-weight: bold;
+  padding: 7.5px;
+}
+.day__event-container {
+  padding: 2.5px 0;
+}
+.day__event-title, .more-events {
+  font-size: small;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  border-radius: 5px;
+  background-color: #fff;
+  width: 100%;
+  display: block;
+  pointer-events: none;
+}
+.meeting {
+  background-color: cornflowerblue;
+}
+.personal {
+  background-color: cadetblue;
+}
+.study {
+  background-color: coral;
+}
+.others {
+  background-color: bisque;
+}
