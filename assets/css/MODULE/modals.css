@@ -25,6 +25,7 @@
   max-width: 500px;
   min-height: 150px;
   height: auto;
+  padding: 20px;
   margin: 0 auto;
   position: relative;
   border-radius: 5px;
@@ -64,14 +65,12 @@
 */
 
 .modal__title{
-  background-color: #d3d3d3;
   display: flex;
   align-items: center;
   height: auto;
   width: 100%;
   margin: 0;
-  padding: 10px 20px;
-  padding-top: 5%;
+  padding: 0 0 20px 0;
   border-radius: 5px 5px 0 0;
   color: #000000;
   font-weight: 500;
@@ -110,36 +109,30 @@
 .modal__close:before{
   width: 16px;
   height: 2px;
-} 
+}
 
 .modal__content{
   display: block;
-  background-color: #d3d3d3;
   width: 100%;
   height: 400px;
-  margin: 0;
-  padding: 20px;
-  border-radius: 0 0 5px 5px;
   max-height: 100%;
+  border-radius: 0 0 5px 5px;
 }
 
-hr {
-  width: 100%;
-  background-color: rgb(95, 95, 95);
-}
 .modal__text--title{
   border-bottom: 1px solid black;
   border-top: 1px solid black;
-  padding: 3%;
+  padding: 15px;
 }
-.modal__items{
+
+/* .form{
   display: flex;
   flex-direction: column;
   max-height: 100%;
-}
+} */
 
 .modal__item{
-  padding: 3%;
+  padding: 15px;
   border-bottom: 1px solid black;
   font-weight: 400;
 }
@@ -148,82 +141,46 @@ hr {
   font-weight: 400;
 }
 
-}
-.modal__item--top{
-  border-top: 1px solid black;
-}
-
 .modal__text {
   display: flex;
   flex-direction: row;
-  border-bottom: 1px solid black;
 }
+
+.modal__input--text{
+  font-size: 16px;
+  background-color: transparent;
+  border: 0;
+}
+
+.modal__label{
+  font-size: 16px;
+}
+
 label#modal__item--description-text {
   display: flex;
   justify-content: center;
   height: 80%;
   padding-top: 3%;
-  
 }
 
-
-input#modal__item--description-text[type="text"] {
-  border-radius: 50px;
-  border: none;
-  background-color: gray;
+.modal__input{
   cursor: pointer;
 }
 
-input#modal__item--title-text[type="text"] {
+.modal__input--date,
+.modal__input--time {
   border-radius: 50px;
   border: none;
-  background-color: gray;
-  cursor: pointer;
+  background-color: lightgray;
+  padding: 6px 12px;
 }
 
-input#end[type="date"] {
-  border-radius: 50px;
-  border: none;
-  background-color: gray;
-  cursor: pointer;
-  width: 55%;
-  padding: 2px;
-  margin: 2%;
+.modal__input--date{
+  margin-right: 10px;
 }
-
-input#start[type="date"] {
-  border-radius: 50px;
-  border: none;
-  background-color: gray;
-  cursor: pointer;
-  width: 55%;
-  margin: 2%;
-}
-
-input#start__time[type="time"] {
-  border-radius: 50px;
-  border: none;
-  background-color: gray;
-  cursor: pointer;
-  width: 75%;
-  margin: 2%;
-}
-
-input#end__time[type="time"] {
-  border-radius: 50px;
-  border: none;
-  background-color: gray;
-  cursor: pointer;
-  width: 75%;
-  margin: 2%;
-}
-
-
-
 
 .modal__item--description{
   display: flex;
-  padding: 3%;
   font-weight: 300;
 }
 
@@ -233,22 +190,11 @@ input#end__time[type="time"] {
   grid-template-areas: "a b c d";
   padding: 2%;
   font-weight: 400;
-  border-bottom: 1px solid black;
-  }
-
-.modal__content .m-footer{
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin-top: 10px;
-  flex-wrap: wrap;
 }
 
-.modal__buttons{
-  width: 100%;
+.modal__footer{
+  padding-top: 15px;
   display: flex;
-  justify-content: center;
-  justify-content: space-evenly;
 }
 
 .modal.active{
