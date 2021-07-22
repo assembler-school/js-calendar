@@ -44,58 +44,58 @@ function displayRemindEvent() {
 
 // Escape the modal window when pressing Escape
 function pressEscape(event) {
-  if(event.key === 'Escape') {
+  if (event.key === "Escape") {
     modal.classList.remove("--is-visible");
   }
 }
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
+window.onclick = function (event) {
   if (event.target == modal) {
     closeModal();
   }
-}
+};
 
 /**/
 /** FORM VALUES */
 
-let form = document.getElementById('modal-form')
-form.addEventListener('submit', getValues)
-let infoEvents = document.getElementById('resumeEvent')
+let form = document.getElementById("modal-form");
+form.addEventListener("submit", getValues);
+let infoEvents = document.getElementById("resumeEvent");
 
 let eventValue = {
-  name: '',
-  startDate: '',
-  endDateInput: '',
+  name: "",
+  startDate: "",
+  endDateInput: "",
   remindInput: 0,
-  description: '',
-  eventType: ''
-}
+  description: "",
+  eventType: "",
+};
 
 function getValues(e) {
-  let events = []
+  let events = [];
 
-  e.preventDefault()
-  eventValue.name = document.getElementById('name').value
-  eventValue.startDate = document.getElementById('startDate').value
-  eventValue.endDateInput = document.getElementById('endDateInfo').value
-  eventValue.remindInput = document.getElementById('time').value
-  eventValue.description = document.getElementById('description').value
-  eventValue.eventType = document.getElementById('eventType').value
+  e.preventDefault();
+  eventValue.name = document.getElementById("name").value;
+  eventValue.startDate = document.getElementById("startDate").value;
+  eventValue.endDateInput = document.getElementById("endDateInfo").value;
+  eventValue.remindInput = document.getElementById("time").value;
+  eventValue.description = document.getElementById("description").value;
+  eventValue.eventType = document.getElementById("eventType").value;
 
-  events = JSON.parse(localStorage.getItem('events')) || []
-  events.push(eventValue)
-  localStorage.setItem('events', JSON.stringify(events))
+  events = JSON.parse(localStorage.getItem("events")) || [];
+  events.push(eventValue);
+  localStorage.setItem("events", JSON.stringify(events));
 
-  form.reset()
-  closeModal()
-  showResume()
+  form.reset();
+  closeModal();
+  showResume();
 }
 
-let myLocalStorage = JSON.parse(localStorage.getItem('events'))
+let myLocalStorage = JSON.parse(localStorage.getItem("events"));
 function showResume() {
   for (let i = 0; i < myLocalStorage.length; i++) {
-    let myObject = myLocalStorage[0]
+    let myObject = myLocalStorage[0];
     let html = `
       <p>${myObject.name}</p>
       <p>${myObject.startDate}</p>
@@ -103,65 +103,84 @@ function showResume() {
       <p>${myObject.remindInput}</p>
       <p>${myObject.description}</p>
       <p>${myObject.eventType}</p>
-    `
-    infoEvents.innerHTML = html
+    `;
+    infoEvents.innerHTML = html;
   }
 }
 
 //Calendar Functionality
-let calendarDays = document.querySelector("#calendar-days");
-calendarDays.innerHTML = "";
+let calendarDays = document.getElementById("calendar-days");
 
+let monthName = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+let currentDate = new Date();
+let currentMonth = currentDate.getMonth();
+let currentYear = currentDate.getFullYear();
 function renderCalendar() {
-  let currentDate = new Date();
-  let currentMonth = currentDate.getMonth();
-  let currentYear = currentDate.getFullYear();
-  let monthName = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
   let currentMonthHtml = document.getElementById("currentMY");
-  
-  
+
   currentMonthHtml.innerHTML = monthName[currentMonth] + " " + currentYear;
-  
+
   let daysQuantity = new Date(currentYear, currentMonth + 1, 0).getDate();
-  let firstDay = new Date (currentYear, currentMonth, 1)
-  
-  let dayName = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+  let firstDay = new Date(currentYear, currentMonth, 1);
+
+  let dayName = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
   let dayString = firstDay.toLocaleDateString("en-GB", {
-    weekday: "long", 
-  })
+    weekday: "long",
+  });
   let indexFirstDay = dayName.indexOf(dayString); // 3
-  
+
   for (let index = 1; index <= daysQuantity + indexFirstDay; index++) {
-    let createDiv = document.createElement("div")
+    let createDiv = document.createElement("div");
     if (index > indexFirstDay) {
       createDiv.innerHTML = index - indexFirstDay;
     }
-    calendarDays.appendChild(createDiv)
+    calendarDays.appendChild(createDiv);
   }
 }
 
 //flechas
-let actualMonth = 0
-function clickArrow(){
+// let actualMonth = 0;
+function clickArrow() {
   let prevArrow = document.getElementById("previousMonth");
   let nextArrow = document.getElementById("nextMonth");
-  
-  
-  nextArrow.addEventListener("click", ()=>{
-    actualMonth++;
-    
-    renderCalendar()
-  })
 
-  prevArrow.addEventListener("click", ()=>{
-    actualMonth--;
+  nextArrow.addEventListener("click", () => {
+    calendarDays.innerHTML = "";
+    currentMonth++;
+    renderCalendar();
+  });
 
-    renderCalendar()
-  })
+  prevArrow.addEventListener("click", () => {
+    calendarDays.innerHTML = "";
+
+    currentMonth--;
+
+    renderCalendar();
+  });
 }
-clickArrow();
-
 
 renderCalendar();
+clickArrow();
 
 //console.log(indexFirstDay)
