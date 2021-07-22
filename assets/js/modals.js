@@ -95,6 +95,7 @@ document.addEventListener('click', function (e) {
   }
 });
 
+// close modal 
 cancelModal.addEventListener('click', closeModal);
 
 function closeModal() {
