@@ -36,5 +36,3 @@ const writeEventsOfTheDay = (day) => {
     `;
   }
 }
-
-writeEventsOfTheDay(today);

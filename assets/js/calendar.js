@@ -83,9 +83,6 @@ const setNewDate = () => {
     writeMonth(currentMonth);
 }
 
-writeMonth(currentMonth);
-
-
 
 //FUNCION TO RETURN HOUR (hh:mm) - IT IS NOT COMPLETED AND I NEED TO SEARCH ABOUT IT MORE WHEN IT IS NECESSARY
 

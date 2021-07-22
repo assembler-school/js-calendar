@@ -11,6 +11,10 @@
 
 .calendar__header{
   padding: 0 20px;
+  min-height: 90px;
+  max-height: 90px;
+  display: flex;
+  align-items: flex-end;
 }
 
 .calendar__main{

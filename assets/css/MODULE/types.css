@@ -19,6 +19,14 @@
   padding: 10px 20px;
 }
 
+.types__item:first-child{
+  padding-top: 20px;
+}
+
+.types__item:last-child{
+  padding-bottom: 20px;
+}
+
 .types__item__plus{
   list-style-type: none;
   padding-bottom: 10%;
