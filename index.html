@@ -161,16 +161,16 @@
                     </div>
                     <div class="modal__item modal__item--hours border-bottom">
                         <label for="start" class="modal__label">Start date:</label>
-                        <input class="modal__input--date" type="date" id="start" name="start" value="" min="2018-01-01"
-                            max="2023-12-31">
-                        <input class="modal__input--time" type="time" id="start__time" name="start__time" min="09:00"
+                        <input class="modal__input--date" type="date" id="startDate" name="start" value=""
+                            min="2018-01-01" max="2023-12-31">
+                        <input class="modal__input--time" type="time" id="startTime" name="start__time" min="09:00"
                             max="18:00" required>
                     </div>
                     <div class="modal__item modal__item--hours border-bottom">
                         <label for="end" class="modal__label">End date</label>
-                        <input class="modal__input--date" type="date" id="end" name="end" value="" min="2018-01-01"
+                        <input class="modal__input--date" type="date" id="endDate" name="end" value="" min="2018-01-01"
                             max="2023-12-31">
-                        <input class="modal__input--time" type="time" id="end__time" name="end__time" min="09:00"
+                        <input class="modal__input--time" type="time" id="endTime" name="end__time" min="09:00"
                             max="18:00" required>
                     </div>
                     <div class="modal__item">
@@ -184,7 +184,7 @@
                     </div>
                     <div class="modal__item">
                         <i class="fas fa-align-left"></i>
-                        <input type="text" class="modal__input--text" id="input-description" name="description"
+                        <input type="text" class="modal__input--text" id="description" name="description"
                             placeholder="Description" maxlength="48" />
                     </div>
                 </form><!-- Form -->
@@ -203,6 +203,7 @@
     <script src='assets/js/calendar.js'></script>
     <script src='assets/js/help.js'></script>
     <script src='assets/js/events.js'></script>
+    <script src='assets/js/validator.js'></script>
 </body>
 
 </html>
