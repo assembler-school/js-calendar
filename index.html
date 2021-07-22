@@ -10,6 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" 
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 
 <body>
@@ -169,19 +171,19 @@
                         <input type="time" id="end__time" name="end__time" min="09:00" max="18:00" required>
                         
                         <br> </div>
-                    <label class="modal__item modal__item--top">Repeat</label>
-                    <label class="modal__item ">Task</label>
-                    <label class="modal__item">Reminder</label>
+                    <label class="modal__item modal__item--top"> <i class="fas fa-redo-alt"></i>&nbsp;Repeat</label>
+                    <label class="modal__item "><i class="fas fa-tasks"></i>&nbsp; Task</label>
+                    <label class="modal__item"><i class="far fa-bell"></i>&nbsp; Reminder</label>
                     <div class="modal__text">
-                    <label class="modal__item--description">Description</label>
+                    <label class="modal__item--description"><i class="fas fa-align-left"></i> &nbsp; Description</label>
                     <label for="description" id="modal__item--description-text">
                         <input type="text" id="modal__item--description-text" name="description" required
                         minlength="4" maxlength="24" size="18"></label>
                     </div>
                 </div>
                 <div class="modal__buttons">
-                    <button class="btn btn--full_width btn--black">Save</button>
-                    <button class="btn btn--full_width btn--black close-modal">Cancel</button>
+                    <button class="btn btn--full_width btn--black--modal">Save</button>
+                    <button class="btn btn--full_width btn--black--modal">Cancel</button>
                 </div>
             </div>
         </div>

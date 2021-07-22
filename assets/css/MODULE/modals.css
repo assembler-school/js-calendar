@@ -186,7 +186,7 @@ input#end[type="date"] {
   border: none;
   background-color: gray;
   cursor: pointer;
-  width: 50%;
+  width: 55%;
   padding: 2px;
   margin: 2%;
 }
@@ -196,7 +196,7 @@ input#start[type="date"] {
   border: none;
   background-color: gray;
   cursor: pointer;
-  width: 50%;
+  width: 55%;
   margin: 2%;
 }
 
