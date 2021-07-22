@@ -44,6 +44,10 @@
   height: 100%;
 }
 
+.calendar__date{
+  margin: 5px;
+}
+
 .calendar__date:hover:not(.calendar__prev){
   border: 1px solid grey;
   border-radius: 4px;
