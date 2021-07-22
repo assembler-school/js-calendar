@@ -11,14 +11,6 @@ const writeEventsOfTheDay = (day) => {
   //clear events of the day
   eventsDay.innerHTML = ``;
 
-  if (eventsDay.innerHTML == ``) {
-    eventsDay.innerHTML += `
-      <div class="event">
-        <p class="event__title">You have no events this day</p>
-      </div>
-    `;
-  }
-  
   if (!eventsNotes.length) return;
 
   //get the eventsNotes from localStorage
@@ -38,4 +30,13 @@ const writeEventsOfTheDay = (day) => {
       `;
     }
   });
+
+  //print message alert if no events in the day selected
+  if (eventsDay.innerHTML == ``) {
+    eventsDay.innerHTML += `
+      <div class="event">
+        <p class="event__title">You have no events this day</p>
+      </div>
+    `;
+  }
 }
