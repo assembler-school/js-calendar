@@ -15,3 +15,8 @@
   background-color: black;
   color: white;
 }
+
+.--is-moving-right {
+  transition: all 1s linear;
+  transform: translateX(20%);
+}

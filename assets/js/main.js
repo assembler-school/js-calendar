@@ -181,6 +181,7 @@ function clickArrow() {
     currentMonth++;
 
     renderCalendar();
+    calendarDays.classList.add("--is-moving-right");
   });
 
   prevArrow.addEventListener("click", () => {
