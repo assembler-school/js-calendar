@@ -41,9 +41,9 @@ function clickDate(e) {
   document.querySelector(`#title`).value = '';
   document.querySelector(`#description`).value = '';
   (dateSelected) ? document.querySelector(`#startDate`).value = dateSelected : document.querySelector(`#startDate`).value = '';
-  document.querySelector(`#startTime`).value = '';
-  document.querySelector(`#endDate`).value = '';
-  document.querySelector(`#endTime`).value = '';
+  document.querySelector(`#startTime`).value = '09:00';
+  (dateSelected) ? document.querySelector(`#endDate`).value = dateSelected : document.querySelector(`#endDate`).value = '';
+  document.querySelector(`#endTime`).value = '10:00';
 
   addEvent(e);
 }

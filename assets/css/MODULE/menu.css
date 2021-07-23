@@ -22,7 +22,9 @@
 }
 
 .menu__title {
-  display: flex;
+  font-size: 1.2em;
+  font-weight: 600;
+  margin: 20px 0;
 }
 
 .menu__footer{

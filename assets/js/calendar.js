@@ -1,6 +1,7 @@
 'use strict';
 
 const writeMonth = (month) => {
+<<<<<<< HEAD
 	for (let i = startDay(); i > 0; i--) {
 		dates.innerHTML += ` <div class="calendar__date calendar__prev">${
 			getTotalDays(currentMonth - 1) - (i - 1)
@@ -20,6 +21,27 @@ const writeMonth = (month) => {
 			todayYear === currentYear
 		) {
 			dates.innerHTML += `
+=======
+
+    for (let i = startDay(); i > 0; i--) {
+        dates.innerHTML += ` <div class="calendar__date calendar__prev">${getTotalDays(currentMonth - 1) - (i - 1)}</div>`;
+    }
+
+    for (let day = 1; day <= getTotalDays(month); day++) {
+
+        let dayId = day + 1;
+        (day <= 9) ? (dayId = "0" + day) : dayId = day;
+
+        let monthId = month + 1;
+        (month <= 9) ? (monthId = "0" + monthId) : null;
+
+        console.log(todayMonth);
+        console.log(monthId);
+        console.log(currentMonth);
+
+        if (day === currentDay && todayMonth === currentMonth && todayYear === currentYear) {
+            dates.innerHTML += `
+>>>>>>> develop
                 <button class="calendar__date calendar__today btn btn--modal" data-id="${currentYear}-${monthId}-${dayId}">
                     ${day}
                 </button>
