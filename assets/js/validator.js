@@ -19,10 +19,11 @@ function validateOnSubmit(e) {
   eventNote[`startTime`] = document.querySelector(`#startTime`).value;
   eventNote[`endDate`] = document.querySelector(`#endDate`).value;
   eventNote[`endTime`] = document.querySelector(`#endTime`).value;
+  eventNote[`type`] = document.querySelector(`#type`).value;
 
   //get the eventsNotes in localStorage
   let eventsNotes = JSON.parse(localStorage.getItem('events'));
-
+console.log(eventNote)
   //save the eventNote in the eventsNotes array
   eventsNotes.push(eventNote);
 
