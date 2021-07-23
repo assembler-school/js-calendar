@@ -157,6 +157,13 @@
   font-size: 16px;
 }
 
+.modal__select {
+  border-radius: 50px;
+  border: none;
+  background-color: lightgray;
+  padding: 10px;
+}
+
 label#modal__item--description-text {
   display: flex;
   justify-content: center;
