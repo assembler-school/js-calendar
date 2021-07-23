@@ -3,3 +3,4 @@
 writeMonth(currentMonth);
 setNewDate();
 writeEventsOfTheDay(today);
+writeDayWeek(today)

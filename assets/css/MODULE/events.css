@@ -32,14 +32,44 @@
 }
 
 .event {
+  display: flex;
   border-bottom: 1px solid lightgray;
   align-self: center;
+  padding: 0 20px;
 }
 
-.event__item {
-  height: 8rem;
+.event:hover{
+  background-color: ghostwhite;
+}
+
+.event__type{
+  height: 20px;
+  width: 20px;
+  background-color: red;
+  border: 1px solid red;
+  border-radius: 4px;
+  margin-right: 10px;
+  margin-top: 20px;
+}
+
+.event__title{}
+
+.event__time{
+  font-weight: 400;
+}
+
+.event__description{
+  font-weight: 400;
+}
+
+.event__message{
   padding: 0 20px;
-  height: 4rem;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.event__message--alert{
+  color: gray;
 }
 
 @media (max-width: 767px) {
