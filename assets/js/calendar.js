@@ -84,6 +84,23 @@ const goToNextMonth = () => {
 	setNewDate();
 };
 
+
+
+
+
+//  marcel TODAY BUTTON
+
+
+const goToTodayMonth = () =>
+{
+	if(currentMonth)
+	
+setNewDate();
+};
+
+
+
+
 const setNewDate = () => {
 	currentDate.setFullYear(currentYear, currentMonth, currentDay);
 	month.textContent = monthNames[currentMonth];
@@ -92,7 +109,3 @@ const setNewDate = () => {
 	writeMonth(currentMonth);
 };
 
-// todayMonth;
-const btnToday = document.getElementById('todayBtn');
-
-btnToday.addEventListener('click', writeMonth(todayMonth));
