@@ -1,11 +1,12 @@
 /* IMPORT */
 import { closeModal, MODALWINDOW } from "./modal.js";
-import { renderCalendar } from './calendar.js';
+import { renderCalendar } from "./calendar.js";
 
-let monthEvents = {} // To save event Ids for each month
+let monthEvents = {}; // To save event Ids for each month
 
 /* EVENT FUNCTIONALITIES */
-function renderAddEventForm() { // Display the modal box for adding a new event
+function renderAddEventForm() {
+  // Display the modal box for adding a new event
   MODALWINDOW.innerHTML = `
     <div id="modalOverlay" class="modal__overlay"></div>
     <div class="modal__content">
@@ -18,68 +19,69 @@ function renderAddEventForm() { // Display the modal box for adding a new event
   document.getElementById("modalClose").addEventListener("click", closeModal); // Closing by clicking the X button
   document.getElementById("modalOverlay").addEventListener("click", closeModal); // Closing by clicking outside the modal box
   document.getElementById("cancelEvent").addEventListener("click", closeModal); // Closing by clicking the cancel button
-  document.addEventListener("keydown", (e) => { // Closing by pressing Escape
+  document.addEventListener("keydown", (e) => {
+    // Closing by pressing Escape
     if (e.key === "Escape") closeModal();
   });
 
   // Dinamic form fields
-  document.getElementById("displayEnd").addEventListener("click", function() {
+  document.getElementById("displayEnd").addEventListener("click", function () {
     displayInputField("containerFinalDate");
   });
 
-  document.getElementById("displayReminder").addEventListener("click", function() {
-    displayInputField("containerSetRemainder");
-  });
+  document
+    .getElementById("displayReminder")
+    .addEventListener("click", function () {
+      displayInputField("containerSetRemainder");
+    });
 
   // Submit addEventForm
-  document.getElementById('addEventForm').addEventListener('submit', formHandler);
+  document
+    .getElementById("addEventForm")
+    .addEventListener("submit", formHandler);
 }
 
 function formHandler(event) {
-
   event.preventDefault();
-  
+
   let formData = new FormData(event.target);
-  
+
   let eventObject = {};
 
   // Display the key/value pairs
   for (var pair of formData.entries()) {
-      eventObject[pair[0]] = pair[1];
+    eventObject[pair[0]] = pair[1];
   }
 
   eventObject.currentIdEvent = Date.now(); // Unique timestamp of event creation date
 
-  let currentEventYear = new Date(formData.get('initialDate')).getFullYear();
-  let currentEventMonth = new Date(formData.get('initialDate')).getMonth();
+  let currentEventYear = new Date(formData.get("initialDate")).getFullYear();
+  let currentEventMonth = new Date(formData.get("initialDate")).getMonth();
 
   let monthEventUnix = new Date(currentEventYear, currentEventMonth).getTime();
 
-  let monthEvents = window.localStorage.getItem(monthEventUnix) 
+  let monthEvents = window.localStorage.getItem(monthEventUnix);
 
   if (monthEvents) {
     // When have events on current month
-    monthEvents = JSON.parse(window.localStorage.getItem(monthEventUnix)) // Parse to array
-    monthEvents.push(eventObject) // Push new event
-    window.localStorage.setItem(monthEventUnix, JSON.stringify(monthEvents)) // Update month array in storage
-
+    monthEvents = JSON.parse(window.localStorage.getItem(monthEventUnix)); // Parse to array
+    monthEvents.push(eventObject); // Push new event
+    window.localStorage.setItem(monthEventUnix, JSON.stringify(monthEvents)); // Update month array in storage
   } else {
     // When there is no event on current month then create the month key
     window.localStorage.setItem(monthEventUnix, JSON.stringify([eventObject]));
   }
 
   // Close Modal
-  closeModal()
+  closeModal();
 
   // Render Calendar
   renderCalendar(0); // PARAMETER 0 INDICATES THAT THE CURRENT MONTH HAS NO CHANGES
-
 }
 
 // Show and Hide elements in the form
 function displayInputField(element) {
-  document
-    .getElementById(element).classList.toggle("display-none");
+  document.getElementById(element).classList.toggle("display-none");
 }
 
 /* HTML CODE FOR ADD EVENT FORM */
@@ -109,7 +111,7 @@ let eventForm = `
   <div id="containerSetRemainder" class="display-none">
       <label for="setReminder">Time:</label>
       <select id="setReminder" name="reminderEvent">
-          <option value="0" selected disabled hidden>Select time</option>    
+          <option value="0" selected hidden>Select time</option>
           <option value="5">5min</option>
           <option value="10">10min</option>
           <option value="15">15min</option>
@@ -124,7 +126,7 @@ let eventForm = `
   <div>
       <label for="eventType">Event Type</label>
       <select id="eventType" name="eventType">
-        <option value="0" selected disabled hidden>Select type</option> 
+        <option value="type-default" selected hidden>Select type</option>
         <option value="meeting">Meeting</option>
         <option value="personal">Personal</option>
         <option value="study">Study</option>
