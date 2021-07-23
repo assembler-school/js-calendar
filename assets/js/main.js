@@ -72,10 +72,15 @@ let eventValue = {
   eventType: "",
 };
 
-function getValues(e) {
-  let events = [];
+let events = [];
+events = JSON.parse(localStorage.getItem("events")) || [];
+let eventDate;
+// console.log(events.startDate);
 
-  e.preventDefault();
+// console.log(events);
+
+function getValues(e) {
+  // e.preventDefault();
   eventValue.name = document.getElementById("name").value;
   eventValue.startDate = document.getElementById("startDate").value;
   eventValue.endDateInput = document.getElementById("endDateInfo").value;
@@ -83,13 +88,12 @@ function getValues(e) {
   eventValue.description = document.getElementById("description").value;
   eventValue.eventType = document.getElementById("eventType").value;
 
-  events = JSON.parse(localStorage.getItem("events")) || [];
   events.push(eventValue);
   localStorage.setItem("events", JSON.stringify(events));
 
   form.reset();
   closeModal();
-  showResume();
+  // showResume();
 }
 
 let myLocalStorage = JSON.parse(localStorage.getItem("events"));
@@ -129,8 +133,6 @@ let currentDate = new Date();
 let currentDay = currentDate.getDate();
 let currentMonth = currentDate.getMonth();
 let currentYear = currentDate.getFullYear();
-console.log(currentMonth);
-
 let runningMonth = currentDate.getMonth();
 
 function renderCalendar() {
@@ -157,9 +159,34 @@ function renderCalendar() {
 
   for (let index = 1; index <= daysQuantity + indexFirstDay; index++) {
     let createDiv = document.createElement("div");
+
     if (index > indexFirstDay) {
-      createDiv.innerHTML = index - indexFirstDay;
-      if (index - indexFirstDay == currentDay && runningMonth) {
+      let numberOfDays = index - indexFirstDay;
+      createDiv.innerHTML = numberOfDays;
+
+      let dayMatch = `${currentYear}-${currentMonth + 1}-${numberOfDays}`;
+
+      if (numberOfDays < 10) {
+        dayMatch = `${currentYear}-${currentMonth + 1}-0${numberOfDays}`;
+      }
+
+      if (currentMonth < 10 || numberfDays < 10) {
+        dayMatch = `${currentYear}-0${currentMonth + 1}-0${numberOfDays}`;
+      }
+
+      if (numberOfDays >= 10) {
+        dayMatch = `${currentYear}-0${currentMonth + 1}-${numberOfDays}`;
+      }
+      for (let index = 0; index < events.length; index++) {
+        eventDate = events[index].startDate.split("T")[0];
+        if (eventDate === dayMatch) {
+          eventDiv = document.createElement("button");
+          eventDiv.innerHTML = events[index].name;
+          createDiv.appendChild(eventDiv);
+        }
+      }
+
+      if (numberOfDays == currentDay && runningMonth) {
         createDiv.classList.add("--is-selected");
       }
       if (currentMonth !== runningMonth) {
