@@ -21,10 +21,15 @@ const writeEventsOfTheDay = (day) => {
     if (day == event.startDate) {
       eventsDay.innerHTML += `
         <div class="event">
-          <div class="event__item">
+          <div class="event__type"></div>
+          <div class="event__content">
             <p class="event__title">${event.title}</p>
-            <span class="start__time">${event.startTime}</span><span> - </span>
-            <span class="end__time">${event.endTime}</span>
+            <p class="event__time">
+              <span>${event.startTime}</span>
+              <span> - </span>
+              <span>${event.endTime}</span>
+            </p>
+            <p class="event__description">${event.description}</p>
           </div>
         </div>
       `;
