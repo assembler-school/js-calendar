@@ -103,3 +103,24 @@
   text-align: center;
   background-color: #ff6347;
 }
+
+.day__tittle {
+  text-align: center;
+  padding: 7.5px;
+}
+.day__event-container {
+  padding: 2.5px 0;
+}
+
+.day__event-title,
+.more-events {
+  font-size: small;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  border-radius: 5px;
+  background-color: #fff;
+  width: 100%;
+  display: block;
+  pointer-events: none;
+}
