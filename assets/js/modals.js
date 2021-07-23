@@ -47,22 +47,8 @@ function clickDate(e) {
   //get the day selected
   dateSelected = el.dataset.id;
 
-  //convert dateSelected string to date
-  const targetDateArr = dateSelected.split("-");
-  const targetYear = targetDateArr[0];
-  const targetMonth = targetDateArr[1] - 1;
-  const targetDay = targetDateArr[2];
-  const targetDate = new Date(targetYear, targetMonth, targetDay);
-
-  //convert 01 to friday
-  const targetDayNumber = targetDate.getDay();
-  const targetDayWeek = dayOfWeekAsString(targetDayNumber);
-
-  //get the events title
-  const eventTitle = document.querySelector('.events__title');
-
-  //set the events title
-  eventTitle.innerHTML = targetDayWeek + " " + targetDay;
+  //write in screen the events day week
+  writeDayWeek(dateSelected)
 
   //clear form inputs
   document.querySelector(`#title`).value = '';

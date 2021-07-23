@@ -4,10 +4,12 @@ const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'Jul
 
 //get the today date
 var todayDate = new Date();
-var todayDay = todayDate.getDate();
-var todayMonth = todayDate.getMonth();
+var todayDay = pad(todayDate.getDate())
+var todayMonth = pad(todayDate.getMonth() + 1);
 var todayYear = todayDate.getFullYear();
 var today = todayYear + "-" + todayMonth + "-" + todayDay;
+
+console.log(today)
 
 //get the current date
 const currentDate = new Date();

@@ -35,8 +35,30 @@ const writeEventsOfTheDay = (day) => {
   if (eventsDay.innerHTML == ``) {
     eventsDay.innerHTML += `
       <div class="event">
-        <p class="event__title">You have no events this day</p>
+        <p class="event__message event__message--alert">You have no events this day</p>
       </div>
     `;
   }
+}
+
+function writeDayWeek(dateSelected) {
+
+  console.log(dateSelected);
+
+  //convert dateSelected string to date
+  const targetDateArr = dateSelected.split("-");
+  const targetYear = targetDateArr[0];
+  const targetMonth = targetDateArr[1] - 1;
+  const targetDay = targetDateArr[2];
+  const targetDate = new Date(targetYear, targetMonth, targetDay);
+
+  //convert 01 to friday
+  const targetDayNumber = targetDate.getDay();
+  const targetDayWeek = dayOfWeekAsString(targetDayNumber);
+
+  //get the events title
+  const eventTitle = document.querySelector('.events__title');
+
+  //set the events title
+  eventTitle.innerHTML = targetDayWeek + " " + targetDay;
 }
