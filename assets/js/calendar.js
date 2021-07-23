@@ -28,10 +28,11 @@ document.getElementById("daysMonth").addEventListener("click", (e) => {
   if (target.dataset.time) {
     let unixDataTime = new Date(parseInt(target.dataset.time)+7200000) // We add two hours (7200000 miliseconds) to compensate the GMT +2 change in local time for Spain
     displayModal('addEvent', unixDataTime.toJSON().substr(0, 16))
-    console.log(target.dataset.time)
-  } else if (target.dataset.event) {
-    //displayModal('editEvent', target.dataset.event)
-    console.log("Edit event");
+  } else if (target.dataset.initialdate) {
+    let dataInfo = {}
+    dataInfo.eventid = target.dataset.event
+    dataInfo.initialdate = target.dataset.initialdate
+    displayModal('editEvent', dataInfo)
   }
 });
 
@@ -138,7 +139,7 @@ function insertDays(monthEvents) {
       if (event.eventType) typeEventClasses = event.eventType;
 
       eventsHTML += `
-          <div data-event="${event.currentIdEvent}" class="day__event-container"><span class="day__event-title ${typeEventClasses}">${eventTime}, ${event.titleEvent}</span></div>
+          <div data-event="${event.currentIdEvent}" data-initialdate="${event.initialDate}" class="day__event-container"><span class="day__event-title ${typeEventClasses}">${eventTime}, ${event.titleEvent}</span></div>
         `;
     });
 

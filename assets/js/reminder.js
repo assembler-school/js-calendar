@@ -4,7 +4,7 @@ function initRemainder() {
   let currentYear = currentTime.getFullYear();
   let unixMonth = new Date(currentYear, currentMonth).getTime();
   let searchInStorage = JSON.parse(localStorage.getItem(unixMonth));
-  console.log(searchInStorage);
+  // console.log(searchInStorage);
   if (searchInStorage != null) {
     findRemainderOnEvents(searchInStorage);
   }

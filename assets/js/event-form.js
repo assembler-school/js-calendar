@@ -5,7 +5,7 @@ import { renderCalendar } from "./calendar.js";
 let monthEvents = {}; // To save event Ids for each month
 
 /* EVENT FUNCTIONALITIES */
-function renderAddEventForm(time) {
+function renderAddEventForm(data, autocomplete) {
   // Display the modal box for adding a new event
   MODALWINDOW.innerHTML = `
     <div id="modalOverlay" class="modal__overlay"></div>
@@ -15,8 +15,33 @@ function renderAddEventForm(time) {
     </div>
   `;
 
+  if (autocomplete) {
+    // Local storage -> ID by data
+    // Autocomplete by iteration -> matching fields with properties
+
+    let currentYear = new Date(data.initialdate).getFullYear();
+    let currentMonth = new Date(data.initialdate).getMonth();
+    let unixCurrentMonth = new Date(currentYear, currentMonth).getTime();
+    let monthEvents = JSON.parse(localStorage.getItem(unixCurrentMonth))
+
+    let eventInfo = monthEvents.find((event) => event.currentIdEvent == data.eventid)
+
+    let formElements = document.querySelectorAll("#addEventForm [name]")
+    formElements.forEach((element) => {
+      // console.log(eventInfo[element.name]);
+      // console.log("Element name: "+element.name);
+      // console.log("Event info: "+eventInfo[element.name]);
+      // console.log(eventInfo)
+      for (let key in eventInfo) {
+        if (key == element.name) {
+          element.value = eventInfo[key]
+        }
+      }
+    })
+  }
+
   // Adding current time to input date
-  document.getElementById("initialDate").value = time
+  document.getElementById("initialDate").value = data
 
   // To close the current Modal
   document.getElementById("modalClose").addEventListener("click", closeModal); // Closing by clicking the X button
@@ -40,6 +65,11 @@ function renderAddEventForm(time) {
     .getElementById("addEventForm")
     .addEventListener("submit", formHandler);
 }
+
+// function renderEditEventForm() {
+//   let eventId = 
+//   localStorage.getItem()
+// }
 
 function formHandler(event) {
   event.preventDefault();
@@ -120,8 +150,8 @@ let eventForm = `
       </select>
   </div>
   <div>
-      <label for="textArea">Description</label>
-      <textarea id="textArea" name="descriptionEvent"></textarea>
+      <label for="descriptionEvent">Description</label>
+      <textarea id="descriptionEvent" name="descriptionEvent"></textarea>
   </div>
   <div>
       <label for="eventType">Event Type</label>

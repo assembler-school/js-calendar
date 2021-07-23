@@ -9,27 +9,17 @@ const MODALWINDOW = document.getElementById("modal-window");
 
 ADDBUTTON.addEventListener("click", () => displayModal("addEvent", new Date()));
 
-function displayModal(type, time) {
+function displayModal(type, dataset) {
   MODALWINDOW.innerHTML = ""; // First we clean our modal
 
   if (type === "addEvent") {
-    // If we want to display our box for new events
-    // Function Add Event
-    renderAddEventForm(time);
-  } else {
-    //
+    // If we want to display our box for new events - Function Add Event
+    renderAddEventForm(dataset, false);
+  } else if (type === "editEvent") {
+    // If we want to display our box for editing events - Function Edit Event
+    renderAddEventForm(dataset, true);
   }
 
-  // ? PENDIENTE DE REVISAR JOSE
-  /* 
-    let modalFormContent = `<template id="template-form"><p>Formulario De evento</p></template>`;
-    MODALFORM.insertAdjacentHTML('beforeend', modalFormContent);
-
-    let templateContent = document.getElementById('template-form').content;
-    let copyTemplate = document.importNode(templateContent, true);
-
-    MODALFORM.appendChild(copyTemplate);
-    */
 }
 
 function closeModal() {
