@@ -33,6 +33,12 @@
                         <label class="types__label">Dark mode</label>
                         <input class="switch" type="checkbox" id="toggle_classes" />
                     </li>
+                </ul>
+                <ul class="types__list">
+                    <!-- <li class="types__item justify-content-between border-bottom">
+                        <label class="types__label">Dark mode</label>
+                        <input class="switch" type="checkbox" id="toggle_classes" />
+                    </li> -->
                     <li class="types__item">
                         <div class="types__color bg--red"></div>
                         <label class="types__label">Meeting</label>
@@ -52,8 +58,8 @@
                 </ul>
             </main><!-- Types -->
 
-            <footer class="menu__footer btn btn--add_type">
-                <button id="add-event" class="btn btn--full_width btn--black btn--modal" data-id="modal-example">
+            <footer class="menu__footer">
+                <button id="add-event" class="btn btn--primary btn--modal w-100" data-id="modal-example">
                     Add event
                 </button>
             </footer>
@@ -64,17 +70,18 @@
         <section class="calendar">
 
             <header class="calendar__header border-bottom">
+                <div class="calendar__title w-100">
+                    <span id="month">January</span><span id="year">2021</span>
+                </div>
+
                 <!-- Nav -->
                 <nav class="nav">
                     <ul class="nav__list">
                         <!-- <li class="nav__item">
                             <button class="btn btn--burger">&#9776;</button>
                         </li> -->
-                        <li class="nav__item nav__item--full">
-                            <span id="month">January</span><span id="year">2021</span>
-                        </li>
                         <li class="nav__item">
-                            <button class="btn btn--word">Today</button>
+                            <button class="btn btn--secondary">Today</button>
                         </li>
                         <li class="nav__item">
                             <button class="btn btn--circle" id="prev-month">&#60;</button>
@@ -188,9 +195,8 @@
 
                     <!-- Modal footer -->
                     <div class="modal__footer">
-                        <input type="submit" value="Save" class="btn btn--full_width btn--black--modal"
-                            id="modalSave" />
-                        <button class="btn btn--full_width btn--black--modal" id="modalCancel">Cancel</button>
+                        <input type="submit" value="Save" class="btn btn--primary" id="modalSave" />
+                        <button class="btn btn--primary" id="modalCancel">Cancel</button>
                     </div><!-- Modal footer -->
                 </form><!-- Form -->
 

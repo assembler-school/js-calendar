@@ -12,7 +12,11 @@ const writeMonth = (month) => {
         (day <= 9) ? (dayId = "0" + day) : dayId = day;
 
         let monthId = month + 1;
-        (month <= 9) ? (monthId = "0" + month) : monthId = month;
+        (month <= 9) ? (monthId = "0" + monthId) : null;
+
+        console.log(todayMonth);
+        console.log(monthId);
+        console.log(currentMonth);
 
         if (day === currentDay && todayMonth === currentMonth && todayYear === currentYear) {
             dates.innerHTML += `

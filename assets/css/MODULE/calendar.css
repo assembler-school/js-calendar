@@ -17,6 +17,12 @@
   align-items: flex-end;
 }
 
+.calendar__title{
+  font-size: 1.2em;
+  font-weight: 600;
+  margin: 20px 0;
+}
+
 .calendar__main{
   height: 100%;
   padding: 15px 15px 60px;
