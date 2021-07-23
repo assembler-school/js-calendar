@@ -1,5 +1,5 @@
 /* IMPORT */
-import { closeModal, MODALWINDOW } from "./modal.js";
+import { closeModal, MODALWINDOW, escapeEventListener } from "./modal.js";
 import { renderCalendar } from "./calendar.js";
 
 let monthEvents = {}; // To save event Ids for each month
@@ -19,10 +19,7 @@ function renderAddEventForm() {
   document.getElementById("modalClose").addEventListener("click", closeModal); // Closing by clicking the X button
   document.getElementById("modalOverlay").addEventListener("click", closeModal); // Closing by clicking outside the modal box
   document.getElementById("cancelEvent").addEventListener("click", closeModal); // Closing by clicking the cancel button
-  document.addEventListener("keydown", (e) => {
-    // Closing by pressing Escape
-    if (e.key === "Escape") closeModal();
-  });
+  document.addEventListener("keydown", escapeEventListener);
 
   // Dinamic form fields
   document.getElementById("displayEnd").addEventListener("click", function () {

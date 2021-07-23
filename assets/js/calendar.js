@@ -22,14 +22,6 @@ let lastDay = function () {
   return new Date(currentYear, currentMonth + 1, 0).getDate(); // * THE 0 INDICATES THE LAST DAY OF THE PREVIOUS MONTH, THEREFORE WE ADD 1 TO THE CURRENT MONTH
 };
 
-document
-  .getElementById("next-btn")
-  .addEventListener("click", () => renderCalendar(1));
-
-document
-  .getElementById("prev-btn")
-  .addEventListener("click", () => renderCalendar(-1));
-
 document.getElementById("daysMonth").addEventListener("click", (e) => {
   let target = e.target;
   // Click on day, then display pop-up to add event
@@ -79,7 +71,6 @@ function insertDays(monthEvents) {
     let day = i + 1;
     let dayUnix = new Date(currentYear, currentMonth, day).getTime();
     let tomorrowUnix = new Date(currentYear, currentMonth, day + 1).getTime();
-    // -------------------------------
 
     // Get the events for each day
     let eventsHTML = "";
@@ -161,7 +152,6 @@ function insertDays(monthEvents) {
   }
 }
 
-// --------------------------------------
 function monthTitle() {
   let calendarTitle = document.getElementById("calendar-title");
   calendarTitle.innerHTML = new Date(currentYear, currentMonth).toLocaleString(
