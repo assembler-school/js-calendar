@@ -5,7 +5,7 @@
 .calendar {
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: calc(100% - 500px);
   height: 100%;
 }
 
@@ -18,6 +18,9 @@
 }
 
 .calendar__title{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
   font-size: 1.2em;
   font-weight: 600;
   margin: 20px 0;
@@ -71,6 +74,12 @@
 .calendar__prev{
   margin: 5px;
   color: gray;
+}
+
+@media (max-width: 991px) {
+  .calendar {
+    width: calc(100% - 250px);
+  }
 }
 
 @media (max-width: 767px) {
