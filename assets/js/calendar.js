@@ -17,14 +17,16 @@ const writeMonth = (month) => {
 
         if (day === currentDay && todayMonth - 1 === currentMonth && todayYear === currentYear) {
             dates.innerHTML += `
-                <button class="calendar__date calendar__today btn btn--modal" data-id="${yearId}-${monthId}-${dayId}">
-                    ${day}
+                <button class="btn btn--modal calendar__date calendar__today" data-id="${yearId}-${monthId}-${dayId}">
+                    <span class="">${day}</span>
+                    <span class="calendar__plus">+</span>
                 </button>
             `;
         } else {
             dates.innerHTML += `
-                <button class="calendar__date btn btn--modal" data-id="${yearId}-${monthId}-${dayId}">
-                    ${day}
+                <button class="btn btn--modal calendar__date" data-id="${yearId}-${monthId}-${dayId}">
+                    <span class="">${day}</span>
+                    <span class="calendar__plus">+</span>
                 </button>
             `;
         }
