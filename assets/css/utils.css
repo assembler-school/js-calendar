@@ -3,7 +3,6 @@
   justify-content: space-evenly;
 }
 
-
 .--is-visible {
   display: block;
 }
@@ -12,3 +11,7 @@
   display: none;
 }
 
+.--is-selected {
+  background-color: black;
+  color: white;
+}

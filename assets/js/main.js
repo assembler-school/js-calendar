@@ -126,8 +126,12 @@ let monthName = [
   "December",
 ];
 let currentDate = new Date();
+let currentDay = currentDate.getDate();
 let currentMonth = currentDate.getMonth();
 let currentYear = currentDate.getFullYear();
+console.log(currentMonth);
+
+let runningMonth = currentDate.getMonth();
 
 function renderCalendar() {
   let currentMonthHtml = document.getElementById("currentMY");
@@ -155,6 +159,12 @@ function renderCalendar() {
     let createDiv = document.createElement("div");
     if (index > indexFirstDay) {
       createDiv.innerHTML = index - indexFirstDay;
+      if (index - indexFirstDay == currentDay && runningMonth) {
+        createDiv.classList.add("--is-selected");
+      }
+      if (currentMonth !== runningMonth) {
+        createDiv.classList.remove("--is-selected");
+      }
     }
     calendarDays.appendChild(createDiv);
   }
@@ -184,4 +194,4 @@ function clickArrow() {
 renderCalendar();
 clickArrow();
 
-//console.log(indexFirstDay)
+// ----------- SHOW CURRENT DAY WITH CLASS AND STYLAH!! -------
