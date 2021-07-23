@@ -10,6 +10,7 @@
 .nav__list {
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
   list-style: none;
   padding-left: 0;
   width: 100%;
@@ -27,8 +28,4 @@
 
 .nav__item:last-child {
   padding-right: 0;
-}
-
-.nav__item--full{
-  width: 100%;
 }

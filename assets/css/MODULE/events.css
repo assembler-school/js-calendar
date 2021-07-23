@@ -20,6 +20,12 @@
   padding: 0 20px;
 }
 
+.events__title{
+  font-size: 1.2em;
+  font-weight: 600;
+  margin: 20px 0;
+}
+
 .events__main{
   display: grid;
   font-weight: bold;
