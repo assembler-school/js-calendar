@@ -1,0 +1,30 @@
+/**
+ * MODULE - BURGER
+ */
+
+.burger {
+  display: none;
+  box-sizing: border-box;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  font-weight: bold;
+  text-align: center;
+  user-select: none;
+  margin-right: 10px;
+}
+
+.showMenu{
+  transform: translateX(0);
+  background-color: white;
+  transition: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+
+@media (max-width: 991px) {
+  .burger{
+    display: block;
+  }
+}

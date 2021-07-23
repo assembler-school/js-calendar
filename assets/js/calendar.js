@@ -14,10 +14,6 @@ const writeMonth = (month) => {
         let monthId = month + 1;
         (month <= 9) ? (monthId = "0" + monthId) : null;
 
-        console.log(todayMonth);
-        console.log(monthId);
-        console.log(currentMonth);
-
         if (day === currentDay && todayMonth === currentMonth && todayYear === currentYear) {
             dates.innerHTML += `
                 <button class="calendar__date calendar__today btn btn--modal" data-id="${currentYear}-${monthId}-${dayId}">
