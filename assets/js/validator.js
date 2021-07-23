@@ -19,6 +19,7 @@ function validateOnSubmit(e) {
   eventNote[`startTime`] = document.querySelector(`#startTime`).value;
   eventNote[`endDate`] = document.querySelector(`#endDate`).value;
   eventNote[`endTime`] = document.querySelector(`#endTime`).value;
+  eventNote[`type`] = document.querySelector(`#type`).value;
 
   //save the eventNote in the eventsNotes array
   eventsNotes.push(eventNote);

@@ -28,6 +28,16 @@ const showEventsList = (e) => {
   });
 }
 
+/**
+* Converts a day number to a string.
+*
+* @param {Number} dayIndex
+* @return {String} Returns day as string
+*/
+function dayOfWeekAsString(dayIndex) {
+  return ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][dayIndex] || '';
+}
+
 function clickDate(e) {
 
   const el = e.target;
@@ -36,6 +46,9 @@ function clickDate(e) {
 
   //get the day selected
   dateSelected = el.dataset.id;
+
+  //write in screen the events day week
+  writeDayWeek(dateSelected)
 
   //clear form inputs
   document.querySelector(`#title`).value = '';

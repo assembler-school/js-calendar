@@ -18,10 +18,10 @@
  */
 @import "MODULE/header.css";
 @import "MODULE/nav.css";
+@import "MODULE/buttons.css";
 @import "MODULE/menu.css";
 @import "MODULE/modals.css";
 @import "MODULE/calendar.css";
-@import "MODULE/buttons.css";
 @import "MODULE/types.css";
 @import "MODULE/switch.css";
 @import "MODULE/events.css";
