@@ -26,8 +26,9 @@ document.getElementById("daysMonth").addEventListener("click", (e) => {
   let target = e.target;
   // Click on day, then display pop-up to add event
   if (target.dataset.time) {
-    //displayModal('addEvent', target.dataset.time)
-    console.log("Add event");
+    let unixDataTime = new Date(parseInt(target.dataset.time)+7200000) // We add two hours (7200000 miliseconds) to compensate the GMT +2 change in local time for Spain
+    displayModal('addEvent', unixDataTime.toJSON().substr(0, 16))
+    console.log(target.dataset.time)
   } else if (target.dataset.event) {
     //displayModal('editEvent', target.dataset.event)
     console.log("Edit event");
@@ -144,7 +145,8 @@ function insertDays(monthEvents) {
     // Print day calendar
     daysMonth.innerHTML += `
             <div class="${currentDayClasses}">
-                <div class="day__tittle" data-day="${day}" data-time="${dayUnix}">${day}</div>
+                <button data-time="${dayUnix}" class="day__btn--add">+</button>
+                <div class="day__tittle" data-day="${day}">${day}</div>
                 <div class="day__events">
                     ${eventsHTML}
                 </div>

@@ -5,7 +5,7 @@ import { renderCalendar } from "./calendar.js";
 let monthEvents = {}; // To save event Ids for each month
 
 /* EVENT FUNCTIONALITIES */
-function renderAddEventForm() {
+function renderAddEventForm(time) {
   // Display the modal box for adding a new event
   MODALWINDOW.innerHTML = `
     <div id="modalOverlay" class="modal__overlay"></div>
@@ -14,6 +14,9 @@ function renderAddEventForm() {
       ${eventForm}
     </div>
   `;
+
+  // Adding current time to input date
+  document.getElementById("initialDate").value = time
 
   // To close the current Modal
   document.getElementById("modalClose").addEventListener("click", closeModal); // Closing by clicking the X button

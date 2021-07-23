@@ -7,15 +7,15 @@ import { renderAddEventForm } from "./event-form.js";
 const ADDBUTTON = document.getElementById("plus-btn");
 const MODALWINDOW = document.getElementById("modal-window");
 
-ADDBUTTON.addEventListener("click", () => displayModal("addEvent"));
+ADDBUTTON.addEventListener("click", () => displayModal("addEvent", new Date()));
 
-function displayModal(type) {
+function displayModal(type, time) {
   MODALWINDOW.innerHTML = ""; // First we clean our modal
 
   if (type === "addEvent") {
     // If we want to display our box for new events
     // Function Add Event
-    renderAddEventForm();
+    renderAddEventForm(time);
   } else {
     //
   }
