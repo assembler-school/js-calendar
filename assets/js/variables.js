@@ -25,9 +25,12 @@ const nextMonthDOM = document.getElementById('next-month');
 prevMonthDOM.addEventListener('click', () => goToPrevMonth());
 nextMonthDOM.addEventListener('click', () => goToNextMonth());
 
-//events variables
-var eventsNotes = new Array();
+//get the eventsNotes in localStorage
+var eventsNotes = JSON.parse(localStorage.getItem('events'));
 var eventNote = {};
+
+//if not eventsNotes create empty array
+(!eventsNotes) ? eventsNotes = new Array() : null;
 
 const form = document.querySelector('.form');
 let eventsDay = document.getElementById('eventsDay');
