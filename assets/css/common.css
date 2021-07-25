@@ -1,38 +1,58 @@
 /* GLOBAL */
+
 * {
-  font-family: 'Nunito', sans-serif;
+    font-family: 'Nunito', sans-serif;
 }
+
 
 /* MAIN CONTAINER */
 
 .main-container {
-  display: flex;
-  width: 100vw;
+    display: flex;
+    padding: 3rem;
+    background-color: #f5f5f5;
+    flex-shrink: 0;
+    flex-grow: 1;
+    flex-basis: 100%;
 }
+
 
 /* SUMMARY */
 
 .summary {
-  width: 30%;
+    padding: 2.5rem;
+    background-color: #ffffff;
+    box-shadow: 2px 2px 5px grey;
+    flex-shrink: 0;
+    flex-grow: 1;
+    flex-basis: 30%;
 }
+
 
 /* CALENDAR CONTAINER */
 
 .calendar-container {
-  width: 70%;
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    flex-grow: 1;
+    flex-basis: 70%;
+    padding: 2.5rem;
+    background-color: #ffffff;
+    box-shadow: 2px 2px 5px grey;
 }
+
 
 /* HEADER */
 
 .header {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
+
 
 /* Common used classes */
 
 .display-none {
-  display: none;
+    display: none;
 }
