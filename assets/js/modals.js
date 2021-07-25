@@ -49,6 +49,8 @@ function clickDate(e) {
 
   //write in screen the events day week
   writeDayWeek(dateSelected)
+  let todaysEvents = eventsNotes.filter(appointment => appointment.startDate == dateSelected);
+  renderEventNotes(todaysEvents, dateSelected);
 
   //clear form inputs
   document.querySelector(`#title`).value = '';
