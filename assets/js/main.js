@@ -4,7 +4,6 @@
 let buttonEvent = document.querySelector("#calendarEvent");
 let modal = document.querySelector("#modal");
 let modalClose = document.querySelector("#button-close");
-// let modalInfoClose = document.getElementById("button-resume-close");
 let closeModalBtn = document.querySelector("#close-modal");
 let infoEvents = document.getElementById("modal-resume");
 let modalInfoContent = document.getElementById('modal-resume-content');
@@ -42,14 +41,18 @@ function displayStartDate() {
 
 // Display time to remind
 function displayRemindEvent() {
-  // remindInput.classList.replace("--is-hidden", "--is-visible");
   remindInput.classList.toggle("--is-hidden");
 }
 
 // Escape the modal window when pressing Escape
 function pressEscape(event) {
   if (event.key === "Escape") {
-    modal.classList.remove("--is-visible");
+    if(modal) {
+      modal.classList.remove("--is-visible");
+    }
+    if(infoEvents){
+      infoEvents.classList.remove("--is-visible");
+    }
   }
 }
 
@@ -57,6 +60,9 @@ function pressEscape(event) {
 window.onclick = function (event) {
   if (event.target == modal) {
     closeModal();
+  }
+  if(event.target == infoEvents) {
+    infoEvents.classList.remove('--is-visible');
   }
 };
 
@@ -78,9 +84,6 @@ let eventValue = {
 let events = [];
 events = JSON.parse(localStorage.getItem("events")) || [];
 let eventDate;
-// console.log(events.startDate);
-
-// console.log(events);
 
 function getValues(e) {
   // e.preventDefault();
@@ -255,6 +258,3 @@ renderCalendar();
 clickArrow();
 
 // ----------- SHOW CURRENT DAY WITH CLASS AND STYLAH!! -------
-
-
-document.addEventListener("click", console.log('no funchiona'))
