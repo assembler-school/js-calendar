@@ -17,12 +17,13 @@ const writeEventsOfTheDay = (day) => {
   eventsNotes = JSON.parse(localStorage.getItem('events'));
 
   //print every eventNote of the day selected
+
   eventsNotes.forEach(event => {
     if (day == event.startDate) {
       eventsDay.innerHTML += `
-        <div class="event">
-          <div class="event__type"></div>
+        <div class="event">         
           <div class="event__content">
+          <div class="event__type" id="cuadradito"></div>
             <p class="event__title">${event.title}</p>
             <p class="event__time">
               <span>${event.startTime}</span>
@@ -30,11 +31,13 @@ const writeEventsOfTheDay = (day) => {
               <span>${event.endTime}</span>
             </p>
             <p class="event__description">${event.description}</p>
+            <p class="event__typeName">${event.type}</p>
           </div>
         </div>
       `;
     }
   });
+
 
   //print message alert if no events in the day selected
   if (eventsDay.innerHTML == ``) {
@@ -44,6 +47,29 @@ const writeEventsOfTheDay = (day) => {
       </div>
     `;
   }
+}
+
+function renderEventNotes(todaysNotes, selectedDate) {
+  eventsDay.innerHTML =`` 
+  todaysNotes.forEach(event => {
+  if (selectedDate == event.startDate) {
+    eventsDay.innerHTML += `
+      <div class="event">         
+        <div class="event__content">
+        <div class="event__type" id="cuadradito"></div>
+          <p class="event__title">${event.title}</p>
+          <p class="event__time">
+            <span>${event.startTime}</span>
+            <span> - </span>
+            <span>${event.endTime}</span>
+          </p>
+          <p class="event__description">${event.description}</p>
+          <p class="event__typeName">${event.type}</p>
+        </div>
+      </div>
+    `;
+  }
+});
 }
 
 function writeDayWeek(dateSelected) {

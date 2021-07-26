@@ -16,6 +16,8 @@ const writeMonth = (month) => {
         let yearId = currentYear;
 
         if (day === currentDay && todayMonth - 1 === currentMonth && todayYear === currentYear) {
+            
+
             dates.innerHTML += `
                 <button class="btn btn--modal calendar__date calendar__today" data-id="${yearId}-${monthId}-${dayId}">
                     <span class="">${day}</span>
