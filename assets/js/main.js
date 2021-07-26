@@ -6,8 +6,7 @@ let modal = document.querySelector("#modal");
 let modalClose = document.querySelector("#button-close");
 let closeModalBtn = document.querySelector("#close-modal");
 let infoEvents = document.getElementById("modal-resume");
-let modalInfoContent = document.getElementById('modal-resume-content');
-
+let modalInfoContent = document.getElementById("modal-resume-content");
 
 // Form
 const endDate = document.getElementById("endDate");
@@ -27,10 +26,10 @@ function openModal() {
 }
 
 function closeModal() {
-  if(modal) {
+  if (modal) {
     modal.classList.remove("--is-visible");
   }
-  if(infoEvents) {
+  if (infoEvents) {
     infoEvents.classList.remove("--is-visible");
   }
 }
@@ -52,11 +51,11 @@ function displayRemindEvent() {
 // Escape the modal window when pressing Escape
 function pressEscape(event) {
   if (event.key === "Escape") {
-    if(modal) {
-      closeModal()
+    if (modal) {
+      closeModal();
     }
-    if(infoEvents){
-      closeModal()
+    if (infoEvents) {
+      closeModal();
     }
   }
 }
@@ -66,8 +65,8 @@ window.onclick = function (event) {
   if (event.target == modal) {
     closeModal();
   }
-  if(event.target == infoEvents) {
-    infoEvents.classList.remove('--is-visible');
+  if (event.target == infoEvents) {
+    infoEvents.classList.remove("--is-visible");
   }
 };
 
@@ -98,10 +97,10 @@ function getValues(e) {
   eventValue.remindInput = document.getElementById("time").value;
   eventValue.description = document.getElementById("description").value;
   eventValue.eventType = document.getElementById("eventType").value;
-  
+
   events.push(eventValue);
   localStorage.setItem("events", JSON.stringify(events));
-  
+
   form.reset();
   closeModal();
 }
@@ -110,7 +109,7 @@ let myLocalStorage = JSON.parse(localStorage.getItem("events"));
 
 function showResume(index) {
   infoEvents.classList.add("--is-visible");
-  
+
   let myObject = myLocalStorage[index];
   let html = `
   <button id="close-resume" class="modal__close">X</button>
@@ -126,16 +125,18 @@ function showResume(index) {
 
   let deleteEventBtn = document.getElementById("delete-event");
   let closeModalResumeBtn = document.getElementById("close-resume");
-  closeModalResumeBtn.addEventListener('click', closeModal);
+  closeModalResumeBtn.addEventListener("click", closeModal);
 
-  deleteEventBtn.addEventListener('click', () => {
-    closeModal()
-    // myLocalStorage = myLocalStorage.filter(e => e.name !== eventName.innerHTML || e.startDate.split("T")[0] !== eventStartDate.innerHTML);
-    // localStorage.setItem('events', JSON.stringify(myLocalStorage));
-  })
-  }
-  
-  //Calendar Functionality
+  //!  REVISAR ESTOOOOOOOO
+
+  deleteEventBtn.addEventListener("click", () => {
+    myLocalStorage.splice(index, 1);
+    localStorage.setItem("events", JSON.stringify(myLocalStorage));
+    closeModal();
+  });
+}
+
+//Calendar Functionality
 let calendarDays = document.querySelector("#calendar-days");
 
 let monthName = [
@@ -206,16 +207,18 @@ function renderCalendar() {
           eventDiv = document.createElement("button");
           eventDiv.innerHTML = events[index].name;
           createDiv.appendChild(eventDiv);
-          eventDiv.addEventListener('click', () => showResume(index))
+          eventDiv.addEventListener("click", () => showResume(index));
         }
       }
 
       // Highlight current date
-      let loopDate = new Date()
-      if (currentDay === numberOfDays && 
-          currentMonth === loopDate.getMonth() && 
-          currentYear === loopDate.getFullYear()) {
-            createDiv.classList.add("--is-selected");
+      let loopDate = new Date();
+      if (
+        currentDay === numberOfDays &&
+        currentMonth === loopDate.getMonth() &&
+        currentYear === loopDate.getFullYear()
+      ) {
+        createDiv.classList.add("--is-selected");
       }
 
       // if (numberOfDays == currentDay && runningMonth) {
@@ -227,7 +230,6 @@ function renderCalendar() {
       // if (!currentYear) {
       //   createDiv.classList.remove("--is-selected");
       // }
-
     }
     calendarDays.appendChild(createDiv);
   }
