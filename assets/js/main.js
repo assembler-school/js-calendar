@@ -133,6 +133,7 @@ function showResume(index) {
     myLocalStorage.splice(index, 1);
     localStorage.setItem("events", JSON.stringify(myLocalStorage));
     closeModal();
+    location.reload();
   });
 }
 
