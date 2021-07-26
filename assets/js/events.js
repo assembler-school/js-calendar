@@ -1,10 +1,6 @@
 'use strict';
 
-// editEvent = (event) => { }
-
 // setEvent = (event) => { }
-
-// deleteEvent = (event) => { }
 
 const writeEventsOfTheDay = (day) => {
 
@@ -148,8 +144,11 @@ function deleteEvent(e) {
   //show the event list of the day
   writeEventsOfTheDay(dateSelected);
 
-  //delete dot to the calendar
-  // addDotsToCalendar();
+  //clean month dates
+  dates.textContent = '';
+
+  //reload month calendar
+  writeMonth(currentMonth);
 }
 
 

@@ -42,6 +42,12 @@ function validateOnSubmit(e) {
 
   //write the event
   writeEventsOfTheDay(dateSelected);
+
+  //clean month dates
+  dates.textContent = '';
+
+  //reload month calendar
+  writeMonth(currentMonth);
 }
 
 form.addEventListener('submit', validateOnSubmit);

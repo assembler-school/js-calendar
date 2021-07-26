@@ -35,6 +35,8 @@ const writeMonth = (month) => {
 			`;
 		}
 	}
+
+	addDotsToCalendar();
 };
 
 const getTotalDays = (month) => {
@@ -145,36 +147,10 @@ const addDotsToCalendar = () => {
 		//get the day selected
 		const idDateSelected = el.dataset.id;
 
-		//get the event
-		// const eventSelected = eventsNotes.find((event) => event.id == idDateSelected);
-		// const eventSelected = eventsNotes.find((event) => console.log(event));
-
-		// console.log(idDateSelected)
-		// console.log(eventSelected)
-
 		//find the event dot
 		const eventsToday = eventsDots.filter(event => event.startString == idDateSelected);
 
 		//
 		eventsToday.forEach((element) => addDotToDate(element, idDateSelected));
-
-		// eventsToday.forEach(element => console.log(element));
 	});
-
 }
-
-//generate colored points in calendar days depending on the event type:
-
-// create html of the dot
-// get the color type of the events
-// change html of the div id=dot corresponding to the color of events created
-// associate date of the event list to the calendar selected day
-//show the correct color dot to the day
-//test:
-// function changeDot(event){
-// let event__color = getEventTypeColor(event);
-
-// 	if ( == ) {
-// 	dotId.innerHTML += `
-//         <div class="dot" ${event__color}"></div>`
-// }

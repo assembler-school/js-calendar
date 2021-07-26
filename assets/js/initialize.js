@@ -5,7 +5,7 @@ writeMonth(currentMonth);
 setNewDate();
 writeEventsOfTheDay(today);
 writeDayWeek(today);
-addDotsToCalendar();
+// addDotsToCalendar();
 
 //initialize reminders
 activateReminders(reminders)
