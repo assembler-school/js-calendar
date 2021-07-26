@@ -50,7 +50,7 @@ const writeEventsOfTheDay = (day) => {
     `;
   }
 }
-
+//function to render the events of the corresponding day so that they do not repeat themselves
 function renderEventNotes(todaysNotes, selectedDate) {
   eventsDay.innerHTML = ``
   todaysNotes.forEach(event => {

@@ -36,6 +36,7 @@
   border-bottom: 1px solid lightgray;
   align-self: center;
   padding: 20px;
+  justify-content: space-between;
 }
 
 .event:hover{
@@ -43,9 +44,18 @@
 }
 
 .close__btn {
-  background-color:burlywood ;
   border-radius: 50%;
   height: 20px;
+  border: none;
+  justify-content: center;
+  font-weight: bold;
+  box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.5);
+  transition: 0.5s;
+}
+
+.close__btn:hover{
+  background-color: black;
+  color: white;
 }
 
 .event__color{

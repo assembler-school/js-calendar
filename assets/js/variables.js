@@ -8,6 +8,9 @@ var todayDay = pad(todayDate.getDate())
 var todayMonth = pad(todayDate.getMonth() + 1);
 var todayYear = todayDate.getFullYear();
 var today = todayYear + "-" + todayMonth + "-" + todayDay;
+let tdMonth = todayDate.getMonth();
+
+
 
 //get the current date
 const currentDate = new Date();
@@ -21,9 +24,11 @@ let year = document.getElementById('year');
 
 const prevMonthDOM = document.getElementById('prev-month');
 const nextMonthDOM = document.getElementById('next-month');
+const todayMonthDOM = document.getElementById('today-month');   // marcel TODAY BUTTON 
 
 prevMonthDOM.addEventListener('click', () => goToPrevMonth());
 nextMonthDOM.addEventListener('click', () => goToNextMonth());
+todayMonthDOM.addEventListener('click', () => goToTodayMonth());    // marcel TODAY BUTTON 
 
 //get the eventsNotes in localStorage
 var eventsNotes = JSON.parse(localStorage.getItem('events'));
