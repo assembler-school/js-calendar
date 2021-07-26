@@ -19,13 +19,13 @@ const writeEventsOfTheDay = (day) => {
   //print every eventNote of the day selected
   eventsNotes.forEach(event => {
 
-    let event__color = getEventTypeColor(event);
+    let bg_color = getEventTypeColor(event);
 
-    if (day == event.startDate) {
+    if (day == event.startString) {
       eventsDay.innerHTML += `
         <div class="event" data-id="${event.id}">
           <div class="event__content">
-            <div class="event__color ${event__color}"></div>
+            <div class="event__color ${bg_color}"></div>
             <p class="event__title">${event.title}</p>
             <p class="event__time">
               <span>${event.startTime}</span>
@@ -54,12 +54,12 @@ const writeEventsOfTheDay = (day) => {
 function renderEventNotes(todaysNotes, selectedDate) {
   eventsDay.innerHTML = ``
   todaysNotes.forEach(event => {
-    let event__color = getEventTypeColor(event);
-    if (selectedDate == event.startDate) {
+    let bg_color = getEventTypeColor(event);
+    if (selectedDate == event.startString) {
       eventsDay.innerHTML += `
       <div class="event" data-id="${event.id}">
         <div class="event__content">
-        <div class="event__color ${event__color}"></div>
+        <div class="event__color ${bg_color}"></div>
           <p class="event__title">${event.title}</p>
           <p class="event__time">
             <span>${event.startTime}</span>
@@ -97,36 +97,37 @@ function writeDayWeek(dateSelected) {
 }
 
 const getEventTypeColor = (event) => {
-  let event__color;
+  let bg_color;
 
   switch (event.type) {
     case "Meeting":
-      event__color = "bg--red";
+      bg_color = "bg--red";
       break;
     case "Call":
-      event__color = "bg--blue";
+      bg_color = "bg--blue";
       break;
     case "Coffee with":
-      event__color = "bg--green";
+      bg_color = "bg--green";
       break;
     case "Peer Helping":
-      event__color = "bg--yellow";
+      bg_color = "bg--yellow";
       break;
     default:
-      event__color = "bg--red";
+      bg_color = "bg--red";
       break;
   }
 
-  return event__color;
+  return bg_color;
 }
-
 
 document.querySelector("#eventsDay").addEventListener("click", deleteEvent);
 
 function deleteEvent(e) {
 
+  //get the target element
   const el = e.target;
 
+  //check if matches with close button
   if (!el.matches(".close__btn")) return null;
 
   //get the event DOM
@@ -140,13 +141,12 @@ function deleteEvent(e) {
 
   //convert EventsNotes to string
   let eventsString = JSON.stringify(eventsNotes);
-  
+
   //save the events list in localStorage
   (() => localStorage.setItem("events", eventsString))();
 
   //show the event list of the day
   writeEventsOfTheDay(dateSelected);
-
 }
 
 

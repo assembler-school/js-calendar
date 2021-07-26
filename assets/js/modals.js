@@ -44,15 +44,15 @@ function clickDate(e) {
 
   //write in screen the events day week
   writeDayWeek(dateSelected)
-  let todaysEvents = eventsNotes.filter(appointment => appointment.startDate == dateSelected);
+  let todaysEvents = eventsNotes.filter(appointment => appointment.startString == dateSelected);
   renderEventNotes(todaysEvents, dateSelected);
 
   //clear form inputs
   document.querySelector(`#title`).value = '';
   document.querySelector(`#description`).value = '';
-  (dateSelected) ? document.querySelector(`#startDate`).value = dateSelected : document.querySelector(`#startDate`).value = '';
+  (dateSelected) ? document.querySelector(`#startString`).value = dateSelected : document.querySelector(`#startString`).value = '';
   document.querySelector(`#startTime`).value = '09:00';
-  (dateSelected) ? document.querySelector(`#endDate`).value = dateSelected : document.querySelector(`#endDate`).value = '';
+  (dateSelected) ? document.querySelector(`#endString`).value = dateSelected : document.querySelector(`#endString`).value = '';
   document.querySelector(`#endTime`).value = '10:00';
 
   addEvent(e);

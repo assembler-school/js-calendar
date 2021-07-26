@@ -15,9 +15,9 @@ function validateOnSubmit(e) {
   //set the values in the eventNote object
   eventNote[`title`] = document.querySelector(`#title`).value;
   eventNote[`description`] = document.querySelector(`#description`).value;
-  eventNote[`startDate`] = document.querySelector(`#startDate`).value;
+  eventNote[`startString`] = document.querySelector(`#startString`).value;
   eventNote[`startTime`] = document.querySelector(`#startTime`).value;
-  eventNote[`endDate`] = document.querySelector(`#endDate`).value;
+  eventNote[`endString`] = document.querySelector(`#endString`).value;
   eventNote[`endTime`] = document.querySelector(`#endTime`).value;
   eventNote[`type`] = document.querySelector(`#type`).value;
   eventNote[`reminder`] = document.querySelector(`#reminder`).value;
@@ -31,8 +31,11 @@ function validateOnSubmit(e) {
   //save the eventsNotes in localStorage
   (() => localStorage.setItem("events", eventsString))();
 
+  //save the reminder in localStorage
+  setReminderDate(eventNote);
+
   //close the modal
-  closeModal()
+  closeModal();
 
   //write the event
   writeEventsOfTheDay(dateSelected);

@@ -32,6 +32,13 @@ var eventNote = {};
 //if not eventsNotes create empty array
 (!eventsNotes) ? eventsNotes = new Array() : null;
 
+//get the reminders in localStorage
+var reminders = JSON.parse(localStorage.getItem('reminders'));
+var reminderNote = {};
+
+//if not eventsNotes create empty array
+(!reminders) ? reminders = new Array() : null;
+
 const form = document.querySelector('.form');
 let eventsDay = document.getElementById('eventsDay');
 
