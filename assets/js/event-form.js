@@ -16,10 +16,10 @@ function renderAddEventForm(data, autocomplete) {
   `;
 
   if (autocomplete) {
-    renderEditEventForm(data)
+    renderEditEventForm(data);
   } else {
     // Adding current time to input date
-    document.getElementById("initialDate").value = data
+    document.getElementById("initialDate").value = data;
   }
 
   // To close the current Modal
@@ -33,7 +33,9 @@ function renderAddEventForm(data, autocomplete) {
     displayInputField("containerFinalDate");
   });
 
-  document.getElementById("displayReminder").addEventListener("click", function () {
+  document
+    .getElementById("displayReminder")
+    .addEventListener("click", function () {
       displayInputField("containerSetRemainder");
     });
 
@@ -44,55 +46,55 @@ function renderAddEventForm(data, autocomplete) {
 }
 
 function renderEditEventForm(data) {
-
   // Change button text
-  document.getElementById("submitForm").textContent = "Edit"
+  document.getElementById("submitForm").textContent = "Edit";
 
   // Show trash bin
-  let trashIcon = document.getElementById('trash-bin'); 
-  trashIcon.classList.remove('display-none')
-  trashIcon.addEventListener('click', () => deleteEventById(data));
+  let trashIcon = document.getElementById("trash-bin");
+  trashIcon.classList.remove("display-none");
+  trashIcon.addEventListener("click", () => deleteEventById(data));
 
   // Get current Event from storage and mapp values to form
-  let storageEvent = JSON.parse(localStorage.getItem(parseInt(data)))[0]
-  let formElements = document.querySelectorAll("#addEventForm [name]")
+  let storageEvent = JSON.parse(localStorage.getItem(parseInt(data)))[0];
+  let formElements = document.querySelectorAll("#addEventForm [name]");
   formElements.forEach((element) => {
     for (let key in storageEvent) {
       if (key == element.name) {
-        element.value = storageEvent[key]
-
+        element.value = storageEvent[key];
 
         // Set to checked inputs
-        if (key === 'finalDate' && storageEvent[key] != '') {
-          document.getElementById('displayEnd').checked = true;
-          document.getElementById('containerFinalDate').classList.remove('display-none')
+        if (key === "finalDate" && storageEvent[key] != "") {
+          document.getElementById("displayEnd").checked = true;
+          document
+            .getElementById("containerFinalDate")
+            .classList.remove("display-none");
         }
 
-        if (key === 'reminderEvent' && storageEvent[key] != '0') {
-          document.getElementById('displayReminder').checked = true;
-          document.getElementById('containerSetRemainder').classList.remove('display-none')
+        if (key === "reminderEvent" && storageEvent[key] != "0") {
+          document.getElementById("displayReminder").checked = true;
+          document
+            .getElementById("containerSetRemainder")
+            .classList.remove("display-none");
         }
-
       }
     }
-  })
+  });
 
   // Add param Id to form
-  document.getElementById('addEventForm').setAttribute('data-event', data);
+  document.getElementById("addEventForm").setAttribute("data-event", data);
 }
 
 function deleteEventById(id) {
-
   let confirmation = confirm("Are you sure you want to delete this event?");
   if (confirmation) {
     // Play Sound
-    new Audio('./assets/trash.mp3').play()
+    new Audio("./assets/trash.mp3").play();
     // Remove item from storage
     window.localStorage.removeItem(id);
-    
+
     closeModal();
     renderCalendar(0);
-    document.getElementById('summary-current').innerHTML = '';
+    document.getElementById("summary-current").innerHTML = "";
   }
 }
 
@@ -100,8 +102,8 @@ function formHandler(event) {
   event.preventDefault();
 
   let form = event.target;
-  let eventId = form.getAttribute('data-event')
-  
+  let eventId = form.getAttribute("data-event");
+
   let formData = new FormData(form);
 
   let eventObject = {};
@@ -112,14 +114,13 @@ function formHandler(event) {
   }
 
   // To check edit/new
-  if ( eventId === null || eventId === '' ) {
+  if (eventId === null || eventId === "") {
     // Save Event in LocalStorage
-    let keyEvent = new Date().getTime()
+    let keyEvent = new Date().getTime();
     window.localStorage.setItem(keyEvent, JSON.stringify([eventObject]));
-
   } else {
     // Edit existing event
-    window.localStorage.setItem(eventId, JSON.stringify([eventObject]))
+    window.localStorage.setItem(eventId, JSON.stringify([eventObject]));
   }
 
   // Close Modal
@@ -131,11 +132,11 @@ function formHandler(event) {
 
 // Show and Hide elements in the form
 function displayInputField(element) {
-  let elm = document.getElementById(element); 
+  let elm = document.getElementById(element);
   elm.classList.toggle("display-none");
 
   if (elm.classList.contains("display-none")) {
-    document.querySelector(`#${element} [name]`).value = '';
+    document.querySelector(`#${element} [name]`).value = "";
   }
 }
 
