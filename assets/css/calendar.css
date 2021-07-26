@@ -65,7 +65,7 @@
     opacity: 0;
 }
 
-.day__month:hover .day__btn--add {
+.day__month:hover .day__btn--add, .day__btn--add:focus {
     opacity: 1;
 }
 
