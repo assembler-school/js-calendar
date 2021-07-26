@@ -1,31 +1,33 @@
 'use strict';
 
 const writeMonth = (month) => {
-
-    for (let i = startDay(); i > 0; i--) {
-        dates.innerHTML += `
+	console.log(month);
+	for (let i = startDay(); i > 0; i--) {
+		dates.innerHTML += `
             <div class="calendar__date calendar__prev">
                 ${getTotalDays(currentMonth - 1) - (i - 1)}
             </div>
         `;
-    }
+	}
 
-    for (let day = 1; day <= getTotalDays(month); day++) {
-        let dayId = pad(day);
-        let monthId = pad(month + 1);
-        let yearId = currentYear;
+	for (let day = 1; day <= getTotalDays(month); day++) {
+		let dayId = pad(day);
+		let monthId = pad(month + 1);
+		let yearId = currentYear;
 
-        if (day === currentDay && todayMonth - 1 === currentMonth && todayYear === currentYear) {
-            
-
-            dates.innerHTML += `
+		if (
+			day === currentDay &&
+			todayMonth - 1 === currentMonth &&
+			todayYear === currentYear
+		) {
+			dates.innerHTML += `
                 <button class="btn btn--modal calendar__date calendar__today" data-id="${yearId}-${monthId}-${dayId}">
                     <span class="">${day}</span>
                     <span class="calendar__plus">+</span>
                 </button>
             `;
-        } else {
-            dates.innerHTML += `
+		} else {
+			dates.innerHTML += `
                 <button class="btn btn--modal calendar__date" data-id="${yearId}-${monthId}-${dayId}">
                     <span class="">${day}</span>
                     <span class="calendar__plus">+</span>
@@ -89,22 +91,13 @@ const goToNextMonth = () => {
 	setNewDate();
 };
 
-
-
-
-
-//  marcel TODAY BUTTON
-
-
-const goToTodayMonth = () =>
-{
-	if(currentMonth)
-	
-setNewDate();
+const goToTodayMonth = () => {
+	if (currentMonth !== tdMonth) {
+		currentYear = todayYear;
+		currentMonth = tdMonth;
+		setNewDate();
+	}
 };
-
-
-
 
 const setNewDate = () => {
 	currentDate.setFullYear(currentYear, currentMonth, currentDay);
@@ -113,4 +106,3 @@ const setNewDate = () => {
 	dates.textContent = '';
 	writeMonth(currentMonth);
 };
-
