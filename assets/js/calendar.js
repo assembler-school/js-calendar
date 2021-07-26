@@ -1,7 +1,7 @@
 'use strict';
 
 const writeMonth = (month) => {
-	console.log(month);
+
 	for (let i = startDay(); i > 0; i--) {
 		dates.innerHTML += `
             <div class="calendar__date calendar__prev">
@@ -91,12 +91,13 @@ const goToNextMonth = () => {
 	setNewDate();
 };
 
-const goToTodayMonth = () => {
+const goToTodayMonth = () =>
+{
 	if (currentMonth !== tdMonth) {
-		currentYear = todayYear;
 		currentMonth = tdMonth;
-		setNewDate();
-	}
+	} if (currentYear !== todayYear)
+			currentYear = todayYear;
+			setNewDate();
 };
 
 const setNewDate = () => {
