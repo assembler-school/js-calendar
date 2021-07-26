@@ -143,10 +143,12 @@ const addDotsToCalendar = () => {
 	let calendarDates = document.querySelectorAll(".calendar__date");
 
 	calendarDates.forEach((el) => {
-
+		
 		//get the day selected
 		const idDateSelected = el.dataset.id;
 
+		if(!idDateSelected) return null;
+		
 		//find the event dot
 		const eventsToday = eventsDots.filter(event => event.startString == idDateSelected);
 
