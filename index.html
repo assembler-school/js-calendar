@@ -13,13 +13,100 @@
       <h1>JS Calendar</h1>
       <button id="calendarEvent">Add Event</button>
     </header>
+    <!-- Calendar-->
+
+    <div class="calendar-container">
+      <div class="calendar-info">
+        <button id="previousMonth">previous month</button>
+        <div id="currentMY">current month, year</div>
+        <button id="nextMonth">next month</button>
+      </div>
+
+      <div class="calendar-week">
+        <div>Monday</div>
+        <div>Tuesday</div>
+        <div>Wednesday</div>
+        <div>Thursday</div>
+        <div>Friday</div>
+        <div>Saturday</div>
+        <div>Sunday</div>
+      </div>
+
+      <div id="calendar-days" class="calendar-grid"></div>
+    </div>
+
+    <!-- Fin Calendar-->
+    <!-- show info events-->
+    <div id="resumeEvent"></div>
+    <!--modals-->
     <article id="modal" class="modal">
-      <div class="modal__content">
+      <div class="modal__content" id="modal-content">
         <button id="button-close" class="modal__close">X</button>
-        <p>eso es un modal</p>
+        <form id="modal-form">
+          <div>
+            <label for="name">Title :</label>
+            <input type="text" id="name" name="name" value="" maxlength="60" />
+          </div>
+          <div>
+            <label for="startDate">Start Date:</label>
+            <input
+              type="datetime-local"
+              id="startDate"
+              name="startDate"
+              value=""
+            />
+          </div>
+          <div>
+            <label for="endDate">End Date:</label>
+            <input type="checkbox" id="endDate" name="endDate" />
+          </div>
+          <div id="endDateInput" class="--is-hidden">
+            <input
+              type="datetime-local"
+              id="endDateInfo"
+              name="endDate"
+              value=""
+            />
+          </div>
+          <div>
+            <label for="remind">Remind me when this event expire:</label>
+            <input type="checkbox" name="remind" id="remind" />
+          </div>
+          <div id="remindInput" class="--is-hidden">
+            <label for="time">Time :</label>
+            <select name="time" id="time">
+              <option value="5 minutes">5 minutes</option>
+              <option value="10 minutes">10 minutes</option>
+              <option value="20 minutes">20 minutes</option>
+              <option value="1 hour">1 hour</option>
+            </select>
+          </div>
+          <div>
+            <label for="description">Description: </label>
+            <textarea
+              name="description"
+              id="description"
+              rows="4"
+              cols="50"
+              maxlength="500"
+            ></textarea>
+          </div>
+          <div>
+            <label for="eventType">Event type :</label>
+            <select name="eventType" id="eventType">
+              <option value="Personal">Personal</option>
+              <option value="Study">Study</option>
+              <option value="Meeting">Meeting</option>
+            </select>
+          </div>
+          <div>
+            <button id="close-modal">Cancel</button>
+            <button type="submit">Create</button>
+          </div>
+        </form>
       </div>
     </article>
 
-    <!--modals-->
+    
   </body>
 </html>

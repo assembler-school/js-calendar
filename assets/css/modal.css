@@ -4,14 +4,9 @@
   right: 0;
   bottom: 0;
   left: 0;
-  opacity:0;
+  display: none;
   background: rgba(0, 0, 0, 0.8);
   transition: opacity 100ms ease-in;
-  pointer-events: none;
-}
-
-.modal--is-visible {
-  opacity: 1;
 }
 
 .modal__content {
@@ -41,3 +36,10 @@
   box-shadow: 1px 1px 3px #000;
   padding-top: 5px;
 }
+<<<<<<< HEAD
+=======
+
+.modal__close:hover {
+  background: #fa3f6f;
+}
+>>>>>>> fbe663b5a4778ac0ab0ae2bcaf35b724bf204978
