@@ -92,13 +92,14 @@ const goToNextMonth = () => {
 	setNewDate();
 };
 
-const goToTodayMonth = () =>
-{
-	if (currentMonth !== tdMonth) {
+const goToTodayMonth = () => {
+	if (currentMonth !== tdMonth || currentYear !== todayYear) {
 		currentMonth = tdMonth;
-	} if (currentYear !== todayYear)
-			currentYear = todayYear;
-			setNewDate();
+		currentYear = todayYear;
+	}
+	setNewDate();
+	writeEventsOfTheDay(today);
+	writeDayWeek(today);
 };
 
 const setNewDate = () => {

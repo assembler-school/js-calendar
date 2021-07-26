@@ -4,7 +4,7 @@
 writeMonth(currentMonth);
 setNewDate();
 writeEventsOfTheDay(today);
-writeDayWeek(today)
+writeDayWeek(today);
 
 //initialize reminders
 activateReminders(reminders)
