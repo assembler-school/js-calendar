@@ -43,27 +43,6 @@
   bottom: -200px;
 }
 
-/* &.l-modal{
-    max-width: 800px;
-}
-&.xl-modal{
-    max-width: 80%;
-}
-&.full-modal{
-    max-width: 100%;
-}
-&.bounce{
-    transform: scale(0.4);
-    transition: all 0.3s cubic-bezier(.75,-0.5,0,2.75);
-}
-&.slide-from-top{
-    top: -200px;
-}
-&.slide-from-bottom{
-    bottom: -200px;
-}
-*/
-
 .modal__title{
   display: flex;
   align-items: center;
@@ -89,10 +68,9 @@
   top: -7px;
   padding: 0;
   margin: 0;
-  /* background-color: #f2f2f2; */
   border-radius: 50%;
   transform: rotate(45deg);
-} 
+}
 
 .modal__close:after, .modal__close:before{
     content: '';
@@ -119,87 +97,6 @@
   border-radius: 0 0 5px 5px;
 }
 
-.modal__text--title{
-  border-bottom: 1px solid black;
-  border-top: 1px solid black;
-  padding: 15px;
-}
-
-/* .form{
-  display: flex;
-  flex-direction: column;
-  max-height: 100%;
-} */
-
-.modal__item{
-  padding: 15px;
-  border-bottom: 1px solid black;
-  font-weight: 400;
-}
-
-.modal__item--title{
-  font-weight: 400;
-}
-
-.modal__text {
-  display: flex;
-  flex-direction: row;
-}
-
-.modal__input--text{
-  width: calc(100% - 24px);
-  font-size: 16px;
-  background-color: transparent;
-  border: 0;
-}
-
-.modal__label{
-  font-size: 16px;
-}
-
-.modal__select {
-  border-radius: 50px;
-  border: none;
-  background-color: lightgray;
-  padding: 7.5px 12px;
-}
-
-label#modal__item--description-text {
-  display: flex;
-  justify-content: center;
-  height: 80%;
-  padding-top: 3%;
-}
-
-.modal__input{
-  cursor: pointer;
-}
-
-.modal__input--date,
-.modal__input--time {
-  border-radius: 50px;
-  border: none;
-  background-color: lightgray;
-  padding: 6px 12px;
-}
-
-.modal__input--date{
-  margin-right: 10px;
-}
-
-.modal__item--description{
-  display: flex;
-  font-weight: 300;
-}
-
-.modal__item--hours {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas: "a b c d";
-  padding: 2%;
-  font-weight: 400;
-}
-
 .modal__footer{
   padding-top: 15px;
   display: flex;
@@ -213,12 +110,7 @@ label#modal__item--description-text {
 .modal.active .modal__container{
   opacity: 1;
 }
-.modal.active .modal__container.bounce{
-  transform: scale(1);
-}
-.modal.active .modal__container.slide-from-top{
-  top: 0px;
-}
+
 .modal.active .modal__container.slide-from-bottom{
   bottom: 0px;
 }

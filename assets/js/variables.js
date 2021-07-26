@@ -9,9 +9,6 @@ var todayMonth = pad(todayDate.getMonth() + 1);
 var todayYear = todayDate.getFullYear();
 var today = todayYear + "-" + todayMonth + "-" + todayDay;
 
-console.log(today)
-
-
 //get the current date
 const currentDate = new Date();
 const currentDay = currentDate.getDate();

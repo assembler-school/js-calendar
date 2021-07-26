@@ -27,7 +27,7 @@
             </header>
 
             <!-- Types -->
-            <main class="menu__main types">
+            <div class="menu__main types">
                 <ul class="types__list">
                     <li class="types__item justify-content-between border-bottom">
                         <label class="types__label">Dark mode</label>
@@ -52,7 +52,7 @@
                         <label class="types__label">Peer helping</label>
                     </li>
                 </ul>
-            </main><!-- Types -->
+            </div><!-- Types -->
 
             <footer class="menu__footer">
                 <button id="add-event" class="btn btn--primary btn--modal w-100" data-id="modal-example">
@@ -87,7 +87,7 @@
                 </nav><!-- Nav -->
             </header>
 
-            <main class="calendar__main">
+            <div class="calendar__main">
                 <div class="calendar__week">
                     <div class="calendar__day">M</div>
                     <div class="calendar__day">T</div>
@@ -99,7 +99,7 @@
                 </div>
                 <div class="calendar__dates" id="dates">
                 </div>
-            </main>
+            </div>
         </section><!-- Calendar -->
 
         <!-- Events -->
@@ -109,7 +109,7 @@
                 <h2 class="events__title">Sunday 07</h2>
             </header>
 
-            <main class="events__main" id="eventsDay">
+            <div class="events__main" id="eventsDay">
                 <div class="event">
                     <div class="event__item">
                         <p class="event__title">Event Title</p>
@@ -133,7 +133,7 @@
                         <span class="end__time">hh:mm</span>
                     </div>
                 </div>
-            </main>
+            </div>
 
         </section><!-- Events -->
 
@@ -145,52 +145,58 @@
         <!-- Content container -->
         <div class="modal__container slide-from-bottom bg--white">
 
+            <!-- Modal header -->
             <div class="modal__header">
                 <h4 class="modal__title">Create new event</h4>
                 <p class="modal__close"></p>
-            </div>
+            </div><!-- Modal header -->
 
-            <!-- Content container -->
+            <!-- Modal content -->
             <div class="modal__content">
 
                 <!-- Form -->
                 <form class="form" onsubmit="return false">
-                    <div class="modal__item modal__text--title border-bottom">
+                    <div class="form__item form__item--title border-bottom">
                         <i class="fas fa-tasks"></i>
-                        <input type="text" class="modal__input--text" id="title" name="title" placeholder="Title"
-                            required minlength="4" maxlength="20" size="20" />
+                        <input type="text" class="form__input form__input--text" id="title" name="title"
+                            placeholder="Title" required minlength="4" maxlength="20" size="20" />
                     </div>
-                    <div class="modal__item modal__item--hours border-bottom">
-                        <label for="start" class="modal__label">Start date:</label>
-                        <input class="modal__input--date" type="date" id="startDate" name="start" value=""
+                    <div class="form__item form__item--hours border-bottom">
+                        <label for="start" class="form__label">Start date:</label>
+                        <input class="form__input form__input--date" type="date" id="startDate" name="start" value=""
                             min="2021-01-01" max="2023-12-31">
-                        <input class="modal__input--time" type="time" id="startTime" name="start__time" required>
+                        <input class="form__input form__input--time" type="time" id="startTime" name="start__time"
+                            required>
                     </div>
-                    <div class="modal__item modal__item--hours border-bottom">
-                        <label for="end" class="modal__label">End date</label>
-                        <input class="modal__input--date" type="date" id="endDate" name="end" value="" min="2021-01-01"
-                            max="2023-12-31">
-                        <input class="modal__input--time" type="time" id="endTime" name="end__time" required>
+                    <div class="form__item form__item--hours border-bottom">
+                        <label for="end" class="form__label">End date</label>
+                        <input class="form__input form__input--date" type="date" id="endDate" name="end" value=""
+                            min="2021-01-01" max="2023-12-31">
+                        <input class="form__input form__input--time" type="time" id="endTime" name="end__time" required>
                     </div>
-                    <div class="modal__item">
+                    <div class="form__item">
                         <i class="fas fa-tasks"></i>
-                        <label class="modal__label">Event type</label>
-                        <select name="select" class="modal__select" id="type">
-                            <option value="Meeting">Meeting</option>
+                        <label class="form__label">Event type</label>
+                        <select name="select" class="form__select" id="type">
+                            <option value="Meetinga">Meeting</option>
                             <option value="Call">Call</option>
                             <option value="Coffee with">Coffee with</option>
                             <option value="Peer Helping">Peer Helping</option>
                         </select>
                     </div>
-                    <div class="modal__item">
+                    <div class="form__item">
                         <i class="far fa-bell"></i>
-                        <label class="modal__label">Reminder
-                        </label>
+                        <label class="form__label">Reminder</label>
+                        <select name="select" class="form__select" id="reminder">
+                            <option value="None">None</option>
+                            <option value="10 minutes before">10 minutes before</option>
+                            <option value="30 minutes before">30 minutes before</option>
+                            <option value="1 hour before">1 hour before</option>
+                        </select>
                     </div>
-
-                    <div class="modal__item">
+                    <div class="form__item">
                         <i class="fas fa-align-left"></i>
-                        <input type="text" class="modal__input--text" id="description" name="description"
+                        <input type="text" class="form__input form__input--text" id="description" name="description"
                             placeholder="Description" maxlength="48" />
                     </div>
 
@@ -201,7 +207,7 @@
                     </div><!-- Modal footer -->
                 </form><!-- Form -->
 
-            </div>
+            </div><!-- Modal content -->
         </div>
     </div><!-- Modal -->
 
