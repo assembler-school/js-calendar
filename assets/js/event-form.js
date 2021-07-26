@@ -33,9 +33,7 @@ function renderAddEventForm(data, autocomplete) {
     displayInputField("containerFinalDate");
   });
 
-  document
-    .getElementById("displayReminder")
-    .addEventListener("click", function () {
+  document.getElementById("displayReminder").addEventListener("click", function () {
       displayInputField("containerSetRemainder");
     });
 
@@ -46,30 +44,65 @@ function renderAddEventForm(data, autocomplete) {
 }
 
 function renderEditEventForm(data) {
+
+  // Change button text
   document.getElementById("submitForm").textContent = "Edit"
 
-  let currentYear = new Date(data.initialdate).getFullYear();
-  let currentMonth = new Date(data.initialdate).getMonth();
-  let unixCurrentMonth = new Date(currentYear, currentMonth).getTime();
-  let monthEvents = JSON.parse(localStorage.getItem(unixCurrentMonth))
-  let indexEvent = monthEvents.findIndex((event) => event.currentIdEvent == data.eventid)
+  // Show trash bin
+  let trashIcon = document.getElementById('trash-bin'); 
+  trashIcon.classList.remove('display-none')
+  trashIcon.addEventListener('click', () => deleteEventById(data));
 
-  let eventInfo = monthEvents.find((event) => event.currentIdEvent == data.eventid)
-
+  // Get current Event from storage and mapp values to form
+  let storageEvent = JSON.parse(localStorage.getItem(parseInt(data)))[0]
   let formElements = document.querySelectorAll("#addEventForm [name]")
   formElements.forEach((element) => {
-    for (let key in eventInfo) {
+    for (let key in storageEvent) {
       if (key == element.name) {
-        element.value = eventInfo[key]
+        element.value = storageEvent[key]
+
+
+        // Set to checked inputs
+        if (key === 'finalDate' && storageEvent[key] != '') {
+          document.getElementById('displayEnd').checked = true;
+          document.getElementById('containerFinalDate').classList.remove('display-none')
+        }
+
+        if (key === 'reminderEvent' && storageEvent[key] != '0') {
+          document.getElementById('displayReminder').checked = true;
+          document.getElementById('containerSetRemainder').classList.remove('display-none')
+        }
+
       }
     }
   })
+
+  // Add param Id to form
+  document.getElementById('addEventForm').setAttribute('data-event', data);
+}
+
+function deleteEventById(id) {
+
+  let confirmation = confirm("Are you sure you want to delete this event?");
+  if (confirmation) {
+    // Play Sound
+    new Audio('./assets/trash.mp3').play()
+    // Remove item from storage
+    window.localStorage.removeItem(id);
+    
+    closeModal();
+    renderCalendar(0);
+    document.getElementById('summary-current').innerHTML = '';
+  }
 }
 
 function formHandler(event) {
   event.preventDefault();
 
-  let formData = new FormData(event.target);
+  let form = event.target;
+  let eventId = form.getAttribute('data-event')
+  
+  let formData = new FormData(form);
 
   let eventObject = {};
 
@@ -78,23 +111,15 @@ function formHandler(event) {
     eventObject[pair[0]] = pair[1];
   }
 
-  eventObject.currentIdEvent = Date.now(); // Unique timestamp of event creation date
+  // To check edit/new
+  if ( eventId === null || eventId === '' ) {
+    // Save Event in LocalStorage
+    let keyEvent = new Date().getTime()
+    window.localStorage.setItem(keyEvent, JSON.stringify([eventObject]));
 
-  let currentEventYear = new Date(formData.get("initialDate")).getFullYear();
-  let currentEventMonth = new Date(formData.get("initialDate")).getMonth();
-
-  let monthEventUnix = new Date(currentEventYear, currentEventMonth).getTime();
-
-  let monthEvents = window.localStorage.getItem(monthEventUnix);
-
-  if (monthEvents) {
-    // When have events on current month
-    monthEvents = JSON.parse(window.localStorage.getItem(monthEventUnix)); // Parse to array
-    monthEvents.push(eventObject); // Push new event
-    window.localStorage.setItem(monthEventUnix, JSON.stringify(monthEvents)); // Update month array in storage
   } else {
-    // When there is no event on current month then create the month key
-    window.localStorage.setItem(monthEventUnix, JSON.stringify([eventObject]));
+    // Edit existing event
+    window.localStorage.setItem(eventId, JSON.stringify([eventObject]))
   }
 
   // Close Modal
@@ -106,7 +131,12 @@ function formHandler(event) {
 
 // Show and Hide elements in the form
 function displayInputField(element) {
-  document.getElementById(element).classList.toggle("display-none");
+  let elm = document.getElementById(element); 
+  elm.classList.toggle("display-none");
+
+  if (elm.classList.contains("display-none")) {
+    document.querySelector(`#${element} [name]`).value = '';
+  }
 }
 
 /* HTML CODE FOR ADD EVENT FORM */
@@ -163,10 +193,13 @@ let eventForm = `
       </button>
       <button type="submit" id="submitForm" class="form__button submit">Create
       </button>
+
+      <div id="trash-bin" class="trash-bin display-none">&#128465;</div>
   </div>
+
 </form>
 `;
 
 /* EXPORT */
 
-export { renderAddEventForm };
+export { renderAddEventForm, deleteEventById };

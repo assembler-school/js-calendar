@@ -1,7 +1,6 @@
 /* IMPORT */
-
 import { renderAddEventForm } from "./event-form.js";
-
+import { renderEventView } from "./event-view.js";
 /* GET ELEMENTS OF THE DOM */
 
 const ADDBUTTON = document.getElementById("plus-btn");
@@ -18,6 +17,9 @@ function displayModal(type, dataset) {
   } else if (type === "editEvent") {
     // If we want to display our box for editing events - Function Edit Event
     renderAddEventForm(dataset, true);
+  } else if (type === "viewEvent") {
+    // To display event details
+    renderEventView(dataset)
   }
 
 }

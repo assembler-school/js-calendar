@@ -29,10 +29,8 @@ document.getElementById("daysMonth").addEventListener("click", (e) => {
         let unixDataTime = new Date(parseInt(target.dataset.time) + 7200000) // We add two hours (7200000 miliseconds) to compensate the GMT +2 change in local time for Spain
         displayModal('addEvent', unixDataTime.toJSON().substr(0, 16))
     } else if (target.dataset.initialdate) {
-        let dataInfo = {}
-        dataInfo.eventid = target.dataset.event
-        dataInfo.initialdate = target.dataset.initialdate
-        displayModal('editEvent', dataInfo)
+        //displayModal('editEvent', target.dataset.event)
+        displayModal('viewEvent', target.dataset.event)
     }
 });
 
@@ -40,13 +38,11 @@ function renderCalendar(month) {
     daysMonth.innerHTML = "";
     currentMonth += month;
 
-    let monthEventsArray = window.localStorage.getItem(
-        new Date(currentYear, currentMonth).getTime()
-    );
-    let monthEventsArrayParse = JSON.parse(monthEventsArray);
 
+    let storageObj = {...localStorage}
+ 
     insertBlankDays();
-    insertDays(monthEventsArrayParse);
+    insertDays(storageObj);
     monthTitle();
 }
 
@@ -68,7 +64,7 @@ function insertBlankDays() {
     }
 }
 
-function insertDays(monthEvents) {
+function insertDays(eventsObj) {
     for (let i = 0; i < lastDay(); i++) {
         let day = i + 1;
         let dayUnix = new Date(currentYear, currentMonth, day).getTime();
@@ -77,28 +73,34 @@ function insertDays(monthEvents) {
         // Get the events for each day
         let eventsHTML = "";
         let dayEvents = [];
-        if (monthEvents != null) {
-            monthEvents.forEach((event) => {
-                // Verify the event is for the current day
-                let eventInitialDate = new Date(event.initialDate).getTime();
-                if (eventInitialDate >= dayUnix && eventInitialDate < tomorrowUnix)
+        if (eventsObj != null) {
+
+          for (const key in eventsObj) {
+            let event = JSON.parse(eventsObj[key])[0]
+            event.currentIdEvent = key; 
+
+            // Verify the event is for the current day
+            let eventInitialDate = new Date(event.initialDate).getTime();
+            if (eventInitialDate >= dayUnix && eventInitialDate < tomorrowUnix)
+                dayEvents.push(event);
+
+            // If event is during the current day
+            if (event.finalDate && event.finalDate != "") {
+                let eventFinalDate = new Date(event.finalDate).getTime();
+
+                // If event date is on range
+                if (
+                    eventInitialDate <= dayUnix &&
+                    eventInitialDate < tomorrowUnix &&
+                    eventFinalDate >= dayUnix
+                ) {
                     dayEvents.push(event);
-
-                // If event is during the current day
-                if (event.finalDate && event.finalDate != "") {
-                    let eventFinalDate = new Date(event.finalDate).getTime();
-
-                    // If event date is on range
-                    if (
-                        eventInitialDate <= dayUnix &&
-                        eventInitialDate < tomorrowUnix &&
-                        eventFinalDate >= dayUnix
-                    ) {
-                        dayEvents.push(event);
-                    }
                 }
-            });
+            }
+
+          }
         }
+
         let currentTime = new Date().getTime();
 
         // Detect when the DIV is the current day to add the styles
