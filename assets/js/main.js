@@ -27,7 +27,12 @@ function openModal() {
 }
 
 function closeModal() {
-  modal.classList.remove("--is-visible");
+  if(modal) {
+    modal.classList.remove("--is-visible");
+  }
+  if(infoEvents) {
+    infoEvents.classList.remove("--is-visible");
+  }
 }
 
 // --------- FORM VALIDATION --------
@@ -48,10 +53,10 @@ function displayRemindEvent() {
 function pressEscape(event) {
   if (event.key === "Escape") {
     if(modal) {
-      modal.classList.remove("--is-visible");
+      closeModal()
     }
     if(infoEvents){
-      infoEvents.classList.remove("--is-visible");
+      closeModal()
     }
   }
 }
@@ -115,11 +120,19 @@ function showResume(index) {
   <p>${myObject.remindInput}</p>
   <p>${myObject.description}</p>
   <p>${myObject.eventType}</p>
+  <button id="delete-event">Delete</button>
   `;
   modalInfoContent.innerHTML = html;
-  let closeModalResumeBtn = document.getElementById("close-resume");
-  closeModalResumeBtn.addEventListener('click', () => infoEvents.classList.remove("--is-visible"));
 
+  let deleteEventBtn = document.getElementById("delete-event");
+  let closeModalResumeBtn = document.getElementById("close-resume");
+  closeModalResumeBtn.addEventListener('click', closeModal);
+
+  deleteEventBtn.addEventListener('click', () => {
+    closeModal()
+    // myLocalStorage = myLocalStorage.filter(e => e.name !== eventName.innerHTML || e.startDate.split("T")[0] !== eventStartDate.innerHTML);
+    // localStorage.setItem('events', JSON.stringify(myLocalStorage));
+  })
   }
   
   //Calendar Functionality
