@@ -21,19 +21,18 @@ const writeMonth = (month) => {
 			todayYear === currentYear
 		) {
 			dates.innerHTML += `
-                <button class="btn btn--modal calendar__date calendar__today" data-id="${yearId}-${monthId}-${dayId}">
-                    <span class="">${day}</span>
-                    <span class="calendar__plus">+</span>
-                </button>
-            `;
+					<button class="btn btn--modal calendar__date calendar__today" data-id="${yearId}-${monthId}-${dayId}">
+							<span class="">${day}</span>
+							<span class="calendar__plus">+</span>
+					</button>
+			`;
 		} else {
 			dates.innerHTML += `
-                <button class="btn btn--modal calendar__date" data-id="${yearId}-${monthId}-${dayId}">
-                    <span class="">${day}</span>
-		    <div class="dot"id="dotId"></div>
-                    <span class="calendar__plus">+</span>
-                </button>
-            `;
+					<button class="btn btn--modal calendar__date" data-id="${yearId}-${monthId}-${dayId}">
+							<span class="">${day}</span>
+							<span class="calendar__plus">+</span>
+					</button>
+			`;
 		}
 	}
 };
@@ -110,6 +109,59 @@ const setNewDate = () => {
 	writeMonth(currentMonth);
 };
 
+/**
+ * Generate colored points in calendar days depending on the event type
+ */
+const addDotToDate = (element, idDateSelected) => {
+
+	// create html of the dot
+	let dot = document.createElement('div');
+
+	//add styles class dot
+	dot.classList.add('event__dot');
+
+	//get the color type of the events
+	let bg_color = getEventTypeColor(element);
+
+	//add bg color to the dot
+	dot.classList.add(`${bg_color}`);
+
+	//get the day selected
+	let eventDOM = document.querySelector(`[data-id='${idDateSelected}']`);
+
+	//add dots into eventNote
+	eventDOM.appendChild(dot);
+}
+
+const addDotsToCalendar = () => {
+
+	//get sort events
+	let eventsDots = eventsNotes.sort((a, b) => b.startString - a.startString);
+
+	let calendarDates = document.querySelectorAll(".calendar__date");
+
+	calendarDates.forEach((el) => {
+
+		//get the day selected
+		const idDateSelected = el.dataset.id;
+
+		//get the event
+		// const eventSelected = eventsNotes.find((event) => event.id == idDateSelected);
+		// const eventSelected = eventsNotes.find((event) => console.log(event));
+
+		// console.log(idDateSelected)
+		// console.log(eventSelected)
+
+		//find the event dot
+		const eventsToday = eventsDots.filter(event => event.startString == idDateSelected);
+
+		//
+		eventsToday.forEach((element) => addDotToDate(element, idDateSelected));
+
+		// eventsToday.forEach(element => console.log(element));
+	});
+
+}
 
 //generate colored points in calendar days depending on the event type:
 

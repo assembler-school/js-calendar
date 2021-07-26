@@ -37,6 +37,9 @@ function validateOnSubmit(e) {
   //close the modal
   closeModal();
 
+  //add dot to the calendar
+  // addDotsToCalendar();
+
   //write the event
   writeEventsOfTheDay(dateSelected);
 }

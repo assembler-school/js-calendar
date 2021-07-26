@@ -34,7 +34,7 @@ const getReminderDate = (event) => {
 const deleteReminderDate = (reminderNote) => { }
 
 const activateReminders = (reminders) => {
-  console.log('hola sergi');
+  console.log('reminder');
   // console.log(reminder);
   // reminders.forEach(event => activateReminderEvent(event));
 }

@@ -10,8 +10,6 @@ var todayYear = todayDate.getFullYear();
 var today = todayYear + "-" + todayMonth + "-" + todayDay;
 let tdMonth = todayDate.getMonth();
 
-
-
 //get the current date
 const currentDate = new Date();
 const currentDay = currentDate.getDate();
