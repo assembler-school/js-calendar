@@ -19,13 +19,13 @@ const writeEventsOfTheDay = (day) => {
   //print every eventNote of the day selected
   eventsNotes.forEach(event => {
 
-    let event__color = getEventTypeColor(event)
+    let event__color = getEventTypeColor(event);
 
     if (day == event.startDate) {
       eventsDay.innerHTML += `
         <div class="event">
           <div class="event__content">
-          <div class="event__type ${event__color}" id="cuadradito"></div>
+            <div class="event__type ${event__color}"></div>
             <p class="event__title">${event.title}</p>
             <p class="event__time">
               <span>${event.startTime}</span>
@@ -53,11 +53,13 @@ const writeEventsOfTheDay = (day) => {
 function renderEventNotes(todaysNotes, selectedDate) {
   eventsDay.innerHTML = ``
   todaysNotes.forEach(event => {
+    let event__color = getEventTypeColor(event);
+
     if (selectedDate == event.startDate) {
       eventsDay.innerHTML += `
       <div class="event">
         <div class="event__content">
-        <div class="event__type" id="cuadradito"></div>
+        <div class="event__type ${event__color}"></div>
           <p class="event__title">${event.title}</p>
           <p class="event__time">
             <span>${event.startTime}</span>
