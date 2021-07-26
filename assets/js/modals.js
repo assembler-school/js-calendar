@@ -1,10 +1,5 @@
 'use strict'
 
-var calendarMain = document.querySelector(".calendar__main");
-var addEventBtn = document.querySelector("#add-event");
-var cancelModal = document.getElementById('modalCancel');
-var saveModal = document.getElementById('modalSave');
-
 calendarMain.addEventListener("click", clickDate);
 addEventBtn.addEventListener("click", clickDate);
 
