@@ -170,7 +170,7 @@ function renderCalendar() {
         dayMatch = `${currentYear}-${currentMonth + 1}-0${numberOfDays}`;
       }
 
-      if (currentMonth < 10 || numberfDays < 10) {
+      if (currentMonth < 10 || numberOfDays < 10) {
         dayMatch = `${currentYear}-0${currentMonth + 1}-0${numberOfDays}`;
       }
 
@@ -186,12 +186,24 @@ function renderCalendar() {
         }
       }
 
-      if (numberOfDays == currentDay && runningMonth) {
-        createDiv.classList.add("--is-selected");
+      // Highlight current date
+      let loopDate = new Date()
+      if (currentDay === numberOfDays && 
+          currentMonth === loopDate.getMonth() && 
+          currentYear === loopDate.getFullYear()) {
+            createDiv.classList.add("--is-selected");
       }
-      if (currentMonth !== runningMonth) {
-        createDiv.classList.remove("--is-selected");
-      }
+
+      // if (numberOfDays == currentDay && runningMonth) {
+      //   createDiv.classList.add("--is-selected");
+      // }
+      // if (currentMonth !== runningMonth) {
+      //   createDiv.classList.remove("--is-selected");
+      // }
+      // if (!currentYear) {
+      //   createDiv.classList.remove("--is-selected");
+      // }
+
     }
     calendarDays.appendChild(createDiv);
   }
@@ -203,9 +215,16 @@ function clickArrow() {
   let prevArrow = document.getElementById("previousMonth");
   let nextArrow = document.getElementById("nextMonth");
 
+  // Move between months
   nextArrow.addEventListener("click", () => {
     calendarDays.innerHTML = "";
-    currentMonth++;
+    // currentMonth++;
+    if (currentMonth === 11) {
+      currentMonth = 0;
+      currentYear++;
+    } else {
+      currentMonth++;
+    }
 
     renderCalendar();
     calendarDays.classList.add("--is-moving-right");
@@ -213,8 +232,13 @@ function clickArrow() {
 
   prevArrow.addEventListener("click", () => {
     calendarDays.innerHTML = "";
-    currentMonth--;
-
+    // currentMonth--;
+    if (currentMonth === 0) {
+      currentMonth = 11;
+      currentYear--;
+    } else {
+      currentMonth--;
+    }
     renderCalendar();
   });
 }
