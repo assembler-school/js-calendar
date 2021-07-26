@@ -31,6 +31,17 @@ function validateOnSubmit(e) {
   //save the eventsNotes in localStorage
   (() => localStorage.setItem("events", eventsString))();
 
+
+// DOT TO CALENDAR
+
+
+ /*  document.gelElementByI('dotId'); */
+
+
+
+
+
+
   //close the modal
   closeModal()
 
