@@ -42,6 +42,19 @@
   background-color: ghostwhite;
 }
 
+.close{
+  display: flex;
+  height: 10%;
+}
+
+.close__btn {
+  background-color:burlywood ;
+  border-radius: 50%;
+  height: 20px;
+}
+
+
+
 .event__type{
   height: 20px;
   width: 20px;
@@ -50,7 +63,6 @@
   margin-top: 20px;
 }
 
-.event__title{}
 
 .event__time{
   font-weight: 400;
