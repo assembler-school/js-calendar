@@ -8,8 +8,6 @@ var changeButton = document.getElementById("toggle_classes");
 changeButton.addEventListener("click", switchStyle);
 
 function switchStyle() {
-  console.log(calendarMain);
-
   calendarMain.classList.toggle("darkMode");
   calendarMain.classList.toggle("lightMode");
 }
