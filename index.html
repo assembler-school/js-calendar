@@ -49,11 +49,15 @@
           <div>
             <label for="startDate">Start Date:</label>
             <input
-              type="datetime-local"
+              type="date"
               id="startDate"
               name="startDate"
               value=""
             />
+          </div>
+          <div>
+            <label for="startTime">Time :</label>
+            <input type="time" id="startTime" >
           </div>
           <div>
             <label for="endDate">End Date:</label>
@@ -61,11 +65,15 @@
           </div>
           <div id="endDateInput" class="--is-hidden">
             <input
-              type="datetime-local"
+              type="date"
               id="endDateInfo"
               name="endDate"
               value=""
             />
+            <div>
+              <label for="endTime">Time :</label>
+              <input type="time" id="endTime" >
+            </div>
           </div>
           <div>
             <label for="remind">Remind me when this event expire:</label>

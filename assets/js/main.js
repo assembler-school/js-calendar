@@ -79,7 +79,9 @@ form.addEventListener("submit", getValues);
 let eventValue = {
   name: "",
   startDate: "",
+  startTime: "",
   endDateInput: "",
+  endTime: "",
   remindInput: 0,
   description: "",
   eventType: "",
@@ -93,7 +95,9 @@ function getValues(e) {
   // e.preventDefault();
   eventValue.name = document.getElementById("name").value;
   eventValue.startDate = document.getElementById("startDate").value;
+  eventValue.startTime = document.getElementById("startTime").value;
   eventValue.endDateInput = document.getElementById("endDateInfo").value;
+  eventValue.endTime = document.getElementById("endTime").value;
   eventValue.remindInput = document.getElementById("time").value;
   eventValue.description = document.getElementById("description").value;
   eventValue.eventType = document.getElementById("eventType").value;
@@ -113,12 +117,13 @@ function showResume(index) {
   let myObject = myLocalStorage[index];
   let html = `
   <button id="close-resume" class="modal__close">X</button>
-  <p>${myObject.name}</p>
-  <p>${myObject.startDate}</p>
-  <p>${myObject.endDateInput}</p>
-  <p>${myObject.remindInput}</p>
-  <p>${myObject.description}</p>
-  <p>${myObject.eventType}</p>
+  <p>Name: ${myObject.name}</p>
+  <p>Start date: ${myObject.startDate}</p>
+  <p>Start time: ${myObject.startTime}</p>
+  <p>End date: ${myObject.endDateInput}</p>
+  <p>Remind: ${myObject.remindInput}</p>
+  <p>Description: ${myObject.description}</p>
+  <p>Event type: ${myObject.eventType}</p>
   <button id="delete-event">Delete</button>
   `;
   modalInfoContent.innerHTML = html;
@@ -133,7 +138,7 @@ function showResume(index) {
     myLocalStorage.splice(index, 1);
     localStorage.setItem("events", JSON.stringify(myLocalStorage));
     closeModal();
-    location.reload();
+    window.location = window.location
   });
 }
 
