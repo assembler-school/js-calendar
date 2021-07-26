@@ -125,4 +125,3 @@ const setNewDate = () => {
 // 	dotId.innerHTML += `
 //         <div class="dot" ${event__color}"></div>`
 // }
-}
