@@ -38,7 +38,8 @@
   font-size: 16px;
 }
 
-.form__input{
+.form__input,
+.form__select{
   cursor: pointer;
 }
 
@@ -59,4 +60,11 @@
   font-size: 16px;
   background-color: transparent;
   border: 0;
+}
+
+.form__select {
+  border-radius: 50px;
+  border: none;
+  background-color: lightgray;
+  padding: 7.5px 12px;
 }
