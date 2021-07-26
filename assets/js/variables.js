@@ -42,3 +42,9 @@ const form = document.querySelector('.form');
 let eventsDay = document.getElementById('eventsDay');
 
 var dateSelected;
+
+//modals variable
+var calendarMain = document.querySelector(".calendar__main");
+var addEventBtn = document.querySelector("#add-event");
+var cancelModal = document.getElementById('modalCancel');
+var saveModal = document.getElementById('modalSave');

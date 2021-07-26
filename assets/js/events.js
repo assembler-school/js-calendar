@@ -17,13 +17,15 @@ const writeEventsOfTheDay = (day) => {
   eventsNotes = JSON.parse(localStorage.getItem('events'));
 
   //print every eventNote of the day selected
-
   eventsNotes.forEach(event => {
+
+    let event__color = getEventTypeColor(event);
+
     if (day == event.startDate) {
       eventsDay.innerHTML += `
-        <div class="event">         
+        <div class="event">
           <div class="event__content">
-          <div class="event__type" id="cuadradito"></div>
+            <div class="event__type ${event__color}"></div>
             <p class="event__title">${event.title}</p>
             <p class="event__time">
               <span>${event.startTime}</span>
@@ -38,7 +40,6 @@ const writeEventsOfTheDay = (day) => {
     }
   });
 
-
   //print message alert if no events in the day selected
   if (eventsDay.innerHTML == ``) {
     eventsDay.innerHTML += `
@@ -50,13 +51,15 @@ const writeEventsOfTheDay = (day) => {
 }
 
 function renderEventNotes(todaysNotes, selectedDate) {
-  eventsDay.innerHTML =`` 
+  eventsDay.innerHTML = ``
   todaysNotes.forEach(event => {
-  if (selectedDate == event.startDate) {
-    eventsDay.innerHTML += `
-      <div class="event">         
+    let event__color = getEventTypeColor(event);
+
+    if (selectedDate == event.startDate) {
+      eventsDay.innerHTML += `
+      <div class="event">
         <div class="event__content">
-        <div class="event__type" id="cuadradito"></div>
+        <div class="event__type ${event__color}"></div>
           <p class="event__title">${event.title}</p>
           <p class="event__time">
             <span>${event.startTime}</span>
@@ -68,13 +71,11 @@ function renderEventNotes(todaysNotes, selectedDate) {
         </div>
       </div>
     `;
-  }
-});
+    }
+  });
 }
 
 function writeDayWeek(dateSelected) {
-
-  console.log(dateSelected);
 
   //convert dateSelected string to date
   const targetDateArr = dateSelected.split("-");
@@ -92,4 +93,28 @@ function writeDayWeek(dateSelected) {
 
   //set the events title
   eventTitle.innerHTML = targetDayWeek + " " + targetDay;
+}
+
+const getEventTypeColor = (event) => {
+  let event__color;
+
+  switch (event.type) {
+    case "Meeting":
+      event__color = "bg--red";
+      break;
+    case "Call":
+      event__color = "bg--blue";
+      break;
+    case "Coffee with":
+      event__color = "bg--green";
+      break;
+    case "Peer helping":
+      event__color = "bg--yellow";
+      break;
+    default:
+      event__color = "bg--red";
+      break;
+  }
+
+  return event__color;
 }
