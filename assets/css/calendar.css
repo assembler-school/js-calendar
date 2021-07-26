@@ -61,6 +61,14 @@
     border: solid 1px black;
 }
 
+.day__btn--add {
+    opacity: 0;
+}
+
+.day__month:hover .day__btn--add {
+    opacity: 1;
+}
+
 .header__date-title {
     text-transform: capitalize;
 }
@@ -119,3 +127,6 @@
     display: block;
     pointer-events: none;
 }
+
+
+/* hide .day__btn--add if day__month is not hovered */
