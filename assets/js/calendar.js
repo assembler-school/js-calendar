@@ -5,7 +5,7 @@ const writeMonth = (month) => {
 	for (let i = startDay(); i > 0; i--) {
 		dates.innerHTML += `
             <div class="calendar__date calendar__prev">
-                ${getTotalDays(currentMonth - 1) - (i - 1)}
+                <span>${getTotalDays(currentMonth - 1) - (i - 1)}</span>
             </div>
         `;
 	}
@@ -130,6 +130,8 @@ const addDotToDate = (element, idDateSelected) => {
 
 	//get the day selected
 	let eventDOM = document.querySelector(`[data-id='${idDateSelected}']`);
+
+	console.log(eventDOM);
 
 	//add dots into eventNote
 	eventDOM.appendChild(dot);
