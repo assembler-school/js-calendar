@@ -16,32 +16,11 @@ function renderAddEventForm(data, autocomplete) {
   `;
 
   if (autocomplete) {
-    // Local storage -> ID by data
-    // Autocomplete by iteration -> matching fields with properties
-
-    let currentYear = new Date(data.initialdate).getFullYear();
-    let currentMonth = new Date(data.initialdate).getMonth();
-    let unixCurrentMonth = new Date(currentYear, currentMonth).getTime();
-    let monthEvents = JSON.parse(localStorage.getItem(unixCurrentMonth))
-
-    let eventInfo = monthEvents.find((event) => event.currentIdEvent == data.eventid)
-
-    let formElements = document.querySelectorAll("#addEventForm [name]")
-    formElements.forEach((element) => {
-      // console.log(eventInfo[element.name]);
-      // console.log("Element name: "+element.name);
-      // console.log("Event info: "+eventInfo[element.name]);
-      // console.log(eventInfo)
-      for (let key in eventInfo) {
-        if (key == element.name) {
-          element.value = eventInfo[key]
-        }
-      }
-    })
+    renderEditEventForm(data)
+  } else {
+    // Adding current time to input date
+    document.getElementById("initialDate").value = data
   }
-
-  // Adding current time to input date
-  document.getElementById("initialDate").value = data
 
   // To close the current Modal
   document.getElementById("modalClose").addEventListener("click", closeModal); // Closing by clicking the X button
@@ -66,10 +45,26 @@ function renderAddEventForm(data, autocomplete) {
     .addEventListener("submit", formHandler);
 }
 
-// function renderEditEventForm() {
-//   let eventId = 
-//   localStorage.getItem()
-// }
+function renderEditEventForm(data) {
+  document.getElementById("submitForm").textContent = "Edit"
+
+  let currentYear = new Date(data.initialdate).getFullYear();
+  let currentMonth = new Date(data.initialdate).getMonth();
+  let unixCurrentMonth = new Date(currentYear, currentMonth).getTime();
+  let monthEvents = JSON.parse(localStorage.getItem(unixCurrentMonth))
+  let indexEvent = monthEvents.findIndex((event) => event.currentIdEvent == data.eventid)
+
+  let eventInfo = monthEvents.find((event) => event.currentIdEvent == data.eventid)
+
+  let formElements = document.querySelectorAll("#addEventForm [name]")
+  formElements.forEach((element) => {
+    for (let key in eventInfo) {
+      if (key == element.name) {
+        element.value = eventInfo[key]
+      }
+    }
+  })
+}
 
 function formHandler(event) {
   event.preventDefault();
@@ -166,7 +161,7 @@ let eventForm = `
   <div>
       <button id="cancelEvent" class="form__button cancel">Cancel
       </button>
-      <button type="submit" id="createEvent" class="form__button submit">Create
+      <button type="submit" id="submitForm" class="form__button submit">Create
       </button>
   </div>
 </form>
