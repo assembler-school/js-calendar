@@ -1,7 +1,7 @@
 /* GLOBAL */
 
 * {
-    font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
 }
 
 :root {
@@ -12,61 +12,57 @@
   --fifth-color: #bbbbbe;
 
   --type-1: #ff6961;
-  --type-1: #77dd77;
-  --type-1: #fdfd96;
-  --type-1: #84b6f4;
-  --type-1: #fdcae1;
+  --type-2: #77dd77;
+  --type-3: #fdfd96;
+  --type-4: #84b6f4;
+  --type-5: #fdcae1;
 }
 
 /* MAIN CONTAINER */
 
 .main-container {
-    display: flex;
-    padding: 3rem;
-    background-color: #f5f5f5;
-    flex-shrink: 0;
-    flex-grow: 1;
-    flex-basis: 100%;
-    flex-wrap: wrap;
+  display: flex;
+  padding: 3rem;
+  background-color: var(--fifth-color);
+  flex-shrink: 0;
+  flex-grow: 1;
+  flex-basis: 100%;
+  flex-wrap: wrap;
 }
-
 
 /* SUMMARY */
 
 .summary {
-    padding: 2.5rem;
-    background-color: #ffffff;
-    box-shadow: 2px 2px 5px grey;
-    flex-shrink: 0;
-    flex-grow: 1;
-    flex-basis: 30%;
+  padding: 2.5rem;
+  background-color: var(--third-color);
+  box-shadow: 2px 2px 5px grey;
+  flex-shrink: 0;
+  flex-grow: 1;
+  flex-basis: 30%;
 }
-
 
 /* CALENDAR CONTAINER */
 
 .calendar-container {
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-    flex-grow: 1;
-    flex-basis: 70%;
-    padding: 2.5rem;
-    background-color: #ffffff;
-    box-shadow: 2px 2px 5px grey;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  flex-grow: 1;
+  flex-basis: 70%;
+  padding: 2.5rem;
+  background-color: #ffffff;
+  box-shadow: 2px 2px 5px grey;
 }
-
 
 /* HEADER */
 
 .header {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
-
 
 /* Common used classes */
 
 .display-none {
-    display: none;
+  display: none;
 }
