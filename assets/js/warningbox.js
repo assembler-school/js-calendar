@@ -29,10 +29,18 @@ function myExpiredEvents() {
                 titleEvent = parsedEvent.titleEvent;
             }
             if (parsedEvent.initialDate != "") {
-                initialDate = convertDate(parsedEvent.initialDate);
+                initialDate = new Date(parsedEvent.initialDate).toLocaleString("en", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    hour12: true,
+                });
             }
             if (parsedEvent.finalDate != "") {
-                finalDate = convertDate(parsedEvent.finalDate);
+                finalDate = new Date(parsedEvent.finalDate).toLocaleString("en", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    hour12: true,
+                });
             }
             if (parsedEvent.descriptionEvent != "") {
                 descriptionEvent = parsedEvent.descriptionEvent;
@@ -45,12 +53,18 @@ function myExpiredEvents() {
             expiredContainerDiv.innerHTML += `
             <div class="expiredEventContainer">
                 <span data-eventdismiss="${key}" class="event__dismiss">&#10799;</span>
-                <h4>${titleEvent}</h4>
-                <p>${initialDate}</p>
-                <p>${finalDate}</p>
-                <p>${descriptionEvent}</p>
-                <p>${eventType}</p>
-            </div>
+                <div class="prevEvents__headerTitles">
+                <h4 class="prevEvents__title">${titleEvent}</h4>
+                <p>from ${initialDate} to ${finalDate}</p>
+                </div>
+                <div>
+                <p class="prevEvents__description">${descriptionEvent}</p>
+                </div>
+                <div>
+                <p class="prevEvents__eventType">${eventType}</p>
+                </div>
+                <hr class="inlineEvent">
+                </div>
           `;
         }
     }

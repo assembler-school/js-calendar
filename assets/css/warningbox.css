@@ -1,0 +1,55 @@
+:root {
+    --primary-color: #495464;
+    --secondary-color: #bbbfca;
+    --third-color: #f4f4f2;
+    --fourth-color: #e8e8e8;
+    --fifth-color: #bbbbbe;
+    --type-1: #ff6961;
+    --type-2: #77dd77;
+    --type-3: #fdfd96;
+    --type-4: #84b6f4;
+    --type-5: #fdcae1;
+}
+
+.summary {
+    background-color: var(--third-color);
+}
+
+.summary-past {
+    background-color: #f4f4f4;
+}
+
+.inlineEvent {
+    border-top: 2px solid var(--fifth-color);
+    padding: 0;
+}
+
+.prevEvents__headerTitles {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.pastEvent__title {
+    display: flex;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.prevEvents__title {
+    display: flex;
+    padding-top: 1rem;
+    font-size: 1rem;
+}
+
+.prevEvents__eventType {
+    display: flex;
+    font-size: 1rem;
+    font-weight: lighter;
+}
+
+.prevEvents__description {
+    display: flex;
+    font-size: 1rem;
+    font-weight: lighter;
+}

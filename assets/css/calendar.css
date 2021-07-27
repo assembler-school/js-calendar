@@ -74,8 +74,8 @@
 }
 
 .past .day__event-title {
-  opacity: 0.75;
-} 
+    opacity: 0.75;
+}
 
 .today {
     font-weight: bold;
@@ -130,10 +130,6 @@
     width: 100%;
     display: block;
     pointer-events: none;
-}
-
-.summary-past {
-    background-color: cadetblue;
 }
 
 .expiredEventContainer {
