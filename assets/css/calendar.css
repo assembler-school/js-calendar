@@ -64,7 +64,8 @@
     opacity: 0;
 }
 
-.day__month:hover .day__btn--add, .day__btn--add:focus {
+.day__month:hover .day__btn--add,
+.day__btn--add:focus {
     opacity: 1;
 }
 
@@ -125,6 +126,24 @@
     width: 100%;
     display: block;
     pointer-events: none;
+}
+
+.summary-past {
+    background-color: cadetblue;
+}
+
+.expiredEventContainer {
+    position: relative;
+}
+
+.event__dismiss {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    font-size: 2rem;
+    line-height: 8px;
+    padding: 8px;
+    cursor: pointer;
 }
 
 

@@ -110,7 +110,6 @@ let quotes = {
 function getRandomQuote() {
     let randomNumber = Math.ceil(Math.random() * Object.keys(quotes).length);
     targetDiv.textContent = quotes[randomNumber];
-    console.log(targetDiv.textContent);
 }
 
 /* EXPORT */
