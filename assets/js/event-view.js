@@ -32,27 +32,54 @@ function renderEventView(data) {
         finalDate = convertDate(finalDate);
     }
 
-    container.innerHTML = `
-    <div id="currentViewEvent">
-      <div id="trash-bin-current">&#128465;</div>
-      <div id="edit-event">&#128393;</div>
-      <div><h4>${title}</h4></div>
-      <div><p>${initialDate} - ${finalDate}</p></div>
-      <div><p>${description}</p></div>
 
-      <div><p>${reminder}</p></div>
-      <div><p>${type}</p></div>
+    // 
+    let viewModelDate = '';
+    if (finalDate === '') {
+      viewModelDate = `${initialDate}`
+    } else {
+      viewModelDate = `${initialDate} - ${finalDate}`  
+    }
+    
+
+    container.innerHTML = `
+    <div id="modal-view" class="modal-view">
+      <div class="modal-view-inner">
+          
+          <div class="modal-view-options row right-top">
+            <div id="trash-bin-current">&#128465;</div>
+            <div id="edit-event">&#128393;</div>
+            <div id="close-modal-view">⨯</div>  
+          </div>
+          
+          <div class="row"><h4>${title}</h4></div>
+          <div class="row"><p>${viewModelDate}</p></div>
+          <div class="row"><p>${description}</p></div>
+          <div class="row"><p class="${type}">${type}</p></div>      
+      </div>
     </div>
   `;
 
     // Delete Event
-    let trashIcon = document.getElementById("trash-bin-current");
-    trashIcon.addEventListener("click", () => deleteEventById(data));
+    document.getElementById("trash-bin-current").addEventListener("click", () => {
+      deleteEventById(data)
+      container.innerHTML = '';
+    });
 
     // Edit event
-    document
-        .getElementById("edit-event")
-        .addEventListener("click", () => displayModal("editEvent", data));
+    document.getElementById("edit-event").addEventListener("click", () => {
+      displayModal("editEvent", data)
+      container.innerHTML = '';
+    });
+
+    // Close modal
+    document.getElementById("close-modal-view").addEventListener("click", () => {
+      container.innerHTML = '';
+    });
+    document.getElementById("modal-view").addEventListener("click", () => {
+      container.innerHTML = '';
+    });
+
 }
 
 function convertDate(date) {
