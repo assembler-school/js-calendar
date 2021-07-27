@@ -1,6 +1,12 @@
 'use strict';
 
+/**
+ * Set reminder date
+ *
+ * @param {Object} event
+ */
 const setReminderDate = (event) => {
+
   //declare reminderNote as object
   let reminderNote = {}
 
@@ -21,7 +27,14 @@ const setReminderDate = (event) => {
   (() => localStorage.setItem("reminders", remindersString))();
 }
 
+/**
+ * Get reminder date
+ *
+ * @param {Object} event
+ * @return {Date}
+ */
 const getReminderDate = (event) => {
+
   //convert string to date
   const startDate = convertStringToDate(event.startDate, event.startTime);
 
@@ -38,6 +51,11 @@ const getReminderDate = (event) => {
   return reminderDate;
 }
 
+/**
+ * Activate reminders
+ *
+ * @param {Object} reminders
+ */
 const activateReminders = (reminders) => {
 
   setInterval(function () {
@@ -48,13 +66,18 @@ const activateReminders = (reminders) => {
       //get the event of the reminder
       eventsNotes.forEach(event => {
 
-        //
+        //check if event and reminder have the same id in order to activate the reminder alert
         if (event.id == reminder.id) { activateReminderEvent(event); }
       });
     });
   }, 10 * 1000);
 }
 
+/**
+ * Activate reminder event
+ *
+ * @param {Object} event
+ */
 const activateReminderEvent = (event) => {
   let currentDate = new Date();
   let reminderDate = getReminderDate(event);
@@ -73,9 +96,13 @@ const activateReminderEvent = (event) => {
   if (reminderDate > currentDate) {
     deleteReminderDate(event);
   }
-
 }
 
+/**
+ * Delete reminder date
+ *
+ * @param {Object} event
+ */
 const deleteReminderDate = (event) => {
 
   // console.log(reminders);
@@ -89,5 +116,5 @@ const deleteReminderDate = (event) => {
   let remindersString = JSON.stringify(reminders);
 
   //save the reminders list in localStorage
-  () => localStorage.setItem("reminders", remindersString);
+  (() => localStorage.setItem("reminders", remindersString))();
 }

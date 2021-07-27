@@ -11,7 +11,7 @@ const renderEventsOfTheDay = (day) => {
   eventsDay.innerHTML = ``;
 
   //if there are no events exit the function
-  if (!eventsNotes.length) return;
+  (!eventsNotes.length) ? eventsNotes = new Array() : null;
 
   //get the eventsNotes from localStorage
   eventsNotes = JSON.parse(localStorage.getItem('events'));
@@ -137,10 +137,11 @@ const getEventTypeColor = (eventSelected) => {
   return bg_color;
 }
 
+//add event listener to events list of the day in order to delete an event
 document.querySelector("#eventsDay").addEventListener("click", deleteEvent);
 
 /**
- * Delete event
+ * Delete event of the events list in the screen
  *
  * @param {Object} e event of the delete event button
  */
@@ -150,19 +151,19 @@ function deleteEvent(e) {
   const el = e.target;
 
   //check if matches with close button
-  if (!el.matches(".event__btn--close")) return null;
+  if (!el.matches(".event__btn--close")) return;
 
   //get the event DOM
   const eventDOM = el.parentElement;
 
   //get the data id of the event
-  let eventId = eventDOM.dataset.id;
+  const eventId = eventDOM.dataset.id;
 
   //find and remove the event by id in the events list
   eventsNotes = eventsNotes.filter((event) => event.id != eventId);
 
   //convert EventsNotes to string
-  let eventsString = JSON.stringify(eventsNotes);
+  const eventsString = JSON.stringify(eventsNotes);
 
   //save the events list in localStorage
   (() => localStorage.setItem("events", eventsString))();
@@ -176,6 +177,3 @@ function deleteEvent(e) {
   //reload month calendar
   renderMonth(currentMonth);
 }
-
-
-
