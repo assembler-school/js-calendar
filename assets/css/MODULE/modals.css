@@ -70,13 +70,15 @@
   margin: 0;
   border-radius: 50%;
   transform: rotate(45deg);
+  background-color: black;
 }
 
 .modal__close:after, .modal__close:before{
-    content: '';
+  content: '';
   display: block;
   position: absolute;
   border-radius: 3px;
+  background-color: white;
 }
 
 .modal__close:after{
@@ -95,11 +97,6 @@
   height: 400px;
   max-height: 100%;
   border-radius: 0 0 5px 5px;
-}
-
-.modal__footer{
-  padding-top: 15px;
-  display: flex;
 }
 
 .modal.active{

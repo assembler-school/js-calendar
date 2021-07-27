@@ -68,3 +68,8 @@
   background-color: lightgray;
   padding: 7.5px 12px;
 }
+
+.form__footer{
+  padding-top: 15px;
+  display: flex;
+}

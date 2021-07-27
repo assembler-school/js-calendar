@@ -17,7 +17,7 @@ const writeEventsOfTheDay = (day) => {
 
     let bg_color = getEventTypeColor(event);
 
-    if (day == event.startString) {
+    if (day == event.startDate) {
       eventsDay.innerHTML += `
         <div class="event" data-id="${event.id}">
           <div class="event__content">
@@ -31,7 +31,7 @@ const writeEventsOfTheDay = (day) => {
             <p class="event__description">${event.description}</p>
             <label class="event__type">${event.type}</label>
           </div>
-          <button class="close__btn"> X </button>
+          <button class="btn event__btn event__btn--close"> X </button>
         </div>
       `;
     }
@@ -51,7 +51,7 @@ function renderEventNotes(todaysNotes, selectedDate) {
   eventsDay.innerHTML = ``
   todaysNotes.forEach(event => {
     let bg_color = getEventTypeColor(event);
-    if (selectedDate == event.startString) {
+    if (selectedDate == event.startDate) {
       eventsDay.innerHTML += `
       <div class="event" data-id="${event.id}">
         <div class="event__content">
@@ -65,7 +65,7 @@ function renderEventNotes(todaysNotes, selectedDate) {
           <p class="event__description">${event.description}</p>
           <label class="event__type">${event.type}</label>
         </div>
-        <button class="close__btn"> X </button>
+        <button class="btn event__btn event__btn--close"> X </button>
       </div>
     `;
     }
@@ -124,7 +124,7 @@ function deleteEvent(e) {
   const el = e.target;
 
   //check if matches with close button
-  if (!el.matches(".close__btn")) return null;
+  if (!el.matches(".event__btn--close")) return null;
 
   //get the event DOM
   const eventDOM = el.parentElement;

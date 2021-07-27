@@ -5,7 +5,7 @@ addEventBtn.addEventListener("click", clickDate);
 
 const addEvent = (e) => {
   //select right modal from id-data
-  let modal = document.querySelectorAll('#modal-example');
+  let modal = document.querySelectorAll('#modal-add-event');
   Array.prototype.forEach.call(modal, function (el) {
 
     //add active class on modal
@@ -35,8 +35,10 @@ function dayOfWeekAsString(dayIndex) {
 
 function clickDate(e) {
 
+  //get the target element
   const el = e.target;
 
+  //check if it matches with a calendar date
   if (!el.matches(".btn--modal")) return null;
 
   //get the day selected
@@ -44,17 +46,18 @@ function clickDate(e) {
 
   //write in screen the events day week
   writeDayWeek(dateSelected)
-  let todaysEvents = eventsNotes.filter(appointment => appointment.startString == dateSelected);
+  let todaysEvents = eventsNotes.filter(appointment => appointment.startDate == dateSelected);
   renderEventNotes(todaysEvents, dateSelected);
 
   //clear form inputs
   document.querySelector(`#title`).value = '';
   document.querySelector(`#description`).value = '';
-  (dateSelected) ? document.querySelector(`#startString`).value = dateSelected : document.querySelector(`#startString`).value = '';
+  (dateSelected) ? document.querySelector(`#startDate`).value = dateSelected : document.querySelector(`#startDate`).value = '';
   document.querySelector(`#startTime`).value = '09:00';
-  (dateSelected) ? document.querySelector(`#endString`).value = dateSelected : document.querySelector(`#endString`).value = '';
+  (dateSelected) ? document.querySelector(`#endDate`).value = dateSelected : document.querySelector(`#endDate`).value = '';
   document.querySelector(`#endTime`).value = '10:00';
 
+  //add the event
   addEvent(e);
 }
 
@@ -107,5 +110,5 @@ document.addEventListener('click', function (e) {
 cancelModal.addEventListener('click', closeModal);
 
 function closeModal() {
-  document.getElementById('modal-example').classList.remove('active');
+  document.getElementById('modal-add-event').classList.remove('active');
 };

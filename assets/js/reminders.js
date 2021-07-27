@@ -20,7 +20,7 @@ const setReminderDate = (event) => {
 
 const getReminderDate = (event) => {
   //convert string to date
-  const startDate = convertStringToDate(event.startString, event.startTime);
+  const startDate = convertStringToDate(event.startDate, event.startTime);
 
   //get initial timestamp of the event
   const initialTimestamp = new Date(startDate).getTime();
@@ -55,7 +55,7 @@ const activateReminders = (reminders) => {
 const activateReminderEvent = (event) => {
   let currentDate = new Date();
   let reminderDate = getReminderDate(event);
-  let startDate = convertStringToDate(event.startString, event.startTime);
+  let startDate = convertStringToDate(event.startDate, event.startTime);
 
   console.log(event);
   console.log('currentDate', currentDate);

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset='utf-8'>
@@ -55,7 +55,7 @@
             </div><!-- Types -->
 
             <footer class="menu__footer">
-                <button id="add-event" class="btn btn--primary btn--modal w-100" data-id="modal-example">
+                <button id="add-event" class="btn btn--primary btn--modal w-100" data-id="modal-add-event">
                     Add event
                 </button>
             </footer>
@@ -106,33 +106,10 @@
         <section class="events">
 
             <header class="events__header border-bottom">
-                <h2 class="events__title">Sunday 07</h2>
+                <h2 class="events__title"></h2>
             </header>
 
             <div class="events__main" id="eventsDay">
-                <div class="event">
-                    <div class="event__item">
-                        <p class="event__title">Event Title</p>
-                        <span class="start__time">hh:mm</span><span> - </span>
-                        <span class="end__time">hh:mm</span>
-                    </div>
-                </div>
-
-                <div class="event">
-                    <div class="event__item">
-                        <p class="event__title">Event Title</p>
-                        <span class="start__time">hh:mm</span><span> - </span>
-                        <span class="end__time">hh:mm</span>
-                    </div>
-                </div>
-
-                <div class="event">
-                    <div class="event__item">
-                        <p class="event__title">Event Title</p>
-                        <span class="start__time">hh:mm</span><span> - </span>
-                        <span class="end__time">hh:mm</span>
-                    </div>
-                </div>
             </div>
 
         </section><!-- Events -->
@@ -140,7 +117,7 @@
     </main><!-- Main -->
 
     <!-- Modal -->
-    <div class="modal" id="modal-example">
+    <div class="modal" id="modal-add-event">
 
         <!-- Content container -->
         <div class="modal__container slide-from-bottom bg--white">
@@ -163,15 +140,15 @@
                     </div>
                     <div class="form__item form__item--hours border-bottom">
                         <label for="start" class="form__label">Start date:</label>
-                        <input class="form__input form__input--date" type="date" id="startString" name="start" value=""
-                            min="2021-01-01" max="2023-12-31">
+                        <input class="form__input form__input--date" type="date" id="startDate" name="start" value=""
+                            min="2021-01-01" max="2023-12-31" required>
                         <input class="form__input form__input--time" type="time" id="startTime" name="start__time"
                             required>
                     </div>
                     <div class="form__item form__item--hours border-bottom">
                         <label for="end" class="form__label">End date</label>
-                        <input class="form__input form__input--date" type="date" id="endString" name="end" value=""
-                            min="2021-01-01" max="2023-12-31">
+                        <input class="form__input form__input--date" type="date" id="endDate" name="end" value=""
+                            min="2021-01-01" max="2023-12-31" required>
                         <input class="form__input form__input--time" type="time" id="endTime" name="end__time" required>
                     </div>
                     <div class="form__item">
@@ -200,11 +177,10 @@
                             placeholder="Description" maxlength="48" />
                     </div>
 
-                    <!-- Modal footer -->
-                    <div class="modal__footer">
+                    <div class="form__footer">
                         <input type="submit" value="Save" class="btn btn--primary" id="modalSave" />
                         <button class="btn btn--primary" id="modalCancel">Cancel</button>
-                    </div><!-- Modal footer -->
+                    </div>
                 </form><!-- Form -->
 
             </div><!-- Modal content -->

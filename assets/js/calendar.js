@@ -140,7 +140,7 @@ const addDotToDate = (element, idDateSelected) => {
 const addDotsToCalendar = () => {
 
 	//get sort events
-	let eventsDots = eventsNotes.sort((a, b) => b.startString - a.startString);
+	let eventsDots = eventsNotes.sort((a, b) => b.startDate - a.startDate);
 
 	let calendarDates = document.querySelectorAll(".calendar__date");
 
@@ -152,7 +152,7 @@ const addDotsToCalendar = () => {
 		if (!idDateSelected) return null;
 
 		//find the event dot
-		const eventsToday = eventsDots.filter(event => event.startString == idDateSelected);
+		const eventsToday = eventsDots.filter(event => event.startDate == idDateSelected);
 
 		//
 		eventsToday.forEach((element) => addDotToDate(element, idDateSelected));
