@@ -35,9 +35,9 @@ function convertStringToDate(stringDate, stringTime) {
 
   //convert time string
   const targetTimeArr = stringTime.split(":");
-  const targetMinutes = targetTimeArr[0];
-  const targetSeconds = targetTimeArr[1];
+  const targetHours = targetTimeArr[0];
+  const targetMinutes = targetTimeArr[1];
 
   //return date
-  return new Date(targetYear, targetMonth, targetDay, targetMinutes, targetSeconds);
+  return new Date(targetYear, targetMonth, targetDay, targetHours, targetMinutes);
 }

@@ -23,7 +23,7 @@ const writeMonth = (month) => {
 			dates.innerHTML += `
 					<button class="btn btn--modal calendar__date calendar__today" data-id="${yearId}-${monthId}-${dayId}">
 							<span class="event__number">${day}</span>
-							<div class="event__dots"></div>
+							<ul class="event__dots"></ul>
 							<span class="calendar__plus">+</span>
 					</button>
 			`;
@@ -31,7 +31,7 @@ const writeMonth = (month) => {
 			dates.innerHTML += `
 					<button class="btn btn--modal calendar__date" data-id="${yearId}-${monthId}-${dayId}">
 							<span class="event__number">${day}</span>
-							<div class="event__dots"></div>
+							<ul class="event__dots"></ul>
 							<span class="calendar__plus">+</span>
 					</button>
 			`;
@@ -130,13 +130,11 @@ const addDotToDate = (element, idDateSelected) => {
 	//add bg color to the dot
 	dot.classList.add(`${bg_color}`);
 
-	//get the day selected
-	let eventDOM = document.querySelector(`[data-id='${idDateSelected}'] .event__dots`);
+	//get dotList of the day selected
+	let dotList = document.querySelector(`[data-id='${idDateSelected}'] .event__dots`);
 
-	console.log(eventDOM);
-
-	//add dots into eventNote
-	eventDOM.appendChild(dot);
+	//add dots into the event dot list
+	dotList.appendChild(dot);
 }
 
 const addDotsToCalendar = () => {
