@@ -4,6 +4,19 @@
     font-family: 'Nunito', sans-serif;
 }
 
+:root {
+  --primary-color: #495464;
+  --secondary-color: #bbbfca;
+  --third-color: #f4f4f2;
+  --fourth-color: #e8e8e8;
+  --fifth-color: #bbbbbe;
+
+  --type-1: #ff6961;
+  --type-1: #77dd77;
+  --type-1: #fdfd96;
+  --type-1: #84b6f4;
+  --type-1: #fdcae1;
+}
 
 /* MAIN CONTAINER */
 

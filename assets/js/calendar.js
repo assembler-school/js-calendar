@@ -1,5 +1,6 @@
 /* IMPORT */
 import { displayModal } from "./modal.js";
+import { displayDayEvents } from "./day-events.js";
 
 /* GLOBAL VARIABLES */
 let currentMonth = new Date().getMonth();
@@ -31,6 +32,11 @@ document.getElementById("daysMonth").addEventListener("click", (e) => {
   } else if (target.dataset.initialdate) {
     //displayModal('editEvent', target.dataset.event)
     displayModal("viewEvent", target.dataset.event);
+  } else if (target.dataset.daynumber) {
+    displayDayEvents({
+      unix: target.dataset.dayunix,
+      number: target.dataset.daynumber
+    })
   }
 });
 
@@ -79,8 +85,10 @@ function insertDays(eventsObj) {
 
         // Verify the event is for the current day
         let eventInitialDate = new Date(event.initialDate).getTime();
-        if (eventInitialDate >= dayUnix && eventInitialDate < tomorrowUnix)
+        if (eventInitialDate >= dayUnix && eventInitialDate < tomorrowUnix) {
           dayEvents.push(event);
+        }
+          
 
         // If event is during the current day
         if (event.finalDate && event.finalDate != "") {
@@ -104,8 +112,10 @@ function insertDays(eventsObj) {
     let currentDayClasses = "";
     if (currentTime >= dayUnix && currentTime < tomorrowUnix) {
       currentDayClasses = "day__month today";
+    } else if ( currentTime > dayUnix) {
+      currentDayClasses = "day__month past";
     } else {
-      currentDayClasses = "day__month ";
+      currentDayClasses = "day__month";
     }
 
     // Sort the day Events
@@ -130,7 +140,7 @@ function insertDays(eventsObj) {
       let eventTime = new Date(event.initialDate).toLocaleTimeString("en", {
         hour: "2-digit",
         minute: "2-digit",
-        hour12: false,
+        hour12: true,
       });
 
       // Verify type event to add class
@@ -146,7 +156,7 @@ function insertDays(eventsObj) {
     daysMonth.innerHTML += `
             <div class="${currentDayClasses}">
                 <button data-time="${dayUnix}" class="day__btn--add">+</button>
-                <div class="day__tittle" data-day="${day}">${day}</div>
+                <div class="day__tittle" data-daynumber="${day}" data-dayunix="${dayUnix}">${day}</div>
                 <div class="day__events">
                     ${eventsHTML}
                 </div>

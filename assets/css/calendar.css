@@ -73,33 +73,37 @@
     text-transform: capitalize;
 }
 
+.past .day__event-title {
+  opacity: 0.75;
+} 
+
 .today {
     font-weight: bold;
     background-color: #f5f5f5;
 }
 
-.meeting {
+.day__event-title.meeting {
     font-size: 0.8rem;
     font-weight: normal;
     text-align: center;
     background-color: #54d454;
 }
 
-.personal {
+.day__event-title.personal {
     font-size: 0.8rem;
     font-weight: normal;
     text-align: center;
     background-color: #5e5efa;
 }
 
-.study {
+.day__event-title.study {
     font-size: 0.8rem;
     font-weight: normal;
     text-align: center;
     background-color: #e6e651;
 }
 
-.others {
+.day__event-title.others {
     font-size: 0.8rem;
     font-weight: normal;
     text-align: center;
