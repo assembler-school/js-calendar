@@ -92,10 +92,17 @@ function writeDayWeek(dateSelected) {
   eventTitle.innerHTML = targetDayWeek + " " + targetDay;
 }
 
-const getEventTypeColor = (event) => {
+
+/**
+ * Get the respective background color according the event type
+ *
+ * @param {Object} eventSelected
+ * @return {String} Returns background color of the event as string
+ */
+const getEventTypeColor = (eventSelected) => {
   let bg_color;
 
-  switch (event.type) {
+  switch (eventSelected.type) {
     case "Meeting":
       bg_color = "bg--red";
       break;

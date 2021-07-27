@@ -102,7 +102,7 @@ document.addEventListener('click', function (e) {
   if (!e.target.matches('.modal__close')) return;
   else {
     //remove active class on modal
-    e.target.parentElement.parentElement.classList.remove('active');
+    document.getElementById('modal-add-event').classList.remove('active');
   }
 });
 
