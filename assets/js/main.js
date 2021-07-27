@@ -117,9 +117,9 @@ function showResume(index) {
   let myObject = myLocalStorage[index];
 
   // Count remaining time from current date to start date
-  let dateOfEvent = myObject.startDate
+  let dateOfEvent = myObject.startDate + " " + myObject.startTime
   let setDate = Date.parse(dateOfEvent);
-  console.log(setDate)
+  // console.log(setDate)
   let currentDate = Date.parse(new Date());
   if (setDate > currentDate) {
     var timeLeft = ((setDate - currentDate)/1000)
@@ -152,13 +152,13 @@ function showResume(index) {
 
   // Check remaining time with current date to set alarm
   if (myObject.remindInput) {
-    let remindInfoInMinute = myObject.remindInput.split(" ")[0];
+    let remindInfoInMinute = myObject.remindInput;
     let remindInfoInSeconds = remindInfoInMinute*60
-    console.log(remindInfoInSeconds)
-    if (timeLeft === remindInfoInSeconds) {
+    if (timeLeft === 0) {
       alert("You have some minutes left")
     }
   }
+
 
   // Delete event
   let deleteEventBtn = document.getElementById("delete-event");
@@ -315,15 +315,28 @@ clickArrow();
 
 
 
-// function renderTimeEvent() {
-//   for (let i = 0; i < events.length; i++) {
-//     let dateOfEvent = events[i].startDate.split("-")
-//     let dateOfEventYear =  dateOfEvent[0] // Year
-//     let dateOfEventMonth =  dateOfEvent[1]
-//     let dateOfEventDay = dateOfEvent[2]
-//     let setDate = new Date(dateOfEventYear, dateOfEventMonth, dateOfEventDay);
-//     let currentDate = new Date();
-//     var timeLeft = (setDate.getTime() - currentDate.getTime())
-//     console.log(timeLeft)
-//   }
-// }
+function renderTimeEvent() {
+  for (let i = 0; i < events.length; i++) {
+    let dateOfEvent = events[i].startDate + " " + events[i].startTime
+    let setDate = Date.parse(dateOfEvent);
+    let currentDate = Date.parse(new Date());
+
+    if (setDate > currentDate) {
+      var timeLeft = ((setDate - currentDate)/1000)
+    }
+    // console.log(timeLeft)
+
+    if (events[i].remindInput) {
+      let remindInfoInMinute = events[i].remindInput;
+      let remindInfoInSeconds = remindInfoInMinute*60
+      if (timeLeft === remindInfoInSeconds) {
+        alert("You have some minutes left")
+       }
+    }
+  }
+
+}
+
+setInterval(renderTimeEvent, 1000)
+
+
