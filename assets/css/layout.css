@@ -1,0 +1,20 @@
+.main-container {
+  max-width: 60rem;
+  width: 100%;
+  margin: 5rem auto;
+  padding: 1rem;
+  background-color: #29323F;
+  box-shadow: 3px 3px 15px 0px rgb(41 50 63 / 75%);
+  border-radius: 5px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+@media all and(max-width: 480px) {
+  .main-container  {
+    padding: 0.5rem;
+  }
+}

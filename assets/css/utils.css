@@ -1,6 +1,26 @@
-.flex {
+
+/** flexbox */
+.flex-between {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-around {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/** positioning */
+.margin-x-1 {
+  margin: 0 1rem;
 }
 
 .--is-visible {
@@ -12,15 +32,31 @@
 }
 
 .--is-selected {
-  background-color: black;
-  color: white;
-}
 
-/* .--is-moving-right {
-  transition: all 1s linear;
-  transform: translateX(20%);
-} */
+  background-color: yellow;
+  color: black;
+  font-weight: 700;
+  font-size: 1.2rem;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
 
 .--is-expired {
   background-color: red;
+}
+
+
+/** COLORS */
+
+.color-yellow {
+  color: #FCEE6D;
+}
+
+.color-grey {
+  color: #626972;
+}
+
+.color-grey-dark {
+  color: #29323F;
 }

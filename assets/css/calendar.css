@@ -1,19 +1,20 @@
-.calendar-info,
-.calendar-week {
-  outline: solid 1px red;
-  display: flex;
-  justify-content: space-evenly;
-  padding: 0.5rem;
+.calendar {
+  padding: 1rem 0;
 }
 
-.calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  transition: all 1s linear ease-in-out;
+.calendar__week-days {
+  margin: 2rem 0;
+  border-bottom: 1px solid #FCEE6D;
 }
 
-.calendar-grid div {
+.calendar__day {
+  padding: .5rem;
   text-align: center;
-  border: 1px solid rgb(134, 114, 250);
-  padding: 2rem;
 }
+
+@media all and(min-width: 480px) {
+  .calendar__day {
+    padding: 1rem;
+  }
+}
+

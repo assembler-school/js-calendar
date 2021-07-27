@@ -238,6 +238,7 @@ function renderCalendar() {
 
   for (let index = 1; index <= daysQuantity + indexFirstDay; index++) {
     let createDiv = document.createElement("div");
+    createDiv.classList.add('calendar__day')
 
     if (index > indexFirstDay) {
       let numberOfDays = index - indexFirstDay;

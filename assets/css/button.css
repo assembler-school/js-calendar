@@ -1,0 +1,23 @@
+.button {
+  max-width: 9.35rem;
+  width: 100%;
+  height: fit-content;
+  padding: .5rem 1rem;
+  background-color: transparent;
+  border-color: white;
+  color: white;
+  border-radius: 1.25rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.button:hover {
+  background-color: #FCEE6D;
+  color: #29323F;
+}
+
+.button--rounded {
+  max-width: 3rem;
+  text-align: center;
+  padding: .5rem;
+}
