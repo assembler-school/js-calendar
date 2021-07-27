@@ -14,6 +14,8 @@ const remind = document.getElementById("remind");
 const endDateInput = document.getElementById("endDateInput");
 const remindInput = document.getElementById("remindInput");
 const modalContent = document.getElementById("modal-content");
+const startDateOfEvent = document.getElementById("startDate")
+const preSelectedDate = document.getElementById("pre-select")
 
 // --------- EVENT LISTENER --------
 window.addEventListener("keydown", pressEscape);
@@ -23,6 +25,9 @@ closeModalBtn.addEventListener("click", closeModal);
 
 function openModal() {
   modal.classList.add("--is-visible");
+  startDateOfEvent.classList.remove("--is-hidden")
+  preSelectedDate.classList.add("--is-hidden")
+  document.getElementById("startDate").required = true;
 }
 
 function closeModal() {
@@ -94,8 +99,15 @@ let eventDate;
 function getValues(e) {
   // e.preventDefault();
   eventValue.name = document.getElementById("name").value;
-  eventValue.startDate = document.getElementById("startDate").value;
+
+  if(document.getElementById("startDate").value) {
+    eventValue.startDate = document.getElementById("startDate").value;
+  } else {
+    eventValue.startDate = clicked
+  }
+
   eventValue.startTime = document.getElementById("startTime").value;
+
   eventValue.endDateInput = document.getElementById("endDateInfo").value;
   eventValue.endTime = document.getElementById("endTime").value;
   eventValue.remindInput = document.getElementById("time").value;
@@ -150,16 +162,6 @@ function showResume(index) {
   }
   setInterval(setTime, 1000);
 
-  // Check remaining time with current date to set alarm
-  if (myObject.remindInput) {
-    let remindInfoInMinute = myObject.remindInput;
-    let remindInfoInSeconds = remindInfoInMinute*60
-    if (timeLeft === 0) {
-      alert("You have some minutes left")
-    }
-  }
-
-
   // Delete event
   let deleteEventBtn = document.getElementById("delete-event");
   let closeModalResumeBtn = document.getElementById("close-resume");
@@ -173,6 +175,20 @@ function showResume(index) {
     closeModal();
     window.location = window.location
   });
+}
+
+// Modal extra
+let clicked = null;
+
+function openModalExtra(dayMatch) {
+
+  clicked = dayMatch
+
+  modal.classList.add("--is-visible");
+  startDateOfEvent.classList.add("--is-hidden")
+  document.getElementById("startDate").required = false;
+  preSelectedDate.innerHTML  = dayMatch
+
 }
 
 //Calendar Functionality
@@ -227,6 +243,21 @@ function renderCalendar() {
       let numberOfDays = index - indexFirstDay;
       createDiv.innerHTML = numberOfDays;
 
+      // Create button to add event to each square of day
+      let createDivBtn = document.createElement("button")
+      createDivBtn.innerHTML = `Create`
+      createDiv.appendChild(createDivBtn)
+      createDivBtn.classList.add("--is-hidden")
+
+      // Display the button the mouse hover
+      createDiv.addEventListener("mouseover", () => createDivBtn.classList.remove("--is-hidden"))
+
+      // Hide the button when the mouse move out
+      createDiv.addEventListener("mouseout", () => createDivBtn.classList.add("--is-hidden") )
+
+      // open the modal 
+      createDivBtn.addEventListener("click", () => openModalExtra(dayMatch))
+
       let dayMatch = `${currentYear}-${currentMonth + 1}-${numberOfDays}`;
 
       if (numberOfDays < 10) {
@@ -240,13 +271,39 @@ function renderCalendar() {
       if (numberOfDays >= 10) {
         dayMatch = `${currentYear}-0${currentMonth + 1}-${numberOfDays}`;
       }
+
       for (let index = 0; index < events.length; index++) {
         eventDate = events[index].startDate.split("T")[0];
         if (eventDate === dayMatch) {
           eventDiv = document.createElement("button");
           eventDiv.innerHTML = events[index].name;
           createDiv.appendChild(eventDiv);
+
+          // Display info of each event
           eventDiv.addEventListener("click", () => showResume(index));
+
+          // Mark expired events with red color
+          checkExpiredEvents(index);
+
+          // If the event has no end date, compare start date and current date
+          // if (!events[index].endDateInput) {
+          //   let startDateInfo = events[index].startDate + " " + events[index].startTime
+          //   let setDate = Date.parse(startDateInfo);
+          //   let currentDate = Date.parse(new Date());
+          //   if (setDate < currentDate) {
+          //     eventDiv.classList.add("--is-expired")
+          //   }
+          // }
+
+          // // If the event has end date, compare end date and current date
+          // if (events[index].endDateInput) {
+          //   let endDateInfo = events[index].endDateInput + " " + events[index].endTime
+          //   let setDate = Date.parse(endDateInfo);
+          //   let currentDate = Date.parse(new Date());
+          //   if (setDate < currentDate) {
+          //     eventDiv.classList.add("--is-expired")
+          //   }
+          // }
         }
       }
 
@@ -314,7 +371,6 @@ clickArrow();
 // ----------- SHOW CURRENT DAY WITH CLASS AND STYLAH!! -------
 
 
-
 function renderTimeEvent() {
   for (let i = 0; i < events.length; i++) {
     let dateOfEvent = events[i].startDate + " " + events[i].startTime
@@ -324,6 +380,7 @@ function renderTimeEvent() {
     if (setDate > currentDate) {
       var timeLeft = ((setDate - currentDate)/1000)
     }
+
     // console.log(timeLeft)
 
     if (events[i].remindInput) {
@@ -334,9 +391,33 @@ function renderTimeEvent() {
        }
     }
   }
-
 }
 
 setInterval(renderTimeEvent, 1000)
 
+
+function checkExpiredEvents(value) {
+
+  // If the event has no end date, compare start date and current date
+  if (!events[value].endDateInput) {
+    let startDateInfo = events[value].startDate + " " + events[value].startTime
+    let setDate = Date.parse(startDateInfo);
+    let currentDate = Date.parse(new Date());
+    if (setDate < currentDate) {
+      eventDiv.classList.add("--is-expired")
+      // alert("The event " + events[value].name +  " has expired")
+    }
+  }
+
+  // If the event has end date, compare end date and current date
+  if (events[value].endDateInput) {
+    let endDateInfo = events[value].endDateInput + " " + events[value].endTime
+    let setDate = Date.parse(endDateInfo);
+    let currentDate = Date.parse(new Date());
+    if (setDate < currentDate) {
+      eventDiv.classList.add("--is-expired")
+      // alert("The event " + events[value].name +  " has expired")
+    }
+  }
+}
 

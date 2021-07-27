@@ -20,3 +20,7 @@
   transition: all 1s linear;
   transform: translateX(20%);
 } */
+
+.--is-expired {
+  background-color: red;
+}
