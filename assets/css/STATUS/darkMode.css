@@ -1,0 +1,130 @@
+/**
+ * STATUS - DARK MODE
+ */
+
+.darkMode {
+  background-color:#121212;
+  color: #FAFAFA;
+}
+
+.darkMode .border{
+  border: 1px solid #585858;
+}
+
+.darkMode .border-top{
+  border-top: 1px solid #585858;
+}
+
+.darkMode .border-right{
+  border-right: 1px solid #585858;
+}
+
+.darkMode .border-bottom{
+  border-bottom: 1px solid #585858;
+}
+
+.darkMode .border-left{
+  border-left: 1px solid #585858;
+}
+
+/* common */
+
+.darkMode .main{
+  background-color:#121212;
+  color: #FAFAFA;
+}
+
+/* menu */
+
+.darkMode .menu{
+  background-color: #121212;
+  color: #FAFAFA;
+}
+
+/* nav */
+
+.darkMode .nav__list{
+  background-color: #121212;
+}
+
+/* calendar */
+
+.darkMode .calendar__week{
+  background-color: #121212;
+}
+
+.darkMode .calendar__day  {
+  background-color:#121212;
+  color: #A4A4A4;
+}
+
+.darkMode .calendar__date{
+  background-color: #1C1C1C;
+  border-color: #1C1C1C;
+  color: #FAFAFA;
+}
+
+.darkMode .calendar__today {
+  background-color: #FAFAFA;
+  color: #121212;
+}
+
+.darkMode .calendar__prev{
+  background-color: #121212;
+  border-color: #121212;
+  color: #A4A4A4;
+}
+
+/* buttons */
+
+.darkMode .btn--primary{
+  background-color: #FAFAFA;
+  border: 1px solid #FAFAFA;
+  color: #121212;
+}
+
+.darkMode .btn--secondary,
+.darkMode .btn--circle{
+  background-color: transparent;
+  border: 1px solid #FAFAFA;
+  color: #FAFAFA;
+}
+
+/* events */
+
+.darkMode .section.events{
+  background-color: #FAFAFA;
+  color: #121212;
+}
+
+.darkMode .event__message.event__message--alert{
+  background-color: #121212;
+  color: #FAFAFA;
+}
+
+.darkMode .showMenu{
+  background-color: #121212;
+  color: #FAFAFA;
+}
+
+.darkMode .events{
+  background-color: #121212;
+  color: #FAFAFA;
+}
+
+.darkMode .event{
+  border-bottom: 1px solid #585858;
+}
+
+.darkMode .event:hover{
+  background-color: #1C1C1C;
+  color: #FAFAFA;
+}
+
+.darkMode .event__btn--close{
+  color: #FAFAFA;
+}
+
+.darkMode .event__type {
+  border: 1px solid #585858;
+}

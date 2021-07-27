@@ -1,15 +1,15 @@
 'use strict';
 
 /**
-   * Toggle styles when we press the switch button
-   */
-
+ * Toggle styles when we press the switch button
+ */
+var main = document.querySelector("main");
 var changeButton = document.getElementById("toggle_classes");
 changeButton.addEventListener("click", switchStyle);
 
 function switchStyle() {
-  calendarMain.classList.toggle("darkMode");
-  calendarMain.classList.toggle("lightMode");
+  main.classList.toggle("darkMode");
+  main.classList.toggle("lightMode");
 }
 
 function pad(val) {
