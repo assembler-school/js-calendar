@@ -5,7 +5,7 @@ const writeMonth = (month) => {
 	for (let i = startDay(); i > 0; i--) {
 		dates.innerHTML += `
             <div class="calendar__date calendar__prev">
-                <span>${getTotalDays(currentMonth - 1) - (i - 1)}</span>
+                <span class="event__number">${getTotalDays(currentMonth - 1) - (i - 1)}</span>
             </div>
         `;
 	}
@@ -22,14 +22,16 @@ const writeMonth = (month) => {
 		) {
 			dates.innerHTML += `
 					<button class="btn btn--modal calendar__date calendar__today" data-id="${yearId}-${monthId}-${dayId}">
-							<span class="">${day}</span>
+							<span class="event__number">${day}</span>
+							<div class="event__dots"></div>
 							<span class="calendar__plus">+</span>
 					</button>
 			`;
 		} else {
 			dates.innerHTML += `
 					<button class="btn btn--modal calendar__date" data-id="${yearId}-${monthId}-${dayId}">
-							<span class="">${day}</span>
+							<span class="event__number">${day}</span>
+							<div class="event__dots"></div>
 							<span class="calendar__plus">+</span>
 					</button>
 			`;
@@ -117,7 +119,7 @@ const setNewDate = () => {
 const addDotToDate = (element, idDateSelected) => {
 
 	// create html of the dot
-	let dot = document.createElement('div');
+	let dot = document.createElement('li');
 
 	//add styles class dot
 	dot.classList.add('event__dot');
@@ -129,7 +131,7 @@ const addDotToDate = (element, idDateSelected) => {
 	dot.classList.add(`${bg_color}`);
 
 	//get the day selected
-	let eventDOM = document.querySelector(`[data-id='${idDateSelected}']`);
+	let eventDOM = document.querySelector(`[data-id='${idDateSelected}'] .event__dots`);
 
 	console.log(eventDOM);
 
@@ -145,12 +147,12 @@ const addDotsToCalendar = () => {
 	let calendarDates = document.querySelectorAll(".calendar__date");
 
 	calendarDates.forEach((el) => {
-		
+
 		//get the day selected
 		const idDateSelected = el.dataset.id;
 
-		if(!idDateSelected) return null;
-		
+		if (!idDateSelected) return null;
+
 		//find the event dot
 		const eventsToday = eventsDots.filter(event => event.startString == idDateSelected);
 

@@ -36,7 +36,7 @@
   border-bottom: 1px solid lightgray;
   align-self: center;
   padding: 20px;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .event:hover{
@@ -58,13 +58,16 @@
   color: white;
 }
 
+.event__number{
+  margin-bottom: 10px;
+}
+
 .event__color{
   height: 20px;
   width: 20px;
   border-radius: 4px;
   margin-right: 10px;
 }
-
 
 .event__time{
   font-weight: 400;
@@ -84,7 +87,6 @@
 }
 
 .event__message{
-  padding: 0 20px;
   font-size: 16px;
   font-weight: 400;
 }
@@ -93,11 +95,16 @@
   color: gray;
 }
 
+.event__dots{
+  display: flex;
+  height: 100%;
+}
+
 .event__dot{
-  height: 10px;
-  width: 10px;
+  list-style: none;
+  height: 8px;
+  width: 8px;
   border-radius: 50%;
-  /* background-color: cadetblue; */
 }
 
 @media (max-width: 767px) {
@@ -105,5 +112,10 @@
     position: absolute;
     width: 100%;
     transform: translateX(100%);
+  }
+
+  .event__dot{
+    height: 6px;
+    width: 6px;
   }
 }
