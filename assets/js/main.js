@@ -25,9 +25,10 @@ closeModalBtn.addEventListener("click", closeModal);
 
 function openModal() {
   modal.classList.add("--is-visible");
-  startDateOfEvent.classList.remove("--is-hidden")
-  preSelectedDate.classList.add("--is-hidden")
+  startDateOfEvent.classList.remove("--is-hidden");
+  preSelectedDate.classList.add("--is-hidden");
   document.getElementById("startDate").required = true;
+  form.reset();
 }
 
 function closeModal() {
@@ -185,9 +186,12 @@ function openModalExtra(dayMatch) {
   clicked = dayMatch
 
   modal.classList.add("--is-visible");
-  startDateOfEvent.classList.add("--is-hidden")
+  startDateOfEvent.classList.add("--is-hidden");
   document.getElementById("startDate").required = false;
+  preSelectedDate.classList.remove("--is-hidden");
+
   preSelectedDate.innerHTML  = dayMatch
+  form.reset();
 
 }
 
@@ -245,7 +249,7 @@ function renderCalendar() {
       createDiv.innerHTML = numberOfDays;
 
       // Create button to add event to each square of day
-      let createDivBtn = document.createElement("button")
+      let createDivBtn = document.createElement("button");
       createDivBtn.innerHTML = `Create`
       createDiv.appendChild(createDivBtn)
       createDivBtn.classList.add("--is-hidden")
