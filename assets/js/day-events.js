@@ -22,25 +22,24 @@ function displayDayEvents(dateObj) {
 
       // Verify the event is for the current day
       let eventInitialDate = new Date(event.initialDate).getTime();
-      
       if (eventInitialDate >= currentDate && eventInitialDate < tomorrowDate) {
         dayEvents.push(event);
+      } else {
+        // If event is during the current day
+        if (event.finalDate && event.finalDate != "") {
+          let eventFinalDate = new Date(event.finalDate).getTime();
+          //console.log('Evento tiene fecha final');
+
+          // If event date is on range
+          if (
+            eventInitialDate <= dayUnix &&
+            eventInitialDate < tomorrowDate &&
+            eventFinalDate >= currentDate
+          ) {
+            dayEvents.push(event);
+          }
+        } 
       }
-
-      // If event is during the current day
-      if (event.finalDate && event.finalDate != "") {
-        let eventFinalDate = new Date(event.finalDate).getTime();
-        console.log('Evento tiene fecha final');
-
-        // If event date is on range
-        if (
-          eventInitialDate <= dayUnix &&
-          eventInitialDate < tomorrowDate &&
-          eventFinalDate >= currentDate
-        ) {
-          dayEvents.push(event);
-        }
-      }  
     }
 
     // Sort Array
@@ -56,21 +55,31 @@ function displayDayEvents(dateObj) {
         return 0;
       }
     });
-
+    
     let eventsInfo = ''
     dayEvents.forEach((event, i) => {
-      eventsInfo += `
-        <div class="event__container">
+      
+      let initialDate = new Date(event.initialDate).toLocaleString("en", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+    });
 
-            <div><h4>${event.titleEvent}</h4></div>
-            <p>${event.descriptionEvent}</p>
-            <span></span>
+      eventsInfo += `
+        <div class="summary-event__container">
+            <div class="summary-event__title row"><h4>${event.titleEvent}</h4><span class="summary-event__date">${initialDate}</span></div>
+            <p class="summary-event__description">${event.descriptionEvent}</p>
         </div>
       `;
     })
 
+    let formatDate = new Date(dayUnix).toLocaleString('en', {
+      month: "long",
+      year: "numeric",
+      day: "numeric"
+    })
     containerEvents.innerHTML = `
-      <span>${convertDate(dayUnix)}</span>
+      <p class="summary__date">${formatDate}</p>
       ${eventsInfo}
     `;
 

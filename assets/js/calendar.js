@@ -87,20 +87,19 @@ function insertDays(eventsObj) {
         let eventInitialDate = new Date(event.initialDate).getTime();
         if (eventInitialDate >= dayUnix && eventInitialDate < tomorrowUnix) {
           dayEvents.push(event);
-        }
-          
+        } else {  
+          // If event is during the current day
+          if (event.finalDate && event.finalDate != "") {
+            let eventFinalDate = new Date(event.finalDate).getTime();
 
-        // If event is during the current day
-        if (event.finalDate && event.finalDate != "") {
-          let eventFinalDate = new Date(event.finalDate).getTime();
-
-          // If event date is on range
-          if (
-            eventInitialDate <= dayUnix &&
-            eventInitialDate < tomorrowUnix &&
-            eventFinalDate >= dayUnix
-          ) {
-            dayEvents.push(event);
+            // If event date is on range
+            if (
+              eventInitialDate <= dayUnix &&
+              eventInitialDate < tomorrowUnix &&
+              eventFinalDate >= dayUnix
+            ) {
+              dayEvents.push(event);
+            }
           }
         }
       }
@@ -132,10 +131,10 @@ function insertDays(eventsObj) {
       }
     });
 
+    let seeMoreEvents = '';
     dayEvents.forEach((event, index) => {
       // If there are more than 3 dont show more
-      if (index >= 3)
-        return (eventsHTML += `<div class="day__event-container"><div data-event class="more-events">See more events...</div></div>`);
+      if (index >= 3) return seeMoreEvents = `<div class="day__event-container"><div data-event class="more-events">See more events...</div></div>`;
       //To get event time
       let eventTime = new Date(event.initialDate).toLocaleTimeString("en", {
         hour: "2-digit",
@@ -159,6 +158,7 @@ function insertDays(eventsObj) {
                 <div class="day__tittle" data-daynumber="${day}" data-dayunix="${dayUnix}">${day}</div>
                 <div class="day__events">
                     ${eventsHTML}
+                    ${seeMoreEvents}
                 </div>
             </div>`;
   }
