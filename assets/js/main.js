@@ -115,6 +115,16 @@ function showResume(index) {
   infoEvents.classList.add("--is-visible");
 
   let myObject = myLocalStorage[index];
+
+  // Count remaining time from current date to start date
+  let dateOfEvent = myObject.startDate
+  let setDate = Date.parse(dateOfEvent);
+  console.log(setDate)
+  let currentDate = Date.parse(new Date());
+  if (setDate > currentDate) {
+    var timeLeft = ((setDate - currentDate)/1000)
+  }
+
   let html = `
   <button id="close-resume" class="modal__close">X</button>
   <p>Name: ${myObject.name}</p>
@@ -123,11 +133,34 @@ function showResume(index) {
   <p>End date: ${myObject.endDateInput}</p>
   <p>Remind: ${myObject.remindInput}</p>
   <p>Description: ${myObject.description}</p>
-  <p>Event type: ${myObject.eventType}</p>
+  <p>Event type: ${myObject.eventType}</p> 
+  <p>Remaining Time: <span id="time-left"></span></p> 
   <button id="delete-event">Delete</button>
   `;
   modalInfoContent.innerHTML = html;
 
+  // Display remaining time of event 
+  // From current date to start date
+  let timeRemain = document.querySelector("#time-left")
+  timeRemain.innerHTML = timeLeft
+
+  function setTime() {
+    timeLeft--;
+    timeRemain.innerHTML = timeLeft;
+  }
+  setInterval(setTime, 1000);
+
+  // Check remaining time with current date to set alarm
+  if (myObject.remindInput) {
+    let remindInfoInMinute = myObject.remindInput.split(" ")[0];
+    let remindInfoInSeconds = remindInfoInMinute*60
+    console.log(remindInfoInSeconds)
+    if (timeLeft === remindInfoInSeconds) {
+      alert("You have some minutes left")
+    }
+  }
+
+  // Delete event
   let deleteEventBtn = document.getElementById("delete-event");
   let closeModalResumeBtn = document.getElementById("close-resume");
   closeModalResumeBtn.addEventListener("click", closeModal);
@@ -279,3 +312,18 @@ renderCalendar();
 clickArrow();
 
 // ----------- SHOW CURRENT DAY WITH CLASS AND STYLAH!! -------
+
+
+
+// function renderTimeEvent() {
+//   for (let i = 0; i < events.length; i++) {
+//     let dateOfEvent = events[i].startDate.split("-")
+//     let dateOfEventYear =  dateOfEvent[0] // Year
+//     let dateOfEventMonth =  dateOfEvent[1]
+//     let dateOfEventDay = dateOfEvent[2]
+//     let setDate = new Date(dateOfEventYear, dateOfEventMonth, dateOfEventDay);
+//     let currentDate = new Date();
+//     var timeLeft = (setDate.getTime() - currentDate.getTime())
+//     console.log(timeLeft)
+//   }
+// }
