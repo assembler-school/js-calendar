@@ -17,6 +17,8 @@
 
 .summary-past {
     background-color: #f4f4f4;
+    max-height: 400px;
+    overflow: scroll;
 }
 
 .inlineEvent {
@@ -26,30 +28,53 @@
 
 .prevEvents__headerTitles {
     display: flex;
-    justify-content: space-between;
-    width: 50%;
+    margin-right: 10%;
+    font-size: 0.75rem;
 }
 
-.pastEvent__title {
-    display: flex;
-    font-size: 1.25rem;
-    font-weight: bold;
-}
-
-.prevEvents__title {
-    display: flex;
-    padding-top: 1rem;
-    font-size: 1rem;
+.div__timeset {
+    background-size: contain;
+    background-color: var(--type-1);
+    color: var(--third-color);
+    padding: 0.15rem;
+    margin: 0.25rem;
+    border-radius: 0.2rem;
 }
 
 .prevEvents__eventType {
-    display: flex;
+    background-size: contain;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    text-align: center;
+    padding: 0.15rem;
+    margin: 0.25rem;
+    border-radius: 0.2rem;
+    font-weight: lighter;
+    width: 8rem;
+}
+
+.prevEvents__title {
+    font-size: 1.2rem;
+    padding-left: 1.5rem;
+}
+
+.pastEvent__title {
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    top: -1rem;
+}
+
+.prevEvents__description {
     font-size: 1rem;
     font-weight: lighter;
 }
 
-.prevEvents__description {
-    display: flex;
-    font-size: 1rem;
-    font-weight: lighter;
+.summary__optimistic {
+    background-color: var(--type-1);
+    color: var(--third-color);
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 1rem;
+    margin-bottom: 0rem;
 }
