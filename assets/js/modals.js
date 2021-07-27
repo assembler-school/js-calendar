@@ -45,7 +45,7 @@ function clickDate(e) {
   dateSelected = el.dataset.id;
 
   //write in screen the events day week
-  writeDayWeek(dateSelected)
+  renderDayWeek(dateSelected)
   let todaysEvents = eventsNotes.filter(appointment => appointment.startDate == dateSelected);
   renderEventNotes(todaysEvents, dateSelected);
 

@@ -1,11 +1,11 @@
 'use strict';
 
 /**
-* Print on screen the month calendar.
-*
-* @param {Number} month
-*/
-const writeMonth = (month) => {
+ * Print on screen the month calendar.
+ *
+ * @param {Number} month
+ */
+const renderMonth = (month) => {
 
 	//print the days before the current month starts
 	for (let i = startDay(); i > 0; i--) {
@@ -49,11 +49,11 @@ const writeMonth = (month) => {
 };
 
 /**
-* Get total days in a month
-*
-* @param {Number} month
-* @return {Number} Returns days as number
-*/
+ * Get total days in a month
+ *
+ * @param {Number} month
+ * @return {Number} Returns days as number
+ */
 const getTotalDays = (month) => {
 	if (month === -1) month = 11;
 
@@ -75,10 +75,10 @@ const getTotalDays = (month) => {
 };
 
 /**
-* Check if a year is leap or not
-*
-* @return {Boolean} Returns day as boolean
-*/
+ * Check if a year is leap or not
+ *
+ * @return {Boolean} Returns leap as boolean
+ */
 const isLeap = () => {
 	return (
 		(currentYear % 100 !== 0 && currentYear % 4 === 0) ||
@@ -87,18 +87,18 @@ const isLeap = () => {
 };
 
 /**
-* Get the day of the week that the month starts
-*
-* @return {Number} Returns day as number
-*/
+ * Get the day of the week that the month starts
+ *
+ * @return {Number} Returns day as number
+ */
 const startDay = () => {
 	let start = new Date(currentYear, currentMonth, 1);
 	return start.getDay() - 1 === -1 ? 6 : start.getDay() - 1;
 };
 
 /**
-* 
-*/
+ * Print prev month in the calendar
+ */
 const goToPrevMonth = () => {
 	if (currentMonth !== 0) {
 		currentMonth--;
@@ -111,8 +111,8 @@ const goToPrevMonth = () => {
 };
 
 /**
-*
-*/
+ * Print next month in the calendar
+ */
 const goToNextMonth = () => {
 	if (currentMonth !== 11) {
 		currentMonth++;
@@ -125,27 +125,34 @@ const goToNextMonth = () => {
 };
 
 /**
-*
-*/
+ * Print today month in the calendar
+ */
 const goToTodayMonth = () => {
 	if (currentMonth !== tdMonth || currentYear !== todayYear) {
 		currentMonth = tdMonth;
 		currentYear = todayYear;
 	}
 	setNewDate();
-	writeEventsOfTheDay(today);
-	writeDayWeek(today);
+	renderEventsOfTheDay(today);
+	renderDayWeek(today);
 };
 
 /**
-*
-*/
+ *	Update and print the current date in the calendar screen
+ */
 const setNewDate = () => {
+	//set the new current date
 	currentDate.setFullYear(currentYear, currentMonth, currentDay);
+
+	//print date variables in the DOM
 	month.textContent = monthNames[currentMonth];
 	year.textContent = currentYear.toString();
+
+	//clear the dates element in the DOM
 	dates.textContent = '';
-	writeMonth(currentMonth);
+
+	//print the current dates month
+	renderMonth(currentMonth);
 };
 
 /**

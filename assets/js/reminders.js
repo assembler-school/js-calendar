@@ -1,6 +1,9 @@
 'use strict';
 
 const setReminderDate = (event) => {
+  //declare reminderNote as object
+  let reminderNote = {}
+
   //get reminderNote variables
   reminderNote.id = event.id
   reminderNote.date = getReminderDate(event);
@@ -57,10 +60,10 @@ const activateReminderEvent = (event) => {
   let reminderDate = getReminderDate(event);
   let startDate = convertStringToDate(event.startDate, event.startTime);
 
-  console.log(event);
-  console.log('currentDate', currentDate);
-  console.log('reminderDate', reminderDate);
-  console.log('startDate', startDate);
+  // console.log(event);
+  // console.log('currentDate', currentDate);
+  // console.log('reminderDate', reminderDate);
+  // console.log('startDate', startDate);
 
   if (currentDate > reminderDate && startDate > currentDate) {
     // alert(event.title);
@@ -75,12 +78,12 @@ const activateReminderEvent = (event) => {
 
 const deleteReminderDate = (event) => {
 
-  console.log(reminders);
+  // console.log(reminders);
 
   //find and remove the event by id in the events list
   reminders = reminders.filter((reminder) => reminder.id != event.id);
 
-  console.log(reminders);
+  // console.log(reminders);
 
   //convert reminders to string
   let remindersString = JSON.stringify(reminders);

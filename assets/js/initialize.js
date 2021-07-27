@@ -1,10 +1,10 @@
 'use strict';
 
 //initialize calendar
-writeMonth(currentMonth);
+renderMonth(currentMonth);
 setNewDate();
-writeEventsOfTheDay(today);
-writeDayWeek(today);
+renderEventsOfTheDay(today);
+renderDayWeek(today);
 
 //initialize reminders
 activateReminders(reminders)

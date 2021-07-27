@@ -1,12 +1,16 @@
 'use strict';
 
-// setEvent = (event) => { }
-
-const writeEventsOfTheDay = (day) => {
+/**
+ * Print the event list of the day in the screen
+ *
+ * @param {String} day
+ */
+const renderEventsOfTheDay = (day) => {
 
   //clear events of the day
   eventsDay.innerHTML = ``;
 
+  //if there are no events exit the function
   if (!eventsNotes.length) return;
 
   //get the eventsNotes from localStorage
@@ -31,7 +35,7 @@ const writeEventsOfTheDay = (day) => {
             <p class="event__description">${event.description}</p>
             <label class="event__type">${event.type}</label>
           </div>
-          <button class="btn event__btn event__btn--close"> X </button>
+          <button class="btn event__btn event__btn--close">X</button>
         </div>
       `;
     }
@@ -46,9 +50,15 @@ const writeEventsOfTheDay = (day) => {
     `;
   }
 }
-//function to render the events of the corresponding day so that they do not repeat themselves
+
+/**
+ * Render the events of the corresponding day so that they do not repeat themselves
+ *
+ * @param {Object} todaysNotes
+ * @param {String} selectedDate
+ */
 function renderEventNotes(todaysNotes, selectedDate) {
-  eventsDay.innerHTML = ``
+  eventsDay.innerHTML = ``;
   todaysNotes.forEach(event => {
     let bg_color = getEventTypeColor(event);
     if (selectedDate == event.startDate) {
@@ -65,14 +75,19 @@ function renderEventNotes(todaysNotes, selectedDate) {
           <p class="event__description">${event.description}</p>
           <label class="event__type">${event.type}</label>
         </div>
-        <button class="btn event__btn event__btn--close"> X </button>
+        <button class="btn event__btn event__btn--close">X</button>
       </div>
     `;
     }
   });
 }
 
-function writeDayWeek(dateSelected) {
+/**
+ * Render the day of the week as a title in the events column
+ *
+ * @param {String} dateSelected
+ */
+function renderDayWeek(dateSelected) {
 
   //convert dateSelected string to date
   const targetDateArr = dateSelected.split("-");
@@ -91,7 +106,6 @@ function writeDayWeek(dateSelected) {
   //set the events title
   eventTitle.innerHTML = targetDayWeek + " " + targetDay;
 }
-
 
 /**
  * Get the respective background color according the event type
@@ -125,6 +139,11 @@ const getEventTypeColor = (eventSelected) => {
 
 document.querySelector("#eventsDay").addEventListener("click", deleteEvent);
 
+/**
+ * Delete event
+ *
+ * @param {Object} e event of the delete event button
+ */
 function deleteEvent(e) {
 
   //get the target element
@@ -149,13 +168,13 @@ function deleteEvent(e) {
   (() => localStorage.setItem("events", eventsString))();
 
   //show the event list of the day
-  writeEventsOfTheDay(dateSelected);
+  renderEventsOfTheDay(dateSelected);
 
   //clean month dates
   dates.textContent = '';
 
   //reload month calendar
-  writeMonth(currentMonth);
+  renderMonth(currentMonth);
 }
 
 
