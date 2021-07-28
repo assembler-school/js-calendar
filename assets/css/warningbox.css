@@ -5,7 +5,7 @@
 .summary-past {
   background-color: #f4f4f4;
   max-height: 400px;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .inlineEvent {
