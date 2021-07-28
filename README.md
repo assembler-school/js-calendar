@@ -14,8 +14,7 @@ A simple calendar for personal use made with vanilla javascript and using locals
 
 ## Demo
 
-Insert gif or link to demo
-
+https://salvabandicoot.github.io/js-calendar/
   
 ## Authors
 
