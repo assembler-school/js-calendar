@@ -1,4 +1,5 @@
 
+
 # Calendar agenda 📅
 
 A simple calendar for personal use made with vanilla javascript and using localstorage as database.
@@ -11,7 +12,6 @@ A simple calendar for personal use made with vanilla javascript and using locals
 - View all events for the selected day.
 - Responsive design for small devices.
 
-  
 ## Demo
 
 Insert gif or link to demo
@@ -23,7 +23,6 @@ Insert gif or link to demo
 - [@CarlosVelilla](https://www.github.com/CarlosVelilla)
 - [@Jose1i1o](https://github.com/Jose1i1o)
 - [@Cherrerotinoco](https://www.github.com/Cherrerotinoco)
-
   
 ## Technologies used
 
@@ -34,3 +33,9 @@ Insert gif or link to demo
 \* JS
 
 \* LocalStorage
+  
+## Screenshots
+
+![App Screenshot](https://i.ibb.co/SfLGyZC/screenshot.png)
+
+  
