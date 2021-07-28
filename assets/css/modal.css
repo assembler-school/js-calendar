@@ -1,45 +1,125 @@
+:root {
+    --primary-color: #495464;
+    --secondary-color: #bbbfca;
+    --third-color: #f4f4f2;
+    --fourth-color: #e8e8e8;
+    --fifth-color: #bbbbbe;
+    --type-1: #ff6961;
+    --type-2: #77dd77;
+    --type-3: #fdfd96;
+    --type-4: #84b6f4;
+    --type-5: #fdcae1;
+}
+
 .modal__overlay {
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  background-color: #00000080;
-  top: 0;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background-color: rgba(240, 240, 240, 0.4);
+    top: 0;
 }
 
 .modal__content {
-  max-width: 75%;
-  border-radius: 5px;
-  background-color: #ffffff;
-  border: solid 1px #f5f5f5;
-  padding: 5rem;
-  position: absolute;
-  z-index: 10;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid var(--type-1);
+    padding: 5rem;
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    zoom: 115%;
+    cursor: move;
+    /* fallback if grab cursor is unsupported */
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
+
+.modal__content:active {
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
 }
 
 .modal__close {
-  position: absolute;
-  right: 1.3rem;
-  top: 0.6rem;
-  text-align: center;
-  font-size: 1rem;
-  transition: 0.6s;
-  font-size: 1.2rem;
-  width: 2rem;
-  height: 2rem;
-  border: none;
-  border-radius: 50%;
+    position: absolute;
+    right: 1.3rem;
+    top: 0.6rem;
+    text-align: center;
+    font-size: 1rem;
+    transition: 0.6s;
+    font-size: 1.2rem;
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    border-radius: 50%;
 }
 
 .modal__close:hover {
-  font-weight: bold;
+    font-weight: bold;
 }
 
-#title {
-  background-color: #f5f5f5;
-  border: none;
-  margin-bottom: 1rem;
-  width: 20rem;
+.eventform__inputtitle {
+    display: block;
+    border-bottom: 1px solid var(--type-1);
+    width: 100%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.initialdate__modal {
+    font-size: 1rem;
+    color: var(--primary-color);
+}
+
+.initialdate__modal--input {
+    border-bottom: 1px solid var(--type-1);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    color: var(--primary-color);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+    width: max-content;
+}
+
+.endtime__modal {
+    font-size: 1rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.container__finaldate {
+    font-size: 1rem;
+    color: var(--primary-color);
+}
+
+.finaldate__modal--input {
+    border-bottom: 1px solid var(--type-1);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    color: var(--primary-color);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+    width: max-content;
+}
+
+.notificationdiv {
+    font-size: 1rem;
+    color: var(--primary-color);
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.setreminder {
+    font-size: 1rem;
+    color: var(--primary-color);
 }
