@@ -54,6 +54,8 @@ const renderMonth = (month) => {
  * @param {Number} month
  * @return {Number} Returns days as number
  */
+
+//to know if the month has 31 or 30
 const getTotalDays = (month) => {
 	if (month === -1) month = 11;
 
@@ -76,7 +78,6 @@ const getTotalDays = (month) => {
 
 /**
  * Check if a year is leap or not
- *
  * @return {Boolean} Returns leap as boolean
  */
 const isLeap = () => {
@@ -88,7 +89,6 @@ const isLeap = () => {
 
 /**
  * Get the day of the week that the month starts
- *
  * @return {Number} Returns day as number
  */
 const startDay = () => {
