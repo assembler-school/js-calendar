@@ -59,7 +59,15 @@ To deliver this project you must follow the steps indicated in the document:
 - [JavaScript Timeout](https://www.w3schools.com/jsref/met_win_settimeout.asp)
 
 ## hello arantza
-
+https://github.com/AranBeitia
 ## Hello Kike  <(^o^)>
+https://github.com/E-Hidalgo
 ## Hello Joel
+https://github.com/Joelmarfas/js-calendar
 ## hello tam
+https://github.com/tamtran2885/
+## Enlace a presentación proyecto:
+https://datastudio.google.com/u/0/reporting/be7af824-f165-4f58-b9f7-116144987c5d/page/A6UWC
+
+## Enlace al Trello del poryecto
+https://trello.com/b/68dYrpeK/calendar-js-project
