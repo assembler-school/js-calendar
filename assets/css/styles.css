@@ -6,7 +6,6 @@
 
 
 /* COMMON */
-
 @import "./reset.css";
 @import "./common.css";
 @import "./calendar.css";
@@ -16,6 +15,5 @@
 @import "./modal.css";
 
 /* OTHER */
-
 @import "./warningbox.css";
 @import "./aside.css";

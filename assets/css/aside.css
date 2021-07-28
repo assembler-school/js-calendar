@@ -21,7 +21,7 @@
 
 .summary-event__container {
     margin-bottom: 15px;
-    background-color: var(--third-color);
+    background-color: var(--type-2);
     padding: 10px 15px;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .modal-view {
-    position: absolute;
+    position: fixed;
     top: 0;
     height: 100%;
     width: 100%;

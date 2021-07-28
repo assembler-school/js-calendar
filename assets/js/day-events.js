@@ -79,7 +79,7 @@ function displayDayEvents(dateObj) {
       day: "numeric"
     })
     containerEvents.innerHTML = `
-      <p class="summary__date">${formatDate}</p>
+      <h3 class="summary__date">${formatDate}</h3>
       ${eventsInfo}
     `;
 
