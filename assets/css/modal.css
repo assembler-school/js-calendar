@@ -21,8 +21,8 @@
 
 .modal__content {
     border-radius: 5px;
-    background-color: white;
-    border: 1px solid var(--type-1);
+    background-color: var(--third-color);
+    border: 1px solid var(--fifth-color);
     padding: 5rem;
     position: absolute;
     z-index: 10;
@@ -63,7 +63,9 @@
 
 .eventform__inputtitle {
     display: block;
-    border-bottom: 1px solid var(--type-1);
+    border-bottom: 1px solid var(--primary-color);
+    background-color: var(--third-color);
+    ;
     width: 100%;
     border-top: none;
     border-left: none;
@@ -78,7 +80,7 @@
 }
 
 .initialdate__modal--input {
-    border-bottom: 1px solid var(--type-1);
+    border-bottom: 1px solid var(--primary-color);
     border-top: none;
     border-left: none;
     border-right: none;
@@ -87,6 +89,7 @@
     margin-bottom: 1rem;
     padding-left: 2rem;
     width: max-content;
+    background-color: var(--third-color);
 }
 
 .endtime__modal {
@@ -101,7 +104,7 @@
 }
 
 .finaldate__modal--input {
-    border-bottom: 1px solid var(--type-1);
+    border-bottom: 1px solid var(--primary-color);
     border-top: none;
     border-left: none;
     border-right: none;
@@ -110,16 +113,75 @@
     margin-bottom: 1rem;
     padding-left: 2rem;
     width: max-content;
+    background-color: var(--third-color);
 }
 
 .notificationdiv {
     font-size: 1rem;
     color: var(--primary-color);
-    margin: 1rem;
-    padding: 1rem;
+    margin-bottom: 1rem;
 }
 
 .setreminder {
     font-size: 1rem;
     color: var(--primary-color);
+    margin-top: 1rem;
+}
+
+.selectitem__value {
+    border-bottom: 1px solid var(--primary-color);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    color: var(--primary-color);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    width: max-content;
+}
+
+.description__modal--text {
+    font-size: 1rem;
+    color: var(--primary-color);
+    margin-top: 1rem;
+}
+
+.event__text--modal {
+    font-size: 1rem;
+    color: var(--primary-color);
+    margin-top: 1rem;
+}
+
+.event__input--modal {
+    border-bottom: 1px solid var(--primary-color);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    color: var(--primary-color);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    width: max-content;
+    margin-top: 1rem;
+    background-color: var(--third-color);
+}
+
+.cancel {
+    background-color: var(--type-1);
+}
+
+.submit {
+    background-color: var(--type-2);
+}
+
+.form__button {
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    margin: 1rem 0.25rem 0rem 0rem;
+    border-radius: 0.25rem;
 }
