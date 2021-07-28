@@ -1,62 +1,70 @@
 .summary__date {
-  margin-bottom: 7.5px;
-  margin-left: 5px;
+    margin-bottom: 7.5px;
+    margin-left: 5px;
 }
+
 .summary__day {
-  font-size: larger;
-  font-weight: bold;
+    font-size: larger;
+    font-weight: bold;
 }
 
 .summary-event__title {
-  display: flex;
-  justify-content: space-between;
-  font-size: medium;
-  margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    font-size: medium;
+    margin-bottom: 5px;
 }
+
 .summary-event__date {
-  font-weight: 200;
+    font-weight: 200;
 }
+
 .summary-event__container {
-  margin-bottom: 15px;
-  background-color: var(--third-color);
-  padding: 10px 15px;
+    margin-bottom: 15px;
+    background-color: var(--third-color);
+    padding: 10px 15px;
 }
+
 .summary-event__description {
-  font-size: small;
-  font-weight: 200;
+    font-size: small;
+    font-weight: 200;
 }
 
 .modal-view {
-  position: fixed;
-  top: 0;
-  height: 100%;
-  width: 100%;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
 }
-.modal-view-inner {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 
-  background-color: var(--third-color);
-  padding: 30px 25px;
-  box-shadow: 2px 2px 5px grey;
+.modal-view-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--third-color);
+    padding: 30px 25px;
+    box-shadow: 2px 2px 5px grey;
 }
+
 .row {
-  display: flex;
+    display: flex;
 }
+
 .flex-end {
-  justify-content: flex-end;
+    justify-content: flex-end;
 }
+
 .right-top {
-  position: absolute;
-  top: 0;
-  right: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
+
 .modal-view-options div {
-  margin-right: 7.5px;
-  padding: 5px;
-  font-size: larger;
-  line-height: normal;
-  cursor: pointer;
+    margin-right: 7.5px;
+    padding: 5px;
+    font-size: larger;
+    line-height: normal;
+    cursor: pointer;
 }
