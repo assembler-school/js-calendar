@@ -1,4 +1,3 @@
-
 /** flexbox */
 .flex-between {
   display: flex;
@@ -23,6 +22,10 @@
   margin: 0 1rem;
 }
 
+.padding-1 {
+  padding: 0.5rem;
+}
+
 .--is-visible {
   display: block;
 }
@@ -32,8 +35,8 @@
 }
 
 .--is-selected {
-
-  background-color: yellow;
+  margin: auto;
+  background-color: #fcee6d;
   color: black;
   font-weight: 700;
   font-size: 1.2rem;
@@ -46,11 +49,10 @@
   background-color: red;
 }
 
-
 /** COLORS */
 
 .color-yellow {
-  color: #FCEE6D;
+  color: #fcee6d;
 }
 
 .color-grey {
@@ -58,5 +60,5 @@
 }
 
 .color-grey-dark {
-  color: #29323F;
+  color: #29323f;
 }

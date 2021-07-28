@@ -2,7 +2,7 @@
   max-width: 9.35rem;
   width: 100%;
   height: fit-content;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   background-color: transparent;
   border-color: white;
   color: white;
@@ -12,12 +12,18 @@
 }
 
 .button:hover {
-  background-color: #FCEE6D;
-  color: #29323F;
+  background-color: #fcee6d;
+  color: #29323f;
 }
 
 .button--rounded {
   max-width: 3rem;
   text-align: center;
-  padding: .5rem;
+  padding: 0.5rem;
+}
+
+.button--small {
+  max-width: 4.35rem;
+  background-color: #29323f;
+  padding: 0.5rem;
 }

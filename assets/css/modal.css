@@ -17,22 +17,20 @@
   margin: 10% auto;
   padding: 20px;
   border-radius: 3px;
-  background: #fff;
+  background: #fcee6d;
 }
 
 .modal__close {
-  font-family: Arial, Helvetica, sans-serif;
-  color: #fff;
-  line-height: 25px;
   position: absolute;
-  right: -12px;
-  text-align: center;
-  top: -10px;
-  width: 34px;
-  height: 34px;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 50%;
-  box-shadow: 1px 1px 3px #000;
-  padding-top: 5px;
+  top: 0.5rem;
+  right: 0.5rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.modal__close:hover {
+  transform: scale(1.5);
+  color: #626972;
 }
