@@ -35,8 +35,8 @@ document.getElementById("daysMonth").addEventListener("click", (e) => {
   } else if (target.dataset.daynumber) {
     displayDayEvents({
       unix: target.dataset.dayunix,
-      number: target.dataset.daynumber
-    })
+      number: target.dataset.daynumber,
+    });
   }
 });
 
@@ -87,7 +87,7 @@ function insertDays(eventsObj) {
         let eventInitialDate = new Date(event.initialDate).getTime();
         if (eventInitialDate >= dayUnix && eventInitialDate < tomorrowUnix) {
           dayEvents.push(event);
-        } else {  
+        } else {
           // If event is during the current day
           if (event.finalDate && event.finalDate != "") {
             let eventFinalDate = new Date(event.finalDate).getTime();
@@ -111,7 +111,7 @@ function insertDays(eventsObj) {
     let currentDayClasses = "";
     if (currentTime >= dayUnix && currentTime < tomorrowUnix) {
       currentDayClasses = "day__month today";
-    } else if ( currentTime > dayUnix) {
+    } else if (currentTime > dayUnix) {
       currentDayClasses = "day__month past";
     } else {
       currentDayClasses = "day__month";
@@ -131,10 +131,11 @@ function insertDays(eventsObj) {
       }
     });
 
-    let seeMoreEvents = '';
+    let seeMoreEvents = "";
     dayEvents.forEach((event, index) => {
       // If there are more than 3 dont show more
-      if (index >= 3) return seeMoreEvents = `<div class="day__event-container"><div data-event class="more-events">See more events...</div></div>`;
+      if (index >= 3)
+        return (seeMoreEvents = `<div class="day__event-container"><div data-event class="more-events">···</div></div>`);
       //To get event time
       let eventTime = new Date(event.initialDate).toLocaleTimeString("en", {
         hour: "2-digit",
