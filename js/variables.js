@@ -1,3 +1,7 @@
+export const body = document.querySelector(".body");
+//test const - delete
+export const test = document.getElementById("test");
+
 export function element(type, elemId, elemClass, textContent, src){
     const element = document.createElement(type);
     if(elemId != null) element.setAttribute("id", elemId);

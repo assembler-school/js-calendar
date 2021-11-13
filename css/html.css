@@ -1,0 +1,22 @@
+
+*{
+    font-size: 18px;
+}
+
+textarea{
+    resize: none;    
+}
+
+span{
+    background-color: grey;
+    height: fit-content;
+}
+
+span img{
+    width: 8%;
+    height: 8%;
+}
+
+button{
+    height: fit-content;
+}
