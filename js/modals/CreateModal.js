@@ -11,48 +11,51 @@ class CreateModal {
                         [
                             element("span"),
                             [
-                                element("img", null, "button-hover", null, "../assets/imgs/menu.png")
+                                element("img", null, null, null, "../assets/imgs/menu.png")
                             ],
-                            element("span", null, "right"),
+                            element("span"),
                             [
-                                element("img", null, "button-hover", null, "../assets/imgs/close.png")
+                                element("img", null, null, null, "../assets/imgs/close.png")
                             ]
                         ],
                         //body modal
                         element("div"),
                         [
                             //title
-                            element("div", null, "submodal"),
+                            element("div", null, "submodal input-name"),
                             [
-                                element("input"),
+                                element("input", "title"),
                             ],
-                            //select day/time
-                            element("div", null, "submodal"),
+                            //select date
+                            element("div", null, "submodal date"),
                             [
                                 element("span"),
                                 [
                                     element("img", null, null, null, "../assets/imgs/clock.png")
                                 ],
-                                element("div"),
-                                //next line only if we cant do previus step of select day in div
+                                element("div", null, "event-time"),
+                                [
+                                    element("span", null, null, "Sábado, 13 de noviembre"),
+                                    element("span", null, null, "12:00 - 1:00")
+                                ],
                                 element("span"),
                                 [
                                     element("img", null, null, null, "../assets/imgs/calendar.png")
                                 ]
                             ],
                             //description
-                            element("div", null, "submodal"),
+                            element("div", null, "submodal description"),
                             [
                                 element("span"),
                                 [
                                     element("img", null, "flipX", null, "../assets/imgs/description.png")
                                 ],
-                                element("textarea"),
+                                element("p", null, "description-p", "Add a description"),
                             ],
                             //save
-                            element("div", null, "submodal"),
+                            element("div", null, "submodal save"),
                             [
-                                element("button", null, null, "Save")
+                                element("button", null, "save-button", "Save")
                             ]
                         ]
                        ]
@@ -60,6 +63,14 @@ class CreateModal {
 
     constructor(){
         readArray(this.#structure);
+        const title = document.getElementById("title");
+        title.setAttribute("placeholder", "Add a title");
+
+
+        //calculate invoker and position
+        
+
+
     }
 
     //this method is not neccesary

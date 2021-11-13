@@ -1,44 +1,99 @@
 .modal{
-    width: 400px;
+    width: var(--modal-size);
     height: fit-content;
     border-radius: var(--border-radius);
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     border-radius: var(--border-radius);
-    box-shadow: -1px 1px 8px 1px rgba(0, 0, 0, 0.377);
-
+    box-shadow: -1px 1px 8px 1px var(--black-translucent);
+    position: absolute;
 }
 
 .modal-top{
     background-color: #f1f3f4;
-    height: 30px;
+    height: var(--size);
     padding: 6px;
     display: flex;
-    flex-wrap: wrap;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
+.modal-top span{
+    width: var(--size);
+    height: var(--size);
+}
+
+.modal-top span:hover{
+    background-color: var(--dark-grey-translucent-2);
+    border-radius: 50%;
+}
+
+.modal-top img{
+    width: calc(var(--size) / 2);
+    height: calc(var(--size) / 2);
+    padding: 7px 8px;
+}
 
 .submodal{
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
+    flex-flow: row wrap;
     height: 50px;
-    width: 100%;
-    padding: 6px;
+    padding: 6px 15px;
+    align-items: center;
 }
 
-.right{
-    float: right;
+
+.input-name{
+    justify-content: flex-end;
+    align-items: center;
 }
 
-.selectDay{
+.date{
+    justify-content: space-between;
+    align-items: center;
+}
+
+.event-time{
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
+    flex-flow: column nowrap;
+    margin-left: -60px;
+}
+
+.description :first-child{
+    margin-right: 10px;
 }
 
 .flipX{
     transform: scaleX(-1);
+}
+
+.description-p{
+    padding: 5px;
+    margin-right: 15px;
+    color: var(--light-grey);
+    border-radius: var(--border-radius);
+}
+
+.description-p:hover{
+    background-color: var(--dark-grey-translucent);
+}
+
+.save{
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.save-button{
+    color: var(--white);
+    background-color: var(--dark-blue);
+    border: none;
+    padding: 5px 20px;
+    font-weight: 500;
+}
+
+.save-button:hover{
+    background-color: var(--dark-blue-translucent);
 }

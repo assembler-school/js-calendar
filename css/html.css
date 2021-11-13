@@ -1,22 +1,36 @@
-
 *{
-    font-size: 18px;
+    font-size: var(--font-size);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+input{
+    width: calc(var(--modal-size) - 85px);
+    height: fit-content;
+    border: none;
+    border-bottom: 1px solid var(--light-grey);
+}
+
+input:focus{
+    outline: none;
+    border-bottom: 2.3px solid var(--dark-blue);
+    transition: 0.2s;
 }
 
 textarea{
     resize: none;    
 }
 
-span{
-    background-color: grey;
-    height: fit-content;
-}
-
-span img{
-    width: 8%;
-    height: 8%;
+img{
+    width: var(--size);
+    height: var(--size);
 }
 
 button{
     height: fit-content;
+    border-radius: var(--border-radius);
+}
+
+body{
+    display: flex;
+    justify-content: center;
 }
