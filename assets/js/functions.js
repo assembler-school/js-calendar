@@ -70,6 +70,10 @@ function prevMonthMiniCal() {
     for (let index = prevDays.firstDayIndex; index > 0; index--) {
         var dayMonth = document.createElement("div")
         dayMonth.textContent = prevLastDay - index
+        dayMonth.classList.add ("number-days")
+        dayMonth.dataset.day = index
+        dayMonth.dataset.month = (actual_date.getMonth() === 0) ? 11 : actual_date.getMonth() - 1;
+        dayMonth.dataset.year = (actual_date.getMonth() === 0) ? actual_date.getFullYear() - 1 : actual_date.getFullYear();
         monthDays.appendChild(weekDay)
     }
 }
@@ -79,6 +83,10 @@ function monthlMiniCal() {
     for (let index = 1; index <= lastDay; index++) {
         var dayMonth = document.createElement("div")
         dayMonth.textContent = index
+        dayMonth.classList.add ("number-days")
+        dayMonth.dataset.day = index
+        dayMonth.dataset.month = actual_date.getMonth()
+        dayMonth.dataset.year = actual_date.getFullYear()
         monthDays.appendChild(dayMonth)
     }
 }
@@ -88,6 +96,20 @@ function nextMiniCal() {
     for (let index = 1; index <= nextDays; index++) {
         var dayMonth = document.createElement("div")
         dayMonth.textContent = index
+        dayMonth.classList.add ("number-days")
+        dayMonth.dataset.day = index
+        dayMonth.dataset.month = (actual_date.getMonth() === 11) ? 0 : actual_date.getMonth() + 1;
+        dayMonth.dataset.year = (actual_date.getMonth() === 11) ? actual_date.getFullYear() + 1 : actual_date.getFullYear();
         monthDays.appendChild(dayMonth)
     }
 }
+
+document.querySelectorAll(".number-days").forEach (element => {
+    element.addEventListener("click", event => {
+        var year= event.target.dataset.year
+        var month= event.target.dataset.month
+        var day= event.target.dataset.day
+        console.log(new Date(year, month, day))
+    })
+})
+
