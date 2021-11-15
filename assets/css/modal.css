@@ -6,7 +6,7 @@
     text-align: center;
     gap: 10px;
     width: 30%;
-    height: 50vh;
+    height: 60vh;
     margin: auto;
 }
 
@@ -30,6 +30,10 @@
     border-bottom: 1px solid black;
     font-size: 1.2em;
     text-align: center;
+}
+.input_modal>input:focus{
+    outline: none;
+    border-bottom: 1px solid black;
 }
 .linianobonito{
     margin: auto;
@@ -80,10 +84,7 @@
     top: 0;
     width: auto;
 }
-/* modificar datat times */
-input[type="datetime-local"]{
-    
-}
+
 
 
 
@@ -96,19 +97,18 @@ input[type="datetime-local"]{
 }
 
 
-.opciones_modal>div{
+.checkbox-modal{
     display: flex;
     justify-content: space-around;
-    /* align-content: center; */
     margin: 15px;
 }
-
-.opciones_modal>div>p{
+.checkbox-modal>div{
+    display: flex;
+}
+.checkbox-modal>div>p{
     position: relative;
     bottom: 10px;
 }
-
-
 
 input[type="checkbox"]{
     -moz-appearance:none;
@@ -117,4 +117,49 @@ input[type="checkbox"]{
     width: 20px;
     height: 20px;
     border:2px solid rgb(29, 120, 238);
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked{
+    width: 20px;
+    height: 20px;
+    border:2px solid rgb(29, 120, 238);
+    background-color: rgb(29, 120, 238);
+    cursor: pointer;
+}
+
+
+/* selecionar cada cuanto */
+.repit_modal{
+    border:none;
+    text-align: center;
+    margin: 5% 0%;
+    cursor: pointer;
+}
+.repit_modal:hover{
+    box-shadow: 1px 1px 5px;
+}
+.repit_modal:focus{
+    outline: none;
+}
+/* descripcion */
+#descripcion_modal>input{
+    width: 95%;
+    border:none;
+    text-align: center;
+    box-shadow: 1px 1px 2px;
+    height: 3em;
+}
+#descripcion_modal>input:hover{
+    outline: none;
+    box-shadow: 1px 1px 5px;
+}
+#descripcion_modal>input:focus{
+    outline: none;
+    box-shadow: 1px 1px 5px var(--azul);
+}
+.footer_modal{
+    display: flex;
+    justify-content: space-between;
+    margin:5%;
 }
