@@ -11,7 +11,7 @@
     <script src="/assets/js/data.js" defer></script>
     <script src="/assets/js/modal.js" defer></script>
     <script src="/assets/js/main.js" defer></script>
-    <title>Document</title>
+    <title>Calendar</title>
 </head>
 
 <body>
@@ -47,7 +47,7 @@
             </div>
             <div id="fecha_modal" class="fecha_modal">
                 <div id="fechadia_modal">
-                    
+
                     <span class="date-picker">
                         <input id="date-pickerInput" type="datetime-local">
                     </span>
@@ -76,14 +76,14 @@
             <div id="descripcion_modal">
                 <input type="text" maxlength="500" placeholder="descripcion">
             </div>
-            <div id="footer_modal" class="footer_modal"> 
+            <div id="footer_modal" class="footer_modal">
                 <select size="1" name="usgsfeed" id="usgsfeed" onchange='SelectChanged()'>
-                <option value="usgs_hour" SELECTED>Your work</option>
-                <option value="Day">Yor day</option>
-                </select> 
-                <button>Guardar</button></div>
-            </div>
+                    <option value="usgs_hour" SELECTED>Your work</option>
+                    <option value="Day">Yor day</option>
+                </select>
+                <button id="save-modal">Guardar</button></div>
         </div>
+    </div>
 
 
 
