@@ -24,7 +24,6 @@ window.onclick = function (event) {
     }
 }
 
-<<<<<<< HEAD
 //Validación
 
 btnSave.addEventListener("click", comprovacionFinal);
@@ -51,7 +50,7 @@ function comprovacionFinal() {
 
         default:
             break;
-=======
+    }}
 //poner otro input date
 checkboxDate.addEventListener("click",ponerdata)
 
@@ -74,6 +73,5 @@ function ponerdata(){
         var a=document.getElementById("div2")
         fecha_modal.removeChild(a)
         typedatatimelocal.type="datetime-local"
->>>>>>> 95696868afcba1e695a44934bd25a0f87aa6b62e
     }
 }
