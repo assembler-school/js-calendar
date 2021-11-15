@@ -1,8 +1,9 @@
 import CreateModal from "./modals/CreateModal.js";
-import * as variable from "./variables.js";
+//import * as variable from "./variables.js";
 let currentMonth = 0;
 let clickedDay = null;
 let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : []; // fetching events from LocalStorage, if it doest't exist return an empty array
+//let isModalOpen = false; //control 1 click between each modal
 
 const calendar = document.querySelector('#calendar');
 const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -52,16 +53,35 @@ function displayCalendar() {
         // check if that day is a padding day or not
         if (i <= paddingDaysBefore) {
             dayElement.classList.add('padding');
-            dayElement.addEventListener('click', () => console.log('PADDING DAY BEFORE'));
+            //dayElement.addEventListener('click', () => console.log('PADDING DAY BEFORE'));
             dayElement.innerText = (daysInPrevMonth - paddingDaysBefore) + i;
         } else if (i < paddingDaysBefore + daysInMonth + 1) {
             dayElement.innerText = i - paddingDaysBefore;
-            dayElement.addEventListener('click', () => console.log('click'));
+            //dayElement.addEventListener('click', () => console.log(''));
         } else {
             dayElement.classList.add('padding');
-            dayElement.addEventListener('click', () => console.log('PADDING DAY AFTER'));
+            //dayElement.addEventListener('click', () => console.log('PADDING DAY AFTER'));
             dayElement.innerText = i - daysInMonth - paddingDaysBefore;
         }
+
+        
+        dayElement.addEventListener('click', (e) => {
+            //control 1 click between each modal
+            //if(isModalOpen === false){
+                const currentMonth = document.getElementById("current-month");
+                const calendar = document.getElementById("calendar");
+                for(let i = 0; i < calendar.childNodes.length; i++){
+                    if(calendar.childNodes[i] == dayElement){
+                        if(e.clientX < 410) new CreateModal(e.clientX, e.clientY / 2, weekdays[i%7], dayElement.textContent, currentMonth.textContent);
+                        else new CreateModal(e.clientX - 400, e.clientY / 2, weekdays[i%7], dayElement.textContent, currentMonth.textContent);
+                    }
+                }
+                //console.log(days.children); //mon 
+                // if(e.clientX < 410) new CreateModal(e.clientX, e.clientY / 2);
+                // else new CreateModal(e.clientX - 400, e.clientY / 2);
+                //isModalOpen = true;
+            //} else isModalOpen = false;
+        });
         calendar.appendChild(dayElement); // adding the day square to the calendar
     }
 }
@@ -78,6 +98,10 @@ document.getElementById('prevBtn').addEventListener('click', () =>{
 document.getElementById('today').addEventListener('click', () =>{
     currentMonth = 0;
     displayCalendar();
+});
+//create event button
+document.getElementById('create-event').addEventListener('click', (e) =>{
+    new CreateModal(e.target.offsetLeft - 430, e.target.y);
 });
 
 
