@@ -1,0 +1,28 @@
+/* HEADER SECTION */
+#first-section{
+    display:flex;
+    width:400px;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#logo img{
+    width:50px;
+}
+#month-container{
+    display:flex;
+    flex-direction:row;
+    width:150px;
+}
+#month-container img{
+width: 10px;
+}
+#month-container #next-btn{
+    margin-right: 10px;
+    margin-left:5px;
+}
+#create-event-btn{
+    padding:1em;
+    border-radius: 10px;
+    margin-right:10px;
+}

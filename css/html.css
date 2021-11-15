@@ -1,0 +1,8 @@
+/* HEADER SECTION */
+header{
+    background-color:rgb(113, 189, 151);
+    display:flex;
+    align-items: center;
+    flex-direction:row;
+    justify-content: space-between;
+}
