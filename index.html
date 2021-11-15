@@ -38,8 +38,8 @@
 
 
     <div id="modal_crear" class="modal_crear">
-        <div id="nav_modal" class="nav_modal"></div>
         <div id="main_modal" class="main_modal">
+            <span id="nav_modal" class="nav_modal">&times;</span>
             <div id="input_modal" class="input_modal">
                 <input type="Text" placeholder="Añade un titulo">
                 <div id="liniabonito" class="linianobonito"></div>
@@ -47,7 +47,7 @@
             <div id="fecha_modal" class="fecha_modal">
                 <div id="fechadia_modal">
                     <span class="date-picker">
-                        <input id="date-pickerInput" type="datetime-local" >
+                        <input id="date-pickerInput" type="datetime-local">
                     </span>
                     <div id="liniabonito" class="linianobonito"></div>
                 </div>
@@ -68,14 +68,14 @@
             <div id="descripcion_modal">
                 <input type="text" maxlength="500" placeholder="descripcion">
             </div>
-            <div id="footer_modal" class="footer_modal">
-                <select size="1" name="usgsfeed" id="usgsfeed"  onchange='SelectChanged()'>
+            <div id="type_modal">
+                <select size="1" name="usgsfeed" id="usgsfeed" onchange='SelectChanged()'>
                     <option value="usgs_hour" SELECTED>Your work</option>
                     <option value="Day">Yor day</option>
                 </select>
-                <button>Guardar</button></div>
+            </div>
+            <div id="footer_modal"> <button>Guardar</button></div>
         </div>
-        
     </div>
 
 
