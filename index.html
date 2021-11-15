@@ -1,65 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <h1>Calendar JS</h1>
-        <section class="calendar">
+    <title>JavaScript calendar</title>
 
-            <header class="calendar__header border-bottom">
-                <div class="calendar__title w-100">
-                    <button class="menu" id='menu'>☰</button>
-                    <span id="month">January</span>&nbsp;<span id="year">2021</span>
-                </div>
-
-                <!-- Nav -->
-                <nav class="nav">
-                    <ul class="nav__list">
-                        <li class="nav__item">
-                            <button class="btn btn--secondary" id="today-month">Today</button>
-                        </li>
-                        <li class="nav__item">
-                            <button class="btn btn--circle" id="prev-month">&#60;</button>
-                        </li>
-                        <li class="nav__item">
-                            <button class="btn btn--circle" id="next-month">&#62;</button>
-                        </li>
-                    </ul>
-                </nav><!-- Nav -->
-            </header>
-
-            <div class="calendar__main">
-                <div class="calendar__week">
-                    <div class="calendar__day">M</div>
-                    <div class="calendar__day">T</div>
-                    <div class="calendar__day">W</div>
-                    <div class="calendar__day">T</div>
-                    <div class="calendar__day">F</div>
-                    <div class="calendar__day">S</div>
-                    <div class="calendar__day">S</div>
-                </div>
-                <div class="calendar__dates" id="dates">
-                </div>
-            </div>
-        </section><!-- Calendar -->
-
-        <!-- Events -->
-        <section class="events border-left">
-
-            <header class="events__header border-bottom">
-                <h2 class="events__title"></h2>
-            </header>
-
-            <div class="events__main" id="eventsDay">
-            </div>
-
-        </section><!-- Events -->
-
-    </title>
+    <script src="script.js"></script>
+    <link href="calendar.css" rel="stylesheet"/>
 </head>
-<body>
-    
+
+<body onload="displayCalendar()">
+
+    <div id="calendar"></div>
+
 </body>
 </html>
