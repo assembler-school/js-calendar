@@ -88,14 +88,16 @@
     border: 0;
     width: 70%;
     border-bottom: 1px solid black;
-    font-size: 1.2em;
+    font-size: 1.5em;
     text-align: center;
 }
-.input_modal>input:focus{
+
+.input_modal>input:focus {
     outline: none;
     border-bottom: 1px solid black;
 }
-.linianobonito{
+
+.linianobonito {
     margin: auto;
     width: 60%;
     height: 2px;
@@ -163,73 +165,132 @@
 }
 
 
-.checkbox-modal{
+.checkbox-modal {
     display: flex;
     justify-content: space-around;
     margin: 15px;
 }
-.checkbox-modal>div{
+
+.checkbox-modal>div {
     display: flex;
 }
-.checkbox-modal>div>p{
+
+.checkbox-modal>div>p {
     position: relative;
     bottom: 10px;
 }
 
-input[type="checkbox"]{
-    -moz-appearance:none;
-    -webkit-appearance:none;
-    -o-appearance:none;
-    width: 20px;
-    height: 20px;
-    border:2px solid rgb(29, 120, 238);
+/* The container */
+.checkbox-modal-container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
     cursor: pointer;
+    font-size: 1em;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
-input[type="checkbox"]:checked{
-    width: 20px;
-    height: 20px;
-    border:2px solid rgb(29, 120, 238);
-    background-color: rgb(29, 120, 238);
+/* Hide the browser's default checkbox */
+.checkbox-modal-container input {
+    position: absolute;
+    opacity: 0;
     cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox-modal-container:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkbox-modal-container input:checked~.checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.checkbox-modal-container input:checked~.checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox-modal-container .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
 }
 
 
 /* selecionar cada cuanto */
-.repit_modal{
-    border:none;
+.repit_modal {
+    border: none;
     text-align: center;
     margin: 5% 0%;
     cursor: pointer;
 }
-.repit_modal:hover{
+
+.repit_modal:hover {
     box-shadow: 1px 1px 5px;
 }
-.repit_modal:focus{
+
+.repit_modal:focus {
     outline: none;
 }
+
 /* descripcion */
-#descripcion_modal>input{
+#descripcion_modal>input {
     width: 95%;
-    border:none;
+    border: none;
     text-align: center;
     box-shadow: 1px 1px 2px;
     height: 3em;
 }
-#descripcion_modal>input:hover{
+
+#descripcion_modal>input:hover {
     outline: none;
     box-shadow: 1px 1px 5px;
 }
-#descripcion_modal>input:focus{
+
+#descripcion_modal>input:focus {
     outline: none;
     box-shadow: 1px 1px 5px var(--azul);
 }
-.footer_modal{
+
+.footer_modal {
     display: flex;
     justify-content: space-between;
-    margin:5%;
+    margin: 5%;
 
 }
+
 input[type="checkbox"] {
     -moz-appearance: none;
     -webkit-appearance: none;

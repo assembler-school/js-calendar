@@ -54,16 +54,22 @@
             </div>
             <div id="opciones_modal" class="opciones_modal">
                 <div id="checkbox-modal" class="checkbox-modal">
-                    <div><input type="checkbox"> <p>Todo el dia</p></div>
-                    <div><input type="checkbox"> <p>Recoradtorio</p></div>
+                    <label class="checkbox-modal-container"> Todo el día
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="checkbox-modal-container">Recordatorio
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
                 </div>
-                    <select size="1" name="usgsfeed" class="repit_modal" id="usgsfeed"  onchange='SelectChanged()'>
-                        <option value="usgs_hour" SELECTED>No se repite</option>
-                        <option value="Day">Cada dia</option>
-                        <option value="Week">Cada semana</option>
-                        <option value="Month">Cada mes</option>
-                        <option value="Laborables">Laborables</option>
-                    </select>
+                <select size="1" name="usgsfeed" class="repit_modal" id="usgsfeed" onchange='SelectChanged()'>
+                    <option value="usgs_hour" SELECTED>No se repite</option>
+                    <option value="Day">Cada dia</option>
+                    <option value="Week">Cada semana</option>
+                    <option value="Month">Cada mes</option>
+                    <option value="Laborables">Laborables</option>
+                </select>
             </div>
             <div id="descripcion_modal">
                 <input type="text" maxlength="500" placeholder="descripcion">
