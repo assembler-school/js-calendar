@@ -1,0 +1,35 @@
+#header {
+    padding: 10px;
+    color: black;
+    font-size: 26px;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: space-between;
+  }
+  #header button {
+    background-color:#92a1d1;
+  }
+  #main-container {
+    width: 100%;
+    height: 100%;
+  }
+  #weekdays {
+    width: 100%;
+    display: flex;
+    color: eveningblue;
+    text-align: right;
+    color: rgba(0, 0, 0, 0.3)
+
+  }
+  #weekdays div {
+    width: 14.25%;
+    padding-right: 10px;
+    padding-bottom: 10px;
+  }
+  #calendar {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+  }

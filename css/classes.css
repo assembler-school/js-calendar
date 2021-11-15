@@ -1,0 +1,46 @@
+.day {
+    width: 14.25%;
+    padding: 10px;
+    max-height: 20%;
+    cursor: pointer;
+    box-sizing: border-box;
+    background-color: white;
+    box-shadow: 0px 0px 3px #CBD4C2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: right;
+  }
+  .day:hover {
+    background-color: #e8faed;
+  }
+
+  .day + #currentDay {
+    background-color:#e8f4fa;
+  }
+  .event {
+    font-size: 10px;
+    padding: 3px;
+    background-color: #58bae4;
+    color: white;
+    border-radius: 5px;
+    max-height: 55px;
+    overflow: hidden;
+  }
+  .padding {
+    width: 14.25%;
+    padding: 10px;
+    max-height: 20%;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: right;
+    background-color: white;
+    color: rgba(0, 0, 0, 0.3);
+    /* border: 1px solid gray; */
+  }
+  .padding:hover {
+    background-color: #e8faed;
+  }
