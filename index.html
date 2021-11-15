@@ -41,7 +41,12 @@
 
     <div id="modal_crear" class="modal_crear">
         <div id="main_modal" class="main_modal">
-            <span id="nav_modal" class="nav_modal">&times;</span>
+            <div class="head_modal">
+                <div class="head_modal">
+                    <span id="nav_modal" class="nav_modal">&times;</span>
+                </div>
+                
+            </div>
             <div id="input_modal" class="input_modal">
                 <input type="Text" placeholder="Añade un titulo" class="title-modal-input modal-need">
                 <div id="liniabonito" class="linianobonito"></div>
@@ -62,17 +67,19 @@
                         <span class="checkmark"></span>
                     </label>
                     <label class="checkbox-modal-container">Recordatorio
-                        <input type="checkbox">
+                        <input type="checkbox" id="recordatorio_modal">
                         <span class="checkmark"></span>
                     </label>
                 </div>
-                <select size="1" name="usgsfeed" class="repit_modal" id="usgsfeed" onchange='SelectChanged()'>
-                    <option value="usgs_hour" SELECTED>No se repite</option>
-                    <option value="Day">Cada dia</option>
-                    <option value="Week">Cada semana</option>
-                    <option value="Month">Cada mes</option>
-                    <option value="Laborables">Laborables</option>
-                </select>
+                <div id="selctdiv_modal">
+                    <select size="1" name="usgsfeed" class="repit_modal" id="usgsfeed" onchange='SelectChanged()'>
+                        <option value="usgs_hour" SELECTED>No se repite</option>
+                        <option value="Day">Cada dia</option>
+                        <option value="Week">Cada semana</option>
+                        <option value="Month">Cada mes</option>
+                        <option value="Laborables">Laborables</option>
+                    </select>
+                </div>
             </div>
             <div id="descripcion_modal">
                 <input type="text" maxlength="500" placeholder="descripcion">

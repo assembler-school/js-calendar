@@ -85,3 +85,32 @@ function ponerdata() {
         typedatatimelocal.type = "datetime-local"
     }
 }
+
+//poner selection recordatorio
+recordatorio_modal.addEventListener("click", recordatorio_modal_time)
+
+function recordatorio_modal_time() {
+    if (recordatorio_modal.checked == true) {
+        selctdiv_modal.appendChild(crearlistamin())
+    } else if (recordatorio_modal.checked == false) {
+        var a = document.getElementById("selectrecord")
+        selctdiv_modal.removeChild(a)
+    }
+
+}
+
+
+function crearlistamin() {
+    var selectrecordatorio = document.createElement("select")
+    selectrecordatorio.classList = "repit_modal"
+    selectrecordatorio.id = "selectrecord"
+    const timerecordatorio = [5, 10, 15, 30, 60]
+    for (const time of timerecordatorio) {
+        var option_modal = document.createElement("option")
+        option_modal.innerHTML = time + " minutes"
+        console.log(option_modal)
+
+        selectrecordatorio.appendChild(option_modal)
+    }
+    return selectrecordatorio
+}
