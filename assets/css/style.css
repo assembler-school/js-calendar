@@ -1,9 +1,9 @@
-#calendar_minicalendar {
+#calendar_minicalendar, #calendar {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 5px;
 }
 
-#calendar_minicalendar div{
+#calendar_minicalendar div, #calendar div{
     place-self: center;
 }
