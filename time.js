@@ -1,4 +1,3 @@
-let innerH2 = document.getElementById('prueba')
 
 function displayHour() {
     hourUpdate = setInterval(() => {
@@ -7,12 +6,10 @@ function displayHour() {
         minute = time.getMinutes();
         seconds = time.getSeconds();
 
-        houtMin= `${hour}: ${minute}: ${seconds}`
-        console.log(houtMin)
-        innerH2.textContent = houtMin
-
+        houtMin = `${hour}: ${minute}: ${seconds}`;
+        console.log(houtMin);
+        innerH2.textContent = houtMin;
     }, 1000);
 }
 
-
-displayHour()
+displayHour();
