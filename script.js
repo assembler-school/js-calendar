@@ -88,6 +88,7 @@ function displayCalendar() {
     // set the content of div .
     document.getElementById("calendar").innerHTML = calendarBody;
 
+    //Date num
     const monthNow= document.querySelectorAll(".monthNow")
 
     monthNow.forEach(num=> {
