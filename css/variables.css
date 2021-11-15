@@ -3,6 +3,7 @@
     --modal-size:400px;
     --border-radius: 3px;
     --size: 30px;
+    --margin: 15px;
 
     --white: rgb(255, 255, 255);
     --black-translucent: rgba(0, 0, 0, 0.4);

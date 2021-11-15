@@ -46,7 +46,6 @@
     align-items: center;
 }
 
-
 .input-name{
     justify-content: flex-end;
     align-items: center;
@@ -63,6 +62,14 @@
     margin-left: -60px;
 }
 
+.checkbox{
+    margin-right: var(--margin);
+}
+
+.select-reminder{
+    margin-left: var(--margin);
+}
+
 .description :first-child{
     margin-right: 10px;
 }
@@ -73,7 +80,7 @@
 
 .description-p{
     padding: 5px;
-    margin-right: 15px;
+    margin-right: var(--margin);
     color: var(--light-grey);
     border-radius: var(--border-radius);
 }
@@ -85,7 +92,10 @@
 .description-textarea{
     border-color: var(--light-grey);
     width: calc(var(--size) * 10);
-    height: var(--size);
+}
+
+.select-type-event{
+    margin-left: var(--margin);
 }
 
 .save{

@@ -12,10 +12,10 @@ export function element(type, elemId, elemClass, otherAtt, valueAtt, textContent
 }
 
 
-export function readArray(array){
+export function readArray(array, parent){
     for(let i = 0; i < array.length; i++){
         if(Array.isArray(array[i])) readInsideArray(array[i], array[i-1]);
-        else body.appendChild(array[i]);
+        else if(parent !== null) body.appendChild(array[i]);
     }
 }
 
