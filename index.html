@@ -6,8 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/css/style.css">
-    <script src="/assets/js/data.js"></script>
-    <script src="/assets/js/main.js"></script>
+    <link rel="stylesheet" href="/assets/css/modal.css">
+    <script src="/assets/js/data.js" defer></script>
+    <script src="/assets/js/modal.js" defer></script>
+    <script src="/assets/js/main.js" defer></script>
     <title>Document</title>
 </head>
 
@@ -15,7 +17,7 @@
     <section id="barrnav"></section>
     <section id="minicalendar">
         <div>
-            <button id="crear_minicalendar"></button>
+            <button id="crear_minicalendar">Crear</button>
         </div>
         <div id="calendar_minicalendar">
 
@@ -28,6 +30,61 @@
     <section id="calendar">
 
     </section>
+
+
+
+
+
+
+
+    <div id="modal_crear" class="modal_crear">
+        <div id="nav_modal" class="nav_modal"></div>
+        <div id="main_modal" class="main_modal">
+            <div id="input_modal" class="input_modal">
+                <input type="Text" placeholder="Añade un titulo">
+                <div id="liniabonito" class="linianobonito"></div>
+            </div>
+            <div id="fecha_modal" class="fecha_modal">
+                <div id="fechadia_modal">
+                    <span class="date-picker">
+                        <input id="date-pickerInput" type="datetime-local" >
+                    </span>
+                    <div id="liniabonito" class="linianobonito"></div>
+                </div>
+            </div>
+            <div id="opciones_modal" class="opciones_modal">
+                <div id="checkbox-modal" class="checkbox-modal">
+                   <div><input type="checkbox"> <p>Todo el dia</p></div> 
+                   <div><input type="checkbox"> <p>Recoradtorio</p></div> 
+                </div>
+                <form name="aform">
+                    <select size="1" name="usgsfeed" id="usgsfeed"  onchange='SelectChanged()'>
+                        <option value="usgs_hour" SELECTED>No se repite</option>
+                        <option value="Day">Cada dia</option>
+                        <option value="Week">Cada semana</option>
+                        <option value="Month">Cada mes</option>
+                        <option value="Laborables">Laborables</option>
+                    </select>
+                </form>
+            </div>
+            <div id="descripcion_modal">
+                <input type="text" maxlength="150" placeholder="descripcion">
+            </div>
+            <div id="type_modal">
+                <select size="1" name="usgsfeed" id="usgsfeed"  onchange='SelectChanged()'>
+                    <option value="usgs_hour" SELECTED>Your work</option>
+                    <option value="Day">Yor day</option>
+                </select>
+            </div>
+        </div>
+        <div id="footer_modal"> <button>Guardar</button></div>
+    </div>
+
+
+
+
+
 </body>
+
 
 </html>

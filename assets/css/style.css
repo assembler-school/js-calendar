@@ -1,0 +1,10 @@
+:root{
+    --azul:#1a73e8;
+    --azulclaro:#d2e3fc;
+    --gris:#f1f3f4;
+    --grisOscuro:#f1f3f4;
+    --negro:#4e4643;
+}
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
