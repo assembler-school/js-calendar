@@ -78,14 +78,22 @@ function displayCalendar() {
 
 
     // building the calendar html body.
-    var calendarBody = "<div class='calendar'> <ul class='monthNow'><li colspan='7'>"
+    var calendarBody = '<div><input type="button" value="button Test" onclick="openModal()"></div>';
+    calendarBody += "<div class='calendar id='idcalendar'> <ul class='monthNow'><li colspan='7'>"
         + monthNames[month] + " " + year + "</li></ul>";
     calendarBody += "<ul class='dayNames'>  <li>Sun</li>  <li>Mon</li> <li>Tues</li>" +
         "<li>Wed</li> <li>Thurs</li> <li>Fri</li> <li>Sat</li> </ul>";
     calendarBody += "<ul>";
     calendarBody += htmlContent;
     calendarBody += "</ul></div>";
-    // set the content of div .
+
+    //todo The Modal
+    // calendarBody += '<div id="myModal" class="modal"><div class="modal-content"><span id="close">&times;</span></div></div>'
     document.getElementById("calendar").innerHTML = calendarBody;
+
+    //displayHour()
+
+
+
 
 }

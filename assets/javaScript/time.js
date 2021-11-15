@@ -8,11 +8,10 @@ function displayHour() {
         seconds = time.getSeconds();
 
         houtMin= `${hour}: ${minute}: ${seconds}`
-        console.log(houtMin)
-        innerH2.textContent = houtMin
+        fisrsRow= document.getElementsById('idcalendar')
+        fisrsRow.innerText = houtMin
 
     }, 1000);
 }
 
 
-displayHour()
