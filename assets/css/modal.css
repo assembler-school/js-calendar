@@ -81,7 +81,19 @@
 .input_modal {
     margin: 30px 15px 15px 15px;
     padding-top: 20px;
+}
 
+.title-modal-input {
+    padding: 5px;
+    border: 0;
+    width: 60%;
+    border-bottom: 1px solid black;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.title-modal-input:focus {
+    outline: none;
 }
 
 .date_modal {

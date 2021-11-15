@@ -24,7 +24,6 @@ window.onclick = function (event) {
     }
 }
 
-<<<<<<< HEAD
 //Validación
 
 btnSave.addEventListener("click", comprovacionFinal);
@@ -41,39 +40,48 @@ function comprovaciones(event) {
     }
 }
 
+function comprovacionesFechas(event) {
+    let profile_cont_input = event.srcElement.value;
+    if (profile_cont_input == 'undefined') {
+        event.srcElement.style.backgroundColor = "#F8D8DD";
+    } else {
+        event.srcElement.style.color = "var(--azul)";
+        event.srcElement.style.backgroundColor = "#ffffff";
+    }
+}
+
 function comprovacionFinal() {
-    let allInputs = document.querySelectorAll('.');
+    let allInputs = document.querySelectorAll('.modal-need');
+    for (let i = 0; i < allInputs.length; i++) {
+        if (allInputs[i].classList[0] == 'title-modal-input') {
 
-    switch (key) {
-        case value:
+        } else {
 
-            break;
+        }
+    }
 
-        default:
-            break;
-=======
+}
+
 //poner otro input date
-checkboxDate.addEventListener("click",ponerdata)
+checkboxDate.addEventListener("click", ponerdata)
 
-function ponerdata(){
-    var divdate_modal=document.createElement("div")
-    var spandate=document.createElement("span")
-    var inputdate_modal=document.createElement("input")
-    inputdate_modal.type="Date"
-    inputdate_modal.classList="date_modal"
-    spandate.classList="date-picker"
-    divdate_modal.id="div2"
+function ponerdata() {
+    var divdate_modal = document.createElement("div")
+    var spandate = document.createElement("span")
+    var inputdate_modal = document.createElement("input")
+    inputdate_modal.type = "Date"
+    inputdate_modal.classList = "date_modal modal-need"
+    spandate.classList = "date-picker"
+    divdate_modal.id = "div2"
 
-    if(checkboxDate.checked==true){
+    if (checkboxDate.checked == true) {
         fecha_modal.appendChild(divdate_modal)
         divdate_modal.appendChild(spandate)
         spandate.appendChild(inputdate_modal)
-        typedatatimelocal.type="Date"
-    }
-    else if(checkboxDate.checked==false){
-        var a=document.getElementById("div2")
+        typedatatimelocal.type = "Date"
+    } else if (checkboxDate.checked == false) {
+        var a = document.getElementById("div2")
         fecha_modal.removeChild(a)
-        typedatatimelocal.type="datetime-local"
->>>>>>> 95696868afcba1e695a44934bd25a0f87aa6b62e
+        typedatatimelocal.type = "datetime-local"
     }
 }
