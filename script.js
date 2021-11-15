@@ -63,10 +63,10 @@ function displayCalendar() {
         // if counter is current day.
         // highlight current day using the CSS defined in header.
         if (counter == day) {
-            htmlContent += "<li class='dayNow'  onMouseOver='this.style.background=\"#FFFF00\"; this.style.color=\"#FFFFFF\"' " +
+            htmlContent += "<li class='dayNow gridCalendar'  onMouseOver='this.style.background=\"#FFFF00\"; this.style.color=\"#FFFFFF\"' " +
                 "onMouseOut='this.style.background=\"#FFFFFF\"; this.style.color=\"#00FF00\"'>" + counter + "</li>";
         } else {
-            htmlContent += "<li class='monthNow' onMouseOver='this.style.background=\"#FFFF00\"'" +
+            htmlContent += "<li class='monthNow gridCalendar' onMouseOver='this.style.background=\"#FFFF00\"'" +
                 " onMouseOut='this.style.background=\"#FFFFFF\"'>" + counter + "</li>";
 
         }
