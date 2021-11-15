@@ -98,20 +98,21 @@
     margin-left: var(--margin);
 }
 
-.save{
+.buttons{
     justify-content: flex-end;
     align-items: center;
     margin-right: 15px;
 }
 
-.save-button{
+.button{
     color: var(--white);
     background-color: var(--dark-blue);
     border: none;
     padding: 5px 20px;
     font-weight: 500;
+    margin-left: var(--margin);
 }
 
-.save-button:hover{
+.button:hover{
     background-color: var(--dark-blue-translucent);
 }

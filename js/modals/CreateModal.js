@@ -22,7 +22,7 @@ class CreateModal{
                         element("div"),
                         [
                             //form
-                            element("form"),
+                            element("form", "main-form"),
                             [
                                 //title
                                 element("div", null, "submodal input-name"),
@@ -80,9 +80,10 @@ class CreateModal{
                                         ]
                                 ],
                                 //save
-                                element("div", null, "submodal save"),
+                                element("div", null, "submodal buttons"),
                                 [
-                                    element("button", null, "save-button", null, null, "Save")
+                                    element("button", "cancel-button", "button", null, null, "Cancel"),
+                                    element("button", "save-button", "button", null, null, "Save")
                                 ]
                             ]
                         ]
@@ -94,16 +95,19 @@ class CreateModal{
         
         const modal = document.querySelector(".modal");
 
+        //close event
         const close = document.getElementById("close-modal");
         close.addEventListener("click", function(){
             modal.parentNode.removeChild(modal);
         });
         
+        //title input
         const title = document.getElementById("title");
         title.setAttribute("type", "text");
         title.setAttribute("placeholder", "Add a title");
         title.required = true;
         
+        //date checkbox structure + add/remove
         const dateCheckbox = document.getElementById("date-checkbox");
         dateCheckbox.addEventListener("change", function(e){
             const dateEndStructure = [
@@ -134,6 +138,7 @@ class CreateModal{
             }
         });
 
+        //description change p to textarea
         const description = document.querySelector(".description-p");
         description.addEventListener("click", function(){
             const textArea = element("textarea", null, "description-textarea", "placeholder", "Write here...");
@@ -143,6 +148,7 @@ class CreateModal{
             description.parentNode.removeChild(description);
         });
 
+        //reminder add/remove select
         const reminderCheckbox = document.getElementById("reminder-checkbox");
         reminderCheckbox.addEventListener("change", function(e){
             const reminderStructure =  [
@@ -165,11 +171,27 @@ class CreateModal{
             }
         });
 
-        const saveButton = document.querySelector(".save-button");
-        saveButton.addEventListener("click", function(){
-
+        //cancel button
+        const cancelButton = document.getElementById("cancel-button");
+        cancelButton.addEventListener("click", function(){
+            //Se auto refresca
+            const form = document.getElementById("main-form");
+            form.noValidate = true;
+            //form.submit();
+            /*form.on('submit', function (event) {
+                event.preventDefault();
+            });*/
+            console.log(form);
+            modal.parentNode.removeChild(modal);
         });
 
+        //save button
+        const saveButton = document.getElementById("save-button");
+        saveButton.addEventListener("click", function(){
+            //code of save
+        });
+
+        //modal listener
         this.focus();
         modal.addEventListener("focusout", function(e){
             if(e.sourceCapabilities === null || e.relatedTarget === saveButton) return;
@@ -184,10 +206,6 @@ class CreateModal{
             else modal.parentNode.removeChild(modal);
         });
         
-        
-        
-
-
             /*-------
                 initial date with time - required
 
@@ -197,12 +215,10 @@ class CreateModal{
                 checkbox reminder
                     use SetInterval every 10sec
 
-                WARNING box - event expired = red bold + doc more info
+                ???WARNING box - event expired = red bold + doc more info
             */
 
         //esc key
-
-        //cancel near save // both close the modal
 
         //add event to calendar
     }
