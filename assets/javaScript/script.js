@@ -91,9 +91,16 @@ function displayCalendar() {
     // calendarBody += '<div id="myModal" class="modal"><div class="modal-content"><span id="close">&times;</span></div></div>'
     document.getElementById("calendar").innerHTML = calendarBody;
 
-    //displayHour()
+    //Date num
+    const monthNow= document.querySelectorAll(".monthNow")
 
-
-
+    monthNow.forEach(num=> {
+        num.addEventListener("click", ()=>{
+            numero= num.textContent
+     
+            fecha= ` ${numero} ${monthNames[month]} ${year} `
+            console.log(fecha)
+        })
+    });
 
 }
