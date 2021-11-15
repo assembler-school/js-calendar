@@ -1,3 +1,5 @@
+import CreateModal from "./modals/CreateModal.js";
+import * as variable from "./variables.js";
 let currentMonth = 0;
 let clickedDay = null;
 let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : []; // fetching events from LocalStorage, if it doest't exist return an empty array

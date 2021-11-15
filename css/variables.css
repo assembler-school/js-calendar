@@ -1,0 +1,15 @@
+:root{
+    --font-size: 18px;
+    --modal-size:400px;
+    --border-radius: 3px;
+    --size: 30px;
+    --margin: 15px;
+
+    --white: rgb(255, 255, 255);
+    --black-translucent: rgba(0, 0, 0, 0.4);
+    --light-grey: rgb(184, 184, 184);
+    --dark-grey-translucent: rgba(228, 227, 227, 0.4);
+    --dark-grey-translucent-2: rgba(228, 227, 227, 0.6);
+    --dark-blue: rgb(0, 102, 255);
+    --dark-blue-translucent: rgb(0, 102, 255, 0.9);
+}

@@ -1,3 +1,17 @@
+<<<<<<< HEAD
+#title{
+    width: calc(var(--modal-size) - 85px);
+    height: fit-content;
+    border: none;
+    border-bottom: 1px solid var(--light-grey);
+}
+
+#title:focus{
+    outline: none;
+    border-bottom: 2.3px solid var(--dark-blue);
+    transition: 0.2s;
+}
+=======
 #header {
     padding: 10px;
     color: black;
@@ -33,3 +47,4 @@
     flex-wrap: wrap;
     height: 100%;
   }
+>>>>>>> develop

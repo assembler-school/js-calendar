@@ -1,3 +1,121 @@
+.modal{
+    width: var(--modal-size);
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    border-radius: var(--border-radius);
+    box-shadow: -1px 1px 8px 1px var(--black-translucent);
+
+
+    /* position: relative;
+    transform: translate(-115%, 45%); */
+}
+
+.modal-top{
+    background-color: #f1f3f4;
+    height: var(--size);
+    padding: 6px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-top span{
+    width: var(--size);
+    height: var(--size);
+}
+
+.modal-top span:hover{
+    background-color: var(--dark-grey-translucent-2);
+    border-radius: 50%;
+}
+
+.modal-top img{
+    width: calc(var(--size) / 2);
+    height: calc(var(--size) / 2);
+    padding: 7px 8px;
+}
+
+.submodal{
+    display: flex;
+    flex-flow: row wrap;
+    height: 50px;
+    padding: 6px 15px;
+    align-items: center;
+}
+
+.input-name{
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.date{
+    justify-content: space-between;
+    align-items: center;
+}
+
+.event-time{
+    display: flex;
+    flex-flow: column nowrap;
+    margin-left: -60px;
+}
+
+.checkbox{
+    margin-right: var(--margin);
+}
+
+.select-reminder{
+    margin-left: var(--margin);
+}
+
+.description :first-child{
+    margin-right: 10px;
+}
+
+.flipX{
+    transform: scaleX(-1);
+}
+
+.description-p{
+    padding: 5px;
+    margin-right: var(--margin);
+    color: var(--light-grey);
+    border-radius: var(--border-radius);
+}
+
+.description-p:hover{
+    background-color: var(--dark-grey-translucent);
+}
+
+.description-textarea{
+    border-color: var(--light-grey);
+    width: calc(var(--size) * 10);
+}
+
+.select-type-event{
+    margin-left: var(--margin);
+}
+
+.buttons{
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.button{
+    color: var(--white);
+    background-color: var(--dark-blue);
+    border: none;
+    padding: 5px 20px;
+    font-weight: 500;
+    margin-left: var(--margin);
+}
+
+.button:hover{
+    background-color: var(--dark-blue-translucent);
+}
 .day {
     width: 14.25%;
     padding: 10px;
