@@ -101,11 +101,11 @@ function displayCalendar() {
 
     // building the calendar html body.
     var calendarBody =
-        "<div class='calendar'> <i class='fas fa-chevron-left'> <div class='monthNow'> <span> " +
+        "<div class='calendar'> <div class='monthNow' id='calendarP'> <i class='fas fa-chevron-left'> </i><span> " +
         monthNames[month] +
         ' ' +
         year +
-        "</span></div><i class='fas fa-chevron-right'>";
+        "</span> <i class='fas fa-chevron-right'></i> </div>";
     calendarBody +=
         "<button class='modal-btn id='openModal'>ADD EVENT</button>";
     calendarBody +=
