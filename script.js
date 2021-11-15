@@ -88,4 +88,15 @@ function displayCalendar() {
     // set the content of div .
     document.getElementById("calendar").innerHTML = calendarBody;
 
+    const monthNow= document.querySelectorAll(".monthNow")
+
+    monthNow.forEach(num=> {
+        num.addEventListener("click", ()=>{
+            numero= num.textContent
+     
+            fecha= ` ${numero} ${monthNames[month]} ${year} `
+            console.log(fecha)
+        })
+    });
+
 }
