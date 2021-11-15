@@ -24,3 +24,28 @@ window.onclick = function (event) {
         mainModal.style.display = "none";
     }
 }
+
+//poner otro input date
+checkboxDate.addEventListener("click",ponerdata)
+
+function ponerdata(){
+    var divdate_modal=document.createElement("div")
+    var spandate=document.createElement("span")
+    var inputdate_modal=document.createElement("input")
+    inputdate_modal.type="Date"
+    inputdate_modal.classList="date_modal"
+    spandate.classList="date-picker"
+    divdate_modal.id="div2"
+
+    if(checkboxDate.checked==true){
+        fecha_modal.appendChild(divdate_modal)
+        divdate_modal.appendChild(spandate)
+        spandate.appendChild(inputdate_modal)
+        typedatatimelocal.type="Date"
+    }
+    else if(checkboxDate.checked==false){
+        var a=document.getElementById("div2")
+        fecha_modal.removeChild(a)
+        typedatatimelocal.type="datetime-local"
+    }
+}

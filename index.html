@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/modal.css">
+    <script src="/assets/js/dom.js" defer></script>
     <script src="/assets/js/data.js" defer></script>
     <script src="/assets/js/modal.js" defer></script>
     <script src="/assets/js/main.js" defer></script>
@@ -49,7 +50,7 @@
                 <div id="fechadia_modal">
                     
                     <span class="date-picker">
-                        <input id="date-pickerInput" type="datetime-local">
+                        <input id="date-pickerInput" type="datetime-local" class="date_modal">
                     </span>
                     <div id="liniabonito" class="linianobonito"></div>
                 </div>
@@ -57,7 +58,7 @@
             <div id="opciones_modal" class="opciones_modal">
                 <div id="checkbox-modal" class="checkbox-modal">
                     <label class="checkbox-modal-container"> Todo el día
-                        <input type="checkbox">
+                        <input id="checkbox_tododia" type="checkbox">
                         <span class="checkmark"></span>
                     </label>
                     <label class="checkbox-modal-container">Recordatorio
