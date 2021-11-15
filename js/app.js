@@ -2,6 +2,7 @@
 
 const header = document.getElementsByTagName("header")[0];
 const actualMonth=document.getElementById("actual-month");
+const todayBtn = document.getElementById("todayBtn");
 const backBtn=document.getElementById("back-btn");
 const nextBtn=document.getElementById("next-btn");
 const actualYear=document.getElementById("year");
@@ -10,6 +11,7 @@ const months=["January","February","March","April","May","June"
 //Event listeners
 backBtn.addEventListener("click",backMonth);
 nextBtn.addEventListener("click",nextMonth);
+todayBtn.addEventListener("click",todayDate);
 //variables
 let tempMonth,tempYear;
 let actualdate=new Date();
