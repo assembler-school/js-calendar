@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
     <script type="module" src="js/app.js" defer></script>
+    <link rel="stylesheet" href="css/font-awesome.css">
     <title>Calendar</title>
 </head>
 <body>
@@ -12,20 +13,22 @@
         <div id="first-section">
             <div id="logo">
                 <img src="img/fantastical-mac-glyph.png" alt="logo">
+                <h4>JS CALENDAR</h4>
             </div>
             <div id="actual-day-container">
                 <button id="todayBtn">Today</button>
             </div>
             <div id="month-container">
                 <div class="back-next-btn" id="back-btn"><img src="img/angle-left-solid.svg" alt="left arrow"></div>
-                <div class="back-next-btn" id="next-btn"><img src="img/angle-right-solid.svg" alt="right arrow"></div>
+                <div class="back-next-btn" id="next-btn"><button><img src="img/angle-right-solid.svg" alt="right arrow"></button></div>
                 <div id="actual-month"></div>
                 &nbsp;of&nbsp;
                 <div id="year"></div>
             </div>
         </div>
+        
         <div id="create-event-container">
-            <button id="create-event-btn">+</button>
+            <button id="create-event-btn"><img src="img/plus.svg" alt="plus" width="15" style="margin-right: 4px;">New Event</button>
         </div>
     </header>
 </body>

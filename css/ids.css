@@ -1,10 +1,14 @@
 /* HEADER SECTION */
 #first-section{
     display:flex;
-    width:400px;
+    width:450px;
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
+}
+#logo{
+    display:flex;
+    flex-direction: row;
 }
 #logo img{
     width:50px;
@@ -17,12 +21,16 @@
 #month-container img{
 width: 10px;
 }
+#month-container #back-btn{
+    cursor:pointer;
+}
 #month-container #next-btn{
     margin-right: 10px;
     margin-left:5px;
+    cursor: pointer;
 }
 #create-event-btn{
     padding:1em;
-    border-radius: 10px;
+    border-radius: 40px;
     margin-right:10px;
 }
