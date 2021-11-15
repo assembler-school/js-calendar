@@ -167,6 +167,7 @@
     display: flex;
     justify-content: space-around;
     margin: 15px;
+    max-height: 30px;
 }
 .checkbox-modal>div{
     display: flex;
@@ -198,8 +199,9 @@ input[type="checkbox"]:checked{
 /* selecionar cada cuanto */
 .repit_modal{
     border:none;
+    height: 30px;
     text-align: center;
-    margin: 5% 0%;
+    margin: 2% 0%;
     cursor: pointer;
 }
 .repit_modal:hover{
@@ -228,8 +230,27 @@ input[type="checkbox"]:checked{
     display: flex;
     justify-content: space-between;
     margin:5%;
-
 }
+.footer_modal>select{
+    display: flex;
+    outline: none;
+    border:none;
+    width: 30%;
+    margin: 10px;
+}
+.footer_modal>select:hover{
+    box-shadow: 1px 1px 5px;
+}
+.footer_modal>button{
+    background-color: var(--azul);
+    color: white;
+    font-size: 1.2em;
+    padding: 15px;
+    border:solid 2px var(--azulclaro);
+    border-radius: 7px;
+}
+
+
 input[type="checkbox"] {
     -moz-appearance: none;
     -webkit-appearance: none;

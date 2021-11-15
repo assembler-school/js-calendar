@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/modal.css">
     <script src="/assets/js/data.js" defer></script>
@@ -46,6 +47,7 @@
             </div>
             <div id="fecha_modal" class="fecha_modal">
                 <div id="fechadia_modal">
+                    
                     <span class="date-picker">
                         <input id="date-pickerInput" type="datetime-local">
                     </span>
@@ -68,15 +70,14 @@
             <div id="descripcion_modal">
                 <input type="text" maxlength="500" placeholder="descripcion">
             </div>
-            <div id="type_modal">
+            <div id="footer_modal" class="footer_modal"> 
                 <select size="1" name="usgsfeed" id="usgsfeed" onchange='SelectChanged()'>
-                    <option value="usgs_hour" SELECTED>Your work</option>
-                    <option value="Day">Yor day</option>
-                </select>
+                <option value="usgs_hour" SELECTED>Your work</option>
+                <option value="Day">Yor day</option>
+                </select> 
+                <button>Guardar</button></div>
             </div>
-            <div id="footer_modal"> <button>Guardar</button></div>
         </div>
-    </div>
 
 
 
