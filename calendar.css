@@ -18,8 +18,9 @@ body{
     text-align: center;
 }
 .calendar li{
-   display: grid;
-   grid-template-columns: repeat(7,1fr);
+   /* display: grid;
+   grid-template-columns: repeat(7,1fr); */
+   list-style: none;
    grid-template-rows: auto;
 }
 .monthNow li{
