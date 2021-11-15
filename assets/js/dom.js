@@ -1,3 +1,5 @@
 var checkboxDate=document.getElementById("checkbox_tododia")
 var fecha_modal=document.getElementById("fecha_modal")
 var typedatatimelocal=document.getElementById("date-pickerInput")
+var selctdiv_modal=document.getElementById("selctdiv_modal")
+var recordatorio_modal=document.getElementById("recordatorio_modal")
