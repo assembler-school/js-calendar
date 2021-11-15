@@ -1,8 +1,18 @@
 /* HEADER SECTION */
-header{
-    background-color:rgb(113, 189, 151);
-    display:flex;
-    align-items: center;
-    flex-direction:row;
-    justify-content: space-between;
+body {
+    display: flex;
+    justify-content: center;
+    background-color: #FFFCFF;
+    font-family: sans-serif;
+    height: 80vh;
 }
+  button {
+    width: 75px;
+    cursor: pointer;
+    box-shadow: 0px 0px 2px gray;
+    border: none;
+    outline: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+  }

@@ -1,36 +1,35 @@
-/* HEADER SECTION */
-#first-section{
-    display:flex;
-    width:450px;
-    align-items: center;
-    flex-direction: row;
+#header {
+    padding: 10px;
+    color: black;
+    font-size: 26px;
+    font-family: sans-serif;
+    display: flex;
     justify-content: space-between;
-}
-#logo{
-    display:flex;
-    flex-direction: row;
-}
-#logo img{
-    width:50px;
-}
-#month-container{
-    display:flex;
-    flex-direction:row;
-    width:150px;
-}
-#month-container img{
-width: 10px;
-}
-#month-container #back-btn{
-    cursor:pointer;
-}
-#month-container #next-btn{
-    margin-right: 10px;
-    margin-left:5px;
-    cursor: pointer;
-}
-#create-event-btn{
-    padding:1em;
-    border-radius: 40px;
-    margin-right:10px;
-}
+  }
+  #header button {
+    background-color:#92a1d1;
+  }
+  #main-container {
+    width: 100%;
+    height: 100%;
+  }
+  #weekdays {
+    width: 100%;
+    display: flex;
+    color: eveningblue;
+    text-align: right;
+    color: rgba(0, 0, 0, 0.3)
+
+  }
+  #weekdays div {
+    width: 14.25%;
+    padding-right: 10px;
+    padding-bottom: 10px;
+  }
+  #calendar {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+  }
