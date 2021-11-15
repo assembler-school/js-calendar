@@ -29,8 +29,3 @@ button{
     height: fit-content;
     border-radius: var(--border-radius);
 }
-
-body{
-    display: flex;
-    justify-content: center;
-}

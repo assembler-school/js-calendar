@@ -2,12 +2,12 @@ export const body = document.querySelector(".body");
 //test const - delete
 export const test = document.getElementById("test");
 
-export function element(type, elemId, elemClass, textContent, src){
+export function element(type, elemId, elemClass, otherAtt, valueAtt, textContent){
     const element = document.createElement(type);
     if(elemId != null) element.setAttribute("id", elemId);
     if(elemClass != null) element.setAttribute("class", elemClass);
+    if(otherAtt != null) element.setAttribute(otherAtt, valueAtt);
     if(textContent != null) element.textContent = textContent;
-    if(src != null) element.src = src;
     return element;
 }
 

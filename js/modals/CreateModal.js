@@ -1,21 +1,21 @@
 import { element, readArray } from "../variables.js";
 
-class CreateModal {
+class CreateModal{
 
     #structure = [
                    //modal
-                   element("div", null, "modal"),
+                   element("div", null, "modal", "tabindex", "-1"),
                        [
                         //top modal (move and close)
                         element("div", null, "modal-top"),
                         [
                             element("span"),
                             [
-                                element("img", null, null, null, "../assets/imgs/menu.png")
+                                element("img", null, null, "src", "../assets/imgs/menu.png")
                             ],
                             element("span"),
                             [
-                                element("img", null, null, null, "../assets/imgs/close.png")
+                                element("img", "close-modal", null, "src", "../assets/imgs/close.png")
                             ]
                         ],
                         //body modal
@@ -31,16 +31,16 @@ class CreateModal {
                             [
                                 element("span"),
                                 [
-                                    element("img", null, null, null, "../assets/imgs/clock.png")
+                                    element("img", null, null, "src", "../assets/imgs/clock.png")
                                 ],
                                 element("div", null, "event-time"),
                                 [
-                                    element("span", null, null, "Sábado, 13 de noviembre"),
-                                    element("span", null, null, "12:00 - 1:00")
+                                    element("span", null, null,  null, null, "Sábado, 13 de noviembre"),
+                                    element("span", null, null,  null, null, "12:00 - 1:00")
                                 ],
                                 element("span"),
                                 [
-                                    element("img", null, null, null, "../assets/imgs/calendar.png")
+                                    element("img", null, null, "src", "../assets/imgs/calendar.png")
                                 ]
                             ],
                             //description
@@ -48,14 +48,14 @@ class CreateModal {
                             [
                                 element("span"),
                                 [
-                                    element("img", null, "flipX", null, "../assets/imgs/description.png")
+                                    element("img", null, "flipX", "src", "../assets/imgs/description.png")
                                 ],
-                                element("p", null, "description-p", "Add a description"),
+                                element("p", null, "description-p", null, null, "Add a description"),
                             ],
                             //save
                             element("div", null, "submodal save"),
                             [
-                                element("button", null, "save-button", "Save")
+                                element("button", null, "save-button", null, null, "Save")
                             ]
                         ]
                        ]
@@ -63,19 +63,40 @@ class CreateModal {
 
     constructor(){
         readArray(this.#structure);
+        
+        const modal = document.querySelector(".modal");
+        
         const title = document.getElementById("title");
         title.setAttribute("placeholder", "Add a title");
-
-
-        //calculate invoker and position
         
+        const close = document.getElementById("close-modal");
+        close.addEventListener("click", function(){
+            modal.parentNode.removeChild(modal);
+        });
+        
+        const description = document.querySelector(".description-p");
+        description.addEventListener("click", function(){
+            description.parentNode.appendChild(element("textarea", null, "description-textarea"));
+            description.parentNode.removeChild(description);
+        });
 
-
+        this.focus();
+        modal.addEventListener("focusout", function(e){
+            if(e.sourceCapabilities === null) return;
+            if( e.relatedTarget === modal ||
+                e.relatedTarget === modal.childNodes[1].childNodes[0].childNodes[0] ||
+                e.relatedTarget === modal.childNodes[1].childNodes[2].childNodes[1] ||
+                e.relatedTarget === modal.childNodes[1].childNodes[3].childNodes[0]){} 
+            else modal.parentNode.removeChild(modal);
+        });
+        
     }
 
-    //this method is not neccesary
-    getStructure(){
-        return this.#structure;
+    focus(){
+        const modal = document.querySelector(".modal");
+        if(modal !== undefined){
+            modal.focus();
+        }
     }
 
 }

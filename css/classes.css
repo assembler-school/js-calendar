@@ -1,13 +1,15 @@
 .modal{
     width: var(--modal-size);
     height: fit-content;
-    border-radius: var(--border-radius);
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     border-radius: var(--border-radius);
     box-shadow: -1px 1px 8px 1px var(--black-translucent);
-    position: absolute;
+
+
+    /* position: relative;
+    transform: translate(-115%, 45%); */
 }
 
 .modal-top{
@@ -78,6 +80,12 @@
 
 .description-p:hover{
     background-color: var(--dark-grey-translucent);
+}
+
+.description-textarea{
+    border-color: var(--light-grey);
+    width: calc(var(--size) * 10);
+    height: var(--size);
 }
 
 .save{
