@@ -1,0 +1,9 @@
+#calendar_minicalendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+#calendar_minicalendar div{
+    place-self: center;
+}
