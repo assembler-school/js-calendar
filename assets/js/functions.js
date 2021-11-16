@@ -176,6 +176,7 @@ function chooseDateCal() {
             var year = event.target.dataset.year
             var month = event.target.dataset.month
             var day = event.target.dataset.day
+            console.log(event.target);
             console.log(new Date(year, month, day))
         })
     })

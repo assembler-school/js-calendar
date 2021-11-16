@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/assets/css/modal.css">
     <script src="/assets/js/dom.js" defer></script>
     <script src="/assets/js/data.js" defer></script>
+    <script src="/assets/js/events.js" defer></script>
     <script src="/assets/js/createElements.js" defer></script>
     <script src="/assets/js/functions.js" defer></script>
     <script src="/assets/js/modal.js" defer></script>
@@ -61,14 +62,15 @@
                 </div>
             </div>
             <div id="input_modal" class="input_modal">
-                <input type="Text" placeholder="Añade un titulo" class="title-modal-input modal-need">
+                <input type="Text" placeholder="Añade un titulo" class="title-modal-input modal-need eventComonClass">
                 <div id="liniabonito" class="linianobonito"></div>
             </div>
             <div id="fecha_modal" class="fecha_modal">
                 <div id="fechadia_modal">
                     <span class="date-picker">
                         <i class="far fa-clock clocki"></i>
-                        <input id="date-pickerInput" type="datetime-local" class="date_modal modal-need">
+                        <input id="date-pickerInput" type="datetime-local"
+                            class="date_modal modal-need eventComonClass neededDate">
                     </span>
                     <div id="liniabonito" class="linianobonito"></div>
                 </div>
@@ -85,26 +87,27 @@
                     </label>
                 </div>
                 <div id="selctdiv_modal">
-                    <select size="1" name="usgsfeed" class="repit_modal" id="usgsfeed" onchange='SelectChanged()'>
-                        <option value="usgs_hour" SELECTED>No se repite</option>
-                        <option value="Day">Cada dia</option>
-                        <option value="Week">Cada semana</option>
-                        <option value="Month">Cada mes</option>
+                    <select size="1" name="usgsfeed" class="repit_modal eventComonClass" id="usgsfeed"
+                        onchange='SelectChanged()'>
+                        <option value="No se repite" SELECTED>No se repite</option>
+                        <option value="Cada dia">Cada dia</option>
+                        <option value="Cada semana">Cada semana</option>
+                        <option value="Cada mes">Cada mes</option>
                         <option value="Laborables">Laborables</option>
                     </select>
                 </div>
             </div>
             <div id="descripcion_modal">
                 <i class="fas fa-align-left"></i>
-                <input type="text" maxlength="500" placeholder="descripcion">
+                <input type="text" maxlength="500" placeholder="descripcion" class="eventComonClass">
             </div>
             <div id="footer_modal" class="footer_modal">
                 <div>
                     <i class="fas fa-boxes"></i>
-                    <select size="1" name="usgsfeed" id="usgsfeed" onchange='SelectChanged()'>
-                        <option value="usgs_hour" SELECTED>Meeting</option>
-                        <option value="Day">Personal</option>
-                        <option value="Day">Study</option>
+                    <select size="1" name="usgsfeed" id="usgsfeed" onchange='SelectChanged()' class="eventComonClass">
+                        <option value="Meeting" SELECTED>Meeting</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Study">Study</option>
                     </select>
                 </div>
                 <button id="save-modal">Guardar</button>

@@ -4,7 +4,9 @@ btnCrear.onclick = function () {
     mainModal.style.display = "block";
 }
 
-closeModal.onclick = function () {
+closeModal.onclick = cerrar_modal();
+
+function cerrar_modal() {
     mainModal.style.display = "none";
 }
 
@@ -19,46 +21,56 @@ window.onclick = function (event) {
 
 //Validación
 
-/* btnSave.addEventListener("click", comprovacionFinal);
- */
+btnSave.addEventListener("click", comprovacionFinal);
+
 eventTitleInput.addEventListener("mouseup", comprovaciones);
 eventTitleInput.addEventListener("keyup", comprovaciones);
 
-function comprovaciones(event) {
-    let profile_cont_input = event.srcElement.value;
-    if (profile_cont_input.length > 3) {
-        event.srcElement.style.color = "var(--azul)";
-        event.srcElement.style.backgroundColor = "#ffffff";
+function comprovaciones() {
+    let profile_cont_input = document.getElementsByClassName('title-modal-input');
+    if (profile_cont_input[0].value.length > 3) {
+        profile_cont_input[0].style.color = "var(--azul)";
+        profile_cont_input[0].style.backgroundColor = "#ffffff";
     } else {
-        event.srcElement.style.backgroundColor = "#F8D8DD";
+        profile_cont_input[0].style.backgroundColor = "#F8D8DD";
     }
 }
 
 function comprovacionesFechas(event) {
-    let profile_cont_input = event.srcElement.value;
+    let profile_cont_input = document.querySelectorAll('.neededDate');
     if (profile_cont_input == 'undefined') {
         event.srcElement.style.backgroundColor = "#F8D8DD";
     } else {
-        event.srcElement.style.color = "var(--azul)";
-        event.srcElement.style.backgroundColor = "#ffffff";
+        profile_cont_input[0].style.color = "var(--azul)";
+        profile_cont_input[0].style.backgroundColor = "#ffffff";
+        if (profile_cont_input[1]) {
+            profile_cont_input[1].style.color = "var(--azul)";
+            profile_cont_input[1].style.backgroundColor = "#ffffff";
+        }
     }
 }
 
-/* function comprovacionFinal() {
-let a = 0;
-let allInputs = document.querySelectorAll('.modal-need');
-for (let i = 0; i < allInputs.length; i++) {
-if (allInputs[i].classList[0] == 'title-modal-input') {
-comprovaciones();
-a++
-} else{
-comprovacionesFechas();
-a++
+function comprovacionFinal() {
+    let a = 0;
+    let allInputs = document.querySelectorAll('.modal-need');
+    for (let i = 0; i < allInputs.length; i++) {
+        if (allInputs[i].classList[0] == 'title-modal-input') {
+            comprovaciones();
+            a++
+        } else {
+            comprovacionesFechas();
+            a++
+        }
+    }
+    if (a == 2 || a == 3) {
+        let allEventInputs = document.querySelectorAll('.eventComonClass');
+        if (checkboxDate.checked == true && recordatorio_modal.checked == true) {
+            const finalEvent = new calendarEvent(allEventInputs[0].value, allEventInputs[1].value, allEventInputs[2].value, allEventInputs[3].value, allEventInputs[4].value, allEventInputs[5].value, allEventInputs[6].value);
+            console.log(finalEvent);
+        }
+    }
+    cerrar_modal();
 }
-}
-if(a == 2 || a == 3){
-}
-} */
 //poner otro input date
 
 checkboxDate.addEventListener("click", ponerdata)
@@ -69,7 +81,7 @@ function ponerdata() {
     var clocki = document.createElement("i")
     var inputdate_modal = document.createElement("input")
     inputdate_modal.type = "Date"
-    inputdate_modal.classList = "date_modal modal-need"
+    inputdate_modal.classList = "date_modal modal-need eventComonClass neededDate"
     clocki.classList = "far fa-clock"
     spandate.classList = "date-picker"
     divdate_modal.id = "div2"
@@ -102,7 +114,7 @@ function recordatorio_modal_time() {
 
 function crearlistamin() {
     var selectrecordatorio = document.createElement("select")
-    selectrecordatorio.classList = "repit_modal"
+    selectrecordatorio.classList = "repit_modal eventComonClass"
     selectrecordatorio.id = "selectrecord"
     const timerecordatorio = [5, 10, 15, 30, 60]
     for (const time of timerecordatorio) {
