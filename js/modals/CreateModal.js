@@ -101,6 +101,7 @@ class CreateModal{
         //close event
         const close = document.getElementById("close-modal");
         close.addEventListener("click", function(){
+            modal.parentNode.removeChild(modal.previousElementSibling);
             modal.parentNode.removeChild(modal);
         });
         
@@ -199,6 +200,7 @@ class CreateModal{
                 event.preventDefault();
             });*/
             console.log(form);
+            modal.parentNode.removeChild(modal.previousElementSibling);
             modal.parentNode.removeChild(modal);
         });
 
@@ -237,6 +239,7 @@ class CreateModal{
             console.log(event.getEvent());
             console.log(JSON.stringify(event.getEvent()));
             localStorage.setItem("2", JSON.stringify(event.getEvent()));
+            modal.parentNode.removeChild(modal.previousElementSibling);
 
         });
 
@@ -292,3 +295,5 @@ class CreateModal{
 }
 
 export default CreateModal;
+
+//Create edit event modal
