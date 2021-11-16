@@ -46,3 +46,20 @@
     flex-wrap: wrap;
     height: 100%;
   }
+/* modal edit event */
+#modal-edit-container{
+  position:absolute;
+  background-color: red;
+}
+#modal-edit-container #icons{
+  background-color:#f1f3f4;
+}
+#modal-edit-container #icons{
+  display:flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+#modal-edit-container #items{
+  display:flex;
+  flex-direction: column;
+}

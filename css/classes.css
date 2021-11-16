@@ -176,3 +176,8 @@
       height: 98%;
       
   }
+  /* modal edit event */
+  .itemEditModal{
+    display:flex;
+    flex-direction: row;
+  }
