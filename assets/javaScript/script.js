@@ -52,11 +52,11 @@ function displayCalendar() {
         // if counter is current day.
         // highlight current day using the CSS defined in header.
         if (counter == day) {
-            htmlContent += "<li class='dayNow gridCalendar'  onMouseOver='this.style.background=\"#FFFF00\"; this.style.color=\"#FFFFFF\"' " +
-            "onMouseOut='this.style.background=\"#FFFFFF\"; this.style.color=\"#00FF00\"'>" + counter + "</li>";
+            htmlContent += "<li class='dayNow gridCalendar' id='color1'  onMouseOver='this.style.background=\"#a1c4fd\"; this.style.color=\"#FFFFFF\"' " +
+            "onMouseOut='this.style.background=\"#FFFFFF\"; this.style.color=\"#000000\"'>" + counter + "</li>";
         } else {
-            htmlContent += "<li class='monthNow gridCalendar' onMouseOver='this.style.background=\"#FFFF00\"'" +
-                " onMouseOut='this.style.background=\"#FFFFFF\"'>" + counter + "</li>";
+            htmlContent += "<li class='monthNow gridCalendar' onMouseOver='this.style.background=\"#a1c4fd\"; this.style.color=\"#FFFFFF\"' " +
+                " onMouseOut='this.style.background=\"#FFFFFF\";this.style.color=\"#000000\"'>" + counter + "</li>";
                 
             }
 
@@ -87,6 +87,7 @@ function displayCalendar() {
         num.addEventListener("click", ()=>{
             numero= num.textContent
             fecha= ` ${numero} ${monthNames[month]} ${year}`
+            modalStart()
             console.log(fecha)
         })
     });
