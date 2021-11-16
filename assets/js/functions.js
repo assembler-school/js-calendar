@@ -67,7 +67,7 @@ function headerCal() {
     for (const element of dateCalendar) {
         element.textContent = `${month} de ${actual_date.getFullYear()}`;
     }
-    const weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+    const weekDays = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
     for (let index = 0; index < weekDays.length; index++) {
         var smallWeekDay = newElement({
             tag: 'div',
@@ -93,13 +93,13 @@ function prevMonthCal() {
         var smallDayMonth = newElement({
             tag: 'div',
             id: '',
-            clas: ['number-days'],
+            clas: ['number-days','previousMonthColor'],
             content: prevDays.prevLastDay - index
         });
         var bigDayMonth = newElement({
             tag: 'div',
             id: '',
-            clas: ['number-days'],
+            clas: ['number-days','previousMonthColor'],
             content: prevDays.prevLastDay - index
         });
         saveDatePrevDayOfMonth(smallDayMonth, index);
@@ -139,13 +139,13 @@ function nextMonthCal() {
         var smallDayMonth = newElement({
             tag: 'div',
             id: '',
-            clas: ['number-days'],
+            clas: ['number-days', 'nextMonthColor'],
             content: index
         });
         var bigDayMonth = newElement({
             tag: 'div',
             id: '',
-            clas: ['number-days'],
+            clas: ['number-days','nextMonthColor'],
             content: index
         });
         saveDateNextDayOfMonth(smallDayMonth, index);
@@ -181,14 +181,27 @@ function chooseDateCal() {
     })
 }
 
-document.querySelectorAll("btn-prev-month").forEach(element => {
+function getPresentDay(daysNumber) {
+    return daysNumber.filter((element) => {
+        if(element.dataset.year == actual_date.getFullYear()) {
+            if(element.dataset.month == actual_date.getMonth()) {
+                if(element.dataset.day == actual_date.getDay()) {
+                    element.classList.add("actualDay")
+                }
+            };
+        }
+        
+    });
+}
+
+document.querySelectorAll(".btn-prev-month").forEach(element => {
     element.addEventListener("click", event => {
         actual_date.setMonth((actual_date.getMonth() - 1));
         createCal();
     })
 })
 
-document.querySelectorAll("btn-next-month").forEach(element => {
+document.querySelectorAll(".btn-next-month").forEach(element => {
     element.addEventListener("click", event => {
         actual_date.setMonth((actual_date.getMonth() + 1));
         createCal();
