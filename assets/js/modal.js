@@ -90,10 +90,11 @@ function comprovacionFinal() {
         let allEventInputs = document.querySelectorAll('.eventComonClass');
         if (checkboxDate.checked == true && recordatorio_modal.checked == true) {
             finalEvent = new calendarEvent(allEventInputs[0].value, allEventInputs[1].value, allEventInputs[2].value, allEventInputs[3].value, allEventInputs[4].value, allEventInputs[5].value, allEventInputs[6].value);
+            cerrar_modal();
             console.log(finalEvent);
         }
     }
-    cerrar_modal();
+
 }
 //poner otro input date
 
