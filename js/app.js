@@ -1,10 +1,9 @@
 import CreateModal from "./modals/CreateModal.js";
 import { body } from "./variables.js";
-//import * as variable from "./variables.js";
+
 let currentMonth = 0;
-let clickedDay = null;
 let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : []; // fetching events from LocalStorage, if it doest't exist return an empty array
-//let isModalOpen = false; //control 1 click between each modal
+let isModalOpen = false;
 
 const calendar = document.querySelector('#calendar');
 const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -12,7 +11,6 @@ const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Satur
 // Main function for creating the calendar month dinamically
 function displayCalendar() {
     const mainDate = new Date();
-
     if (currentMonth !== 0) {
         mainDate.setMonth(new Date(). getMonth() + currentMonth);
     }
@@ -20,7 +18,6 @@ function displayCalendar() {
     const day = mainDate.getDate();
     const month = mainDate.getMonth();
     const year = mainDate.getFullYear();
-
 
     const firstDayOfMonth = new Date(year, month, 1); //first day of the current month
     const lastDayOfMonth = new Date(year, month + 1, 0); //last day of the current month
@@ -50,24 +47,25 @@ function displayCalendar() {
 
     for (let i = 1; i <= paddingDaysBefore + daysInMonth + paddingDaysAfter; i++) { // we would render days of the month plus all padding days
         const dayElement = document.createElement('div');
+        const dayNumber = document.createElement('span');
         dayElement.classList.add('day');
+        dayNumber.classList.add('day-number');
+        dayElement.appendChild(dayNumber);
         // check if that day is a padding day or not
         if (i <= paddingDaysBefore) {
             dayElement.classList.add('padding');
             //dayElement.addEventListener('click', () => console.log('PADDING DAY BEFORE'));
-            dayElement.innerText = (daysInPrevMonth - paddingDaysBefore) + i;
+            dayNumber.innerText = (daysInPrevMonth - paddingDaysBefore) + i;
         } else if (i < paddingDaysBefore + daysInMonth + 1) {
-            dayElement.innerText = i - paddingDaysBefore;
+            dayNumber.innerText = i - paddingDaysBefore;
             //dayElement.addEventListener('click', () => console.log(''));
         } else {
             dayElement.classList.add('padding');
             //dayElement.addEventListener('click', () => console.log('PADDING DAY AFTER'));
-            dayElement.innerText = i - daysInMonth - paddingDaysBefore;
+            dayNumber.innerText = i - daysInMonth - paddingDaysBefore;
         }
 
         dayElement.addEventListener('click', (e) => {
-            //control 1 click between each modal
-            //if(isModalOpen === false){
                 const currentMonth = document.getElementById("current-month");
                 const calendar = document.getElementById("calendar");
                 for(let i = 0; i < calendar.childNodes.length; i++){
@@ -81,14 +79,35 @@ function displayCalendar() {
                         }
                     }
                 }
-                //console.log(days.children); //mon 
-                // if(e.clientX < 410) new CreateModal(e.clientX, e.clientY / 2);
-                // else new CreateModal(e.clientX - 400, e.clientY / 2);
-                //isModalOpen = true;
-            //} else isModalOpen = false;
+                isModalOpen = true;
         });
         calendar.appendChild(dayElement); // adding the day square to the calendar
     }
+    // Format today with a red square
+    const dayList = document.querySelectorAll('.day');
+    function highlightToday() {
+        dayList.forEach(element => {
+            if (element.innerText === day.toString() && currentMonth === 0){
+                element.firstChild.classList.add('day-today');
+            }
+        })
+    }
+    highlightToday()
+
+    // Check local storage and fetch events
+    const displayMonth = document.querySelector('#current-month').innerText.split(' ')[0];
+    const displayYear = document.querySelector('#current-month').innerText.split(' ')[1];
+
+    let event = JSON.parse(localStorage.getItem('2'));
+    dayList.forEach(element => {
+        if(element.innerText === event.day && displayMonth === event.month && displayYear === event.year) {
+            const newEvent = document.createElement('p');
+            newEvent.innerText = event.title;
+            newEvent.classList.add('event')
+            element.appendChild(newEvent);
+        }
+    })
+
 }
 
 
