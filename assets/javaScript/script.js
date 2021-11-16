@@ -8,12 +8,12 @@ var month = dateNow.getMonth();
 var day = dateNow.getDate();
 var year = dateNow.getFullYear();
 var nextMonth = month + 1;
+var prevMonth = month -1;
 
 function displayCalendar() {
     dateNow.setDate(1)
     calendario=document.getElementById("calendar")
-    calendario.innerHTML=null
-    // var prevMonth = month -1;
+    // calendario.innerHTML=null
 
     //Determing if February (28,or 29)
     if (month == 1) {
@@ -140,12 +140,12 @@ function sumMonth(){
     FebNumberOfDays = '';
     counter = 1;
     console.log(dateNow.getMonth())
-    month = dateNow.setMonth(dateNow.getMonth() + 1)
-    day = dateNow.getDate();
+    // month = dateNow.setMonth(dateNow.getMonth())
     month = dateNow.getMonth();
-     day = dateNow.getDate();
-     year = dateNow.getFullYear();
-     nextMonth = month + 1;
+    day = dateNow.getDate();
+    year = dateNow.getFullYear();
+    nextMonth = month + 1;
+    prevMonth = month -1;
     console.log(dateNow.getMonth())
 displayCalendar()
 console.log(dateNow.setMonth(dateNow.getMonth() + 1))
