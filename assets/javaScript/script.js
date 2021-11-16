@@ -78,7 +78,7 @@ function displayCalendar() {
 
 
     // building the calendar html body.
-    var calendarBody = '<div><input type="button" value="button Test" onclick="openModal()"></div>';
+    var calendarBody = '<div><input type="button" value="button Test" class="btn btn-primary btn-lg" onclick="openModal()"></div>';
     calendarBody += "<div class='calendar id='idcalendar'> <ul class='monthNow'><li colspan='7'>"
         + monthNames[month] + " " + year + "</li></ul>";
     calendarBody += "<ul class='dayNames'>  <li>Sun</li>  <li>Mon</li> <li>Tues</li>" +
