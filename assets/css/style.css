@@ -52,3 +52,10 @@ ul {
     height: 150px;
     width: 150px;
 }
+#calendarP{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+}
+.desaparecer{
+    display: none;
+}
