@@ -40,7 +40,52 @@ window.onclick = function (event) {
 }
 
 function displayForm() {
-    (endDateCheck.checked == true) ? hideForm[0].style.display = 'block' : hideForm[0].style.display = 'none';
+    (endDateCheck.checked == true) ? createHideElements() : cleanHideElements();
+}
+
+function displayReminder(){
+    (reminder.checked == true) ? createReminder() : cleanReminder();
+}
+
+function createHideElements(){
+    content="<div><label for='endDate'>End Date</label><input type='date' name='End Date'  class='formInputs' id='endDate'> </div>"
+
+    content+="<div id='checkboxRemind'><label for='reminder'> Remind me when event Start</label><input type='checkbox' name='reminder' id='reminder'> </div>"
+
+    content+="<div id='divReminder'></div>"
+
+    content+="<div><label for='description'>Description</label> <textarea name='description' class='formInputs' id='description' cols='20' rows='5'></textarea></div>"
+
+    content+="<div> <label for='typeEvent'> Event Type</label><select name='eventType'class='formInputs' id='eventType'><option value='personal'> Personal</option><option value='Meeting'> Meeting</option><option value='Study'> Study</option> <option value='other'> Other</option></select> </div>"
+
+    hideForm[0].innerHTML= content
+
+    const reminder= document.getElementById('reminder')
+    reminder.addEventListener('click', displayReminder)
+}
+
+function createReminder(){
+    const divReminder= document.getElementById('divReminder')
+
+    content= "<label for='remindTimer'> Time reminder </label> <select name='remindTimer' class='formInputs' id='remindTimer'> <option value='5'> 5 Minutes</option> <option value='10'> 10 Minutes</option> <option value='15'> 15 Minutes</option> <option value='30'> 30 Minutes</option> <option value='60'> 1 hour</option> </select> "
+
+    divReminder.innerHTML= content
+}
+
+function cleanHideElements(){
+    while (hideForm[0].firstChild) {
+        hideForm[0].removeChild(hideForm[0].lastChild);
+    }
+}
+
+function cleanReminder(){
+    cont= 0
+    divElements= divReminder.childElementCount + 1;
+    while(divElements > cont ){
+        console.log(divElements, cont)
+        divReminder.removeChild(divReminder.firstChild)
+        cont++
+    }
 }
 
 window.onkeydown = (key)=>{

@@ -1,4 +1,5 @@
 //TODO create events and save on Local Storage
+
 function eventData() {
     return {
         title: title,
@@ -9,6 +10,10 @@ function eventData() {
     }
 }
 
-    // function createEvent() {
 
-    // }
+function createEvent() {
+    const formClass = document.getElementsByClassName('formInputs')
+    for (num in formClass){
+        console.log(formClass[num].value)
+    }
+}
