@@ -10,13 +10,15 @@ body {
 }
 
 .monthNow {
-    color: blue;
+    color:#000000;
+    font-weight: bolder;
     text-align: center;
 }
 
 .dayNow {
     border: 2px solid black;
-    color: #ff0;
+    color: black;
+    font-weight: bolder;
     text-align: center;
 }
 
@@ -35,7 +37,7 @@ body {
 }
 
 .dayNames {
-    background: #0FF000;
+    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);   
     color: #FFFFFF;
     text-align: center;
     font-size: 30px;
@@ -53,6 +55,9 @@ ul {
     /* position: relative; */
     height: 150px;
     width: 150px;
+    border-radius: 10px;
+    box-shadow: 2px 1px 5px 5px #E3FDF5
+    ;
 }
 
 #calendarP {
@@ -68,3 +73,6 @@ ul {
 #firstModal{
     width: 100%;
 }
+/* #color1{
+    background-image: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
+} */
