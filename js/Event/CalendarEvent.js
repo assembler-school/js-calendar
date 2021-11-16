@@ -15,7 +15,7 @@ class CalendarEvent{
     description;
     type;
 
-    constructor(title, hour, day, month, year, hasEnd, endHour, endDay, endMonth, endYear, hasReminder, reminder, description, type){
+    constructor(title, hour, day, month, year, hasEnd, hasReminder, type){
         this.title = title;
         this.hour = hour;
         this.day = day;
@@ -23,13 +23,7 @@ class CalendarEvent{
         this.month = month;
         this.year = year;
         this.hasEnd = hasEnd;
-        this.endHour = endHour;
-        this.endDay = endDay;
-        this.endMonth = endMonth;
-        this.endYear = endYear;
         this.hasReminder = hasReminder;
-        this.reminder = reminder;
-        this.description = description;
         this.type = type;
     }
 

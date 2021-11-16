@@ -4,6 +4,7 @@ import { element, readArray } from "../variables.js";
 class CreateModal{
 
     #structure = [
+            
                    //modal
                    element("div", null, "modal", "tabindex", "-1"),
                        [
@@ -19,6 +20,7 @@ class CreateModal{
                                 element("img", "close-modal", null, "src", "../assets/imgs/close.png")
                             ]
                         ],
+            
                         //body modal
                         element("div"),
                         [
@@ -39,12 +41,12 @@ class CreateModal{
                                     ],
                                     element("div", null, "event-time"),
                                     [
-                                        element("span", null, null,  null, null, "Sábado, 13 de noviembre"),
-                                        element("span", null, null,  null, null, "12:00 - 1:00")
+                                        element("span"),
+                                        element("span")
                                     ],
                                     element("span"),
                                     [
-                                        element("img", null, null, "src", "../assets/imgs/calendar.png")
+                                        element("input", "input-date", null, "type", "datetime-local")
                                     ]
                                 ],
                                 //checkbox date end
@@ -99,6 +101,7 @@ class CreateModal{
         //close event
         const close = document.getElementById("close-modal");
         close.addEventListener("click", function(){
+            modal.parentNode.removeChild(modal.previousElementSibling);
             modal.parentNode.removeChild(modal);
         });
         
@@ -108,14 +111,22 @@ class CreateModal{
         title.setAttribute("placeholder", "Add a title");
         title.required = true;
         
-        //actual day
-        //date
         //event-time
-
         const eventTime = document.querySelector(".event-time");
         const time = new Date();
         eventTime.childNodes[0].textContent = dayWeek + ", " + day + " " + month;
         eventTime.childNodes[1].textContent = time.getHours() + ":" + (time.getMinutes() < 10 ? "0" : time.getMinutes());
+
+        //TO-DO: controle min date = today
+        const inputDate = document.getElementById("input-date");
+        inputDate.addEventListener("change", function(){
+            const shortDate = inputDate.value.split("T");
+            const longDate = String(new Date(shortDate[0]).toLocaleString("en-GB", {weekday: "long", year: "numeric", month: "long", day: "numeric"})).split(" ");
+            
+            eventTime.childNodes[0].textContent = longDate[0] + " " + longDate[1] + " " + longDate[2] + " " + longDate[3];
+            eventTime.childNodes[1].textContent = shortDate[1];
+
+        });
 
         //date checkbox structure + add/remove
         const dateCheckbox = document.getElementById("date-checkbox");
@@ -129,12 +140,12 @@ class CreateModal{
                                               ],
                                               element("div", null, "event-time next-date"),
                                               [
-                                                  element("span", null, null,  null, null, "Domingo, 14 de noviembre"),
-                                                  element("span", null, null,  null, null, "12:00 - 1:00")
+                                                  element("span"),
+                                                  element("span")
                                               ],
                                               element("span"),
                                               [
-                                                  element("img", null, null, "src", "../assets/imgs/calendar.png")
+                                                element("input", "input-date-end", null, "type", "datetime-local")
                                               ]
                                           ]
                                      ];
@@ -145,8 +156,18 @@ class CreateModal{
                 checkboxDateEnd.parentNode.insertBefore(dateEndStructure[0], checkboxDateEnd.nextSibling);
                 const nextDate = document.querySelector(".next-date");
                 const time = new Date();
-                nextDate.childNodes[0].textContent = dayWeek + ", " + day + " " + month;
+                nextDate.childNodes[0].textContent = eventTime.childNodes[0].textContent;
                 nextDate.childNodes[1].textContent = (time.getHours() + 1) + ":" + (time.getMinutes() < 10 ? "0" : time.getMinutes());
+                
+                //TO-DO: controle min date = start-date + 1h
+                const inputEndDay = document.getElementById("input-date-end");
+                inputEndDay.addEventListener("change", function(){
+                    const shortDate = inputEndDay.value.split("T");
+                    const longDate = String(new Date(shortDate[0]).toLocaleString("en-GB", {weekday: "long", year: "numeric", month: "long", day: "numeric"})).split(" ");
+                    
+                    nextDate.childNodes[0].textContent = longDate[0] + " " + longDate[1] + " " + longDate[2] + " " + longDate[3];
+                    nextDate.childNodes[1].textContent = shortDate[1];
+                });
             } else {
                 const dateEnd = document.querySelector(".date-end");
                 dateEnd.parentNode.removeChild(dateEnd);
@@ -197,6 +218,7 @@ class CreateModal{
                 event.preventDefault();
             });*/
             console.log(form);
+            modal.parentNode.removeChild(modal.previousElementSibling);
             modal.parentNode.removeChild(modal);
         });
 
@@ -236,6 +258,7 @@ class CreateModal{
             console.log(JSON.stringify(event.getEvent()));
             localStorage.setItem("2", JSON.stringify(event.getEvent()));
             showEvent();
+            modal.parentNode.removeChild(modal.previousElementSibling);
         });
 
         //modal listener
@@ -250,23 +273,28 @@ class CreateModal{
                 e.relatedTarget === modal.childNodes[1].childNodes[0][4] || //textarea
                 e.relatedTarget === modal.childNodes[1].childNodes[0][5] || //button
                 e.relatedTarget === modal.childNodes[1].childNodes[0]){} 
-            else modal.parentNode.removeChild(modal);
+            else {
+                modal.parentNode.removeChild(modal.previousElementSibling);
+                modal.parentNode.removeChild(modal);
+            }
         });
         
             /*-------
-                initial date with time - required
 
                 checkbox with end date
                     check doc to more info
 
                 checkbox reminder
                     use SetInterval every 10sec
-
-                ???WARNING box - event expired = red bold + doc more info
             */
 
-        //esc key
+        modal.addEventListener("keyup",(e)=>{
+            if(e.key=="Escape"){
+            modal.parentNode.removeChild(modal.previousElementSibling);
+            modal.parentNode.removeChild(modal);
+        }
 
+    });
         //add event to calendar
         modal.style.left = x + "px";
         modal.style.top = y + "px";
