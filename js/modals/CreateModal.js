@@ -1,5 +1,5 @@
 import CalendarEvent from "../Event/CalendarEvent.js";
-import { element, readArray } from "../variables.js";
+import { element, events, readArray } from "../variables.js";
 
 class CreateModal{
 
@@ -25,7 +25,7 @@ class CreateModal{
                         element("div"),
                         [
                             //form
-                            element("form", "main-form", null, "onsubmit", "return false"),
+                            element("form", "main-form"),
                             [
                                 //title
                                 element("div", null, "submodal input-name"),
@@ -97,6 +97,7 @@ class CreateModal{
         readArray(this.#structure);
         
         const modal = document.querySelector(".modal");
+        const form = document.getElementById("main-form");
 
         //close event
         const close = document.getElementById("close-modal");
@@ -210,16 +211,12 @@ class CreateModal{
         //cancel button
         const cancelButton = document.getElementById("cancel-button");
         cancelButton.addEventListener("click", function(){
-            const form = document.getElementById("main-form");
-            //Se auto refresca
             form.noValidate = true;
-            //form.submit();
-            /*form.on('submit', function (event) {
+            form.addEventListener('submit', function (event) {
                 event.preventDefault();
-            });*/
-            console.log(form);
-            modal.parentNode.removeChild(modal.previousElementSibling);
-            modal.parentNode.removeChild(modal);
+                modal.parentNode.removeChild(modal.previousElementSibling);
+                modal.parentNode.removeChild(modal);
+            });
         });
 
         //save button
@@ -253,10 +250,18 @@ class CreateModal{
             if(textArea) event.setDescription(textArea.value);
             else event.setDescription(undefined);
 
-            console.log(event.getEvent());
-            console.log(JSON.stringify(event.getEvent()));
-            localStorage.setItem("2", JSON.stringify(event.getEvent()));
-            modal.parentNode.removeChild(modal.previousElementSibling);
+            //new event
+            const stringifyEvent = JSON.stringify(event.getEvent());
+            //pushing new event to all events array
+            events.push(JSON.parse(stringifyEvent));
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                localStorage.setItem("events", JSON.stringify(events));
+                modal.parentNode.removeChild(modal.previousElementSibling);
+                modal.parentNode.removeChild(modal);
+                return;
+            });
         });
 
         //modal listener
@@ -286,11 +291,11 @@ class CreateModal{
                     use SetInterval every 10sec
             */
 
-        modal.addEventListener("keyup",(e)=>{
-            if(e.key=="Escape"){
-            modal.parentNode.removeChild(modal.previousElementSibling);
-            modal.parentNode.removeChild(modal);
-        }
+            modal.addEventListener("keyup",(e)=>{
+            if(e.key == "Escape"){
+                modal.parentNode.removeChild(modal.previousElementSibling);
+                modal.parentNode.removeChild(modal);
+            }
 
     });
         //add event to calendar
@@ -304,7 +309,6 @@ class CreateModal{
             modal.focus();
         }
     }
-
 }
 
 export default CreateModal;
