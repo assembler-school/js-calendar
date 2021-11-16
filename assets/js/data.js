@@ -1,1 +1,2 @@
-var actual_date = new Date()
+var actual_date = new Date();
+var listEvents = [];
