@@ -35,10 +35,20 @@ span.onclick = function () {
 window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
+        cleanModal()
     }
 }
 
 function displayForm() {
     (endDateCheck.checked == true) ? hideForm[0].style.display = 'block' : hideForm[0].style.display = 'none';
-    ;
+}
+
+window.onkeydown = (key)=>{
+    escape(key)
+}
+
+function escape (key){
+    if (key.code == 'Escape'){
+        closeModal()
+    }
 }
