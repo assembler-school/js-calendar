@@ -235,7 +235,7 @@ class CreateModal{
             console.log(event.getEvent());
             console.log(JSON.stringify(event.getEvent()));
             localStorage.setItem("2", JSON.stringify(event.getEvent()));
-
+            showEvent();
         });
 
         //modal listener
@@ -279,6 +279,11 @@ class CreateModal{
         }
     }
 
+}
+
+function showEvent() {
+    const newEvent = document.createElement('p');
+    newEvent.innerText = title.value;
 }
 
 export default CreateModal;

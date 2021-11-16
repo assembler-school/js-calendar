@@ -126,7 +126,7 @@
 .day {
     width: 14.25%;
     padding: 10px;
-    max-height: 20%;
+    height: 100px;
     cursor: pointer;
     box-sizing: border-box;
     background-color: white;
@@ -151,6 +151,7 @@
     border-radius: 5px;
     max-height: 55px;
     overflow: hidden;
+    text-align:left;
   }
   .padding {
     width: 14.25%;
@@ -168,4 +169,18 @@
   }
   .padding:hover {
     background-color: #e8faed;
+  }
+
+  .day-number {
+      display: block;
+  }
+  .day-today {
+    display: block;
+    background-color: red;
+    align-self: flex-end;
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    border-radius: 50%;
+    text-align: center;
   }
