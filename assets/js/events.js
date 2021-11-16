@@ -7,10 +7,14 @@ class calendarEvent {
             repeat: repeat,
             remember: remember,
             description: description,
-            eventType: eventType
+            eventType: eventType,
+            eventId: eventId
         }
+        eventId++
         this.setToLocalStorage(this.allEvent.eventType);
     }
+
+
     setToLocalStorage(eventType) {
         if (localStorage.eventType) {
             console.log('a');
@@ -44,5 +48,13 @@ class calendarEvent {
     }
     createTagEvent(father) {
         father.appendChild(newElement(div, '', 'miniEvents', this.allEvent.eventTitle))
+    }
+    eraseEvent() {
+        let typeStorage = JSON.parse(localStorage.eventType);
+        typeStorage.forEach(element => {
+            if (this.allEvent == element) {
+                console.log('a');
+            }
+        });
     }
 }
