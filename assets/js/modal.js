@@ -10,7 +10,7 @@ btnCrear.onclick = function () {
 
 function esmenos0(a) {
     if (a < 10) {
-        return parseInt('0' + a)
+        return ('0' + a)
     } else return a
 }
 
@@ -20,7 +20,7 @@ closeModal.onclick = function () {
 
 function cerrar_modal() {
     today = new Date();
-    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + 'T' + today.getHours() + ':' + today.getMinutes();
+    var date = today.getFullYear() + '-' + esmenos0(today.getMonth() + 1) + '-' + esmenos0(today.getDate()) + 'T' + esmenos0(today.getHours()) + ':' + esmenos0(today.getMinutes());
     mainModal.style.display = "none";
     checkboxDate.checked = false;
     ponerdata();
@@ -90,10 +90,11 @@ function comprovacionFinal() {
         let allEventInputs = document.querySelectorAll('.eventComonClass');
         if (checkboxDate.checked == true && recordatorio_modal.checked == true) {
             finalEvent = new calendarEvent(allEventInputs[0].value, allEventInputs[1].value, allEventInputs[2].value, allEventInputs[3].value, allEventInputs[4].value, allEventInputs[5].value, allEventInputs[6].value);
+            cerrar_modal();
             console.log(finalEvent);
         }
     }
-    cerrar_modal();
+
 }
 //poner otro input date
 
@@ -112,7 +113,6 @@ function ponerdata() {
     clocki.classList = "far fa-clock"
     spandate.classList = "date-picker"
     divdate_modal.id = "div2"
-
     if (checkboxDate.checked == true) {
         fecha_modal.appendChild(divdate_modal)
         divdate_modal.appendChild(spandate)

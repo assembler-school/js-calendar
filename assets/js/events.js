@@ -16,16 +16,16 @@ class calendarEvent {
 
 
     setToLocalStorage(eventType) {
-        if (localStorage.eventType) {
+        if (localStorage[eventType]) {
             console.log('a');
             let typeStorage = JSON.parse(localStorage.eventType);
             typeStorage.push(this.allEvent)
-            localStorage.eventType = (JSON.stringify(typeStorage))
-        } else if (!localStorage.eventType) {
+            localStorage[eventType] = (JSON.stringify(typeStorage))
+        } else if (!localStorage[eventType]) {
             console.log('b');
             let typeStorage = []
             typeStorage.push(this.allEvent);
-            localStorage.eventType = (JSON.stringify(typeStorage))
+            localStorage[eventType] = (JSON.stringify(typeStorage))
         }
     }
     findEvent(eventType, father, date2 = null) {
