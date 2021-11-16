@@ -167,8 +167,6 @@ function createCal() {
     chooseDateCal()
 }
 
-
-
 //Events to choose all days of calendar
 function chooseDateCal() {
     document.querySelectorAll(".number-days").forEach(element => {
@@ -188,10 +186,44 @@ function getPresentDay(daysNumber) {
             if(element.dataset.month == actual_date.getMonth()) {
                 if(element.dataset.day == actual_date.getDay()) {
                     element.classList.add("actualDay")
+                    return element;
                 }
             };
         }
-        
+    });
+}
+
+function isSameDay(date1, date2) {
+    if(date1.getFullYear() == date2.getFullYear()) {
+        if(date1.getMonth() == date2.getMonth()) {
+            if(date1.getDay() == date2.getDay()) {
+                return true;
+            }
+        };
+    }
+    return false;
+}
+
+function getAllEventsOfDay(dom) {
+    var events = JSON.parse(localStorage.getItem('eventType'));
+    let dateEvent = new Date(dom.dataset.year, dom.dataset.month, dom.dataset.day);
+    listEvents = events.filter(element => {
+        let event = new Date(element.fechaInicio);
+        return isSameDay(dateEvent, event);
+    });
+}
+
+function createListEvents() {
+    document.getElementById('micalendar_minicalendar').innerHTML = null;
+    var summary = newElement({ tag: 'summary', id: '', clas: [], content: 'All Events List'});
+    document.getElementById('micalendar_minicalendar').appendChild(summary);
+    
+    listEvents.forEach(element => {
+        let newP = newElement({ tag: 'summary', id: '', clas: [], content: 'All Events List'});
+        let hours = new Date(element.fechaInicio).getHours();
+        let minutes = new Date(element.fechaInicio).getMinutes();
+        newP.textContent = `${hours} : ${minutes} ${element.eventTitle}`;
+        document.getElementById('micalendar_minicalendar').appendChild(newP);
     });
 }
 
