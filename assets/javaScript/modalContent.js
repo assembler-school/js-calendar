@@ -1,11 +1,11 @@
 const modal = document.getElementById("myModal");
 const span = document.getElementsByClassName("close")[0];
-const modalContent= document.getElementsByClassName('modal-content')
-var modalContent= modalContent[0]
+const modalContentor= document.getElementsByClassName('modal-content')
+var modalContent= modalContentor[0]
 //TODO Display modal Start
 function modalStart() {
     cleanModal()
-    
+
     // modalContent[0].appendChild(newH2('Welcome'))
     // modalContent[0].appendChild(newP('Insert Your User Name'))
     // modalContent[0].appendChild(newInput())
