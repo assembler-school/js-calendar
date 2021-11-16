@@ -1,3 +1,4 @@
+import CalendarEvent from "../Event/CalendarEvent.js";
 import { element, readArray } from "../variables.js";
 
 class CreateModal{
@@ -22,7 +23,7 @@ class CreateModal{
                         element("div"),
                         [
                             //form
-                            element("form", "main-form"),
+                            element("form", "main-form", null, "onsubmit", "return false"),
                             [
                                 //title
                                 element("div", null, "submodal input-name"),
@@ -90,7 +91,7 @@ class CreateModal{
                        ]
                 ];
 
-    constructor(){
+    constructor(x, y, dayWeek, day, month){
         readArray(this.#structure);
         
         const modal = document.querySelector(".modal");
@@ -107,6 +108,15 @@ class CreateModal{
         title.setAttribute("placeholder", "Add a title");
         title.required = true;
         
+        //actual day
+        //date
+        //event-time
+
+        const eventTime = document.querySelector(".event-time");
+        const time = new Date();
+        eventTime.childNodes[0].textContent = dayWeek + ", " + day + " " + month;
+        eventTime.childNodes[1].textContent = time.getHours() + ":" + (time.getMinutes() < 10 ? "0" : time.getMinutes());
+
         //date checkbox structure + add/remove
         const dateCheckbox = document.getElementById("date-checkbox");
         dateCheckbox.addEventListener("change", function(e){
@@ -117,7 +127,7 @@ class CreateModal{
                                               [
                                                   element("img", null, null, "src", "../assets/imgs/clock.png")
                                               ],
-                                              element("div", null, "event-time"),
+                                              element("div", null, "event-time next-date"),
                                               [
                                                   element("span", null, null,  null, null, "Domingo, 14 de noviembre"),
                                                   element("span", null, null,  null, null, "12:00 - 1:00")
@@ -128,10 +138,15 @@ class CreateModal{
                                               ]
                                           ]
                                      ];
+
             const checkboxDateEnd = document.querySelector(".checkbox-date-end");
             if(dateCheckbox.checked === true){
                 readArray(dateEndStructure, null);
                 checkboxDateEnd.parentNode.insertBefore(dateEndStructure[0], checkboxDateEnd.nextSibling);
+                const nextDate = document.querySelector(".next-date");
+                const time = new Date();
+                nextDate.childNodes[0].textContent = dayWeek + ", " + day + " " + month;
+                nextDate.childNodes[1].textContent = (time.getHours() + 1) + ":" + (time.getMinutes() < 10 ? "0" : time.getMinutes());
             } else {
                 const dateEnd = document.querySelector(".date-end");
                 dateEnd.parentNode.removeChild(dateEnd);
@@ -174,8 +189,8 @@ class CreateModal{
         //cancel button
         const cancelButton = document.getElementById("cancel-button");
         cancelButton.addEventListener("click", function(){
-            //Se auto refresca
             const form = document.getElementById("main-form");
+            //Se auto refresca
             form.noValidate = true;
             //form.submit();
             /*form.on('submit', function (event) {
@@ -188,7 +203,39 @@ class CreateModal{
         //save button
         const saveButton = document.getElementById("save-button");
         saveButton.addEventListener("click", function(){
-            //code of save
+
+            //check is valid
+
+            const time = document.querySelector(".event-time").childNodes[1].textContent;
+            const date = document.querySelector(".event-time").childNodes[0].textContent.split(",");
+            const dateCheckbox = document.getElementById("date-checkbox").checked;
+            const reminderCheckbox = document.getElementById("reminder-checkbox").checked;
+            const textArea = document.querySelector(".description-textarea");
+            const type = document.querySelector(".select-type-event");
+
+
+            const event = new CalendarEvent(title.value, time, date[1].split(" ")[1], date[1].split(" ")[2], date[1].split(" ")[3], 
+                                    dateCheckbox, reminderCheckbox, type.options[type.selectedIndex].text);
+            if(dateCheckbox){
+                const endTime = document.querySelector(".next-date").childNodes[1].textContent;
+                const endDate = document.querySelector(".next-date").childNodes[0].textContent.split(",");
+                event.setEndHour(endTime);
+                event.setEndDay(endDate[1].split(" ")[1]);
+                event.setEndMonth(endDate[1].split(" ")[2]);
+                event.setEndYear(endDate[1].split(" ")[3]);
+            }
+            if(reminderCheckbox){
+                const selectReminder = document.querySelector(".select-reminder");
+                event.setReminder(selectReminder.options[selectReminder.selectedIndex].text);
+            }
+
+            if(textArea) event.setDescription(textArea.value);
+            else event.setDescription(undefined);
+
+            console.log(event.getEvent());
+            console.log(JSON.stringify(event.getEvent()));
+            localStorage.setItem("2", JSON.stringify(event.getEvent()));
+
         });
 
         //modal listener
@@ -221,6 +268,8 @@ class CreateModal{
         //esc key
 
         //add event to calendar
+        modal.style.left = x + "px";
+        modal.style.top = y + "px";
     }
 
     focus(){

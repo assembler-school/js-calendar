@@ -1,6 +1,5 @@
 export const body = document.querySelector(".body");
-//test const - delete
-export const test = document.getElementById("test");
+export const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 export function element(type, elemId, elemClass, otherAtt, valueAtt, textContent){
     const element = document.createElement(type);
