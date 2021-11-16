@@ -82,17 +82,12 @@ function displayCalendar() {
         // if counter is current day.
         // highlight current day using the CSS defined in header.
         if (counter == day) {
-            htmlContent +=
-                '<li class=\'dayNow\'  onMouseOver=\'this.style.background="#FFFF00"; this.style.color="#FFFFFF"\' ' +
-                'onMouseOut=\'this.style.background="#FFFFFF"; this.style.color="#00FF00"\'>' +
-                counter +
-                '</li>';
+            htmlContent += "<li class='dayNow gridCalendar'  onMouseOver='this.style.background=\"#FFFF00\"; this.style.color=\"#FFFFFF\"' " +
+                "onMouseOut='this.style.background=\"#FFFFFF\"; this.style.color=\"#00FF00\"'>" + counter + "</li>";
         } else {
-            htmlContent +=
-                "<li class='monthNow' onMouseOver='this.style.background=\"#FFFF00\"'" +
-                ' onMouseOut=\'this.style.background="#FFFFFF"\'>' +
-                counter +
-                '</li>';
+            htmlContent += "<li class='monthNow gridCalendar' onMouseOver='this.style.background=\"#FFFF00\"'" +
+                " onMouseOut='this.style.background=\"#FFFFFF\"'>" + counter + "</li>";
+
         }
 
         weekdays2++;
@@ -100,9 +95,9 @@ function displayCalendar() {
     }
 
     // building the calendar html body.
-    var calendarBody = '<div><input type="button" value="button Test" onclick="openModal()"></div>';
-    calendarBody += "<div class='calendar'> <div class='monthNow' id='calendarP'> <i class='fas fa-chevron-left'> </i><span> " + monthNames[month] + ' ' + year + "</span> <i class='fas fa-chevron-right'></i> </div>";
-    calendarBody += "<button class='modal-btn id='openModal'>ADD EVENT</button>";
+    var calendarBody = '<div><input type="button" value="button Test" onclick="openModal()" class="desaparecer"></div>';
+    calendarBody += "<div class='calendar'> <div class='monthNow' id='calendarP'><button class='btn btn-primary ' id='firstModal'>ADD EVENT</button> <span> <i class='fas fa-chevron-left'> </i>" + monthNames[month] + ' ' + year + " <i class='fas fa-chevron-right'></i></span>  <div id='calendarprueba'></div></div>";
+    // calendarBody += "<button class='modal-btn id='openModal'>ADD EVENT</button>";
     calendarBody += "<ul class='dayNames'>  <li>Sun</li>  <li>Mon</li> <li>Tues</li>" +
         "<li>Wed</li> <li>Thurs</li> <li>Fri</li> <li>Sat</li> </ul>";
     calendarBody += "<ul>";
@@ -113,17 +108,19 @@ function displayCalendar() {
     // calendarBody += '<div id="myModal" class="modal"><div class="modal-content"><span id="close">&times;</span></div></div>'
     document.getElementById("calendar").innerHTML = calendarBody;
 
-    //Date num
-    const monthNow= document.querySelectorAll(".monthNow")
-
+    // set the content of div .
+    document.getElementById('calendar').innerHTML = calendarBody;
+      //Date num
+    
+    const monthNow= document.querySelectorAll(".gridCalendar")
     monthNow.forEach(num=> {
         num.addEventListener("click", ()=>{
             numero= num.textContent
-            fecha= ` ${numero} ${monthNames[month]} ${year} `
-            console.log(fecha)
+            fecha= ` ${numero} ${monthNames[month]} ${year}`
+            console.log(numero)
         })
     });
-
-    // set the content of div .
-    document.getElementById('calendar').innerHTML = calendarBody;
+    //first modal
+    const firstModal=document.getElementById("firstModal")
+    firstModal.addEventListener("click", openModal )
 }

@@ -19,11 +19,12 @@ body {
     color: #ff0;
     text-align: center;
 }
-.calendar li {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: auto;
-}
+.calendar li{
+    /* display: grid;
+    grid-template-columns: repeat(7,1fr); */
+    list-style: none;
+    /* grid-template-rows: auto; */
+ }
 .monthNow li {
     width: 100%;
     background-color: #000000;
@@ -42,11 +43,19 @@ ul {
     grid-template-columns: repeat(7, 1fr);
 }
 
-/* montNow li{
 
-.modal-btn {
-    height: 80px;
-    width: 130px;
+.gridCalendar{
+    /* padding: 6px; */
     font-size: 20px;
-    font-weight: bold;
+    /* display: grid; */
+    /* position: relative; */
+    height: 150px;
+    width: 150px;
+}
+#calendarP{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+}
+.desaparecer{
+    display: none;
 }

@@ -1,4 +1,3 @@
-
 function displayHour() {
     hourUpdate = setInterval(() => {
         time = new Date();
@@ -7,10 +6,8 @@ function displayHour() {
         seconds = time.getSeconds();
 
         houtMin= `${hour}: ${minute}: ${seconds}`
-        fisrsRow= document.getElementsById('idcalendar')
-        fisrsRow.innerText = houtMin
-
+        var fisrsRow= document.querySelector("#calendarprueba")
+        fisrsRow.textContent=houtMin
     }, 1000);
 }
-
-
+displayHour()

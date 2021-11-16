@@ -32,10 +32,10 @@ function cleanModal() {
     }
 }
 
-//TODO clicks on <span> (x), close the modal
-span.onclick = function () {
-    modal.style.display = "none";
-}
+// //TODO clicks on <span> (x), close the modal
+// span.onclick = function () {
+//     modal.style.display = "none";
+// }
 
 
 
