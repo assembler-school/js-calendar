@@ -10,8 +10,29 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+#crear_minicalendar {
+    margin-left: 10px;
+    border-radius: 15px;
+    border: 3px double #006505
+}
+
+.number-days:hover {
+    opacity: 0.6;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 15px;
+    background-color: gold;
+}
+
+#crear_minicalendar:hover {
+    opacity: 0.6;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 .header-calendar {
     text-align: center;
+    margin-bottom: 30px;
 }
 
 #calendars {
@@ -45,18 +66,19 @@
 }
 
 .previousMonthColor {
-    background-color: darkblue;
-    color: white;
+    opacity: 30%;
     border-radius: 5px;
 }
 
 .nextMonthColor {
-    background-color: rgb(192, 248, 80);
+    opacity: 30%;
+    border-radius: 5px;
 }
 
+
 .actualDay {
-    background-color: coral;
-    border-radius: 5%;
+    border-radius: 5px;
+    color: rgb(255, 0, 0);
 }
 
 .btn-prev-month, .btn-next-month  {
