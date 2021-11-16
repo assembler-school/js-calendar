@@ -13,8 +13,8 @@ const months = {
     11: 'December'
 };
 
-const smallCalendar = document.getElementById("calendar_minicalendar");
-const bigCalendar = document.getElementById("calendar");
+const smallCalendar = document.getElementById("small_calendar");
+const bigCalendar = document.getElementById("big_calendar");
 
 //Obtain calculate to previous days of actual month
 function prevDaysOfMonth() {
@@ -80,8 +80,8 @@ function headerCal(){
 function prevMonthCal() {
     let prevDays = prevDaysOfMonth();
     for (let index = prevDays.firstDayIndex; index > 0; index--) {
-        var smallDayMonth = newElement({tag: 'div', id: '', clas: ['number-days'], content: prevLastDay - index});
-        var bigDayMonth = newElement({tag: 'div', id: '', clas: ['number-days'], content: prevLastDay - index});
+        var smallDayMonth = newElement({tag: 'div', id: '', clas: ['number-days'], content: prevDays.prevLastDay - index});
+        var bigDayMonth = newElement({tag: 'div', id: '', clas: ['number-days'], content: prevDays.prevLastDay - index});
         saveDatePrevDayOfMonth(smallDayMonth, index);
         saveDatePrevDayOfMonth(bigDayMonth, index);
         smallCalendar.appendChild(smallDayMonth);
@@ -116,17 +116,9 @@ function nextMonthCal() {
 }
 
 
-//Create the  complete minicalendar.
-function addMiniCal() {
+//Create the  complete calendar.
+function createCal() {
     smallCalendar.innerHTML = null;
-    headerCal();
-    prevMonthCal()
-    monthActualCal()
-    nextMonthCal()
-}
-
-//Create the complete calendar.
-function addCal() {
     bigCalendar.innerHTML = null;
     headerCal();
     prevMonthCal()
@@ -134,12 +126,32 @@ function addCal() {
     nextMonthCal()
 }
 
-//Events all days of calendar
-document.querySelectorAll(".number-days").forEach (element => {
+
+
+//Events to choose all days of calendar
+function chooseDateCal () {
+    document.querySelectorAll(".number-days").forEach (element => {
+        element.addEventListener("click", event => {
+            var year = event.target.dataset.year
+            var month = event.target.dataset.month
+            var day = event.target.dataset.day
+            console.log(new Date(year, month, day))
+        })
+    })
+}
+
+document.querySelectorAll("btn-prev-month").forEach (element => {
     element.addEventListener("click", event => {
-        var year = event.target.dataset.year
-        var month = event.target.dataset.month
-        var day = event.target.dataset.day
-        console.log(new Date(year, month, day))
+        actual_date.setMonth((actual_date.getMonth() - 1));
+        addMiniCal();
+        addCal();
+    })
+})
+
+document.querySelectorAll("btn-next-month").forEach (element => {
+    element.addEventListener("click", event => {
+        actual_date.setMonth((actual_date.getMonth() + 1));
+        addMiniCal();
+        addCal();
     })
 })

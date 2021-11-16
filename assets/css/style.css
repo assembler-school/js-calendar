@@ -1,9 +1,33 @@
-#calendar_minicalendar, #calendar {
+#small_calendar , #big_calendar {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 5px;
 }
 
-#calendar_minicalendar div, #calendar div{
+#small_calendar div, #big_calendar div{
     place-self: center;
+}
+
+
+#calendar {
+    display: none;
+}
+
+.date-calendar {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+@media screen and (min-width: 768px) {
+    #small_calendar {
+        width: 20%;
+    }
+
+    #big_calendar {
+        width: 80%;
+    }
+
+    #calendar {
+        display: block;
+    }
 }
