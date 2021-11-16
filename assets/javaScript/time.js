@@ -1,4 +1,3 @@
-let innerH2 = document.getElementById('prueba')
 
 function displayHour() {
     hourUpdate = setInterval(() => {

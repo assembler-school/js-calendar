@@ -8,28 +8,26 @@ body {
     color: gray;
     text-align: center;
 }
-
 .monthNow {
     color: blue;
     text-align: center;
+
 }
 
 .dayNow {
     border: 2px solid black;
-    color: #FF0;
+    color: #ff0;
     text-align: center;
 }
-
 .calendar li {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: auto;
 }
-
 .monthNow li {
     width: 100%;
     background-color: #000000;
-    color: #FFFFFF;
+    color: #ffffff;
     text-align: center;
 }
 
@@ -46,4 +44,9 @@ ul {
 
 /* montNow li{
 
-} */
+.modal-btn {
+    height: 80px;
+    width: 130px;
+    font-size: 20px;
+    font-weight: bold;
+}
