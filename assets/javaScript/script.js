@@ -65,7 +65,7 @@ function displayCalendar() {
 
     // building the calendar html body.
     var calendarBody = '<div><input type="button" value="button Test" onclick="openModal()" class="desaparecer"></div>';
-    calendarBody += "<div class='calendar'> <div class='monthNow' id='calendarP'><button class='btn btn-primary' id='firstModal'>ADD EVENT</button> <i class='fas fa-chevron-left' id='leftMonth'> </i> <span> " + monthNames[month] + ' ' + year + " </span>  <i class='fas fa-chevron-right ' id='rightMonth'></i><div id='calendarprueba'></div></div>";
+    calendarBody += "<div class='calendar'> <div class='monthNow' id='calendarP'><button class='btn btn-primary' id='firstModal'>ADD EVENT</button> <i class='fas fa-chevron-left' id='leftMonth'> </i> <span> " + monthNames[month] + ' ' + year + " </span>  <i class='fas fa-chevron-right' id='rightMonth1'> </i><div id='calendarprueba'></div></div>";
     // calendarBody += "<button class='modal-btn id='openModal'>ADD EVENT</button>";
     calendarBody += "<ul class='dayNames'>  <li>Sun</li>  <li>Mon</li> <li>Tues</li>" +
         "<li>Wed</li> <li>Thurs</li> <li>Fri</li> <li>Sat</li> </ul>";
@@ -94,8 +94,8 @@ function displayCalendar() {
     const firstModal = document.getElementById("firstModal")
     firstModal.addEventListener("click", modalStart)
     //NEXT MONTH
-    const rightMonth = document.getElementById("rightMonth")
-    rightMonth.addEventListener("click", sumMonth)
+    const rightMonth1 = document.getElementById("rightMonth1")
+    rightMonth1.addEventListener("click", sumMonth)
     //Previous Month
     const leftMonth = document.getElementById("leftMonth")
     leftMonth.addEventListener("click", restMonth)
@@ -103,12 +103,11 @@ function displayCalendar() {
 
 function sumMonth() {
     calendario.innerHTML = null
-    htmlContent = '';
-    FebNumberOfDays = '';
-    counter = 1;
+    // htmlContent = '';
+    // FebNumberOfDays = '';
+    // counter = 1;
     console.log(dateNow.getMonth())
-    month = dateNow.setMonth(dateNow.getMonth() + 1)
-    day = dateNow.getDate();
+    month = dateNow.setMonth(dateNow.getMonth())
     month = dateNow.getMonth();
     day = dateNow.getDate();
     year = dateNow.getFullYear();
@@ -131,6 +130,5 @@ function restMonth() {
     year = dateNow.getFullYear();
     nextMonth = month + 1;
     displayCalendar()
-
 }
 
