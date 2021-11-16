@@ -271,7 +271,12 @@ class CreateModal{
             */
 
         //esc key
-
+        modal.addEventListener("keyup",(e)=>{
+            if(e.key=="Escape"){
+            modal.parentNode.removeChild(modal.previousElementSibling);
+            modal.parentNode.removeChild(modal);
+        }
+    });
         //add event to calendar
         modal.style.left = x + "px";
         modal.style.top = y + "px";
