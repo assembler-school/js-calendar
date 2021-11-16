@@ -52,8 +52,8 @@ class calendarEvent {
             });;
         }
     }
-    createTagEvent(father) {
-        father.appendChild(newElement('div', '', 'miniEvents', this.allEvent.eventTitle))
+    createTagEvent(father, id) {
+        father.appendChild(newElement('div', id, 'miniEvents', this.allEvent.eventTitle))
     }
     eraseEvent() {
         let typeStorage = JSON.parse(localStorage.eventType);
