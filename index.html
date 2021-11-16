@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/modal.css">
     <script src="/assets/js/dom.js" defer></script>
@@ -45,7 +45,6 @@
                 <div class="head_modal">
                     <span id="nav_modal" class="nav_modal">&times;</span>
                 </div>
-                
             </div>
             <div id="input_modal" class="input_modal">
                 <input type="Text" placeholder="Añade un titulo" class="title-modal-input modal-need">
@@ -53,8 +52,8 @@
             </div>
             <div id="fecha_modal" class="fecha_modal">
                 <div id="fechadia_modal">
-
                     <span class="date-picker">
+                        <i class="far fa-clock clocki"></i>
                         <input id="date-pickerInput" type="datetime-local" class="date_modal modal-need">
                     </span>
                     <div id="liniabonito" class="linianobonito"></div>
@@ -82,13 +81,18 @@
                 </div>
             </div>
             <div id="descripcion_modal">
+                <i class="fas fa-align-left"></i>
                 <input type="text" maxlength="500" placeholder="descripcion">
             </div>
             <div id="footer_modal" class="footer_modal">
-                <select size="1" name="usgsfeed" id="usgsfeed" onchange='SelectChanged()'>
-                    <option value="usgs_hour" SELECTED>Your work</option>
-                    <option value="Day">Yor day</option>
-                </select>
+                <div>
+                    <i class="fas fa-boxes"></i>
+                    <select size="1" name="usgsfeed" id="usgsfeed" onchange='SelectChanged()'>
+                        <option value="usgs_hour" SELECTED>Meeting</option>
+                        <option value="Day">Personal</option>
+                        <option value="Day">Study</option>
+                    </select>
+                </div>
                 <button id="save-modal">Guardar</button></div>
         </div>
     </div>

@@ -1,48 +1,3 @@
-.modal_crear {
-    border: 1px solid black;
-    display: flex;
-    padding-top: 100px;
-    left: 0;
-    top: 0;
-    flex-direction: column;
-    justify-content: start;
-    text-align: center;
-    gap: 10px;
-    width: 100%;
-    height: 100%;
-    margin: auto;
-    display: none;
-    position: fixed;
-    z-index: 1;
-    overflow: auto;
-    background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
-.nav_modal {
-    width: 100%;
-    height: 30px;
-    background-color: grey;
-    color: rgb(0, 0, 0);
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.main_modal {
-    position: relative;
-    background-color: #fefefe;
-    margin: auto;
-    padding: 0;
-    border: 1px solid #888;
-    width: 80%;
-    height: auto;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
-    animation-name: animatetop;
-    animation-duration: 0.4s
-}
 
 /* Add Animation */
 @-webkit-keyframes animatetop {
@@ -69,11 +24,57 @@
     }
 }
 
+.modal_crear {
+    border: 1px solid black;
+    display: flex;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    flex-direction: column;
+    justify-content: start;
+    text-align: center;
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    display: none;
+    position: fixed;
+    z-index: 1;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.main_modal {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    height: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
 .head_modal{
     display: flex;
     flex-direction: row-reverse;
     background-color: grey;
     padding: 3px 10px;
+}
+
+.nav_modal {
+    width: 100%;
+    height: 30px;
+    background-color: grey;
+    color: rgb(0, 0, 0);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
 
 .nav_modal:hover,
@@ -83,7 +84,6 @@
     cursor: pointer;
 }
 
-.main_modal {}
 
 .input_modal {
     margin: 30px 15px 15px 15px;
@@ -122,14 +122,15 @@
     width: 60%;
     height: 2px;
     background-color: rgba(192, 192, 192, 0);
-    transition: with 2s;
+    transition:2s;
 }
 
 .liniabonito {
+    transform-origin: 96px center;
     margin: auto;
     width: 60%;
     height: 2px;
-    background-color: blue;
+    background-color:var(--azul);
 }
 
 .fecha_modal {
@@ -163,9 +164,6 @@
     width: auto;
 }
 
-
-
-
 .opciones_modal {
     width: 100%;
     height: auto;
@@ -174,23 +172,28 @@
     margin: auto;
 }
 
-
+/* checkbox start */
+input[type="checkbox"] {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -o-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgb(29, 120, 238);
+}
 .checkbox-modal {
     display: flex;
     justify-content: space-around;
     margin: 15px;
     max-height: 30px;
 }
-
 .checkbox-modal>div {
     display: flex;
 }
-
 .checkbox-modal>div>p {
     position: relative;
     bottom: 10px;
 }
-
 /* The container */
 .checkbox-modal-container {
     display: block;
@@ -204,7 +207,6 @@
     -ms-user-select: none;
     user-select: none;
 }
-
 /* Hide the browser's default checkbox */
 .checkbox-modal-container input {
     position: absolute;
@@ -213,7 +215,6 @@
     height: 0;
     width: 0;
 }
-
 /* Create a custom checkbox */
 .checkmark {
     position: absolute;
@@ -223,29 +224,24 @@
     width: 20px;
     background-color: #eee;
 }
-
 /* On mouse-over, add a grey background color */
 .checkbox-modal-container:hover input~.checkmark {
     background-color: #ccc;
 }
-
 /* When the checkbox is checked, add a blue background */
 .checkbox-modal-container input:checked~.checkmark {
     background-color: #2196F3;
 }
-
 /* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
     content: "";
     position: absolute;
     display: none;
 }
-
 /* Show the checkmark when checked */
 .checkbox-modal-container input:checked~.checkmark:after {
     display: block;
 }
-
 /* Style the checkmark/indicator */
 .checkbox-modal-container .checkmark:after {
     left: 6px;
@@ -258,7 +254,7 @@
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
-
+/* checkbox finish */
 
 /* selecionar cada cuanto */
 .repit_modal {
@@ -280,11 +276,12 @@
 
 /* descripcion */
 #descripcion_modal>input {
-    width: 95%;
+    width: 70%;
     border: none;
     text-align: center;
     box-shadow: 1px 1px 2px;
     height: 3em;
+    margin: 10px 3%;
 }
 
 #descripcion_modal>input:hover {
@@ -303,15 +300,23 @@
     margin: 5%;
 }
 
-.footer_modal>select {
+.footer_modal>div>select {
     display: flex;
     outline: none;
     border: none;
     width: 30%;
-    margin: 10px;
+    margin: 0px 10px;
+}
+.footer_modal>div {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 60%;
+    height: 20px;
 }
 
-.footer_modal>select:hover {
+
+.footer_modal>div>select:hover {
     box-shadow: 1px 1px 5px;
 }
 
@@ -324,12 +329,3 @@
     border-radius: 7px;
 }
 
-
-input[type="checkbox"] {
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    -o-appearance: none;
-    width: 20px;
-    height: 20px;
-    border: 2px solid rgb(29, 120, 238);
-}
