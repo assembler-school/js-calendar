@@ -67,7 +67,7 @@ function displayCalendar() {
     calendarBody += "<div class='calendar'> <div class='monthNow' id='calendarP'><button class='btn btn-primary' id='firstModal'>ADD EVENT</button> <i class='fas fa-chevron-left' id='leftMonth'> </i> <span> " + monthNames[month] + ' ' + year + " </span>  <i class='fas fa-chevron-right ' id='rightMonth'></i><div id='calendarprueba'></div></div>";
     // calendarBody += "<button class='modal-btn id='openModal'>ADD EVENT</button>";
     calendarBody += "<ul class='dayNames'>  <li>Sun</li>  <li>Mon</li> <li>Tues</li>" +
-        "<li>Wed</li> <li>Thurs</li> <li>Fri</li> <li>Sat</li> </ul>";
+        "<li>Wed</li> <li>Thu</li> <li>Fri</li> <li>Sat</li> </ul>";
     calendarBody += "<ul>";
     calendarBody += htmlContent;
     calendarBody += "</ul></div>";
