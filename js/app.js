@@ -1,4 +1,5 @@
 import CreateModal from "./modals/CreateModal.js";
+import { body } from "./variables.js";
 //import * as variable from "./variables.js";
 let currentMonth = 0;
 let clickedDay = null;
@@ -64,7 +65,6 @@ function displayCalendar() {
             dayElement.innerText = i - daysInMonth - paddingDaysBefore;
         }
 
-        
         dayElement.addEventListener('click', (e) => {
             //control 1 click between each modal
             //if(isModalOpen === false){
@@ -72,8 +72,13 @@ function displayCalendar() {
                 const calendar = document.getElementById("calendar");
                 for(let i = 0; i < calendar.childNodes.length; i++){
                     if(calendar.childNodes[i] == dayElement){
-                        if(e.clientX < 410) new CreateModal(e.clientX, e.clientY / 2, weekdays[i%7], dayElement.textContent, currentMonth.textContent);
-                        else new CreateModal(e.clientX - 400, e.clientY / 2, weekdays[i%7], dayElement.textContent, currentMonth.textContent);
+                        if(e.clientX < 410) {
+                            createBackground();
+                            new CreateModal(e.clientX, e.clientY / 2, weekdays[i%7], dayElement.textContent, currentMonth.textContent);
+                        }else{
+                            createBackground();
+                            new CreateModal(e.clientX - 400, e.clientY / 2, weekdays[i%7], dayElement.textContent, currentMonth.textContent)
+                        }
                     }
                 }
                 //console.log(days.children); //mon 
@@ -104,5 +109,11 @@ document.getElementById('create-event').addEventListener('click', (e) =>{
     new CreateModal(e.target.offsetLeft - 430, e.target.y);
 });
 
-
 displayCalendar();
+
+function createBackground(){
+    const background = document.createElement("div");
+    background.classList.add("modalBackground");
+    body.appendChild(background);
+}
+export default createBackground;

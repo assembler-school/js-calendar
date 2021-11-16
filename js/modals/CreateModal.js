@@ -4,6 +4,7 @@ import { element, readArray } from "../variables.js";
 class CreateModal{
 
     #structure = [
+            
                    //modal
                    element("div", null, "modal", "tabindex", "-1"),
                        [
@@ -19,6 +20,7 @@ class CreateModal{
                                 element("img", "close-modal", null, "src", "../assets/imgs/close.png")
                             ]
                         ],
+            
                         //body modal
                         element("div"),
                         [
@@ -250,7 +252,10 @@ class CreateModal{
                 e.relatedTarget === modal.childNodes[1].childNodes[0][4] || //textarea
                 e.relatedTarget === modal.childNodes[1].childNodes[0][5] || //button
                 e.relatedTarget === modal.childNodes[1].childNodes[0]){} 
-            else modal.parentNode.removeChild(modal);
+            else {
+                modal.parentNode.removeChild(modal.previousElementSibling);
+                modal.parentNode.removeChild(modal);
+            }
         });
         
             /*-------
