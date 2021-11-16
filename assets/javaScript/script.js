@@ -21,43 +21,9 @@ function displayCalendar() {
     }
 
     // names of months and week days.
-    var monthNames = [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December'
-    ];
-    var dayNames = [
-        'Sunday',
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thrusday',
-        'Friday',
-        'Saturday'
-    ];
-    var dayPerMonth = [
-        '31',
-        '' + FebNumberOfDays + '',
-        '31',
-        '30',
-        '31',
-        '30',
-        '31',
-        '31',
-        '30',
-        '31',
-        '30',
-        '31'
-    ];
+    var monthNames = ['January','February','March','April','May','June','July', 'August','September','October','November','December'];
+    var dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thrusday','Friday', 'Saturday' ];
+    var dayPerMonth = ['31','' + FebNumberOfDays + '','31','30','31','30','31','31', '30','31','30','31'];
 
     // days in previous month and next one , and day of week.
     var nextDate = new Date(nextMonth + ' 1 ,' + year);
@@ -110,17 +76,17 @@ function displayCalendar() {
 
     // set the content of div .
     document.getElementById('calendar').innerHTML = calendarBody;
-      //Date num
-    
-    const monthNow= document.querySelectorAll(".gridCalendar")
-    monthNow.forEach(num=> {
-        num.addEventListener("click", ()=>{
-            numero= num.textContent
-            fecha= ` ${numero} ${monthNames[month]} ${year}`
-            console.log(numero)
+    //Date num
+
+    const monthNow = document.querySelectorAll(".gridCalendar")
+    monthNow.forEach(num => {
+        num.addEventListener("click", () => {
+            numero = num.textContent
+            fecha = ` ${numero} ${month} ${year}`
+            console.log(fecha)
         })
     });
     //first modal
-    const firstModal=document.getElementById("firstModal")
-    firstModal.addEventListener("click", openModal )
+    const firstModal = document.getElementById("firstModal")
+    firstModal.addEventListener("click", modalStart)
 }

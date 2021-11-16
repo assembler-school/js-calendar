@@ -1,6 +1,6 @@
 body {
     display: flex;
-    width: 90%;
+    width: 100%;
     font-size: 5em;
 }
 
@@ -8,10 +8,10 @@ body {
     color: gray;
     text-align: center;
 }
+
 .monthNow {
     color: blue;
     text-align: center;
-
 }
 
 .dayNow {
@@ -19,12 +19,14 @@ body {
     color: #ff0;
     text-align: center;
 }
-.calendar li{
+
+.calendar li {
     /* display: grid;
     grid-template-columns: repeat(7,1fr); */
     list-style: none;
     /* grid-template-rows: auto; */
- }
+}
+
 .monthNow li {
     width: 100%;
     background-color: #000000;
@@ -43,8 +45,7 @@ ul {
     grid-template-columns: repeat(7, 1fr);
 }
 
-
-.gridCalendar{
+.gridCalendar {
     /* padding: 6px; */
     font-size: 20px;
     /* display: grid; */
@@ -52,10 +53,12 @@ ul {
     height: 150px;
     width: 150px;
 }
-#calendarP{
+
+#calendarP {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr ;
+    grid-template-columns: 1fr 1fr 1fr;
 }
-.desaparecer{
+
+.desaparecer {
     display: none;
 }

@@ -6,3 +6,6 @@
 // openEventBtn.addEventListener('click', () => {
 //     alert('hi');
 // });
+    //first modal
+    // const firstModal = document.getElementById("firstModal")
+    // firstModal.addEventListener("click", openModal)
