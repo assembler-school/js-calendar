@@ -1,5 +1,6 @@
 class calendarEvent {
     constructor(eventTitle, fechaInicio, fechaFin, repeat, remember, description, eventType) {
+        this.setIDToStorage();
         this.allEvent = {
             eventTitle: eventTitle,
             fechaInicio: fechaInicio,
@@ -8,25 +9,30 @@ class calendarEvent {
             remember: remember,
             description: description,
             eventType: eventType,
-            eventId: eventId
+            eventId: localStorage.id
         }
-        eventId++
         this.setToLocalStorage(this.allEvent.eventType);
     }
-
-
     setToLocalStorage(eventType) {
-        if (localStorage.eventType) {
+        if (localStorage[eventType]) {
             console.log('a');
             let typeStorage = JSON.parse(localStorage.eventType);
             typeStorage.push(this.allEvent)
-            localStorage.eventType = (JSON.stringify(typeStorage))
-        } else if (!localStorage.eventType) {
+            localStorage[eventType] = (JSON.stringify(typeStorage))
+        } else if (!localStorage[eventType]) {
             console.log('b');
             let typeStorage = []
             typeStorage.push(this.allEvent);
-            localStorage.eventType = (JSON.stringify(typeStorage))
+            localStorage[eventType] = (JSON.stringify(typeStorage))
         }
+    }
+    setIDToStorage() {
+        if (!localStorage.id) {
+            localStorage.id = '0';
+            console.log('a');
+        }
+        console.log(localStorage.id);
+        localStorage.id = parseInt(localStorage.id) + 1
     }
     findEvent(eventType, father, date2 = null) {
         var fatherDay = father.dateset.day;
@@ -47,7 +53,7 @@ class calendarEvent {
         }
     }
     createTagEvent(father) {
-        father.appendChild(newElement(div, '', 'miniEvents', this.allEvent.eventTitle))
+        father.appendChild(newElement('div', '', 'miniEvents', this.allEvent.eventTitle))
     }
     eraseEvent() {
         let typeStorage = JSON.parse(localStorage.eventType);
