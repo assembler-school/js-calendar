@@ -3,7 +3,7 @@ import CreateModal from "./modals/CreateModal.js";
 let currentMonth = 0;
 let clickedDay = null;
 let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : []; // fetching events from LocalStorage, if it doest't exist return an empty array
-//let isModalOpen = false; //control 1 click between each modal
+let isModalOpen = false;
 
 const calendar = document.querySelector('#calendar');
 const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -66,8 +66,7 @@ function displayCalendar() {
 
         
         dayElement.addEventListener('click', (e) => {
-            //control 1 click between each modal
-            //if(isModalOpen === false){
+            if(isModalOpen === false){
                 const currentMonth = document.getElementById("current-month");
                 const calendar = document.getElementById("calendar");
                 for(let i = 0; i < calendar.childNodes.length; i++){
@@ -76,11 +75,8 @@ function displayCalendar() {
                         else new CreateModal(e.clientX - 400, e.clientY / 2, weekdays[i%7], dayElement.textContent, currentMonth.textContent);
                     }
                 }
-                //console.log(days.children); //mon 
-                // if(e.clientX < 410) new CreateModal(e.clientX, e.clientY / 2);
-                // else new CreateModal(e.clientX - 400, e.clientY / 2);
-                //isModalOpen = true;
-            //} else isModalOpen = false;
+                isModalOpen = true;
+            } else isModalOpen = false;
         });
         calendar.appendChild(dayElement); // adding the day square to the calendar
     }

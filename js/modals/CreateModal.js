@@ -1,5 +1,5 @@
 import CalendarEvent from "../Event/CalendarEvent.js";
-import { element, readArray } from "../variables.js";
+import { element, readArray, weekdays } from "../variables.js";
 
 class CreateModal{
 
@@ -39,12 +39,12 @@ class CreateModal{
                                     ],
                                     element("div", null, "event-time"),
                                     [
-                                        element("span", null, null,  null, null, "Sábado, 13 de noviembre"),
-                                        element("span", null, null,  null, null, "12:00 - 1:00")
+                                        element("span"),
+                                        element("span")
                                     ],
                                     element("span"),
                                     [
-                                        element("img", null, null, "src", "../assets/imgs/calendar.png")
+                                        element("input", "input-date", null, "type", "datetime-local")
                                     ]
                                 ],
                                 //checkbox date end
@@ -108,14 +108,21 @@ class CreateModal{
         title.setAttribute("placeholder", "Add a title");
         title.required = true;
         
-        //actual day
-        //date
         //event-time
-
         const eventTime = document.querySelector(".event-time");
         const time = new Date();
         eventTime.childNodes[0].textContent = dayWeek + ", " + day + " " + month;
         eventTime.childNodes[1].textContent = time.getHours() + ":" + (time.getMinutes() < 10 ? "0" : time.getMinutes());
+
+        const inputDate = document.getElementById("input-date");
+        inputDate.addEventListener("change", function(){
+            const shortDate = inputDate.value.split("T");
+            const longDate = String(new Date(shortDate[0]).toLocaleString("en-GB", {weekday: "long", year: "numeric", month: "long", day: "numeric"})).split(" ");
+            
+            eventTime.childNodes[0].textContent = longDate[0] + " " + longDate[1] + " " + longDate[2] + " " + longDate[3];
+            eventTime.childNodes[1].textContent = shortDate[1];
+
+        });
 
         //date checkbox structure + add/remove
         const dateCheckbox = document.getElementById("date-checkbox");
@@ -129,12 +136,12 @@ class CreateModal{
                                               ],
                                               element("div", null, "event-time next-date"),
                                               [
-                                                  element("span", null, null,  null, null, "Domingo, 14 de noviembre"),
-                                                  element("span", null, null,  null, null, "12:00 - 1:00")
+                                                  element("span"),
+                                                  element("span")
                                               ],
                                               element("span"),
                                               [
-                                                  element("img", null, null, "src", "../assets/imgs/calendar.png")
+                                                element("input", "input-date-end", null, "type", "datetime-local")
                                               ]
                                           ]
                                      ];
@@ -145,8 +152,18 @@ class CreateModal{
                 checkboxDateEnd.parentNode.insertBefore(dateEndStructure[0], checkboxDateEnd.nextSibling);
                 const nextDate = document.querySelector(".next-date");
                 const time = new Date();
-                nextDate.childNodes[0].textContent = dayWeek + ", " + day + " " + month;
+                nextDate.childNodes[0].textContent = eventTime.childNodes[0].textContent;
                 nextDate.childNodes[1].textContent = (time.getHours() + 1) + ":" + (time.getMinutes() < 10 ? "0" : time.getMinutes());
+                
+                
+                const inputEndDay = document.getElementById("input-date-end");
+                inputEndDay.addEventListener("change", function(){
+                    const shortDate = inputEndDay.value.split("T");
+                    const longDate = String(new Date(shortDate[0]).toLocaleString("en-GB", {weekday: "long", year: "numeric", month: "long", day: "numeric"})).split(" ");
+                    
+                    nextDate.childNodes[0].textContent = longDate[0] + " " + longDate[1] + " " + longDate[2] + " " + longDate[3];
+                    nextDate.childNodes[1].textContent = shortDate[1];
+                });
             } else {
                 const dateEnd = document.querySelector(".date-end");
                 dateEnd.parentNode.removeChild(dateEnd);
@@ -234,7 +251,10 @@ class CreateModal{
 
             console.log(event.getEvent());
             console.log(JSON.stringify(event.getEvent()));
-            localStorage.setItem("2", JSON.stringify(event.getEvent()));
+
+
+            //value - [event]
+            localStorage.setItem("events", JSON.stringify(event.getEvent()));
 
         });
 
@@ -280,5 +300,16 @@ class CreateModal{
     }
 
 }
+
+class Test{
+
+    attr;
+
+    constructor(){
+
+    }
+}
+
+new Test();
 
 export default CreateModal;
