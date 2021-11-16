@@ -1,5 +1,11 @@
 //Identificación de elementos
 
+var btnCrear = document.getElementById('crear_minicalendar');
+var mainModal = document.getElementById('modal_crear');
+var closeModal = document.getElementById('nav_modal');
+var eventTitleInput = document.querySelector('.input_modal>input');
+var btnSave = document.getElementById('save-modal');
+
 
 
 //Apertura modal principal Eventos
@@ -44,17 +50,22 @@ function comprovacionesFechas(event) {
     }
 }
 
-function comprovacionFinal() {
+/* function comprovacionFinal() {
+    let a = 0;
     let allInputs = document.querySelectorAll('.modal-need');
     for (let i = 0; i < allInputs.length; i++) {
         if (allInputs[i].classList[0] == 'title-modal-input') {
-
-        } else {
-
+            comprovaciones();
+            a++
+        } else{
+            comprovacionesFechas();
+            a++
         }
     }
+    if(a == 2 || a == 3){
 
-}
+    }
+} */
 
 //poner otro input date
 checkboxDate.addEventListener("click", ponerdata)
@@ -62,18 +73,15 @@ checkboxDate.addEventListener("click", ponerdata)
 function ponerdata() {
     var divdate_modal = document.createElement("div")
     var spandate = document.createElement("span")
-    var clocki=document.createElement("i")
     var inputdate_modal = document.createElement("input")
     inputdate_modal.type = "Date"
     inputdate_modal.classList = "date_modal modal-need"
-    clocki.classList="far fa-clock"
     spandate.classList = "date-picker"
     divdate_modal.id = "div2"
 
     if (checkboxDate.checked == true) {
         fecha_modal.appendChild(divdate_modal)
         divdate_modal.appendChild(spandate)
-        spandate.appendChild(clocki)
         spandate.appendChild(inputdate_modal)
         typedatatimelocal.type = "Date"
     } else if (checkboxDate.checked == false) {
@@ -110,9 +118,4 @@ function crearlistamin() {
         selectrecordatorio.appendChild(option_modal)
     }
     return selectrecordatorio
-}
-
-eventTitleInput.addEventListener("click",transitiontitle)
-function transitiontitle(){
-    liniabonito.classList.toggle("liniabonito")
 }
