@@ -4,6 +4,7 @@ import { element, readArray, weekdays } from "../variables.js";
 class CreateModal{
 
     #structure = [
+            
                    //modal
                    element("div", null, "modal", "tabindex", "-1"),
                        [
@@ -19,6 +20,7 @@ class CreateModal{
                                 element("img", "close-modal", null, "src", "../assets/imgs/close.png")
                             ]
                         ],
+            
                         //body modal
                         element("div"),
                         [
@@ -99,6 +101,7 @@ class CreateModal{
         //close event
         const close = document.getElementById("close-modal");
         close.addEventListener("click", function(){
+            modal.parentNode.removeChild(modal.previousElementSibling);
             modal.parentNode.removeChild(modal);
         });
         
@@ -214,6 +217,7 @@ class CreateModal{
                 event.preventDefault();
             });*/
             console.log(form);
+            modal.parentNode.removeChild(modal.previousElementSibling);
             modal.parentNode.removeChild(modal);
         });
 
@@ -251,11 +255,8 @@ class CreateModal{
 
             console.log(event.getEvent());
             console.log(JSON.stringify(event.getEvent()));
-
-
-            //value - [event]
-            localStorage.setItem("events", JSON.stringify(event.getEvent()));
-
+            localStorage.setItem("2", JSON.stringify(event.getEvent()));
+            modal.parentNode.removeChild(modal.previousElementSibling);
         });
 
         //modal listener
@@ -270,7 +271,10 @@ class CreateModal{
                 e.relatedTarget === modal.childNodes[1].childNodes[0][4] || //textarea
                 e.relatedTarget === modal.childNodes[1].childNodes[0][5] || //button
                 e.relatedTarget === modal.childNodes[1].childNodes[0]){} 
-            else modal.parentNode.removeChild(modal);
+            else {
+                modal.parentNode.removeChild(modal.previousElementSibling);
+                modal.parentNode.removeChild(modal);
+            }
         });
         
             /*-------
@@ -286,7 +290,12 @@ class CreateModal{
             */
 
         //esc key
-
+        modal.addEventListener("keyup",(e)=>{
+            if(e.key=="Escape"){
+            modal.parentNode.removeChild(modal.previousElementSibling);
+            modal.parentNode.removeChild(modal);
+        }
+    });
         //add event to calendar
         modal.style.left = x + "px";
         modal.style.top = y + "px";
@@ -300,16 +309,5 @@ class CreateModal{
     }
 
 }
-
-class Test{
-
-    attr;
-
-    constructor(){
-
-    }
-}
-
-new Test();
 
 export default CreateModal;
