@@ -115,17 +115,16 @@ class CreateModal{
         const eventTime = document.querySelector(".event-time");
         const time = new Date();
         eventTime.childNodes[0].textContent = dayWeek + ", " + day + " " + month;
-        eventTime.childNodes[1].textContent = time.getHours() + ":" + (time.getMinutes() < 10 ? "0" : time.getMinutes());
+        eventTime.childNodes[1].textContent = time.getHours() + ":" + (time.getMinutes() < 10 ? "0" + time.getMinutes() : time.getMinutes());
 
-        //TO-DO: controle min date = today
         const inputDate = document.getElementById("input-date");
+        const today = new Date().toISOString().split(".")[0].split(":");
+        inputDate.setAttribute("min", today[0] + ":" + today[1]);
         inputDate.addEventListener("change", function(){
             const shortDate = inputDate.value.split("T");
             const longDate = String(new Date(shortDate[0]).toLocaleString("en-GB", {weekday: "long", year: "numeric", month: "long", day: "numeric"})).split(" ");
-            
             eventTime.childNodes[0].textContent = longDate[0] + " " + longDate[1] + " " + longDate[2] + " " + longDate[3];
             eventTime.childNodes[1].textContent = shortDate[1];
-
         });
 
         //date checkbox structure + add/remove
@@ -155,16 +154,17 @@ class CreateModal{
                 readArray(dateEndStructure, null);
                 checkboxDateEnd.parentNode.insertBefore(dateEndStructure[0], checkboxDateEnd.nextSibling);
                 const nextDate = document.querySelector(".next-date");
-                const time = new Date();
+                const nextHour = new Date();
                 nextDate.childNodes[0].textContent = eventTime.childNodes[0].textContent;
-                nextDate.childNodes[1].textContent = (time.getHours() + 1) + ":" + (time.getMinutes() < 10 ? "0" : time.getMinutes());
+                nextHour.setHours(eventTime.childNodes[1].textContent.split(":")[0]);
+                nextDate.childNodes[1].textContent = (nextHour.getHours()+1) + ":" + eventTime.childNodes[1].textContent.split(":")[1];
                 
-                //TO-DO: controle min date = start-date + 1h
                 const inputEndDay = document.getElementById("input-date-end");
+                const minDate = new Date(eventTime.childNodes[0].textContent).toLocaleString("default").split(" ")[0].split("/");
+                inputEndDay.setAttribute("min", minDate[2] + "-" + minDate[1] + "-" + minDate[0] + "T" + eventTime.childNodes[1].textContent);
                 inputEndDay.addEventListener("change", function(){
                     const shortDate = inputEndDay.value.split("T");
                     const longDate = String(new Date(shortDate[0]).toLocaleString("en-GB", {weekday: "long", year: "numeric", month: "long", day: "numeric"})).split(" ");
-                    
                     nextDate.childNodes[0].textContent = longDate[0] + " " + longDate[1] + " " + longDate[2] + " " + longDate[3];
                     nextDate.childNodes[1].textContent = shortDate[1];
                 });
@@ -227,7 +227,6 @@ class CreateModal{
         saveButton.addEventListener("click", function(){
 
             //check is valid
-
             const time = document.querySelector(".event-time").childNodes[1].textContent;
             const date = document.querySelector(".event-time").childNodes[0].textContent.split(",");
             const dateCheckbox = document.getElementById("date-checkbox").checked;
