@@ -38,6 +38,7 @@ body {
     background: #0FF000;
     color: #FFFFFF;
     text-align: center;
+    font-size: 30px;
 }
 
 ul {
@@ -56,9 +57,14 @@ ul {
 
 #calendarP {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    font-size: 30px;
+    align-items: baseline;
 }
 
 .desaparecer {
     display: none;
+}
+#firstModal{
+    width: 100%;
 }
