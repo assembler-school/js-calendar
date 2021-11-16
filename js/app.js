@@ -1,8 +1,7 @@
 import CreateModal from "./modals/CreateModal.js";
 import { body } from "./variables.js";
-//import * as variable from "./variables.js";
+
 let currentMonth = 0;
-let clickedDay = null;
 let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : []; // fetching events from LocalStorage, if it doest't exist return an empty array
 let isModalOpen = false;
 
@@ -66,7 +65,6 @@ function displayCalendar() {
         }
 
         dayElement.addEventListener('click', (e) => {
-            if(isModalOpen === false){
                 const currentMonth = document.getElementById("current-month");
                 const calendar = document.getElementById("calendar");
                 for(let i = 0; i < calendar.childNodes.length; i++){
@@ -81,7 +79,6 @@ function displayCalendar() {
                     }
                 }
                 isModalOpen = true;
-            } else isModalOpen = false;
         });
         calendar.appendChild(dayElement); // adding the day square to the calendar
     }

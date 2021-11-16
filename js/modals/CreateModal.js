@@ -1,5 +1,5 @@
 import CalendarEvent from "../Event/CalendarEvent.js";
-import { element, readArray, weekdays } from "../variables.js";
+import { element, readArray } from "../variables.js";
 
 class CreateModal{
 
@@ -117,6 +117,7 @@ class CreateModal{
         eventTime.childNodes[0].textContent = dayWeek + ", " + day + " " + month;
         eventTime.childNodes[1].textContent = time.getHours() + ":" + (time.getMinutes() < 10 ? "0" : time.getMinutes());
 
+        //TO-DO: controle min date = today
         const inputDate = document.getElementById("input-date");
         inputDate.addEventListener("change", function(){
             const shortDate = inputDate.value.split("T");
@@ -158,7 +159,7 @@ class CreateModal{
                 nextDate.childNodes[0].textContent = eventTime.childNodes[0].textContent;
                 nextDate.childNodes[1].textContent = (time.getHours() + 1) + ":" + (time.getMinutes() < 10 ? "0" : time.getMinutes());
                 
-                
+                //TO-DO: controle min date = start-date + 1h
                 const inputEndDay = document.getElementById("input-date-end");
                 inputEndDay.addEventListener("change", function(){
                     const shortDate = inputEndDay.value.split("T");
@@ -278,23 +279,20 @@ class CreateModal{
         });
         
             /*-------
-                initial date with time - required
 
                 checkbox with end date
                     check doc to more info
 
                 checkbox reminder
                     use SetInterval every 10sec
-
-                ???WARNING box - event expired = red bold + doc more info
             */
 
-        //esc key
         modal.addEventListener("keyup",(e)=>{
             if(e.key=="Escape"){
             modal.parentNode.removeChild(modal.previousElementSibling);
             modal.parentNode.removeChild(modal);
         }
+
     });
         //add event to calendar
         modal.style.left = x + "px";
