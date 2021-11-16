@@ -22,11 +22,43 @@
 }
 
 .eventForm div, input{
+  padding: 0;
   width: 100%;
   justify-content: center;
   margin: 1% auto;
   padding: 1%;
   border: 1px solid #888;
+}
+
+.eventForm textarea{
+  width: 100%;
+}
+
+.eventForm select{
+  width: 50%;
+  margin-left: 5%;
+}
+
+.eventForm div{
+  padding: 2%;
+}
+
+#checkboxEndDate{
+  display: grid;
+  grid-template-columns: 13% 66%;
+  justify-content: left;
+  align-items: baseline;
+}
+
+#checkboxEndDate input{
+  width: 10%;
+}
+
+#checkboxRemind{
+  display: grid;
+  grid-template-columns: 45% 13%;
+  justify-content: left;
+  align-items: baseline;
 }
 
 .eventForm{
@@ -35,13 +67,17 @@
   flex-direction: column;
   justify-content: center;
   margin: 0 auto;
+  align-items: baseline;
 }
+
 textarea{
   vertical-align: text-top;
 }
+
 .hideform{
   display: none;
 }
+
 button{
   width: 49%;
 }

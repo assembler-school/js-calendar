@@ -3,7 +3,6 @@ var FebNumberOfDays = '';
 var counter = 1;
 
 var dateNow = new Date();
-console.log(dateNow);
 var month = dateNow.getMonth();
 var day = dateNow.getDate();
 var year = dateNow.getFullYear();
@@ -11,8 +10,8 @@ var nextMonth = month + 1;
 
 function displayCalendar() {
     dateNow.setDate(1)
-    calendario=document.getElementById("calendar")
-    calendario.innerHTML=null
+    calendario = document.getElementById("calendar")
+    calendario.innerHTML = null
     // var prevMonth = month -1;
 
     //Determing if February (28,or 29)
@@ -25,9 +24,9 @@ function displayCalendar() {
     }
 
     // names of months and week days.
-    var monthNames = ['January','February','March','April','May','June','July', 'August','September','October','November','December'];
-    var dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thrusday','Friday', 'Saturday' ];
-    var dayPerMonth = ['31','' + FebNumberOfDays + '','31','30','31','30','31','31', '30','31','30','31'];
+    var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thrusday', 'Friday', 'Saturday'];
+    var dayPerMonth = ['31', '' + FebNumberOfDays + '', '31', '30', '31', '30', '31', '31', '30', '31', '30', '31'];
 
     // days in previous month and next one , and day of week.
     var nextDate = new Date(nextMonth + ' 1 ,' + year);
@@ -75,7 +74,6 @@ function displayCalendar() {
     calendarBody += "</ul></div>";
 
     //todo The Modal
-    // calendarBody += '<div id="myModal" class="modal"><div class="modal-content"><span id="close">&times;</span></div></div>'
     document.getElementById("calendar").innerHTML = calendarBody;
 
     // set the content of div .
@@ -91,19 +89,20 @@ function displayCalendar() {
             console.log(fecha)
         })
     });
+
     //first modal
-    const firstModal=document.getElementById("firstModal")
-    firstModal.addEventListener("click", modalStart )
+    const firstModal = document.getElementById("firstModal")
+    firstModal.addEventListener("click", modalStart)
     //NEXT MONTH
-    const rightMonth=document.getElementById("rightMonth")
+    const rightMonth = document.getElementById("rightMonth")
     rightMonth.addEventListener("click", sumMonth)
     //Previous Month
-    const leftMonth=document.getElementById("leftMonth")
+    const leftMonth = document.getElementById("leftMonth")
     leftMonth.addEventListener("click", restMonth)
 }
 
-function sumMonth(){
-    calendario.innerHTML=null
+function sumMonth() {
+    calendario.innerHTML = null
     htmlContent = '';
     FebNumberOfDays = '';
     counter = 1;
@@ -111,16 +110,16 @@ function sumMonth(){
     month = dateNow.setMonth(dateNow.getMonth() + 1)
     day = dateNow.getDate();
     month = dateNow.getMonth();
-     day = dateNow.getDate();
-     year = dateNow.getFullYear();
-     nextMonth = month + 1;
+    day = dateNow.getDate();
+    year = dateNow.getFullYear();
+    nextMonth = month + 1;
     console.log(dateNow.getMonth())
-displayCalendar()
-console.log(dateNow.setMonth(dateNow.getMonth() + 1))
+    displayCalendar()
+    console.log(dateNow.setMonth(dateNow.getMonth() + 1))
 }
 
-function restMonth(){
-    calendario.innerHTML=null
+function restMonth() {
+    calendario.innerHTML = null
     htmlContent = '';
     FebNumberOfDays = '';
     counter = 1;
@@ -128,10 +127,10 @@ function restMonth(){
     month = dateNow.setMonth(dateNow.getMonth() - 1)
     day = dateNow.getDate();
     month = dateNow.getMonth();
-     day = dateNow.getDate();
-     year = dateNow.getFullYear();
-     nextMonth = month + 1;
-displayCalendar()
+    day = dateNow.getDate();
+    year = dateNow.getFullYear();
+    nextMonth = month + 1;
+    displayCalendar()
 
 }
 

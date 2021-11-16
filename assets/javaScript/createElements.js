@@ -7,7 +7,7 @@ function beginModal(){
 
     content+=" <div class='hideform' ><div><label for='endDate'>End Date</label><input type='date' name='End Date ' id='endDate'> </div>"
 
-    content+="<div><label for='reminder'> Remind me when event Start</label><input type='checkbox' name='reminder' id='reminder'> </div>"
+    content+="<div id='checkboxRemind'><label for='reminder'> Remind me when event Start</label><input type='checkbox' name='reminder' id='reminder'> </div>"
 
     content+="<div> <label for='remindTimer'> Time reminder </label> <select name='remindTimer' id='remindTimer'> <option value='5'> 5 Minutes</option> <option value='10'> 10 Minutes</option> <option value='15'> 15 Minutes</option> <option value='30'> 30 Minutes</option> <option value='60'> 1 hour</option> </select>  </div>"
 
@@ -19,7 +19,14 @@ function beginModal(){
 
     modalContent.innerHTML= content
 
+    //TODO Dom modal
     endDateCheck= document.getElementById('endDateCheck')
     hideForm= document.getElementsByClassName('hideform')
+    cancelButton= document.getElementById('cancel')
+    createButton= document.getElementById('create')
+
+    //TODO event Listener
     endDateCheck.addEventListener('click', displayForm)
+    cancelButton.addEventListener('click', closeModal)
+    //createButton.addEventListener('click', createEvent)
 }
