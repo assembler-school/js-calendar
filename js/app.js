@@ -83,6 +83,7 @@ function displayCalendar() {
         });
         calendar.appendChild(dayElement); // adding the day square to the calendar
     }
+
     // Format today with a red square
     const dayList = document.querySelectorAll('.day');
     function highlightToday() {
@@ -97,17 +98,15 @@ function displayCalendar() {
     // Check local storage and fetch events
     const displayMonth = document.querySelector('#current-month').innerText.split(' ')[0];
     const displayYear = document.querySelector('#current-month').innerText.split(' ')[1];
-
     let event = JSON.parse(localStorage.getItem('2'));
     dayList.forEach(element => {
         if(element.innerText === event.day && displayMonth === event.month && displayYear === event.year) {
             const newEvent = document.createElement('p');
             newEvent.innerText = event.title;
-            newEvent.classList.add('event')
-            element.appendChild(newEvent);
+            newEvent.classList.add('event');
+            element.appendChild(newEvent); //Does not reload the element
         }
     })
-
 }
 
 
