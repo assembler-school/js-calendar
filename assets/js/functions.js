@@ -217,7 +217,7 @@ function createListEvents() {
     document.getElementById('micalendar_minicalendar').innerHTML = null;
     var summary = newElement({ tag: 'summary', id: '', clas: [], content: 'All Events List'});
     document.getElementById('micalendar_minicalendar').appendChild(summary);
-    
+
     listEvents.forEach(element => {
         let newP = newElement({ tag: 'summary', id: '', clas: [], content: 'All Events List'});
         let hours = new Date(element.fechaInicio).getHours();
