@@ -192,7 +192,14 @@
       
   }
   /* modal edit event */
-  .itemEditModal{
-    display:flex;
-    flex-direction: row;
+  .iconEditModal{
+    width: calc(var(--size) / 2);
+    height: calc(var(--size) / 2);
+    margin-right: 10px;
   }
+  .itemEditModal{
+    
+  }
+  .itemEditModal img{
+    width:15px;    
+}

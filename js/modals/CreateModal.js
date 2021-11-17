@@ -259,6 +259,8 @@ class CreateModal{
             localStorage.setItem("2", JSON.stringify(event.getEvent()));
             showEvent();
             modal.parentNode.removeChild(modal.previousElementSibling);
+            modal.parentNode.removeChild(modal);
+            
         });
 
         //modal listener
@@ -351,15 +353,16 @@ function createModalToEdit(e){
     //Spawn title
     const spanTitle=document.createElement("span");
     spanTitle.classList.add("itemEditModal");
-    spanTitle.id="eventTitle";
-    spanTitle.innerHTML=/*aqui vale el title*/"<h2>"+"Evento"+"</h2>"+
-    /*fecha inicio*/"<p>"+"16 noviembre 2021"+"-"+
-    /*Fecha fin*/"16 noviembre 2021"+"</p>";
+        spanTitle.id="eventTitle";
+        spanTitle.innerHTML=/*aqui vale el title*/"<h2>"+"Evento"+"</h2>"+
+        /*fecha inicio*/"<p>"+"16 noviembre 2021"+"-"+
+        /*Fecha fin*/"16 noviembre 2021"+"</p>";
     divItems.appendChild(spanTitle);
     //Spawn alert
     const spanAlert=document.createElement("span");
-    spanAlert.classList=("itemEditModal");
-    spanAlert.innerHTML="<img src='assets/imgs/bell-solid.svg'><p>"+"30 minutos antes"+"</p>";
+        spanAlert.classList=("itemEditModal");
+        spanAlert.id="item-alert"
+        spanAlert.innerHTML="<img src='assets/imgs/bell-solid.svg'><p>"+"30 minutos antes"+"</p>";
     divItems.appendChild(spanAlert);
     
 }
