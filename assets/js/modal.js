@@ -179,9 +179,3 @@ function transitiontitle() {
 
 
 // PRUEBAS
-
-let btnPruebas = document.getElementById('pruebas');
-
-btnPruebas.addEventListener('click', function () {
-    finalEvent.eraseEvent();
-})
