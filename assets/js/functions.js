@@ -18,12 +18,10 @@ const bigCalendar = document.getElementById("big_calendar");
 
 //Obtain calculate to previous days of actual month
 function prevDaysOfMonth() {
-    const firstDayIndex = 1;
-    console.log(firstDayIndex);
+    const firstDayIndex = new Date(actual_date.getFullYear(), actual_date.getMonth(), 1).getDay() - 1;
     const prevLastDay = new Date(actual_date.getFullYear(), actual_date.getMonth(), 0).getDate();
-    console.log(prevLastDay);
     return {
-        firstDayIndex: firstDayIndex,
+        firstDayIndex: (firstDayIndex === -1) ? firstDayIndex + 1 : firstDayIndex,
         prevLastDay: prevLastDay
     }
 }
@@ -37,7 +35,8 @@ function daysOfMonth() {
 //Obtain calculate to next days of actual month
 function nextDaysOfMonth() {
     const lastDayIndex = new Date(actual_date.getFullYear(), actual_date.getMonth() + 1, 0).getDay();
-    const nextDays = 7 - lastDayIndex;
+    console.log(lastDayIndex);
+    const nextDays = (6 - lastDayIndex === 0) ? 1: 7 - lastDayIndex;
     return nextDays;
 }
 
@@ -49,7 +48,7 @@ function saveDatePrevDayOfMonth(dayMonth, index) {
 }
 
 //Save the date day of the actual month
-function saveDateDayOfMoth(dayMonth, index) {
+function saveDateDayOfMonth(dayMonth, index) {
     dayMonth.dataset.day = index
     dayMonth.dataset.month = actual_date.getMonth()
     dayMonth.dataset.year = actual_date.getFullYear()
@@ -91,15 +90,17 @@ function headerCal() {
 //Show the previous days of the actual month
 function prevMonthCal() {
     let prevDays = prevDaysOfMonth();
-    for (let index = prevDays.firstDayIndex; index > 0; index--) {
-        var smallDayMonth = newElement({ tag: "div", id:"", clas: ["number-days"], content: prevDays.prevLastDay - index});
-        var bigDayMonth = newElement({ tag: 'div', id: '', clas: ["boxEventsCal"], content:""});
-        var numberDiv = newElement({ tag: "div", id:"", clas: ["number-days"], content: prevDays.prevLastDay - index});
+    let count = prevDays.firstDayIndex;
+    while(count > 0) {
+        var smallDayMonth = newElement({ tag: "div", id:"", clas: ["number-days"], content: prevDays.prevLastDay - count});
+        var bigDayMonth = newElement({ tag: 'div', id: '', clas: [], content:""});
+        var numberDiv = newElement({ tag: "div", id:"", clas: ["number-days"], content: prevDays.prevLastDay - count});
         bigDayMonth.appendChild(numberDiv);
-        saveDateDayOfMoth(smallDayMonth, index);
-        saveDateDayOfMoth(numberDiv, index);
+        saveDatePrevDayOfMonth(smallDayMonth, count);
+        saveDatePrevDayOfMonth(numberDiv, count);
         smallCalendar.appendChild(smallDayMonth);
         bigCalendar.appendChild(bigDayMonth);
+        count--;
     }
 }
 
@@ -111,8 +112,8 @@ function monthActualCal() {
         var bigDayMonth = newElement({ tag: 'div', id: '', clas: ["boxEventsCal"], content:""});
         var numberDiv = newElement({ tag: "div", id:"", clas: ["number-days"], content: index});
         bigDayMonth.appendChild(numberDiv);
-        saveDateDayOfMoth(smallDayMonth, index);
-        saveDateDayOfMoth(numberDiv, index);
+        saveDateDayOfMonth(smallDayMonth, index);
+        saveDateDayOfMonth(numberDiv, index);
         smallCalendar.appendChild(smallDayMonth);
         bigCalendar.appendChild(bigDayMonth);
     }
@@ -126,8 +127,8 @@ function nextMonthCal() {
         var bigDayMonth = newElement({ tag: 'div', id: '', clas: ["boxEventsCal"], content:""});
         var numberDiv = newElement({ tag: "div", id:"", clas: ["number-days"], content: index});
         bigDayMonth.appendChild(numberDiv);
-        saveDateDayOfMoth(smallDayMonth, index);
-        saveDateDayOfMoth(numberDiv, index);
+        saveDateNextDayOfMonth(smallDayMonth, index);
+        saveDateNextDayOfMonth(numberDiv, index);
         smallCalendar.appendChild(smallDayMonth);
         bigCalendar.appendChild(bigDayMonth);
     }
@@ -162,7 +163,7 @@ function getPresentDay(daysNumber) {
     return daysNumber.filter((element) => {
         if(element.dataset.year == actual_date.getFullYear()) {
             if(element.dataset.month == actual_date.getMonth()) {
-                if(element.dataset.day == actual_date.getDay()) {
+                if(element.dataset.day == actual_date.getDate()) {
                     element.classList.add("actualDay")
                     return element;
                 }
