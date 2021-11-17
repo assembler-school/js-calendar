@@ -1,5 +1,5 @@
 import CalendarEvent from "../Event/CalendarEvent.js";
-import { body, element, readArray } from "../variables.js";
+import { element, events, readArray } from "../variables.js";
 
 class CreateModal{
 
@@ -25,7 +25,7 @@ class CreateModal{
                         element("div"),
                         [
                             //form
-                            element("form", "main-form", null, "onsubmit", "return false"),
+                            element("form", "main-form"),
                             [
                                 //title
                                 element("div", null, "submodal input-name"),
@@ -97,6 +97,7 @@ class CreateModal{
         readArray(this.#structure);
         
         const modal = document.querySelector(".modal");
+        const form = document.getElementById("main-form");
 
         //close event
         const close = document.getElementById("close-modal");
@@ -115,17 +116,16 @@ class CreateModal{
         const eventTime = document.querySelector(".event-time");
         const time = new Date();
         eventTime.childNodes[0].textContent = dayWeek + ", " + day + " " + month;
-        eventTime.childNodes[1].textContent = time.getHours() + ":" + (time.getMinutes() < 10 ? "0" : time.getMinutes());
+        eventTime.childNodes[1].textContent = time.getHours() + ":" + (time.getMinutes() < 10 ? "0" + time.getMinutes() : time.getMinutes());
 
-        //TO-DO: controle min date = today
         const inputDate = document.getElementById("input-date");
+        const today = new Date().toISOString().split(".")[0].split(":");
+        inputDate.setAttribute("min", today[0] + ":" + today[1]);
         inputDate.addEventListener("change", function(){
             const shortDate = inputDate.value.split("T");
             const longDate = String(new Date(shortDate[0]).toLocaleString("en-GB", {weekday: "long", year: "numeric", month: "long", day: "numeric"})).split(" ");
-            
             eventTime.childNodes[0].textContent = longDate[0] + " " + longDate[1] + " " + longDate[2] + " " + longDate[3];
             eventTime.childNodes[1].textContent = shortDate[1];
-
         });
 
         //date checkbox structure + add/remove
@@ -155,16 +155,17 @@ class CreateModal{
                 readArray(dateEndStructure, null);
                 checkboxDateEnd.parentNode.insertBefore(dateEndStructure[0], checkboxDateEnd.nextSibling);
                 const nextDate = document.querySelector(".next-date");
-                const time = new Date();
+                const nextHour = new Date();
                 nextDate.childNodes[0].textContent = eventTime.childNodes[0].textContent;
-                nextDate.childNodes[1].textContent = (time.getHours() + 1) + ":" + (time.getMinutes() < 10 ? "0" : time.getMinutes());
+                nextHour.setHours(eventTime.childNodes[1].textContent.split(":")[0]);
+                nextDate.childNodes[1].textContent = (nextHour.getHours()+1) + ":" + eventTime.childNodes[1].textContent.split(":")[1];
                 
-                //TO-DO: controle min date = start-date + 1h
                 const inputEndDay = document.getElementById("input-date-end");
+                const minDate = new Date(eventTime.childNodes[0].textContent).toLocaleString("default").split(" ")[0].split("/");
+                inputEndDay.setAttribute("min", minDate[2] + "-" + minDate[1] + "-" + minDate[0] + "T" + eventTime.childNodes[1].textContent);
                 inputEndDay.addEventListener("change", function(){
                     const shortDate = inputEndDay.value.split("T");
                     const longDate = String(new Date(shortDate[0]).toLocaleString("en-GB", {weekday: "long", year: "numeric", month: "long", day: "numeric"})).split(" ");
-                    
                     nextDate.childNodes[0].textContent = longDate[0] + " " + longDate[1] + " " + longDate[2] + " " + longDate[3];
                     nextDate.childNodes[1].textContent = shortDate[1];
                 });
@@ -210,16 +211,12 @@ class CreateModal{
         //cancel button
         const cancelButton = document.getElementById("cancel-button");
         cancelButton.addEventListener("click", function(){
-            const form = document.getElementById("main-form");
-            //Se auto refresca
             form.noValidate = true;
-            //form.submit();
-            /*form.on('submit', function (event) {
+            form.addEventListener('submit', function (event) {
                 event.preventDefault();
-            });*/
-            console.log(form);
-            modal.parentNode.removeChild(modal.previousElementSibling);
-            modal.parentNode.removeChild(modal);
+                modal.parentNode.removeChild(modal.previousElementSibling);
+                modal.parentNode.removeChild(modal);
+            });
         });
 
         //save button
@@ -227,7 +224,6 @@ class CreateModal{
         saveButton.addEventListener("click", function(){
 
             //check is valid
-
             const time = document.querySelector(".event-time").childNodes[1].textContent;
             const date = document.querySelector(".event-time").childNodes[0].textContent.split(",");
             const dateCheckbox = document.getElementById("date-checkbox").checked;
@@ -254,13 +250,18 @@ class CreateModal{
             if(textArea) event.setDescription(textArea.value);
             else event.setDescription(undefined);
 
-            console.log(event.getEvent());
-            console.log(JSON.stringify(event.getEvent()));
-            localStorage.setItem("2", JSON.stringify(event.getEvent()));
-            showEvent();
-            modal.parentNode.removeChild(modal.previousElementSibling);
-            modal.parentNode.removeChild(modal);
-            
+            //new event
+            const stringifyEvent = JSON.stringify(event.getEvent());
+            //pushing new event to all events array
+            events.push(JSON.parse(stringifyEvent));
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                localStorage.setItem("events", JSON.stringify(events));
+                modal.parentNode.removeChild(modal.previousElementSibling);
+                modal.parentNode.removeChild(modal);
+                return;
+            });
         });
 
         //modal listener
@@ -290,11 +291,11 @@ class CreateModal{
                     use SetInterval every 10sec
             */
 
-        modal.addEventListener("keyup",(e)=>{
-            if(e.key=="Escape"){
-            modal.parentNode.removeChild(modal.previousElementSibling);
-            modal.parentNode.removeChild(modal);
-        }
+            modal.addEventListener("keyup",(e)=>{
+            if(e.key == "Escape"){
+                modal.parentNode.removeChild(modal.previousElementSibling);
+                modal.parentNode.removeChild(modal);
+            }
 
     });
         //add event to calendar
@@ -308,7 +309,6 @@ class CreateModal{
             modal.focus();
         }
     }
-
 }
 
 function showEvent() {
