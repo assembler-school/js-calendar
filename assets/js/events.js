@@ -13,7 +13,6 @@ class calendarEvent {
         }
         this.setToLocalStorage(this.allEvent.eventType);
     }
-
     setToLocalStorage(eventType) {
         if (localStorage[eventType]) {
             console.log('+1 in Id');
@@ -34,10 +33,10 @@ class calendarEvent {
         console.log(localStorage.id);
         localStorage.id = parseInt(localStorage.id) + 1
     }
-    findEvent(father, date2 = null, id) {
-        var fatherDay = father.dateset.day;
-        let fatherMonth = father.dateset.month;
-        let fatherYear = father.dateset.year;
+    findEvent(father, date2 = null) {
+        var fatherDay = father.firstChild.dateset.day;
+        let fatherMonth = father.firstChild.dateset.month;
+        let fatherYear = father.firstChild.dateset.year;
         let product_data = JSON.parse(localStorage.eventType)
         if (date2 == null) {
             var resultProductData = product_data.filter(
@@ -47,12 +46,11 @@ class calendarEvent {
                     let eventYear = a.fechaInicio.getYear();
                     return eventYear == fatherYear && eventMonth == fatherMonth && eventDate == fatherDay;
                 });
-            resultProductData.forEach(element => {
-                this.createTagEvent(father, id);
-            });;
-        }
+        };
+        return resultProductData;
     }
-    createTagEvent(father, id) {
+
+    createTagEvent(father) {
         if (this.allEvent.fechaInicio.split("T").length > 1) {
             var horaevento = this.allEvent.fechaInicio.split("T")
             horaevento = horaevento[1]
@@ -87,12 +85,13 @@ class calendarEvent {
                 }))
         }
     }
+
     eraseEvent() {
         let typeStorage = JSON.parse(localStorage.eventType);
         typeStorage.forEach(element => {
             if (this.allEvent == element) {
                 console.log('a');
-            }
+            };
         });
     }
 }
@@ -172,7 +171,44 @@ function getEventById(id) {
     return typeStorage.find(element => element.eventId == id)
 }
 
-console.log(getEventById(3));
+function findFather() {
+    console.log(boxEventsCal);
+    for (let index = 0; index < boxEventsCal.length; index++) {
+        console.log(boxEventsCal[index]);
+        console.log(findEvent(boxEventsCal[index]))
+        var allChildren = boxEventsCal[index].firstChild.dataset
+        if (boxEventsCal[index].children.length > 2 && boxEventsCal[index].firstChild.dataset.year == a && boxEventsCal[index].firstChild.dataset.month == a && boxEventsCal[index].firstChild.dataset.day == a) {
+            createTagEvent(boxEventsCal[index], );
+        }
+        allChildren.forEach(element => {})
+        console.log(allChildren);
+        /*         for (const iterator of boxEventsCal[index].children) {
+                    iterator
+                }; */
+    }
+}
+setTimeout(() => {
+    console.log(findFather());
+}, 100);
 
 ////PRUEBAS
 
+let fatherPruebas = document.getElementById('fatherPruebas')
+let eventoPruebas = new calendarEvent('titulo', '18-11-2021', '', 'No se repite', '', '', 'Meeting');
+let eventoPruebas1 = new calendarEvent('titulo', '18-11-2021T11:25', '', 'No se repite', '', '', 'Personal');
+let eventoPruebas2 = new calendarEvent('titulo', '18-11-2021T11:25', '', 'No se repite', '', '', 'Study');
+let btnPruebas = document.getElementById('pruebas');
+
+btnPruebas.addEventListener('click', function () {
+    eventoPruebas.createTagEvent(fatherPruebas, eventoPruebas.allEvent.eventId);
+    eventoPruebas1.createTagEvent(fatherPruebas, eventoPruebas.allEvent.eventId);
+    eventoPruebas2.createTagEvent(fatherPruebas, eventoPruebas.allEvent.eventId);
+    var eventsClick = document.getElementsByClassName("miniEvents")
+    console.log(eventsClick);
+    for (const evn of eventsClick) {
+        evn.addEventListener("click", function (evn) {
+            console.log(evn.srcElement.id)
+            modal.style.display = "block";
+        })
+    }
+})
