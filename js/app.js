@@ -9,7 +9,7 @@ const calendar = document.querySelector('#calendar');
 const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 // Main function for creating the calendar month dinamically
-function displayCalendar() {
+export function displayCalendar() {
     const mainDate = new Date();
     if (currentMonth !== 0) {
         mainDate.setMonth(new Date(). getMonth() + currentMonth);
@@ -42,6 +42,7 @@ function displayCalendar() {
     const paddingDaysAfter = 6 - (weekdays.indexOf(dateString2.split(', ')[0]));
 
     document.querySelector('#current-month').innerHTML = `<b>${mainDate.toLocaleDateString('en-GB', {month: 'long'})}</b> ${year}`;
+    let dataMonth = mainDate.toLocaleDateString('en-GB', {month: 'numeric'});
 
     calendar.innerHTML = ''; //resets the calendar before creating all the days of each month
 
@@ -56,13 +57,16 @@ function displayCalendar() {
             dayElement.classList.add('padding');
             //dayElement.addEventListener('click', () => console.log('PADDING DAY BEFORE'));
             dayNumber.innerText = (daysInPrevMonth - paddingDaysBefore) + i;
+            dayNumber.setAttribute('data-date', `${dayNumber.innerText}/${dataMonth-1}/${year}`);
         } else if (i < paddingDaysBefore + daysInMonth + 1) {
             dayNumber.innerText = i - paddingDaysBefore;
+            dayNumber.setAttribute('data-date', `${dayNumber.innerText}/${dataMonth}/${year}`);
             //dayElement.addEventListener('click', () => console.log(''));
         } else {
             dayElement.classList.add('padding');
             //dayElement.addEventListener('click', () => console.log('PADDING DAY AFTER'));
             dayNumber.innerText = i - daysInMonth - paddingDaysBefore;
+            dayNumber.setAttribute('data-date', `${dayNumber.innerText}/${dataMonth+1}/${year}`);
         }
 
         dayElement.addEventListener('click', (e) => {
@@ -72,10 +76,11 @@ function displayCalendar() {
                     if(calendar.childNodes[i] == dayElement){
                         if(e.clientX < 410) {
                             createBackground();
-                            new CreateModal(e.clientX, e.clientY / 2, weekdays[i%7], dayElement.textContent, currentMonth.textContent);
+                            new CreateModal(e.clientX, e.clientY / 2, weekdays[i%7], dayElement.firstChild.innerText, currentMonth.textContent, e.target.firstChild.attributes[1].nodeValue);
+                            console.log(dayElement.childNodes[0], currentMonth.textContent)
                         }else{
                             createBackground();
-                            new CreateModal(e.clientX - 400, e.clientY / 2, weekdays[i%7], dayElement.textContent, currentMonth.textContent)
+                            new CreateModal(e.clientX - 400, e.clientY / 2, weekdays[i%7], dayElement.firstChild.innerText, currentMonth.textContent, e.target.firstChild.attributes[1].nodeValue)
                         }
                     }
                 }
@@ -83,6 +88,7 @@ function displayCalendar() {
         });
         calendar.appendChild(dayElement); // adding the day square to the calendar
     }
+
     // Format today with a red square
     const dayList = document.querySelectorAll('.day');
     function highlightToday() {
@@ -92,22 +98,8 @@ function displayCalendar() {
             }
         })
     }
-    highlightToday()
-
-    // Check local storage and fetch events
-    const displayMonth = document.querySelector('#current-month').innerText.split(' ')[0];
-    const displayYear = document.querySelector('#current-month').innerText.split(' ')[1];
-
-    let event = JSON.parse(localStorage.getItem('2'));
-    dayList.forEach(element => {
-        if(element.innerText === event.day && displayMonth === event.month && displayYear === event.year) {
-            const newEvent = document.createElement('p');
-            newEvent.innerText = event.title;
-            newEvent.classList.add('event')
-            element.appendChild(newEvent);
-        }
-    })
-
+    highlightToday();
+    fetchEvents();
 }
 
 
@@ -135,4 +127,30 @@ function createBackground(){
     background.classList.add("modalBackground");
     body.appendChild(background);
 }
-export default createBackground;
+
+// const dayList = document.querySelectorAll('.day');
+// dayList.forEach(element => {
+    //     element.addEventListener('click', (e) =>{
+        //         new CreateModal;
+        //     });
+        // })
+        
+export default function fetchEvents() {
+    // Check local storage and fetch events
+    const dayList = document.querySelectorAll('.day');
+    const displayMonth = document.querySelector('#current-month').innerText.split(' ')[0];
+    const displayYear = document.querySelector('#current-month').innerText.split(' ')[1];
+    let event = JSON.parse(localStorage.getItem('events'));
+    if (event !== null){
+        for(let i = 0; i < event.length; i++) {
+            dayList.forEach(element => {
+                if(event !== null &&  element.firstChild.attributes[1].nodeValue=== event[i].startDate && !element.classList.contains('padding')) {
+                    const newEvent = document.createElement('p');
+                    newEvent.innerText = event[i].title;
+                    newEvent.classList.add('event');
+                    element.appendChild(newEvent);                     
+                }
+            })
+        }
+    }
+}

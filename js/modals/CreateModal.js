@@ -1,5 +1,7 @@
 import CalendarEvent from "../Event/CalendarEvent.js";
 import { element, events, readArray } from "../variables.js";
+import fetchEvents from "../app.js"
+
 
 class CreateModal{
 
@@ -93,7 +95,7 @@ class CreateModal{
                        ]
                 ];
 
-    constructor(x, y, dayWeek, day, month){
+    constructor(x, y, dayWeek, day, month, dataDate){
         readArray(this.#structure);
         
         const modal = document.querySelector(".modal");
@@ -233,7 +235,7 @@ class CreateModal{
 
 
             const event = new CalendarEvent(title.value, time, date[1].split(" ")[1], date[1].split(" ")[2], date[1].split(" ")[3], 
-                                    dateCheckbox, reminderCheckbox, type.options[type.selectedIndex].text);
+                                    dateCheckbox, reminderCheckbox, type.options[type.selectedIndex].text, dataDate);
             if(dateCheckbox){
                 const endTime = document.querySelector(".next-date").childNodes[1].textContent;
                 const endDate = document.querySelector(".next-date").childNodes[0].textContent.split(",");
@@ -258,10 +260,12 @@ class CreateModal{
             form.addEventListener('submit', function (event) {
                 event.preventDefault();
                 localStorage.setItem("events", JSON.stringify(events));
+                fetchEvents();
                 modal.parentNode.removeChild(modal.previousElementSibling);
                 modal.parentNode.removeChild(modal);
                 return;
             });
+
         });
 
         //modal listener
@@ -314,6 +318,7 @@ class CreateModal{
 function showEvent() {
     const newEvent = document.createElement('p');
     newEvent.innerText = title.value;
+    newEvent.classList.add('event')
 }
 
 //Create edit event modal
