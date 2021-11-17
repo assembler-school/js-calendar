@@ -220,6 +220,33 @@ function createListEvents() {
     });
 }
 
+function changeTypeEvent() {
+    detailsEventType.forEach(options => {
+        options.addEventListener('change', option => {
+            if(option.target.checked == true) {
+                getAllEventsOfDay(option.target.value);
+                createListEvents();
+            } else {
+                listEvents = listEvents.filter(element => element.eventType !== option.target.value);
+                createListEvents();
+            }
+        });
+    });
+}
+
+function getAllEventsOfDay(type) {
+    console.log(type);
+    if(localStorage.getItem(type)) var events = JSON.parse(localStorage.getItem(type));
+    console.log(events);
+    if(!events) return;
+    let listFilter = events.filter(element => {
+        let event = new Date(element.fechaInicio);
+        return isSameDay(selectedTypeEvent, event);
+    });
+    listEvents = listEvents.concat(listFilter);
+    console.log(listEvents);
+}
+
 document.querySelectorAll(".btn-prev-month").forEach(element => {
     element.addEventListener("click", event => {
         actual_date.setMonth((actual_date.getMonth() - 1));
