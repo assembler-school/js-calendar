@@ -16,11 +16,16 @@
     border: 3px double #006505
 }
 
+.number-days {
+    text-align: center;
+
+}
+
 .number-days:hover {
     opacity: 0.6;
     text-decoration: none;
     cursor: pointer;
-    border-radius: 15px;
+    border-radius: 20px;
     background-color: gold;
 }
 
