@@ -46,6 +46,9 @@ main{
     background-color: brown;
     border: 1px solid chartreuse;
 }
+.event-container{
+    cursor: pointer;
+}
 
 /* DAY CONTAINER */
 #day-name{

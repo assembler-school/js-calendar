@@ -107,4 +107,6 @@ function createEvent(){
     localStorage.setItem("historic",JSON.stringify(historicEvents));
     var eventDiv = document.getElementById("Mymodal");
     eventDiv.remove();
+    createMonthDays();
+
 }
