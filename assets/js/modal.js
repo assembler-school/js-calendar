@@ -4,6 +4,7 @@ btnCrear.onclick = function () {
     today = new Date();
     var date = today.getFullYear() + '-' + esmenos0(today.getMonth() + 1) + '-' + esmenos0(today.getDate()) + 'T' + esmenos0(today.getHours()) + ':' + esmenos0(today.getMinutes());
     let allEventInputs = document.querySelectorAll('.eventComonClass');
+    console.log(date)
     allEventInputs[1].value = date;
     mainModal.style.display = "block";
 }
@@ -179,12 +180,67 @@ function transitiontitle() {
 
 
 // PRUEBAS
-span.onclick = function() {
+spanclose.onclick = function() {
     modal.style.display = "none";
-  }
-  
+}
+
+
+spanedit.onclick = function() {
+    modal.style.display = "none";
+    var obj=getEventById(ideventmodal.innerHTML)
+    if(obj.fechaFin == "" && obj.remember ==""){
+        let allEventInputs = document.querySelectorAll('.eventComonClass');
+        allEventInputs[0].value=obj.eventTitle
+        allEventInputs[1].value="2021-11-17T17:46"
+        allEventInputs[2].value=obj.repeat
+        allEventInputs[3].value=obj.description
+        allEventInputs[4].value=obj.eventType
+    }
+    if(obj.fechaFin !== "" && obj.remember ==""){
+        checkboxDate.checked = true;
+        ponerdata();
+        let allEventInputs = document.querySelectorAll('.eventComonClass');
+        allEventInputs[0].value=obj.eventTitle
+        allEventInputs[1].value="2021-11-17"
+        allEventInputs[2].value="2021-11-19"
+        allEventInputs[3].value=obj.repeat
+        allEventInputs[4].value=obj.description
+        allEventInputs[5].value=obj.eventType
+    }
+    if(obj.fechaFin == "" && obj.remember !==""){
+        recordatorio_modal.checked = true;
+        recordatorio_modal_time();
+        let allEventInputs = document.querySelectorAll('.eventComonClass');
+        allEventInputs[0].value=obj.eventTitle
+        allEventInputs[1].value="2021-11-17T17:46"
+        allEventInputs[2].value=obj.repeat
+        allEventInputs[3].value=obj.remember
+        allEventInputs[4].value=obj.description
+        allEventInputs[5].value=obj.eventType
+    }
+    if(obj.fechaFin !== "" && obj.remember !==""){
+        recordatorio_modal.checked = true;
+        recordatorio_modal_time();
+        checkboxDate.checked = true;
+        ponerdata();
+        let allEventInputs = document.querySelectorAll('.eventComonClass');
+        allEventInputs[0].value=obj.eventTitle
+        allEventInputs[1].value="2021-11-17"
+        allEventInputs[2].value="2021-11-19"
+        allEventInputs[3].value=obj.repeat
+        allEventInputs[4].value=obj.remember
+        allEventInputs[5].value=obj.description
+        allEventInputs[6].value=obj.eventType
+    }
+    mainModal.style.display = "block";
+}
+
+spandel.onclick = function() {
+    modal.style.display = "none";
+    var obj=getEventById(ideventmodal.innerHTML)
+}
   // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function(event) {
+window.onclick = function(event) {
     if (event.target == modal) {
-      modal.style.display = "none";
-    }}
+    modal.style.display = "none";
+}}

@@ -30,7 +30,6 @@ class calendarEvent {
     setIDToStorage() {
         if (!localStorage.id) {
             localStorage.id = '0';
-            console.log('a');
         }
         console.log(localStorage.id);
         localStorage.id = parseInt(localStorage.id) + 1
@@ -54,17 +53,16 @@ class calendarEvent {
         }
     }
     createTagEvent(father, id) {
-
         if (this.allEvent.fechaInicio.split("T").length > 1) {
             var horaevento = this.allEvent.fechaInicio.split("T")
             horaevento = horaevento[1]
             var content = horaevento + ' ' + '<span>' + this.allEvent.eventTitle + '</span>'
             if (this.allEvent.eventType == 'Meeting') {
-                father.appendChild(inDay(content, id, 'miniEvents inday', 'meeting'))
+                father.appendChild(inDay(content, this.allEvent.eventId, 'miniEvents inday', 'meeting'))
             } else if (this.allEvent.eventType == 'Personal') {
-                father.appendChild(inDay(content, id, 'miniEvents inday', 'personal'))
+                father.appendChild(inDay(content, this.allEvent.eventId, 'miniEvents inday', 'personal'))
             } else if (this.allEvent.eventType == 'Study')
-                father.appendChild(inDay(content, id, 'miniEvents inday', 'study'))
+                father.appendChild(inDay(content, this.allEvent.eventId, 'miniEvents inday', 'study'))
         } else {
             if (this.allEvent.eventType == 'Meeting') {
                 father.appendChild(newElement({
@@ -98,6 +96,35 @@ class calendarEvent {
         });
     }
 }
+let fatherPruebas = document.getElementById('fatherPruebas')
+let eventoPruebas = new calendarEvent('llamar a pepe', '18-11-2021', '19-11-2021', 'Laborables', '5 minutes', 'llamar a pepe para devolverle el casco de la moto', 'Meeting');
+let eventoPruebas1 = new calendarEvent('titulo', '18-11-2021T11:25', '', 'No se repite', '', '', 'Personal');
+let eventoPruebas2 = new calendarEvent('titulo', '18-11-2021T11:25', '', 'No se repite', '', '', 'Study');
+let btnPruebas = document.getElementById('pruebas');
+
+btnPruebas.addEventListener('click', function () {
+    eventoPruebas.createTagEvent(fatherPruebas, eventoPruebas.allEvent.eventId);
+    eventoPruebas1.createTagEvent(fatherPruebas, eventoPruebas.allEvent.eventId);
+    eventoPruebas2.createTagEvent(fatherPruebas, eventoPruebas.allEvent.eventId);
+    var eventsClick=document.getElementsByClassName("miniEvents")
+    console.log(eventsClick);
+    for (const evn of eventsClick) {
+        evn.addEventListener("click",function(evn){
+            console.log(evn.srcElement);
+            var obj=getEventById(evn.srcElement.id)
+            console.log(obj)
+            titleModalInfo.innerHTML=obj.eventTitle
+            dateModalInfo.innerHTML=obj.fechaInicio
+            repetModalInfo.innerHTML=obj.repeat;
+            cicletype.classList.add((obj.eventType).toLowerCase())
+            typeeventmodal.innerHTML=obj.eventType
+            ideventmodal.innerHTML=obj.eventId
+            modal.style.display = "block";
+        })
+    }
+}
+)
+
 
 function startSetTimeOut() {
     setTimeout(() => {
@@ -130,7 +157,6 @@ function allLocalStorage(X = []) {
         if (typeStorage == undefined) {
             typeStorage = JSON.parse(localStorage[a]);
         } else {
-            console.log(typeStorage);
             let typeStorage2 = typeStorage;
             let typeStorage3 = JSON.parse(localStorage[a]);
             typeStorage = typeStorage3.concat(typeStorage2);
@@ -150,24 +176,3 @@ console.log(getEventById(3));
 
 ////PRUEBAS
 
-let fatherPruebas = document.getElementById('fatherPruebas')
-let eventoPruebas = new calendarEvent('titulo', '18-11-2021', '', 'No se repite', '', '', 'Meeting');
-let eventoPruebas1 = new calendarEvent('titulo', '18-11-2021T11:25', '', 'No se repite', '', '', 'Personal');
-let eventoPruebas2 = new calendarEvent('titulo', '18-11-2021T11:25', '', 'No se repite', '', '', 'Study');
-let btnPruebas = document.getElementById('pruebas');
-
-btnPruebas.addEventListener('click', function () {
-    eventoPruebas.createTagEvent(fatherPruebas, eventoPruebas.allEvent.eventId);
-    eventoPruebas1.createTagEvent(fatherPruebas, eventoPruebas.allEvent.eventId);
-    eventoPruebas2.createTagEvent(fatherPruebas, eventoPruebas.allEvent.eventId);
-    var eventsClick=document.getElementsByClassName("miniEvents")
-    console.log(eventsClick);
-    for (const evn of eventsClick) {
-        evn.addEventListener("click",function(evn){
-            console.log(evn.srcElement.id)
-            
-            modal.style.display = "block";
-        })
-    }
-}
-)

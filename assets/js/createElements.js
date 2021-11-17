@@ -17,11 +17,14 @@ function newElement({
 }
 
 function inDay(content, id, clas, clas2) {
+    var newElement1 = document.createElement("button");
     var newElement = document.createElement("div");
     var point = document.createElement("div");
     var cont = document.createElement("p");
+    newElement1.classList="btnmodalinfo"
     cont.innerHTML = content
     point.classList = clas2
+    newElement1.appendChild(newElement)
     newElement.appendChild(point)
     newElement.appendChild(cont)
     newElement.classList = clas
