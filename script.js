@@ -100,7 +100,7 @@ function createDay(num){
         dayInner.classList.add("day-container-inner")
         dayInner.textContent = dayNameArr[countweek]+countday;
         day.appendChild(dayInner);
-        createDayContent(selectedYear,selectedMonth,countday,"",dayNameArr[countweek],"");
+        // createDayContent(selectedYear,selectedMonth,countday,"",dayNameArr[countweek],"");
         assignEvent(countday,day);
         //dayTitle.textContent = monthDayArray[countday - 1].events;
         countday++
@@ -125,76 +125,76 @@ function deleteMonthDays(){
     }
 }
 
-function displayEventsPerDay(events1,day,i){
+function displayEventsPerDay(day,i){
     
         let createDivEvent = document.createElement("div");
         createDivEvent.setAttribute("id","event-container-" + i);
         createDivEvent.classList.add("event-container");
         createDivEvent.textContent = historicEvents[i].title;
-        createDivEvent.addEventListener("click",consoleLog)
-        console.log(historicEvents[i])
+        createDivEvent.addEventListener("click",function() { modalEvent(i)})
         day.appendChild(createDivEvent);
 }
 function consoleLog(){
     console.log("hola")
 }
 
+var i;
 function assignEvent(countday,day){
-    var i = 0;
+    i = 0
     while(i < (historicEvents.length)){
-        if(historicEvents[i].day == (countday)){
-            monthDayArray[countday - 1].events = filterEventFun(countday);
-            displayEventsPerDay(dayEventFiltered,day,i)
+        if(historicEvents[i].day == (countday) && historicEvents[i].month == selectedMonth && historicEvents[i].year == selectedYear){
+            // monthDayArray[countday - 1].events = filterEventFun(countday);
+            displayEventsPerDay(day,i)
         }
         i++;
     }
 }
 
-let dayEventFiltered;
-function filterEventFun(day){
-    dayEventFiltered = historicEvents.filter(event => {
-        return event.day === day && event.month === selectedMonth && event.year == selectedYear
-        //return event.day === day
-    })
-    return dayEventFiltered;
-}
+// let dayEventFiltered;
+// function filterEventFun(day){
+//     dayEventFiltered = historicEvents.filter(event => {
+//         return event.day === day && event.month === selectedMonth && event.year == selectedYear
+//         //return event.day === day
+//     })
+//     return dayEventFiltered;
+// }
 
-function createDayContent(year = null, month = "default", day = null, hour="hour", weekDay="weekDay", events="") {
-    dayEvent = {
-        year: year,
-        month: month,
-        day: day,
-        hour:hour,
-        weekDay:weekDay,
-        events:events,
-    };
-    dayMonthHistoricFun(dayEvent);
-}
-function dayMonthHistoricFun(event){
-    monthDayArray.push(event)
-    // monthDayArray[15].dayEvent.events.push("tontolaba");
-}
-function createDayEvent(year = null, month = "default", day = null,hour = "default", weekDay="weekDay", title = "default", initialDate = "default", endDateCheck = false, endDate= "default", remindCheck = false, remindTime = "default", description = "default",eventTipe = "default") {
-    dayEvent = {
-    year: year,
-    month: month,
-    day: day,
-    hour:hour,
-    weekDay:weekDay,
-    title: title,
-    initialDate: initialDate,
-    endDateCheck: endDateCheck,
-    endDate: endDate,
-    remindCheck: remindCheck,
-    remindTime: remindTime,
-    description: description,
-    eventTipe: eventTipe,
-    };
-    eventHistoricFun(dayEvent);
-}
-function eventHistoricFun(event){
-    eventHistoricArray.push(event)
-}
+// function createDayContent(year = null, month = "default", day = null, hour="hour", weekDay="weekDay", events="") {
+//     dayEvent = {
+//         year: year,
+//         month: month,
+//         day: day,
+//         hour:hour,
+//         weekDay:weekDay,
+//         events:events,
+//     };
+//     dayMonthHistoricFun(dayEvent);
+// }
+// function dayMonthHistoricFun(event){
+//     monthDayArray.push(event)
+//     // monthDayArray[15].dayEvent.events.push("tontolaba");
+// }
+// function createDayEvent(year = null, month = "default", day = null,hour = "default", weekDay="weekDay", title = "default", initialDate = "default", endDateCheck = false, endDate= "default", remindCheck = false, remindTime = "default", description = "default",eventTipe = "default") {
+//     dayEvent = {
+//     year: year,
+//     month: month,
+//     day: day,
+//     hour:hour,
+//     weekDay:weekDay,
+//     title: title,
+//     initialDate: initialDate,
+//     endDateCheck: endDateCheck,
+//     endDate: endDate,
+//     remindCheck: remindCheck,
+//     remindTime: remindTime,
+//     description: description,
+//     eventTipe: eventTipe,
+//     };
+//     eventHistoricFun(dayEvent);
+// }
+// function eventHistoricFun(event){
+//     eventHistoricArray.push(event)
+// }
 
 function createHoursFun(){
     var countHours = 1 ;
