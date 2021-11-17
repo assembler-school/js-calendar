@@ -59,10 +59,8 @@ class calendarEvent {
             var horaevento=this.allEvent.fechaInicio.split("T")
             horaevento=horaevento[1]
         }
-        else{console.log("hola")
-            // horaevento=this.allEvent.fechaInicio.split("-")
-            //     horaevento=horaevento[0]
-            }
+        else{}
+        
         if (this.allEvent.eventType == 'Meeting') {
             // console.log("hola")
             father.appendChild(eventDay(this.allEvent.eventTitle,id,'miniEvents allday', 'meeting'))

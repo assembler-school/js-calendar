@@ -393,12 +393,12 @@ input[type="checkbox"] {
     box-shadow: 2px 2px 10px rgb(63, 63, 63);
 }
 
-.allday{
+.inday{
 
 }
-.allday:hover{
+.inday:hover{
     background-color: grey;
 }
-.allday:active{
+.inday:active{
     
 }

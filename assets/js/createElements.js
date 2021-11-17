@@ -16,7 +16,7 @@ function newElement({
     return newElement;
 }
 
-function eventDay(content,id,clas,clas2){
+function inDay(content,id,clas,clas2){
     var newElement = document.createElement("div");
     var point = document.createElement("div");
     var cont = document.createElement("p");
