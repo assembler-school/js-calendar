@@ -54,30 +54,40 @@ class calendarEvent {
         }
     }
     createTagEvent(father, id) {
-        
-        if(this.allEvent.fechaInicio.split("T").length>1){
-            var horaevento=this.allEvent.fechaInicio.split("T")
-            horaevento=horaevento[1]
+
+        if (this.allEvent.fechaInicio.split("T").length > 1) {
+            var horaevento = this.allEvent.fechaInicio.split("T")
+            horaevento = horaevento[1]
+            var content = horaevento + ' ' + '<span>' + this.allEvent.eventTitle + '</span>'
+            if (this.allEvent.eventType == 'Meeting') {
+                father.appendChild(inDay(content, id, 'miniEvents inday', 'meeting'))
+            } else if (this.allEvent.eventType == 'Personal') {
+                father.appendChild(inDay(content, id, 'miniEvents inday', 'personal'))
+            } else if (this.allEvent.eventType == 'Study')
+                father.appendChild(inDay(content, id, 'miniEvents inday', 'study'))
+        } else {
+            if (this.allEvent.eventType == 'Meeting') {
+                father.appendChild(newElement({
+                    tag: 'div',
+                    id: id,
+                    clas: ['miniEvents', 'meeting'],
+                    content: this.allEvent.eventTitle
+                }))
+            } else if (this.allEvent.eventType == 'Personal') {
+                father.appendChild(newElement({
+                    tag: 'div',
+                    id: id,
+                    clas: ['miniEvents', 'personal'],
+                    content: horaevento + "  " + this.allEvent.eventTitle
+                }))
+            } else if (this.allEvent.eventType == 'Study')
+                father.appendChild(newElement({
+                    tag: 'div',
+                    id: id,
+                    clas: ['miniEvents', 'study'],
+                    content: horaevento + "  " + this.allEvent.eventTitle
+                }))
         }
-        else{}
-        
-        if (this.allEvent.eventType == 'Meeting') {
-            // console.log("hola")
-            father.appendChild(eventDay(this.allEvent.eventTitle,id,'miniEvents allday', 'meeting'))
-        } else if (this.allEvent.eventType == 'Personal') {
-            father.appendChild(newElement({
-                tag: 'div',
-                id: id,
-                clas: ['miniEvents', 'personal'],
-                content:horaevento+"  "+ this.allEvent.eventTitle
-            }))
-        } else if (this.allEvent.eventType == 'Study')
-            father.appendChild(newElement({
-                tag: 'div',
-                id: id,
-                clas: ['miniEvents', 'study'],
-                content: horaevento+"  "+ this.allEvent.eventTitle
-            }))
     }
 
     eraseEvent() {

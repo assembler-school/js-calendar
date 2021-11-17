@@ -16,15 +16,15 @@ function newElement({
     return newElement;
 }
 
-function inDay(content,id,clas,clas2){
+function inDay(content, id, clas, clas2) {
     var newElement = document.createElement("div");
     var point = document.createElement("div");
     var cont = document.createElement("p");
-    cont.textContent=content
-    point.classList=clas2
+    cont.innerHTML = content
+    point.classList = clas2
     newElement.appendChild(point)
     newElement.appendChild(cont)
-    newElement.classList=clas
-    newElement.id=id
+    newElement.classList = clas
+    newElement.id = id
     return newElement
 }
