@@ -1,4 +1,5 @@
 import CreateModal from "./modals/CreateModal.js";
+import ShowInfoModal from "./modals/ShowInfoModal.js";
 import { body, calendar, weekdays } from "./variables.js";
 
 let currentMonth = 0;
@@ -67,10 +68,12 @@ function displayCalendar() {
                     if(calendar.childNodes[i] == dayElement){
                         if(e.clientX < 410) {
                             createBackground();
-                            new CreateModal(e.clientX, e.clientY / 2, weekdays[i%7], dayElement.textContent, currentMonth.textContent);
+                            //new CreateModal(e.clientX, e.clientY / 2, weekdays[i%7], dayElement.textContent, currentMonth.textContent);
+                            new ShowInfoModal(e.clientX, e.clientY / 2);
                         }else{
                             createBackground();
-                            new CreateModal(e.clientX - 400, e.clientY / 2, weekdays[i%7], dayElement.textContent, currentMonth.textContent)
+                            new ShowInfoModal(e.clientX, e.clientY / 2);
+                            //new CreateModal(e.clientX - 400, e.clientY / 2, weekdays[i%7], dayElement.textContent, currentMonth.textContent)
                         }
                     }
                 }
