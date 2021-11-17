@@ -1,6 +1,7 @@
 import CalendarEvent from "../Event/CalendarEvent.js";
 import { element, readArray } from "../variables.js";
 
+
 class CreateModal{
 
     #structure = [
@@ -259,6 +260,7 @@ class CreateModal{
             localStorage.setItem("2", JSON.stringify(event.getEvent()));
             showEvent();
             modal.parentNode.removeChild(modal.previousElementSibling);
+            modal.parentNode.removeChild(modal);
         });
 
         //modal listener
@@ -312,6 +314,7 @@ class CreateModal{
 function showEvent() {
     const newEvent = document.createElement('p');
     newEvent.innerText = title.value;
+    newEvent.classList.add('event')
 }
 
 export default CreateModal;

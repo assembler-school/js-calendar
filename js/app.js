@@ -9,7 +9,7 @@ const calendar = document.querySelector('#calendar');
 const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 // Main function for creating the calendar month dinamically
-function displayCalendar() {
+export function displayCalendar() {
     const mainDate = new Date();
     if (currentMonth !== 0) {
         mainDate.setMonth(new Date(). getMonth() + currentMonth);
@@ -65,22 +65,22 @@ function displayCalendar() {
             dayNumber.innerText = i - daysInMonth - paddingDaysBefore;
         }
 
-        dayElement.addEventListener('click', (e) => {
-                const currentMonth = document.getElementById("current-month");
-                const calendar = document.getElementById("calendar");
-                for(let i = 0; i < calendar.childNodes.length; i++){
-                    if(calendar.childNodes[i] == dayElement){
-                        if(e.clientX < 410) {
-                            createBackground();
-                            new CreateModal(e.clientX, e.clientY / 2, weekdays[i%7], dayElement.textContent, currentMonth.textContent);
-                        }else{
-                            createBackground();
-                            new CreateModal(e.clientX - 400, e.clientY / 2, weekdays[i%7], dayElement.textContent, currentMonth.textContent)
-                        }
-                    }
-                }
-                isModalOpen = true;
-        });
+        // dayElement.addEventListener('click', (e) => {
+        //         const currentMonth = document.getElementById("current-month");
+        //         const calendar = document.getElementById("calendar");
+        //         for(let i = 0; i < calendar.childNodes.length; i++){
+        //             if(calendar.childNodes[i] == dayElement){
+        //                 if(e.clientX < 410) {
+        //                     createBackground();
+        //                     new CreateModal(e.clientX, e.clientY / 2, weekdays[i%7], dayElement.textContent, currentMonth.textContent);
+        //                 }else{
+        //                     createBackground();
+        //                     new CreateModal(e.clientX - 400, e.clientY / 2, weekdays[i%7], dayElement.textContent, currentMonth.textContent)
+        //                 }
+        //             }
+        //         }
+        //         isModalOpen = true;
+        // });
         calendar.appendChild(dayElement); // adding the day square to the calendar
     }
 
@@ -100,7 +100,7 @@ function displayCalendar() {
     const displayYear = document.querySelector('#current-month').innerText.split(' ')[1];
     let event = JSON.parse(localStorage.getItem('2'));
     dayList.forEach(element => {
-        if(element.innerText === event.day && displayMonth === event.month && displayYear === event.year) {
+        if(event !== null && element.innerText === event.day && displayMonth === event.month && displayYear === event.year) {
             const newEvent = document.createElement('p');
             newEvent.innerText = event.title;
             newEvent.classList.add('event');
@@ -135,3 +135,10 @@ function createBackground(){
     body.appendChild(background);
 }
 export default createBackground;
+
+const dayList = document.querySelectorAll('.day');
+dayList.forEach(element => {
+    element.addEventListener('click', (e) =>{
+        new CreateModal;
+    });
+})
