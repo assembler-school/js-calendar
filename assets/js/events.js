@@ -110,4 +110,14 @@ btnPruebas.addEventListener('click', function () {
     eventoPruebas.createTagEvent(fatherPruebas, eventoPruebas.allEvent.eventId);
     eventoPruebas1.createTagEvent(fatherPruebas, eventoPruebas.allEvent.eventId);
     eventoPruebas2.createTagEvent(fatherPruebas, eventoPruebas.allEvent.eventId);
-})
+    var eventsClick=document.getElementsByClassName("miniEvents")
+    console.log(eventsClick);
+    for (const evn of eventsClick) {
+        evn.addEventListener("click",function(evn){
+            console.log(evn.srcElement.id)
+            
+            modal.style.display = "block";
+        })
+    }
+}
+)

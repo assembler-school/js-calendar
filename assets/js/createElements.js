@@ -8,7 +8,6 @@ function newElement({
     newElement.textContent = content;
 
     if (id != '') newElement.id = id;
-    console.log(clas);
     if (clas.length !== 0) {
         for (let index = 0; index < clas.length; index++)
             newElement.classList.add(clas[index]);

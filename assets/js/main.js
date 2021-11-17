@@ -4,3 +4,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // getAllEventsOfDay(numberDay[0]);
     changeTypeEvent();
 });
+
