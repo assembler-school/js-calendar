@@ -1,0 +1,105 @@
+*{
+    box-sizing: border-box;
+}
+body{
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+}
+main{
+    display: flex;
+}
+
+/* MONTH CONTAINER */
+#month-name{
+    height: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2% 2%;
+    width: 60%;
+    background-color: rgb(200,200,200);
+}
+
+#month-container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2%;
+    background-color: rgb(200,200,200);
+}
+#today{
+    background-color: rgb(220,220,200);
+}
+.day-container{
+    height: 100px;
+    width: 12%;
+    background-color: rgb(150,150,150);
+}
+.day-container-empty{
+    height: 100px;
+    width: 12%;
+    background-color: rgb(220,220,220);
+}
+.today-special-day{
+    background-color: brown;
+    border: 1px solid chartreuse;
+}
+
+/* DAY CONTAINER */
+#day-name{
+    height: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2%;
+    width: 20%;
+    background-color: rgb(202, 202, 202);
+}
+#day-container{
+    height: 500px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-snap-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    background-color: rgb(25, 97, 190);
+}
+.hour-container{
+    padding: 3px;
+    width: 100%;
+    background-color: rgb(202, 202, 202);
+    border: 1px solid rgb(180,180,180);
+}
+.e-selected-day{
+    border: 5px solid rgb(25, 97, 190);
+}
+
+
+
+/* YEAR CONTAINER */
+#year-name{
+    height: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2% 2%;
+    width: 20%;
+    height: auto;
+    background-color: rgb(202, 202, 202);
+}
+
+#year-container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2%;
+    width: 100%;
+    height: auto;
+    background-color: rgb(202, 202, 202);
+}
