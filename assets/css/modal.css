@@ -344,21 +344,40 @@ input[type="checkbox"] {
 /* Tag */
 
 .miniEvents {
+    margin: 30px;
     border: solid 2px black;
     border-radius: 5px;
     text-align: center;
     color: white;
     max-width: 100px;
+    cursor: pointer;
 }
-
 .meeting {
     background-color: var(--azul);
 }
 
 .personal {
-    background-color: red;
+    background-color: rgb(255, 39, 39);
 }
 
 .study {
     background-color: green;
+}
+
+
+.meeting:hover {
+    background-color: rgb(59, 59, 255);
+}
+
+.personal:hover {
+    background-color: rgb(252, 111, 111);
+}
+
+.study:hover {
+    background-color: rgb(87, 255, 87);
+}
+
+
+.meeting:active,.personal:active,.study:active {
+    box-shadow: 2px 2px 10px rgb(63, 63, 63);
 }
