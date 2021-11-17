@@ -1,6 +1,7 @@
 window.onload = init;
 
 var dayDiv = document.querySelector("#month-container")
+var monthDiv = document.querySelector("#year-container")
 var dayNameContainer = document.getElementById("day-name")
 var dayNameContainerH1 = document.getElementById("day-name-h1")
 var monthNameContainerH1 = document.getElementById("month-name-h1")
@@ -51,7 +52,8 @@ var selectedYear = todayYear;
 function init(){
     loadStorage();
     refreshContainers();
-    createMonthDays();
+    createYearMonthDays(selectedYear)
+    //createMonthDays();
 }
 
 function refreshContainers(){
@@ -63,7 +65,7 @@ function refreshContainers(){
 var selectedMonthDays = new Date(selectedYear,selectedMonth+1,0).getDate();
 
 var firstDayMonth = new Date(selectedYear,selectedMonth,1).getDay();
-var firstDayWeekMonthName = dayNameArr[firstDayMonth]
+//var firstDayWeekMonthName = dayNameArr[firstDayMonth]
 var lastDayMonth = new Date(selectedYear,selectedMonth+1,0).getDay();
 
 function createMonthDays(){
@@ -72,9 +74,9 @@ function createMonthDays(){
     createHoursFun(selectedDay);
     addEventsListeners();
 }
-function createDaysHours(){
-    createHoursFun(selectedDay)
-}
+// function createDaysHours(){
+//     createHoursFun(selectedDay)
+// }
 function createDay(num){
     var countday = 1;
     let countweek = firstDayMonth;
@@ -187,6 +189,102 @@ function loadStorage(){
     }
 }
 
+//create year days
+//var today = new Date ();
+//var todayNumDay = today.getDate();//15
+//const todayMonth = today.getMonth();//11
+//var todayMonthName = monthNameArr[todayMonth];//november
+//var todayYear = today.getFullYear();//2021
+
+//var selectedDay = todayNumDay;
+//var selectedMonth = todayMonth;
+//var selectedYear = todayYear;
+
+
+
+//var firstDayMonth = new Date(selectedYear,selectedMonth,1).getDay();
+//var firstDayWeekMonthName = dayNameArr[firstDayMonth]
+//var lastDayMonth = new Date(selectedYear,selectedMonth+1,0).getDay();
+
+function createYearMonthDays(year){//
+    //deleteYearMonthDays();//
+    let m = 0;//crear 12 meses
+    while(m < 12){
+        let selectedYearMonthDays = new Date(year,m+1,0).getDate();
+        createDaysYear(year,selectedYearMonthDays,m);
+        m++;
+    }
+    createMonthDays()//dejar para crear meses
+}
+function deleteYearMonthDays(){//
+    while (monthDiv.firstChild) {
+        monthDiv.removeChild(monthDiv.lastChild)
+    }
+}
+
+function createDaysYear(year,num,m){
+    console.log("hola")
+    console.log(year)
+    console.log(num)
+    console.log(m)
+    var firstDayMonthY = new Date(year,m,1).getDay();//0-7
+    console.log(firstDayMonthY)
+    var lastDayMonthY = new Date(year,m+1,0).getDay();//0-7
+    console.log(lastDayMonthY)
+    var countday = 1;
+    let countweek = firstDayMonthY;
+    let firstWeek = firstDayMonthY;
+    let lastWeek = lastDayMonthY;
+    var monthEmpty = document.createElement("div");
+    monthEmpty.setAttribute("id","month-container-year-" + m)
+    monthEmpty.classList.add("month-container-year")
+    monthDiv.appendChild(monthEmpty)
+    if(firstWeek==0){
+        firstWeek=7;
+    }
+    while(firstWeek > 1){
+        var dayEmpty = document.createElement("div");
+        dayEmpty.setAttribute("id","day-container-year-empty-" + firstWeek);
+        dayEmpty.classList.add("day-container-year-empty")
+        monthEmpty.appendChild(dayEmpty)
+        firstWeek--;
+    }
+    while (countday <= num) {
+        var day = document.createElement("div");
+        day.setAttribute("id","day-container-year-" + countday);
+        day.classList.add("day-container-year")
+        if(countday == todayNumDay && todayMonth == m && todayYear == year){
+            day.classList.add("today-special-year-day")
+        }
+        monthEmpty.appendChild(day)
+        var dayInner = document.createElement("div");
+        dayInner.setAttribute("id","day-container-year-inner" + countday);
+        dayInner.classList.add("day-container-year-inner")
+        //dayInner.textContent = dayNameArr[countweek]+countday;
+        dayInner.textContent = countday;
+        day.appendChild(dayInner);
+        // createDayContent(selectedYear,selectedMonth,countday,"",dayNameArr[countweek],"");
+//assignEvent(countday,day);  IMPORTANT------------------------------------------------------------------------------------------------
+        //dayTitle.textContent = monthDayArray[countday - 1].events;
+        countday++
+        if(countweek>=6){
+            countweek=0;
+        }else{
+            countweek++;
+        }
+    }
+    if(lastWeek == 0){
+        lastWeek = 7;
+    }
+    while(lastWeek <= 6){
+        var dayEmptyLast = document.createElement("div");
+        dayEmptyLast.setAttribute("id","day-container-year-empty"+lastWeek);
+        dayEmptyLast.classList.add("day-container-year-empty");
+        monthEmpty.appendChild(dayEmptyLast);
+        lastWeek++;
+    }
+    countday=1;
+}
 
 // let eventContainer = document.querySelectorAll(".event-container")
 // console.log(eventContainer)
