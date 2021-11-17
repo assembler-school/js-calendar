@@ -8,5 +8,5 @@ var mainModal = document.getElementById('modal_crear');
 var closeModal = document.getElementById('nav_modal');
 var eventTitleInput = document.querySelector('.input_modal>input');
 var btnSave = document.getElementById('save-modal');
-
+var detailsEventType = document.querySelectorAll('#mievents_minicalendar input');
 var liniabonito = document.getElementById("liniabonito");

@@ -4,3 +4,4 @@ var today;
 var finalEvent;
 var eventId = 0;
 var finalEvent;
+var selectedTypeEvent = actual_date;
