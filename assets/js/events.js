@@ -54,32 +54,30 @@ class calendarEvent {
         }
     }
     createTagEvent(father, id) {
-        
-        if(this.allEvent.fechaInicio.split("T").length>1){
-            var horaevento=this.allEvent.fechaInicio.split("T")
-            horaevento=horaevento[1]
-        }
-        else{}
-        
+
+        if (this.allEvent.fechaInicio.split("T").length > 1) {
+            var horaevento = this.allEvent.fechaInicio.split("T")
+            horaevento = horaevento[1]
+        } else {}
+
         if (this.allEvent.eventType == 'Meeting') {
             // console.log("hola")
-            father.appendChild(eventDay(this.allEvent.eventTitle,id,'miniEvents allday', 'meeting'))
+            father.appendChild(eventDay(this.allEvent.eventTitle, id, 'miniEvents allday', 'meeting'))
         } else if (this.allEvent.eventType == 'Personal') {
             father.appendChild(newElement({
                 tag: 'div',
                 id: id,
                 clas: ['miniEvents', 'personal'],
-                content:horaevento+"  "+ this.allEvent.eventTitle
+                content: horaevento + "  " + this.allEvent.eventTitle
             }))
         } else if (this.allEvent.eventType == 'Study')
             father.appendChild(newElement({
                 tag: 'div',
                 id: id,
                 clas: ['miniEvents', 'study'],
-                content: horaevento+"  "+ this.allEvent.eventTitle
+                content: horaevento + "  " + this.allEvent.eventTitle
             }))
     }
-
     eraseEvent() {
         let typeStorage = JSON.parse(localStorage.eventType);
         typeStorage.forEach(element => {
@@ -89,6 +87,57 @@ class calendarEvent {
         });
     }
 }
+
+function startSetTimeOut() {
+    setTimeout(() => {
+        checkEvents();
+        startSetInterval();
+    }, 100);
+}
+
+function startSetInterval() {
+    setInterval(() => {
+        checkEvents();
+    }, 10000);
+}
+
+function checkEvents() {
+    if (localStorage['Meeting']) {
+        let typeStorage = JSON.parse(['Meeting']);
+        /*         localStorage[eventType] = (JSON.stringify(typeStorage))
+         */
+    } else if (!localStorage['Meeting']) {
+        let typeStorage = []
+        /*         localStorage[eventType] = (JSON.stringify(typeStorage))
+         */
+    }
+}
+
+function allLocalStorage(X = []) {
+    let typeStorage
+    for (const a of X) {
+        if (typeStorage == undefined) {
+            typeStorage = JSON.parse(localStorage[a]);
+        } else {
+            console.log(typeStorage);
+            let typeStorage2 = typeStorage;
+            let typeStorage3 = JSON.parse(localStorage[a]);
+            typeStorage = typeStorage3.concat(typeStorage2);
+        }
+    }
+    return typeStorage
+}
+
+function getEventById(id) {
+    var X = ['Meeting', 'Personal', 'Study']
+    let typeStorage = allLocalStorage(X);
+
+    return typeStorage.find(element => element.eventId == id)
+}
+
+console.log(getEventById(3));
+
+////PRUEBAS
 
 let fatherPruebas = document.getElementById('fatherPruebas')
 let eventoPruebas = new calendarEvent('titulo', '18-11-2021', '', 'No se repite', '', '', 'Meeting');
