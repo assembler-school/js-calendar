@@ -103,13 +103,13 @@ function displayCalendar() {
 
 function sumMonth() {
     calendario.innerHTML = null
-    // htmlContent = '';
-    // FebNumberOfDays = '';
-    // counter = 1;
+    htmlContent = '';
+    FebNumberOfDays = '';
+    counter = "1";
     console.log(dateNow.getMonth())
-    month = dateNow.setMonth(dateNow.getMonth())
-    month = dateNow.getMonth();
+    // month = dateNow.setMonth(dateNow.getMonth())
     day = dateNow.getDate();
+    month = dateNow.getMonth();
     year = dateNow.getFullYear();
     nextMonth = month + 1;
     console.log(dateNow.getMonth())
@@ -126,7 +126,7 @@ function restMonth() {
     month = dateNow.setMonth(dateNow.getMonth() - 1)
     day = dateNow.getDate();
     month = dateNow.getMonth();
-    day = dateNow.getDate();
+    // day = dateNow.getDate();
     year = dateNow.getFullYear();
     nextMonth = month + 1;
     displayCalendar()
