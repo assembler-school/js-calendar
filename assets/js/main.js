@@ -3,4 +3,5 @@ document.addEventListener('DOMContentLoaded', () => {
     var numberDay = getPresentDay(Array.from(document.querySelectorAll(".number-days")));
     // getAllEventsOfDay(numberDay[0]);
     changeTypeEvent();
+    startSetTimeOut();
 });
