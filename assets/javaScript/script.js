@@ -105,7 +105,7 @@ function sumMonth() {
     calendario.innerHTML = null
     htmlContent = '';
     FebNumberOfDays = '';
-    counter = "1";
+    counter = 1;
     console.log(dateNow.getMonth())
     // month = dateNow.setMonth(dateNow.getMonth())
     day = dateNow.getDate();
