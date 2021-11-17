@@ -1,5 +1,6 @@
 import CreateModal from "./modals/CreateModal.js";
 import { body } from "./variables.js";
+import createModalToEdit from "./modals/modalEdit.js"
 
 let currentMonth = 0;
 let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : []; // fetching events from LocalStorage, if it doest't exist return an empty array
@@ -74,13 +75,16 @@ export function displayCalendar() {
                 const calendar = document.getElementById("calendar");
                 for(let i = 0; i < calendar.childNodes.length; i++){
                     if(calendar.childNodes[i] == dayElement){
-                        if(e.clientX < 410) {
+                        if(e.clientX < 410 && e.target.firstChild.attributes!=undefined) {
                             createBackground();
                             new CreateModal(e.clientX, e.clientY / 2, weekdays[i%7], dayElement.firstChild.innerText, currentMonth.textContent, e.target.firstChild.attributes[1].nodeValue);
                             console.log(dayElement.childNodes[0], currentMonth.textContent)
-                        }else{
+                        }else if(e.target.firstChild.attributes!=undefined){
                             createBackground();
                             new CreateModal(e.clientX - 400, e.clientY / 2, weekdays[i%7], dayElement.firstChild.innerText, currentMonth.textContent, e.target.firstChild.attributes[1].nodeValue)
+                        }else{
+                            console.log("paso");
+                            createModalToEdit();
                         }
                     }
                 }
