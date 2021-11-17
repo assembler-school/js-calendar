@@ -10,3 +10,4 @@ var eventTitleInput = document.querySelector('.input_modal>input');
 var btnSave = document.getElementById('save-modal');
 var detailsEventType = document.querySelectorAll('#mievents_minicalendar input');
 var liniabonito = document.getElementById("liniabonito");
+var boxEventsCal = document.getElementsByClassName("boxEventsCal");
