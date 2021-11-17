@@ -344,29 +344,40 @@ input[type="checkbox"] {
 /* Tag */
 
 .miniEvents {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5px;
     margin: 30px;
-    border: solid 2px black;
     border-radius: 5px;
     text-align: center;
-    color: white;
     max-width: 100px;
+    max-height: 20px;
     cursor: pointer;
 }
+.miniEvents>div {
+  height: 12px;
+  width: 12px;
+  border-radius: 20px;
+}
 .meeting {
-    background-color: var(--azul);
+    background-color: rgb(59, 59, 255);
+    color: white;
 }
 
 .personal {
     background-color: rgb(255, 39, 39);
+    color: white;
 }
 
 .study {
     background-color: green;
+    color: white;
 }
 
 
 .meeting:hover {
-    background-color: rgb(59, 59, 255);
+    background-color: var(--azul);
 }
 
 .personal:hover {
@@ -374,10 +385,20 @@ input[type="checkbox"] {
 }
 
 .study:hover {
-    background-color: rgb(87, 255, 87);
+    background-color: rgb(53, 179, 53);
 }
 
 
 .meeting:active,.personal:active,.study:active {
     box-shadow: 2px 2px 10px rgb(63, 63, 63);
+}
+
+.allday{
+
+}
+.allday:hover{
+    background-color: grey;
+}
+.allday:active{
+    
 }

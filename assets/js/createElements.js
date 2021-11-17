@@ -13,6 +13,18 @@ function newElement({
         for (let index = 0; index < clas.length; index++)
             newElement.classList.add(clas[index]);
     }
-
     return newElement;
+}
+
+function eventDay(content,id,clas,clas2){
+    var newElement = document.createElement("div");
+    var point = document.createElement("div");
+    var cont = document.createElement("p");
+    cont.textContent=content
+    point.classList=clas2
+    newElement.appendChild(point)
+    newElement.appendChild(cont)
+    newElement.classList=clas
+    newElement.id=id
+    return newElement
 }
