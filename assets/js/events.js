@@ -16,7 +16,7 @@ class calendarEvent {
     setToLocalStorage(eventType) {
         if (localStorage[eventType]) {
             console.log('a');
-            let typeStorage = JSON.parse(localStorage.eventType);
+            let typeStorage = JSON.parse(localStorage[eventType]);
             typeStorage.push(this.allEvent)
             localStorage[eventType] = (JSON.stringify(typeStorage))
         } else if (!localStorage[eventType]) {
