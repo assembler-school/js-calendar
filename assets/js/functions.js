@@ -90,20 +90,14 @@ function headerCal() {
 function prevMonthCal() {
     let prevDays = prevDaysOfMonth();
     for (let index = prevDays.firstDayIndex; index > 0; index--) {
-        var smallDayMonth = newElement({
-            tag: 'div',
-            id: '',
-            clas: ['number-days','previousMonthColor'],
-            content: prevDays.prevLastDay - index
-        });
-        var bigDayMonth = newElement({
-            tag: 'div',
-            id: '',
-            clas: ['number-days','previousMonthColor'],
-            content: prevDays.prevLastDay - index
-        });
-        saveDatePrevDayOfMonth(smallDayMonth, index);
-        saveDatePrevDayOfMonth(bigDayMonth, index);
+        var smallDayMonth = newElement({ tag: 'div', id: '', clas: [], content:""});
+        var numberDiv = newElement({ tag: "div", id: '', clas: ['number-days'], content: prevDays.prevLastDay - index});
+        var bigDayMonth = newElement({ tag: 'div', id: '', clas: [], content:""});
+        var numberDiv2 = newElement({ tag: "div", id:"", clas: ["number-days"], content: prevDays.prevLastDay - index });
+        smallDayMonth.appendChild(numberDiv);
+        bigDayMonth.appendChild(numberDiv2);
+        saveDatePrevDayOfMonth(numberDiv, index);
+        saveDatePrevDayOfMonth(numberDiv2, index);
         smallCalendar.appendChild(smallDayMonth);
         bigCalendar.appendChild(bigDayMonth);
     }
@@ -130,20 +124,14 @@ function monthActualCal() {
 function nextMonthCal() {
     let nextDays = nextDaysOfMonth();
     for (let index = 1; index <= nextDays; index++) {
-        var smallDayMonth = newElement({
-            tag: 'div',
-            id: '',
-            clas: ['number-days', 'nextMonthColor'],
-            content: index
-        });
-        var bigDayMonth = newElement({
-            tag: 'div',
-            id: '',
-            clas: ['number-days','nextMonthColor'],
-            content: index
-        });
-        saveDateNextDayOfMonth(smallDayMonth, index);
-        saveDateNextDayOfMonth(bigDayMonth, index);
+        var smallDayMonth = newElement({ tag: 'div', id: '', clas: [], content:""});
+        var numberDiv = newElement({ tag: "div", id: '', clas: ['number-days'], content: index});
+        var bigDayMonth = newElement({ tag: 'div', id: '', clas: [], content:""});
+        var numberDiv2 = newElement({ tag: "div", id:"", clas: ["number-days"], content: index});
+        smallDayMonth.appendChild(numberDiv);
+        bigDayMonth.appendChild(numberDiv2);
+        saveDateDayOfMoth(numberDiv, index);
+        saveDateDayOfMoth(numberDiv2, index);
         smallCalendar.appendChild(smallDayMonth);
         bigCalendar.appendChild(bigDayMonth);
     }
