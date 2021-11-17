@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>JavaScript calendar</title>
+<head>
+    <title>JavaScript calendar</title>
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/modal.css">
+    <link rel="stylesheet" href="assets/css/mediaquery.css">
+    
+    <!-- JavaScript links  -->
+    <script src="assets/javaScript/script.js" defer></script>
+    <script src="assets/javaScript/dom.js"></script>
+    <script src="assets/javaScript/createElements.js" defer></script>
+    <script src="assets/javaScript/modalContent.js" defer></script>
+    <script src="assets/javaScript/time.js" defer></script>
+</head>
 
-        <script src="script.js" defer></script>
-        <script src="/modal.js"></script>
-        <!-- <script src='time.js' defer></script> -->
-        <link href="calendar.css" rel="stylesheet" />
-        <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
-            rel="stylesheet"
-        />
-    </head>
+<body onload="displayCalendar()">
 
-    <body onload="displayCalendar()">
-        <div id="calendar"></div>
-    </body>
+    <div id="calendar"></div>
+    <div id="myModal" class="modal">
+        <div class="modal-content"><span class="close">&times;</span></div>
+    </div>
+
+</body>
 </html>

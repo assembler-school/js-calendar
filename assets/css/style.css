@@ -28,15 +28,19 @@ body {
     color: #ffffff;
     text-align: center;
 }
+
 .dayNames {
-    background: #0ff000;
-    color: #ffffff;
+    background: #0FF000;
+    color: #FFFFFF;
     text-align: center;
 }
+
 ul {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
 }
+
+/* montNow li{
 
 .modal-btn {
     height: 80px;

@@ -1,0 +1,3 @@
+// const modal = document.getElementById("myModal");
+// const span = document.getElementsByClassName("close")[0];
+// const modalContent= document.getElementsByClassName('modal-content')

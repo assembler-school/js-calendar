@@ -6,10 +6,11 @@ function displayHour() {
         minute = time.getMinutes();
         seconds = time.getSeconds();
 
-        houtMin = `${hour}: ${minute}: ${seconds}`;
-        console.log(houtMin);
-        innerH2.textContent = houtMin;
+        houtMin= `${hour}: ${minute}: ${seconds}`
+        fisrsRow= document.getElementsById('idcalendar')
+        fisrsRow.innerText = houtMin
+
     }, 1000);
 }
 
-displayHour();
+

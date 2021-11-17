@@ -100,21 +100,29 @@ function displayCalendar() {
     }
 
     // building the calendar html body.
-    var calendarBody =
-        "<div class='calendar'> <i class='fas fa-chevron-left'> <div class='monthNow'> <span> " +
-        monthNames[month] +
-        ' ' +
-        year +
-        "</span></div><i class='fas fa-chevron-right'>";
-    calendarBody +=
-        "<button class='modal-btn id='openModal'>ADD EVENT</button>";
-    calendarBody +=
-        "<ul class='dayNames'>  <li>Sun</li>  <li>Mon</li> <li>Tues</li>" +
-        '<li>Wed</li> <li>Thurs</li> <li>Fri</li> <li>Sat</li> </ul>';
-    calendarBody += '<ul>';
+    var calendarBody = '<div><input type="button" value="button Test" onclick="openModal()"></div>';
+    calendarBody += "<div class='calendar id='idcalendar'> <ul class='monthNow'><li colspan='7'>"
+        + monthNames[month] + " " + year + "</li></ul>";
+    calendarBody += "<ul class='dayNames'>  <li>Sun</li>  <li>Mon</li> <li>Tues</li>" +
+        "<li>Wed</li> <li>Thurs</li> <li>Fri</li> <li>Sat</li> </ul>";
+    calendarBody += "<ul>";
     calendarBody += htmlContent;
-    calendarBody += '</ul></button>';
+    calendarBody += "</ul></div>";
 
-    // set the content of div .
-    document.getElementById('calendar').innerHTML = calendarBody;
+    //todo The Modal
+    // calendarBody += '<div id="myModal" class="modal"><div class="modal-content"><span id="close">&times;</span></div></div>'
+    document.getElementById("calendar").innerHTML = calendarBody;
+
+    //Date num
+    const monthNow= document.querySelectorAll(".monthNow")
+
+    monthNow.forEach(num=> {
+        num.addEventListener("click", ()=>{
+            numero= num.textContent
+     
+            fecha= ` ${numero} ${monthNames[month]} ${year} `
+            console.log(fecha)
+        })
+    });
+
 }
