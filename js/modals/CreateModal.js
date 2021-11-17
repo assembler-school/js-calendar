@@ -318,6 +318,8 @@ function showEvent() {
 
 //Create edit event modal
 function createModalToEdit(e){
+    //body declaration
+    const body=document.getElementsByClassName("body")[0];
     //icons
     const arrayPhotos=[
         "pencil.svg",
@@ -335,6 +337,7 @@ function createModalToEdit(e){
         divItems.id="items";
 
     //spawn elements
+    
     body.appendChild(divParent);
     divParent.appendChild(divIcons);
     divParent.appendChild(divItems);

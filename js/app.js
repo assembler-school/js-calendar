@@ -1,8 +1,12 @@
 import CreateModal from "./modals/CreateModal.js";
-import { body, calendar, weekdays } from "./variables.js";
+import { body } from "./variables.js";
 
 let currentMonth = 0;
+let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : []; // fetching events from LocalStorage, if it doest't exist return an empty array
 let isModalOpen = false;
+
+const calendar = document.querySelector('#calendar');
+const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 // Main function for creating the calendar month dinamically
 function displayCalendar() {
