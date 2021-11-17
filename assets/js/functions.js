@@ -113,20 +113,14 @@ function prevMonthCal() {
 function monthActualCal() {
     let lastDay = daysOfMonth();
     for (let index = 1; index <= lastDay; index++) {
-        var smallDayMonth = newElement({
-            tag: 'div',
-            id: '',
-            clas: ['number-days'],
-            content: index
-        });
-        var bigDayMonth = newElement({
-            tag: 'div',
-            id: '',
-            clas: ['number-days'],
-            content: index
-        });
-        saveDateDayOfMoth(smallDayMonth, index);
-        saveDateDayOfMoth(bigDayMonth, index);
+        var smallDayMonth = newElement({ tag: 'div', id: '', clas: [], content:""});
+        var numberDiv = newElement({ tag: "div", id: '', clas: ['number-days'], content: index});
+        var bigDayMonth = newElement({ tag: 'div', id: '', clas: [], content:""});
+        var numberDiv2 = newElement({ tag: "div", id:"", clas: ["number-days"], content: index});
+        smallDayMonth.appendChild(numberDiv);
+        bigDayMonth.appendChild(numberDiv2);
+        saveDateDayOfMoth(numberDiv, index);
+        saveDateDayOfMoth(numberDiv2, index);
         smallCalendar.appendChild(smallDayMonth);
         bigCalendar.appendChild(bigDayMonth);
     }
