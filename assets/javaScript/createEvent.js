@@ -17,27 +17,55 @@ function loadEventBook(){
     }
     return JSON.parse(localStorage.getItem('eventBook'))
 }
-
+//TODO convert to object
+function convertToObj(arrayName){
+    let obj
+    if( arrayName.length > 6){
+        obj= eventData(arrayName[0], arrayName[1], arrayName[2], arrayName[3], arrayName[4], arrayName[5])
+    } else{
+        obj= eventData(arrayName[0], arrayName[1], arrayName[1] , arrayName[3], arrayName[4], arrayName[2])
+    }
+    return obj
+}
 
 let eventBook
-let arrayData=[]
+
 function createEvent() {
+    let arrayData=[]
     const formClass = document.getElementsByClassName('formInputs')
     console.log(formClass)
     for (num in formClass){
         arrayData.push(formClass[num].value)
-        console.log(formClass[num].value)
+        //console.log(formClass[num].value)
     }
-    let obj
-    if( arrayData.length > 6){
-        obj= eventData(arrayData[0], arrayData[1], arrayData[2], arrayData[3], arrayData[4], arrayData[5])
-    } else{
-        obj= eventData(arrayData[0], arrayData[1], arrayData[1] , arrayData[3], arrayData[4], arrayData[2])
-    }
-    console.log(eventBook)
+   
+    //console.log(eventBook)
 
-    eventBook.push(obj)
-    arrayData=[]
+    eventBook.push(convertToObj(arrayData))
 
     localStorage.setItem('eventBook', JSON.stringify(eventBook))
+    closeModal()
+}
+
+function deleteEvent(){
+    const formClass = document.getElementsByClassName('formInputs')
+    arrayDel=[]
+    strDel=''
+    for (num in formClass){
+        arrayDel.push(formClass[num].value)
+    }
+
+    obj = convertToObj(arrayDel)
+    strDel = obj.title + obj.startDate + obj.endDate + obj.reminder + obj.description + obj.eventType;
+
+    removeEvent(strDel)
+}
+
+function removeEvent(eventToRemove){
+    eventBook = eventBook.filter(event => {
+        return !(event.title + event.startDate + event.endDate + event.reminder + event.description + event.eventType == eventToRemove)
+    })
+
+    localStorage.setItem('eventBook', JSON.stringify(eventBook))
+    eventBook =  loadEventBook()
 }

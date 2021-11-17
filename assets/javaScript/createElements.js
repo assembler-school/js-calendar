@@ -25,7 +25,7 @@ function beginModal(){
 
     //TODO event Listener
     endDateCheck.addEventListener('click', displayForm)
-    deleteButton.addEventListener('click', closeModal)
+    deleteButton.addEventListener('click', deleteEvent)
     createButton.addEventListener('click', createEvent)
     span.addEventListener('click', closeModal)
 }
