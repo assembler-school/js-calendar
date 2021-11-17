@@ -11,3 +11,6 @@ var btnSave = document.getElementById('save-modal');
 var detailsEventType = document.querySelectorAll('#mievents_minicalendar input');
 var liniabonito = document.getElementById("liniabonito");
 var boxEventsCal = document.getElementsByClassName("boxEventsCal"); // padres
+var modal = document.getElementById("myModal");
+var span = document.getElementsByClassName("close")[0];
+var contModalInfo = document.getElementById("modal-content")
