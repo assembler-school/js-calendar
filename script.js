@@ -39,7 +39,6 @@ const monthNameObj = {
 
 
 var today = new Date ();
-console.log(typeof(today))
 var todayNumDay = today.getDate();//15
 const todayMonth = today.getMonth();//11
 var todayMonthName = monthNameArr[todayMonth];//november
@@ -62,15 +61,9 @@ function refreshContainers(){
 }
 
 var selectedMonthDays = new Date(selectedYear,selectedMonth+1,0).getDate();
-console.log(selectedMonthDays)
 
 var firstDayMonth = new Date(selectedYear,selectedMonth,1).getDay();
 var firstDayWeekMonthName = dayNameArr[firstDayMonth]
-
-console.log(firstDayMonth)
-console.log(firstDayWeekMonthName)
-
-
 
 function createMonthDays(){
     createDay(selectedMonthDays);
@@ -91,7 +84,6 @@ function createDay(num){
         dayEmpty.classList.add("day-container-empty")
         dayDiv.appendChild(dayEmpty)
         firstWeek--;
-        console.log(firstWeek)
     }
     while (countday <= num) {
         var day = document.createElement("div");
@@ -106,20 +98,9 @@ function createDay(num){
         dayInner.classList.add("day-container-inner")
         dayInner.textContent = dayNameArr[countweek]+countday;
         day.appendChild(dayInner);
-        var dayTitle = document.createElement("div");
-        dayTitle.setAttribute("id","day-container-title" + countday);
-        dayTitle.classList.add("eventTitle")
-        day.appendChild(dayTitle);
-        var i = 0;
         createDayContent(selectedYear,selectedMonth,countday,"",dayNameArr[countweek],"");
-        while(i < (historicEvents.length)){
-            if(historicEvents[i].day == (countday)){
-                monthDayArray[countday - 1].events += historicEvents[i].title;
-                console.log("entree")
-            }
-            i++;
-        }
-        dayTitle.textContent = monthDayArray[countday - 1].events;
+        assignEvent(countday,day);
+        //dayTitle.textContent = monthDayArray[countday - 1].events;
         countday++
         if(countweek>=6){
             countweek=0;
@@ -130,12 +111,45 @@ function createDay(num){
     while(lastWeek < 5){
         var dayEmptyLast = document.createElement("div");
         dayEmptyLast.setAttribute("id","day-container-empty"+lastWeek);
-        dayEmptyLast.classList.add("day-container-empty")
-        dayDiv.appendChild(dayEmptyLast)
+        dayEmptyLast.classList.add("day-container-empty");
+        dayDiv.appendChild(dayEmptyLast);
         lastWeek++;
     }
     countday=1;
 }
+function displayEventsPerDay(events1,day,i){
+    
+        let createDivEvent = document.createElement("div");
+        createDivEvent.setAttribute("id","event-container-" + i);
+        createDivEvent.classList.add("event-container");
+        createDivEvent.textContent = historicEvents[i].title;
+        console.log(historicEvents[i])
+        day.appendChild(createDivEvent);
+}
+
+function assignEvent(countday,day){
+    var i = 0;
+    while(i < (historicEvents.length)){
+        if(historicEvents[i].day == (countday)){
+            monthDayArray[countday - 1].events = filterEventFun(countday);
+            displayEventsPerDay(dayEventFiltered,day,i)
+        }
+        i++;
+    }
+}
+
+let dayEventFiltered;
+function filterEventFun(day){
+    dayEventFiltered = historicEvents.filter(event => {
+        return event.day === day && event.month === selectedMonth && event.year == selectedYear
+        //return event.day === day
+    })
+    return dayEventFiltered;
+}
+
+
+
+
 function createDayContent(year = null, month = "default", day = null, hour="hour", weekDay="weekDay", events="") {
     dayEvent = {
         year: year,
@@ -151,7 +165,6 @@ function dayMonthHistoricFun(event){
     monthDayArray.push(event)
     // monthDayArray[15].dayEvent.events.push("tontolaba");
 }
-console.log(monthDayArray)
 function createDayEvent(year = null, month = "default", day = null,hour = "default", weekDay="weekDay", title = "default", initialDate = "default", endDateCheck = false, endDate= "default", remindCheck = false, remindTime = "default", description = "default",eventTipe = "default") {
     dayEvent = {
     year: year,
@@ -173,7 +186,6 @@ function createDayEvent(year = null, month = "default", day = null,hour = "defau
 function eventHistoricFun(event){
     eventHistoricArray.push(event)
 }
-console.log(eventHistoricArray)
 
 function createHoursFun(){
     var countHours = 1 ;
@@ -198,7 +210,6 @@ function addEventsListeners(){
                     dayNameContainerH1.textContent=e.target.innerText;
                 }
             }
-            console.log(e)
             if (e.target.matches(".day-container")) {
                 e.target.classList.add("e-selected-day")
                 //selectedDay = e.target
