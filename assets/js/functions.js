@@ -68,19 +68,20 @@ function headerCal() {
     for (const element of dateCalendar) {
         element.textContent = `${month} de ${actual_date.getFullYear()}`;
     }
-    const weekDays = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
-    for (let index = 0; index < weekDays.length; index++) {
+    const weekDaysMin = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
+    const weekDaysMax = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    for (let index = 0; index < weekDaysMin.length; index++) {
         var smallWeekDay = newElement({
             tag: 'div',
             id: '',
             clas: [],
-            content: weekDays[index]
+            content: weekDaysMin[index]
         });
         var bigWeekDay = newElement({
             tag: 'div',
             id: '',
-            clas: [],
-            content: weekDays[index]
+            clas: ["weekDays"],
+            content: weekDaysMax[index]
         });
         smallCalendar.appendChild(smallWeekDay)
         bigCalendar.appendChild(bigWeekDay)

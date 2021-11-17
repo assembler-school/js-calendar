@@ -59,12 +59,24 @@
 #small_calendar div,
 #big_calendar div {
     place-self: center;
+    border: 5px;
+    border-color: darkgray;
 }
 
 #big_calendar div {
     height: 100px;
     width: 100px;
 }
+
+#micalendar_minicalendar {
+    margin-top: 30px;
+}
+
+#mievents_minicalendar {
+    margin-top: 30px;
+}
+
+
 
 #calendar {
     display: none;
@@ -122,6 +134,18 @@
         font-size: 0.7em;
     }
 
+    #calendar .date-calendar {
+        font-size: 1.5em;
+    }
+
+    .weekDays {
+        place-self: center  ¡;
+    }
+
+    .header-calendar {
+        text-align: center;
+        margin-bottom: 30px;
+    }
 }
 
 
