@@ -52,7 +52,23 @@ function closeModal(){
     var eventDiv = document.getElementById("Mymodal");
     eventDiv.remove();
 }
-let newDayEvent = {}
+let newDayEvent = {
+    year: 0,
+    month: 0,
+    day: 0,
+    hour: 0,
+    // endYear: 0,
+    // endMonth: 0,
+    // endDay: 0,
+    // endHour: 0,
+    title: "",
+    initialDate: {},
+    endaDate: {},
+    remindTime: "",
+    description: "",
+    eventTipe: ""
+    };
+
 function initNewDayEvent(){
     newDayEvent = {
         year: 0,
@@ -95,7 +111,6 @@ function createEvent2(fecha){
     historicEvents.push(newDayEvent);
     localStorage.setItem("historic",JSON.stringify(historicEvents));
     console.log(newDayEvent.day);
-    createMonthDays();
 }
 
 function createEvent(){
@@ -133,13 +148,12 @@ function createEvent(){
     historicEvents.push(newDayEvent);
     localStorage.setItem("historic",JSON.stringify(historicEvents));
     console.log(newDayEvent.day);
-    createMonthDays();
     if (document.getElementById("checkEnd").checked){
         bigEvents(fecha, endFecha);
     }
     var eventDiv = document.getElementById("Mymodal");
+    createMonthDays();
     eventDiv.remove();
-
 }
 
 function bigEvents(fecha1, fecha2){

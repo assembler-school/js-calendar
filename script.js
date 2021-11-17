@@ -150,6 +150,55 @@ function assignEvent(countday,day){
     }
 }
 
+
+function createHoursFun(){
+    var countHours = 1 ;
+    while (countHours <= 24) {
+        var hour = document.createElement("div")
+        hour.setAttribute("id","hour-container-"+countHours)
+        hour.classList.add("hour-container")
+        hour.textContent = countHours
+        hourDiv.appendChild(hour)
+        countHours++
+    }
+}
+function addEventsListeners(){
+    var daisMonth = document.querySelectorAll("#month-container")
+    var daisMonth2 = document.getElementsByClassName("day-container")
+
+    daisMonth.forEach(sel =>{
+        sel.addEventListener("click",(e)=>{
+            for (x=1; x<daisMonth2.length+1; x++){
+                document.getElementById("day-container-"+x).classList.remove("e-selected-day");
+                if (e.target.matches(".day-container")) {
+                    dayNameContainerH1.textContent=e.target.innerText;
+                }
+            }
+            if (e.target.matches(".day-container")) {
+                e.target.classList.add("e-selected-day")
+                //selectedDay = e.target
+            }
+        })
+    });
+}
+function loadStorage(){
+    if (localStorage.getItem("historic") !== null) {
+        historicEvents = JSON.parse(localStorage.getItem("historic"));
+    }
+}
+
+
+// let eventContainer = document.querySelectorAll(".event-container")
+// console.log(eventContainer)
+
+// eventContainer.forEach(even =>{
+//     even.addEventListener("click", (a) => {
+//         if (a.target.matches(".event-container")) {
+//             console.log("hola")
+//         }
+//     })
+// })
+
 // let dayEventFiltered;
 // function filterEventFun(day){
 //     dayEventFiltered = historicEvents.filter(event => {
@@ -195,54 +244,4 @@ function assignEvent(countday,day){
 // function eventHistoricFun(event){
 //     eventHistoricArray.push(event)
 // }
-
-function createHoursFun(){
-    var countHours = 1 ;
-    while (countHours <= 24) {
-        var hour = document.createElement("div")
-        hour.setAttribute("id","hour-container-"+countHours)
-        hour.classList.add("hour-container")
-        hour.textContent = countHours
-        hourDiv.appendChild(hour)
-        countHours++
-    }
-}
-function addEventsListeners(){
-    var daisMonth = document.querySelectorAll("#month-container")
-    var daisMonth2 = document.getElementsByClassName("day-container")
-
-    daisMonth.forEach(sel =>{
-        sel.addEventListener("click",(e)=>{
-            for (x=1; x<daisMonth2.length+1; x++){
-                document.getElementById("day-container-"+x).classList.remove("e-selected-day");
-                if (e.target.matches(".day-container")) {
-                    dayNameContainerH1.textContent=e.target.innerText;
-                }
-            }
-            if (e.target.matches(".day-container")) {
-                e.target.classList.add("e-selected-day")
-                //selectedDay = e.target
-            }
-        })
-    });
-}
-
-function loadStorage(){
-    if (localStorage.getItem("historic") !== null) {
-        historicEvents = JSON.parse(localStorage.getItem("historic"));
-    }
-}
-
-
-// let eventContainer = document.querySelectorAll(".event-container")
-// console.log(eventContainer)
-
-// eventContainer.forEach(even =>{
-//     even.addEventListener("click", (a) => {
-//         if (a.target.matches(".event-container")) {
-//             console.log("hola")
-//         }
-//     })
-// })
-
 
