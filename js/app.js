@@ -45,9 +45,11 @@ export function displayCalendar() {
     for (let i = 1; i <= paddingDaysBefore + daysInMonth + paddingDaysAfter; i++) { // we would render days of the month plus all padding days
         const dayElement = document.createElement('div');
         const dayNumber = document.createElement('span');
+        const eventsDiv = document.createElement('div');
         dayElement.classList.add('day');
         dayNumber.classList.add('day-number');
         dayElement.appendChild(dayNumber);
+        dayElement.appendChild(eventsDiv);
         // check if that day is a padding day or not
         if (i <= paddingDaysBefore) {
             dayElement.classList.add('padding');
@@ -73,7 +75,6 @@ export function displayCalendar() {
                         if(e.clientX < 410) {
                             createBackground();
                             new CreateModal(e.clientX, e.clientY / 2, weekdays[i%7], dayElement.firstChild.innerText, currentMonth.textContent, e.target.firstChild.attributes[1].nodeValue);
-                            console.log(dayElement.childNodes[0], currentMonth.textContent)
                         }else{
                             createBackground();
                             new CreateModal(e.clientX - 400, e.clientY / 2, weekdays[i%7], dayElement.firstChild.innerText, currentMonth.textContent, e.target.firstChild.attributes[1].nodeValue)
@@ -130,23 +131,21 @@ function createBackground(){
         //         new CreateModal;
         //     });
         // })
-        
 export default function fetchEvents() {
     // Check local storage and fetch events
     const dayList = document.querySelectorAll('.day');
-    const displayMonth = document.querySelector('#current-month').innerText.split(' ')[0];
-    const displayYear = document.querySelector('#current-month').innerText.split(' ')[1];
     let event = JSON.parse(localStorage.getItem('events'));
-    if (event !== null){
-        for(let i = 0; i < event.length; i++) {
-            dayList.forEach(element => {
-                if(event !== null &&  element.firstChild.attributes[1].nodeValue=== event[i].startDate && !element.classList.contains('padding')) {
-                    const newEvent = document.createElement('p');
-                    newEvent.innerText = event[i].title;
-                    newEvent.classList.add('event');
-                    element.appendChild(newEvent);                     
-                }
-            })
+    if (event === null) return;
+    dayList.forEach(element => {
+        let dailyEvents = event.filter(event => event.startDate === element.firstChild.attributes[1].nodeValue);
+        if(dailyEvents.length > 0){
+                element.lastChild.innerHTML = '';
+            for (let i = 0; i < dailyEvents.length; i++) {
+                const newEvent = document.createElement('p');
+                newEvent.innerText = dailyEvents[i].title;
+                newEvent.classList.add('event');
+                element.lastChild.appendChild(newEvent);
+            }
         }
-    }
+    })
 }
