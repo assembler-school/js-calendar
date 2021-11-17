@@ -13,14 +13,15 @@ class calendarEvent {
         }
         this.setToLocalStorage(this.allEvent.eventType);
     }
+
     setToLocalStorage(eventType) {
         if (localStorage[eventType]) {
-            console.log('a');
-            let typeStorage = JSON.parse(localStorage.eventType);
+            console.log('+1 in Id');
+            let typeStorage = JSON.parse(localStorage[eventType]);
             typeStorage.push(this.allEvent)
             localStorage[eventType] = (JSON.stringify(typeStorage))
         } else if (!localStorage[eventType]) {
-            console.log('b');
+            console.log('Starting Id');
             let typeStorage = []
             typeStorage.push(this.allEvent);
             localStorage[eventType] = (JSON.stringify(typeStorage))
@@ -34,7 +35,7 @@ class calendarEvent {
         console.log(localStorage.id);
         localStorage.id = parseInt(localStorage.id) + 1
     }
-    findEvent(eventType, father, date2 = null) {
+    findEvent(father, date2 = null, id) {
         var fatherDay = father.dateset.day;
         let fatherMonth = father.dateset.month;
         let fatherYear = father.dateset.year;
@@ -48,13 +49,34 @@ class calendarEvent {
                     return eventYear == fatherYear && eventMonth == fatherMonth && eventDate == fatherDay;
                 });
             resultProductData.forEach(element => {
-                this.createTagEvent(father);
+                this.createTagEvent(father, id);
             });;
         }
     }
-    createTagEvent(father) {
-        father.appendChild(newElement('div', '', 'miniEvents', this.allEvent.eventTitle))
+    createTagEvent(father, id) {
+        if (this.allEvent.eventType == 'Meeting') {
+            father.appendChild(newElement({
+                tag: 'div',
+                id: id,
+                clas: ['miniEvents', 'meeting'],
+                content: this.allEvent.eventTitle
+            }))
+        } else if (this.allEvent.eventType == 'Personal') {
+            father.appendChild(newElement({
+                tag: 'div',
+                id: id,
+                clas: ['miniEvents', 'personal'],
+                content: this.allEvent.eventTitle
+            }))
+        } else if (this.allEvent.eventType == 'Study')
+            father.appendChild(newElement({
+                tag: 'div',
+                id: id,
+                clas: ['miniEvents', 'study'],
+                content: this.allEvent.eventTitle
+            }))
     }
+
     eraseEvent() {
         let typeStorage = JSON.parse(localStorage.eventType);
         typeStorage.forEach(element => {
@@ -64,3 +86,11 @@ class calendarEvent {
         });
     }
 }
+
+let fatherPruebas = document.getElementById('fatherPruebas')
+let eventoPruebas = new calendarEvent('titulo', '18-11-2021', '', 'No se repite', '', '', 'Meeting');
+let btnPruebas = document.getElementById('pruebas');
+
+btnPruebas.addEventListener('click', function () {
+    eventoPruebas.createTagEvent(fatherPruebas, eventoPruebas.allEvent.eventId);
+})

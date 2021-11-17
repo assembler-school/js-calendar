@@ -1,10 +1,15 @@
-function newElement({tag, id, clas, content}) {
+function newElement({
+    tag,
+    id,
+    clas,
+    content
+}) {
     var newElement = document.createElement(tag);
     newElement.textContent = content;
 
-    if(id != '') newElement.id = id;
-
-    if(clas.length !== 0) {
+    if (id != '') newElement.id = id;
+    console.log(clas);
+    if (clas.length !== 0) {
         for (let index = 0; index < clas.length; index++)
             newElement.classList.add(clas[index]);
     }
