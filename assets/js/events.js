@@ -54,26 +54,29 @@ class calendarEvent {
         }
     }
     createTagEvent(father, id) {
+        
+        if(this.allEvent.fechaInicio.split("T").length>1){
+            var horaevento=this.allEvent.fechaInicio.split("T")
+            horaevento=horaevento[1]
+        }
+        else{}
+        
         if (this.allEvent.eventType == 'Meeting') {
-            father.appendChild(newElement({
-                tag: 'div',
-                id: id,
-                clas: ['miniEvents', 'meeting'],
-                content: this.allEvent.eventTitle
-            }))
+            // console.log("hola")
+            father.appendChild(eventDay(this.allEvent.eventTitle,id,'miniEvents allday', 'meeting'))
         } else if (this.allEvent.eventType == 'Personal') {
             father.appendChild(newElement({
                 tag: 'div',
                 id: id,
                 clas: ['miniEvents', 'personal'],
-                content: this.allEvent.eventTitle
+                content:horaevento+"  "+ this.allEvent.eventTitle
             }))
         } else if (this.allEvent.eventType == 'Study')
             father.appendChild(newElement({
                 tag: 'div',
                 id: id,
                 clas: ['miniEvents', 'study'],
-                content: this.allEvent.eventTitle
+                content: horaevento+"  "+ this.allEvent.eventTitle
             }))
     }
 
@@ -89,8 +92,12 @@ class calendarEvent {
 
 let fatherPruebas = document.getElementById('fatherPruebas')
 let eventoPruebas = new calendarEvent('titulo', '18-11-2021', '', 'No se repite', '', '', 'Meeting');
+let eventoPruebas1 = new calendarEvent('titulo', '18-11-2021T11:25', '', 'No se repite', '', '', 'Personal');
+let eventoPruebas2 = new calendarEvent('titulo', '18-11-2021T11:25', '', 'No se repite', '', '', 'Study');
 let btnPruebas = document.getElementById('pruebas');
 
 btnPruebas.addEventListener('click', function () {
     eventoPruebas.createTagEvent(fatherPruebas, eventoPruebas.allEvent.eventId);
+    eventoPruebas1.createTagEvent(fatherPruebas, eventoPruebas.allEvent.eventId);
+    eventoPruebas2.createTagEvent(fatherPruebas, eventoPruebas.allEvent.eventId);
 })
