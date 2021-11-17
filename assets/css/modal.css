@@ -40,7 +40,7 @@
 }
 
 .eventForm div{
-  padding: 2%;
+  padding: 3%;
 }
 
 #checkboxEndDate{
@@ -82,8 +82,11 @@ button{
 /* The Close Button */
 .close {
   color: #aaa;
-  float: right;
-  font-size: 28px;
+  position: relative;
+  padding: 2px;
+  left: 90%;
+  top: 0;
+  font-size: 35px;
   font-weight: bold;
 }
 
