@@ -43,7 +43,7 @@ function displayReminder(){
 }
 
 function createHideElements(){
-    content="<div><label for='endDate'>End Date</label><input type='date' name='End Date'  class='formInputs' id='endDate'> </div>"
+    content="<div><label for='endDate'>End Date</label><input type='datetime-local' name='End Date'  class='formInputs' id='endDate'> </div>"
 
     content+="<div id='checkboxRemind'><label for='reminder'> Remind me when event Start</label><input type='checkbox' name='reminder' id='reminder'> </div>"
 
@@ -51,7 +51,7 @@ function createHideElements(){
 
     content+="<div><label for='description'>Description</label> <textarea name='description' class='formInputs' id='description' cols='20' rows='5'></textarea></div>"
 
-    content+="<div> <label for='typeEvent'> Event Type</label><select name='eventType'class='formInputs' id='eventType'><option value='personal'> Personal</option><option value='Meeting'> Meeting</option><option value='Study'> Study</option> <option value='other'> Other</option></select> </div>"
+    
 
     hideForm[0].innerHTML= content
 
