@@ -100,12 +100,18 @@ function displayCalendar() {
     }
 
     // building the calendar html body.
-    var calendarBody = '<div><input type="button" value="button Test" onclick="openModal()"></div>';
-    calendarBody += "<div class='calendar id='idcalendar'> <ul class='monthNow'><li colspan='7'>"
-        + monthNames[month] + " " + year + "</li></ul>";
-    calendarBody += "<ul class='dayNames'>  <li>Sun</li>  <li>Mon</li> <li>Tues</li>" +
-        "<li>Wed</li> <li>Thurs</li> <li>Fri</li> <li>Sat</li> </ul>";
-    calendarBody += "<ul>";
+    var calendarBody =
+        "<div class='calendar'> <div class='monthNow' id='calendarP'> <i class='fas fa-chevron-left'> </i><span> " +
+        monthNames[month] +
+        ' ' +
+        year +
+        "</span> <i class='fas fa-chevron-right'></i> </div>";
+    calendarBody +=
+        "<button class='modal-btn id='openModal'>ADD EVENT</button>";
+    calendarBody +=
+        "<ul class='dayNames'>  <li>Sun</li>  <li>Mon</li> <li>Tues</li>" +
+        '<li>Wed</li> <li>Thurs</li> <li>Fri</li> <li>Sat</li> </ul>';
+    calendarBody += '<ul>';
     calendarBody += htmlContent;
     calendarBody += "</ul></div>";
 

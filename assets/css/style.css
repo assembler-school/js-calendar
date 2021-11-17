@@ -11,7 +11,9 @@ body {
 .monthNow {
     color: blue;
     text-align: center;
+
 }
+
 .dayNow {
     border: 2px solid black;
     color: #ff0;
