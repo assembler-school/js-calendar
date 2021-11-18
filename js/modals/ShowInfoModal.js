@@ -1,5 +1,6 @@
 import { fetchEvents } from "../app.js";
 import { element, readArray, setIsModalOpen, events } from "../variables.js";
+import CreateModal from "./CreateModal.js";
 
 class ShowInfoModal{
 
@@ -86,7 +87,10 @@ class ShowInfoModal{
         //edit event
         const editEvent = document.getElementById("edit-event");
         editEvent.addEventListener("click", function(){
-            console.log("edit");
+            modal.parentNode.removeChild(modal);
+            
+            //Titulo / dia de la semana / hora / hasEnd / date end / description / type
+            new CreateModal(x, (y + 80) / 2, null, event.day, event.month, event.year, event);
         });
 
 
@@ -94,7 +98,7 @@ class ShowInfoModal{
         const removeEvent = document.getElementById("remove-event");
         removeEvent.addEventListener("click", function(){
             events.splice(events.indexOf(event), 1);
-            localStorage.setItem("events", events);
+            localStorage.setItem("events", JSON.stringify(events));
             fetchEvents();
             setIsModalOpen(false);
             modal.parentNode.removeChild(modal);

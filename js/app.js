@@ -51,10 +51,12 @@ function displayCalendar() {
         const dayElement = document.createElement('div');
         const dayNumber = document.createElement('span');
         const eventsDiv = document.createElement('div');
+        
         dayElement.classList.add('day');
         dayNumber.classList.add('day-number');
         dayElement.appendChild(dayNumber);
         dayElement.appendChild(eventsDiv);
+
         // check if that day is a padding day or not
         if (i <= paddingDaysBefore) {
             dayElement.classList.add('padding');
@@ -109,10 +111,7 @@ function displayCalendar() {
     }
 
     highlightToday();
-    //openModalEdit();
 }
-
-
 
 function changeMonthButton(){
     document.getElementById('nextBtn').addEventListener('click', () =>{
@@ -148,27 +147,3 @@ export function fetchEvents() {
         }
     })
 }
-
-//Select event and open modal
-/*export function openModalEdit(){
-    const eventList = document.querySelectorAll('.event'); 
-    eventList.forEach(element => {
-        element.removeEventListener("click",createModalToEdit);
-        element.addEventListener('click', createModalToEdit);
-        });
-}*/
-
-//create event button
-/*document.getElementById('create-event').addEventListener('click', (e) =>{
-    createBackground();
-    new CreateModal(e.target.offsetLeft - 430, e.target.y);
-});*/
-
-/*const allEvents = document.querySelectorAll('.event');
-
-allEvents.forEach(event => {
-    event.addEventListener('click', (e) =>{
-        console.log(e.target);
-        //new ShowInfoModal();
-    });
-});*/

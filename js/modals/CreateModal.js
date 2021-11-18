@@ -96,7 +96,7 @@ class CreateModal{
                        ]
                 ];
 
-    constructor(x, y, dayWeek, day, month, dataDate){
+    constructor(x, y, dayWeek, day, month, dataDate, editEvent){
         readArray(this.#structure);
         
         const modal = document.querySelector(".modal");
