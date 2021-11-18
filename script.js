@@ -1,13 +1,23 @@
 window.onload = init;
 
-var dayDiv = document.querySelector("#month-container")
-var monthDiv = document.querySelector("#year-container")
-var dayNameContainer = document.getElementById("day-name")
-var dayNameContainerH1 = document.getElementById("day-name-h1")
-var monthNameContainerH1 = document.getElementById("month-name-h1")
-var yearNameContainerH1 = document.getElementById("year-name-h1")
+var dayDiv = document.querySelector("#month-container");
+var monthDiv = document.querySelector("#year-container");
+var dayNameContainer = document.getElementById("day-name");
+var dayNameContainerH1 = document.getElementById("day-name-h1");
+var monthNameContainerH1 = document.getElementById("month-name-h1");
+var yearNameContainerH1 = document.getElementById("year-name-h1");
 
-var hourDiv = document.querySelector("#day-container")
+var nextMonth = document.querySelector("#cssnextmonth");
+var previousMonth = document.querySelector("#csspreviousmonth");
+var nextYear = document.querySelector("#leftchange");
+var previousYear = document.querySelector("#rightchange");
+
+nextMonth.addEventListener("click", changeYear);
+previousMonth.addEventListener("click", changeYear);
+nextYear.addEventListener("click", changeYear);
+previousYear.addEventListener("click", changeYear);
+
+var hourDiv = document.querySelector("#day-container");
 
 var eventHistoricArray = [];
 var monthDayArray = [];
@@ -21,7 +31,6 @@ const dayNameObj = {
     Saturday:5,
     Sunday:6,
 }
-
 const monthNameArr = ["January","February","March","April","May","June","July","August","September","October","November","December"]
 const monthNameObj = {
     January:31,
@@ -38,13 +47,11 @@ const monthNameObj = {
     Decembe:31,
 }
 
-
 var today = new Date ();
 var todayNumDay = today.getDate();//15
 const todayMonth = today.getMonth();//11
 var todayMonthName = monthNameArr[todayMonth];//november
 var todayYear = today.getFullYear();//2021
-
 var selectedDay = todayNumDay;
 var selectedMonth = todayMonth;
 var selectedYear = todayYear;
@@ -52,7 +59,7 @@ var selectedYear = todayYear;
 function init(){
     loadStorage();
     refreshContainers();
-    createYearMonthDays(selectedYear)
+    createYearMonthDays(selectedYear,selectedMonth)
     //createMonthDays();
 }
 
@@ -61,27 +68,62 @@ function refreshContainers(){
     monthNameContainerH1.textContent = monthNameArr[selectedMonth];
     yearNameContainerH1.textContent = selectedYear;
 }
+function changeYear(event){
+    switch (event.target.id) {
+        case "nextmonth":
+            selectedMonth++;
+            if (selectedMonth > 11){
+                selectedMonth = 0;
+                selectedYear++;
+            }else{
 
-var selectedMonthDays = new Date(selectedYear,selectedMonth+1,0).getDate();
+            }
+            console.log(selectedMonth)
+            createYearMonthDays(selectedYear)
+            refreshContainers()
+            break;
+        case "previousmonth":
+            selectedMonth--;
+            if (selectedMonth < 0){
+                selectedMonth = 11;
+                selectedYear--;
+            }
+            console.log(selectedMonth)
+            createYearMonthDays(selectedYear)
+            refreshContainers()
+            break;
+        case "rightchange":
+            selectedYear++;
+            createYearMonthDays(selectedYear,selectedMonth)
+            refreshContainers()
+            break;
+        case "leftchange":
+            selectedYear--;
+            createYearMonthDays(selectedYear,selectedMonth)
+            refreshContainers()
+            break;
+        default:
+            break;
+    }
+}
 
-var firstDayMonth = new Date(selectedYear,selectedMonth,1).getDay();
-//var firstDayWeekMonthName = dayNameArr[firstDayMonth]
-var lastDayMonth = new Date(selectedYear,selectedMonth+1,0).getDay();
-
-function createMonthDays(){
+function createMonthDays(year,month){
     deleteMonthDays();
-    createDay(selectedMonthDays);
+    createDay(year,month);
     createHoursFun(selectedDay);
     addEventsListeners();
 }
-// function createDaysHours(){
-//     createHoursFun(selectedDay)
-// }
-function createDay(num){
+function createDay(year,month){
+    var num = new Date(year,month+1,0).getDate();
+    var firstDayMonth = new Date(year,month,1).getDay();
+    var lastDayMonth = new Date(year,month+1,0).getDay();
     var countday = 1;
     let countweek = firstDayMonth;
     let firstWeek = firstDayMonth;
     let lastWeek = lastDayMonth;
+    if(firstWeek==0){
+        firstWeek=7;
+    }
     while(firstWeek > 1){
         var dayEmpty = document.createElement("div");
         dayEmpty.setAttribute("id","day-container-empty" + firstWeek);
@@ -93,7 +135,7 @@ function createDay(num){
         var day = document.createElement("div");
         day.setAttribute("id","day-container-" + countday);
         day.classList.add("day-container")
-        if(countday == todayNumDay && todayMonth==selectedMonth && todayYear==selectedYear){
+        if(countday == todayNumDay && todayMonth==month && todayYear==year){
             day.classList.add("today-special-day")
         }
         dayDiv.appendChild(day)
@@ -111,6 +153,9 @@ function createDay(num){
         }else{
             countweek++;
         }
+    }
+    if(lastWeek == 0){
+        lastWeek = 7;
     }
     while(lastWeek <= 6){
         var dayEmptyLast = document.createElement("div");
@@ -136,10 +181,6 @@ function displayEventsPerDay(day,i){
         createDivEvent.addEventListener("click",function() { modalEvent(i)})
         day.appendChild(createDivEvent);
 }
-function consoleLog(){
-    console.log("hola")
-}
-
 var i;
 function assignEvent(countday,day){
     i = 0
@@ -151,8 +192,6 @@ function assignEvent(countday,day){
         i++;
     }
 }
-
-
 function createHoursFun(){
     var countHours = 1 ;
     while (countHours <= 24) {
@@ -189,48 +228,25 @@ function loadStorage(){
     }
 }
 
-//create year days
-//var today = new Date ();
-//var todayNumDay = today.getDate();//15
-//const todayMonth = today.getMonth();//11
-//var todayMonthName = monthNameArr[todayMonth];//november
-//var todayYear = today.getFullYear();//2021
-
-//var selectedDay = todayNumDay;
-//var selectedMonth = todayMonth;
-//var selectedYear = todayYear;
-
-
-
-//var firstDayMonth = new Date(selectedYear,selectedMonth,1).getDay();
-//var firstDayWeekMonthName = dayNameArr[firstDayMonth]
-//var lastDayMonth = new Date(selectedYear,selectedMonth+1,0).getDay();
-
 function createYearMonthDays(year){//
-    //deleteYearMonthDays();//
+    deleteYearMonthDays();//
     let m = 0;//crear 12 meses
     while(m < 12){
         let selectedYearMonthDays = new Date(year,m+1,0).getDate();
         createDaysYear(year,selectedYearMonthDays,m);
         m++;
     }
-    createMonthDays()//dejar para crear meses
+    createMonthDays(selectedYear,selectedMonth)//dejar para crear meses
 }
 function deleteYearMonthDays(){//
     while (monthDiv.firstChild) {
         monthDiv.removeChild(monthDiv.lastChild)
     }
 }
-
 function createDaysYear(year,num,m){
-    console.log("hola")
-    console.log(year)
-    console.log(num)
-    console.log(m)
+
     var firstDayMonthY = new Date(year,m,1).getDay();//0-7
-    console.log(firstDayMonthY)
     var lastDayMonthY = new Date(year,m+1,0).getDay();//0-7
-    console.log(lastDayMonthY)
     var countday = 1;
     let countweek = firstDayMonthY;
     let firstWeek = firstDayMonthY;
