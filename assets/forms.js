@@ -152,7 +152,7 @@ function createEvent(){
         bigEvents(fecha, endFecha);
     }
     var eventDiv = document.getElementById("Mymodal");
-    createMonthDays();
+    createYearMonthDays(selectedYear);
     eventDiv.remove();
 }
 
