@@ -5,6 +5,7 @@ var modalContent = modalContentor[0]
 //TODO Display modal Start
 function modalStart() {
     beginModal()
+    fecha = undefined;
     openModal()
 }
 
