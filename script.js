@@ -76,7 +76,6 @@ function changeYear(event){
                 selectedMonth = 0;
                 selectedYear++;
             }else{
-
             }
             console.log(selectedMonth)
             createYearMonthDays(selectedYear)
