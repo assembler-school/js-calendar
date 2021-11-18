@@ -75,8 +75,9 @@ function deleteEvent(){
     // localStorage.setItem('eventBook', JSON.stringify(eventBook))
     // closeModal()
    
-function getDataFromCalendar (DOM) {
+function getDataFromCalendar (num1) {
     //COGER LOS EVENTOS DEL DIA
+    
     filter= eventBook.filter(element=>{
         // console.log(new Date(fecha).getFullYear(), new Date(element.startDate).getFullYear())
         if(new Date(fecha).getFullYear() == new Date(element.startDate).getFullYear()){
@@ -89,8 +90,25 @@ function getDataFromCalendar (DOM) {
         } 
         return false
     })
-    filter.forEach(element => {
-        console.log(element)
+
+    filter.forEach(event => {
+        eventDay = new Date(event.startDate).getDate()
+        eventMonth = new Date(event.startDate).getMonth()
+        eventYear =  new Date(event.startDate).getFullYear()
+       
+        console.log(eventDay)
+        console.log(eventMonth +1)
+        console.log(eventYear)
+        console.log(event.title)
+console.log(filter)  
+        let eventOnCalendar = document.createElement('div')
+        let eventText = document.createElement('h3') 
+        eventText.innerHTML = event.title
+        num1.appendChild(eventText)
+
+    /*     if (element.startDate == fecha){
+            
+        } */
     });
     // console.log(filter)
     //CREAR UN IF SI LA LONGITUD ES 0 Y NO LEAS EL RESTO DEL CODIGO
