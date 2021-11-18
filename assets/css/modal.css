@@ -343,7 +343,18 @@ input[type="checkbox"] {
 
 /* Tag */
 
+.btnmodalinfo{
+    width: 200px;
+    height: 100%;
+    z-index: 10;
+    cursor: pointer;
+    background-color: blue;
+    position: relative;
+}
+
 .miniEvents {
+    position: relative;
+    padding: auto;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -411,29 +422,91 @@ input[type="checkbox"] {
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.2); /* Black w/ opacity */
+    background-color: rgba(0,0,0,0.1); /* Black w/ opacity */
 }
 
   /* Modal Content */
 .modal-content {
     background-color: #fefefe;
     margin: auto;
-    padding: 20px;
+    padding: 10px;
     border: 1px solid #888;
-    width: 80%;
+    width: 50%;
 }
 
   /* The Close Button */
-.close {
+.close,
+.edit,
+.delete {
     color: #aaaaaa;
     float: right;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: bold;
 }
 
 .close:hover,
-.close:focus {
+.close:focus,
+.edit:hover,
+.edit:focus,
+.delete:hover,
+.delete:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+/* edit button */
+
+/* delete button */
+.modal-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 10px;
+}
+.modal-content>div{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.modal-content>div>i{
+    margin: 10px;
+}
+.modal-content>section{
+    padding: 5px;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+}
+.modal-content>section>div>h2{
+    margin: 5px!important;
+}
+.modal-content>section>div{
+    width: 70%;
+}
+
+.typeeventmodal{
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    width: 30%!important;
+}
+.typeeventmodal>i{
+    margin: 15px;
+    height: 30px;
+    width: 30px;
+    border-radius: 10px;
+}
+#contmodalinfo>p{
+    margin:3px!important;
+}
+#contmodalinfo>span{
+    visibility: hidden;
+}
+
+.bigModalId {
+    visibility: hidden;
 }

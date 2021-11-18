@@ -15,7 +15,6 @@ class calendarEvent {
     }
     setToLocalStorage(eventType) {
         if (localStorage[eventType]) {
-            console.log('+1 in Id');
             let typeStorage = JSON.parse(localStorage[eventType]);
             typeStorage.push(this.allEvent)
             localStorage[eventType] = (JSON.stringify(typeStorage))
@@ -29,9 +28,7 @@ class calendarEvent {
     setIDToStorage() {
         if (!localStorage.id) {
             localStorage.id = '0';
-            console.log('a');
         }
-        console.log(localStorage.id);
         localStorage.id = parseInt(localStorage.id) + 1
     }
     createTagEvent(father) {
@@ -49,21 +46,21 @@ class calendarEvent {
             if (this.allEvent.eventType == 'Meeting') {
                 father.appendChild(newElement({
                     tag: 'div',
-                    id: id,
+                    id: this.allEvent.eventId,
                     clas: ['miniEvents', 'meeting'],
                     content: this.allEvent.eventTitle
                 }))
             } else if (this.allEvent.eventType == 'Personal') {
                 father.appendChild(newElement({
                     tag: 'div',
-                    id: id,
+                    id: this.allEvent.eventId,
                     clas: ['miniEvents', 'personal'],
                     content: horaevento + "  " + this.allEvent.eventTitle
                 }))
             } else if (this.allEvent.eventType == 'Study')
                 father.appendChild(newElement({
                     tag: 'div',
-                    id: id,
+                    id: this.allEvent.eventId,
                     clas: ['miniEvents', 'study'],
                     content: horaevento + "  " + this.allEvent.eventTitle
                 }))
@@ -78,6 +75,35 @@ class calendarEvent {
         });
     }
 }
+
+let fatherPruebas = document.getElementById('fatherPruebas')
+let eventoPruebas = new calendarEvent('llamar a pepe', '18-11-2021', '19-11-2021', 'Laborables', '5 minutes', 'llamar a pepe para devolverle el casco de la moto', 'Meeting');
+let eventoPruebas1 = new calendarEvent('titulo', '18-11-2021T11:25', '', 'No se repite', '', '', 'Personal');
+let eventoPruebas2 = new calendarEvent('titulo', '18-11-2021T11:25', '', 'No se repite', '', '', 'Study');
+let btnPruebas = document.getElementById('pruebas');
+
+btnPruebas.addEventListener('click', function () {
+    eventoPruebas.createTagEvent(fatherPruebas, eventoPruebas.allEvent.eventId);
+    eventoPruebas1.createTagEvent(fatherPruebas, eventoPruebas.allEvent.eventId);
+    eventoPruebas2.createTagEvent(fatherPruebas, eventoPruebas.allEvent.eventId);
+    var eventsClick = document.getElementsByClassName("miniEvents")
+    console.log(eventsClick);
+    for (const evn of eventsClick) {
+        evn.addEventListener("click", function (evn) {
+            console.log(evn.srcElement);
+            var obj = getEventById(evn.srcElement.id)
+            console.log(obj)
+            titleModalInfo.innerHTML = obj.eventTitle
+            dateModalInfo.innerHTML = obj.fechaInicio
+            repetModalInfo.innerHTML = obj.repeat;
+            cicletype.classList.add((obj.eventType).toLowerCase())
+            typeeventmodal.innerHTML = obj.eventType
+            ideventmodal.innerHTML = obj.eventId
+            modal.style.display = "block";
+        })
+    }
+})
+
 
 function startSetTimeOut() {
     setTimeout(() => {
