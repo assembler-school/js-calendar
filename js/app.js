@@ -79,7 +79,7 @@ export function displayCalendar() {
                             // new ShowInfoModal(e.clientX, e.clientY / 2);
                         }else{
                             createBackground();
-                            new CreateModal(e.clientX - 400, e.clientY / 2, weekdays[i%7], dayElement.firstChild.innerText, currentMonth.textContent, e.target.firstChild.attributes[1].nodeValue)ç
+                            new CreateModal(e.clientX - 400, e.clientY / 2, weekdays[i%7], dayElement.firstChild.innerText, currentMonth.textContent, e.target.firstChild.attributes[1].nodeValue);
                             // new ShowInfoModal(e.clientX, e.clientY / 2);
                         }
                     }
@@ -117,6 +117,7 @@ document.getElementById('today').addEventListener('click', () =>{
 });
 //create event button
 document.getElementById('create-event').addEventListener('click', (e) =>{
+    console.log(e.target.offsetLeft);
     new CreateModal(e.target.offsetLeft - 430, e.target.y);
 });
 
@@ -152,3 +153,13 @@ export default function fetchEvents() {
         }
     })
 }
+
+
+const allEvents = document.querySelectorAll('.event');
+
+allEvents.forEach(event => {
+    event.addEventListener('click', (e) =>{
+        console.log(e.target);
+        new ShowInfoModal();
+    });
+});
