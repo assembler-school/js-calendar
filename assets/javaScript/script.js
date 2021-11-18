@@ -7,8 +7,12 @@ var month = dateNow.getMonth();
 var day = dateNow.getDate();
 var year = dateNow.getFullYear();
 var nextMonth = month + 1;
+var prevMonth = month -1;
 
 function displayCalendar() {
+
+    eventBook = loadEventBook()
+    
     dateNow.setDate(1)
     calendario = document.getElementById("calendar")
     calendario.innerHTML = null
@@ -82,13 +86,23 @@ function displayCalendar() {
     //Date num
     
     const monthNow= document.querySelectorAll(".gridCalendar")
+  
+    // beginModal()
+    
     monthNow.forEach(num=> {
         num.addEventListener("click", ()=>{
+            // console.log(pruebaotravez)
             numero= num.textContent
-            fecha= ` ${numero} ${monthNames[month]} ${year}`
-            console.log(fecha)
-            modalStart()
-        })
+            monthF=month
+            if (monthF<10)
+            monthF="0" + monthF
+            if (numero < 10)
+            numero="0"+numero
+            fecha= `${year}-${monthF}-${numero}`
+            // console.log(fecha)
+            // console.log(fecha)
+            modalStart()        })
+        
     });
 
 
