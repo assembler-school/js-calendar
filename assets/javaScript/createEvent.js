@@ -21,12 +21,11 @@ function loadEventBook(){
 
 let eventBook
 let arrayData=[]
-function createEvent() {
+function createEvent(e) {
+    e.preventDefault()
     const formClass = document.getElementsByClassName('formInputs')
-    console.log(formClass)
     for (num in formClass){
         arrayData.push(formClass[num].value)
-        console.log(formClass[num].value)
     }
     let obj
     if( arrayData.length > 6){
@@ -34,10 +33,27 @@ function createEvent() {
     } else{
         obj= eventData(arrayData[0], arrayData[1], arrayData[1] , arrayData[3], arrayData[4], arrayData[2])
     }
-    console.log(eventBook)
-
     eventBook.push(obj)
     arrayData=[]
-
     localStorage.setItem('eventBook', JSON.stringify(eventBook))
+    closeModal()
+   }
+
+function getDataFromCalendar () {
+
+   eventBook.forEach((e) => {
+
+        title = e.title;
+        console.log(title)
+        startData = new Date (e.startDate)
+        eventDay = startData.getDay()
+
+        console.log(eventDay)
+    }) 
 }
+
+/* function printEventOnCalendar () {
+
+
+} */
+   // crear otra funcion donde dev criar um div e ponder este div con este titotlo y esta data. e ponder este dive dentro del dia del calendario 

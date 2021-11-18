@@ -72,6 +72,7 @@ function displayCalendar() {
     calendarBody += "<ul>";
     calendarBody += htmlContent;
     calendarBody += "</ul></div>";
+    calendarBody += "<button id='testBtn' onclick='getDataFromCalendar()'>TEST CLICK</button>";
 
     //todo The Modal
     document.getElementById("calendar").innerHTML = calendarBody;
@@ -82,11 +83,13 @@ function displayCalendar() {
     
     const monthNow= document.querySelectorAll(".gridCalendar")
     monthNow.forEach(num=> {
+   
+
         num.addEventListener("click", ()=>{
             numero= num.textContent
             fecha= ` ${numero} ${monthNames[month]} ${year}`
-            modalStart()
             console.log(fecha)
+            modalStart()
         })
     });
 
