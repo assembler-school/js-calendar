@@ -285,15 +285,22 @@ function magia(a) {
     } else if (a.allEvent.repeat == "Cada dia") {
         let b = new Date(a.allEvent.fechaInicio)
         b.setHours(b.getHours() + 24);
-        let childrenDate = new calendarEvent(a.allEvent.eventTitle, b, a.allEvent.fechaFin, a.allEvent.repeat, a.allEvent.remember, a.allEvent.description, a.allEvent.eventType, a.allEvent.eventId)
+        let childrenDate = new calendarEvent(a.allEvent.eventTitle,nomalizaeFecha(b), a.allEvent.fechaFin, a.allEvent.repeat, a.allEvent.remember, a.allEvent.description, a.allEvent.eventType, a.allEvent.eventId)
         console.log(childrenDate);
         console.log(a.allEvent.fechaInicio);
         a.allEvent.fechaInicio
     } else if (a.allEvent.repeat == "Cada semana") {
-
+        let b = new Date(a.allEvent.fechaInicio)
+        b.setDate(b.getDate() + 7);
     } else if (a.allEvent.repeat == "Cada mes") {
 
     } else if (a.allEvent.repeat == "Laborables") {
 
     }
+}
+function nomalizaeFecha(a){
+    var b=a.getDate()
+    var c=a.getMonth()+1
+    var d=a.getFullYear()
+    return d+"-"+c+"-"+b
 }
