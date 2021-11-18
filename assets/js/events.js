@@ -86,13 +86,17 @@ function startSetTimeOut() {
 function allLocalStorage(X = []) {
     let typeStorage
     for (const a of X) {
+        if(!localStorage[a]){
+
+        }
+        else{
         if (typeStorage == undefined) {
             typeStorage = JSON.parse(localStorage[a]);
         } else {
             let typeStorage2 = typeStorage;
             let typeStorage3 = JSON.parse(localStorage[a]);
             typeStorage = typeStorage3.concat(typeStorage2);
-        }
+        }}
     }
     return typeStorage
 }
