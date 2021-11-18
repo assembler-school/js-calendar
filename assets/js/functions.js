@@ -226,16 +226,14 @@ function isSameDay(date1, date2) {
     return false;
 }
 
-function getAllEventsOfDay(dom) {
-    var events = JSON.parse(localStorage.getItem('eventType'));
-    let dateEvent = new Date(dom.dataset.year, dom.dataset.month, dom.dataset.day);
-    listEvents = events.filter(element => {
-        let event = new Date(element.fechaInicio);
-        return isSameDay(dateEvent, event);
-    });
-}
-
 function createListEvents() {
+    document.getElementById('micalendar_minicalendar').innerHTML = null;
+    var summary = newElement({
+        tag: 'summary',
+        id: '',
+        clas: [],
+        content: 'All Events List'
+    });
     document.getElementById('micalendar_minicalendar').innerHTML = null;
     var summary = newElement({
         tag: 'summary',
@@ -280,6 +278,11 @@ function getAllEventsOfDay(type) {
         return isSameDay(selectedTypeEvent, event);
     });
     listEvents = listEvents.concat(listFilter);
+    orderListDay(listEvents);
+}
+
+function orderListDay(array) {
+    array.sort((a, b) => a.fechaInicio > b.fechaInicio);
 }
 
 document.querySelectorAll(".btn-prev-month").forEach(element => {
