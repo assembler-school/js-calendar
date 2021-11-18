@@ -43,12 +43,15 @@ function getDataFromCalendar () {
 
    eventBook.forEach((e) => {
 
-        title = e.title;
-        console.log(title)
-        startData = new Date (e.startDate)
-        eventDay = startData.getDay()
-
+    console.log(eventBook)
+    title = e.title;
+    startDate = new Date (e.startDate)
+    console.log(startDate)
+       
+        /* var eventDate= ` ${eventDay} ${monthNames[month]} ${year}`
         console.log(eventDay)
+        
+        console.log(eventDate */
     }) 
 }
 

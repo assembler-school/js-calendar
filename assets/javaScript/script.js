@@ -83,8 +83,6 @@ function displayCalendar() {
     
     const monthNow= document.querySelectorAll(".gridCalendar")
     monthNow.forEach(num=> {
-   
-
         num.addEventListener("click", ()=>{
             numero= num.textContent
             fecha= ` ${numero} ${monthNames[month]} ${year}`
@@ -92,6 +90,7 @@ function displayCalendar() {
             modalStart()
         })
     });
+
 
     //first modal
     const firstModal = document.getElementById("firstModal")
