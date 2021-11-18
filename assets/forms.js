@@ -1,6 +1,8 @@
 const eventCreator = document.getElementById("buttonaddevent");
 eventCreator.addEventListener("click", createNewEvent);
 
+var errors = document.getElementById("error")
+
 function createNewEvent(){
     var eventDiv = document.createElement("div")
     eventDiv.setAttribute("id", "Mymodal");
@@ -40,7 +42,9 @@ function createNewEvent(){
         </select>
     </div>
     <button id="cancelEvent">Cancel</button>
-    <button id="createEvent">Create</button>`
+    <button id="createEvent">Create</button>
+    <div id="error"></div>`
+    
     modalContent.innerHTML = html;
 
     document.getElementById("cancelEvent").addEventListener("click", closeModal);
@@ -112,48 +116,87 @@ function createEvent2(fecha){
     localStorage.setItem("historic",JSON.stringify(historicEvents));
     console.log(newDayEvent.day);
 }
+function eventValidation(){
+    var valueTitle = false;
+    var valueInitDate = false;
+    var valueReminder = false;
+    var valueEndDate= false;
+    if(/[a-zA-Z\d]{1,15}$/.test(document.getElementById("eventName").value)){
+        valueTitle = true;
+    }
+    if(document.getElementById("initDate").value){
+        valueInitDate = true;
+    }
+    if(document.getElementById("checkReminder").checked){
+        if (document.getElementById("reminder").value) {
+            valueReminder = true;
+        }
+    }else{
+        valueReminder = true;
+    }
+    if(document.getElementById("checkEnd").checked){
+        if(document.getElementById("endaDate").value){
+            valueEndDate= true;
+        }
+    }else{
+        valueEndDate= true;
+    }
+    if (valueTitle == true &&  valueInitDate == true && valueReminder == true && valueEndDate == true ) {
+        var valueTitle = false;
+        var valueInitDate = false;
+        var valueReminder = false;
+        var valueEndDate= false;
+        return true;
+    }
+}
+
 
 function createEvent(){
-    initNewDayEvent();
-    let fecha = new Date(document.getElementById("initDate").value);
-    newDayEvent.year = fecha.getFullYear();
-    newDayEvent.month = fecha.getMonth();
-    newDayEvent.day = fecha.getDate();
-    newDayEvent.hour = fecha.getHours();
-    newDayEvent.title = document.getElementById("eventName").value;
-    newDayEvent.initialDate = document.getElementById("initDate").value;
-    let endFecha = new Date(document.getElementById("endaDate").value);
-    if (document.getElementById("checkEnd").checked){
-        // newDayEvent.endYear = endFecha.getFullYear();
-        // newDayEvent.endMonth = endFecha.getMonth();
-        // newDayEvent.endDay = endFecha.getDate();
-        // newDayEvent.endHour = endFecha.getHours();
-        newDayEvent.endaDate = document.getElementById("endaDate").value;
+    errors = document.getElementById("error")
+    if(eventValidation()==true){
+        initNewDayEvent();
+        let fecha = new Date(document.getElementById("initDate").value);
+        newDayEvent.year = fecha.getFullYear();
+        newDayEvent.month = fecha.getMonth();
+        newDayEvent.day = fecha.getDate();
+        newDayEvent.hour = fecha.getHours();
+        newDayEvent.title = document.getElementById("eventName").value;
+        newDayEvent.initialDate = document.getElementById("initDate").value;
+        let endFecha = new Date(document.getElementById("endaDate").value);
+        if (document.getElementById("checkEnd").checked){
+            // newDayEvent.endYear = endFecha.getFullYear();
+            // newDayEvent.endMonth = endFecha.getMonth();
+            // newDayEvent.endDay = endFecha.getDate();
+            // newDayEvent.endHour = endFecha.getHours();
+            newDayEvent.endaDate = document.getElementById("endaDate").value;
+        }
+        else{
+            // newDayEvent.endYear = fecha.getFullYear();
+            // newDayEvent.endMonth = fecha.getMonth();
+            // newDayEvent.endDay = fecha.getDate();
+            // newDayEvent.endHour = fecha.getHours() + 1;
+            newDayEvent.endaDate = newDayEvent.initialDate;
+        }
+        if (document.getElementById("checkReminder").checked){
+            newDayEvent.remindTime = document.getElementById("reminder").value;
+        }
+        else{
+            newDayEvent.remindTime = null;
+        }
+        newDayEvent.description = document.getElementById("description").value;
+        newDayEvent.eventTipe = document.getElementById("eventType").value;
+        historicEvents.push(newDayEvent);
+        localStorage.setItem("historic",JSON.stringify(historicEvents));
+        console.log(newDayEvent.day);
+        if (document.getElementById("checkEnd").checked){
+            bigEvents(fecha, endFecha);
+        }
+        var eventDiv = document.getElementById("Mymodal");
+        createYearMonthDays(selectedYear);
+        eventDiv.remove();
+    }else{
+        errors.textContent = "Write a name"
     }
-    else{
-        // newDayEvent.endYear = fecha.getFullYear();
-        // newDayEvent.endMonth = fecha.getMonth();
-        // newDayEvent.endDay = fecha.getDate();
-        // newDayEvent.endHour = fecha.getHours() + 1;
-        newDayEvent.endaDate = newDayEvent.initialDate;
-    }
-    if (document.getElementById("checkReminder").checked){
-        newDayEvent.remindTime = document.getElementById("reminder").value;
-    }
-    else{
-        newDayEvent.remindTime = null;
-    }
-    newDayEvent.description = document.getElementById("description").value;
-    newDayEvent.eventTipe = document.getElementById("eventType").value;
-    historicEvents.push(newDayEvent);
-    localStorage.setItem("historic",JSON.stringify(historicEvents));
-    console.log(newDayEvent.day);
-    if (document.getElementById("checkEnd").checked){
-        bigEvents(fecha, endFecha);
-    }
-    var eventDiv = document.getElementById("Mymodal");
-    createYearMonthDays(selectedYear);
-    eventDiv.remove();
 }
 
 function bigEvents(fecha1, fecha2){
@@ -164,3 +207,4 @@ function bigEvents(fecha1, fecha2){
         dif = new Date(dif - (1*24*60*60*1000));
     }
 }
+
