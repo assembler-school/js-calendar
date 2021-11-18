@@ -56,7 +56,7 @@ export default function createModalToEdit(e){
     const spanTitle=document.createElement("span");
     spanTitle.classList.add("itemEditModal");
         spanTitle.id="eventTitle";
-        spanTitle.innerHTML=/*aqui vale el title*/"<h2>"+"Evento"+"</h2>"+
+        spanTitle.innerHTML=/*aqui vale el title*/"<h2>"+e.target.innerText+"</h2>"+
         /*fecha inicio*/"<p>"+eventStartDate;
     divItems.appendChild(spanTitle);
     //Spawn alert

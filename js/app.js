@@ -154,7 +154,9 @@ export function fetchEvents() {
                 element.lastChild.innerHTML = '';
             for (let i = 0; i < dailyEvents.length; i++) {
                 const newEvent = document.createElement('p');
+                console.log(event[i].eventID);
                 newEvent.setAttribute("data-eventid", event[i].eventID);
+                console.log(newEvent.attributes[0]);
                 newEvent.innerHTML = `${dailyEvents[i].title} <span class="event-data">${event[i].day} ${event[i].month} ${event[i].year} </span>`;
                 newEvent.classList.add('event');
                 element.lastChild.appendChild(newEvent);
