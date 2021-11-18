@@ -76,6 +76,7 @@ function displayCalendar() {
     calendarBody += htmlContent;
     calendarBody += "</ul></div>";
     calendarBody += '<button class="btn btn-primary btn-lg" onclick="remiderTimer()"> Test Button </button>'
+    calendarBody += "<button id='testBtn' onclick='getDataFromCalendar()'>TEST CLICK</button>";
 
     //todo The Modal
     document.getElementById("calendar").innerHTML = calendarBody;
@@ -98,7 +99,24 @@ function displayCalendar() {
         })
     })
 
-    //TODO first modal
+    monthNow.forEach(num1=>{
+        numero=num1.textContent
+        monthF=month
+        if (monthF<10)
+        monthF="0" + monthF
+        if (numero < 10)
+        numero="0"+numero
+        time = new Date();
+        hour = time.getHours();
+        minute = pad(time.getMinutes())
+        seconds = pad(time.getSeconds());
+        houtMin= `${hour}:${minute}:${seconds}`
+        fecha= `${year}-${monthF + 1}-${numero}T${houtMin}`
+        // console.log(fecha)
+        // console.log(fecha)
+        getDataFromCalendar(num1)
+    })
+    //first modal
     const firstModal = document.getElementById("firstModal")
     firstModal.addEventListener("click", modalStart)
     //NEXT MONTH
@@ -121,7 +139,7 @@ function pepe(num){
         minute = pad(time.getMinutes())
         seconds = pad(time.getSeconds());
         houtMin= `${hour}:${minute}:${seconds}`
-        fecha= `${year}-${monthF}-${numero}T${houtMin}`
+        fecha= `${year}-${monthF + 1}-${numero}T${houtMin}`
         // console.log(fecha)
         // console.log(fecha)
         // modalStart() 

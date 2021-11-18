@@ -12,7 +12,10 @@ body {
     color: gray;
     text-align: center;
 }
+<<<<<<< HEAD
+=======
 
+>>>>>>> main
 .monthNow {
     color:#000000;
     font-weight: bolder;
@@ -25,14 +28,12 @@ body {
     font-weight: bolder;
     text-align: center;
 }
-
 .calendar li {
     /* display: grid;
     grid-template-columns: repeat(7,1fr); */
     list-style: none;
     /* grid-template-rows: auto; */
 }
-
 .monthNow li {
     width: 100%;
     background-color: #000000;

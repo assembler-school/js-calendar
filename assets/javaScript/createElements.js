@@ -1,4 +1,5 @@
 function beginModal(){
+   
     //console.log(eventBook)
     content = "<span class='close'>&times;</span>"
     content +=" <div ><form class='eventForm modal-content '><div><label for='title'>Title</label> <input type='text' class='formInputs' name='title' id='title' placeholder='My Event' required> </div>"
@@ -15,7 +16,7 @@ function beginModal(){
 
     modalContent.innerHTML= content
     if (!fecha){
-        console.log("pepe")
+        fecha = undefined
     } else{
     document.getElementById("begindateId").value=fecha;
 
