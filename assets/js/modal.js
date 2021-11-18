@@ -43,9 +43,6 @@ window.onclick = function (event) {
     }
 }
 
-
-
-
 //Validación
 
 btnSave.addEventListener("click", comprovacionFinal);
@@ -54,7 +51,6 @@ eventTitleInput.addEventListener("mouseup", comprovaciones);
 eventTitleInput.addEventListener("keyup", comprovaciones);
 
 function comprovaciones() {
-  
     let profile_cont_input = document.getElementsByClassName('title-modal-input');
     if (profile_cont_input[0].value.length > 3) {
         profile_cont_input[0].style.color = "var(--azul)";
@@ -98,7 +94,9 @@ function comprovacionFinal() {
         if (checkboxDate.checked == true && recordatorio_modal.checked == true) {
             finalEvent = new calendarEvent(allEventInputs[0].value, allEventInputs[1].value, allEventInputs[2].value, allEventInputs[3].value, allEventInputs[4].value, allEventInputs[5].value, allEventInputs[6].value);
             cerrar_modal();
-            window.location.reload(); //es mal
+            magia(finalEvent);
+            /*             window.location.reload(); //es mal
+             */
             console.log(finalEvent);
         } else if (checkboxDate.checked == true && recordatorio_modal.checked == false) {
             finalEvent = new calendarEvent(allEventInputs[0].value, allEventInputs[1].value, allEventInputs[2].value, allEventInputs[3].value, 'undefined', allEventInputs[4].value, allEventInputs[5].value);
@@ -275,5 +273,27 @@ function deleteById(X) {
 window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
+    }
+}
+
+
+//funcionalidad REPEAT
+
+function magia(a) {
+    if (a.allEvent.repeat == 'No se repite') {
+        return
+    } else if (a.allEvent.repeat == "Cada dia") {
+        let b = new Date(a.allEvent.fechaInicio)
+        b.setHours(b.getHours() + 24);
+        let childrenDate = new calendarEvent(a.allEvent.eventTitle, b, a.allEvent.fechaFin, a.allEvent.repeat, a.allEvent.remember, a.allEvent.description, a.allEvent.eventType, a.allEvent.eventId)
+        console.log(childrenDate);
+        console.log(a.allEvent.fechaInicio);
+        a.allEvent.fechaInicio
+    } else if (a.allEvent.repeat == "Cada semana") {
+
+    } else if (a.allEvent.repeat == "Cada mes") {
+
+    } else if (a.allEvent.repeat == "Laborables") {
+
     }
 }

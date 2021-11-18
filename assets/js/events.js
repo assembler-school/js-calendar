@@ -1,5 +1,5 @@
 class calendarEvent {
-    constructor(eventTitle, fechaInicio, fechaFin, repeat, remember, description, eventType) {
+    constructor(eventTitle, fechaInicio, fechaFin, repeat, remember, description, eventType, id = localStorage.id) {
         this.setIDToStorage();
         this.allEvent = {
             eventTitle: eventTitle,
@@ -9,7 +9,7 @@ class calendarEvent {
             remember: remember,
             description: description,
             eventType: eventType,
-            eventId: localStorage.id
+            eventId: id
         }
         this.setToLocalStorage(this.allEvent.eventType);
     }
@@ -82,26 +82,26 @@ function startSetTimeOut() {
         findFather();
     }, 100);
 }
-
-setInterval(function(){
+/* 
+setInterval(function () {
     recuerdame(getEventById(23))
-},1000)
+}, 1000) */
 
 
 function allLocalStorage(X = []) {
     let typeStorage
     for (const a of X) {
-        if(!localStorage[a]){
+        if (!localStorage[a]) {
 
-        }
-        else{
-        if (typeStorage == undefined) {
-            typeStorage = JSON.parse(localStorage[a]);
         } else {
-            let typeStorage2 = typeStorage;
-            let typeStorage3 = JSON.parse(localStorage[a]);
-            typeStorage = typeStorage3.concat(typeStorage2);
-        }}
+            if (typeStorage == undefined) {
+                typeStorage = JSON.parse(localStorage[a]);
+            } else {
+                let typeStorage2 = typeStorage;
+                let typeStorage3 = JSON.parse(localStorage[a]);
+                typeStorage = typeStorage3.concat(typeStorage2);
+            }
+        }
     }
     return typeStorage
 }
@@ -138,50 +138,10 @@ function findFather(x) {
                 if (element.eventId == x) {
                     return
                 }
-                creaTag(element,index)
+                creaTag(element, index)
             }
         });
     }
-
-
-
-
-function creaTag(element,index){
-    if (element.fechaInicio.split("T").length > 1) {
-        var horaevento = element.fechaInicio.split("T")
-        horaevento = horaevento[1]
-        var content = horaevento + ' ' + '<span>' + element.eventTitle + '</span>'
-        if (element.eventType == 'Meeting') {
-            boxEventsCal[index].appendChild(inDay(content, element.eventId, 'miniEvents inday', 'meeting'))
-        } else if (element.eventType == 'Personal') {
-            boxEventsCal[index].appendChild(inDay(content, element.eventId, 'miniEvents inday', 'personal'))
-        } else if (element.eventType == 'Study')
-            boxEventsCal[index].appendChild(inDay(content, element.eventId, 'miniEvents inday', 'study'))
-    } else {
-        if (element.eventType == 'Meeting') {
-            boxEventsCal[index].appendChild(newElement({
-                tag: 'div',
-                id: element.eventId,
-                clas: ['miniEvents', 'meeting'],
-                content: element.eventTitle
-        }))
-        } else if (element.eventType == 'Personal') {
-            boxEventsCal[index].appendChild(newElement({
-                tag: 'div',
-                id: element.eventId,
-                clas: ['miniEvents', 'personal'],
-                content: horaevento + "  " + element.eventTitle
-            }))
-        } else if (element.eventType == 'Study')
-            boxEventsCal[index].appendChild(newElement({
-                tag: 'div',
-                id: element.eventId,
-                clas: ['miniEvents', 'study'],
-                content: horaevento + "  " + element.eventTitle
-            }))
-}}
-
-
     var eventsClick = document.getElementsByClassName("miniEvents")
     console.log(eventsClick);
     for (const evn of eventsClick) {
@@ -201,21 +161,61 @@ function creaTag(element,index){
 }
 
 
-function recuerdame(evn){
-    if(evn.remember !== "undefined"){
-        var actualDate=new Date()
-        var dateEvent= new Date(evn.fechaInicio)
-        if(dateEvent.getFullYear() == actualDate.getFullYear()){
-            if(dateEvent.getMonth() == actualDate.getMonth()){
-                if(dateEvent.getDate() == actualDate.getDate()){
-                    var minAntes=evn.remember.split(" ")[0]
-                    var min=(dateEvent.getMinutes()-parseInt(minAntes))
+
+function creaTag(element, index) {
+    if (element.fechaInicio.split("T").length > 1) {
+        var horaevento = element.fechaInicio.split("T")
+        horaevento = horaevento[1]
+        var content = horaevento + ' ' + '<span>' + element.eventTitle + '</span>'
+        if (element.eventType == 'Meeting') {
+            boxEventsCal[index].appendChild(inDay(content, element.eventId, 'miniEvents inday', 'meeting'))
+        } else if (element.eventType == 'Personal') {
+            boxEventsCal[index].appendChild(inDay(content, element.eventId, 'miniEvents inday', 'personal'))
+        } else if (element.eventType == 'Study')
+            boxEventsCal[index].appendChild(inDay(content, element.eventId, 'miniEvents inday', 'study'))
+    } else {
+        if (element.eventType == 'Meeting') {
+            boxEventsCal[index].appendChild(newElement({
+                tag: 'div',
+                id: element.eventId,
+                clas: ['miniEvents', 'meeting'],
+                content: element.eventTitle
+            }))
+        } else if (element.eventType == 'Personal') {
+            boxEventsCal[index].appendChild(newElement({
+                tag: 'div',
+                id: element.eventId,
+                clas: ['miniEvents', 'personal'],
+                content: horaevento + "  " + element.eventTitle
+            }))
+        } else if (element.eventType == 'Study')
+            boxEventsCal[index].appendChild(newElement({
+                tag: 'div',
+                id: element.eventId,
+                clas: ['miniEvents', 'study'],
+                content: horaevento + "  " + element.eventTitle
+            }))
+    }
+}
+
+
+
+
+
+
+function recuerdame(evn) {
+    if (evn.remember !== "undefined") {
+        var actualDate = new Date()
+        var dateEvent = new Date(evn.fechaInicio)
+        if (dateEvent.getFullYear() == actualDate.getFullYear()) {
+            if (dateEvent.getMonth() == actualDate.getMonth()) {
+                if (dateEvent.getDate() == actualDate.getDate()) {
+                    var minAntes = evn.remember.split(" ")[0]
+                    var min = (dateEvent.getMinutes() - parseInt(minAntes))
                     dateEvent.setMinutes(min)
-                    console.log(dateEvent.getMinutes())
-                    console.log(actualDate.getMinutes())
-                    if(dateEvent.getHours() == actualDate.getHours()){
-                        if(dateEvent.getMinutes() == actualDate.getMinutes()){
-                            alert("en"+minAntes+"minutos tienes un evento:"+evn.eventTitle)
+                    if (dateEvent.getHours() == actualDate.getHours()) {
+                        if (dateEvent.getMinutes() == actualDate.getMinutes()) {
+                            alert("en" + minAntes + "minutos tienes un evento:" + evn.eventTitle)
                         }
                     }
                 }
