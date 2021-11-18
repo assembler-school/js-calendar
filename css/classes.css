@@ -126,14 +126,14 @@
 .day {
     width: 14.25%;
     padding: 10px;
-    max-height: 20%;
+    height: 200px;
     cursor: pointer;
     box-sizing: border-box;
     background-color: white;
     box-shadow: 0px 0px 3px #CBD4C2;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     text-align: right;
   }
   .day:hover {
@@ -151,6 +151,8 @@
     border-radius: 5px;
     max-height: 55px;
     overflow: hidden;
+    text-align:left;
+    margin: 2.5px;
   }
   .padding {
     width: 14.25%;
@@ -169,7 +171,21 @@
   .padding:hover {
     background-color: #e8faed;
   }
+
+  .day-number {
+      display: block;
+  }
+  .day-today {
+    display: block;
+    background-color: red;
+    align-self: flex-end;
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    border-radius: 50%;
+    text-align: center;
   /* modal Background style */
+  }
   .modalBackground{
       position:absolute;
       width:100%;
