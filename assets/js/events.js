@@ -19,7 +19,6 @@ class calendarEvent {
             typeStorage.push(this.allEvent)
             localStorage[eventType] = (JSON.stringify(typeStorage))
         } else if (!localStorage[eventType]) {
-            console.log('Starting Id');
             let typeStorage = []
             typeStorage.push(this.allEvent);
             localStorage[eventType] = (JSON.stringify(typeStorage))
@@ -75,34 +74,6 @@ class calendarEvent {
         });
     }
 }
-
-let fatherPruebas = document.getElementById('fatherPruebas')
-let eventoPruebas = new calendarEvent('llamar a pepe', '18-11-2021', '19-11-2021', 'Laborables', '5 minutes', 'llamar a pepe para devolverle el casco de la moto', 'Meeting');
-let eventoPruebas1 = new calendarEvent('titulo', '18-11-2021T11:25', '', 'No se repite', '', '', 'Personal');
-let eventoPruebas2 = new calendarEvent('titulo', '18-11-2021T11:25', '', 'No se repite', '', '', 'Study');
-let btnPruebas = document.getElementById('pruebas');
-
-btnPruebas.addEventListener('click', function () {
-    eventoPruebas.createTagEvent(fatherPruebas, eventoPruebas.allEvent.eventId);
-    eventoPruebas1.createTagEvent(fatherPruebas, eventoPruebas.allEvent.eventId);
-    eventoPruebas2.createTagEvent(fatherPruebas, eventoPruebas.allEvent.eventId);
-    var eventsClick = document.getElementsByClassName("miniEvents")
-    console.log(eventsClick);
-    for (const evn of eventsClick) {
-        evn.addEventListener("click", function (evn) {
-            console.log(evn.srcElement);
-            var obj = getEventById(evn.srcElement.id)
-            console.log(obj)
-            titleModalInfo.innerHTML = obj.eventTitle
-            dateModalInfo.innerHTML = obj.fechaInicio
-            repetModalInfo.innerHTML = obj.repeat;
-            cicletype.classList.add((obj.eventType).toLowerCase())
-            typeeventmodal.innerHTML = obj.eventType
-            ideventmodal.innerHTML = obj.eventId
-            modal.style.display = "block";
-        })
-    }
-})
 
 
 function startSetTimeOut() {
@@ -184,7 +155,7 @@ function findFather(x) {
                         clas: ['miniEvents', 'personal'],
                         content: horaevento + "  " + element.eventTitle
                     }))
-                } else if (elementt.eventType == 'Study')
+                } else if (element.eventType == 'Study')
                     boxEventsCal[index].appendChild(newElement({
                         tag: 'div',
                         id: element.eventId,
@@ -194,8 +165,23 @@ function findFather(x) {
             };
         });
     }
+    var eventsClick = document.getElementsByClassName("miniEvents")
+    console.log(eventsClick);
+    for (const evn of eventsClick) {
+        evn.addEventListener("click", function (evn) {
+            console.log(evn.srcElement);
+            var obj = getEventById(evn.srcElement.id)
+            console.log(obj)
+            titleModalInfo.innerHTML = obj.eventTitle
+            dateModalInfo.innerHTML = obj.fechaInicio
+            repetModalInfo.innerHTML = obj.repeat;
+            cicletype.classList.add((obj.eventType).toLowerCase())
+            typeeventmodal.innerHTML = obj.eventType
+            ideventmodal.innerHTML = obj.eventId
+            modal.style.display = "block";
+        })
+    }
 }
-
 
 ////PRUEBAS
 

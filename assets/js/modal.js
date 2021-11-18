@@ -54,7 +54,7 @@ eventTitleInput.addEventListener("mouseup", comprovaciones);
 eventTitleInput.addEventListener("keyup", comprovaciones);
 
 function comprovaciones() {
-    if (bigModalId.innerHTML !== "") {
+    if (bigModalId.innerHTML !== "" && momentedit == 1) {
         deleteById(bigModalId.innerHTML)
     }
     let profile_cont_input = document.getElementsByClassName('title-modal-input');
@@ -262,13 +262,15 @@ spandel.onclick = function () {
 }
 
 function deleteById(X) {
-    var obj = getEventById(X)
+    var obj = getEventById(X);
     var arrdel = JSON.parse(localStorage[obj.eventType])
+    console.log(arrdel);
     var arrdelete = arrdel.filter(function (evn) {
         return evn.eventId !== X
     })
+    console.log(arrdelete);
     var envalocal = JSON.stringify(arrdelete)
-    localStorage[obj.eventType] = arrdelete
+    localStorage[obj.eventType] = envalocal
 }
 
 
