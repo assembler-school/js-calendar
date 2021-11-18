@@ -75,22 +75,38 @@ function deleteEvent(){
     // localStorage.setItem('eventBook', JSON.stringify(eventBook))
     // closeModal()
    
-  
-function getDataFromCalendar () {
-    console.log(eventBook)
-   eventBook.forEach((e) => {
-    
-    title = e.title;
-    console.log(title)
-    startDate = e.startDate
-    console.log(startDate)
-   
-    
-       
-    }) 
-}
+function getDataFromCalendar (DOM) {
+    //COGER LOS EVENTOS DEL DIA
+    filter= eventBook.filter(element=>{
+        // console.log(new Date(fecha).getFullYear(), new Date(element.startDate).getFullYear())
+        if(new Date(fecha).getFullYear() == new Date(element.startDate).getFullYear()){
+            if(new Date(fecha).getMonth() == new Date(element.startDate).getMonth()){
+            // console.log(new Date(fecha).getDate(), new Date(element.startDate).getDate())
+                if(new Date(fecha).getDate() == new Date(element.startDate).getDate()){
+                    return true
+                }
+            }
+        } 
+        return false
+    })
+    filter.forEach(element => {
+        
+    });
+    console.log(filter)
+    //CREAR UN IF SI LA LONGITUD ES 0 Y NO LEAS EL RESTO DEL CODIGO
+    //COGER LA VARIABLE CREADA Y IMPRIMIRLA
+//     eventBook.forEach(element => {
+//     title=element.title
+//     date=new Date(element.startDate)
+//     finalDate=new Date(element.endDate)
+//     console.log(finalDate)
+//    })
+};
 
-
+// eventBook.forEach(element => {
+//     prueba=element.title
+//     console.log(prueba)
+// });
    // crear otra funcion donde dev criar um div e ponder este div con este titotlo y esta data. e ponder este dive dentro del dia del calendario 
 
  

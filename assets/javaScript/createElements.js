@@ -16,7 +16,7 @@ function beginModal(){
 
     modalContent.innerHTML= content
     if (!fecha){
-        console.log("pepe")
+        fecha = undefined
     } else{
     document.getElementById("begindateId").value=fecha;
 

@@ -98,7 +98,23 @@ function displayCalendar() {
         })
     })
 
-
+    monthNow.forEach(num1=>{
+        numero=num1.textContent
+        monthF=month
+        if (monthF<10)
+        monthF="0" + monthF
+        if (numero < 10)
+        numero="0"+numero
+        time = new Date();
+        hour = time.getHours();
+        minute = pad(time.getMinutes())
+        seconds = pad(time.getSeconds());
+        houtMin= `${hour}:${minute}:${seconds}`
+        fecha= `${year}-${monthF + 1}-${numero}T${houtMin}`
+        // console.log(fecha)
+        console.log(fecha)
+        getDataFromCalendar(num1)
+    })
     //first modal
     const firstModal = document.getElementById("firstModal")
     firstModal.addEventListener("click", modalStart)
@@ -127,6 +143,7 @@ function pepe(num){
         // console.log(fecha)
         // modalStart() 
 }
+
 
 function sumMonth() {
     calendario.innerHTML = null
