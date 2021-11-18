@@ -144,7 +144,7 @@
     background-color:#e8f4fa;
   }
   .event {
-    font-size: 10px;
+    font-size: 12px;
     padding: 3px;
     background-color: #58bae4;
     color: white;
@@ -177,17 +177,17 @@
   }
 
   .day-number {
-      display: block;
-  }
-  .day-today {
-    display: block;
-    background-color: red;
+    display: flex;
     align-self: flex-end;
+  }
+
+  .day-today {
+    background-color: red;
     width: 20px;
     height: 20px;
     padding: 5px;
     border-radius: 50%;
-    text-align: center;
+    align-items: center;
   /* modal Background style */
   }
   .modalBackground{
@@ -202,9 +202,7 @@
     height: calc(var(--size) / 2);
     margin-right: 10px;
   }
-  .itemEditModal{
-    
-  }
+  
   .itemEditModal img{
     width:15px;    
 }

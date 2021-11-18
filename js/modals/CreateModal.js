@@ -1,6 +1,6 @@
 import CalendarEvent from "../Event/CalendarEvent.js";
 import { element, events, readArray } from "../variables.js";
-import { fetchEvents, openModalEdit } from "../app.js"
+import { fetchEvents } from "../app.js"
 
 var contID=0;
 class CreateModal{
@@ -257,17 +257,15 @@ class CreateModal{
                 //new event
                 contID=localStorage.getItem('id') ? JSON.parse(localStorage.getItem('id')) : contID;
                 contID++;
-                console.log(contID);
                 event.setID(contID);
                 const stringifyEvent = JSON.stringify(event.getEvent());
                 //pushing new event to all events array
                 events.push(JSON.parse(stringifyEvent));
-
                 e.preventDefault();
                 localStorage.setItem("events", JSON.stringify(events));
                 localStorage.setItem("id",JSON.stringify(contID)) 
                 fetchEvents();
-                openModalEdit();
+                //openModalEdit();
                 modal.parentNode.removeChild(modal.previousElementSibling);
                 modal.parentNode.removeChild(modal);
                 return;
@@ -281,11 +279,13 @@ class CreateModal{
             if(e.sourceCapabilities === null || e.relatedTarget === saveButton) return;
             if( e.relatedTarget === modal ||
                 e.relatedTarget === modal.childNodes[1].childNodes[0][0] || //input
-                e.relatedTarget === modal.childNodes[1].childNodes[0][1] || //date-checkbox
-                e.relatedTarget === modal.childNodes[1].childNodes[0][2] || //reminder-checkbox
-                e.relatedTarget === modal.childNodes[1].childNodes[0][3] || //select
-                e.relatedTarget === modal.childNodes[1].childNodes[0][4] || //textarea
-                e.relatedTarget === modal.childNodes[1].childNodes[0][5] || //button
+                e.relatedTarget === modal.childNodes[1].childNodes[0][1] || //date
+                e.relatedTarget === modal.childNodes[1].childNodes[0][2] || //date-checkbox
+                e.relatedTarget === modal.childNodes[1].childNodes[0][3] || //reminder-checkbox
+                e.relatedTarget === modal.childNodes[1].childNodes[0][4] || //select-reminder
+                e.relatedTarget === modal.childNodes[1].childNodes[0][5] || //textarea
+                e.relatedTarget === modal.childNodes[1].childNodes[0][6] || //select-type
+                e.relatedTarget === modal.childNodes[1].childNodes[0][7] || //save-button
                 e.relatedTarget === modal.childNodes[1].childNodes[0]){} 
             else {
                 modal.parentNode.removeChild(modal.previousElementSibling);
@@ -302,13 +302,13 @@ class CreateModal{
                     use SetInterval every 10sec
             */
 
-            modal.addEventListener("keyup",(e)=>{
+        modal.addEventListener("keyup",(e)=>{
             if(e.key == "Escape"){
                 modal.parentNode.removeChild(modal.previousElementSibling);
                 modal.parentNode.removeChild(modal);
             }
-
-    });
+        });
+        
         //add event to calendar
         modal.style.left = x + "px";
         modal.style.top = y + "px";
