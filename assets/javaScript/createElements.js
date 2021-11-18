@@ -15,7 +15,12 @@ function beginModal(){
     content += "<div> <button class='btn btn-primary btn-lg' id='delete'> Delete Event </button> <button class='btn btn-primary btn-lg' id='create'> Create Event </button> </div></form> </div>"
 
     modalContent.innerHTML= content
+    if (!fecha){
+        console.log("pepe")
+    } else{
     document.getElementById("begindateId").value=fecha;
+
+    }    
 
 
     //TODO Dom modal
