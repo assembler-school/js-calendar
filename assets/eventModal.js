@@ -49,7 +49,7 @@ function editEvents(i){
     console.log(flag);
     createNewEvent(i);
     editForm(i);
-    createMonthDays();
+    createYearMonthDays(selectedYear);
 }
 
 function editForm(i){
@@ -75,7 +75,7 @@ function removeEvents(i){
     console.log(historicEvents);
     localStorage.setItem("historic",JSON.stringify(historicEvents));
     // closeModalEvent();
-    createMonthDays();
+    createYearMonthDays(selectedYear);
     flag = false;
 }
 
