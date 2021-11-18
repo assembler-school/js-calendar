@@ -34,6 +34,15 @@ class CalendarEvent{
         return this;
     }
 
+    getTitle(){
+        return this.title;
+    }
+
+    hasTitle(){
+        if(this.title !== "") return true;
+        else return false;
+    }
+
     setEndHour(value){
         this.endHour = value;
     }

@@ -252,15 +252,17 @@ class CreateModal{
             if(textArea) event.setDescription(textArea.value);
             else event.setDescription(undefined);
 
-            //new event
-            contID=localStorage.getItem('id') ? JSON.parse(localStorage.getItem('id')) : contID;
-            contID++;
-            event.setID(contID);
-            const stringifyEvent = JSON.stringify(event.getEvent());
-            //pushing new event to all events array
-            events.push(JSON.parse(stringifyEvent));
-
             form.addEventListener('submit', function (e) {
+                if(!event.hasTitle()) return;
+                //new event
+                contID=localStorage.getItem('id') ? JSON.parse(localStorage.getItem('id')) : contID;
+                contID++;
+                console.log(contID);
+                event.setID(contID);
+                const stringifyEvent = JSON.stringify(event.getEvent());
+                //pushing new event to all events array
+                events.push(JSON.parse(stringifyEvent));
+
                 e.preventDefault();
                 localStorage.setItem("events", JSON.stringify(events));
                 localStorage.setItem("id",JSON.stringify(contID)) 
@@ -318,12 +320,6 @@ class CreateModal{
             modal.focus();
         }
     }
-}
-
-function showEvent() {
-    const newEvent = document.createElement('p');
-    newEvent.innerText = title.value;
-    newEvent.classList.add('event')
 }
 
 export default CreateModal;

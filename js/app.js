@@ -1,6 +1,6 @@
 import CreateModal from "./modals/CreateModal.js";
 import ShowInfoModal from "./modals/ShowInfoModal.js";
-import { body, calendar, weekdays } from "./variables.js";
+import { body, calendar, weekdays, events } from "./variables.js";
 import createModalToEdit from "./modals/modalEdit.js"
 
 let currentMonth = 0;
@@ -131,30 +131,34 @@ export function createBackground(){
     background.classList.add("modalBackground");
     body.appendChild(background);
 }
+
 //Select event and open modal
 export function openModalEdit(){
-    console.log("opening...");
     const eventList = document.querySelectorAll('.event'); 
     eventList.forEach(element => {
         element.removeEventListener("click",createModalToEdit);
         element.addEventListener('click', createModalToEdit);
         });
 }
+
+
+
 export function fetchEvents() {
     // Check local storage and fetch events
     const dayList = document.querySelectorAll('.day');
-    let event = JSON.parse(localStorage.getItem('events'));
-    if (event === null) return;
+    //let event = JSON.parse(localStorage.getItem('events'));
+    if (events === null) return;
+    //solo coge el valor 1
     dayList.forEach(element => {
-        let dailyEvents = event.filter(event => event.startDate === element.firstChild.attributes[1].nodeValue);
+        let dailyEvents = events.filter(events => events.startDate === element.firstChild.attributes[1].nodeValue);
         if(dailyEvents.length > 0){
-                element.lastChild.innerHTML = '';
+            element.lastChild.innerHTML = '';
             for (let i = 0; i < dailyEvents.length; i++) {
                 const newEvent = document.createElement('p');
-                console.log(event[i].eventID);
-                newEvent.setAttribute("data-eventid", event[i].eventID);
-                console.log(newEvent.attributes[0]);
-                newEvent.innerHTML = `${dailyEvents[i].title} <span class="event-data">${event[i].day} ${event[i].month} ${event[i].year} </span>`;
+                //console.log(events[i].eventID);
+                newEvent.setAttribute("data-eventid", events[i].eventID);
+                //console.log(newEvent.attributes[0]);
+                newEvent.innerHTML = `${dailyEvents[i].title} <span class="event-data">${events[i].day} ${events[i].month} ${events[i].year} </span>`;
                 newEvent.classList.add('event');
                 element.lastChild.appendChild(newEvent);
             }
@@ -168,6 +172,6 @@ const allEvents = document.querySelectorAll('.event');
 allEvents.forEach(event => {
     event.addEventListener('click', (e) =>{
         console.log(e.target);
-        new ShowInfoModal();
+        //new ShowInfoModal();
     });
 });
