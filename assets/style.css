@@ -26,8 +26,11 @@ main{
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 2%;
+    margin: 5px;
     background-color: rgb(200,200,200);
+}
+.weekdays{
+    width: 12%;
 }
 #today{
     background-color: rgb(220,220,200);
@@ -35,6 +38,7 @@ main{
 .day-container{
     height: 100px;
     width: 12%;
+    margin: 1%;
     background-color: rgb(150,150,150);
 }
 .day-container-empty{
@@ -49,6 +53,32 @@ main{
 .event-container{
     cursor: pointer;
 }
+.buttonspecific {
+    background-color: #ff8800;
+    border: none;
+    float: right;
+    color: white;
+    border-radius: 10%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+    display: hidden;
+}
+.day-container-inner {
+    background-color: #ff8800;
+    border: none;
+    color: white;
+    border-radius: 10%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+    display: hidden;
+}
+#e-selected-day #buttonspecific{
+    display:block;
+    }
 
 /* DAY CONTAINER */
 #day-name{
@@ -83,7 +113,7 @@ main{
 }
 
 .e-selected-day button{
-    display: block !important;
+    z-index: 10;
 }
 
 
@@ -155,24 +185,6 @@ main{
     background-color: darkkhaki;
 }
 
-.day-container button{
+/* .day-container button{
     display: none;
-}
-
-.buttonspecific {
-    background-color: #ff8800;
-    border: none;
-    float: right;
-    color: white;
-    border-radius: 10%;
-    text-align: center;
-    font-weight: bold;
-    font-size: 20px;
-    cursor: pointer;
-    display: hidden;
-  }
-  
-#e-selected-day #buttonspecific{
-
-display:block;
-}
+} */

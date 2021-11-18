@@ -57,9 +57,9 @@ function init(){
 }
 
 function refreshContainers(){
-    dayNameContainerH1.textContent = dayNameArr[today.getDay()] + todayNumDay;
-    monthNameContainerH1.textContent = monthNameArr[selectedMonth];
-    yearNameContainerH1.textContent = selectedYear;
+    //dayNameContainerH1.textContent = dayNameArr[today.getDay()] + todayNumDay;
+    //monthNameContainerH1.textContent = monthNameArr[selectedMonth];
+    //yearNameContainerH1.textContent = selectedYear;
 }
 
 var selectedMonthDays = new Date(selectedYear,selectedMonth+1,0).getDate();
@@ -71,7 +71,7 @@ var lastDayMonth = new Date(selectedYear,selectedMonth+1,0).getDay();
 function createMonthDays(){
     deleteMonthDays();
     createDay(selectedMonthDays);
-    createHoursFun(selectedDay);
+    //createHoursFun(selectedDay);
     addEventsListeners();
 }
 // function createDaysHours(){
@@ -100,7 +100,7 @@ function createDay(num){
         var dayInner = document.createElement("div");
         dayInner.setAttribute("id","day-container-inner" + countday);
         dayInner.classList.add("day-container-inner")
-        dayInner.textContent = dayNameArr[countweek]+countday;
+        dayInner.textContent = countday;
         day.appendChild(dayInner);
         // createDayContent(selectedYear,selectedMonth,countday,"",dayNameArr[countweek],"");
         assignEvent(countday,day);
@@ -193,36 +193,31 @@ function loadStorage(){
         historicEvents = JSON.parse(localStorage.getItem("historic"));
     }
 }
+
+
+
 function generateGridButton(e,countday) {
+    let buttonDate;
     let buttonSpecific = document.createElement("button");
     buttonSpecific.setAttribute("class","buttonspecific");
     buttonSpecific.setAttribute("value",countday);
-            buttonSpecific.textContent="+";
-e.appendChild(buttonSpecific);
-
-console.log (e);
-            newEventindayselected();
+    buttonSpecific.textContent="+";
+    //let buttonDate = new Date(selectedYear,selectedMonth,buttonSpecific.value,"T00:00");
+    if(buttonSpecific.value<10){
+        buttonDate = selectedYear+"-"+selectedMonth+"-0"+buttonSpecific.value+"T00:00";
+    }else{
+        buttonDate = selectedYear+"-"+selectedMonth+"-"+buttonSpecific.value+"T00:00";
+    }
+    buttonSpecific.addEventListener("click",function (){insertDataElement(buttonDate)});
+    e.appendChild(buttonSpecific);
         }
 
-function newEventindayselected() {
-    console.log ("holadamebola")
+function insertDataElement(a){
+    console.log(a);
+    console.log(a)
+    createNewEvent();
+    document.getElementById("initDate").value = a;
 }
-//create year days
-//var today = new Date ();
-//var todayNumDay = today.getDate();//15
-//const todayMonth = today.getMonth();//11
-//var todayMonthName = monthNameArr[todayMonth];//november
-//var todayYear = today.getFullYear();//2021
-
-//var selectedDay = todayNumDay;
-//var selectedMonth = todayMonth;
-//var selectedYear = todayYear;
-
-
-
-//var firstDayMonth = new Date(selectedYear,selectedMonth,1).getDay();
-//var firstDayWeekMonthName = dayNameArr[firstDayMonth]
-//var lastDayMonth = new Date(selectedYear,selectedMonth+1,0).getDay();
 
 function createYearMonthDays(year){//
     //deleteYearMonthDays();//
