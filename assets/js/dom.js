@@ -11,8 +11,6 @@ var btnSave = document.getElementById('save-modal');
 var detailsEventType = document.querySelectorAll('#mievents_minicalendar input');
 var liniabonito = document.getElementById("liniabonito");
 var boxEventsCal = document.getElementsByClassName("boxEventsCal"); // padres
-<<<<<<< HEAD
-=======
 var modal = document.getElementById("myModal");
 var spanclose = document.getElementsByClassName("close")[0];
 var spanedit = document.getElementsByClassName("edit")[0];
@@ -24,4 +22,3 @@ var ideventmodal = document.querySelector("#contmodalinfo>span")
 var typeeventmodal = document.querySelector(".typeeventmodal>div")
 var cicletype = document.querySelector("#cicletype")
 var bigModalId = document.getElementById("bigModalId")
->>>>>>> events3
