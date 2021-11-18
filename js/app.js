@@ -79,13 +79,14 @@ function displayCalendar() {
                 for(let i = 0; i < calendar.childNodes.length; i++){
                     if(calendar.childNodes[i] == dayElement){
                         if(e.target.className === "event"){
-                            if(e.clientX < 410) new ShowInfoModal(e.x, e.y - 80);
-                            else new ShowInfoModal(e.x - 400, e.y - 80);
+                            const event = events.filter(events => events.eventID === parseInt(e.target.dataset.eventid));                            
+                            if(e.clientX < 410) new ShowInfoModal(e.x, e.y - 80, event[0]);
+                            else new ShowInfoModal(e.x - 400, e.y - 80, event[0]);
                         } else {
                             //edge case event border
                             if(e.clientX < 410 && e.target.firstChild.attributes != undefined){
                                 new CreateModal(e.x, e.y / 2, weekdays[i%7], dayElement.firstChild.innerText, currentMonth.textContent, e.target.firstChild.attributes[1].nodeValue);
-                            } else if (e.target.firstChild.attributes!=undefined){
+                            } else if (e.target.firstChild.attributes != undefined){
                                 new CreateModal(e.x - 400, e.y / 2, weekdays[i%7], dayElement.firstChild.innerText, currentMonth.textContent, e.target.firstChild.attributes[1].nodeValue)
                             }
                         }
@@ -131,14 +132,16 @@ function changeMonthButton(){
 // Check local storage and fetch events
 export function fetchEvents() {
     const dayList = document.querySelectorAll('.day');
+    
     if (events === null) return;
     dayList.forEach(element => {
+        element.childNodes[1].innerHTML = "";
         const dailyEvents = events.filter(events => events.startDate === element.firstChild.dataset.date);
         if(dailyEvents.length > 0){
             dailyEvents.forEach(event => {
                 const newEvent = document.createElement('p');
-                newEvent.setAttribute("data-eventid", event.eventID);
-                newEvent.innerHTML = `${event.title} <span class="event-data">${event.day} ${event.month} ${event.year} </span>`;
+                newEvent.setAttribute("data-eventID", event.eventID);
+                newEvent.innerHTML = `${event.title}`; // <span class="event-data">${event.day} ${event.month} ${event.year} </span>`
                 newEvent.classList.add('event');
                 element.lastChild.appendChild(newEvent);
             });

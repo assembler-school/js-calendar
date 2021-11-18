@@ -10,6 +10,7 @@
     border-bottom: 2.3px solid var(--dark-blue);
     transition: 0.2s;
 }
+
 #header {
     padding: 10px;
     color: black;
@@ -19,13 +20,16 @@
     justify-content: space-between;
     align-items: center;
   }
+
   #header button {
     background-color:#92a1d1;
   }
+
   #main-container {
     width: 100%;
     height: 100%;
   }
+
   #weekdays {
     width: 100%;
     display: flex;
@@ -34,11 +38,13 @@
     color: rgba(0, 0, 0, 0.3)
 
   }
+
   #weekdays div {
     width: 14.25%;
     padding-right: 10px;
     padding-bottom: 10px;
   }
+
   #calendar {
     width: 100%;
     margin: auto;
@@ -46,6 +52,7 @@
     flex-wrap: wrap;
     height: auto;
   }
+
 /* modal edit event */
 #modal-edit-container{
   position:absolute;
@@ -54,6 +61,7 @@
   box-shadow: -1px 1px 8px 1px var(--black-translucent);
   width:400px;
 }
+
 #modal-edit-container #icons{
   background-color:#f1f3f4;
   display:flex;
@@ -61,12 +69,14 @@
   justify-content: flex-end;
   padding: 7px 8px;
 }
+
 #modal-edit-container #items{
   background-color: var(--white);
   display:flex;
   flex-direction: column;
   padding:10px;
 }
+
 #modal-edit-container #items #item-alert{
   display:flex;
   flex-direction: row;

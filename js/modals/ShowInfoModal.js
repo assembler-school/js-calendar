@@ -31,7 +31,7 @@ class ShowInfoModal{
                                 //title
                                 element("div", null, "submodal input-name"),
                                 [
-                                    element("span", null, null, null, null, "Title")
+                                    element("span")
                                 ],
                                 //select date
                                 element("div", null, "submodal date"),
@@ -42,24 +42,46 @@ class ShowInfoModal{
                                     ],
                                     element("div", null, "event-time"),
                                     [
-                                        element("span", null, null, null, null, "Date"),
-                                        element("span", null, null, null, null, "Time")
-                                    ],
-                                    element("span", null, null, null, null, "-"),
-                                    element("div", null, "event-time"),
-                                    [
-                                        element("span", null, null, null, null, "EndDate"),
-                                        element("span", null, null, null, null, "EndTime")
+                                        element("span"),
+                                        element("span")
                                     ]
                                 ]
                             ]
                         ]
                 ];
 
-    constructor(x, y){
+    constructor(x, y, event){
         readArray(this.#structure);
-        
+
         const modal = document.querySelector(".modal");
+
+        const titleParent = document.querySelector(".input-name");
+        titleParent.firstChild.textContent = event.title;
+
+        const startDate = document.querySelector(".event-time");
+        startDate.firstChild.textContent = event.day + " " + event.month + " " + event.year;
+        startDate.lastChild.textContent = event.hour;
+
+        
+        if(event.hasEnd){
+            const endDate = document.querySelector(".date");
+            const endDateStructure = [
+                                        element("div", null, "event-time end-day"),
+                                        [
+                                            element("span"),
+                                            element("span")
+                                        ]
+                                    ];
+            
+            readArray(endDateStructure);
+
+            const endDateText = document.querySelector(".end-day");
+            endDateText.firstChild.textContent = event.endDay + " " + event.endMonth + " " + event.endYear;
+            endDateText.lastChild.textContent = event.endHour;
+
+            endDate.appendChild(element("span", null, null, null, null, "-"));
+            endDate.appendChild(endDateText);
+        }
 
         //close event
         const close = document.getElementById("close-modal");

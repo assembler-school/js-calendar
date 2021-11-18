@@ -272,8 +272,10 @@ class CreateModal{
                 e.preventDefault();
                 localStorage.setItem("events", JSON.stringify(events));
                 localStorage.setItem("id",JSON.stringify(contID)) 
+
+                //Los pone en todos los días
                 fetchEvents();
-                //openModalEdit();
+                setIsModalOpen(false);
                 modal.parentNode.removeChild(modal);
                 return;
             });
