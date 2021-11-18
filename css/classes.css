@@ -127,7 +127,6 @@
     width: 14.25%;
     padding: 10px;
     height: 200px;
-    cursor: pointer;
     box-sizing: border-box;
     background-color: white;
     box-shadow: 0px 0px 3px #CBD4C2;
@@ -136,8 +135,9 @@
     justify-content: flex-start;
     text-align: right;
   }
-  .day:hover {
-    background-color: #e8faed;
+  .event:hover {
+    background-color: var(--dark-grey-translucent-2);
+    color:black;
   }
 
   .day + #currentDay {
@@ -153,12 +153,16 @@
     overflow: hidden;
     text-align:left;
     margin: 2.5px;
+    cursor:pointer;
+  }
+  /* Invisible data event */
+  .event-data{
+      display:none;
   }
   .padding {
     width: 14.25%;
     padding: 10px;
     max-height: 20%;
-    cursor: pointer;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;

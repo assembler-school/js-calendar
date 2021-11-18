@@ -15,6 +15,7 @@ class CalendarEvent{
     description;
     type;
     startDate;
+    eventID;
 
     constructor(title, hour, day, month, year, hasEnd, hasReminder, type, startDate){
         this.title = title;
@@ -57,7 +58,9 @@ class CalendarEvent{
         this.description = value;
     }
 
-
+    setID(value){
+        this.eventID = value;
+    }
 }
 
 export default CalendarEvent;

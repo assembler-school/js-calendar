@@ -74,16 +74,15 @@ export function displayCalendar() {
                 const calendar = document.getElementById("calendar");
                 for(let i = 0; i < calendar.childNodes.length; i++){
                     if(calendar.childNodes[i] == dayElement){
-                        if(e.clientX < 410 && e.target.firstChild.attributes!=undefined) {
+                        //edge case event border
+                        if(e.clientX < 410 && e.target.firstChild.attributes!=undefined){
                             createBackground();
                             new CreateModal(e.clientX, e.clientY / 2, weekdays[i%7], dayElement.firstChild.innerText, currentMonth.textContent, e.target.firstChild.attributes[1].nodeValue);
                             console.log(dayElement.childNodes[0], currentMonth.textContent)
-                        }else if(e.target.firstChild.attributes!=undefined){
+                            console.log(dayElement.firstChild.attributes[1].nodeValue);
+                        }else if (e.target.firstChild.attributes!=undefined){
                             createBackground();
                             new CreateModal(e.clientX - 400, e.clientY / 2, weekdays[i%7], dayElement.firstChild.innerText, currentMonth.textContent, e.target.firstChild.attributes[1].nodeValue)
-                        }else{
-                            console.log("paso");
-                            createModalToEdit();
                         }
                     }
                 }
@@ -103,6 +102,7 @@ export function displayCalendar() {
     }
     highlightToday();
     fetchEvents();
+    openModalEdit();
 }
 
 
@@ -120,25 +120,27 @@ document.getElementById('today').addEventListener('click', () =>{
 });
 //create event button
 document.getElementById('create-event').addEventListener('click', (e) =>{
-    console.log(e.target.offsetLeft);
+    createBackground();
     new CreateModal(e.target.offsetLeft - 430, e.target.y);
 });
 
 displayCalendar();
 
-function createBackground(){
+export function createBackground(){
     const background = document.createElement("div");
     background.classList.add("modalBackground");
     body.appendChild(background);
 }
-
-// const dayList = document.querySelectorAll('.day');
-// dayList.forEach(element => {
-    //     element.addEventListener('click', (e) =>{
-        //         new CreateModal;
-        //     });
-        // })
-export default function fetchEvents() {
+//Select event and open modal
+export function openModalEdit(){
+    console.log("opening...");
+    const eventList = document.querySelectorAll('.event'); 
+    eventList.forEach(element => {
+        element.removeEventListener("click",createModalToEdit);
+        element.addEventListener('click', createModalToEdit);
+        });
+}
+export function fetchEvents() {
     // Check local storage and fetch events
     const dayList = document.querySelectorAll('.day');
     let event = JSON.parse(localStorage.getItem('events'));
@@ -149,7 +151,10 @@ export default function fetchEvents() {
                 element.lastChild.innerHTML = '';
             for (let i = 0; i < dailyEvents.length; i++) {
                 const newEvent = document.createElement('p');
-                newEvent.innerText = dailyEvents[i].title;
+                console.log(event[i].eventID);
+                newEvent.setAttribute("data-eventid", event[i].eventID);
+                console.log(newEvent.attributes[0]);
+                newEvent.innerHTML = `${dailyEvents[i].title} <span class="event-data">${event[i].day} ${event[i].month} ${event[i].year} </span>`;
                 newEvent.classList.add('event');
                 element.lastChild.appendChild(newEvent);
             }
