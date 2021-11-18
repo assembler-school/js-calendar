@@ -91,18 +91,22 @@ function comprovacionFinal() {
         if (checkboxDate.checked == true && recordatorio_modal.checked == true) {
             finalEvent = new calendarEvent(allEventInputs[0].value, allEventInputs[1].value, allEventInputs[2].value, allEventInputs[3].value, allEventInputs[4].value, allEventInputs[5].value, allEventInputs[6].value);
             cerrar_modal();
+            window.location.reload();
             console.log(finalEvent);
         } else if (checkboxDate.checked == true && recordatorio_modal.checked == false) {
             finalEvent = new calendarEvent(allEventInputs[0].value, allEventInputs[1].value, allEventInputs[2].value, allEventInputs[3].value, 'undefined', allEventInputs[4].value, allEventInputs[5].value);
             cerrar_modal();
+            window.location.reload();
             console.log(finalEvent);
         } else if (checkboxDate.checked == false && recordatorio_modal.checked == true) {
             finalEvent = new calendarEvent(allEventInputs[0].value, allEventInputs[1].value, 'undefined', allEventInputs[2].value, allEventInputs[3].value, allEventInputs[4].value, allEventInputs[5].value);
             cerrar_modal();
+            window.location.reload();
             console.log(finalEvent);
         } else if (checkboxDate.checked == false && recordatorio_modal.checked == false) {
             finalEvent = new calendarEvent(allEventInputs[0].value, allEventInputs[1].value, 'undefined', allEventInputs[2].value, 'undefined', allEventInputs[3].value, allEventInputs[4].value);
             cerrar_modal();
+            window.location.reload();
             console.log(finalEvent);
         }
     }
@@ -179,12 +183,13 @@ function transitiontitle() {
 
 
 // PRUEBAS
-span.onclick = function() {
+span.onclick = function () {
     modal.style.display = "none";
-  }
-  
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function(event) {
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
     if (event.target == modal) {
-      modal.style.display = "none";
-    }}
+        modal.style.display = "none";
+    }
+}
