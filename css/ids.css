@@ -51,6 +51,7 @@
   position:absolute;
   background-color: red;
   box-shadow: -1px 1px 8px 1px var(--black-translucent);
+  width:400px;
 }
 #modal-edit-container #icons{
   background-color:#f1f3f4;
