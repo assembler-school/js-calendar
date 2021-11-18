@@ -506,3 +506,7 @@ input[type="checkbox"] {
 #contmodalinfo>span{
     visibility: hidden;
 }
+
+.bigModalId {
+    visibility: hidden;
+}

@@ -20,6 +20,7 @@ closeModal.onclick = function () {
 };
 
 function cerrar_modal() {
+    momentedit=0;
     today = new Date();
     var date = today.getFullYear() + '-' + esmenos0(today.getMonth() + 1) + '-' + esmenos0(today.getDate()) + 'T' + esmenos0(today.getHours()) + ':' + esmenos0(today.getMinutes());
     mainModal.style.display = "none";
@@ -33,6 +34,7 @@ function cerrar_modal() {
     allEventInputs[2].value = 'No se repite';
     allEventInputs[3].value = '';
     allEventInputs[4].value = 'Meeting';
+    bigModalId.innerHTML=""
 }
 
 window.onclick = function (event) {
@@ -52,6 +54,9 @@ eventTitleInput.addEventListener("mouseup", comprovaciones);
 eventTitleInput.addEventListener("keyup", comprovaciones);
 
 function comprovaciones() {
+    if(bigModalId.innerHTML !== ""){
+        deleteById(bigModalId.innerHTML)
+    }
     let profile_cont_input = document.getElementsByClassName('title-modal-input');
     if (profile_cont_input[0].value.length > 3) {
         profile_cont_input[0].style.color = "var(--azul)";
@@ -195,6 +200,8 @@ spanedit.onclick = function() {
         allEventInputs[2].value=obj.repeat
         allEventInputs[3].value=obj.description
         allEventInputs[4].value=obj.eventType
+        bigModalId.innerHTML=obj.eventId
+
     }
     if(obj.fechaFin !== "" && obj.remember ==""){
         checkboxDate.checked = true;
@@ -206,6 +213,8 @@ spanedit.onclick = function() {
         allEventInputs[3].value=obj.repeat
         allEventInputs[4].value=obj.description
         allEventInputs[5].value=obj.eventType
+        bigModalId.innerHTML=obj.eventId
+
     }
     if(obj.fechaFin == "" && obj.remember !==""){
         recordatorio_modal.checked = true;
@@ -217,6 +226,8 @@ spanedit.onclick = function() {
         allEventInputs[3].value=obj.remember
         allEventInputs[4].value=obj.description
         allEventInputs[5].value=obj.eventType
+        bigModalId.innerHTML=obj.eventId
+
     }
     if(obj.fechaFin !== "" && obj.remember !==""){
         recordatorio_modal.checked = true;
@@ -231,14 +242,32 @@ spanedit.onclick = function() {
         allEventInputs[4].value=obj.remember
         allEventInputs[5].value=obj.description
         allEventInputs[6].value=obj.eventType
+        bigModalId.innerHTML=obj.eventId
+
     }
+    momentedit=1
     mainModal.style.display = "block";
 }
 
+
+
+
 spandel.onclick = function() {
     modal.style.display = "none";
-    var obj=getEventById(ideventmodal.innerHTML)
+    deleteById(ideventmodal.innerHTML)
 }
+
+function deleteById(X){
+    var obj=getEventById(X)
+    var arrdel=JSON.parse(localStorage[obj.eventType])
+    var arrdelete = arrdel.filter(function(evn){
+        return  evn.eventId !== X
+    })
+    var envalocal= JSON.stringify(arrdelete)
+    localStorage[obj.eventType]=arrdelete
+}
+
+
   // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
     if (event.target == modal) {

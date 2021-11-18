@@ -19,9 +19,9 @@ const bigCalendar = document.getElementById("big_calendar");
 //Obtain calculate to previous days of actual month
 function prevDaysOfMonth() {
     const firstDayIndex = 1;
-    console.log(firstDayIndex);
+    // console.log(firstDayIndex);
     const prevLastDay = new Date(actual_date.getFullYear(), actual_date.getMonth(), 0).getDate();
-    console.log(prevLastDay);
+    // console.log(prevLastDay);
     return {
         firstDayIndex: firstDayIndex,
         prevLastDay: prevLastDay

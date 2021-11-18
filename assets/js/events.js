@@ -15,7 +15,6 @@ class calendarEvent {
     }
     setToLocalStorage(eventType) {
         if (localStorage[eventType]) {
-            console.log('+1 in Id');
             let typeStorage = JSON.parse(localStorage[eventType]);
             typeStorage.push(this.allEvent)
             localStorage[eventType] = (JSON.stringify(typeStorage))
@@ -30,7 +29,6 @@ class calendarEvent {
         if (!localStorage.id) {
             localStorage.id = '0';
         }
-        console.log(localStorage.id);
         localStorage.id = parseInt(localStorage.id) + 1
     }
     findEvent(father, date2 = null) {
@@ -65,21 +63,21 @@ class calendarEvent {
             if (this.allEvent.eventType == 'Meeting') {
                 father.appendChild(newElement({
                     tag: 'div',
-                    id: id,
+                    id: this.allEvent.eventId,
                     clas: ['miniEvents', 'meeting'],
                     content: this.allEvent.eventTitle
                 }))
             } else if (this.allEvent.eventType == 'Personal') {
                 father.appendChild(newElement({
                     tag: 'div',
-                    id: id,
+                    id: this.allEvent.eventId,
                     clas: ['miniEvents', 'personal'],
                     content: horaevento + "  " + this.allEvent.eventTitle
                 }))
             } else if (this.allEvent.eventType == 'Study')
                 father.appendChild(newElement({
                     tag: 'div',
-                    id: id,
+                    id: this.allEvent.eventId,
                     clas: ['miniEvents', 'study'],
                     content: horaevento + "  " + this.allEvent.eventTitle
                 }))
@@ -95,6 +93,7 @@ class calendarEvent {
         });
     }
 }
+
 let fatherPruebas = document.getElementById('fatherPruebas')
 let eventoPruebas = new calendarEvent('llamar a pepe', '18-11-2021', '19-11-2021', 'Laborables', '5 minutes', 'llamar a pepe para devolverle el casco de la moto', 'Meeting');
 let eventoPruebas1 = new calendarEvent('titulo', '18-11-2021T11:25', '', 'No se repite', '', '', 'Personal');
@@ -167,48 +166,47 @@ function allLocalStorage(X = []) {
 function getEventById(id) {
     var X = ['Meeting', 'Personal', 'Study']
     let typeStorage = allLocalStorage(X);
-
     return typeStorage.find(element => element.eventId == id)
 }
 
-function findFather() {
-    console.log(boxEventsCal);
-    for (let index = 0; index < boxEventsCal.length; index++) {
-        console.log(boxEventsCal[index]);
-        console.log(findEvent(boxEventsCal[index]))
-        var allChildren = boxEventsCal[index].firstChild.dataset
-        if (boxEventsCal[index].children.length > 2 && boxEventsCal[index].firstChild.dataset.year == a && boxEventsCal[index].firstChild.dataset.month == a && boxEventsCal[index].firstChild.dataset.day == a) {
-            createTagEvent(boxEventsCal[index], );
-        }
-        allChildren.forEach(element => {})
-        console.log(allChildren);
-        /*         for (const iterator of boxEventsCal[index].children) {
-                    iterator
-                }; */
-    }
-}
-setTimeout(() => {
-    console.log(findFather());
-}, 100);
+// function findFather() {
+//     console.log(boxEventsCal);
+//     for (let index = 0; index < boxEventsCal.length; index++) {
+//         console.log(boxEventsCal[index]);
+//         console.log(findEvent(boxEventsCal[index]))
+//         var allChildren = boxEventsCal[index].firstChild.dataset
+//         if (boxEventsCal[index].children.length > 2 && boxEventsCal[index].firstChild.dataset.year == a && boxEventsCal[index].firstChild.dataset.month == a && boxEventsCal[index].firstChild.dataset.day == a) {
+//             createTagEvent(boxEventsCal[index], );
+//         }
+//         allChildren.forEach(element => {})
+//         console.log(allChildren);
+//         /*         for (const iterator of boxEventsCal[index].children) {
+//                     iterator
+//                 }; */
+//     }
+// }
+// setTimeout(() => {
+//     console.log(findFather());
+// }, 100);
 
 ////PRUEBAS
 
-let fatherPruebas = document.getElementById('fatherPruebas')
-let eventoPruebas = new calendarEvent('titulo', '18-11-2021', '', 'No se repite', '', '', 'Meeting');
-let eventoPruebas1 = new calendarEvent('titulo', '18-11-2021T11:25', '', 'No se repite', '', '', 'Personal');
-let eventoPruebas2 = new calendarEvent('titulo', '18-11-2021T11:25', '', 'No se repite', '', '', 'Study');
-let btnPruebas = document.getElementById('pruebas');
+// let fatherPruebas = document.getElementById('fatherPruebas')
+// let eventoPruebas = new calendarEvent('titulo', '18-11-2021', '', 'No se repite', '', '', 'Meeting');
+// let eventoPruebas1 = new calendarEvent('titulo', '18-11-2021T11:25', '', 'No se repite', '', '', 'Personal');
+// let eventoPruebas2 = new calendarEvent('titulo', '18-11-2021T11:25', '', 'No se repite', '', '', 'Study');
+// let btnPruebas = document.getElementById('pruebas');
 
-btnPruebas.addEventListener('click', function () {
-    eventoPruebas.createTagEvent(fatherPruebas, eventoPruebas.allEvent.eventId);
-    eventoPruebas1.createTagEvent(fatherPruebas, eventoPruebas.allEvent.eventId);
-    eventoPruebas2.createTagEvent(fatherPruebas, eventoPruebas.allEvent.eventId);
-    var eventsClick = document.getElementsByClassName("miniEvents")
-    console.log(eventsClick);
-    for (const evn of eventsClick) {
-        evn.addEventListener("click", function (evn) {
-            console.log(evn.srcElement.id)
-            modal.style.display = "block";
-        })
-    }
-})
+// btnPruebas.addEventListener('click', function () {
+//     eventoPruebas.createTagEvent(fatherPruebas, eventoPruebas.allEvent.eventId);
+//     eventoPruebas1.createTagEvent(fatherPruebas, eventoPruebas.allEvent.eventId);
+//     eventoPruebas2.createTagEvent(fatherPruebas, eventoPruebas.allEvent.eventId);
+//     var eventsClick = document.getElementsByClassName("miniEvents")
+//     console.log(eventsClick);
+//     for (const evn of eventsClick) {
+//         evn.addEventListener("click", function (evn) {
+//             console.log(evn.srcElement.id)
+//             modal.style.display = "block";
+//         })
+//     }
+// })
