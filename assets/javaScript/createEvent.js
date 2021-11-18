@@ -101,11 +101,7 @@ function remiderTimer() {
 function addMinutes(date, minutes) {
     return new Date( date.getTime() + minutes * 60000)
 }
-    // eventBook.push(obj)
-    // arrayData=[]
-    // localStorage.setItem('eventBook', JSON.stringify(eventBook))
-    // closeModal()
-   
+
 function getDataFromCalendar (num1) {
     //COGER LOS EVENTOS DEL DIA
     filter= eventBook.filter(element=>{

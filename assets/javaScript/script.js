@@ -101,7 +101,6 @@ function displayCalendar() {
 
     monthNow.forEach(num1=>{
         numero=num1.textContent
-        
         monthF=month
         if (monthF<10)
         monthF="0" + monthF
