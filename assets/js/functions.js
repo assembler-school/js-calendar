@@ -90,10 +90,25 @@ function headerCal() {
 //Show the previous days of the actual month
 function prevMonthCal() {
     let prevDays = prevDaysOfMonth();
-    for(let index = prevDays.firstDayIndex; index > 0; index--) {
-        var smallDayMonth = newElement({ tag: "div", id:"", clas: ["number-days", "previousMonthColor"], content: prevDays.prevLastDay - index + 1});
-        var bigDayMonth = newElement({ tag: 'div', id: '', clas: [], content:""});
-        var numberDiv = newElement({ tag: "div", id:"", clas: ["number-days", "previousMonthColor"], content: prevDays.prevLastDay - index + 1});
+    for (let index = prevDays.firstDayIndex; index > 0; index--) {
+        var smallDayMonth = newElement({
+            tag: "div",
+            id: "",
+            clas: ["number-days", "previousMonthColor"],
+            content: prevDays.prevLastDay - index + 1
+        });
+        var bigDayMonth = newElement({
+            tag: 'div',
+            id: '',
+            clas: [],
+            content: ""
+        });
+        var numberDiv = newElement({
+            tag: "div",
+            id: "",
+            clas: ["number-days", "previousMonthColor"],
+            content: prevDays.prevLastDay - index + 1
+        });
         bigDayMonth.appendChild(numberDiv);
         saveDatePrevDayOfMonth(smallDayMonth, prevDays.prevLastDay - index + 1);
         saveDatePrevDayOfMonth(numberDiv, prevDays.prevLastDay - index + 1);
@@ -106,9 +121,24 @@ function prevMonthCal() {
 function monthActualCal() {
     let lastDay = daysOfMonth();
     for (let index = 1; index <= lastDay; index++) {
-        var smallDayMonth = newElement({ tag: "div", id:"", clas: ["number-days"], content: index});
-        var bigDayMonth = newElement({ tag: 'div', id: '', clas: ["boxEventsCal"], content:""});
-        var numberDiv = newElement({ tag: "div", id:"", clas: ["number-days"], content: index});
+        var smallDayMonth = newElement({
+            tag: "div",
+            id: "",
+            clas: ["number-days"],
+            content: index
+        });
+        var bigDayMonth = newElement({
+            tag: 'div',
+            id: '',
+            clas: ["boxEventsCal"],
+            content: ""
+        });
+        var numberDiv = newElement({
+            tag: "div",
+            id: "",
+            clas: ["number-days"],
+            content: index
+        });
         bigDayMonth.appendChild(numberDiv);
         saveDateDayOfMonth(smallDayMonth, index);
         saveDateDayOfMonth(numberDiv, index);
@@ -121,9 +151,24 @@ function monthActualCal() {
 function nextMonthCal() {
     let nextDays = nextDaysOfMonth();
     for (let index = 1; index <= nextDays; index++) {
-        var smallDayMonth = newElement({ tag: "div", id:"", clas: ["number-days", "nextMonthColor"], content: index});
-        var bigDayMonth = newElement({ tag: 'div', id: '', clas: ["boxEventsCal"], content:""});
-        var numberDiv = newElement({ tag: "div", id:"", clas: ["number-days", "nextMonthColor"], content: index});
+        var smallDayMonth = newElement({
+            tag: "div",
+            id: "",
+            clas: ["number-days", "nextMonthColor"],
+            content: index
+        });
+        var bigDayMonth = newElement({
+            tag: 'div',
+            id: '',
+            clas: ["boxEventsCal"],
+            content: ""
+        });
+        var numberDiv = newElement({
+            tag: "div",
+            id: "",
+            clas: ["number-days", "nextMonthColor"],
+            content: index
+        });
         bigDayMonth.appendChild(numberDiv);
         saveDateNextDayOfMonth(smallDayMonth, index);
         saveDateNextDayOfMonth(numberDiv, index);
@@ -159,9 +204,9 @@ function chooseDateCal() {
 
 function getPresentDay(daysNumber) {
     return daysNumber.filter((element) => {
-        if(element.dataset.year == actual_date.getFullYear()) {
-            if(element.dataset.month == actual_date.getMonth()) {
-                if(element.dataset.day == actual_date.getDate()) {
+        if (element.dataset.year == actual_date.getFullYear()) {
+            if (element.dataset.month == actual_date.getMonth()) {
+                if (element.dataset.day == actual_date.getDate()) {
                     element.classList.add("actualDay")
                     return element;
                 }
@@ -171,9 +216,9 @@ function getPresentDay(daysNumber) {
 }
 
 function isSameDay(date1, date2) {
-    if(date1.getFullYear() == date2.getFullYear()) {
-        if(date1.getMonth() == date2.getMonth()) {
-            if(date1.getDay() == date2.getDay()) {
+    if (date1.getFullYear() == date2.getFullYear()) {
+        if (date1.getMonth() == date2.getMonth()) {
+            if (date1.getDay() == date2.getDay()) {
                 return true;
             }
         };
@@ -192,10 +237,20 @@ function getAllEventsOfDay(dom) {
 
 function createListEvents() {
     document.getElementById('micalendar_minicalendar').innerHTML = null;
-    var summary = newElement({ tag: 'summary', id: '', clas: [], content: 'All Events List'});
+    var summary = newElement({
+        tag: 'summary',
+        id: '',
+        clas: [],
+        content: 'All Events List'
+    });
     document.getElementById('micalendar_minicalendar').appendChild(summary);
     listEvents.forEach(element => {
-        let newP = newElement({ tag: 'summary', id: '', clas: [], content: 'All Events List'});
+        let newP = newElement({
+            tag: 'summary',
+            id: '',
+            clas: [],
+            content: 'All Events List'
+        });
         let hours = new Date(element.fechaInicio).getHours();
         let minutes = new Date(element.fechaInicio).getMinutes();
         newP.textContent = `${hours} : ${minutes} ${element.eventTitle}`;
@@ -206,7 +261,7 @@ function createListEvents() {
 function changeTypeEvent() {
     detailsEventType.forEach(options => {
         options.addEventListener('change', option => {
-            if(option.target.checked == true) {
+            if (option.target.checked == true) {
                 getAllEventsOfDay(option.target.value);
                 createListEvents();
             } else {
@@ -218,8 +273,8 @@ function changeTypeEvent() {
 }
 
 function getAllEventsOfDay(type) {
-    if(localStorage.getItem(type)) var events = JSON.parse(localStorage.getItem(type));
-    if(!events) return;
+    if (localStorage.getItem(type)) var events = JSON.parse(localStorage.getItem(type));
+    if (!events) return;
     let listFilter = events.filter(element => {
         let event = new Date(element.fechaInicio);
         return isSameDay(selectedTypeEvent, event);

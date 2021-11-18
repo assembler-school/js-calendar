@@ -4,6 +4,7 @@ btnCrear.onclick = function () {
     today = new Date();
     var date = today.getFullYear() + '-' + esmenos0(today.getMonth() + 1) + '-' + esmenos0(today.getDate()) + 'T' + esmenos0(today.getHours()) + ':' + esmenos0(today.getMinutes());
     let allEventInputs = document.querySelectorAll('.eventComonClass');
+    console.log(date)
     allEventInputs[1].value = date;
     mainModal.style.display = "block";
 }
@@ -19,6 +20,7 @@ closeModal.onclick = function () {
 };
 
 function cerrar_modal() {
+    momentedit = 0;
     today = new Date();
     var date = today.getFullYear() + '-' + esmenos0(today.getMonth() + 1) + '-' + esmenos0(today.getDate()) + 'T' + esmenos0(today.getHours()) + ':' + esmenos0(today.getMinutes());
     mainModal.style.display = "none";
@@ -32,6 +34,7 @@ function cerrar_modal() {
     allEventInputs[2].value = 'No se repite';
     allEventInputs[3].value = '';
     allEventInputs[4].value = 'Meeting';
+    bigModalId.innerHTML = ""
 }
 
 window.onclick = function (event) {
@@ -51,6 +54,9 @@ eventTitleInput.addEventListener("mouseup", comprovaciones);
 eventTitleInput.addEventListener("keyup", comprovaciones);
 
 function comprovaciones() {
+    if (bigModalId.innerHTML !== "" && momentedit == 1) {
+        deleteById(bigModalId.innerHTML)
+    }
     let profile_cont_input = document.getElementsByClassName('title-modal-input');
     if (profile_cont_input[0].value.length > 3) {
         profile_cont_input[0].style.color = "var(--azul)";
@@ -91,18 +97,22 @@ function comprovacionFinal() {
         if (checkboxDate.checked == true && recordatorio_modal.checked == true) {
             finalEvent = new calendarEvent(allEventInputs[0].value, allEventInputs[1].value, allEventInputs[2].value, allEventInputs[3].value, allEventInputs[4].value, allEventInputs[5].value, allEventInputs[6].value);
             cerrar_modal();
+            window.location.reload(); //es mal
             console.log(finalEvent);
         } else if (checkboxDate.checked == true && recordatorio_modal.checked == false) {
             finalEvent = new calendarEvent(allEventInputs[0].value, allEventInputs[1].value, allEventInputs[2].value, allEventInputs[3].value, 'undefined', allEventInputs[4].value, allEventInputs[5].value);
             cerrar_modal();
+            window.location.reload();
             console.log(finalEvent);
         } else if (checkboxDate.checked == false && recordatorio_modal.checked == true) {
             finalEvent = new calendarEvent(allEventInputs[0].value, allEventInputs[1].value, 'undefined', allEventInputs[2].value, allEventInputs[3].value, allEventInputs[4].value, allEventInputs[5].value);
             cerrar_modal();
+            window.location.reload();
             console.log(finalEvent);
         } else if (checkboxDate.checked == false && recordatorio_modal.checked == false) {
             finalEvent = new calendarEvent(allEventInputs[0].value, allEventInputs[1].value, 'undefined', allEventInputs[2].value, 'undefined', allEventInputs[3].value, allEventInputs[4].value);
             cerrar_modal();
+            window.location.reload();
             console.log(finalEvent);
         }
     }
@@ -179,3 +189,94 @@ function transitiontitle() {
 
 
 // PRUEBAS
+spanclose.onclick = function () {
+    modal.style.display = "none";
+}
+
+
+spanedit.onclick = function () {
+    modal.style.display = "none";
+    var obj = getEventById(ideventmodal.innerHTML)
+    if (obj.fechaFin == "" && obj.remember == "") {
+        let allEventInputs = document.querySelectorAll('.eventComonClass');
+        allEventInputs[0].value = obj.eventTitle
+        allEventInputs[1].value = "2021-11-17T17:46"
+        allEventInputs[2].value = obj.repeat
+        allEventInputs[3].value = obj.description
+        allEventInputs[4].value = obj.eventType
+        bigModalId.innerHTML = obj.eventId
+
+    }
+    if (obj.fechaFin !== "" && obj.remember == "") {
+        checkboxDate.checked = true;
+        ponerdata();
+        let allEventInputs = document.querySelectorAll('.eventComonClass');
+        allEventInputs[0].value = obj.eventTitle
+        allEventInputs[1].value = "2021-11-17"
+        allEventInputs[2].value = "2021-11-19"
+        allEventInputs[3].value = obj.repeat
+        allEventInputs[4].value = obj.description
+        allEventInputs[5].value = obj.eventType
+        bigModalId.innerHTML = obj.eventId
+
+    }
+    if (obj.fechaFin == "" && obj.remember !== "") {
+        recordatorio_modal.checked = true;
+        recordatorio_modal_time();
+        let allEventInputs = document.querySelectorAll('.eventComonClass');
+        allEventInputs[0].value = obj.eventTitle
+        allEventInputs[1].value = "2021-11-17T17:46"
+        allEventInputs[2].value = obj.repeat
+        allEventInputs[3].value = obj.remember
+        allEventInputs[4].value = obj.description
+        allEventInputs[5].value = obj.eventType
+        bigModalId.innerHTML = obj.eventId
+
+    }
+    if (obj.fechaFin !== "" && obj.remember !== "") {
+        recordatorio_modal.checked = true;
+        recordatorio_modal_time();
+        checkboxDate.checked = true;
+        ponerdata();
+        let allEventInputs = document.querySelectorAll('.eventComonClass');
+        allEventInputs[0].value = obj.eventTitle
+        allEventInputs[1].value = "2021-11-17"
+        allEventInputs[2].value = "2021-11-19"
+        allEventInputs[3].value = obj.repeat
+        allEventInputs[4].value = obj.remember
+        allEventInputs[5].value = obj.description
+        allEventInputs[6].value = obj.eventType
+        bigModalId.innerHTML = obj.eventId
+
+    }
+    momentedit = 1
+    mainModal.style.display = "block";
+}
+
+
+
+
+spandel.onclick = function () {
+    modal.style.display = "none";
+    deleteById(ideventmodal.innerHTML)
+}
+
+function deleteById(X) {
+    var obj = getEventById(X);
+    var arrdel = JSON.parse(localStorage[obj.eventType])
+    console.log(arrdel);
+    var arrdelete = arrdel.filter(function (evn) {
+        return evn.eventId !== X
+    })
+    console.log(arrdelete);
+    var envalocal = JSON.stringify(arrdelete)
+    localStorage[obj.eventType] = envalocal
+}
+
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
