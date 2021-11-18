@@ -68,7 +68,7 @@
 #big_calendar {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
+
 }
 
 #small_calendar div,
@@ -122,6 +122,7 @@
     background-color: white;
     cursor: pointer;
 }
+
 
 /* #calendar{
     background:linear-gradient(135deg, #236b9b, #41a735);
