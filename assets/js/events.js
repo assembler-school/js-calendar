@@ -78,9 +78,14 @@ class calendarEvent {
 
 function startSetTimeOut() {
     setTimeout(() => {
+
         findFather();
     }, 100);
 }
+
+setInterval(function(){
+    recuerdame(getEventById(23))
+},1000)
 
 
 function allLocalStorage(X = []) {
@@ -133,42 +138,50 @@ function findFather(x) {
                 if (element.eventId == x) {
                     return
                 }
+                creaTag(element,index)
             }
-            if (element.fechaInicio.split("T").length > 1) {
-                var horaevento = element.fechaInicio.split("T")
-                horaevento = horaevento[1]
-                var content = horaevento + ' ' + '<span>' + element.eventTitle + '</span>'
-                if (element.eventType == 'Meeting') {
-                    boxEventsCal[index].appendChild(inDay(content, element.eventId, 'miniEvents inday', 'meeting'))
-                } else if (element.eventType == 'Personal') {
-                    boxEventsCal[index].appendChild(inDay(content, element.eventId, 'miniEvents inday', 'personal'))
-                } else if (element.eventType == 'Study')
-                    boxEventsCal[index].appendChild(inDay(content, element.eventId, 'miniEvents inday', 'study'))
-            } else {
-                if (element.eventType == 'Meeting') {
-                    boxEventsCal[index].appendChild(newElement({
-                        tag: 'div',
-                        id: element.eventId,
-                        clas: ['miniEvents', 'meeting'],
-                        content: element.eventTitle
-                    }))
-                } else if (element.eventType == 'Personal') {
-                    boxEventsCal[index].appendChild(newElement({
-                        tag: 'div',
-                        id: element.eventId,
-                        clas: ['miniEvents', 'personal'],
-                        content: horaevento + "  " + element.eventTitle
-                    }))
-                } else if (element.eventType == 'Study')
-                    boxEventsCal[index].appendChild(newElement({
-                        tag: 'div',
-                        id: element.eventId,
-                        clas: ['miniEvents', 'study'],
-                        content: horaevento + "  " + element.eventTitle
-                    }))
-            };
         });
     }
+
+
+
+
+function creaTag(element,index){
+    if (element.fechaInicio.split("T").length > 1) {
+        var horaevento = element.fechaInicio.split("T")
+        horaevento = horaevento[1]
+        var content = horaevento + ' ' + '<span>' + element.eventTitle + '</span>'
+        if (element.eventType == 'Meeting') {
+            boxEventsCal[index].appendChild(inDay(content, element.eventId, 'miniEvents inday', 'meeting'))
+        } else if (element.eventType == 'Personal') {
+            boxEventsCal[index].appendChild(inDay(content, element.eventId, 'miniEvents inday', 'personal'))
+        } else if (element.eventType == 'Study')
+            boxEventsCal[index].appendChild(inDay(content, element.eventId, 'miniEvents inday', 'study'))
+    } else {
+        if (element.eventType == 'Meeting') {
+            boxEventsCal[index].appendChild(newElement({
+                tag: 'div',
+                id: element.eventId,
+                clas: ['miniEvents', 'meeting'],
+                content: element.eventTitle
+        }))
+        } else if (element.eventType == 'Personal') {
+            boxEventsCal[index].appendChild(newElement({
+                tag: 'div',
+                id: element.eventId,
+                clas: ['miniEvents', 'personal'],
+                content: horaevento + "  " + element.eventTitle
+            }))
+        } else if (element.eventType == 'Study')
+            boxEventsCal[index].appendChild(newElement({
+                tag: 'div',
+                id: element.eventId,
+                clas: ['miniEvents', 'study'],
+                content: horaevento + "  " + element.eventTitle
+            }))
+}}
+
+
     var eventsClick = document.getElementsByClassName("miniEvents")
     console.log(eventsClick);
     for (const evn of eventsClick) {
@@ -184,5 +197,29 @@ function findFather(x) {
             ideventmodal.innerHTML = obj.eventId
             modal.style.display = "block";
         })
+    }
+}
+
+
+function recuerdame(evn){
+    if(evn.remember !== "undefined"){
+        var actualDate=new Date()
+        var dateEvent= new Date(evn.fechaInicio)
+        if(dateEvent.getFullYear() == actualDate.getFullYear()){
+            if(dateEvent.getMonth() == actualDate.getMonth()){
+                if(dateEvent.getDate() == actualDate.getDate()){
+                    var minAntes=evn.remember.split(" ")[0]
+                    var min=(dateEvent.getMinutes()-parseInt(minAntes))
+                    dateEvent.setMinutes(min)
+                    console.log(dateEvent.getMinutes())
+                    console.log(actualDate.getMinutes())
+                    if(dateEvent.getHours() == actualDate.getHours()){
+                        if(dateEvent.getMinutes() == actualDate.getMinutes()){
+                            alert("en"+minAntes+"minutos tienes un evento:"+evn.eventTitle)
+                        }
+                    }
+                }
+            }
+        }
     }
 }
