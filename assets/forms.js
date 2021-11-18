@@ -3,7 +3,8 @@ eventCreator.addEventListener("click", createNewEvent);
 
 var errors = document.getElementById("error")
 
-function createNewEvent(){
+
+function createNewEvent(i){
     var eventDiv = document.createElement("div")
     eventDiv.setAttribute("id", "Mymodal");
     eventDiv.className = "modal";
@@ -36,6 +37,7 @@ function createNewEvent(){
         <textarea name="textarea" rows="5" cols="40" placeholder="Add some info..." id = "description"></textarea>
         <label for="eventType">Event type:</label>
         <select name="eventType" id="eventType">
+            <option value="---">---</option>
             <option value="meeting">meeting</option>
             <option value="sport">sport</option>
             <option value="leisure">leisure</option>
@@ -49,12 +51,13 @@ function createNewEvent(){
 
     document.getElementById("cancelEvent").addEventListener("click", closeModal);
     document.getElementById("closeModal").addEventListener("click", closeModal);
-    document.getElementById("createEvent").addEventListener("click", createEvent);
+    document.getElementById("createEvent").addEventListener("click", function() {createEvent(i)});
 }
 
 function closeModal(){
     var eventDiv = document.getElementById("Mymodal");
     eventDiv.remove();
+    flag = false;
 }
 let newDayEvent = {
     year: 0,
@@ -116,6 +119,8 @@ function createEvent2(fecha){
     localStorage.setItem("historic",JSON.stringify(historicEvents));
     console.log(newDayEvent.day);
 }
+let flag = false;
+
 function eventValidation(){
     var valueTitle = false;
     var valueInitDate = false;
@@ -151,9 +156,12 @@ function eventValidation(){
 }
 
 
-function createEvent(){
-    errors = document.getElementById("error")
+function createEvent(i){
     if(eventValidation()==true){
+        if (flag == true){
+            console.log(flag);
+            removeEvents(i);
+        }
         initNewDayEvent();
         let fecha = new Date(document.getElementById("initDate").value);
         newDayEvent.year = fecha.getFullYear();
@@ -194,6 +202,7 @@ function createEvent(){
         var eventDiv = document.getElementById("Mymodal");
         createYearMonthDays(selectedYear);
         eventDiv.remove();
+        flag = false;
     }else{
         errors.textContent = "Write a name"
     }

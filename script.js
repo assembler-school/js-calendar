@@ -243,7 +243,6 @@ function deleteYearMonthDays(){//
     }
 }
 function createDaysYear(year,num,m){
-
     var firstDayMonthY = new Date(year,m,1).getDay();//0-7
     var lastDayMonthY = new Date(year,m+1,0).getDay();//0-7
     var countday = 1;
