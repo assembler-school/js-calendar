@@ -34,6 +34,7 @@ function createNewEvent(){
         <textarea name="textarea" rows="5" cols="40" placeholder="Add some info..." id = "description"></textarea>
         <label for="eventType">Event type:</label>
         <select name="eventType" id="eventType">
+            <option value="---">---</option>
             <option value="meeting">meeting</option>
             <option value="sport">sport</option>
             <option value="leisure">leisure</option>

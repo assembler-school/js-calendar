@@ -223,14 +223,8 @@ function deleteYearMonthDays(){//
 }
 
 function createDaysYear(year,num,m){
-    console.log("hola")
-    console.log(year)
-    console.log(num)
-    console.log(m)
     var firstDayMonthY = new Date(year,m,1).getDay();//0-7
-    console.log(firstDayMonthY)
     var lastDayMonthY = new Date(year,m+1,0).getDay();//0-7
-    console.log(lastDayMonthY)
     var countday = 1;
     let countweek = firstDayMonthY;
     let firstWeek = firstDayMonthY;
