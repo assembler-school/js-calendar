@@ -94,7 +94,12 @@ function displayCalendar() {
             monthF="0" + monthF
             if (numero < 10)
             numero="0"+numero
-            fecha= `${year}-${monthF}-${numero}`
+            time = new Date();
+            hour = time.getHours();
+            minute = pad(time.getMinutes())
+            seconds = pad(time.getSeconds());
+            houtMin= `${hour}:${minute}:${seconds}`
+            fecha= `${year}-${monthF}-${numero}T${houtMin}`
             // console.log(fecha)
             // console.log(fecha)
             modalStart()        })
