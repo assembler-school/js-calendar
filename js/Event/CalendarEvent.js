@@ -14,8 +14,9 @@ class CalendarEvent{
     reminder;
     description;
     type;
+    startDate;
 
-    constructor(title, hour, day, month, year, hasEnd, hasReminder, type){
+    constructor(title, hour, day, month, year, hasEnd, hasReminder, type, startDate){
         this.title = title;
         this.hour = hour;
         this.day = day;
@@ -25,6 +26,7 @@ class CalendarEvent{
         this.hasEnd = hasEnd;
         this.hasReminder = hasReminder;
         this.type = type;
+        this.startDate = startDate;
     }
 
     getEvent(){
