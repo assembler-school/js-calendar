@@ -46,3 +46,27 @@
     flex-wrap: wrap;
     height: auto;
   }
+/* modal edit event */
+#modal-edit-container{
+  position:absolute;
+  background-color: red;
+  box-shadow: -1px 1px 8px 1px var(--black-translucent);
+}
+#modal-edit-container #icons{
+  background-color:#f1f3f4;
+  display:flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 7px 8px;
+}
+#modal-edit-container #items{
+  background-color: var(--white);
+  display:flex;
+  flex-direction: column;
+  padding:10px;
+}
+#modal-edit-container #items #item-alert{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+}

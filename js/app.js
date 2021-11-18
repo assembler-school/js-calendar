@@ -1,6 +1,7 @@
 import CreateModal from "./modals/CreateModal.js";
 import ShowInfoModal from "./modals/ShowInfoModal.js";
 import { body, calendar, weekdays } from "./variables.js";
+import createModalToEdit from "./modals/modalEdit.js"
 
 let currentMonth = 0;
 let isModalOpen = false;
@@ -73,14 +74,16 @@ export function displayCalendar() {
                 const calendar = document.getElementById("calendar");
                 for(let i = 0; i < calendar.childNodes.length; i++){
                     if(calendar.childNodes[i] == dayElement){
-                        if(e.clientX < 410) {
+                        if(e.clientX < 410 && e.target.firstChild.attributes!=undefined) {
                             createBackground();
                             new CreateModal(e.clientX, e.clientY / 2, weekdays[i%7], dayElement.firstChild.innerText, currentMonth.textContent, e.target.firstChild.attributes[1].nodeValue);
-                            // new ShowInfoModal(e.clientX, e.clientY / 2);
-                        }else{
+                            console.log(dayElement.childNodes[0], currentMonth.textContent)
+                        }else if(e.target.firstChild.attributes!=undefined){
                             createBackground();
-                            new CreateModal(e.clientX - 400, e.clientY / 2, weekdays[i%7], dayElement.firstChild.innerText, currentMonth.textContent, e.target.firstChild.attributes[1].nodeValue);
-                            // new ShowInfoModal(e.clientX, e.clientY / 2);
+                            new CreateModal(e.clientX - 400, e.clientY / 2, weekdays[i%7], dayElement.firstChild.innerText, currentMonth.textContent, e.target.firstChild.attributes[1].nodeValue)
+                        }else{
+                            console.log("paso");
+                            createModalToEdit();
                         }
                     }
                 }

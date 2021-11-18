@@ -192,3 +192,15 @@
       height: 98%;
       
   }
+  /* modal edit event */
+  .iconEditModal{
+    width: calc(var(--size) / 2);
+    height: calc(var(--size) / 2);
+    margin-right: 10px;
+  }
+  .itemEditModal{
+    
+  }
+  .itemEditModal img{
+    width:15px;    
+}
