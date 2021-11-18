@@ -50,9 +50,9 @@
 #modal-edit-container{
   position:absolute;
   top:500px;
-  background-color: red;
   box-shadow: -1px 1px 8px 1px var(--black-translucent);
-  width:400px;
+  width: var(--modal-size);
+  height: fit-content;
 }
 #modal-edit-container #icons{
   background-color:#f1f3f4;

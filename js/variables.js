@@ -2,7 +2,6 @@ export const body = document.querySelector(".body");
 export const calendar = document.querySelector('#calendar');
 export const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 export const events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : []; // fetching events from LocalStorage, if it doest't exist return an empty array
-
 export function element(type, elemId, elemClass, otherAtt, valueAtt, textContent){
     const element = document.createElement(type);
     if(elemId != null) element.setAttribute("id", elemId);

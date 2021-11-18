@@ -4,7 +4,7 @@ import { fetchEvents, openModalEdit } from "../app.js"
 
 var contID=0;
 class CreateModal{
-
+    
     #structure = [
             
                    //modal
@@ -256,6 +256,7 @@ class CreateModal{
             contID=localStorage.getItem('id') ? JSON.parse(localStorage.getItem('id')) : contID;
             contID++;
             event.setID(contID);
+            const events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
             const stringifyEvent = JSON.stringify(event.getEvent());
             //pushing new event to all events array
             events.push(JSON.parse(stringifyEvent));
