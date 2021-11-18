@@ -7,6 +7,7 @@ var month = dateNow.getMonth();
 var day = dateNow.getDate();
 var year = dateNow.getFullYear();
 var nextMonth = month + 1;
+var prevMonth = month -1;
 
 function displayCalendar() {
     //TODO load eventBook
@@ -85,14 +86,17 @@ function displayCalendar() {
     
     //TODO
     const monthNow= document.querySelectorAll(".gridCalendar")
+  
+    // beginModal()
+    
+    fecha = undefined;
     monthNow.forEach(num=> {
-        num.addEventListener("click", ()=>{
-            numero= num.textContent
-            fecha= ` ${numero} ${monthNames[month]} ${year}`
+        num.addEventListener("click", () => {
+
+            pepe(num)
             modalStart()
-            console.log(fecha)
         })
-    });
+    })
 
     //TODO first modal
     const firstModal = document.getElementById("firstModal")
@@ -103,6 +107,24 @@ function displayCalendar() {
     //Previous Month
     const leftMonth = document.getElementById("leftMonth")
     leftMonth.addEventListener("click", restMonth)
+}
+function pepe(num){
+        // console.log(pruebaotravez)
+        numero= num.textContent
+        monthF=month
+        if (monthF<10)
+        monthF="0" + monthF
+        if (numero < 10)
+        numero="0"+numero
+        time = new Date();
+        hour = time.getHours();
+        minute = pad(time.getMinutes())
+        seconds = pad(time.getSeconds());
+        houtMin= `${hour}:${minute}:${seconds}`
+        fecha= `${year}-${monthF}-${numero}T${houtMin}`
+        // console.log(fecha)
+        // console.log(fecha)
+        // modalStart() 
 }
 
 //TODO

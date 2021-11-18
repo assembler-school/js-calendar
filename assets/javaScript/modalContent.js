@@ -5,6 +5,7 @@ var modalContent = modalContentor[0]
 //TODO Display modal Start
 function modalStart() {
     beginModal()
+    fecha = undefined;
     openModal()
 }
 
@@ -16,7 +17,7 @@ function openModal() {
 //TODO modal close
 function closeModal() {
     modal.style.display = "none";
-    cleanModal()
+    // cleanModal()
 }
 
 //TODO clean modal

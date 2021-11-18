@@ -4,8 +4,8 @@ function displayHour() {
         hour = time.getHours();
         minute = pad(time.getMinutes())
         seconds = pad(time.getSeconds());
-        houtMin= `${hour}: ${minute}: ${seconds}`
-        var fisrsRow= document.querySelector("#calendarprueba")
+        houtMin= `${hour}:${minute}:${seconds}`
+        fisrsRow= document.querySelector("#calendarprueba")
         fisrsRow.textContent=houtMin
         remiderTimer()
     }, 1000);
