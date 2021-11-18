@@ -108,7 +108,6 @@ function addMinutes(date, minutes) {
    
 function getDataFromCalendar (num1) {
     //COGER LOS EVENTOS DEL DIA
-    
     filter= eventBook.filter(element=>{
         // console.log(new Date(fecha).getFullYear(), new Date(element.startDate).getFullYear())
         if(new Date(fecha).getFullYear() == new Date(element.startDate).getFullYear()){
@@ -121,36 +120,35 @@ function getDataFromCalendar (num1) {
         } 
         return false
     })
-
+    
+    
     filter.forEach(event => {
         eventDay = new Date(event.startDate).getDate()
         eventMonth = new Date(event.startDate).getMonth()
         eventYear =  new Date(event.startDate).getFullYear()
-       
-        console.log(eventDay)
-        console.log(eventMonth +1)
-        console.log(eventYear)
-        console.log(event.title)
-console.log(filter)  
+        id = event.eventId
+        finalDate= new Date(event.endDate).getDate()
+        finalMonth= new Date(event.endDate).getMonth()
+        finalYear=new Date(event.endDate).getFullYear()
+//         console.log(id)
+//         console.log(eventDay)
+//         console.log(eventMonth +1)
+//         console.log(eventYear)
+//         console.log(event.title)
+// console.log(filter)  
         let eventOnCalendar = document.createElement('div')
         let eventText = document.createElement('h5') 
+        eventText.setAttribute("id",id)
+        eventText.setAttribute("class",id)
         eventText.innerHTML = event.title
         num1.appendChild(eventText)
-
     /*     if (element.startDate == fecha){
-            
         } */
     });
-    // console.log(filter)
-    //CREAR UN IF SI LA LONGITUD ES 0 Y NO LEAS EL RESTO DEL CODIGO
-    //COGER LA VARIABLE CREADA Y IMPRIMIRLA
-//     eventBook.forEach(element => {
-//     title=element.title
-//     date=new Date(element.startDate)
-//     finalDate=new Date(element.endDate)
-//     console.log(finalDate)
-//    })
 }
+// function pruebaMia(num1){
+//     if(num1)
+// }
 // eventBook.forEach(element => {
 //     prueba=element.title
 //     console.log(prueba)

@@ -101,6 +101,7 @@ function displayCalendar() {
 
     monthNow.forEach(num1=>{
         numero=num1.textContent
+        
         monthF=month
         if (monthF<10)
         monthF="0" + monthF
@@ -115,6 +116,7 @@ function displayCalendar() {
         // console.log(fecha)
         // console.log(fecha)
         getDataFromCalendar(num1)
+        // pruebaMia(num1)
     })
     //first modal
     const firstModal = document.getElementById("firstModal")
