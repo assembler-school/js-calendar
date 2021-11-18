@@ -105,12 +105,14 @@ function createDay(num){
         // createDayContent(selectedYear,selectedMonth,countday,"",dayNameArr[countweek],"");
         assignEvent(countday,day);
         //dayTitle.textContent = monthDayArray[countday - 1].events;
+        generateGridButton(dayInner,countday);
         countday++
         if(countweek>=6){
             countweek=0;
         }else{
             countweek++;
         }
+        
     }
     while(lastWeek <= 6){
         var dayEmptyLast = document.createElement("div");
@@ -179,16 +181,32 @@ function addEventsListeners(){
             if (e.target.matches(".day-container")) {
                 e.target.classList.add("e-selected-day")
                 //selectedDay = e.target
+                
             }
         })
     });
 }
+
+
 function loadStorage(){
     if (localStorage.getItem("historic") !== null) {
         historicEvents = JSON.parse(localStorage.getItem("historic"));
     }
 }
+function generateGridButton(e,countday) {
+    let buttonSpecific = document.createElement("button");
+    buttonSpecific.setAttribute("class","buttonspecific");
+    buttonSpecific.setAttribute("value",countday);
+            buttonSpecific.textContent="+";
+e.appendChild(buttonSpecific);
 
+console.log (e);
+            newEventindayselected();
+        }
+
+function newEventindayselected() {
+    console.log ("holadamebola")
+}
 //create year days
 //var today = new Date ();
 //var todayNumDay = today.getDate();//15
