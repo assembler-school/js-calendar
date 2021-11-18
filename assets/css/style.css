@@ -4,6 +4,10 @@ body {
     font-size: 5em;
 }
 
+#calendar{
+    margin: 0 auto;
+}
+
 .monthPre {
     color: gray;
     text-align: center;
