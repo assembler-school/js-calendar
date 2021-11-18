@@ -1,4 +1,5 @@
-import { element, readArray, setIsModalOpen } from "../variables.js";
+import { fetchEvents } from "../app.js";
+import { element, readArray, setIsModalOpen, events } from "../variables.js";
 
 class ShowInfoModal{
 
@@ -12,11 +13,11 @@ class ShowInfoModal{
                                 [
                                     element("span"),
                                     [
-                                        element("img", null, null, "src", "../assets/imgs/pencil.png")
+                                        element("img", "edit-event", null, "src", "../assets/imgs/pencil.png")
                                     ],
                                     element("span"),
                                     [
-                                        element("img", null, null, "src", "../assets/imgs/bin.png")
+                                        element("img", "remove-event", null, "src", "../assets/imgs/bin.png")
                                     ]
                                 ],
                                 element("span"),
@@ -62,7 +63,6 @@ class ShowInfoModal{
         startDate.firstChild.textContent = event.day + " " + event.month + " " + event.year;
         startDate.lastChild.textContent = event.hour;
 
-        
         if(event.hasEnd){
             const endDate = document.querySelector(".date");
             const endDateStructure = [
@@ -82,6 +82,23 @@ class ShowInfoModal{
             endDate.appendChild(element("span", null, null, null, null, "-"));
             endDate.appendChild(endDateText);
         }
+
+        //edit event
+        const editEvent = document.getElementById("edit-event");
+        editEvent.addEventListener("click", function(){
+            console.log("edit");
+        });
+
+
+        //remove event
+        const removeEvent = document.getElementById("remove-event");
+        removeEvent.addEventListener("click", function(){
+            events.splice(events.indexOf(event), 1);
+            localStorage.setItem("events", events);
+            fetchEvents();
+            setIsModalOpen(false);
+            modal.parentNode.removeChild(modal);
+        });
 
         //close event
         const close = document.getElementById("close-modal");
