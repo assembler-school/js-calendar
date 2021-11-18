@@ -79,7 +79,6 @@ function deleteEvent(){
 function getDataFromCalendar () {
     console.log(eventBook)
    eventBook.forEach((e) => {
-console.log(eventBook)
     
     title = e.title;
     console.log(title)
