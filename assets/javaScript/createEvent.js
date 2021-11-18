@@ -133,7 +133,7 @@ function getDataFromCalendar (num1) {
         console.log(event.title)
 console.log(filter)  
         let eventOnCalendar = document.createElement('div')
-        let eventText = document.createElement('h3') 
+        let eventText = document.createElement('h5') 
         eventText.innerHTML = event.title
         num1.appendChild(eventText)
 
