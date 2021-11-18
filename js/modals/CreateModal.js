@@ -1,8 +1,8 @@
 import CalendarEvent from "../Event/CalendarEvent.js";
 import { element, events, readArray } from "../variables.js";
-import fetchEvents from "../app.js"
+import { fetchEvents, openModalEdit } from "../app.js"
 
-
+var contID=0;
 class CreateModal{
 
     #structure = [
@@ -253,14 +253,19 @@ class CreateModal{
             else event.setDescription(undefined);
 
             //new event
+            contID=localStorage.getItem('id') ? JSON.parse(localStorage.getItem('id')) : contID;
+            contID++;
+            event.setID(contID);
             const stringifyEvent = JSON.stringify(event.getEvent());
             //pushing new event to all events array
             events.push(JSON.parse(stringifyEvent));
 
-            form.addEventListener('submit', function (event) {
-                event.preventDefault();
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
                 localStorage.setItem("events", JSON.stringify(events));
+                localStorage.setItem("id",JSON.stringify(contID)) 
                 fetchEvents();
+                openModalEdit();
                 modal.parentNode.removeChild(modal.previousElementSibling);
                 modal.parentNode.removeChild(modal);
                 return;
