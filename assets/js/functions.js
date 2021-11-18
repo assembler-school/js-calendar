@@ -242,16 +242,23 @@ function createListEvents() {
         content: 'All Events List'
     });
     document.getElementById('micalendar_minicalendar').appendChild(summary);
+    var summary = newElement({
+        tag: "summary",
+        id: "",
+        clas: [],
+        content: "Type Events List"
+    });
+    document.getElementById("mievents_minicalendar").appendChild(summary)
+    if (listEvents.length == 0) return;
     listEvents.forEach(element => {
-        let newP = newElement({
-            tag: 'summary',
-            id: '',
-            clas: [],
-            content: 'All Events List'
-        });
         let hours = new Date(element.fechaInicio).getHours();
         let minutes = new Date(element.fechaInicio).getMinutes();
-        newP.textContent = `${hours} : ${minutes} ${element.eventTitle}`;
+        let newP = newElement({
+            tag: 'p',
+            id: '',
+            clas: [],
+            content:`${hours} : ${minutes} ${element.eventTitle}`
+        });
         document.getElementById('micalendar_minicalendar').appendChild(newP);
     });
 }
