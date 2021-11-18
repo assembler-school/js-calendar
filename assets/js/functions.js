@@ -18,10 +18,10 @@ const bigCalendar = document.getElementById("big_calendar");
 
 //Obtain calculate to previous days of actual month
 function prevDaysOfMonth() {
-    const firstDayIndex = new Date(actual_date.getFullYear(), actual_date.getMonth(), 1).getDay() - 1;
+    const firstDayIndex = new Date(actual_date.getFullYear(), actual_date.getMonth(), 1).getDay();
     const prevLastDay = new Date(actual_date.getFullYear(), actual_date.getMonth(), 0).getDate();
     return {
-        firstDayIndex: (firstDayIndex === -1) ? firstDayIndex + 1 : firstDayIndex,
+        firstDayIndex: (firstDayIndex - 1 === -1) ? 6 : firstDayIndex - 1,
         prevLastDay: prevLastDay
     }
 }
@@ -35,8 +35,7 @@ function daysOfMonth() {
 //Obtain calculate to next days of actual month
 function nextDaysOfMonth() {
     const lastDayIndex = new Date(actual_date.getFullYear(), actual_date.getMonth() + 1, 0).getDay();
-    console.log(lastDayIndex);
-    const nextDays = (6 - lastDayIndex === 0) ? 1: 7 - lastDayIndex;
+    const nextDays = (lastDayIndex === 0) ? 0 : 7 - lastDayIndex;
     return nextDays;
 }
 
@@ -68,19 +67,20 @@ function headerCal() {
     for (const element of dateCalendar) {
         element.textContent = `${month} de ${actual_date.getFullYear()}`;
     }
-    const weekDays = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
-    for (let index = 0; index < weekDays.length; index++) {
+    const weekDaysMin = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
+    const weekDaysMax = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    for (let index = 0; index < weekDaysMin.length; index++) {
         var smallWeekDay = newElement({
             tag: 'div',
             id: '',
             clas: [],
-            content: weekDays[index]
+            content: weekDaysMin[index]
         });
         var bigWeekDay = newElement({
             tag: 'div',
             id: '',
             clas: [],
-            content: weekDays[index]
+            content: weekDaysMax[index]
         });
         smallCalendar.appendChild(smallWeekDay)
         bigCalendar.appendChild(bigWeekDay)
@@ -90,17 +90,15 @@ function headerCal() {
 //Show the previous days of the actual month
 function prevMonthCal() {
     let prevDays = prevDaysOfMonth();
-    let count = prevDays.firstDayIndex;
-    while(count > 0) {
-        var smallDayMonth = newElement({ tag: "div", id:"", clas: ["number-days"], content: prevDays.prevLastDay - count});
+    for(let index = prevDays.firstDayIndex; index > 0; index--) {
+        var smallDayMonth = newElement({ tag: "div", id:"", clas: ["number-days", "previousMonthColor"], content: prevDays.prevLastDay - index + 1});
         var bigDayMonth = newElement({ tag: 'div', id: '', clas: [], content:""});
-        var numberDiv = newElement({ tag: "div", id:"", clas: ["number-days"], content: prevDays.prevLastDay - count});
+        var numberDiv = newElement({ tag: "div", id:"", clas: ["number-days", "previousMonthColor"], content: prevDays.prevLastDay - index + 1});
         bigDayMonth.appendChild(numberDiv);
-        saveDatePrevDayOfMonth(smallDayMonth, count);
-        saveDatePrevDayOfMonth(numberDiv, count);
+        saveDatePrevDayOfMonth(smallDayMonth, prevDays.prevLastDay - index + 1);
+        saveDatePrevDayOfMonth(numberDiv, prevDays.prevLastDay - index + 1);
         smallCalendar.appendChild(smallDayMonth);
         bigCalendar.appendChild(bigDayMonth);
-        count--;
     }
 }
 
@@ -123,9 +121,9 @@ function monthActualCal() {
 function nextMonthCal() {
     let nextDays = nextDaysOfMonth();
     for (let index = 1; index <= nextDays; index++) {
-        var smallDayMonth = newElement({ tag: "div", id:"", clas: ["number-days"], content: index});
+        var smallDayMonth = newElement({ tag: "div", id:"", clas: ["number-days", "nextMonthColor"], content: index});
         var bigDayMonth = newElement({ tag: 'div', id: '', clas: ["boxEventsCal"], content:""});
-        var numberDiv = newElement({ tag: "div", id:"", clas: ["number-days"], content: index});
+        var numberDiv = newElement({ tag: "div", id:"", clas: ["number-days", "nextMonthColor"], content: index});
         bigDayMonth.appendChild(numberDiv);
         saveDateNextDayOfMonth(smallDayMonth, index);
         saveDateNextDayOfMonth(numberDiv, index);
@@ -220,16 +218,13 @@ function changeTypeEvent() {
 }
 
 function getAllEventsOfDay(type) {
-    console.log(type);
     if(localStorage.getItem(type)) var events = JSON.parse(localStorage.getItem(type));
-    console.log(events);
     if(!events) return;
     let listFilter = events.filter(element => {
         let event = new Date(element.fechaInicio);
         return isSameDay(selectedTypeEvent, event);
     });
     listEvents = listEvents.concat(listFilter);
-    console.log(listEvents);
 }
 
 document.querySelectorAll(".btn-prev-month").forEach(element => {

@@ -11,14 +11,29 @@
 }
 
 #crear_minicalendar {
-    margin-left: 10px;
+    width: 60%;
+    height: 50px;
+    line-height: 30px;
+    background-color: white;
+    border: 1px double var(--grisOscuro);
     border-radius: 15px;
-    border: 3px double #006505
+    box-shadow: 2px 2px black;
+    margin-bottom: 10px;
 }
 
-.number-days {
-    text-align: center;
+#crear_minicalendar:hover {
+    background-color: #e4e2e2d0;
+}
 
+#crear_minicalendar img {
+    margin-right: 5px;
+}
+
+
+.number-days {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .number-days:hover {
@@ -37,7 +52,7 @@
 
 .header-calendar {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 #calendars {
@@ -77,25 +92,19 @@
 
 
 #big_calendar div {
-    height: 100px;
-    width: 100px;
+    border: 1px solid rgb(204, 201, 201);
 }
 
-.previousMonthColor {
-    opacity: 30%;
+.previousMonthColor, .nextMonthColor {
     border-radius: 5px;
+    color: rgb(209, 206, 206);
 }
-
-.nextMonthColor {
-    opacity: 30%;
-    border-radius: 5px;
-}
-
 
 .actualDay {
-    font-size: 35px;
-    border-radius: 5px;
-    color: rgb(255, 0, 0);
+    /* font-size: 35px; */
+    background-color: #1a73e8;
+    border-radius: 20px;
+    color: white;
 }
 
 .btn-prev-month, .btn-next-month  {
@@ -108,7 +117,23 @@
     background:linear-gradient(135deg, #236b9b, #41a735);
 } */
 
+@media screen and (min-width: 500px){
+    #crear_minicalendar {
+        width: 30%;
+        height: 50px;
+    }
+}
+
 @media screen and (min-width: 768px) {
+    #calendars {
+        gap: 10px;
+    }
+
+    #crear_minicalendar {
+        width: 50%;
+        height: 50px;
+    }
+
     #minicalendar {
         flex: 10%;
     }
@@ -122,6 +147,9 @@
         font-size: 0.7em;
     }
 
+    #big_calendar div{
+        width: 100%;
+    }
 }
 
 
