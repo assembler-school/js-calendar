@@ -112,7 +112,7 @@ function displayCalendar() {
         houtMin= `${hour}:${minute}:${seconds}`
         fecha= `${year}-${monthF + 1}-${numero}T${houtMin}`
         // console.log(fecha)
-        console.log(fecha)
+        // console.log(fecha)
         getDataFromCalendar(num1)
     })
     //first modal

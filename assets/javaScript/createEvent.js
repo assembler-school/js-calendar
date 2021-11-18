@@ -90,9 +90,9 @@ function getDataFromCalendar (DOM) {
         return false
     })
     filter.forEach(element => {
-        
+        console.log(element)
     });
-    console.log(filter)
+    // console.log(filter)
     //CREAR UN IF SI LA LONGITUD ES 0 Y NO LEAS EL RESTO DEL CODIGO
     //COGER LA VARIABLE CREADA Y IMPRIMIRLA
 //     eventBook.forEach(element => {
@@ -101,8 +101,7 @@ function getDataFromCalendar (DOM) {
 //     finalDate=new Date(element.endDate)
 //     console.log(finalDate)
 //    })
-};
-
+}
 // eventBook.forEach(element => {
 //     prueba=element.title
 //     console.log(prueba)
