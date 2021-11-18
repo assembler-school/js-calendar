@@ -11,14 +11,14 @@
 }
 
 #crear_minicalendar {
-    width: 60%;
+    width: 50%;
     height: 50px;
     line-height: 30px;
     background-color: white;
     border: 1px double var(--grisOscuro);
     border-radius: 15px;
     box-shadow: 2px 2px black;
-    margin-bottom: 10px;
+    margin: 10px;
 }
 
 #crear_minicalendar:hover {
@@ -88,11 +88,13 @@
     margin-top: 30px;
 }
 
-#mievents_minicalendar {
+#mievents_minicalendar  {
     margin-top: 30px;
 }
 
-
+#mievents_minicalendar label  {
+    margin-top: 10px;
+}
 
 #calendar {
     display: none;
@@ -100,7 +102,7 @@
 
 .date-calendar {
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 1.2em;
 }
 
 .previousMonthColor,
@@ -123,48 +125,15 @@
     cursor: pointer;
 }
 
+#lista_minicalendar {
+    padding: 10px;
+}
 
-/* #calendar{
+.nameWeekDays {
+    text-align: center;
+}
+
+/*.container{
     background:linear-gradient(135deg, #236b9b, #41a735);
 } */
 
-@media screen and (min-width: 500px) {
-    #crear_minicalendar {
-        width: 30%;
-        height: 50px;
-    }
-}
-
-@media screen and (min-width: 768px) {
-    #calendars {
-        gap: 10px;
-    }
-
-    #crear_minicalendar {
-        width: 50%;
-        height: 50px;
-    }
-
-    #minicalendar {
-        flex: 10%;
-    }
-
-    #calendar {
-        display: block;
-        flex: 80%;
-    }
-
-    .date-calendar {
-        font-size: 0.7em;
-    }
-
-    .boxEventsCal {
-        width: 100%;
-    }
-}
-
-
-
-/* @media screen and (min-width:) {
-
-} */

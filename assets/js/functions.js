@@ -1,4 +1,4 @@
-const months = {
+const MONTHS = {
     0: 'January',
     1: 'Feburary',
     2: 'March',
@@ -63,7 +63,7 @@ function saveDateNextDayOfMonth(dayMonth, index) {
 //Draw the days of one weekend and month and year actual
 function headerCal() {
     var dateCalendar = document.getElementsByClassName("date-calendar");
-    const month = months[actual_date.getMonth()];
+    const month = MONTHS[actual_date.getMonth()];
     for (const element of dateCalendar) {
         element.textContent = `${month} de ${actual_date.getFullYear()}`;
     }
@@ -79,7 +79,7 @@ function headerCal() {
         var bigWeekDay = newElement({
             tag: 'div',
             id: '',
-            clas: [],
+            clas: ["nameWeekDays"],
             content: weekDaysMax[index]
         });
         smallCalendar.appendChild(smallWeekDay)
@@ -100,7 +100,7 @@ function prevMonthCal() {
         var bigDayMonth = newElement({
             tag: 'div',
             id: '',
-            clas: [],
+            clas: ["boxEventsCal"],
             content: ""
         });
         var numberDiv = newElement({
