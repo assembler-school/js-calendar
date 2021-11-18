@@ -1,8 +1,9 @@
 import CalendarEvent from "../Event/CalendarEvent.js";
-import { element, events, readArray } from "../variables.js";
+import { element, events, readArray, setIsModalOpen } from "../variables.js";
 import { fetchEvents } from "../app.js"
 
-var contID=0;
+let contID = 0;
+
 class CreateModal{
 
     #structure = [
@@ -104,8 +105,15 @@ class CreateModal{
         //close event
         const close = document.getElementById("close-modal");
         close.addEventListener("click", function(){
-            modal.parentNode.removeChild(modal.previousElementSibling);
+            setIsModalOpen(false);
             modal.parentNode.removeChild(modal);
+        });
+
+        modal.addEventListener("keyup",(e)=>{
+            if(e.key == "Escape") {
+                setIsModalOpen(false);
+                modal.parentNode.removeChild(modal);
+            }
         });
         
         //title input
@@ -216,7 +224,7 @@ class CreateModal{
             form.noValidate = true;
             form.addEventListener('submit', function (event) {
                 event.preventDefault();
-                modal.parentNode.removeChild(modal.previousElementSibling);
+                setIsModalOpen(false);
                 modal.parentNode.removeChild(modal);
             });
         });
@@ -266,7 +274,6 @@ class CreateModal{
                 localStorage.setItem("id",JSON.stringify(contID)) 
                 fetchEvents();
                 //openModalEdit();
-                modal.parentNode.removeChild(modal.previousElementSibling);
                 modal.parentNode.removeChild(modal);
                 return;
             });
@@ -278,6 +285,7 @@ class CreateModal{
         modal.addEventListener("focusout", function(e){
             if(e.sourceCapabilities === null || e.relatedTarget === saveButton) return;
             if( e.relatedTarget === modal ||
+                e.relatedTarget === modal.childNodes[1].childNodes[0] || //close-button
                 e.relatedTarget === modal.childNodes[1].childNodes[0][0] || //input
                 e.relatedTarget === modal.childNodes[1].childNodes[0][1] || //date
                 e.relatedTarget === modal.childNodes[1].childNodes[0][2] || //date-checkbox
@@ -285,12 +293,8 @@ class CreateModal{
                 e.relatedTarget === modal.childNodes[1].childNodes[0][4] || //select-reminder
                 e.relatedTarget === modal.childNodes[1].childNodes[0][5] || //textarea
                 e.relatedTarget === modal.childNodes[1].childNodes[0][6] || //select-type
-                e.relatedTarget === modal.childNodes[1].childNodes[0][7] || //save-button
-                e.relatedTarget === modal.childNodes[1].childNodes[0]){} 
-            else {
-                modal.parentNode.removeChild(modal.previousElementSibling);
-                modal.parentNode.removeChild(modal);
-            }
+                e.relatedTarget === modal.childNodes[1].childNodes[0][7]){} //save-button
+            else modal.parentNode.removeChild(modal);
         });
         
             /*-------
@@ -301,13 +305,6 @@ class CreateModal{
                 checkbox reminder
                     use SetInterval every 10sec
             */
-
-        modal.addEventListener("keyup",(e)=>{
-            if(e.key == "Escape"){
-                modal.parentNode.removeChild(modal.previousElementSibling);
-                modal.parentNode.removeChild(modal);
-            }
-        });
         
         //add event to calendar
         modal.style.left = x + "px";
@@ -316,9 +313,7 @@ class CreateModal{
 
     focus(){
         const modal = document.querySelector(".modal");
-        if(modal !== undefined){
-            modal.focus();
-        }
+        if(modal !== undefined) modal.focus();
     }
 }
 

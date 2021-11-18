@@ -1,11 +1,15 @@
 import CreateModal from "./modals/CreateModal.js";
 import ShowInfoModal from "./modals/ShowInfoModal.js";
-import { body, calendar, weekdays, events } from "./variables.js";
-//import createModalToEdit from "./modals/modalEdit.js"
+import { calendar, weekdays, events, setIsModalOpen, getIsModalOpen } from "./variables.js";
 
 let currentMonth = 0;
-//let isModalOpen = false;
 
+displayCalendar();
+changeMonthButton();
+fetchEvents();
+
+
+//Resisar esta funcion---------------------------------------------------------------------------------------------------
 // Main function for creating the calendar month dinamically
 function displayCalendar() {
 
@@ -69,27 +73,26 @@ function displayCalendar() {
 
         //Create modal
         dayElement.addEventListener('click', (e) => {
-            const currentMonth = document.getElementById("current-month");
-            const calendar = document.getElementById("calendar");
-            for(let i = 0; i < calendar.childNodes.length; i++){
-                if(calendar.childNodes[i] == dayElement){
-                    if(e.target.className === "event"){
-                        createBackground();
-                        if(e.clientX < 410) new ShowInfoModal(e.x, e.y - 80);
-                        else new ShowInfoModal(e.x - 400, e.y - 80);
-                    } else {
-                        //edge case event border
-                        if(e.clientX < 410 && e.target.firstChild.attributes != undefined){
-                            createBackground();
-                            new CreateModal(e.x, e.y / 2, weekdays[i%7], dayElement.firstChild.innerText, currentMonth.textContent, e.target.firstChild.attributes[1].nodeValue);
-                        } else if (e.target.firstChild.attributes!=undefined){
-                            createBackground();
-                            new CreateModal(e.x - 400, e.y / 2, weekdays[i%7], dayElement.firstChild.innerText, currentMonth.textContent, e.target.firstChild.attributes[1].nodeValue)
+            if(!getIsModalOpen()){
+                const currentMonth = document.getElementById("current-month");
+                const calendar = document.getElementById("calendar");
+                for(let i = 0; i < calendar.childNodes.length; i++){
+                    if(calendar.childNodes[i] == dayElement){
+                        if(e.target.className === "event"){
+                            if(e.clientX < 410) new ShowInfoModal(e.x, e.y - 80);
+                            else new ShowInfoModal(e.x - 400, e.y - 80);
+                        } else {
+                            //edge case event border
+                            if(e.clientX < 410 && e.target.firstChild.attributes != undefined){
+                                new CreateModal(e.x, e.y / 2, weekdays[i%7], dayElement.firstChild.innerText, currentMonth.textContent, e.target.firstChild.attributes[1].nodeValue);
+                            } else if (e.target.firstChild.attributes!=undefined){
+                                new CreateModal(e.x - 400, e.y / 2, weekdays[i%7], dayElement.firstChild.innerText, currentMonth.textContent, e.target.firstChild.attributes[1].nodeValue)
+                            }
                         }
+                        setIsModalOpen(true);
                     }
                 }
-            }
-            //isModalOpen = true;
+            } else setIsModalOpen(false);
         });
         calendar.appendChild(dayElement); // adding the day square to the calendar
     }
@@ -103,14 +106,12 @@ function displayCalendar() {
             }
         })
     }
+
     highlightToday();
-    fetchEvents();
     //openModalEdit();
 }
 
-displayCalendar();
 
-changeMonthButton();
 
 function changeMonthButton(){
     document.getElementById('nextBtn').addEventListener('click', () =>{
@@ -125,12 +126,6 @@ function changeMonthButton(){
         currentMonth = 0;
         displayCalendar();
     });
-}
-
-export function createBackground(){
-    const background = document.createElement("div");
-    background.classList.add("modalBackground");
-    body.appendChild(background);
 }
 
 // Check local storage and fetch events

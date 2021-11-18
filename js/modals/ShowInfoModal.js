@@ -1,4 +1,4 @@
-import { element, readArray } from "../variables.js";
+import { element, readArray, setIsModalOpen } from "../variables.js";
 
 class ShowInfoModal{
 
@@ -64,24 +64,24 @@ class ShowInfoModal{
         //close event
         const close = document.getElementById("close-modal");
         close.addEventListener("click", function(){
-            modal.parentNode.removeChild(modal.previousElementSibling);
+            setIsModalOpen(false);
             modal.parentNode.removeChild(modal);
         });
 
+        modal.addEventListener("keyup",(e)=>{
+            if(e.key == "Escape") {
+                setIsModalOpen(false);
+                modal.parentNode.removeChild(modal);
+            }
+        });
 
         //modal listener
         this.focus();
         modal.addEventListener("focusout", function(e){
-            modal.parentNode.removeChild(modal.previousElementSibling);
-            modal.parentNode.removeChild(modal);
-        });
-
-
-        modal.addEventListener("keyup",(e)=>{
-            if(e.key == "Escape"){
-                modal.parentNode.removeChild(modal.previousElementSibling);
-                modal.parentNode.removeChild(modal);
-            }
+            if(e.sourceCapabilities === null) return;
+            if( e.relatedTarget === modal ||
+                e.relatedTarget === modal.childNodes[1].childNodes[0]){} //close-button
+            else modal.parentNode.removeChild(modal);
         });
         
         //add event to calendar
