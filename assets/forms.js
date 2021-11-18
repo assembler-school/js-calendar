@@ -1,7 +1,7 @@
 const eventCreator = document.getElementById("buttonaddevent");
 eventCreator.addEventListener("click", createNewEvent);
 
-function createNewEvent(){
+function createNewEvent(i){
     var eventDiv = document.createElement("div")
     eventDiv.setAttribute("id", "Mymodal");
     eventDiv.className = "modal";
@@ -46,12 +46,13 @@ function createNewEvent(){
 
     document.getElementById("cancelEvent").addEventListener("click", closeModal);
     document.getElementById("closeModal").addEventListener("click", closeModal);
-    document.getElementById("createEvent").addEventListener("click", createEvent);
+    document.getElementById("createEvent").addEventListener("click", function() {createEvent(i)});
 }
 
 function closeModal(){
     var eventDiv = document.getElementById("Mymodal");
     eventDiv.remove();
+    flag = false;
 }
 let newDayEvent = {
     year: 0,
@@ -113,8 +114,13 @@ function createEvent2(fecha){
     localStorage.setItem("historic",JSON.stringify(historicEvents));
     console.log(newDayEvent.day);
 }
+let flag = false;
 
-function createEvent(){
+function createEvent(i){
+    if (flag == true){
+        console.log(flag);
+        removeEvents(i);
+    }
     initNewDayEvent();
     let fecha = new Date(document.getElementById("initDate").value);
     newDayEvent.year = fecha.getFullYear();
@@ -155,6 +161,7 @@ function createEvent(){
     var eventDiv = document.getElementById("Mymodal");
     createMonthDays();
     eventDiv.remove();
+    flag = false;
 }
 
 function bigEvents(fecha1, fecha2){

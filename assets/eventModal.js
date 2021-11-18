@@ -1,6 +1,6 @@
 function modalEvent(i){
     var eventDiv = document.createElement("div")
-    eventDiv.setAttribute("id", "Mymodal");
+    eventDiv.setAttribute("id", "MymodalEvent");
     eventDiv.className = "modal";
     document.body.appendChild(eventDiv);
     var modalContent = document.createElement("div");
@@ -19,7 +19,7 @@ function modalEvent(i){
         <h2>Type event:</h2>
         <div id = "typeDiv"></div>
         <button id = "removeEvent">Remove</button>
-        <button id = "edit">Edit</button>
+        <button id = "editEvent">Edit</button>
     </div>`;
     modalContent.innerHTML= htmlModal;
     var titlediv = document.getElementById("titleDiv");
@@ -34,8 +34,31 @@ function modalEvent(i){
     typeDiv.textContent = historicEvents[i].eventTipe;
     console.log(historicEvents);
 
-    document.getElementById("removeEvent").addEventListener("click", function() {removeEvents(i)});
-    document.getElementById("closeModalEvent").addEventListener("click", closeModal);
+    document.getElementById("removeEvent").addEventListener("click", function() {removeEvents1(i)});
+    document.getElementById("closeModalEvent").addEventListener("click", closeModalEvent);
+    document.getElementById("editEvent").addEventListener("click", function(){editEvents(i)})
+}
+function removeEvents1(i){
+    removeEvents(i);
+    closeModalEvent();
+}
+
+function editEvents(i){
+    flag = true;
+    closeModalEvent();
+    console.log(flag);
+    createNewEvent(i);
+    editForm(i);
+    createMonthDays();
+}
+
+function editForm(i){
+    document.getElementById("eventName").value = historicEvents[i].title;
+    document.getElementById("initDate").value = historicEvents[i].initialDate;
+    document.getElementById("checkEnd").checked = true;
+    document.getElementById("endaDate").value = historicEvents[i].endaDate;
+    document.getElementById("description").value = historicEvents[i].description;
+    document.getElementById("eventType").value = historicEvents[i].eventTipe;
 }
 
 function removeEvents(i){
@@ -51,6 +74,12 @@ function removeEvents(i){
     }
     console.log(historicEvents);
     localStorage.setItem("historic",JSON.stringify(historicEvents));
-    closeModal();
+    // closeModalEvent();
     createMonthDays();
+    flag = false;
+}
+
+function closeModalEvent(){
+    var eventDiv = document.getElementById("MymodalEvent");
+    eventDiv.remove();
 }
