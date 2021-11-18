@@ -186,26 +186,3 @@ function findFather(x) {
         })
     }
 }
-
-////PRUEBAS
-
-/* let fatherPruebas = document.getElementById('fatherPruebas')
- */
-/* let eventoPruebas = new calendarEvent('titulo', '18-11-2021', '', 'No se repite', '', '', 'Meeting');
-let eventoPruebas1 = new calendarEvent('titulo', '18-11-2021T11:25', '', 'No se repite', '', '', 'Personal');
-let eventoPruebas2 = new calendarEvent('titulo', '18-11-2021T11:25', '', 'No se repite', '', '', 'Study'); */
-/* let btnPruebas = document.getElementById('pruebas');
-
-btnPruebas.addEventListener('click', function () {
-    eventoPruebas.createTagEvent(fatherPruebas, eventoPruebas.allEvent.eventId);
-    eventoPruebas1.createTagEvent(fatherPruebas, eventoPruebas.allEvent.eventId);
-    eventoPruebas2.createTagEvent(fatherPruebas, eventoPruebas.allEvent.eventId);
-    var eventsClick = document.getElementsByClassName("miniEvents")
-    console.log(eventsClick);
-    for (const evn of eventsClick) {
-        evn.addEventListener("click", function (evn) {
-            console.log(evn.srcElement.id)
-            modal.style.display = "block";
-        })
-    }
-}) */

@@ -54,9 +54,7 @@ eventTitleInput.addEventListener("mouseup", comprovaciones);
 eventTitleInput.addEventListener("keyup", comprovaciones);
 
 function comprovaciones() {
-    if (bigModalId.innerHTML !== "" && momentedit == 1) {
-        deleteById(bigModalId.innerHTML)
-    }
+  
     let profile_cont_input = document.getElementsByClassName('title-modal-input');
     if (profile_cont_input[0].value.length > 3) {
         profile_cont_input[0].style.color = "var(--azul)";
@@ -81,6 +79,9 @@ function comprovacionesFechas(event) {
 }
 
 function comprovacionFinal() {
+    if (bigModalId.innerHTML !== "" && momentedit == 1) {
+        deleteById(bigModalId.innerHTML)
+    }
     let a = 0;
     let allInputs = document.querySelectorAll('.modal-need');
     for (let i = 0; i < allInputs.length; i++) {
@@ -197,7 +198,7 @@ spanclose.onclick = function () {
 spanedit.onclick = function () {
     modal.style.display = "none";
     var obj = getEventById(ideventmodal.innerHTML)
-    if (obj.fechaFin == "" && obj.remember == "") {
+    if (obj.fechaFin == "undefined" && obj.remember == "undefined") {
         let allEventInputs = document.querySelectorAll('.eventComonClass');
         allEventInputs[0].value = obj.eventTitle
         allEventInputs[1].value = "2021-11-17T17:46"
@@ -205,9 +206,8 @@ spanedit.onclick = function () {
         allEventInputs[3].value = obj.description
         allEventInputs[4].value = obj.eventType
         bigModalId.innerHTML = obj.eventId
-
     }
-    if (obj.fechaFin !== "" && obj.remember == "") {
+    if (obj.fechaFin !== "undefined" && obj.remember == "undefined") {
         checkboxDate.checked = true;
         ponerdata();
         let allEventInputs = document.querySelectorAll('.eventComonClass');
@@ -218,9 +218,8 @@ spanedit.onclick = function () {
         allEventInputs[4].value = obj.description
         allEventInputs[5].value = obj.eventType
         bigModalId.innerHTML = obj.eventId
-
     }
-    if (obj.fechaFin == "" && obj.remember !== "") {
+    if (obj.fechaFin == "undefined" && obj.remember !== "undefined") {
         recordatorio_modal.checked = true;
         recordatorio_modal_time();
         let allEventInputs = document.querySelectorAll('.eventComonClass');
@@ -231,9 +230,8 @@ spanedit.onclick = function () {
         allEventInputs[4].value = obj.description
         allEventInputs[5].value = obj.eventType
         bigModalId.innerHTML = obj.eventId
-
     }
-    if (obj.fechaFin !== "" && obj.remember !== "") {
+    if (obj.fechaFin !== "undefined" && obj.remember !== "undefined") {
         recordatorio_modal.checked = true;
         recordatorio_modal_time();
         checkboxDate.checked = true;
@@ -247,7 +245,6 @@ spanedit.onclick = function () {
         allEventInputs[5].value = obj.description
         allEventInputs[6].value = obj.eventType
         bigModalId.innerHTML = obj.eventId
-
     }
     momentedit = 1
     mainModal.style.display = "block";
