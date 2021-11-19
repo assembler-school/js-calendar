@@ -123,9 +123,15 @@ document.getElementById('today').addEventListener('click', () =>{
 });
 //create event button
 document.getElementById('create-event').addEventListener('click', (e) =>{
+    const today = new Date();
+    const todayDate = today.getDate();
+    const todayMonth = today.toLocaleDateString('en-GB', { month: 'long' });
+    const todayYear = today.getFullYear();
+    const todayDay = today.toLocaleDateString('en-GB', { weekday: 'long' });
     createBackground();
-    new CreateModal(e.target.offsetLeft - 430, e.target.y);
+    new CreateModal(e.target.offsetLeft - 430, e.target.y, todayDay, todayDate, todayMonth, todayYear);
 });
+// x, y, dayWeek, day, month, dataDate
 
 displayCalendar();
 
