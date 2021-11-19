@@ -64,9 +64,9 @@ function init(){
 }
 
 function refreshContainers(){
-    dayNameContainerH1.textContent = dayNameArr[today.getDay()] + todayNumDay;
-    monthNameContainerH1.textContent = monthNameArr[selectedMonth];
-    yearNameContainerH1.textContent = selectedYear;
+    //dayNameContainerH1.textContent = dayNameArr[today.getDay()] + todayNumDay;
+    //monthNameContainerH1.textContent = monthNameArr[selectedMonth];
+    //yearNameContainerH1.textContent = selectedYear;
 }
 function changeYear(event){
     switch (event.target.id) {
@@ -141,17 +141,19 @@ function createDay(year,month){
         var dayInner = document.createElement("div");
         dayInner.setAttribute("id","day-container-inner" + countday);
         dayInner.classList.add("day-container-inner")
-        dayInner.textContent = dayNameArr[countweek]+countday;
+        dayInner.textContent = countday;
         day.appendChild(dayInner);
         // createDayContent(selectedYear,selectedMonth,countday,"",dayNameArr[countweek],"");
         assignEvent(countday,day);
         //dayTitle.textContent = monthDayArray[countday - 1].events;
+        generateGridButton(dayInner,countday);
         countday++
         if(countweek>=6){
             countweek=0;
         }else{
             countweek++;
         }
+        
     }
     if(lastWeek == 0){
         lastWeek = 7;
@@ -211,20 +213,48 @@ function addEventsListeners(){
             for (x=1; x<daisMonth2.length+1; x++){
                 document.getElementById("day-container-"+x).classList.remove("e-selected-day");
                 if (e.target.matches(".day-container")) {
-                    dayNameContainerH1.textContent=e.target.innerText;
+                    //dayNameContainerH1.textContent=e.target.innerText;
                 }
             }
             if (e.target.matches(".day-container")) {
                 e.target.classList.add("e-selected-day")
                 //selectedDay = e.target
+                
             }
         })
     });
 }
+
+
 function loadStorage(){
     if (localStorage.getItem("historic") !== null) {
         historicEvents = JSON.parse(localStorage.getItem("historic"));
     }
+}
+
+
+
+function generateGridButton(e,countday) {
+    let buttonDate;
+    let buttonSpecific = document.createElement("button");
+    buttonSpecific.setAttribute("class","buttonspecific");
+    buttonSpecific.setAttribute("value",countday);
+    buttonSpecific.textContent="+";
+    //let buttonDate = new Date(selectedYear,selectedMonth,buttonSpecific.value,"T00:00");
+    if(buttonSpecific.value<10){
+        buttonDate = selectedYear+"-"+selectedMonth+"-0"+buttonSpecific.value+"T00:00";
+    }else{
+        buttonDate = selectedYear+"-"+selectedMonth+"-"+buttonSpecific.value+"T00:00";
+    }
+    buttonSpecific.addEventListener("click",function (){insertDataElement(buttonDate)});
+    e.appendChild(buttonSpecific);
+        }
+
+function insertDataElement(a){
+    console.log(a);
+    console.log(a)
+    createNewEvent();
+    document.getElementById("initDate").value = a;
 }
 
 function createYearMonthDays(year){//
