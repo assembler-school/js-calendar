@@ -49,7 +49,6 @@
 /* modal edit event */
 #modal-edit-container{
   position:absolute;
-  top:500px;
   box-shadow: -1px 1px 8px 1px var(--black-translucent);
   width: var(--modal-size);
   height: fit-content;

@@ -1,5 +1,6 @@
 import { createBackground, fetchEvents } from "../app.js"
 export default function createModalToEdit(e){
+    
     createBackground();
     const getID=e.target.attributes[0].nodeValue; //getID from event clicked
     const arrayEvents=JSON.parse(localStorage.getItem("events")); //parse arrayEvents
@@ -26,6 +27,11 @@ export default function createModalToEdit(e){
     const divItems=document.createElement("div")
         divItems.id="items";
 
+    //where to spawn
+    console.log(e.clientX);
+    if(e.clientX<500)divParent.style.left=e.clientX+"px";
+    else{divParent.style.left=(e.clientX-500)+"px";}
+    divParent.style.top=e.clientY+"px";
     //spawn elements
     
     body.appendChild(divParent);
