@@ -99,7 +99,9 @@ function comprovacionFinal() {
             finalEvent = new calendarEvent(allEventInputs[0].value, allEventInputs[1].value, allEventInputs[2].value, allEventInputs[3].value, allEventInputs[4].value, allEventInputs[5].value, allEventInputs[6].value);
             cerrar_modal();
             magia(finalEvent);
-            window.location.reload(); //es mal
+            actual_date.setMonth(11)
+            actual_date.setDate(8)
+            createCal()
             console.log(finalEvent);
         } else if (checkboxDate.checked == true && recordatorio_modal.checked == false) {
             finalEvent = new calendarEvent(allEventInputs[0].value, allEventInputs[1].value, allEventInputs[2].value, allEventInputs[3].value, 'undefined', allEventInputs[4].value, allEventInputs[5].value);
@@ -133,7 +135,7 @@ function ponerdata() {
     var inputdate_modal = document.createElement("input")
     today = new Date();
     var date = today.getFullYear() + '-' + esmenos0(today.getMonth() + 1) + '-' + esmenos0(today.getDate());
-    var date2= date+"T"+esmenos0(today.getHours())+":"+esmenos0(today.getMinutes())
+    var date2 = date + "T" + esmenos0(today.getHours()) + ":" + esmenos0(today.getMinutes())
     inputdate_modal.type = "Date"
     inputdate_modal.value = date
     inputdate_modal.classList = "date_modal modal-need eventComonClass neededDate"
@@ -154,7 +156,7 @@ function ponerdata() {
             fecha_modal.removeChild(a)
             typedatatimelocal.type = "datetime-local"
             console.log(date2)
-            allEventInputs[1].value=date2
+            allEventInputs[1].value = date2
         }
     }
 }

@@ -187,6 +187,8 @@ function createCal() {
     monthActualCal()
     nextMonthCal()
     chooseDateCal()
+    findFather()
+    getPresentDay(Array.from(document.querySelectorAll(".number-days")));
 }
 
 //Events to choose all days of calendar
@@ -243,7 +245,7 @@ function createListEvents() {
             tag: 'p',
             id: '',
             clas: [],
-            content:`${hours} : ${minutes} ${element.eventTitle}`
+            content: `${hours} : ${minutes} ${element.eventTitle}`
         });
         document.getElementById('micalendar_minicalendar').appendChild(newP);
     });
@@ -288,7 +290,7 @@ function createListExpired() {
     });
     document.getElementById('expiredEve_minicalendar').appendChild(summary);
     let listExpired = [];
-    if(localStorage.getItem('PassedEvents')) listExpired = JSON.parse(localStorage.getItem('PassedEvents'));
+    if (localStorage.getItem('PassedEvents')) listExpired = JSON.parse(localStorage.getItem('PassedEvents'));
     if (listExpired.length == 0) return;
     listExpired.forEach(element => {
         let hours = new Date(element.fechaInicio).getHours();
@@ -297,7 +299,7 @@ function createListExpired() {
             tag: 'p',
             id: '',
             clas: [],
-            content:`${hours} : ${minutes} ${element.eventTitle}`
+            content: `${hours} : ${minutes} ${element.eventTitle}`
         });
         document.getElementById('expiredEve_minicalendar').appendChild(newP);
     });
@@ -307,8 +309,6 @@ document.querySelectorAll(".btn-prev-month").forEach(element => {
     element.addEventListener("click", event => {
         actual_date.setMonth((actual_date.getMonth() - 1));
         createCal();
-        findFather();
-        getPresentDay(Array.from(document.querySelectorAll(".number-days")));
     })
 })
 
@@ -316,7 +316,5 @@ document.querySelectorAll(".btn-next-month").forEach(element => {
     element.addEventListener("click", event => {
         actual_date.setMonth((actual_date.getMonth() + 1));
         createCal();
-        findFather();
-        getPresentDay(Array.from(document.querySelectorAll(".number-days")));
     })
 })
