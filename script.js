@@ -19,6 +19,28 @@ previousYear.addEventListener("click", changeYear);
 
 var hourDiv = document.querySelector("#day-container");
 
+
+
+
+/*
+function pastdaystyle(){
+    let z = 0;
+    
+    console.log(today);
+    while (z < (historicEvents.length-1)){
+        if (new Date(historicEvents[z].initialDate) < today){
+            var dayinpast = document.querySelector(".event-container");
+            dayinpast.classList.add("dayinpast");
+            z++;
+            console.log(new Date(historicEvents[z].initialDate));
+        }
+        else {
+            z++
+        }
+        
+        }
+}*/
+
 var eventHistoricArray = [];
 var monthDayArray = [];
 const dayNameArr = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
@@ -111,6 +133,7 @@ function createMonthDays(year,month){
     createDay(year,month);
     createHoursFun(selectedDay);
     addEventsListeners();
+    pastdaystyle();
 }
 function createDay(year,month){
     var num = new Date(year,month+1,0).getDate();
@@ -179,6 +202,9 @@ function displayEventsPerDay(day,i){
         createDivEvent.setAttribute("id","event-container-" + i);
         createDivEvent.classList.add("event-container");
         createDivEvent.textContent = historicEvents[i].title;
+        if(new Date (historicEvents[i].endaDate) < today){
+            createDivEvent.classList.add("dayinpast")
+        }
         createDivEvent.addEventListener("click",function() { modalEvent(i)})
         day.appendChild(createDivEvent);
 }
@@ -188,10 +214,12 @@ function assignEvent(countday,day){
     while(i < (historicEvents.length)){
         if(historicEvents[i].day == (countday) && historicEvents[i].month == selectedMonth && historicEvents[i].year == selectedYear){
             // monthDayArray[countday - 1].events = filterEventFun(countday);
-            displayEventsPerDay(day,i)
+            displayEventsPerDay(day,i);
+
         }
         i++;
     }
+    
 }
 function createHoursFun(){
     var countHours = 1 ;
