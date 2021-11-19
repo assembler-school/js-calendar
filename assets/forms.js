@@ -210,6 +210,7 @@ function createEvent(i){
 
 function bigEvents(fecha1, fecha2){
     let dif = fecha2;
+    
     while(dif> fecha1){
         console.log(dif);
         createEvent2(dif);
