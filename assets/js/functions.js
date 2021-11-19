@@ -307,6 +307,7 @@ document.querySelectorAll(".btn-prev-month").forEach(element => {
     element.addEventListener("click", event => {
         actual_date.setMonth((actual_date.getMonth() - 1));
         createCal();
+        findFather();
         getPresentDay(Array.from(document.querySelectorAll(".number-days")));
     })
 })
@@ -315,6 +316,7 @@ document.querySelectorAll(".btn-next-month").forEach(element => {
     element.addEventListener("click", event => {
         actual_date.setMonth((actual_date.getMonth() + 1));
         createCal();
+        findFather();
         getPresentDay(Array.from(document.querySelectorAll(".number-days")));
     })
 })
