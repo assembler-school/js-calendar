@@ -1,12 +1,14 @@
 import CreateModal from "./modals/CreateModal.js";
+import createModalToEdit from "./modals/modalEdit.js";
 import ShowInfoModal from "./modals/ShowInfoModal.js";
-import { calendar, weekdays, events, setIsModalOpen, getIsModalOpen } from "./variables.js";
+import { calendar, weekdays, events, setIsModalOpen, getIsModalOpen, body } from "./variables.js";
 
 let currentMonth = 0;
 
 displayCalendar();
 changeMonthButton();
 fetchEvents();
+openModalEdit();
 
 
 //Resisar esta funcion---------------------------------------------------------------------------------------------------
@@ -82,8 +84,8 @@ function displayCalendar() {
                     if(calendar.childNodes[i] == dayElement){
                         if(e.target.className === "event"){
                             const event = events.filter(events => events.eventID === parseInt(e.target.dataset.eventid));                            
-                            if(e.clientX < 410) new ShowInfoModal(e.x, e.y - 80, event[0]);
-                            else new ShowInfoModal(e.x - 400, e.y - 80, event[0]);
+                            //if(e.clientX < 410) new ShowInfoModal(e.x, e.y - 80, event[0]);
+                            //else new ShowInfoModal(e.x - 400, e.y - 80, event[0]);
                         } else {
                             //edge case event border
                             if(e.clientX < 410 && e.target.firstChild.attributes != undefined){
@@ -125,6 +127,26 @@ function changeMonthButton(){
     document.getElementById('today').addEventListener('click', () =>{
         currentMonth = 0;
         displayCalendar();
+    })
+};
+
+//create event button
+document.getElementById('create-event').addEventListener('click', (e) =>{
+    createBackground();
+    new CreateModal(e.target.offsetLeft - 430, e.target.y);
+});
+
+export function createBackground(){
+    const background = document.createElement("div");
+    background.classList.add("modalBackground");
+    body.appendChild(background);
+}
+//Select event and open modal
+export function openModalEdit(){
+    const eventList = document.querySelectorAll('.event'); 
+    eventList.forEach(element => {
+        element.removeEventListener("click",createModalToEdit);
+        element.addEventListener('click', createModalToEdit);
     });
 }
 
@@ -141,6 +163,8 @@ export function fetchEvents() {
                 const newEvent = document.createElement('p');
                 newEvent.setAttribute("data-eventID", event.eventID);
                 newEvent.innerHTML = `${event.title}`; // <span class="event-data">${event.day} ${event.month} ${event.year} </span>`
+                /*newEvent.setAttribute("data-eventid", dailyEvents[i].eventID);
+                newEvent.innerHTML = `${dailyEvents[i].title}`;*/
                 newEvent.classList.add('event');
                 element.lastChild.appendChild(newEvent);
             });

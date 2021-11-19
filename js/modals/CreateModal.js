@@ -5,7 +5,7 @@ import { fetchEvents } from "../app.js"
 let contID = 0;
 
 class CreateModal{
-
+    
     #structure = [
             
                    //modal
