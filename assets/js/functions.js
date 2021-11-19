@@ -234,21 +234,7 @@ function createListEvents() {
         clas: [],
         content: 'All Events List'
     });
-    document.getElementById('micalendar_minicalendar').innerHTML = null;
-    var summary = newElement({
-        tag: 'summary',
-        id: '',
-        clas: [],
-        content: 'All Events List'
-    });
     document.getElementById('micalendar_minicalendar').appendChild(summary);
-    var summary = newElement({
-        tag: "summary",
-        id: "",
-        clas: [],
-        content: "Type Events List"
-    });
-    document.getElementById("mievents_minicalendar").appendChild(summary)
     if (listEvents.length == 0) return;
     listEvents.forEach(element => {
         let hours = new Date(element.fechaInicio).getHours();
