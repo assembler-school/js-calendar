@@ -31,7 +31,7 @@ function beginModal() {
     const span = document.getElementsByClassName("close")[0];
 
     //TODO event Listener
-    endDateCheck.addEventListener('change', displayForm)
+    endDateCheck.addEventListener('input', displayForm)
     deleteButton.addEventListener('click', deleteEvent)
     createButton.addEventListener('click', createEvent)
     span.addEventListener('click', closeModal)
@@ -86,33 +86,38 @@ function openForm(id) {
         }
         return false
     })
-    console.log(openBook[0])
+    
     setTimeout(() => {
         beginModal()
-
         document.getElementById("title").value = openBook[0].title
         document.getElementById("begindateId").value = openBook[0].startDate
-        endDateCheck = document.getElementById("endDateCheck").checked = true
+        document.getElementById("endDateCheck").checked = true
+
         displayForm()
 
         title = openBook[0].title
         begindateId = openBook[0].begindateId
         console.log(begindateId)
         //endDateCheck.checked == true
-
-        endDate = document.getElementById("endDate")
-        checkboxreminder = document.getElementById("reminder")
+        
+        document.getElementById("endDate").value=openBook[0].endDate
+       
+//         as=document.getElementById("remindTimer").L
+// console.log(as)
+//         textContent=openBook[0].reminder
 
         endDate = openBook[0].endDate
-        checkboxreminder.checked == true
+        // checkboxreminder.checked == true
+        // document.getElementById("reminder").value=true
+        // document.getElementById("remindTimer").value= openBook[0].reminder
+        document.getElementById("description").value=openBook[0].description
+        // no existe el eventType
+        // console.log(openBook[0].eventType)
+        // document.getElementById("eventType").textContent=openBook[0].eventType
 
-        reminder = document.getElementById("remindTimer")
-        description = document.getElementById("description")
-        eventType = document.getElementById("eventType")
-
-        reminder = openBook[0].reminder
-        description = openBook[0].description
-        eventType = openBook[0].eventType
-    }, 1000);
+        // reminder = openBook[0].reminder
+        // description = openBook[0].description
+        // eventType = openBook[0].eventType
+    }, 00);
 
 }
