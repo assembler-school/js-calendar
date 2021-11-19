@@ -296,6 +296,7 @@ function createYearMonthDays(year){//
     }
     createMonthDays(selectedYear,selectedMonth)//dejar para crear meses
     addEventsListenersYear();
+    alertFunction();
 }
 function deleteYearMonthDays(){//
     while (monthDiv.firstChild) {
