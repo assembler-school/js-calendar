@@ -12,6 +12,12 @@ var previousMonth = document.querySelector("#csspreviousmonth");
 var nextYear = document.querySelector("#leftchange");
 var previousYear = document.querySelector("#rightchange");
 
+var actualMonth = document.querySelector("#actualmonth")
+var actualYear = document.querySelector("#year-text")
+
+var nextMonthH = document.querySelector("#nextmonth");
+var previousMonthH = document.querySelector("#previousmonth");
+
 nextMonth.addEventListener("click", changeYear);
 previousMonth.addEventListener("click", changeYear);
 nextYear.addEventListener("click", changeYear);
@@ -46,7 +52,6 @@ const monthNameObj = {
     November:30,
     Decembe:31,
 }
-
 var today = new Date ();
 var todayNumDay = today.getDate();//15
 const todayMonth = today.getMonth();//11
@@ -58,15 +63,26 @@ var selectedYear = todayYear;
 
 function init(){
     loadStorage();
-    refreshContainers();
     createYearMonthDays(selectedYear,selectedMonth)
+    refreshContainers();
     //createMonthDays();
 }
 
 function refreshContainers(){
-    //dayNameContainerH1.textContent = dayNameArr[today.getDay()] + todayNumDay;
-    //monthNameContainerH1.textContent = monthNameArr[selectedMonth];
-    //yearNameContainerH1.textContent = selectedYear;
+    dayNameContainerH1.textContent = dayNameArr[today.getDay()] + todayNumDay;
+    actualMonth.textContent = monthNameArr[selectedMonth];
+    if (selectedMonth > 10){
+        nextMonthH.textContent = monthNameArr[selectedMonth-11];
+    }else{
+    nextMonthH.textContent = monthNameArr[selectedMonth+1];
+    }
+    if (selectedMonth < 1){
+        previousMonthH.textContent = monthNameArr[selectedMonth+11];
+    }else{
+        previousMonthH.textContent = monthNameArr[selectedMonth-1];
+    }
+    
+    actualYear.textContent = selectedYear;
 }
 function changeYear(event){
     switch (event.target.id) {
@@ -153,7 +169,6 @@ function createDay(year,month){
         }else{
             countweek++;
         }
-        
     }
     if(lastWeek == 0){
         lastWeek = 7;
@@ -204,7 +219,6 @@ function createHoursFun(){
         countHours++
     }
 }
-
 function addEventsListeners(){
     var daisMonth = document.querySelectorAll("#month-container")
     var daisMonth2 = document.getElementsByClassName("day-container")
@@ -224,16 +238,11 @@ function addEventsListeners(){
         })
     });
 }
-
-
 function loadStorage(){
     if (localStorage.getItem("historic") !== null) {
         historicEvents = JSON.parse(localStorage.getItem("historic"));
     }
 }
-
-
-
 function generateGridButton(e,countday) {
     let buttonDate;
     let buttonSpecific = document.createElement("button");
@@ -329,61 +338,3 @@ function createDaysYear(year,num,m){
     }
     countday=1;
 }
-
-// let eventContainer = document.querySelectorAll(".event-container")
-// console.log(eventContainer)
-
-// eventContainer.forEach(even =>{
-//     even.addEventListener("click", (a) => {
-//         if (a.target.matches(".event-container")) {
-//             console.log("hola")
-//         }
-//     })
-// })
-
-// let dayEventFiltered;
-// function filterEventFun(day){
-//     dayEventFiltered = historicEvents.filter(event => {
-//         return event.day === day && event.month === selectedMonth && event.year == selectedYear
-//         //return event.day === day
-//     })
-//     return dayEventFiltered;
-// }
-
-// function createDayContent(year = null, month = "default", day = null, hour="hour", weekDay="weekDay", events="") {
-//     dayEvent = {
-//         year: year,
-//         month: month,
-//         day: day,
-//         hour:hour,
-//         weekDay:weekDay,
-//         events:events,
-//     };
-//     dayMonthHistoricFun(dayEvent);
-// }
-// function dayMonthHistoricFun(event){
-//     monthDayArray.push(event)
-//     // monthDayArray[15].dayEvent.events.push("tontolaba");
-// }
-// function createDayEvent(year = null, month = "default", day = null,hour = "default", weekDay="weekDay", title = "default", initialDate = "default", endDateCheck = false, endDate= "default", remindCheck = false, remindTime = "default", description = "default",eventTipe = "default") {
-//     dayEvent = {
-//     year: year,
-//     month: month,
-//     day: day,
-//     hour:hour,
-//     weekDay:weekDay,
-//     title: title,
-//     initialDate: initialDate,
-//     endDateCheck: endDateCheck,
-//     endDate: endDate,
-//     remindCheck: remindCheck,
-//     remindTime: remindTime,
-//     description: description,
-//     eventTipe: eventTipe,
-//     };
-//     eventHistoricFun(dayEvent);
-// }
-// function eventHistoricFun(event){
-//     eventHistoricArray.push(event)
-// }
-

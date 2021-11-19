@@ -31,6 +31,7 @@ main{
 }
 .weekdays{
     width: 12%;
+    font-size: 1vw;
 }
 #today{
     background-color: rgb(220,220,200);
@@ -48,8 +49,8 @@ main{
     background-color: rgb(220,220,220);
 }
 .today-special-day{
-    background-color: brown;
-    border: 1px solid chartreuse;
+    background-color: #ff8800;
+    /* border: 1px solid chartreuse; */
 }
 .event-container{
     cursor: pointer;
@@ -110,7 +111,7 @@ main{
     border: 1px solid rgb(180,180,180);
 }
 .e-selected-day{
-    border: 5px solid rgb(25, 97, 190);
+    border: 2px solid #ff8800;
 }
 
 .e-selected-day button{
