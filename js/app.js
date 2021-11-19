@@ -6,7 +6,7 @@ let currentMonth = 0;
 
 displayCalendar();
 changeMonthButton();
-
+fetchEvents();
 
 // Main function for creating the calendar month dinamically
 function displayCalendar() {
@@ -83,9 +83,9 @@ function displayCalendar() {
                         } else {
                             //edge case event border
                             if(e.clientX < 410 && e.target.firstChild.attributes != undefined){
-                                new CreateModal(e.x, e.y / 2, weekdays[i%7], dayElement.firstChild.innerText, currentMonth.textContent, e.target.firstChild.attributes[1].nodeValue);
+                                new CreateModal(e.x, e.y / 2, weekdays[i%7], dayElement.firstChild.innerText, currentMonth.textContent);
                             } else if (e.target.firstChild.attributes != undefined){
-                                new CreateModal(e.x - 400, e.y / 2, weekdays[i%7], dayElement.firstChild.innerText, currentMonth.textContent, e.target.firstChild.attributes[1].nodeValue)
+                                new CreateModal(e.x - 400, e.y / 2, weekdays[i%7], dayElement.firstChild.innerText, currentMonth.textContent);
                             }
                         }
                         setIsModalOpen(true);
