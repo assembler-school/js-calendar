@@ -129,9 +129,14 @@ function changeMonthButton(){
 
 //create event button
 document.getElementById('create-event').addEventListener('click', (e) =>{
-    //today date
-    new CreateModal(e.target.offsetLeft - 430, e.target.y);
+    const today = new Date();
+    const todayDate = today.getDate();
+    const todayMonth = today.toLocaleDateString('en-GB', { month: 'long' });
+    const todayYear = today.getFullYear();
+    const todayDay = today.toLocaleDateString('en-GB', { weekday: 'long' });
+    new CreateModal(e.target.offsetLeft - 430, e.target.y, todayDay, todayDate, todayMonth, todayYear);
 });
+// x, y, dayWeek, day, month, dataDate
 
 // Check local storage and fetch events
 export function fetchEvents() {
