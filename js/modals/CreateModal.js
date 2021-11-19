@@ -1,7 +1,6 @@
 import CalendarEvent from "../Event/CalendarEvent.js";
 import { element, events, readArray, setIsModalOpen } from "../variables.js";
 import { fetchEvents } from "../app.js"
-
 let contID = 0;
 
 class CreateModal{
@@ -302,23 +301,25 @@ class CreateModal{
                 if(!event.hasTitle()) return;
                 //new event
                 e.preventDefault();
+
                 if(editEvent){
                     events.forEach(event => {
                         if(event === editEvent) events.splice(events.indexOf(event), 1);
                     });
                     events.splice(events.indexOf(event), 1);
-                    event.setStartDate(editEvent.startDate);
+                    event.setStartDate(event.day+"/"+(new Date().getMonth(event.month)+1)+"/"+event.year);//change startDate if you edit or change at last time.
                     event.setID(editEvent.eventID);
                 } else {
                     contID = localStorage.getItem('id') ? JSON.parse(localStorage.getItem('id')) : contID;
                     contID++;
                     event.setID(contID);
+                    event.setStartDate(event.day+"/"+(new Date().getMonth(event.month)+1)+"/"+event.year);
                 }
                 const stringifyEvent = JSON.stringify(event.getEvent());
                 //pushing new event to all events array
                 events.push(JSON.parse(stringifyEvent));
                 localStorage.setItem("events", JSON.stringify(events));
-                localStorage.setItem("id",JSON.stringify(contID)) 
+                localStorage.setItem("id",JSON.stringify(contID));
                 fetchEvents();
                 setIsModalOpen(false);
                 modal.parentNode.removeChild(modal);
