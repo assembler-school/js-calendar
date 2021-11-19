@@ -151,3 +151,39 @@ export function fetchEvents() {
         }
     })
 }
+var remindHour;
+function settingInterval(){
+    const actualDay=document.querySelector(".day-today");
+    const eventsToday = events.filter(events => events.startDate === actualDay.dataset.date);
+        eventsToday.forEach(event=>{
+            if(event.hasReminder){
+                let minutes=parseInt(event.hour.split(":")[1],10);
+                let hour=parseInt(event.hour.split(":")[0],10);
+                let timeRemind=parseInt(event.reminder.split(" ")[0],10);
+                let realMinutes=minutes-timeRemind;
+                if(minutes>=timeRemind){
+                    if(realMinutes<10){
+                        realMinutes=realMinutes.toString().padStart(2,"0")
+                        remindHour=hour+":"+realMinutes;
+                    }else{
+                        remindHour=hour+":"+realMinutes;
+                    }
+                }else{
+                    realMinutes=realMinutes+60;
+                    hour--;
+                    remindHour=hour+":"+realMinutes;
+                    
+                }
+            }
+            
+        })
+        return remindHour;
+}
+console.log(settingInterval());
+var date= new Date();
+console.log(date);
+date=`${date.getHours()}:${date.getMinutes()}`;
+setInterval(function(){
+    
+    if(date==settingInterval())alert("ha saltado");
+},10000)
