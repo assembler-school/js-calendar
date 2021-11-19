@@ -278,6 +278,31 @@ function orderListDay(array) {
     array.sort((a, b) => a.fechaInicio > b.fechaInicio);
 }
 
+function createListExpired() {
+    document.getElementById('expiredEve_minicalendar').innerHTML = null;
+    var summary = newElement({
+        tag: 'summary',
+        id: '',
+        clas: [],
+        content: 'All Expired Events List'
+    });
+    document.getElementById('expiredEve_minicalendar').appendChild(summary);
+    let listExpired = [];
+    if(localStorage.getItem('PassedEvents')) listExpired = JSON.parse(localStorage.getItem('PassedEvents'));
+    if (listExpired.length == 0) return;
+    listExpired.forEach(element => {
+        let hours = new Date(element.fechaInicio).getHours();
+        let minutes = new Date(element.fechaInicio).getMinutes();
+        let newP = newElement({
+            tag: 'p',
+            id: '',
+            clas: [],
+            content:`${hours} : ${minutes} ${element.eventTitle}`
+        });
+        document.getElementById('expiredEve_minicalendar').appendChild(newP);
+    });
+}
+
 document.querySelectorAll(".btn-prev-month").forEach(element => {
     element.addEventListener("click", event => {
         actual_date.setMonth((actual_date.getMonth() - 1));

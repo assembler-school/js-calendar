@@ -1,9 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log(actual_date);
     createCal();
-    var numberDay = getPresentDay(Array.from(document.querySelectorAll(".number-days")));
-    // getAllEventsOfDay(numberDay[0]);
+    getPresentDay(Array.from(document.querySelectorAll(".number-days")));
+    getAllEventsOfDay('Meeting');
+    getAllEventsOfDay('Personal');
+    getAllEventsOfDay('Study');
+    getAllEventsOfDay('PassedEvents');
     createListEvents();
+    createListExpired();
     changeTypeEvent();
     startSetTimeOut();
 });
