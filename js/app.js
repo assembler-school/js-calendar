@@ -1,5 +1,4 @@
 import CreateModal from "./modals/CreateModal.js";
-import createModalToEdit from "./modals/modalEdit.js";
 import ShowInfoModal from "./modals/ShowInfoModal.js";
 import { calendar, weekdays, events, setIsModalOpen, getIsModalOpen, body } from "./variables.js";
 
@@ -8,10 +7,7 @@ let currentMonth = 0;
 displayCalendar();
 changeMonthButton();
 fetchEvents();
-openModalEdit();
 
-
-//Resisar esta funcion---------------------------------------------------------------------------------------------------
 // Main function for creating the calendar month dinamically
 function displayCalendar() {
 
@@ -22,7 +18,6 @@ function displayCalendar() {
     const month = mainDate.getMonth();
     const year = mainDate.getFullYear();
 
-    //TODO: locale directo a la variable------------------------------------------------------------------------------
     const firstDayOfMonth = new Date(year, month, 1); //first day of the current month
     const lastDayOfMonth = new Date(year, month + 1, 0); //last day of the current month
     const daysInMonth = new Date(year, month + 1, 0).getDate(); // month + 1 gets you the next month and the 0 gives you the last day of the previous month which is the length of the current month
@@ -42,7 +37,6 @@ function displayCalendar() {
     //calculate padding days based on what day is the first day of the month
     const paddingDaysBefore = weekdays.indexOf(dateString.split(', ')[0]);
     const paddingDaysAfter = 6 - (weekdays.indexOf(dateString2.split(', ')[0]));
-    //--------------------------------------------------------------------------------------------------------------------
 
     document.querySelector('#current-month').innerHTML = `<b>${mainDate.toLocaleDateString('en-GB', {month: 'long'})}</b> ${year}`;
     let dataMonth = mainDate.toLocaleDateString('en-GB', {month: 'numeric'});
@@ -84,8 +78,8 @@ function displayCalendar() {
                     if(calendar.childNodes[i] == dayElement){
                         if(e.target.className === "event"){
                             const event = events.filter(events => events.eventID === parseInt(e.target.dataset.eventid));                            
-                            //if(e.clientX < 410) new ShowInfoModal(e.x, e.y - 80, event[0]);
-                            //else new ShowInfoModal(e.x - 400, e.y - 80, event[0]);
+                            if(e.clientX < 410) new ShowInfoModal(e.x, e.y - 80, event[0]);
+                            else new ShowInfoModal(e.x - 400, e.y - 80, event[0]);
                         } else {
                             //edge case event border
                             if(e.clientX < 410 && e.target.firstChild.attributes != undefined){
@@ -132,28 +126,13 @@ function changeMonthButton(){
 
 //create event button
 document.getElementById('create-event').addEventListener('click', (e) =>{
-    createBackground();
+    //today date
     new CreateModal(e.target.offsetLeft - 430, e.target.y);
 });
-
-export function createBackground(){
-    const background = document.createElement("div");
-    background.classList.add("modalBackground");
-    body.appendChild(background);
-}
-//Select event and open modal
-export function openModalEdit(){
-    const eventList = document.querySelectorAll('.event'); 
-    eventList.forEach(element => {
-        element.removeEventListener("click",createModalToEdit);
-        element.addEventListener('click', createModalToEdit);
-    });
-}
 
 // Check local storage and fetch events
 export function fetchEvents() {
     const dayList = document.querySelectorAll('.day');
-    
     if (events === null) return;
     dayList.forEach(element => {
         element.childNodes[1].innerHTML = "";
@@ -162,9 +141,7 @@ export function fetchEvents() {
             dailyEvents.forEach(event => {
                 const newEvent = document.createElement('p');
                 newEvent.setAttribute("data-eventID", event.eventID);
-                newEvent.innerHTML = `${event.title}`; // <span class="event-data">${event.day} ${event.month} ${event.year} </span>`
-                /*newEvent.setAttribute("data-eventid", dailyEvents[i].eventID);
-                newEvent.innerHTML = `${dailyEvents[i].title}`;*/
+                newEvent.innerHTML = `${event.title}`;
                 newEvent.classList.add('event');
                 element.lastChild.appendChild(newEvent);
             });

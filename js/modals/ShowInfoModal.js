@@ -12,41 +12,71 @@ class ShowInfoModal{
                         [
                                 element("span"),
                                 [
-                                    element("img", "remove-event", null, "src", "../assets/imgs/bin.png")
+                                    element("img", "remove-event", null, "src", "../assets/imgs/trash.svg")
                                 ],
                                 element("span"),
                                 [
-                                    element("img", "edit-event", null, "src", "../assets/imgs/pencil.png")
+                                    element("img", "edit-event", null, "src", "../assets/imgs/pencil.svg")
                                 ],
                                 element("span"),
                                 [
                                     element("img", "close-modal", null, "src", "../assets/imgs/close.png")
                                 ]
                         ],
-            
                         //body modal
                         element("div"),
                         [
+                            //form
+                            element("form", "main-form"),
+                            [
                                 //title
                                 element("div", null, "submodal input-name"),
                                 [
                                     element("span")
                                 ],
-                                //select date
-                                element("div", null, "submodal date"),
+                                //date
+                                element("div", null, "submodal show-info-date"),
                                 [
                                     element("span"),
                                     [
-                                        element("img", null, null, "src", "../assets/imgs/clock.png")
+                                        element("img", null, null, "src", "../assets/imgs/calendar.png")
                                     ],
                                     element("div", null, "event-time"),
                                     [
                                         element("span"),
                                         element("span")
                                     ]
+                                ],
+                                //checkbox reminder
+                                element("div", null, "submodal checkbox-reminder"),
+                                [
+                                    element("span"),
+                                    [
+                                        element("img", null, null, "src", "../assets/imgs/bell-solid.svg")
+                                    ],
+                                    element("span")
+                                ],
+                                //description
+                                element("div", null, "submodal description"),
+                                [
+                                    element("span"),
+                                    [
+                                        element("img", null, "flipX", "src", "../assets/imgs/description.png")
+                                    ],
+                                    element("span"),
+                                ],
+                                //type of event
+                                element("div", null, "submodal type-event"),
+                                [
+                                    element("span"),
+                                    [
+                                        element("img", null, null, "src", "../assets/imgs/type.png")
+                                    ],
+                                    element("span")
                                 ]
                             ]
                         ]
+                    ]    
                 ];
 
     constructor(x, y, event){
@@ -62,7 +92,7 @@ class ShowInfoModal{
         startDate.lastChild.textContent = event.hour;
 
         if(event.hasEnd){
-            const endDate = document.querySelector(".date");
+            const endDate = document.querySelector(".show-info-date");
             const endDateStructure = [
                                         element("div", null, "event-time end-day"),
                                         [
@@ -81,12 +111,28 @@ class ShowInfoModal{
             endDate.appendChild(endDateText);
         }
 
+
+        const reminderEvent = document.querySelector(".checkbox-reminder");
+        if(event.hasReminder){
+            reminderEvent.lastChild.textContent = event.reminder;
+        } else {
+            reminderEvent.parentElement.removeChild(reminderEvent);
+        }
+
+        const descriptionEvent = document.querySelector(".description");
+        if(event.description !== undefined){
+            descriptionEvent.lastChild.textContent = event.description;
+        } else {
+            descriptionEvent.parentElement.removeChild(descriptionEvent);
+        }
+
+        const typeEvent = document.querySelector(".type-event");
+        typeEvent.lastChild.textContent = event.type;
+
         //edit event
         const editEvent = document.getElementById("edit-event");
         editEvent.addEventListener("click", function(){
             modal.parentNode.removeChild(modal);
-            
-            //Titulo / dia de la semana / hora / hasEnd / date end / description / type
             new CreateModal(x, (y + 80) / 2, null, event.day, event.month, event.year, event);
         });
 

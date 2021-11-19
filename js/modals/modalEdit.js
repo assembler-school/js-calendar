@@ -1,5 +1,3 @@
-import { createBackground, fetchEvents } from "../app.js"
-import { weekdays } from "../variables.js";
 export default function createModalToEdit(e){
     
     createBackground();

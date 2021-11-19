@@ -179,7 +179,6 @@ class CreateModal{
             const checkboxDateEnd = document.querySelector(".checkbox-date-end");
             readArray(dateEndStructure, null);
             if(dateCheckbox.checked === true){
-                //readArray(dateEndStructure, null);
                 checkboxDateEnd.parentNode.insertBefore(dateEndStructure[0], checkboxDateEnd.nextSibling);
                 const nextDate = document.querySelector(".next-date");
                 if(editEvent && editEvent.hasEnd) {
