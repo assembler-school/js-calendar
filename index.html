@@ -28,56 +28,57 @@
     <div class="container">
     <section id="barrnav"></section>
     <section id="calendars">
-      <section id="minicalendar">
-        <div>
-          <button id="crear_minicalendar">
-            <img src="/assets/img/mas.png" alt="create new event" />
-            <span>Create</span>
-          </button>
-        </div>
-        <div class="header-calendar">
-          <button class="btn-prev-month">
-            <img src="/assets/img/left-arrow.png" alt="previous month" />
-          </button>
-          <span class="date-calendar"></span>
-          <button class="btn-next-month">
-            <img src="/assets/img/right-arrow.png" alt="next month" />
-          </button>
-        </div>
-        <div id="small_calendar"></div>
-        <div id="lista_minicalendar">
-          <details id="micalendar_minicalendar"></details>
-          <details id="mievents_minicalendar">
-            <label class="checkbox-modal-container">
-              Meeting
-              <input type="checkbox" value="Meeting" />
-              <span class="checkmark"></span>
-            </label>
-            <label class="checkbox-modal-container">
-              Personal
-              <input type="checkbox" value="Personal" />
-              <span class="checkmark"></span>
-            </label>
-            <label class="checkbox-modal-container">
-              Study
-              <input type="checkbox" value="Study" />
-              <span class="checkmark"></span>
-            </label>
-          </details>
-        </div>
-      </section>
-      <section id="calendar">
-        <div class="header-calendar">
-          <button class="btn-prev-month">
-            <img src="/assets/img/left-arrow.png" alt="previous month" />
-          </button>
-          <span class="date-calendar"></span>
-          <button class="btn-next-month">
-            <img src="/assets/img/right-arrow.png" alt="next month" />
-          </button>
-        </div>
-        <div id="big_calendar"></div>
-      </section>
+        <section id="minicalendar">
+            <div>
+                <button id="crear_minicalendar">
+                    <img src="/assets/img/mas.png" alt="create new event"/>
+                    <span>Create</span>
+                </button>
+            </div>
+            <div class="header-calendar">
+                <button class="btn-prev-month">
+                    <img src="/assets/img/left-arrow.png" alt="previous month" />
+                </button>
+                <span class="date-calendar"></span>
+                <button class="btn-next-month">
+                    <img src="/assets/img/right-arrow.png" alt="next month" />
+                </button>
+            </div>
+            <div id="small_calendar"></div>
+            <div id="lista_minicalendar">
+                <details id="micalendar_minicalendar"></details>
+                <details id="mievents_minicalendar">
+                    <summary>Type Events List</summary>
+                    <label class="checkbox-modal-container">
+                        Meeting
+                        <input type="checkbox" value="Meeting" />
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="checkbox-modal-container">
+                        Personal
+                        <input type="checkbox" value="Personal" />
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="checkbox-modal-container">
+                        Study
+                        <input type="checkbox" value="Study" />
+                        <span class="checkmark"></span>
+                    </label>
+                </details>
+            </div>
+        </section>
+        <section id="calendar">
+            <div class="header-calendar">
+                <button class="btn-prev-month">
+                    <img src="/assets/img/left-arrow.png" alt="previous month" />
+                </button>
+                <span class="date-calendar"></span>
+                <button class="btn-next-month">
+                    <img src="/assets/img/right-arrow.png" alt="next month" />
+                </button>
+            </div>
+            <div id="big_calendar"></div>
+        </section>
     </section>
 
     <div id="modal_crear" class="modal_crear">
