@@ -81,10 +81,10 @@ function deleteEvent(){
 functionTime='';
 function remiderTimer() {
     //const reminder= document.getElementById('reminder')
-    timeFix= 'Thu Nov 18 2021 17:14:00 GMT+0100 (Hora padrão da Europa Central)'
-    time = new Date(timeFix)
+    //timeFix= 'Thu Nov 18 2021 17:14:00 GMT+0100 (Hora padrão da Europa Central)'
+    //time = new Date(timeFix)
     console.log(time)
-    //time = new Date()
+    time = new Date()
     eventBook.forEach(element => {
         if (element.reminder != 0) {
             var eventAlert= addMinutes( time, element.reminder).toISOString().slice(0, 16)
