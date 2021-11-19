@@ -26,11 +26,14 @@ function loadEventBook(){
 
 //TODO convert to object
 function convertToObj(arrayName){
+    console.log(arrayName)
     let obj
     if( arrayName.length > 6){
         obj= eventData(arrayName[0], arrayName[1], arrayName[2], arrayName[3], arrayName[4], arrayName[5])
+        console.log(obj)
     } else{
         obj= eventData(arrayName[0], arrayName[1], arrayName[1] , arrayName[3], arrayName[4], arrayName[2])
+        console.log(obj)
     }
     return obj
 }
@@ -41,11 +44,10 @@ function createEvent() {
     const formClass = document.getElementsByClassName('formInputs')
     for (num in formClass){
         arrayData.push(formClass[num].value)
-        //console.log(formClass[num].value)
+        console.log(formClass[num].value)
     }
 
     eventBook.push(convertToObj(arrayData))
-
     localStorage.setItem('eventBook', JSON.stringify(eventBook))
     closeModal()
 }

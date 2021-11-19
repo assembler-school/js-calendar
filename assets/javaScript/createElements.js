@@ -89,6 +89,7 @@ function openForm(id) {
     
     setTimeout(() => {
         beginModal()
+        createHideElements()
         document.getElementById("title").value = openBook[0].title
         document.getElementById("begindateId").value = openBook[0].startDate
         document.getElementById("endDateCheck").checked = true
@@ -109,15 +110,17 @@ function openForm(id) {
         endDate = openBook[0].endDate
         // checkboxreminder.checked == true
         // document.getElementById("reminder").value=true
-        // document.getElementById("remindTimer").value= openBook[0].reminder
+        //  ter=document.getElementById("remindTimer")
+         console.log(document.getElementById("remindTimer"))
         document.getElementById("description").value=openBook[0].description
-        // no existe el eventType
-        // console.log(openBook[0].eventType)
-        // document.getElementById("eventType").textContent=openBook[0].eventType
-
-        // reminder = openBook[0].reminder
-        // description = openBook[0].description
-        // eventType = openBook[0].eventType
+        //Funcion de eventype
+        valueDefaultPersonal='personal'
+        console.log(openBook[0].eventType)
+        if( document.getElementById("eventType").value=openBook[0].eventType == undefined){
+            document.getElementById("eventType").value=valueDefaultPersonal
+        } else{
+            document.getElementById("eventType").value=openBook[0].eventType
+        }
     }, 00);
 
 }
