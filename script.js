@@ -242,9 +242,9 @@ function generateGridButton(e,countday) {
     buttonSpecific.textContent="+";
     //let buttonDate = new Date(selectedYear,selectedMonth,buttonSpecific.value,"T00:00");
     if(buttonSpecific.value<10){
-        buttonDate = selectedYear+"-"+selectedMonth+"-0"+buttonSpecific.value+"T00:00";
+        buttonDate = selectedYear+"-"+selectedMonth+"-0"+buttonSpecific.value+"T23:59";
     }else{
-        buttonDate = selectedYear+"-"+selectedMonth+"-"+buttonSpecific.value+"T00:00";
+        buttonDate = selectedYear+"-"+selectedMonth+"-"+buttonSpecific.value+"T23:59";
     }
     buttonSpecific.addEventListener("click",function (){insertDataElement(buttonDate)});
     e.appendChild(buttonSpecific);
