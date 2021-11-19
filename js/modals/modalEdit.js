@@ -1,5 +1,3 @@
-import { createBackground, fetchEvents } from "../app.js"
-import { weekdays } from "../variables.js";
 export default function createModalToEdit(e){
     
     createBackground();
@@ -8,7 +6,7 @@ export default function createModalToEdit(e){
     const eventSelected=arrayEvents.find(event=>event.eventID==getID); //Find event
     const eventStartDate=eventSelected.day+","+eventSelected.startDate; //date of
     const eventEndDate=eventSelected.endDay+","+eventSelected.endDay+"/"+eventSelected.endMonth+"/"+eventSelected.endYear;
-  console.log(eventSelected.dayWeek);
+    console.log(eventSelected.dayWeek);
     //const dayEventPicked=e.target.parentNode.parentNode.firstChild.attributes[1].nodeValue;
     //body declaration
     const body=document.getElementsByClassName("body")[0];

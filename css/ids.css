@@ -10,6 +10,7 @@
     border-bottom: 2.3px solid var(--dark-blue);
     transition: 0.2s;
 }
+
 #header {
     padding: 10px;
     color: black;
@@ -19,6 +20,7 @@
     align-items: center;
     justify-content: space-between;
   }
+
   #header button {
     background-color: white;
     color: black;
@@ -49,11 +51,13 @@
     text-align: center;
     width: 33.33%;
   }
+
   #main-container {
     width: 100%;
     height: 100%;
     padding: 25px;
   }
+
   #weekdays {
     width: 100%;
     display: flex;
@@ -62,11 +66,13 @@
     color: rgba(0, 0, 0, 0.3)
 
   }
+
   #weekdays div {
     width: 14.25%;
     padding-right: 10px;
     padding-bottom: 10px;
   }
+
   #calendar {
     width: 100%;
     height: 85vh;
@@ -74,6 +80,7 @@
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(6, 1fr);
   }
+
 /* modal edit event */
 #modal-edit-container{
   position:absolute;
@@ -81,6 +88,7 @@
   width: var(--modal-size);
   height: fit-content;
 }
+
 #modal-edit-container #icons{
   background-color:#f1f3f4;
   display:flex;
@@ -88,6 +96,7 @@
   justify-content: flex-end;
   padding: 7px 8px;
 }
+
 #modal-edit-container #items{
   background-color: var(--white);
   display:flex;
@@ -95,24 +104,30 @@
   justify-content: space-around;
   padding:10px;
 }
+
 #modal-edit-container #items #item-title p{
   font-size:13px;
   margin-left:30px;
 }
+
 #modal-edit-container #items #item-title{
   margin-bottom: 15px;
 }
+
 #modal-edit-container #items #item-alert, #item-description{
   display:flex;
   flex-direction: row;
   align-items: center;
 }
+
 #item-alert img,#item-description img{
   margin-right: 20px;
 }
+
 #item-description img{
   width:30px;
 }
+
 @media only screen and (max-width: 800px){
   #current-month {
     font-size: 1.2rem;
