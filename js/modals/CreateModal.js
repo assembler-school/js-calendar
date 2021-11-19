@@ -260,7 +260,6 @@ class CreateModal{
             const stringifyEvent = JSON.stringify(event.getEvent());
             //pushing new event to all events array
             events.push(JSON.parse(stringifyEvent));
-
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
                 localStorage.setItem("events", JSON.stringify(events));
