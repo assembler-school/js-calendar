@@ -44,6 +44,7 @@ main{
 .day-container-empty{
     height: 100px;
     width: 12%;
+    margin: 1%;
     background-color: rgb(220,220,220);
 }
 .today-special-day{

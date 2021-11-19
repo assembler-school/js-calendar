@@ -204,6 +204,7 @@ function createHoursFun(){
         countHours++
     }
 }
+
 function addEventsListeners(){
     var daisMonth = document.querySelectorAll("#month-container")
     var daisMonth2 = document.getElementsByClassName("day-container")
@@ -219,7 +220,6 @@ function addEventsListeners(){
             if (e.target.matches(".day-container")) {
                 e.target.classList.add("e-selected-day")
                 //selectedDay = e.target
-                
             }
         })
     });
