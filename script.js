@@ -175,7 +175,7 @@ function addEventsListeners(){
             for (x=1; x<daisMonth2.length+1; x++){
                 document.getElementById("day-container-"+x).classList.remove("e-selected-day");
                 if (e.target.matches(".day-container")) {
-                    dayNameContainerH1.textContent=e.target.innerText;
+                    //dayNameContainerH1.textContent=e.target.innerText;
                 }
             }
             if (e.target.matches(".day-container")) {
