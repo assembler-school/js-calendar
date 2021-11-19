@@ -67,9 +67,8 @@ function init(){
     refreshContainers();
     //createMonthDays();
 }
-
 function refreshContainers(){
-    dayNameContainerH1.textContent = dayNameArr[today.getDay()] + todayNumDay;
+    dayNameContainerH1.textContent = dayNameArr[today.getDay()] + selectedDay;
     actualMonth.textContent = monthNameArr[selectedMonth];
     if (selectedMonth > 10){
         nextMonthH.textContent = monthNameArr[selectedMonth-11];
@@ -121,7 +120,6 @@ function changeYear(event){
             break;
     }
 }
-
 function createMonthDays(year,month){
     deleteMonthDays();
     createDay(year,month);
@@ -159,9 +157,8 @@ function createDay(year,month){
         dayInner.classList.add("day-container-inner")
         dayInner.textContent = countday;
         day.appendChild(dayInner);
-        // createDayContent(selectedYear,selectedMonth,countday,"",dayNameArr[countweek],"");
         assignEvent(countday,day);
-        //dayTitle.textContent = monthDayArray[countday - 1].events;
+
         generateGridButton(dayInner,countday);
         countday++
         if(countweek>=6){
@@ -187,7 +184,6 @@ function deleteMonthDays(){
         dayDiv.removeChild(dayDiv.lastChild)
     }
 }
-
 function displayEventsPerDay(day,i){
     
         let createDivEvent = document.createElement("div");
@@ -202,7 +198,6 @@ function assignEvent(countday,day){
     i = 0
     while(i < (historicEvents.length)){
         if(historicEvents[i].day == (countday) && historicEvents[i].month == selectedMonth && historicEvents[i].year == selectedYear){
-            // monthDayArray[countday - 1].events = filterEventFun(countday);
             displayEventsPerDay(day,i)
         }
         i++;
@@ -224,8 +219,10 @@ function addEventsListeners(){
     var daisMonth2 = document.getElementsByClassName("day-container")
 
     daisMonth.forEach(sel =>{
+        console.log(sel)
         sel.addEventListener("click",(e)=>{
             for (x=1; x<daisMonth2.length+1; x++){
+                console.log(daisMonth2)
                 document.getElementById("day-container-"+x).classList.remove("e-selected-day");
                 if (e.target.matches(".day-container")) {
                     //dayNameContainerH1.textContent=e.target.innerText;
@@ -235,6 +232,31 @@ function addEventsListeners(){
                 e.target.classList.add("e-selected-day")
                 //selectedDay = e.target
             }
+        })
+    });
+}
+function addEventsListenersYear(){
+    //var daisMonthYear = document.querySelectorAll(".month-container-year")
+    var daisMonthYear = document.querySelectorAll("#year-container")
+    var daisMonthYear2 = document.getElementsByClassName("day-container-year")
+
+    daisMonthYear.forEach(sel =>{
+        console.log(sel)
+        sel.addEventListener("click",(e)=>{
+            m = new RegExp('\d');
+            for (x=1; x<daisMonthYear2.length+1; x++){
+                //console.log(daisMonthYear2)
+                console.log(document.getElementById("day-container-year-" + m + "-" + x))
+                document.getElementById("day-container-year-"+ m + "-" + x).classList.remove("e-selected-day-year");
+                if (e.target.matches(".day-container-year")) {
+                    //dayNameContainerH1.textContent=e.target.innerText;
+                }
+            }
+            //if (e.target.matches(".day-container-year")) {
+                e.target.classList.add("e-selected-day-year")
+                console.log(e.target)
+                //selectedDay = e.target
+            //}
         })
     });
 }
@@ -251,21 +273,19 @@ function generateGridButton(e,countday) {
     buttonSpecific.textContent="+";
     //let buttonDate = new Date(selectedYear,selectedMonth,buttonSpecific.value,"T00:00");
     if(buttonSpecific.value<10){
-        buttonDate = selectedYear+"-"+selectedMonth+"-0"+buttonSpecific.value+"T23:59";
+        buttonDate = selectedYear+"-"+(selectedMonth+1)+"-0"+buttonSpecific.value+"T23:59";
     }else{
-        buttonDate = selectedYear+"-"+selectedMonth+"-"+buttonSpecific.value+"T23:59";
+        buttonDate = selectedYear+"-"+(selectedMonth+1)+"-"+buttonSpecific.value+"T23:59";
     }
     buttonSpecific.addEventListener("click",function (){insertDataElement(buttonDate)});
     e.appendChild(buttonSpecific);
-        }
-
+}
 function insertDataElement(a){
     console.log(a);
     console.log(a)
     createNewEvent();
     document.getElementById("initDate").value = a;
 }
-
 function createYearMonthDays(year){//
     deleteYearMonthDays();//
     let m = 0;//crear 12 meses
@@ -275,6 +295,7 @@ function createYearMonthDays(year){//
         m++;
     }
     createMonthDays(selectedYear,selectedMonth)//dejar para crear meses
+    addEventsListenersYear();
 }
 function deleteYearMonthDays(){//
     while (monthDiv.firstChild) {
@@ -297,28 +318,25 @@ function createDaysYear(year,num,m){
     }
     while(firstWeek > 1){
         var dayEmpty = document.createElement("div");
-        dayEmpty.setAttribute("id","day-container-year-empty-" + firstWeek);
+        dayEmpty.setAttribute("id","day-container-year-empty-" + m + "-" + firstWeek);
         dayEmpty.classList.add("day-container-year-empty")
         monthEmpty.appendChild(dayEmpty)
         firstWeek--;
     }
     while (countday <= num) {
         var day = document.createElement("div");
-        day.setAttribute("id","day-container-year-" + countday);
+        day.setAttribute("id","day-container-year-" +m+"-"+ countday);
         day.classList.add("day-container-year")
         if(countday == todayNumDay && todayMonth == m && todayYear == year){
             day.classList.add("today-special-year-day")
         }
         monthEmpty.appendChild(day)
         var dayInner = document.createElement("div");
-        dayInner.setAttribute("id","day-container-year-inner" + countday);
+        dayInner.setAttribute("id","day-container-year-inner-" + m + "-" + countday);
         dayInner.classList.add("day-container-year-inner")
-        //dayInner.textContent = dayNameArr[countweek]+countday;
         dayInner.textContent = countday;
         day.appendChild(dayInner);
-        // createDayContent(selectedYear,selectedMonth,countday,"",dayNameArr[countweek],"");
-//assignEvent(countday,day);  IMPORTANT------------------------------------------------------------------------------------------------
-        //dayTitle.textContent = monthDayArray[countday - 1].events;
+        assignEventYear(countday,day,m);  
         countday++
         if(countweek>=6){
             countweek=0;
@@ -331,10 +349,38 @@ function createDaysYear(year,num,m){
     }
     while(lastWeek <= 6){
         var dayEmptyLast = document.createElement("div");
-        dayEmptyLast.setAttribute("id","day-container-year-empty"+lastWeek);
+        dayEmptyLast.setAttribute("id","day-container-year-empty" + m + "-" + lastWeek);
         dayEmptyLast.classList.add("day-container-year-empty");
         monthEmpty.appendChild(dayEmptyLast);
         lastWeek++;
     }
     countday=1;
+}
+function assignEventYear(countday,day,m){
+    i = 0
+    while(i < (historicEvents.length)){
+        if(historicEvents[i].day == (countday) && historicEvents[i].month == m && historicEvents[i].year == selectedYear){
+            displayEventsPerDayYear(day,i,m)
+        }
+        i++;
+    }
+}
+function displayEventsPerDayYear(day,i,m){
+    let createDivEvent = document.createElement("div");
+    createDivEvent.setAttribute("id","event-container-year" + i);
+    createDivEvent.classList.add("event-container-year");
+    if(historicEvents[i].eventTipe === "---"){
+        day.classList.add("default")
+    }
+    if(historicEvents[i].eventTipe === "sport"){
+        day.classList.add("sports")
+    }
+    if(historicEvents[i].eventTipe === "meeting"){
+        day.classList.add("meeting")
+    }
+    if(historicEvents[i].eventTipe === "leisure"){
+        day.classList.add("leisure")
+    }
+    createDivEvent.addEventListener("click",function() { modalEvent(i)})
+    day.appendChild(createDivEvent);
 }

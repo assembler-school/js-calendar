@@ -186,7 +186,23 @@ main{
 .today-special-year-day{
     background-color: darkkhaki;
 }
+.e-selected-day-year{
+    border: 1px solid black;
+}
 
 /* .day-container button{
     display: none;
 } */
+
+.sports{
+    background-color: rgb(9, 240, 105) !important;
+}
+.default{
+    background-color: rgb(204, 33, 33) !important;
+}
+.meeting{
+    background-color: rgb(86, 33, 209) !important;
+}
+.leisure{
+    background-color: rgb(184, 33, 146) !important;
+}
