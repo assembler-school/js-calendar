@@ -206,3 +206,7 @@ main{
 .leisure{
     background-color: rgb(184, 33, 146) !important;
 }
+.dayinpast{
+    color: red !important;
+    background-color: blueviolet !important;
+}

@@ -26,6 +26,7 @@ function createDayYear(num){
         if(countday == todayNumDay && todayMonth==selectedMonth && todayYear==selectedYear){
             day.classList.add("today-special-day")
         }
+        
         dayDiv.appendChild(day)
         var dayInner = document.createElement("div");
         dayInner.setAttribute("id","day-container-inner" + countday);
