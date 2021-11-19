@@ -64,6 +64,11 @@
     flex: auto;
 }
 
+#big_calendar, #small_calendar{
+    transform: translateX(0);
+    transition: all 0.3s ease;
+}
+
 #small_calendar,
 #big_calendar {
     display: grid;
@@ -109,7 +114,7 @@
 
 .date-calendar {
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1.5em;
 }
 
 .previousMonthColor,
@@ -130,6 +135,19 @@
     border: none;
     background-color: white;
     cursor: pointer;
+}
+
+.btn-prev-month{
+    transform: translateX(-100%);
+}
+
+.btn-next-month {
+    transform: translateX(100%);
+}
+
+#minicalendar .btn-prev-month, #minicalendar .btn-next-month{
+    width: 44px;
+    height: 44px;
 }
 
 #lista_minicalendar {

@@ -204,9 +204,9 @@ function chooseDateCal() {
 
 function getPresentDay(daysNumber) {
     return daysNumber.filter((element) => {
-        if (element.dataset.year == actual_date.getFullYear()) {
-            if (element.dataset.month == actual_date.getMonth()) {
-                if (element.dataset.day == actual_date.getDate()) {
+        if (element.dataset.year == new Date().getFullYear()) {
+            if (element.dataset.month == new Date().getMonth()) {
+                if (element.dataset.day == new Date().getDate()) {
                     element.classList.add("actualDay")
                     return element;
                 }
@@ -282,6 +282,7 @@ document.querySelectorAll(".btn-prev-month").forEach(element => {
     element.addEventListener("click", event => {
         actual_date.setMonth((actual_date.getMonth() - 1));
         createCal();
+        getPresentDay(Array.from(document.querySelectorAll(".number-days")));
     })
 })
 
@@ -289,5 +290,6 @@ document.querySelectorAll(".btn-next-month").forEach(element => {
     element.addEventListener("click", event => {
         actual_date.setMonth((actual_date.getMonth() + 1));
         createCal();
+        getPresentDay(Array.from(document.querySelectorAll(".number-days")));
     })
 })

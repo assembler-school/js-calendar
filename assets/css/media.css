@@ -2,6 +2,7 @@
     #crear_minicalendar {
         width: 30%;
         height: 50px;
+        margin: 10px 35%;
     }
 
 
@@ -19,6 +20,7 @@
     #crear_minicalendar {
         width: 80%;
         height: 50px;
+        margin: 10px 10%;
     }
 
     #minicalendar .header-calendar, #small_calendar, #micalendar_minicalendar   {
@@ -64,6 +66,15 @@
         font-size: 0.8em;
     }
 
+    #minicalendar .btn-prev-month, #minicalendar .btn-next-month{
+        width: auto;
+        height: auto;
+    }
+
+    #minicalendar .btn-prev-month img, #minicalendar .btn-next-month img{
+        width: 20px;
+        height: 20px;
+    }
 
     #calendar .date-calendar {
         font-size: 2em;
