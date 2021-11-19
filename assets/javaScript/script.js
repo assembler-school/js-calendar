@@ -93,7 +93,7 @@ function displayCalendar() {
     fecha = undefined;
     monthNow.forEach(num=> {
         num.addEventListener("click", () => {
-
+            
             pepe(num)
             modalStart()
         })
@@ -115,6 +115,7 @@ function displayCalendar() {
         // console.log(fecha)
         // console.log(fecha)
         getDataFromCalendar(num1)
+        // pruebaMia(num1)
     })
     //first modal
     const firstModal = document.getElementById("firstModal")

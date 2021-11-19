@@ -73,3 +73,15 @@ function createmsg(title, description = 'Have a Beatifull Day', type, time ){
     const span = document.getElementsByClassName("close")[0];
     span.addEventListener('click', closeModal)
 }
+// function openDayEvent(id) {
+//     eventclick = document.getElementsByClassName("displayEvent")
+//     eventclick.addEventListener("click", openForm)
+//     dayEvent= document.getElementById(id)
+
+// }
+function openForm(id) {
+    openBook= eventBook.filter(event=>{
+        event.eventId == id
+    })
+    console.log(openBook)
+}
