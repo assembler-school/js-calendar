@@ -98,7 +98,7 @@ function openForm(id) {
         displayReminder()
         reminderDefault=5
         console.log(document.getElementById("remindTimer").value=openBook[0].reminder)
-        if(document.getElementById("remindTimer").value=openBook[0].reminder ===  0){
+        if(document.getElementById("remindTimer").value=openBook[0].reminder ==  0){
             document.getElementById("remindTimer").value=reminderDefault
         } else{
             document.getElementById("remindTimer").value=openBook[0].reminder
