@@ -37,11 +37,6 @@ function cerrar_modal() {
     bigModalId.innerHTML = ""
 }
 
-window.onclick = function (event) {
-    if (event.target == mainModal) {
-        mainModal.style.display = "none";
-    }
-}
 
 //Validación
 
@@ -62,15 +57,23 @@ function comprovaciones() {
 
 function comprovacionesFechas(event) {
     let profile_cont_input = document.querySelectorAll('.neededDate');
-    if (profile_cont_input == 'undefined') {
-        event.srcElement.style.backgroundColor = "#F8D8DD";
-    } else {
-        profile_cont_input[0].style.color = "var(--azul)";
-        profile_cont_input[0].style.backgroundColor = "#ffffff";
-        if (profile_cont_input[1]) {
-            profile_cont_input[1].style.color = "var(--azul)";
-            profile_cont_input[1].style.backgroundColor = "#ffffff";
+    if (checkboxDate.checked == true) {
+        if (profile_cont_input[1].value < profile_cont_input[0].value) {
+            profile_cont_input[0].style.backgroundColor = "#F8D8DD";
+            profile_cont_input[1].style.backgroundColor = "#F8D8DD";
+            console.log('a');
+            return false
+        } else {
+            profile_cont_input[0].style.color = "var(--azul)";
+            profile_cont_input[0].style.backgroundColor = "#ffffff";
+            if (profile_cont_input[1]) {
+                profile_cont_input[1].style.color = "var(--azul)";
+                profile_cont_input[1].style.backgroundColor = "#ffffff";
+            }
+            return true
         }
+    } else {
+        return true
     }
 }
 
@@ -85,8 +88,9 @@ function comprovacionFinal() {
             comprovaciones();
             a++
         } else {
-            comprovacionesFechas();
-            a++
+            if (comprovacionesFechas() == true) {
+                a++
+            }
         }
     }
     if (a == 2 || a == 3) {
@@ -129,6 +133,7 @@ function ponerdata() {
     var inputdate_modal = document.createElement("input")
     today = new Date();
     var date = today.getFullYear() + '-' + esmenos0(today.getMonth() + 1) + '-' + esmenos0(today.getDate());
+    var date2= date+"T"+esmenos0(today.getHours())+":"+esmenos0(today.getMinutes())
     inputdate_modal.type = "Date"
     inputdate_modal.value = date
     inputdate_modal.classList = "date_modal modal-need eventComonClass neededDate"
@@ -143,10 +148,13 @@ function ponerdata() {
         typedatatimelocal.type = "Date"
         typedatatimelocal.value = date
     } else if (checkboxDate.checked == false) {
+        let allEventInputs = document.querySelectorAll('.eventComonClass');
         var a = document.getElementById("div2")
         if (a) {
             fecha_modal.removeChild(a)
             typedatatimelocal.type = "datetime-local"
+            console.log(date2)
+            allEventInputs[1].value=date2
         }
     }
 }
@@ -201,7 +209,7 @@ spanedit.onclick = function () {
     if (obj.fechaFin == "undefined" && obj.remember == "undefined") {
         let allEventInputs = document.querySelectorAll('.eventComonClass');
         allEventInputs[0].value = obj.eventTitle
-        allEventInputs[1].value = "2021-11-17T17:46"
+        allEventInputs[1].value = obj.fechaInicio
         allEventInputs[2].value = obj.repeat
         allEventInputs[3].value = obj.description
         allEventInputs[4].value = obj.eventType
@@ -212,8 +220,8 @@ spanedit.onclick = function () {
         ponerdata();
         let allEventInputs = document.querySelectorAll('.eventComonClass');
         allEventInputs[0].value = obj.eventTitle
-        allEventInputs[1].value = "2021-11-17"
-        allEventInputs[2].value = "2021-11-19"
+        allEventInputs[1].value = obj.fechaInicio
+        allEventInputs[2].value = obj.fechaFin
         allEventInputs[3].value = obj.repeat
         allEventInputs[4].value = obj.description
         allEventInputs[5].value = obj.eventType
@@ -224,7 +232,7 @@ spanedit.onclick = function () {
         recordatorio_modal_time();
         let allEventInputs = document.querySelectorAll('.eventComonClass');
         allEventInputs[0].value = obj.eventTitle
-        allEventInputs[1].value = "2021-11-17T17:46"
+        allEventInputs[1].value = obj.fechaInicio
         allEventInputs[2].value = obj.repeat
         allEventInputs[3].value = obj.remember
         allEventInputs[4].value = obj.description
@@ -238,8 +246,8 @@ spanedit.onclick = function () {
         ponerdata();
         let allEventInputs = document.querySelectorAll('.eventComonClass');
         allEventInputs[0].value = obj.eventTitle
-        allEventInputs[1].value = "2021-11-17"
-        allEventInputs[2].value = "2021-11-19"
+        allEventInputs[1].value = obj.fechaInicio
+        allEventInputs[2].value = obj.fechaFin
         allEventInputs[3].value = obj.repeat
         allEventInputs[4].value = obj.remember
         allEventInputs[5].value = obj.description
@@ -275,8 +283,24 @@ function deleteById(X) {
 window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
+    } else if (event.target == mainModal) {
+        cerrar_modal()
     }
 }
+document.onkeydown = function (evt) {
+    evt = evt || window.event;
+    var isEscape = false;
+    if ("key" in evt) {
+        isEscape = (evt.key === "Escape" || evt.key === "Esc");
+    } else {
+        isEscape = (evt.keyCode === 27);
+    }
+    if (isEscape) {
+        modal.style.display = "none";
+        cerrar_modal()
+    }
+};
+
 
 
 //funcionalidad REPEAT
@@ -342,4 +366,25 @@ function nomalizaeFecha(a, b) {
     }
 
 
+}
+
+
+
+function eventoDia() {
+    var evnday = document.querySelectorAll(".number-days")
+    for (const X of evnday) {
+        X.addEventListener("click", function (evn) {
+            var a = evn.srcElement.dataset
+            checkboxDate.checked = true;
+            ponerdata();
+            let allEventInputs = document.querySelectorAll('.eventComonClass');
+            var t = esmenos0(a.day)
+            var c = esmenos0(a.month)
+            var d = a.year
+            var result = d + "-" + c + "-" + t
+            allEventInputs[1].value = result
+            allEventInputs[2].value = result
+            mainModal.style.display = "block";
+        })
+    }
 }
