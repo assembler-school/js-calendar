@@ -113,14 +113,17 @@ function changeMonthButton(){
     document.getElementById('nextBtn').addEventListener('click', () =>{
         currentMonth++;
         displayCalendar();
+        fetchEvents();
     });
     document.getElementById('prevBtn').addEventListener('click', () =>{
         currentMonth--;
         displayCalendar();
+        fetchEvents();
     });
     document.getElementById('today').addEventListener('click', () =>{
         currentMonth = 0;
         displayCalendar();
+        fetchEvents();
     })
 };
 
