@@ -50,7 +50,7 @@ function createHideElements() {
     hideForm[0].innerHTML = content
 
     const reminder = document.getElementById('reminder')
-    reminder.addEventListener('click', displayReminder)
+    reminder.addEventListener('input', displayReminder)
 }
 
 function createReminder() {
@@ -93,27 +93,19 @@ function openForm(id) {
         document.getElementById("title").value = openBook[0].title
         document.getElementById("begindateId").value = openBook[0].startDate
         document.getElementById("endDateCheck").checked = true
-
-        displayForm()
-
-        title = openBook[0].title
-        begindateId = openBook[0].begindateId
-        console.log(begindateId)
-        //endDateCheck.checked == true
-        
+        // document.getElementById("reminder").checked=true
+        document.getElementById("reminder").checked=true
+        displayReminder()
+        reminderDefault=5
+        console.log(document.getElementById("remindTimer").value=openBook[0].reminder)
+        if(document.getElementById("remindTimer").value=openBook[0].reminder ===  0){
+            document.getElementById("remindTimer").value=reminderDefault
+        } else{
+            document.getElementById("remindTimer").value=openBook[0].reminder
+            }
         document.getElementById("endDate").value=openBook[0].endDate
-       
-//         as=document.getElementById("remindTimer").L
-// console.log(as)
-//         textContent=openBook[0].reminder
-
         endDate = openBook[0].endDate
-        // checkboxreminder.checked == true
-        // document.getElementById("reminder").value=true
-        //  ter=document.getElementById("remindTimer")
-         console.log(document.getElementById("remindTimer"))
         document.getElementById("description").value=openBook[0].description
-        //Funcion de eventype
         valueDefaultPersonal='personal'
         console.log(openBook[0].eventType)
         if( document.getElementById("eventType").value=openBook[0].eventType == undefined){
