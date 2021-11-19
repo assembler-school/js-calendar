@@ -30,6 +30,9 @@
   border: 1px solid #888;
 }
 
+/* .displayEvent :hover{
+  color: red !important;
+} */
 .eventForm textarea{
   width: 100%;
 }
