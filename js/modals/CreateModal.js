@@ -119,14 +119,21 @@ class CreateModal{
         //title input
         const title = document.getElementById("title");
         title.setAttribute("type", "text");
-        title.setAttribute("placeholder", "Add a title");
         title.required = true;
+        if(editEvent) title.value = editEvent.title;
+        else title.setAttribute("placeholder", "Add a title");
         
         //event-time
         const eventTime = document.querySelector(".event-time");
-        const time = new Date();
-        eventTime.childNodes[0].textContent = dayWeek + ", " + day + " " + month;
-        eventTime.childNodes[1].textContent = time.getHours() + ":" + (time.getMinutes() < 10 ? "0" + time.getMinutes() : time.getMinutes());
+        if(editEvent) {
+            eventTime.childNodes[0].textContent = editEvent.weekday + ", " + editEvent.day + " " + editEvent.month + " " + editEvent.year;
+            eventTime.childNodes[1].textContent = editEvent.hour;
+        }
+        else {
+            const time = new Date();
+            eventTime.childNodes[0].textContent = dayWeek + ", " + day + " " + month;
+            eventTime.childNodes[1].textContent = time.getHours() + ":" + (time.getMinutes() < 10 ? "0" + time.getMinutes() : time.getMinutes());
+        }
 
         const inputDate = document.getElementById("input-date");
         const today = new Date().toISOString().split(".")[0].split(":");
@@ -140,35 +147,50 @@ class CreateModal{
 
         //date checkbox structure + add/remove
         const dateCheckbox = document.getElementById("date-checkbox");
-        dateCheckbox.addEventListener("change", function(e){
-            const dateEndStructure = [
-                                      element("div", null, "submodal date date-end"),
-                                          [
-                                              element("span"),
-                                              [
-                                                  element("img", null, null, "src", "../assets/imgs/clock.png")
-                                              ],
-                                              element("div", null, "event-time next-date"),
-                                              [
-                                                  element("span"),
-                                                  element("span")
-                                              ],
-                                              element("span"),
-                                              [
-                                                element("input", "input-date-end", null, "type", "datetime-local")
-                                              ]
-                                          ]
-                                     ];
+        const dateEndStructure = [
+                                    element("div", null, "submodal date date-end"),
+                                        [
+                                            element("span"),
+                                            [
+                                                element("img", null, null, "src", "../assets/imgs/clock.png")
+                                            ],
+                                            element("div", null, "event-time next-date"),
+                                            [
+                                                element("span"),
+                                                element("span")
+                                            ],
+                                            element("span"),
+                                            [
+                                            element("input", "input-date-end", null, "type", "datetime-local")
+                                            ]
+                                        ]
+                                ];
 
+        if(editEvent && editEvent.hasEnd){
+           dateCheckbox.checked = editEvent.hasEnd;
+           checkedEndDate(dateCheckbox, dateEndStructure, eventTime, editEvent);
+        }
+
+        dateCheckbox.addEventListener("change", function(){
+            checkedEndDate(dateCheckbox, dateEndStructure, eventTime, editEvent);
+        });
+
+        function checkedEndDate(dateCheckbox, dateEndStructure, eventTime, editEvent){
             const checkboxDateEnd = document.querySelector(".checkbox-date-end");
+            readArray(dateEndStructure, null);
             if(dateCheckbox.checked === true){
-                readArray(dateEndStructure, null);
+                //readArray(dateEndStructure, null);
                 checkboxDateEnd.parentNode.insertBefore(dateEndStructure[0], checkboxDateEnd.nextSibling);
                 const nextDate = document.querySelector(".next-date");
-                const nextHour = new Date();
-                nextDate.childNodes[0].textContent = eventTime.childNodes[0].textContent;
-                nextHour.setHours(eventTime.childNodes[1].textContent.split(":")[0]);
-                nextDate.childNodes[1].textContent = (nextHour.getHours()+1) + ":" + eventTime.childNodes[1].textContent.split(":")[1];
+                if(editEvent && editEvent.hasEnd) {
+                    nextDate.childNodes[0].textContent = editEvent.endWeekday + ", " + editEvent.endDay + " " + editEvent.endMonth + " " + editEvent.endYear;
+                    nextDate.childNodes[1].textContent = editEvent.endHour;
+                } else {
+                    const nextHour = new Date();
+                    nextDate.childNodes[0].textContent = eventTime.childNodes[0].textContent;
+                    nextHour.setHours(eventTime.childNodes[1].textContent.split(":")[0]);
+                    nextDate.childNodes[1].textContent = (nextHour.getHours()+1) + ":" + eventTime.childNodes[1].textContent.split(":")[1];
+                }
                 
                 const inputEndDay = document.getElementById("input-date-end");
                 const minDate = new Date(eventTime.childNodes[0].textContent).toLocaleString("default").split(" ")[0].split("/");
@@ -181,34 +203,34 @@ class CreateModal{
                 });
             } else {
                 const dateEnd = document.querySelector(".date-end");
-                dateEnd.parentNode.removeChild(dateEnd);
+                if(editEvent) dateEnd.parentNode.removeChild(dateEnd);
+                else dateEnd.parentNode.removeChild(dateEnd);
             }
-        });
+        }
 
-        //description change p to textarea
-        const description = document.querySelector(".description-p");
-        description.addEventListener("click", function(){
-            const textArea = element("textarea", null, "description-textarea", "placeholder", "Write here...");
-            textArea.setAttribute("maxlength", "500");
-            textArea.setAttribute("rows", "2");
-            description.parentNode.appendChild(textArea);
-            description.parentNode.removeChild(description);
-        });
-
-        //reminder add/remove select
         const reminderCheckbox = document.getElementById("reminder-checkbox");
-        reminderCheckbox.addEventListener("change", function(e){
-            const reminderStructure =  [
-                                        element("select", null, "select-reminder"),
-                                        [
-                                            element("option", null, null, "value", "1","5 minutes"),
-                                            element("option", null, null, "value", "2","10 minutes"),
-                                            element("option", null, null, "value", "3","15 minutes"),
-                                            element("option", null, null, "value", "4","30 minutes"),
-                                            element("option", null, null, "value", "5","1 hour"),
-                                        ]
-                                      ];
-            const checkboxReminder = document.querySelector(".checkbox-reminder");
+        const reminderStructure =  [
+                                    element("select", null, "select-reminder"),
+                                    [
+                                        element("option", null, null, "value", "1","5 minutes"),
+                                        element("option", null, null, "value", "2","10 minutes"),
+                                        element("option", null, null, "value", "3","15 minutes"),
+                                        element("option", null, null, "value", "4","30 minutes"),
+                                        element("option", null, null, "value", "5","1 hour"),
+                                    ]
+                                ];
+        //reminder add/remove select
+        const checkboxReminder = document.querySelector(".checkbox-reminder");
+        if(editEvent && editEvent.hasReminder){
+            reminderCheckbox.checked = true;
+            readArray(reminderStructure, null);
+            for(let i = 0; i < reminderStructure[1].length; i++){
+                if(reminderStructure[1][i].textContent == editEvent.reminder) reminderStructure[0].value = i+1;
+            }
+            checkboxReminder.appendChild(reminderStructure[0]);
+        }
+
+        reminderCheckbox.addEventListener("change", function(){
             if(reminderCheckbox.checked === true){
                 readArray(reminderStructure, null);
                 checkboxReminder.appendChild(reminderStructure[0]);
@@ -216,6 +238,23 @@ class CreateModal{
                 const selectReminder = document.querySelector(".select-reminder");
                 selectReminder.parentNode.removeChild(selectReminder);
             }
+        });
+
+        //description change p to textarea
+        const description = document.querySelector(".description-p");
+        if(editEvent && editEvent.description !== undefined){
+            const textArea = element("textarea", null, "description-textarea", null, null, editEvent.description);
+            textArea.setAttribute("maxlength", "500");
+            textArea.setAttribute("rows", "2");
+            description.parentNode.appendChild(textArea);
+            description.parentNode.removeChild(description);
+        }
+        description.addEventListener("click", function(){
+            const textArea = element("textarea", null, "description-textarea", "placeholder", "Write here...");
+            textArea.setAttribute("maxlength", "500");
+            textArea.setAttribute("rows", "2");
+            description.parentNode.appendChild(textArea);
+            description.parentNode.removeChild(description);
         });
 
         //cancel button
@@ -241,13 +280,13 @@ class CreateModal{
             const textArea = document.querySelector(".description-textarea");
             const type = document.querySelector(".select-type-event");
 
-
-            const event = new CalendarEvent(title.value, time, date[1].split(" ")[1], date[1].split(" ")[2], date[1].split(" ")[3], 
+            const event = new CalendarEvent(title.value, time, date[0], date[1].split(" ")[1], date[1].split(" ")[2], date[1].split(" ")[3], 
                                     dateCheckbox, reminderCheckbox, type.options[type.selectedIndex].text, dataDate);
             if(dateCheckbox){
                 const endTime = document.querySelector(".next-date").childNodes[1].textContent;
                 const endDate = document.querySelector(".next-date").childNodes[0].textContent.split(",");
                 event.setEndHour(endTime);
+                event.setEndWeekDay(endDate[0]);
                 event.setEndDay(endDate[1].split(" ")[1]);
                 event.setEndMonth(endDate[1].split(" ")[2]);
                 event.setEndYear(endDate[1].split(" ")[3]);
@@ -263,17 +302,24 @@ class CreateModal{
             form.addEventListener('submit', function (e) {
                 if(!event.hasTitle()) return;
                 //new event
-                contID=localStorage.getItem('id') ? JSON.parse(localStorage.getItem('id')) : contID;
-                contID++;
-                event.setID(contID);
+                e.preventDefault();
+                if(editEvent){
+                    events.forEach(event => {
+                        if(event === editEvent) events.splice(events.indexOf(event), 1);
+                    });
+                    events.splice(events.indexOf(event), 1);
+                    event.setStartDate(editEvent.startDate);
+                    event.setID(editEvent.eventID);
+                } else {
+                    contID = localStorage.getItem('id') ? JSON.parse(localStorage.getItem('id')) : contID;
+                    contID++;
+                    event.setID(contID);
+                }
                 const stringifyEvent = JSON.stringify(event.getEvent());
                 //pushing new event to all events array
                 events.push(JSON.parse(stringifyEvent));
-                e.preventDefault();
                 localStorage.setItem("events", JSON.stringify(events));
                 localStorage.setItem("id",JSON.stringify(contID)) 
-
-                //Los pone en todos los días
                 fetchEvents();
                 setIsModalOpen(false);
                 modal.parentNode.removeChild(modal);
@@ -317,6 +363,7 @@ class CreateModal{
         const modal = document.querySelector(".modal");
         if(modal !== undefined) modal.focus();
     }
+
 }
 
 export default CreateModal;

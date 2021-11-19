@@ -2,11 +2,13 @@ class CalendarEvent{
 
     title;
     hour;
+    weekday;
     day;
     month;
     year;
     hasEnd;
-    endHour
+    endHour;
+    endWeekday;
     endDay;
     endMonth;
     endYear;
@@ -17,10 +19,10 @@ class CalendarEvent{
     startDate;
     eventID;
 
-    constructor(title, hour, day, month, year, hasEnd, hasReminder, type, startDate){
+    constructor(title, hour, weekday, day, month, year, hasEnd, hasReminder, type, startDate){
         this.title = title;
         this.hour = hour;
-        this.day = day;
+        this.weekday = weekday;
         this.day = day;
         this.month = month;
         this.year = year;
@@ -47,6 +49,10 @@ class CalendarEvent{
         this.endHour = value;
     }
 
+    setEndWeekDay(value){
+        this.endWeekday = value;
+    }
+
     setEndDay(value){
         this.endDay = value;
     }
@@ -65,6 +71,10 @@ class CalendarEvent{
 
     setDescription(value){
         this.description = value;
+    }
+
+    setStartDate(value){
+        this.startDate = value;
     }
 
     setID(value){

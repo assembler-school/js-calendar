@@ -10,16 +10,13 @@ class ShowInfoModal{
                         //top modal (move and close)
                         element("div", null, "modal-top"),
                         [
-                            element("div", null, "modal-top show-modal"),
+                                element("span"),
                                 [
-                                    element("span"),
-                                    [
-                                        element("img", "edit-event", null, "src", "../assets/imgs/pencil.png")
-                                    ],
-                                    element("span"),
-                                    [
-                                        element("img", "remove-event", null, "src", "../assets/imgs/bin.png")
-                                    ]
+                                    element("img", "remove-event", null, "src", "../assets/imgs/bin.png")
+                                ],
+                                element("span"),
+                                [
+                                    element("img", "edit-event", null, "src", "../assets/imgs/pencil.png")
                                 ],
                                 element("span"),
                                 [
