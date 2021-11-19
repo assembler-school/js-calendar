@@ -26,7 +26,7 @@ class calendarEvent {
     }
     setIDToStorage() {
         if (!localStorage.id) {
-            localStorage.id = '0';
+            localStorage.id = '1';
         }
         localStorage.id = parseInt(localStorage.id) + 1
     }
@@ -120,9 +120,7 @@ function findEvent(father, date2 = null) {
     if (date2 == null) {
         var resultProductData = product_data.filter(
             function (a) {
-                console.log(a.fechaInicio)
                 var b = new Date(a.fechaInicio);
-                console.log(b);
                 let eventDate = b.getDate();
                 let eventMonth = b.getMonth();
                 let eventYear = b.getFullYear();
@@ -137,12 +135,12 @@ function findFather(x) {
         let realChilds = findEvent(boxEventsCal[index]);
         realChilds.forEach(element => {
             // if (x !== null) {
-                // console.log("entra aqui2");
-                // if (element.eventId == x) {
-                //     return
-                // }
-                console.log("entra aqui");
-                creaTag(element, index)
+            // console.log("entra aqui2");
+            // if (element.eventId == x) {
+            //     return
+            // }
+            console.log("entra aqui");
+            creaTag(element, index)
             // }
         });
     }

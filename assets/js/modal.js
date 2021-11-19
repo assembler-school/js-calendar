@@ -95,22 +95,24 @@ function comprovacionFinal() {
             finalEvent = new calendarEvent(allEventInputs[0].value, allEventInputs[1].value, allEventInputs[2].value, allEventInputs[3].value, allEventInputs[4].value, allEventInputs[5].value, allEventInputs[6].value);
             cerrar_modal();
             magia(finalEvent);
-            /*             window.location.reload(); //es mal
-             */
+            window.location.reload(); //es mal
             console.log(finalEvent);
         } else if (checkboxDate.checked == true && recordatorio_modal.checked == false) {
             finalEvent = new calendarEvent(allEventInputs[0].value, allEventInputs[1].value, allEventInputs[2].value, allEventInputs[3].value, 'undefined', allEventInputs[4].value, allEventInputs[5].value);
             cerrar_modal();
+            magia(finalEvent);
             window.location.reload();
             console.log(finalEvent);
         } else if (checkboxDate.checked == false && recordatorio_modal.checked == true) {
             finalEvent = new calendarEvent(allEventInputs[0].value, allEventInputs[1].value, 'undefined', allEventInputs[2].value, allEventInputs[3].value, allEventInputs[4].value, allEventInputs[5].value);
             cerrar_modal();
+            magia(finalEvent);
             window.location.reload();
             console.log(finalEvent);
         } else if (checkboxDate.checked == false && recordatorio_modal.checked == false) {
             finalEvent = new calendarEvent(allEventInputs[0].value, allEventInputs[1].value, 'undefined', allEventInputs[2].value, 'undefined', allEventInputs[3].value, allEventInputs[4].value);
             cerrar_modal();
+            magia(finalEvent);
             window.location.reload();
             console.log(finalEvent);
         }
@@ -285,22 +287,59 @@ function magia(a) {
     } else if (a.allEvent.repeat == "Cada dia") {
         let b = new Date(a.allEvent.fechaInicio)
         b.setHours(b.getHours() + 24);
-        let childrenDate = new calendarEvent(a.allEvent.eventTitle,nomalizaeFecha(b), a.allEvent.fechaFin, a.allEvent.repeat, a.allEvent.remember, a.allEvent.description, a.allEvent.eventType, a.allEvent.eventId)
-        console.log(childrenDate);
-        console.log(a.allEvent.fechaInicio);
-        a.allEvent.fechaInicio
+        let childrenDate = new calendarEvent(a.allEvent.eventTitle, nomalizaeFecha(b, a), a.allEvent.fechaFin, a.allEvent.repeat, a.allEvent.remember, a.allEvent.description, a.allEvent.eventType, a.allEvent.eventId)
+        if (b.getMonth() == actual_date.getMonth()) {
+            console.log('a');
+            magia(childrenDate);
+        }
     } else if (a.allEvent.repeat == "Cada semana") {
         let b = new Date(a.allEvent.fechaInicio)
         b.setDate(b.getDate() + 7);
+        let childrenDate = new calendarEvent(a.allEvent.eventTitle, nomalizaeFecha(b, a), a.allEvent.fechaFin, a.allEvent.repeat, a.allEvent.remember, a.allEvent.description, a.allEvent.eventType, a.allEvent.eventId)
+        if (b.getMonth() == actual_date.getMonth()) {
+            console.log('a');
+            magia(childrenDate);
+        }
     } else if (a.allEvent.repeat == "Cada mes") {
-
+        let b = new Date(a.allEvent.fechaInicio)
+        b.setMonth(b.getMonth() + 1);
+        let childrenDate = new calendarEvent(a.allEvent.eventTitle, nomalizaeFecha(b, a), a.allEvent.fechaFin, a.allEvent.repeat, a.allEvent.remember, a.allEvent.description, a.allEvent.eventType, a.allEvent.eventId)
+        if (b.getMonth() == actual_date.getMonth()) {
+            console.log('a');
+            magia(childrenDate);
+        }
     } else if (a.allEvent.repeat == "Laborables") {
-
+        let b = new Date(a.allEvent.fechaInicio)
+        b.setHours(b.getHours() + 24);
+        if (b.getDay() == 0 || b.getDay() == 6) {
+            return
+        } else {
+            let childrenDate = new calendarEvent(a.allEvent.eventTitle, nomalizaeFecha(b, a), a.allEvent.fechaFin, a.allEvent.repeat, a.allEvent.remember, a.allEvent.description, a.allEvent.eventType, a.allEvent.eventId)
+        }
+        if (b.getMonth() == actual_date.getMonth()) {
+            console.log('a');
+            magia(childrenDate);
+        }
     }
+
 }
-function nomalizaeFecha(a){
-    var b=a.getDate()
-    var c=a.getMonth()+1
-    var d=a.getFullYear()
-    return d+"-"+c+"-"+b
+
+function nomalizaeFecha(a, b) {
+    console.log(a);
+    console.log(b);
+    if (b.allEvent.fechaFin !== 'undefined') {
+        var t = a.getDate()
+        var c = a.getMonth() + 1
+        var d = a.getFullYear()
+        return d + "-" + c + "-" + t
+    } else {
+        var X = esmenos0(a.getHours())
+        var y = esmenos0(a.getMinutes())
+        var t = esmenos0(a.getDate())
+        var c = esmenos0(a.getMonth() + 1)
+        var d = a.getFullYear()
+        return d + "-" + c + "-" + t + 'T' + X + ':' + y
+    }
+
+
 }
