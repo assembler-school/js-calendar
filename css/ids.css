@@ -1,0 +1,108 @@
+#title{
+    width: calc(var(--modal-size) - 85px);
+    height: fit-content;
+    border: none;
+    border-bottom: 1px solid var(--light-grey);
+}
+
+#title:focus{
+    outline: none;
+    border-bottom: 2.3px solid var(--dark-blue);
+    transition: 0.2s;
+}
+#header {
+    padding: 10px;
+    color: black;
+    font-family: sans-serif;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  #header button {
+    background-color: white;
+    color: black;
+    width: auto;
+    height: 30px;
+    margin: 0px 2px;
+  }
+  #prevBtn img, #nextBtn img, #create-event img{
+    width: 10px;
+    height: 20px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+  #current-month {
+    font-size: 2rem;
+    width: 33.33%;
+    text-align: left;
+
+  }
+  #select-month-container {
+    width: 33.33%;
+    display:flex;
+    justify-content:flex-end;
+    text-align: right;
+  }
+  #new-event {
+    text-align: center;
+    width: 33.33%;
+  }
+  #main-container {
+    width: 100%;
+    height: 100%;
+    padding: 25px;
+  }
+  #weekdays {
+    width: 100%;
+    display: flex;
+    color: eveningblue;
+    text-align: right;
+    color: rgba(0, 0, 0, 0.3)
+
+  }
+  #weekdays div {
+    width: 14.25%;
+    padding-right: 10px;
+    padding-bottom: 10px;
+  }
+  #calendar {
+    width: 100%;
+    height: 85vh;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+  }
+/* modal edit event */
+#modal-edit-container{
+  position:absolute;
+  top:500px;
+  background-color: red;
+  box-shadow: -1px 1px 8px 1px var(--black-translucent);
+  width:400px;
+}
+#modal-edit-container #icons{
+  background-color:#f1f3f4;
+  display:flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 7px 8px;
+}
+#modal-edit-container #items{
+  background-color: var(--white);
+  display:flex;
+  flex-direction: column;
+  padding:10px;
+}
+#modal-edit-container #items #item-alert{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+@media only screen and (max-width: 800px){
+  #current-month {
+    font-size: 1.2rem;
+  }
+}
