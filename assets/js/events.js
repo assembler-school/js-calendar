@@ -1,6 +1,11 @@
 class calendarEvent {
-    constructor(eventTitle, fechaInicio, fechaFin, repeat, remember, description, eventType, id = localStorage.id) {
+    constructor(eventTitle, fechaInicio, fechaFin, repeat, remember, description, eventType, id) {
         this.setIDToStorage();
+        if (id = "undefined") {
+            var goodId = localStorage.id
+        } else {
+            var goodId = id
+        }
         this.allEvent = {
             eventTitle: eventTitle,
             fechaInicio: fechaInicio,
@@ -9,7 +14,7 @@ class calendarEvent {
             remember: remember,
             description: description,
             eventType: eventType,
-            eventId: id
+            eventId: goodId
         }
         this.setToLocalStorage(this.allEvent.eventType);
     }
@@ -34,7 +39,7 @@ class calendarEvent {
         if (this.allEvent.fechaInicio.split("T").length > 1) {
             var horaevento = this.allEvent.fechaInicio.split("T")
             horaevento = horaevento[1]
-            var content = horaevento + ' '+ this.allEvent.eventTitle
+            var content = horaevento + ' ' + this.allEvent.eventTitle
             if (this.allEvent.eventType == 'Meeting') {
                 father.appendChild(inDay(content, this.allEvent.eventId, 'miniEvents inday', 'meeting'))
             } else if (this.allEvent.eventType == 'Personal') {
@@ -78,8 +83,9 @@ class calendarEvent {
 
 function startSetTimeOut() {
     setTimeout(() => {
-        eventoDia()
+        eventoDia();
         findFather();
+        checkPassEvents();
     }, 100);
 }
 /* 
@@ -87,6 +93,46 @@ setInterval(function () {
     recuerdame(getEventById(23))
 }, 1000) */
 
+function checkPassEvents() {
+    let currentEvents = allLocalStorage(['Meeting', 'Personal', 'Study']);
+    for (const iterator of currentEvents) {
+        if (iterator.fechaFin == 'undefined') {
+            let a = new Date(iterator.fechaInicio)
+            if (new Date(iterator.fechaInicio) <= actual_date) {
+                let currentId = iterator.eventId;
+                iterator.eventType = 'PassedEvents'
+                iterator.eventId = '0'
+                if (localStorage['PassedEvents']) {
+                    let typeStorage = JSON.parse(localStorage['PassedEvents']);
+                    typeStorage.push(iterator)
+                    localStorage['PassedEvents'] = (JSON.stringify(typeStorage))
+                } else if (!localStorage['PassedEvents']) {
+                    let typeStorage = []
+                    typeStorage.push(iterator);
+                    localStorage['PassedEvents'] = (JSON.stringify(typeStorage))
+                }
+                deleteById(currentId);
+            }
+        } else {
+            let a = new Date(iterator.fin)
+            if (new Date(iterator.fin) <= actual_date) {
+                let currentId = iterator.eventId;
+                iterator.eventType = 'PassedEvents'
+                iterator.eventId = '0'
+                if (localStorage['PassedEvents']) {
+                    let typeStorage = JSON.parse(localStorage['PassedEvents']);
+                    typeStorage.push(iterator)
+                    localStorage['PassedEvents'] = (JSON.stringify(typeStorage))
+                } else if (!localStorage['PassedEvents']) {
+                    let typeStorage = []
+                    typeStorage.push(iterator);
+                    localStorage['PassedEvents'] = (JSON.stringify(typeStorage))
+                }
+                deleteById(currentId);
+            }
+        }
+    }
+}
 
 function allLocalStorage(X = []) {
     let typeStorage
@@ -116,7 +162,7 @@ function findEvent(father, date2 = null) {
     var fatherDay = father.firstChild.dataset.day;
     let fatherMonth = father.firstChild.dataset.month;
     let fatherYear = father.firstChild.dataset.year;
-    let product_data = allLocalStorage(['Meeting', 'Personal', 'Study']);
+    let product_data = allLocalStorage(['Meeting', 'Personal', 'Study', 'PassedEvents']);
     if (date2 == null) {
         var resultProductData = product_data.filter(
             function (a) {
@@ -163,7 +209,7 @@ function creaTag(element, index) {
     if (element.fechaInicio.split("T").length > 1) {
         var horaevento = element.fechaInicio.split("T")
         horaevento = horaevento[1]
-        var content = horaevento + ' '+ element.eventTitle
+        var content = horaevento + ' ' + element.eventTitle
         if (element.eventType == 'Meeting') {
             boxEventsCal[index].appendChild(inDay(content, element.eventId, 'miniEvents inday', 'meeting'))
         } else if (element.eventType == 'Personal') {

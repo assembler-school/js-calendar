@@ -57,15 +57,23 @@ function comprovaciones() {
 
 function comprovacionesFechas(event) {
     let profile_cont_input = document.querySelectorAll('.neededDate');
-    if (profile_cont_input == 'undefined') {
-        event.srcElement.style.backgroundColor = "#F8D8DD";
-    } else {
-        profile_cont_input[0].style.color = "var(--azul)";
-        profile_cont_input[0].style.backgroundColor = "#ffffff";
-        if (profile_cont_input[1]) {
-            profile_cont_input[1].style.color = "var(--azul)";
-            profile_cont_input[1].style.backgroundColor = "#ffffff";
+    if (checkboxDate.checked == true) {
+        if (profile_cont_input[1].value < profile_cont_input[0].value) {
+            profile_cont_input[0].style.backgroundColor = "#F8D8DD";
+            profile_cont_input[1].style.backgroundColor = "#F8D8DD";
+            console.log('a');
+            return false
+        } else {
+            profile_cont_input[0].style.color = "var(--azul)";
+            profile_cont_input[0].style.backgroundColor = "#ffffff";
+            if (profile_cont_input[1]) {
+                profile_cont_input[1].style.color = "var(--azul)";
+                profile_cont_input[1].style.backgroundColor = "#ffffff";
+            }
+            return true
         }
+    } else {
+        return true
     }
 }
 
@@ -80,8 +88,9 @@ function comprovacionFinal() {
             comprovaciones();
             a++
         } else {
-            comprovacionesFechas();
-            a++
+            if (comprovacionesFechas() == true) {
+                a++
+            }
         }
     }
     if (a == 2 || a == 3) {
@@ -270,12 +279,11 @@ function deleteById(X) {
 window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
-    }
-    else if (event.target == mainModal) {
+    } else if (event.target == mainModal) {
         cerrar_modal()
     }
 }
-document.onkeydown = function(evt) {
+document.onkeydown = function (evt) {
     evt = evt || window.event;
     var isEscape = false;
     if ("key" in evt) {
@@ -284,8 +292,8 @@ document.onkeydown = function(evt) {
         isEscape = (evt.keyCode === 27);
     }
     if (isEscape) {
-            modal.style.display = "none";
-            cerrar_modal()
+        modal.style.display = "none";
+        cerrar_modal()
     }
 };
 
@@ -358,20 +366,20 @@ function nomalizaeFecha(a, b) {
 
 
 
-function eventoDia(){
-    var evnday=document.querySelectorAll(".number-days")
+function eventoDia() {
+    var evnday = document.querySelectorAll(".number-days")
     for (const X of evnday) {
-        X.addEventListener("click",function(evn){
-            var a=evn.srcElement.dataset
+        X.addEventListener("click", function (evn) {
+            var a = evn.srcElement.dataset
             checkboxDate.checked = true;
             ponerdata();
             let allEventInputs = document.querySelectorAll('.eventComonClass');
-            var t = a.day
-            var c = a.month
+            var t = esmenos0(a.day)
+            var c = esmenos0(a.month)
             var d = a.year
-            var result=d + "-" + c + "-" + t
-            allEventInputs[1].value=result
-            allEventInputs[2].value=result
+            var result = d + "-" + c + "-" + t
+            allEventInputs[1].value = result
+            allEventInputs[2].value = result
             mainModal.style.display = "block";
         })
     }
