@@ -37,11 +37,6 @@ function cerrar_modal() {
     bigModalId.innerHTML = ""
 }
 
-window.onclick = function (event) {
-    if (event.target == mainModal) {
-        mainModal.style.display = "none";
-    }
-}
 
 //Validación
 
@@ -201,7 +196,7 @@ spanedit.onclick = function () {
     if (obj.fechaFin == "undefined" && obj.remember == "undefined") {
         let allEventInputs = document.querySelectorAll('.eventComonClass');
         allEventInputs[0].value = obj.eventTitle
-        allEventInputs[1].value = "2021-11-17T17:46"
+        allEventInputs[1].value = obj.fechaInicio
         allEventInputs[2].value = obj.repeat
         allEventInputs[3].value = obj.description
         allEventInputs[4].value = obj.eventType
@@ -212,8 +207,8 @@ spanedit.onclick = function () {
         ponerdata();
         let allEventInputs = document.querySelectorAll('.eventComonClass');
         allEventInputs[0].value = obj.eventTitle
-        allEventInputs[1].value = "2021-11-17"
-        allEventInputs[2].value = "2021-11-19"
+        allEventInputs[1].value = obj.fechaInicio
+        allEventInputs[2].value = obj.fechaFin
         allEventInputs[3].value = obj.repeat
         allEventInputs[4].value = obj.description
         allEventInputs[5].value = obj.eventType
@@ -224,7 +219,7 @@ spanedit.onclick = function () {
         recordatorio_modal_time();
         let allEventInputs = document.querySelectorAll('.eventComonClass');
         allEventInputs[0].value = obj.eventTitle
-        allEventInputs[1].value = "2021-11-17T17:46"
+        allEventInputs[1].value = obj.fechaInicio
         allEventInputs[2].value = obj.repeat
         allEventInputs[3].value = obj.remember
         allEventInputs[4].value = obj.description
@@ -238,8 +233,8 @@ spanedit.onclick = function () {
         ponerdata();
         let allEventInputs = document.querySelectorAll('.eventComonClass');
         allEventInputs[0].value = obj.eventTitle
-        allEventInputs[1].value = "2021-11-17"
-        allEventInputs[2].value = "2021-11-19"
+        allEventInputs[1].value = obj.fechaInicio
+        allEventInputs[2].value = obj.fechaFin
         allEventInputs[3].value = obj.repeat
         allEventInputs[4].value = obj.remember
         allEventInputs[5].value = obj.description
@@ -276,7 +271,24 @@ window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
+    else if (event.target == mainModal) {
+        cerrar_modal()
+    }
 }
+document.onkeydown = function(evt) {
+    evt = evt || window.event;
+    var isEscape = false;
+    if ("key" in evt) {
+        isEscape = (evt.key === "Escape" || evt.key === "Esc");
+    } else {
+        isEscape = (evt.keyCode === 27);
+    }
+    if (isEscape) {
+            modal.style.display = "none";
+            cerrar_modal()
+    }
+};
+
 
 
 //funcionalidad REPEAT
@@ -342,4 +354,25 @@ function nomalizaeFecha(a, b) {
     }
 
 
+}
+
+
+
+function eventoDia(){
+    var evnday=document.querySelectorAll(".number-days")
+    for (const X of evnday) {
+        X.addEventListener("click",function(evn){
+            var a=evn.srcElement.dataset
+            checkboxDate.checked = true;
+            ponerdata();
+            let allEventInputs = document.querySelectorAll('.eventComonClass');
+            var t = a.day
+            var c = a.month
+            var d = a.year
+            var result=d + "-" + c + "-" + t
+            allEventInputs[1].value=result
+            allEventInputs[2].value=result
+            mainModal.style.display = "block";
+        })
+    }
 }

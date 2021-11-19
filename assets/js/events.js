@@ -34,7 +34,7 @@ class calendarEvent {
         if (this.allEvent.fechaInicio.split("T").length > 1) {
             var horaevento = this.allEvent.fechaInicio.split("T")
             horaevento = horaevento[1]
-            var content = horaevento + ' ' + '<span>' + this.allEvent.eventTitle + '</span>'
+            var content = horaevento + ' '+ this.allEvent.eventTitle
             if (this.allEvent.eventType == 'Meeting') {
                 father.appendChild(inDay(content, this.allEvent.eventId, 'miniEvents inday', 'meeting'))
             } else if (this.allEvent.eventType == 'Personal') {
@@ -78,7 +78,7 @@ class calendarEvent {
 
 function startSetTimeOut() {
     setTimeout(() => {
-
+        eventoDia()
         findFather();
     }, 100);
 }
@@ -135,22 +135,17 @@ function findFather(x) {
         let realChilds = findEvent(boxEventsCal[index]);
         realChilds.forEach(element => {
             // if (x !== null) {
-            // console.log("entra aqui2");
             // if (element.eventId == x) {
             //     return
             // }
-            console.log("entra aqui");
             creaTag(element, index)
             // }
         });
     }
     var eventsClick = document.getElementsByClassName("miniEvents")
-    console.log(eventsClick);
     for (const evn of eventsClick) {
         evn.addEventListener("click", function (evn) {
-            console.log(evn.srcElement);
             var obj = getEventById(evn.srcElement.id)
-            console.log(obj)
             titleModalInfo.innerHTML = obj.eventTitle
             dateModalInfo.innerHTML = obj.fechaInicio
             repetModalInfo.innerHTML = obj.repeat;
@@ -168,7 +163,7 @@ function creaTag(element, index) {
     if (element.fechaInicio.split("T").length > 1) {
         var horaevento = element.fechaInicio.split("T")
         horaevento = horaevento[1]
-        var content = horaevento + ' ' + '<span>' + element.eventTitle + '</span>'
+        var content = horaevento + ' '+ element.eventTitle
         if (element.eventType == 'Meeting') {
             boxEventsCal[index].appendChild(inDay(content, element.eventId, 'miniEvents inday', 'meeting'))
         } else if (element.eventType == 'Personal') {
