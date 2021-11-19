@@ -136,7 +136,6 @@ export function createBackground(){
 }
 //Select event and open modal
 export function openModalEdit(){
-    console.log("opening...");
     const eventList = document.querySelectorAll('.event'); 
     eventList.forEach(element => {
         element.removeEventListener("click",createModalToEdit);
@@ -154,10 +153,8 @@ export function fetchEvents() {
                 element.lastChild.innerHTML = '';
             for (let i = 0; i < dailyEvents.length; i++) {
                 const newEvent = document.createElement('p');
-                console.log(event[i].eventID);
-                newEvent.setAttribute("data-eventid", event[i].eventID);
-                console.log(newEvent.attributes[0]);
-                newEvent.innerHTML = `${dailyEvents[i].title} <span class="event-data">${event[i].day} ${event[i].month} ${event[i].year} </span>`;
+                newEvent.setAttribute("data-eventid", dailyEvents[i].eventID);
+                newEvent.innerHTML = `${dailyEvents[i].title}`;
                 newEvent.classList.add('event');
                 element.lastChild.appendChild(newEvent);
             }
