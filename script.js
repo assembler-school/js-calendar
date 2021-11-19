@@ -242,9 +242,9 @@ function generateGridButton(e,countday) {
     buttonSpecific.textContent="+";
     //let buttonDate = new Date(selectedYear,selectedMonth,buttonSpecific.value,"T00:00");
     if(buttonSpecific.value<10){
-        buttonDate = selectedYear+"-"+selectedMonth+"-0"+buttonSpecific.value+"T23:59";
+        buttonDate = selectedYear+"-"+(selectedMonth + 1)+"-0"+buttonSpecific.value+"T23:59";
     }else{
-        buttonDate = selectedYear+"-"+selectedMonth+"-"+buttonSpecific.value+"T23:59";
+        buttonDate = selectedYear+"-"+(selectedMonth + 1)+"-"+buttonSpecific.value+"T23:59";
     }
     buttonSpecific.addEventListener("click",function (){insertDataElement(buttonDate)});
     e.appendChild(buttonSpecific);
@@ -266,6 +266,7 @@ function createYearMonthDays(year){//
         m++;
     }
     createMonthDays(selectedYear,selectedMonth)//dejar para crear meses
+    alertFunction();
 }
 function deleteYearMonthDays(){//
     while (monthDiv.firstChild) {
