@@ -25,28 +25,6 @@ previousYear.addEventListener("click", changeYear);
 
 var hourDiv = document.querySelector("#day-container");
 
-
-
-
-/*
-function pastdaystyle(){
-    let z = 0;
-    
-    console.log(today);
-    while (z < (historicEvents.length-1)){
-        if (new Date(historicEvents[z].initialDate) < today){
-            var dayinpast = document.querySelector(".event-container");
-            dayinpast.classList.add("dayinpast");
-            z++;
-            console.log(new Date(historicEvents[z].initialDate));
-        }
-        else {
-            z++
-        }
-        
-        }
-}*/
-
 var eventHistoricArray = [];
 var monthDayArray = [];
 const dayNameArr = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
@@ -147,7 +125,6 @@ function createMonthDays(year,month){
     createDay(year,month);
     createHoursFun(selectedDay);
     addEventsListeners();
-    pastdaystyle();
 }
 function createDay(year,month){
     var num = new Date(year,month+1,0).getDate();
@@ -270,15 +247,15 @@ function addEventsListenersYear(){
     daisMonthYear.forEach(sel =>{
         console.log(sel)
         sel.addEventListener("click",(e)=>{
-            m = new RegExp('\d');
-            for (x=1; x<daisMonthYear2.length+1; x++){
-                //console.log(daisMonthYear2)
-                console.log(document.getElementById("day-container-year-" + m + "-" + x))
-                document.getElementById("day-container-year-"+ m + "-" + x).classList.remove("e-selected-day-year");
-                if (e.target.matches(".day-container-year")) {
-                    //dayNameContainerH1.textContent=e.target.innerText;
-                }
-            }
+            // m = (/[0-12]/);
+            // for (x=1; x<daisMonthYear2.length+1; x++){
+            //     //console.log(daisMonthYear2)
+            //     console.log(document.getElementById("day-container-year-" + /[0-12]/ + "-" + x))
+            //     document.getElementById("day-container-year-"+ /[0-12]/ + "-" + x).classList.remove("e-selected-day-year");
+            //     if (e.target.matches(".day-container-year")) {
+            //         //dayNameContainerH1.textContent=e.target.innerText;
+            //     }
+            // }
             //if (e.target.matches(".day-container-year")) {
                 e.target.classList.add("e-selected-day-year")
                 console.log(e.target)
@@ -364,7 +341,7 @@ function createDaysYear(year,num,m){
         dayInner.classList.add("day-container-year-inner")
         dayInner.textContent = countday;
         day.appendChild(dayInner);
-        assignEventYear(countday,day,m);  
+        assignEventYear(countday,day,m);
         countday++
         if(countweek>=6){
             countweek=0;
