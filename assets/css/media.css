@@ -1,0 +1,72 @@
+@media screen and (min-width: 500px) {
+    #crear_minicalendar {
+        width: 30%;
+        height: 50px;
+    }
+
+
+}
+
+
+@media screen and (min-width: 768px) {
+
+
+    #calendars {
+        flex-flow: column;
+        gap: 10px;
+    }
+
+    #crear_minicalendar {
+        width: 80%;
+        height: 50px;
+    }
+
+    #minicalendar .header-calendar, #small_calendar, #micalendar_minicalendar   {
+        display: none;
+    }
+
+    #calendar {
+        display: block;
+        flex: 80%;
+    }
+
+    .date-calendar {
+        font-size: 0.3em;
+    }
+
+    #calendar .date-calendar {
+        font-size: 2em;
+    }
+
+    .boxEventsCal {
+        width: 100%;
+    }
+}
+
+
+
+@media screen and (min-width: 1024px) {
+
+    #calendars {
+        flex-flow: row;
+        gap: 10px;
+    }
+
+    #minicalendar .header-calendar,  #micalendar_minicalendar   {
+        display:block;
+    }
+
+    #small_calendar{
+        display: grid;
+    }
+
+    .date-calendar {
+        font-size: 0.8em;
+    }
+
+
+    #calendar .date-calendar {
+        font-size: 2em;
+    }
+
+}
