@@ -133,6 +133,7 @@ function ponerdata() {
     var inputdate_modal = document.createElement("input")
     today = new Date();
     var date = today.getFullYear() + '-' + esmenos0(today.getMonth() + 1) + '-' + esmenos0(today.getDate());
+    var date2= date+"T"+esmenos0(today.getHours())+":"+esmenos0(today.getMinutes())
     inputdate_modal.type = "Date"
     inputdate_modal.value = date
     inputdate_modal.classList = "date_modal modal-need eventComonClass neededDate"
@@ -147,10 +148,13 @@ function ponerdata() {
         typedatatimelocal.type = "Date"
         typedatatimelocal.value = date
     } else if (checkboxDate.checked == false) {
+        let allEventInputs = document.querySelectorAll('.eventComonClass');
         var a = document.getElementById("div2")
         if (a) {
             fecha_modal.removeChild(a)
             typedatatimelocal.type = "datetime-local"
+            console.log(date2)
+            allEventInputs[1].value=date2
         }
     }
 }
