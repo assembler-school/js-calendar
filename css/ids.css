@@ -13,18 +13,46 @@
 #header {
     padding: 10px;
     color: black;
-    font-size: 26px;
     font-family: sans-serif;
+    font-size: 1.2rem;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
   }
   #header button {
-    background-color:#92a1d1;
+    background-color: white;
+    color: black;
+    width: auto;
+    height: 30px;
+    margin: 0px 2px;
+  }
+  #prevBtn img, #nextBtn img, #create-event img{
+    width: 10px;
+    height: 20px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+  #current-month {
+    font-size: 2rem;
+    width: 33.33%;
+    text-align: left;
+
+  }
+  #select-month-container {
+    width: 33.33%;
+    display:flex;
+    justify-content:flex-end;
+    text-align: right;
+  }
+  #new-event {
+    text-align: center;
+    width: 33.33%;
   }
   #main-container {
     width: 100%;
     height: 100%;
+    padding: 25px;
   }
   #weekdays {
     width: 100%;
@@ -41,10 +69,10 @@
   }
   #calendar {
     width: 100%;
-    margin: auto;
-    display: flex;
-    flex-wrap: wrap;
-    height: auto;
+    height: 85vh;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr);
   }
 /* modal edit event */
 #modal-edit-container{
@@ -84,4 +112,9 @@
 }
 #item-description img{
   width:30px;
+}
+@media only screen and (max-width: 800px){
+  #current-month {
+    font-size: 1.2rem;
+  }
 }

@@ -60,7 +60,7 @@ export function displayCalendar() {
             dayElement.classList.add('padding');
             //dayElement.addEventListener('click', () => console.log('PADDING DAY BEFORE'));
             dayNumber.innerText = (daysInPrevMonth - paddingDaysBefore) + i;
-            dayNumber.setAttribute('data-date', `${dayNumber.innerText}/${dataMonth-1}/${year}`);
+            dayNumber.setAttribute('data-date', `${dayNumber.innerText}/${(parseInt(dataMonth)-1)}/${year}`);
         } else if (i < paddingDaysBefore + daysInMonth + 1) {
             dayNumber.innerText = i - paddingDaysBefore;
             dayNumber.setAttribute('data-date', `${dayNumber.innerText}/${dataMonth}/${year}`);
@@ -69,7 +69,7 @@ export function displayCalendar() {
             dayElement.classList.add('padding');
             //dayElement.addEventListener('click', () => console.log('PADDING DAY AFTER'));
             dayNumber.innerText = i - daysInMonth - paddingDaysBefore;
-            dayNumber.setAttribute('data-date', `${dayNumber.innerText}/${dataMonth+1}/${year}`);
+            dayNumber.setAttribute('data-date', `${dayNumber.innerText}/${(parseInt(dataMonth)+1)}/${year}`);
         }
 
         dayElement.addEventListener('click', (e) => {
