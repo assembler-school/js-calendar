@@ -81,7 +81,36 @@ function createmsg(title, description = 'Have a Beatifull Day', type, time ){
 // }
 function openForm(id) {
     openBook= eventBook.filter(event=>{
-        event.eventId == id
-    })
-    console.log(openBook)
+        if(event.eventId == id){
+       return true
+    } 
+    return false
+})
+console.log(openBook[0].title)
+//beginModal()
+
+ document.getElementById("title").textContent= title
+ begindateId=document.getElementById("begindateId")
+ endDateCheck=document.getElementById("endDateCheck")
+
+ title = openBook[0].title
+ begindateId = openBook[0].begindateId
+ endDateCheck.checked == true
+ 
+ 
+ endDate=document.getElementById("endDate")
+ checkboxreminder=document.getElementById("reminder")
+
+ endDate = openBook[0].endDate
+ checkboxreminder.checked == true
+
+
+ reminder=document.getElementById("remindTimer")
+ description=document.getElementById("description")
+ eventType=document.getElementById("eventType")
+
+ reminder= openBook[0].reminder
+ description = openBook[0].description
+ eventType= openBook[0].eventType
+
 }
