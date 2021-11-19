@@ -1,5 +1,5 @@
 *{
-    font-size: var(--font-size);
+    /* font-size: var(--font-size); */
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
@@ -28,14 +28,14 @@ img{
 body {
     display: flex;
     justify-content: center;
-    background-color: #FFFCFF;
+    background-color: white;
     font-family: sans-serif;
     height: 80vh;
 }
   button {
     width: 75px;
     cursor: pointer;
-    box-shadow: 0px 0px 2px gray;
+    box-shadow: 0px 0px 3px #CBD4C2;
     border: none;
     outline: none;
     padding: 5px;
