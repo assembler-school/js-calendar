@@ -93,7 +93,7 @@ function displayCalendar() {
     fecha = undefined;
     monthNow.forEach(num=> {
         num.addEventListener("click", () => {
-
+            
             pepe(num)
             modalStart()
         })

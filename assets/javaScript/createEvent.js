@@ -135,13 +135,15 @@ function getDataFromCalendar (num1) {
         let eventOnCalendar = document.createElement('div')
         let eventText = document.createElement('h5') 
         eventText.setAttribute("id",id)
-        eventText.setAttribute("class",id)
+        eventText.setAttribute("class", 'displayEvent')
+        eventText.setAttribute("onclick",  ' openForm('+ id +')')
         eventText.innerHTML = event.title
         num1.appendChild(eventText)
     /*     if (element.startDate == fecha){
         } */
     });
 }
+
 // function pruebaMia(num1){
 //     if(num1)
 // }
