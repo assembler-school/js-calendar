@@ -1,13 +1,14 @@
 import { createBackground, fetchEvents } from "../app.js"
+import { weekdays } from "../variables.js";
 export default function createModalToEdit(e){
     
     createBackground();
     const getID=e.target.attributes[0].nodeValue; //getID from event clicked
     const arrayEvents=JSON.parse(localStorage.getItem("events")); //parse arrayEvents
     const eventSelected=arrayEvents.find(event=>event.eventID==getID); //Find event
-    const eventStartDate=eventSelected.startDate; //date of
-    const eventEndDate=eventSelected.endDay+"/"+eventSelected.endMonth+"/"+eventSelected.endYear;
-  
+    const eventStartDate=eventSelected.day+","+eventSelected.startDate; //date of
+    const eventEndDate=eventSelected.endDay+","+eventSelected.endDay+"/"+eventSelected.endMonth+"/"+eventSelected.endYear;
+  console.log(eventSelected.dayWeek);
     //const dayEventPicked=e.target.parentNode.parentNode.firstChild.attributes[1].nodeValue;
     //body declaration
     const body=document.getElementsByClassName("body")[0];
@@ -29,8 +30,12 @@ export default function createModalToEdit(e){
 
     //where to spawn
     console.log(e.clientX);
+    //X position (depends where you clicked)
     if(e.clientX<500)divParent.style.left=e.clientX+"px";
-    else{divParent.style.left=(e.clientX-500)+"px";}
+    else{
+        divParent.style.left=(e.clientX-500)+"px";
+    }
+    //Y position
     divParent.style.top=e.clientY+"px";
     //spawn elements
     
@@ -65,20 +70,32 @@ export default function createModalToEdit(e){
     //Spawn title
     const spanTitle=document.createElement("span");
     spanTitle.classList.add("itemEditModal");
-        spanTitle.id="eventTitle";
-        spanTitle.innerHTML=/*aqui vale el title*/"<h2>"+eventSelected.title+"</h2>"
-        /*fecha inicio*/+eventStartDate;
-        if(eventSelected.hasEnd)spanTitle.innerHTML+="-"+eventEndDate+"</p>";
+    spanTitle.id="item-title";
+    spanTitle.innerHTML=/*aqui vale el title*/"<h2>"+eventSelected.title+"</h2>"
+    if(!eventSelected.hasEnd){
+        /*fecha inicio*/spanTitle.innerHTML+="<p>"+eventStartDate+"</p>";
+    }
+       else{
+           spanTitle.innerHTML+="<p>"+eventStartDate+"-"+eventEndDate+"</p>";}
     divItems.appendChild(spanTitle);
+    //spawn description
+    if(eventSelected.description!=undefined){
+        const spanDescription=document.createElement("span");
+        spanDescription.classList.add("itemEditModal");
+        spanDescription.id="item-description";
+        spanDescription.innerHTML=`<img src="assets/imgs/description.png" alt="description">${eventSelected.description}`
+        divItems.appendChild(spanDescription);
+    }
     //Spawn alert
-    const spanAlert=document.createElement("span");
-        spanAlert.classList=("itemEditModal");
-        spanAlert.id="item-alert"
-        if(eventSelected.hasReminder){
+    if(eventSelected.hasReminder){
+        const spanAlert=document.createElement("span");
+            spanAlert.classList=("itemEditModal");
+            spanAlert.id="item-alert"
             spanAlert.innerHTML="<img src='assets/imgs/bell-solid.svg'><p>"+eventSelected.reminder+"</p>";
-        }
             divItems.appendChild(spanAlert);
+        }
 }
+
 function closeModalToEdit(){
     const modal = document.getElementById("modal-edit-container");
     modal.parentNode.removeChild(modal.previousElementSibling);

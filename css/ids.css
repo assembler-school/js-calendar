@@ -64,10 +64,24 @@
   background-color: var(--white);
   display:flex;
   flex-direction: column;
+  justify-content: space-around;
   padding:10px;
 }
-#modal-edit-container #items #item-alert{
+#modal-edit-container #items #item-title p{
+  font-size:13px;
+  margin-left:30px;
+}
+#modal-edit-container #items #item-title{
+  margin-bottom: 15px;
+}
+#modal-edit-container #items #item-alert, #item-description{
   display:flex;
   flex-direction: row;
   align-items: center;
+}
+#item-alert img,#item-description img{
+  margin-right: 20px;
+}
+#item-description img{
+  width:30px;
 }
