@@ -88,10 +88,10 @@ function startSetTimeOut() {
         checkPassEvents();
     }, 100);
 }
-/* 
+
 setInterval(function () {
-    recuerdame(getEventById(23))
-}, 1000) */
+    recuerda()
+}, 1000)
 
 function checkPassEvents() {
     let currentEvents = allLocalStorage(['Meeting', 'Personal', 'Study']);
@@ -191,7 +191,9 @@ function findFather(x) {
     var eventsClick = document.getElementsByClassName("miniEvents")
     for (const evn of eventsClick) {
         evn.addEventListener("click", function (evn) {
+            console.log(evn.srcElement)
             var obj = getEventById(evn.srcElement.id)
+            console.log(obj)
             titleModalInfo.innerHTML = obj.eventTitle
             dateModalInfo.innerHTML = obj.fechaInicio
             repetModalInfo.innerHTML = obj.repeat;
@@ -243,6 +245,15 @@ function creaTag(element, index) {
 
 
 
+function recuerda(){
+    let all=allLocalStorage(["Meeting","Personal","Study"])
+    for (const one of all) {
+        recuerdame(one)
+    }
+}
+
+
+
 
 
 
@@ -258,7 +269,8 @@ function recuerdame(evn) {
                     dateEvent.setMinutes(min)
                     if (dateEvent.getHours() == actualDate.getHours()) {
                         if (dateEvent.getMinutes() == actualDate.getMinutes()) {
-                            alert("en" + minAntes + "minutos tienes un evento:" + evn.eventTitle)
+                            contentRemmember.innerHTML= "Tienes un evento en : "+minAntes+" minutos"
+                            modalRemmember.style.display="block"
                         }
                     }
                 }
