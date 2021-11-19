@@ -20,7 +20,7 @@ function beginModal(){
     } else{
     document.getElementById("begindateId").value=fecha;
 
-    }    
+    }
 
 
     //TODO Dom modal
@@ -35,7 +35,6 @@ function beginModal(){
     deleteButton.addEventListener('click', deleteEvent)
     createButton.addEventListener('click', createEvent)
     span.addEventListener('click', closeModal)
-    
 }
 
 
@@ -67,7 +66,7 @@ function createmsg(title, description = 'Have a Beatifull Day', type, time ){
     content += ` <div class='modal-content msg-content'><h1> ${title} </h1>`
     content += `<h2> Reminder you have a Event in ${time} min</h2>`
     content+= `<h3> Event Type:  ${type}</h3>`
-    content += `<h4>"Description:  ${description}</h4></div>`
+    content += `<h4>Description:  ${description}</h4></div>`
 
     modalContent.innerHTML= content
 
