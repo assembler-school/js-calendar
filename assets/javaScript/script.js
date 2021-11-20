@@ -109,7 +109,7 @@ function displayCalendar() {
         hour = time.getHours();
         minute = pad(time.getMinutes())
         seconds = pad(time.getSeconds());
-        houtMin= `${hour}:${minute}:${seconds}`
+        houtMin= `${hour}:${minute}`
         fecha= `${year}-${monthF + 1}-${numero}T${houtMin}`
         // console.log(fecha)
         // console.log(fecha)
@@ -138,7 +138,7 @@ function pepe(num){
         hour = time.getHours();
         minute = pad(time.getMinutes())
         seconds = pad(time.getSeconds());
-        houtMin= `${hour}:${minute}:${seconds}`
+        houtMin= `${hour}:${minute}`
         fecha= `${year}-${monthF + 1}-${numero}T${houtMin}`
         // console.log(fecha)
         // console.log(fecha)
