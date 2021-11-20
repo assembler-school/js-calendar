@@ -84,7 +84,6 @@ class calendarEvent {
 function startSetTimeOut() {
     setTimeout(() => {
         eventoDia();
-        findFather();
         checkPassEvents();
     }, 100);
 }

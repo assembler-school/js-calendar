@@ -98,32 +98,36 @@ function comprovacionFinal() {
         if (checkboxDate.checked == true && recordatorio_modal.checked == true) {
             finalEvent = new calendarEvent(allEventInputs[0].value, allEventInputs[1].value, allEventInputs[2].value, allEventInputs[3].value, allEventInputs[4].value, allEventInputs[5].value, allEventInputs[6].value);
             cerrar_modal();
+            actual_date = new Date(esmenos0(allEventInputs[1].value));
             magia(finalEvent);
-            actual_date.setMonth(11)
-            actual_date.setDate(8)
             createCal()
             console.log(finalEvent);
         } else if (checkboxDate.checked == true && recordatorio_modal.checked == false) {
             finalEvent = new calendarEvent(allEventInputs[0].value, allEventInputs[1].value, allEventInputs[2].value, allEventInputs[3].value, 'undefined', allEventInputs[4].value, allEventInputs[5].value);
             cerrar_modal();
             magia(finalEvent);
-            window.location.reload();
+            actual_date = new Date(esmenos0(allEventInputs[1].value));
+            createCal()
             console.log(finalEvent);
         } else if (checkboxDate.checked == false && recordatorio_modal.checked == true) {
             finalEvent = new calendarEvent(allEventInputs[0].value, allEventInputs[1].value, 'undefined', allEventInputs[2].value, allEventInputs[3].value, allEventInputs[4].value, allEventInputs[5].value);
             cerrar_modal();
             magia(finalEvent);
-            window.location.reload();
+            actual_date = new Date(esmenos0(allEventInputs[1].value));
+            createCal()
             console.log(finalEvent);
         } else if (checkboxDate.checked == false && recordatorio_modal.checked == false) {
             finalEvent = new calendarEvent(allEventInputs[0].value, allEventInputs[1].value, 'undefined', allEventInputs[2].value, 'undefined', allEventInputs[3].value, allEventInputs[4].value);
             cerrar_modal();
             magia(finalEvent);
-            window.location.reload();
+            actual_date = new Date(esmenos0(allEventInputs[1].value));
+            createCal()
             console.log(finalEvent);
         }
     }
 }
+
+
 //poner otro input date
 
 checkboxDate.addEventListener("click", ponerdata)
@@ -311,18 +315,19 @@ function magia(a) {
     if (a.allEvent.repeat == 'No se repite') {
         return
     } else if (a.allEvent.repeat == "Cada dia") {
+        console.log(a.allEvent.eventId);
         let b = new Date(a.allEvent.fechaInicio)
         b.setHours(b.getHours() + 24);
         let childrenDate = new calendarEvent(a.allEvent.eventTitle, nomalizaeFecha(b, a), a.allEvent.fechaFin, a.allEvent.repeat, a.allEvent.remember, a.allEvent.description, a.allEvent.eventType, a.allEvent.eventId)
-        if (b.getMonth() == actual_date.getMonth()) {
-            console.log('a');
+        if (b.getFullYear() == actual_date.getFullYear()) {
+            console.log(childrenDate.allEvent.eventId);
             magia(childrenDate);
         }
     } else if (a.allEvent.repeat == "Cada semana") {
         let b = new Date(a.allEvent.fechaInicio)
         b.setDate(b.getDate() + 7);
         let childrenDate = new calendarEvent(a.allEvent.eventTitle, nomalizaeFecha(b, a), a.allEvent.fechaFin, a.allEvent.repeat, a.allEvent.remember, a.allEvent.description, a.allEvent.eventType, a.allEvent.eventId)
-        if (b.getMonth() == actual_date.getMonth()) {
+        if (b.getFullYear() == actual_date.getFullYear()) {
             console.log('a');
             magia(childrenDate);
         }
@@ -330,7 +335,7 @@ function magia(a) {
         let b = new Date(a.allEvent.fechaInicio)
         b.setMonth(b.getMonth() + 1);
         let childrenDate = new calendarEvent(a.allEvent.eventTitle, nomalizaeFecha(b, a), a.allEvent.fechaFin, a.allEvent.repeat, a.allEvent.remember, a.allEvent.description, a.allEvent.eventType, a.allEvent.eventId)
-        if (b.getMonth() == actual_date.getMonth()) {
+        if (b.getFullYear() == actual_date.getFullYear()) {
             console.log('a');
             magia(childrenDate);
         }
@@ -342,7 +347,7 @@ function magia(a) {
         } else {
             let childrenDate = new calendarEvent(a.allEvent.eventTitle, nomalizaeFecha(b, a), a.allEvent.fechaFin, a.allEvent.repeat, a.allEvent.remember, a.allEvent.description, a.allEvent.eventType, a.allEvent.eventId)
         }
-        if (b.getMonth() == actual_date.getMonth()) {
+        if (b.getFullYear() == actual_date.getFullYear()) {
             console.log('a');
             magia(childrenDate);
         }
@@ -366,8 +371,6 @@ function nomalizaeFecha(a, b) {
         var d = a.getFullYear()
         return d + "-" + c + "-" + t + 'T' + X + ':' + y
     }
-
-
 }
 
 
