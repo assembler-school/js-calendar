@@ -39,10 +39,11 @@
 }
 
 .displayEvent{
-  margin: 1%;
+  margin: 2%;
   height: 25%;
-  width: 100%;
+  width: 95%;
 }
+
 .eventForm textarea{
   width: 100%;
 }
@@ -90,6 +91,10 @@ textarea{
 
 button{
   width: 33%;
+}
+
+#eventId{
+  display: none;
 }
 
 /* The Close Button */
