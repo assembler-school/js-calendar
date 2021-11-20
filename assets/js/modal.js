@@ -319,7 +319,7 @@ function magia(a) {
         let b = new Date(a.allEvent.fechaInicio)
         b.setHours(b.getHours() + 24);
         let childrenDate = new calendarEvent(a.allEvent.eventTitle, nomalizaeFecha(b, a), a.allEvent.fechaFin, a.allEvent.repeat, a.allEvent.remember, a.allEvent.description, a.allEvent.eventType, a.allEvent.eventId)
-        if (b.getFullYear() == actual_date.getFullYear()) {
+        if (b.getFullYear() == actual_date.getFullYear() || b.getFullYear() + 1 == actual_date.getFullYear() + 1) {
             console.log(childrenDate.allEvent.eventId);
             magia(childrenDate);
         }
@@ -344,10 +344,9 @@ function magia(a) {
         b.setHours(b.getHours() + 24);
         if (b.getDay() == 0 || b.getDay() == 6) {
             return
-        } else {
-            let childrenDate = new calendarEvent(a.allEvent.eventTitle, nomalizaeFecha(b, a), a.allEvent.fechaFin, a.allEvent.repeat, a.allEvent.remember, a.allEvent.description, a.allEvent.eventType, a.allEvent.eventId)
         }
         if (b.getFullYear() == actual_date.getFullYear()) {
+            let childrenDate = new calendarEvent(a.allEvent.eventTitle, nomalizaeFecha(b, a), a.allEvent.fechaFin, a.allEvent.repeat, a.allEvent.remember, a.allEvent.description, a.allEvent.eventType, a.allEvent.eventId)
             console.log('a');
             magia(childrenDate);
         }
