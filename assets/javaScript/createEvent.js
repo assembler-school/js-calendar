@@ -149,6 +149,9 @@ function getDataFromCalendar (num1) {
     });
 }
 
+function modifyForm() {
+    console.log('jssjsjjssjsjsjsj')
+}
 // function pruebaMia(num1){
 //     if(num1)
 // }

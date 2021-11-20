@@ -12,7 +12,7 @@ function beginModal() {
 
     content += "</div><div> <label for='typeEvent'> Event Type</label><select name='eventType'class='formInputs' id='eventType'><option value='personal'> Personal</option><option value='Meeting'> Meeting</option><option value='Study'> Study</option> <option value='other'> Other</option></select> </div>"
 
-    content += "<div> <button class='btn btn-primary btn-lg' id='delete'> Delete Event </button> <button class='btn btn-primary btn-lg' id='create'> Create Event </button> </div></form> </div>"
+    content += "<div> <button class='btn btn-primary btn-lg' id='delete'> Delete Event </button><button class='btn btn-secondary btn-lg' id='modifyForm'> Modify Event </button> <button class='btn btn-primary btn-lg' id='create'> Create Event </button> </div></form> </div>"
 
     modalContent.innerHTML = content
     if (!fecha) {
@@ -27,12 +27,14 @@ function beginModal() {
     const endDateCheck = document.getElementById('endDateCheck')
     hideForm = document.getElementsByClassName('hideform')
     const deleteButton = document.getElementById('delete')
+    const modifyButton = document.getElementById('modifyForm')
     const createButton = document.getElementById('create')
     const span = document.getElementsByClassName("close")[0];
 
     //TODO event Listener
     endDateCheck.addEventListener('input', displayForm)
     deleteButton.addEventListener('click', deleteEvent)
+    modifyButton.addEventListener('click', modifyForm)
     createButton.addEventListener('click', createEvent)
     span.addEventListener('click', closeModal)
 }
@@ -49,6 +51,7 @@ function createHideElements() {
 
     hideForm[0].innerHTML = content
 
+    document.getElementById("endDate").value =  document.getElementById("begindateId").value;
     const reminder = document.getElementById('reminder')
     reminder.addEventListener('input', displayReminder)
 }
