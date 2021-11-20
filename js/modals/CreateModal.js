@@ -142,6 +142,14 @@ class CreateModal{
             const longDate = String(new Date(shortDate[0]).toLocaleString("en-GB", {weekday: "long", year: "numeric", month: "long", day: "numeric"})).split(" ");
             eventTime.childNodes[0].textContent = longDate[0] + " " + longDate[1] + " " + longDate[2] + " " + longDate[3];
             eventTime.childNodes[1].textContent = shortDate[1];
+            const nextDate = document.querySelector(".next-date");
+            if(nextDate){
+                const nextHour = new Date();
+                nextDate.childNodes[0].textContent = eventTime.childNodes[0].textContent;
+                nextHour.setHours(eventTime.childNodes[1].textContent.split(":")[0]);
+                nextDate.childNodes[1].textContent = (nextHour.getHours()+1) + ":" + eventTime.childNodes[1].textContent.split(":")[1];
+                console.log("dentro");
+            }
         });
 
         //date checkbox structure + add/remove
