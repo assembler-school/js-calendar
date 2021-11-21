@@ -102,11 +102,23 @@ function getDataFromCalendar(num1) {
         eventMonth = new Date(event.startDate).getMonth()
         eventYear = new Date(event.startDate).getFullYear()
         id = event.eventId
+        // console.log(event.description)
         finalDate = new Date(event.endDate).getDate()
         finalMonth = new Date(event.endDate).getMonth()
         finalYear = new Date(event.endDate).getFullYear()
         let eventText = document.createElement('button')
-        eventText.setAttribute("class", 'btn btn-primary displayEvent ')
+        if(event.description == "personal" ){
+            eventText.setAttribute("class", 'btn btn-primary displayEvent ')
+        } else if(event.description == "Meeting"){
+            eventText.setAttribute("class", 'btn btn-success displayEvent ')
+        } else if(event.description == "Study"){
+            eventText.setAttribute("class", 'btn btn-danger displayEvent ')
+        } else if(event.description== "other"){
+            eventText.setAttribute("class", 'btn btn-dark displayEvent ')
+        } else{
+            eventText.setAttribute("class", 'btn btn-primary displayEvent ')
+        }
+        // eventText.setAttribute("class", 'btn btn-primary displayEvent ')
         eventText.setAttribute("id", id)
         eventText.setAttribute("onclick", ' openForm(' + id + ')')
         eventText.innerHTML = event.title
