@@ -3,7 +3,7 @@
 let eventBook
 
 //TODO create object to organize on local storage
-function eventData(title, startDate, endDate = 0, reminder = 0, description = '', eventType, id = Date.now().toString()) {
+function eventData(title, startDate, endDate = 0, reminder = 0, description = '', eventType, id = Date.now()) {
     return {
         title: title,
         startDate: startDate,
