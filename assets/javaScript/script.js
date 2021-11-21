@@ -35,7 +35,6 @@ function displayCalendar() {
     var dayPerMonth = ['31', '' + FebNumberOfDays + '', '31', '30', '31', '30', '31', '31', '30', '31', '30', '31'];
 
     //TODO  days in previous month and next one , and day of week.
-    
     var nextDate = new Date(nextMonth + ' 1 ,' + year);
     var weekdays = nextDate.getDay();
     var weekdays2 = weekdays;

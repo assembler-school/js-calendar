@@ -3,7 +3,7 @@
 let eventBook
 
 //TODO create object to organize on local storage
-function eventData(title, startDate, endDate = 0, reminder = 0, description = '', eventType, id = Date.now()) {
+function eventData( title, startDate, endDate = 0, reminder = 0, description = '', eventType, id = Date.now()) {
     return {
         title: title,
         startDate: startDate,
@@ -26,14 +26,19 @@ function loadEventBook() {
 
 //TODO convert to object
 function convertToObj(arrayName) {
-    console.log(arrayName)
+    //console.log(arrayName)
     let obj
-    if (arrayName.length > 6) {
+
+    if (arrayName.length > 7) {
         obj = eventData(arrayName[0], arrayName[1], arrayName[2], arrayName[3], arrayName[4], arrayName[5], arrayName[6])
-        console.log(obj)
+        // for (elm in obj) {
+        //     console.log(elm)
+        // }
     } else {
         obj = eventData(arrayName[0], arrayName[1], arrayName[1], arrayName[3], arrayName[4], arrayName[2])
-        console.log(obj)
+        // for (elm in obj) {
+        //     console.log(elm)
+        // }
     }
     return obj
 }
@@ -41,10 +46,31 @@ function convertToObj(arrayName) {
 //TODO create event, save and load on eventBook
 function createEvent() {
     let arrayData = resortInputs()
+    // let obj = convertToObj(arrayData)
+    // if (obj.endDate > obj.startDate ){
+    //     while (obj.endDate >= obj.startDate){
+    //     console.log(obj.endDate, obj.startDate)
+    //     dayNow = new Date (obj.startDate)
+    //     console.log(dayNow)
+    //     year = dayNow.getFullYear()
+    //     month= dayNow.getMonth()
+    //     day = dayNow.getDate()
+    //     hour = dayNow.getHours();
+    //     minutes = dayNow.getMinutes();
+    //     daynext = day + 1
+    //     nextday = new Date(year, month, daynext, hour, minutes)
+    //     console.log(nextday)
+    //     obj.startDate = nextday
+    //     console.log(obj.startDate)
 
-    eventBook.push(convertToObj(arrayData))
-    localStorage.setItem('eventBook', JSON.stringify(eventBook))
-    closeModal()
+        // eventBook.push(convertToObj(arrayData))
+        // localStorage.setItem('eventBook', JSON.stringify(eventBook))
+    //}
+        eventBook.push(convertToObj(arrayData))
+        localStorage.setItem('eventBook', JSON.stringify(eventBook))
+        closeModal()
+
+
 }
 
 //TODO delete event
@@ -100,6 +126,7 @@ function getDataFromCalendar(num1) {
 
     //TODO when find day print the button
     filter.forEach(event => {
+
         eventDay = new Date(event.startDate).getDate()
         eventMonth = new Date(event.startDate).getMonth()
         eventYear = new Date(event.startDate).getFullYear()
@@ -163,7 +190,9 @@ function modifyForm(id) {
 function resortInputs() {
     const formClass = document.getElementsByClassName('formInputs')
     arrayForm = []
+
     for (num in formClass) {
+        //console.log(formClass[num].value)
         arrayForm.push(formClass[num].value)
     }
     return arrayForm;
