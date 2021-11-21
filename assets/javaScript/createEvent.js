@@ -111,10 +111,10 @@ function getDataFromCalendar(num1) {
     //COGER LOS EVENTOS DEL DIA
     filter = eventBook.filter(element => {
         // console.log(new Date(fecha).getFullYear(), new Date(element.startDate).getFullYear())
-        if (new Date(fecha).getFullYear() == new Date(element.startDate).getFullYear()) {
-            if (new Date(fecha).getMonth() == new Date(element.startDate).getMonth()) {
+        if (new Date(fecha).getFullYear() == new Date(element.startDate).getFullYear() && new Date(fecha).getFullYear() <= new Date(element.endDate).getFullYear()) {
+            if ((new Date(fecha).getMonth() == new Date(element.startDate).getMonth()) == (new Date(fecha).getMonth() == new Date(element.endDate).getMonth())) {
                 // console.log(new Date(fecha).getDate(), new Date(element.startDate).getDate())
-                if (new Date(fecha).getDate() == new Date(element.startDate).getDate()) {
+                while ((new Date(fecha).getDate() <= new Date(element.startDate).getDate()) || (new Date(fecha).getDate() <=new Date(element.endDate).getDate())) {
                     return true
                 }
             }
