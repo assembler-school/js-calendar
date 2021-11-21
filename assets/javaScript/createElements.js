@@ -61,7 +61,7 @@ function createHideElements() {
 
     hideForm[0].innerHTML = content
 
-    //TODO Dom end date 
+    //TODO Dom end date
     document.getElementById("endDate").value =  document.getElementById("begindateId").value;
     const reminder = document.getElementById('reminder')
     reminder.addEventListener('input', displayReminder)
