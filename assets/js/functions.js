@@ -172,6 +172,7 @@ function createCal() {
     chooseDateCal()
     findFather()
     getPresentDay(Array.from(document.querySelectorAll(".number-days")));
+    eventoDia();
 }
 
 //Events to choose all days of calendar
