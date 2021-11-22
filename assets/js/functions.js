@@ -213,6 +213,7 @@ function isSameDay(date1, date2) {
 
 //Create all list events
 function createListEvents() {
+    console.log(listEvents);
     document.getElementById('micalendar_minicalendar').innerHTML = null;
     var summary = newElement({
         tag: 'summary',
@@ -238,6 +239,7 @@ function createListEvents() {
 //Change the different types of events
 function changeTypeEvent() {
     detailsEventType.forEach(options => {
+        console.log(listEvents);
         options.addEventListener('change', option => {
             if (option.target.checked == true) {
                 getAllEventsOfDay(option.target.value);

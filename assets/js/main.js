@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    console.log(actual_date);
+    console.log('Actual_date', actual_date);
     createCal();
     getPresentDay(Array.from(document.querySelectorAll(".number-days")));
     getAllEventsOfDay('PassedEvents');
+    changeTypeEvent();
     createListEvents();
     createListExpired();
-    changeTypeEvent();
     startSetTimeOut();
 });
