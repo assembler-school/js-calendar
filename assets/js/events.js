@@ -83,7 +83,6 @@ class calendarEvent {
 
 function startSetTimeOut() {
     setTimeout(() => {
-        eventoDia();
         checkPassEvents();
     }, 100);
 }
@@ -165,8 +164,8 @@ function findEvent(father, date2 = null) {
     // console.log(product_data);
     let toPrint=[];
     if (date2 == null) {
-        // console.log("a")
         for (const a of product_data) {
+            // console.log(a)
             var product_data2=product_data
             if(a.fechaFin !== "undefined"){
                     var init =new Date(a.fechaInicio)
@@ -192,7 +191,6 @@ function findEvent(father, date2 = null) {
                     toPrint.push(a)
                 }
             }
-            console.log(product_data2)
             var resultProductData = product_data2.filter(
                 function (a) {
                     var b = new Date(a.fechaInicio);
