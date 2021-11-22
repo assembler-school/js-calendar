@@ -134,15 +134,16 @@ function addZero(num) {
 
 //TODO sum month to change
 function sumMonth() {
-    calendario.innerHTML = null
+    displayCalendar()
+    // calendario.innerHTML = null
     htmlContent = '';
     FebNumberOfDays = '';
     counter = 1;
+    month = dateNow.setMonth(dateNow.getMonth() + 1)
     day = dateNow.getDate();
     month = dateNow.getMonth();
     year = dateNow.getFullYear();
     nextMonth = month + 1;
-    displayCalendar()
 }
 
 //TODO subtract month to change
