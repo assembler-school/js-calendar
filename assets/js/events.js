@@ -134,10 +134,9 @@ function checkPassEvents() {
 }
 
 function allLocalStorage(X = []) {
-    let typeStorage
+    let typeStorage=undefined
     for (const a of X) {
         if (!localStorage[a]) {
-
         } else {
             if (typeStorage == undefined) {
                 typeStorage = JSON.parse(localStorage[a]);
@@ -161,19 +160,53 @@ function findEvent(father, date2 = null) {
     var fatherDay = father.firstChild.dataset.day;
     let fatherMonth = father.firstChild.dataset.month;
     let fatherYear = father.firstChild.dataset.year;
-    let product_data = allLocalStorage(['Meeting', 'Personal', 'Study', 'PassedEvents']);
+    let product_data=[]
+    product_data = allLocalStorage(['Meeting', 'Personal', 'Study']);
+    // console.log(product_data);
+    let toPrint=[];
     if (date2 == null) {
-        var resultProductData = product_data.filter(
-            function (a) {
-                var b = new Date(a.fechaInicio);
-                let eventDate = b.getDate();
-                let eventMonth = b.getMonth();
-                let eventYear = b.getFullYear();
-                return eventYear == fatherYear && eventMonth == fatherMonth && eventDate == fatherDay;
-            });
+        // console.log("a")
+        for (const a of product_data) {
+            var product_data2=product_data
+            if(a.fechaFin !== "undefined"){
+                    var init =new Date(a.fechaInicio)
+                    var fin =new Date(a.fechaFin)
+                    // console.log(a)
+                    var monthdifer=fin.getMonth()-init.getMonth()
+                    var daydifer=fin.getDate()-init.getDate()
+                    var duration =daydifer+(monthdifer*30)
+                    // console.log(duration);
+                    for(let i=1;i<duration+1;i++){
+                        var goodInit=a.fechaInicio
+                        var realA=new Date(a.fechaInicio)
+                        var seDay =realA.getDate()+1
+                        realA.setDate(seDay)
+                        var fecharepe=realA.getFullYear()+"-"+esmenos0(realA.getMonth()+1)+"-"+esmenos0(realA.getDate())
+                        // console.log(x)
+                        // a.fechaInicio=goodInit
+                        product_data2.push(creaobj(a,fecharepe))
+                    }
+
+                }
+                else{
+                    toPrint.push(a)
+                }
+            }
+            console.log(product_data2)
+            var resultProductData = product_data2.filter(
+                function (a) {
+                    var b = new Date(a.fechaInicio);
+                    let eventDate = b.getDate();
+                    let eventMonth = b.getMonth();
+                    let eventYear = b.getFullYear();
+                    return eventYear == fatherYear && eventMonth == fatherMonth && eventDate == fatherDay;
+                });
     };
-    return resultProductData;
+    let set                 = new Set( resultProductData.map( JSON.stringify ) )
+    let arrSinDuplicaciones = Array.from( set ).map( JSON.parse );
+    return arrSinDuplicaciones;
 }
+
 
 function creaobj(obj, fecha) {
     return {
