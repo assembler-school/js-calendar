@@ -1,0 +1,52 @@
+
+
+.modal {
+    height: 100vh;
+    width: 100vw;
+}
+
+.modal-dialog {
+    height: 95%;
+}
+
+.modal-content {
+    height: 95%;
+    width: 100%;
+}
+
+.modal-body {
+    background-color: var(--color-blue);
+}
+
+/* .modal-footer {
+    background-color: var(--color-principal);
+} */
+
+#formTarea {
+    display: flex;
+    flex-direction: column;
+}
+
+.textCenterFlex {
+    align-self: center;
+}
+
+/* .buttonModal {
+    background-color: var(--color-violet);
+  } */
+.buttonModal:first-child {
+    color: var(--color-red);
+}
+
+.buttonModal:nth-child(2) {
+    color: var(--color-green);
+}
+
+.modal-header{
+    background-color: var(--color-principal-light);
+    }
+
+    .modal-content {
+        background-color: var(--color-principal-light) !important;
+    }
+

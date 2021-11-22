@@ -1,0 +1,247 @@
+:root {
+  --color-principal-light: beige;
+  --color-violet: #a869bbff;
+  --color-green: #41b26eff;
+  --color-orange: #f5a840ff;
+  --color-blue: #a0d8d9ff;
+  --color-blue-dark: rgb(80, 144, 145);
+  --color-red: #d56564fa;
+}
+
+body {
+  width: 100%;
+  background-color: var(--color-principal-light);
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  margin-top: 15%;
+}
+
+.margein {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.editYear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editYear #actualYear {
+  font-size: 5vw;
+  cursor: pointer;
+}
+
+.editYear #actualYear:hover {
+  color: var(--color-blue-dark);
+}
+
+.editOtr {
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+}
+
+
+.iconZodiac {
+  width: 10%;
+  height: 10%;
+}
+
+.containerDays {
+  display: grid;
+  grid-template-columns: repeat(7, 13.5%);
+  grid-template-rows: 0.5fr repeat(5, 1fr);
+  width: 100%;
+  height: 80vw;
+  text-align: center;
+  gap: 1%;
+}
+
+.nameDays {
+  background-color: var(--color-orange);
+  color: white;
+  font-size: 3vw;
+  text-align: center;
+  font-weight: bold;
+  border-top-left-radius: 20%;
+}
+
+div.Today {
+  color: var(--color-principal-light);
+  font-weight: bold;
+  text-transform: uppercase;
+  border-top-left-radius: 20%;
+  background-color: var(--color-orange);
+}
+
+.days {
+  background-color: var(--color-blue);
+  font-size: 2vw;
+}
+.days p{
+  background-color: var(--color-violet);
+  border-radius: 10px;
+  color: var(--color-principal-light);
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.classicBtn {
+  border: none;
+  padding: 0 5px;
+  color: var(--color-red);
+  background-color: white;
+}
+.classicBtn2 {
+    border: none;
+    color: var(--color-violet);
+    background-color: transparent;
+
+  }
+.classicBtn3 {
+    margin-right: 60px;
+
+  }
+.classicBtn:hover {
+  color: var(--color-violet);
+}
+
+.classicBtn:active {
+  color: var(--color-orange);
+}
+
+i {
+  font-size: 40px;
+}
+
+/*Display footer frase + tareas y botones*/
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  height: 50vw;
+}
+
+#divTasks {
+  background-color: bisque;
+  width: 70%;
+  height: 100%;
+  border-radius: 10px;
+  color: var(--color-violet);
+  font-size: 3vw;
+}
+
+#addTask {
+  color: var(--color-principal-light);
+  background-color: var(--color-orange);
+  border-color: var(--color-orange);
+}
+
+.col-left {
+  left: 0;
+}
+
+.col-right {
+  right: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.containerDivChangeYear {
+  height: 70vh;
+  background-color: var(--color-blue);
+  display: grid;
+  grid-template-columns: 10% 1fr 10%;
+}
+
+.DivChangeYear {
+  background-color:var(--color-blue);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 5%;
+}
+
+.divNewYear {
+  color: white;
+  height: 100%;
+}
+
+.divNumberYear {
+  height: 100%;
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-blue-dark);
+  color: var(--color-principal-light);
+  font-weight: bold;
+}
+
+.backblue{
+background-color: var(--color-blue);
+}
+
+@media (min-width: 800px){
+  body{
+    display: grid;
+    grid-template-columns: 20% 1fr;
+    grid-template-rows: 20% 1fr;
+  }
+
+header{
+  grid-column: 2/3;
+  margin: 0px;
+}
+#containerCalendar{
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+.editYear #actualYear {
+  margin-top: 30px;
+  font-size: 2vw;
+}
+#dayPhrase{
+  grid-row: 1/4;
+}
+.containerDays {
+  height: 750px;
+  margin-top: 20px;
+}
+#condayPhrase{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 15% 1fr;
+  height: 100%;
+}
+#divTasks{
+  width: 100%;
+  height: 95%;
+  padding: 2%;
+}
+
+.iconZodiac {
+  width: 5%;
+  height: 5%;
+}
+
+#actualMonth{
+  font-size: 4vw;
+}
+
+}/*Cierre @media
+
+/*Descripción tareas*/
+.fa-trash{
+  color: var(--color-red);
+}
+.accordion-body{
+  color: var(--color-violet);
+}

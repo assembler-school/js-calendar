@@ -57,3 +57,10 @@ To deliver this project you must follow the steps indicated in the document:
 - [JavaScript Dates](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Date)
 - [LocalStorage](https://developer.mozilla.org/es/docs/Web/API/Window/localStorage)
 - [JavaScript Timeout](https://www.w3schools.com/jsref/met_win_settimeout.asp)
+
+
+link github with commits
+https://github.com/JSSatorres/JS-Calendar.git
+
+link google slides
+https://docs.google.com/presentation/d/1Hmc5C7BL9Jm_30O-IWLnDYpsChz-uKnCrgfhuJXNqSE/edit#slide=id.gc6f80d1ff_0_0
