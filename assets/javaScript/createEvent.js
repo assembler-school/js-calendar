@@ -3,7 +3,7 @@
 let eventBook
 
 //TODO create object to organize on local storage
-function eventData( title, startDate, endDate = 0, reminder = 0, description = '', eventType, id = Date.now()) {
+function eventData(title, startDate, endDate = 0, reminder = 0, description = '', eventType, id = Date.now()) {
     return {
         title: title,
         startDate: startDate,
@@ -26,19 +26,13 @@ function loadEventBook() {
 
 //TODO convert to object
 function convertToObj(arrayName) {
-    //console.log(arrayName)
     let obj
 
     if (arrayName.length > 7) {
         obj = eventData(arrayName[0], arrayName[1], arrayName[2], arrayName[3], arrayName[4], arrayName[5], arrayName[6])
-        // for (elm in obj) {
-        //     console.log(elm)
-        // }
+
     } else {
         obj = eventData(arrayName[0], arrayName[1], arrayName[1], arrayName[3], arrayName[4], arrayName[2])
-        // for (elm in obj) {
-        //     console.log(elm)
-        // }
     }
     return obj
 }
@@ -46,31 +40,9 @@ function convertToObj(arrayName) {
 //TODO create event, save and load on eventBook
 function createEvent() {
     let arrayData = resortInputs()
-    // let obj = convertToObj(arrayData)
-    // if (obj.endDate > obj.startDate ){
-    //     while (obj.endDate >= obj.startDate){
-    //     console.log(obj.endDate, obj.startDate)
-    //     dayNow = new Date (obj.startDate)
-    //     console.log(dayNow)
-    //     year = dayNow.getFullYear()
-    //     month= dayNow.getMonth()
-    //     day = dayNow.getDate()
-    //     hour = dayNow.getHours();
-    //     minutes = dayNow.getMinutes();
-    //     daynext = day + 1
-    //     nextday = new Date(year, month, daynext, hour, minutes)
-    //     console.log(nextday)
-    //     obj.startDate = nextday
-    //     console.log(obj.startDate)
-
-        // eventBook.push(convertToObj(arrayData))
-        // localStorage.setItem('eventBook', JSON.stringify(eventBook))
-    //}
-        eventBook.push(convertToObj(arrayData))
-        localStorage.setItem('eventBook', JSON.stringify(eventBook))
-        closeModal()
-
-
+    eventBook.push(convertToObj(arrayData))
+    localStorage.setItem('eventBook', JSON.stringify(eventBook))
+    closeModal()
 }
 
 //TODO delete event
@@ -78,7 +50,6 @@ function deleteEvent(id) {
     eventBook = eventBook.filter(element => {
         return (element.eventId != id)
     })
-    console.log(eventBook)
     localStorage.setItem('eventBook', JSON.stringify(eventBook))
     eventBook = loadEventBook()
 }
@@ -133,15 +104,15 @@ function getDataFromCalendar(num1) {
         finalMonth = new Date(event.endDate).getMonth()
         finalYear = new Date(event.endDate).getFullYear()
         let eventText = document.createElement('button')
-        if(event.description == "personal" ){
+        if (event.description == "personal") {
             eventText.setAttribute("class", 'btn btn-primary displayEvent ')
-        } else if(event.description == "Meeting"){
+        } else if (event.description == "Meeting") {
             eventText.setAttribute("class", 'btn btn-success displayEvent ')
-        } else if(event.description == "Study"){
+        } else if (event.description == "Study") {
             eventText.setAttribute("class", 'btn btn-danger displayEvent ')
-        } else if(event.description== "other"){
+        } else if (event.description == "other") {
             eventText.setAttribute("class", 'btn btn-dark displayEvent ')
-        } else{
+        } else {
             eventText.setAttribute("class", 'btn btn-primary displayEvent ')
         }
         // eventText.setAttribute("class", 'btn btn-primary displayEvent ')
@@ -154,7 +125,6 @@ function getDataFromCalendar(num1) {
 
 //TODO modify a event by ID
 function modifyForm(id) {
-    console.log(document.getElementById("eventId").value)
     //TODO simple validation if event exist or not
     if (document.getElementById("eventId").value == '') {
         content = "<span class='close'>&times;</span>"
@@ -189,7 +159,6 @@ function resortInputs() {
     arrayForm = []
 
     for (num in formClass) {
-        //console.log(formClass[num].value)
         arrayForm.push(formClass[num].value)
     }
     return arrayForm;

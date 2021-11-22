@@ -39,33 +39,32 @@ function displayForm() {
     (endDateCheck.checked == true) ? createHideElements() : cleanHideElements();
 }
 
-function displayReminder(){
+function displayReminder() {
     (reminder.checked == true) ? createReminder() : cleanReminder();
 }
 
 
-function cleanHideElements(){
+function cleanHideElements() {
     while (hideForm[0].firstChild) {
         hideForm[0].removeChild(hideForm[0].lastChild);
     }
 }
 
-function cleanReminder(){
-    cont= 0
-    divElements= divReminder.childElementCount + 1;
-    while(divElements > cont ){
-        // console.log(divElements, cont)
+function cleanReminder() {
+    cont = 0
+    divElements = divReminder.childElementCount + 1;
+    while (divElements > cont) {
         divReminder.removeChild(divReminder.firstChild)
         cont++
     }
 }
 
-window.onkeydown = (key)=>{
+window.onkeydown = (key) => {
     escape(key)
 }
 
-function escape (key){
-    if (key.code == 'Escape'){
+function escape(key) {
+    if (key.code == 'Escape') {
         closeModal()
     }
 }
