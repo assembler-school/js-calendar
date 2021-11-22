@@ -48,7 +48,6 @@ function createNewEvent(i){
         <button id="createEvent">Create</button>
     </div>
     <div id="error"></div>`
-    
     modalContent.innerHTML = html;
 
     document.getElementById("cancelEvent").addEventListener("click", closeModal);
