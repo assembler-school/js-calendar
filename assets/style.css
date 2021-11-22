@@ -1,3 +1,12 @@
+@media only screen and (max-width: 1550px){
+    #month-name{
+        width: 100% !important;
+    }
+    #year-name{
+        width: 100% !important;
+    }
+}
+
 *{
     box-sizing: border-box;
 }
@@ -32,6 +41,10 @@ main{
     align-items: center;
     margin: 5px;
     background-color: rgb(200,200,200);
+}
+.month-container-year-name{
+    width: 100%;
+    text-align: center;
 }
 .weekdays{
     width: 12%;
@@ -139,7 +152,6 @@ main{
 #year-container{
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
     justify-content: center;
     gap: 2%;
     width: 100%;
@@ -199,16 +211,17 @@ main{
 } */
 
 .sports{
-    background-color: rgb(9, 240, 105) !important;
+    background-color: #0076FF !important;
+    color: white;
 }
 .default{
-    background-color: rgb(204, 33, 33) !important;
+    background-color: #E8C915 !important;
 }
 .meeting{
-    background-color: rgb(86, 33, 209) !important;
+    background-color: #8800FF !important;
 }
 .leisure{
-    background-color: rgb(184, 33, 146) !important;
+    background-color: #00FF87 !important;
 }
 .dayinpast{
     color: rgb(179, 170, 150) !important;

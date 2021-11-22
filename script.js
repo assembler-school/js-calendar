@@ -260,8 +260,14 @@ function createDaysYear(year,num,m){
     let lastWeek = lastDayMonthY;
     var monthEmpty = document.createElement("div");
     monthEmpty.setAttribute("id","month-container-year-" + m)
-    monthEmpty.classList.add("month-container-year")
+    monthEmpty.classList.add("month-container-year");
     monthDiv.appendChild(monthEmpty)
+
+    var monthEmpty2 = document.createElement("div");
+    monthEmpty2.classList.add("month-container-year-name");
+    monthEmpty2.textContent = monthNameArr[m];
+    monthEmpty.appendChild(monthEmpty2);
+
     if(firstWeek==0){
         firstWeek=7;
     }
