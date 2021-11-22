@@ -1,0 +1,6 @@
+1º Day: We're doing the list of task and how will be split the parts.
+2º Day: Working in progress, Raúl is developing modal windows, Iván the main calendar, and Luis the header section.
+3º Day: Finishing these 3 parts, we are linking all the modules.
+4º Day: Still with problems in the implementation with the calendar and modal windows.
+5º Day: Developing the modal to edit events and display it.
+6º Day: Doing CSS and fixing many bugs (modals, calendar displays, new event in header)
