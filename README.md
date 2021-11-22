@@ -1,5 +1,7 @@
 `#html` `#css` `#js` `#dom` `#localstorage` `#master-in-software-engineering`
 
+Slides: https://docs.google.com/presentation/d/1zz08lvZ4b-4SLwYIntZZ_QA8JsWlDlU51omKXOSQ4r8/edit?usp=sharing
+
 # JS Calendar <!-- omit in toc -->
 
 <p>
