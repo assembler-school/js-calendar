@@ -59,14 +59,14 @@ class calendarEvent {
                     tag: 'div',
                     id: this.allEvent.eventId,
                     clas: ['miniEvents', 'personal'],
-                    content: horaevento + "  " + this.allEvent.eventTitle
+                    content: this.allEvent.eventTitle
                 }))
             } else if (this.allEvent.eventType == 'Study')
                 father.appendChild(newElement({
                     tag: 'div',
                     id: this.allEvent.eventId,
                     clas: ['miniEvents', 'study'],
-                    content: horaevento + "  " + this.allEvent.eventTitle
+                    content: this.allEvent.eventTitle
                 }))
         }
     }
@@ -192,7 +192,7 @@ function findEvent(father, date2 = null) {
                     toPrint.push(a)
                 }
             }
-            // console.log(product_data)
+            console.log(product_data2)
             var resultProductData = product_data2.filter(
                 function (a) {
                     var b = new Date(a.fechaInicio);
@@ -206,11 +206,9 @@ function findEvent(father, date2 = null) {
     let arrSinDuplicaciones = Array.from( set ).map( JSON.parse );
     return arrSinDuplicaciones;
 }
-function filterArray(inputArr){
-  
-}
 
-function creaobj(obj,fecha){
+
+function creaobj(obj, fecha) {
     return {
         eventTitle: obj.eventTitle,
         fechaInicio: fecha,
@@ -222,6 +220,7 @@ function creaobj(obj,fecha){
         eventId: obj.goodId
     }
 }
+
 function findFather(x) {
     for (let index = 0; index < boxEventsCal.length; index++) {
         let realChilds = findEvent(boxEventsCal[index]);
@@ -291,8 +290,8 @@ function creaTag(element, index) {
 
 
 
-function recuerda(){
-    let all=allLocalStorage(["Meeting","Personal","Study"])
+function recuerda() {
+    let all = allLocalStorage(["Meeting", "Personal", "Study"])
     for (const one of all) {
         recuerdame(one)
     }
@@ -315,8 +314,8 @@ function recuerdame(evn) {
                     dateEvent.setMinutes(min)
                     if (dateEvent.getHours() == actualDate.getHours()) {
                         if (dateEvent.getMinutes() == actualDate.getMinutes()) {
-                            contentRemmember.innerHTML= "Tienes un evento en : "+minAntes+" minutos"
-                            modalRemmember.style.display="block"
+                            contentRemmember.innerHTML = "Tienes un evento en : " + minAntes + " minutos"
+                            modalRemmember.style.display = "block"
                         }
                     }
                 }
