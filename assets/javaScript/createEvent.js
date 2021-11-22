@@ -107,13 +107,14 @@ function getDataFromCalendar(num1) {
         finalMonth = new Date(event.endDate).getMonth()
         finalYear = new Date(event.endDate).getFullYear()
         let eventText = document.createElement('button')
-        if (event.description == "personal") {
+        
+        if (event.eventType == "personal") {
             eventText.setAttribute("class", 'btn btn-primary displayEvent ')
-        } else if (event.description == "Meeting") {
+        } else if (event.eventType == "Meeting") {
             eventText.setAttribute("class", 'btn btn-success displayEvent ')
-        } else if (event.description == "Study") {
+        } else if (event.eventType == "Study") {
             eventText.setAttribute("class", 'btn btn-danger displayEvent ')
-        } else if (event.description == "other") {
+        } else if (event.eventType == "other") {
             eventText.setAttribute("class", 'btn btn-dark displayEvent ')
         } else {
             eventText.setAttribute("class", 'btn btn-primary displayEvent ')
