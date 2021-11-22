@@ -59,14 +59,14 @@ class calendarEvent {
                     tag: 'div',
                     id: this.allEvent.eventId,
                     clas: ['miniEvents', 'personal'],
-                    content: horaevento + "  " + this.allEvent.eventTitle
+                    content: this.allEvent.eventTitle
                 }))
             } else if (this.allEvent.eventType == 'Study')
                 father.appendChild(newElement({
                     tag: 'div',
                     id: this.allEvent.eventId,
                     clas: ['miniEvents', 'study'],
-                    content: horaevento + "  " + this.allEvent.eventTitle
+                    content: this.allEvent.eventTitle
                 }))
         }
     }
@@ -161,51 +161,21 @@ function findEvent(father, date2 = null) {
     var fatherDay = father.firstChild.dataset.day;
     let fatherMonth = father.firstChild.dataset.month;
     let fatherYear = father.firstChild.dataset.year;
-    let product_data = allLocalStorage(['Meeting', 'Personal', 'Study']);
-    // console.log(product_data)
-    let toPrint=[];
+    let product_data = allLocalStorage(['Meeting', 'Personal', 'Study', 'PassedEvents']);
     if (date2 == null) {
-        // console.log(product_data);
-            for (const a of product_data) {
-                var product_data2=product_data
-                if(a.fechaFin !== "undefined"){
-                    var init =new Date(a.fechaInicio)
-                    var fin =new Date(a.fechaFin)
-                    // console.log(a)
-                    var monthdifer=fin.getMonth()-init.getMonth()
-                    var daydifer=fin.getDate()-init.getDate()
-                    var duration =daydifer+(monthdifer*30)
-                    for(let i=1;i<duration+1;i++){
-                        var goodInit=a.fechaInicio
-                        var realA=new Date(a.fechaInicio)
-                        var seDay =realA.getDate()+1
-                        realA.setDate(seDay)
-                        var fecharepe=realA.getFullYear()+"-"+esmenos0(realA.getMonth()+1)+"-"+esmenos0(realA.getDate())
-                        // console.log(x)
-                        product_data2.push(creaobj(a,fecharepe))
-                        console.log(product_data2);
-                        // a.fechaInicio=goodInit
-                    }
-                }
-                else{
-                    // toPrint.push(a)
-                }
-            }
-            // console.log(product_data)
-            var resultProductData = product_data2.filter(
-                function (a) {
-                    var b = new Date(a.fechaInicio);
-                    let eventDate = b.getDate();
-                    let eventMonth = b.getMonth();
-                    let eventYear = b.getFullYear();
-                    return eventYear == fatherYear && eventMonth == fatherMonth && eventDate == fatherDay;
-                });
+        var resultProductData = product_data.filter(
+            function (a) {
+                var b = new Date(a.fechaInicio);
+                let eventDate = b.getDate();
+                let eventMonth = b.getMonth();
+                let eventYear = b.getFullYear();
+                return eventYear == fatherYear && eventMonth == fatherMonth && eventDate == fatherDay;
+            });
     };
-    // console.log(resultProductData)
     return resultProductData;
 }
 
-function creaobj(obj,fecha){
+function creaobj(obj, fecha) {
     return {
         eventTitle: obj.eventTitle,
         fechaInicio: fecha,
@@ -217,6 +187,7 @@ function creaobj(obj,fecha){
         eventId: obj.goodId
     }
 }
+
 function findFather(x) {
     for (let index = 0; index < boxEventsCal.length; index++) {
         let realChilds = findEvent(boxEventsCal[index]);
@@ -286,8 +257,8 @@ function creaTag(element, index) {
 
 
 
-function recuerda(){
-    let all=allLocalStorage(["Meeting","Personal","Study"])
+function recuerda() {
+    let all = allLocalStorage(["Meeting", "Personal", "Study"])
     for (const one of all) {
         recuerdame(one)
     }
@@ -310,8 +281,8 @@ function recuerdame(evn) {
                     dateEvent.setMinutes(min)
                     if (dateEvent.getHours() == actualDate.getHours()) {
                         if (dateEvent.getMinutes() == actualDate.getMinutes()) {
-                            contentRemmember.innerHTML= "Tienes un evento en : "+minAntes+" minutos"
-                            modalRemmember.style.display="block"
+                            contentRemmember.innerHTML = "Tienes un evento en : " + minAntes + " minutos"
+                            modalRemmember.style.display = "block"
                         }
                     }
                 }
