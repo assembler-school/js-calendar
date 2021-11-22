@@ -162,7 +162,7 @@ main{
     margin-top: 3px;
     text-align: center;
     height: 20px;
-    width: 12%;
+    width: 13%;
     background-color: rgb(200,200,200);
 }
 .day-container-year{
@@ -173,7 +173,7 @@ main{
     font-size: small;
     font-weight: bold;
     height: 20px;
-    width: 12%;
+    width: 13%;
     background-color: rgb(195,195,195);
     color: rgb(100,100,100);
 }
