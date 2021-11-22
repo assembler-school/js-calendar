@@ -57,3 +57,11 @@ To deliver this project you must follow the steps indicated in the document:
 - [JavaScript Dates](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Date)
 - [LocalStorage](https://developer.mozilla.org/es/docs/Web/API/Window/localStorage)
 - [JavaScript Timeout](https://www.w3schools.com/jsref/met_win_settimeout.asp)
+
+
+
+Enlace a la presentacion Calendar
+- https://docs.google.com/presentation/d/1uwWOOw9S_NJ6VhpebgTG8BZe7XOFIvFxqPeC8O4N6Mg/edit#slide=id.g1035fe3597f_0_63
+
+Repositorio Calendario
+- https://github.com/cicu90/calendar.git

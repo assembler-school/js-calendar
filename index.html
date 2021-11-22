@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="details.css" />
+    <script src="script.js" defer></script>
+    <script type="details.js" defer></script>
+    <title>Calendar</title>
+</head>
+
+<body>
+    <div id="logo">
+        <p></p>
+        <img src="/img/logoAssambler.png" alt="Logo Assambler" style="margin-left: auto;margin-right: auto;width: 250px;">
+    </div>
+    <div id="container">
+        <div id="header">
+            <div id="monthDisplay"></div>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <div id="yearDisplay"></div>
+            </button>
+            <div id="monthDisplay"></div>
+            <button id="eventGlobal">+ Add Event</button>
+                <button id="backButton">Back</button>
+                <button id="nextButton">Next</button>
+        </div>
+        <div id="weekdays">
+            <div>Sunday</div>
+            <div>Monday</div>
+            <div>Tuesday</div>
+            <div>Wednesday</div>
+            <div>Thursday</div>
+            <div>Friday</div>
+            <div>Saturday</div>
+        </div>
+
+        <div id="calendar"></div>
+    </div>
+    </div>
+
+    <div id="calendar"></div>
+    </div>
+<!--Modal de event desde el mismo día-->
+    <div id="newEventModal">
+        <h2>New Event</h2>
+
+        <input id="eventTitleInput" placeholder="Event Title" maxlength="60">
+        <label for="initialDate">Initial time: </label>
+        <input type="time" id="initialDate" name="initialDate"><br>
+        <input type="checkbox" name="timeEndCheck" id="timeEndCheck" onclick="endDateDisplay()">
+    <label for="timeInitial">End date</label>
+        <input type="datetime-local" id="endDate" name="endDate"><br>
+        <input type="checkbox">
+        <label for="timeEndCheck">Remind me when this event expires</label><br>
+        <label for="timeAdvise">Time: </label>
+        <select name="timeAdvise" id="timeAdvise">
+            <option value="5">5 minutes</option>
+            <option value="10">10 minutes</option>
+            <option value="15">15 minutes</option>
+            <option value="30">30 minutes</option>
+            <option value="60">1 hour</option>
+        </select><br>
+        <label for="description">Description</label>
+        <input type="text" name="description" id="description"><br>
+        <label for="eventType">Event type: </label>
+        <select name="eventType" id="eventType">
+            <option value="meeting">Meeting</option>
+            <option value="personal">Personal</option>
+            <option value="study">Study</option>
+        </select><br>
+        <button id="saveButton">Save</button>
+        <button id="cancelButton">Cancel</button>
+    </div>
+
+    <div id="deleteEventModal">
+
+        <h2>Event</h2>
+
+        <p id="titleText"></p>
+
+        <p id="timeText1"></p>
+
+        <p id="timeText2"></p>
+
+        <p id="descriptionText"></p>
+
+        <p id="typeText"></p>
+
+        <button id="deleteButton">Delete</button>
+
+        <button id="closeButton">Close</button>
+
+    </div>
+
+    <!-- Modal all Year select-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h1>Years</h1>
+                    <table id="tableyear">
+                        <tr id="row1year">
+                            <td id="col11"></td>
+                            <td id="col21"></td>
+                            <td id="col31"></td>
+                            <td id="col41"></td>
+                            <td id="col51"></td>
+                        </tr>
+                        <tr id="row2year">
+                            <td id="col12"></td>
+                            <td id="col22"></td>
+                            <td id="col32"></td>
+                            <td id="col42"></td>
+                            <td id="col52"></td>
+                        </tr>
+                        <tr id="row3year">
+                            <td id="col13"></td>
+                            <td id="col23"></td>
+                            <td id="col33"></td>
+                            <td id="col43"></td>
+                            <td id="col53"></td>
+                        </tr>
+                        <tr id="row4year">
+                            <td id="col14"></td>
+                            <td id="col24"></td>
+                            <td id="col34"></td>
+                            <td id="col44"></td>
+                            <td id="col54"></td>
+                        </tr>
+                        <tr id="row5year">
+                            <td id="col15"></td>
+                            <td id="col25"></td>
+                            <td id="col35"></td>
+                            <td id="col45"></td>
+                            <td id="col55"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--modal event en el btn del header-->
+    <div id="newEventModalGlobal">
+        <h2>New Event</h2>
+
+        <input id="eventTitleInputGlobal" placeholder="Event Title" maxlength="60">
+    <label for="initialDate">Initial date: </label>
+    <input type="datetime-local" id="initialDateGlobal" name="initialDatetGlobal"><br>
+    <input type="checkbox" name="timeEndChecktGlobal" id="timeEndChecktGlobal" onclick="endDateDisplayGlobal()">
+    <label for="timeInitialtGlobal">End date</label>
+    <input type="datetime-local" id="EndDateGlobal" name="EndDatetGlobal"><br>
+    <input type="checkbox">
+    <label for="timeEndChecktGlobal">Remind me when this event expires</label><br>
+    <label for="timeAdvisetGlobal">Time: </label>
+    <select name="timeAdvisetGlobal" id="timeAdviseGlobal">
+        <option value="5">5 minutes</option>
+        <option value="10">10 minutes</option>
+        <option value="15">15 minutes</option>
+        <option value="30">30 minutes</option>
+        <option value="60">1 hour</option>
+    </select><br>
+    <label for="descriptiontGlobal">Description</label>
+    <input type="text" name="descriptiontGlobal" id="descriptiontGlobal"><br>
+    <label for="eventTypetGlobal">Event type: </label>
+    <select name="eventTypetGlobal" id="eventTypeGlobal">
+        <option value="meeting">Meeting</option>
+        <option value="personal">Personal</option>
+        <option value="study">Study</option>
+    </select><br>
+
+    <button  id="saveButton2">Save</button>
+
+        <button id="cancelButton2">Cancel</button>
+    </div>
+
+    <div id="alertModal" class="alertModal" ></div>
+        
+<div id="modalBackDrop" onclick="closeModal()">
+    </div>
+      
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
