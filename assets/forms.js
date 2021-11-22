@@ -16,7 +16,7 @@ function createNewEvent(i){
     const html = `<span class="close" id="closeModal">&times;</span>
     <h2 class = "newEventTitle">New Event</h2>
     <div class="gridForm">
-        <label for="eventName" id = "labelName">event name: </label>
+        <label for="eventName" id = "labelName">Event name: </label>
         <input type="text" name="eventName" id="eventName" placeholder = "name...">
         <label for="initDate" id = "labelDate" >Initial date: </label>
         <input type="datetime-local" name="initDate" id="initDate">

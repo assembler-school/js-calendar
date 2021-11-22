@@ -14,14 +14,14 @@
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 40%;
+    width: 30%;
     align-content: center;
 }
 .newEventTitle{
     text-align: center;
 }
 .gridForm{
-    width: 40%;
+    width: 100%;
     text-align: center;
     display: grid;
     grid-template-areas: "a b"

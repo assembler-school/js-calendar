@@ -19,7 +19,7 @@ main{
     align-items: center;
     justify-content: center;
     gap: 2% 2%;
-    width: 50%;
+    width: 60%;
     background-color: rgb(200,200,200);
 }
 
@@ -131,7 +131,7 @@ main{
     align-items: center;
     justify-content: center;
     gap: 2% 2%;
-    width: 35%;
+    width: 40%;
     height: auto;
     background-color: rgb(202, 202, 202);
 }
