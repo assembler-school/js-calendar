@@ -112,10 +112,8 @@ function addMinutes(date, minutes) {
 function getDataFromCalendar(num1) {
     // //TODO COGER LOS EVENTOS DEL DIA
     filter = eventBook.filter(element => {
-        // console.log(new Date(fecha).getFullYear(), new Date(element.startDate).getFullYear())
         if ((new Date(fecha).getFullYear() <= new Date(element.startDate).getFullYear()) || (new Date(fecha).getFullYear() <= new Date(element.endDate).getFullYear())) {
             if ((new Date(fecha).getMonth() <= new Date(element.startDate).getMonth()) || (new Date(fecha).getMonth() <= new Date(element.endDate).getMonth())) {
-                // console.log(new Date(fecha).getDate(), new Date(element.startDate).getDate())
                 if ((new Date(fecha).getDate() >= new Date(element.startDate).getDate()) != (new Date(fecha).getDate() > new Date(element.endDate).getDate())) {
                     return true
                 }
@@ -131,7 +129,6 @@ function getDataFromCalendar(num1) {
         eventMonth = new Date(event.startDate).getMonth()
         eventYear = new Date(event.startDate).getFullYear()
         id = event.eventId
-        // console.log(event.description)
         finalDate = new Date(event.endDate).getDate()
         finalMonth = new Date(event.endDate).getMonth()
         finalYear = new Date(event.endDate).getFullYear()

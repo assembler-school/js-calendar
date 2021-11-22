@@ -9,7 +9,7 @@ var month = dateNow.getMonth();
 var day = dateNow.getDate();
 var year = dateNow.getFullYear();
 var nextMonth = month + 1;
-var prevMonth = month -1;
+var prevMonth = month - 1;
 
 //TODO create calendar
 function displayCalendar() {
@@ -58,11 +58,11 @@ function displayCalendar() {
         // highlight current day using the CSS defined in header.
         if (counter == day) {
             htmlContent += "<li class='dayNow gridCalendar' id='color1'  onMouseOver='this.style.background=\"#a1c4fd\"; this.style.color=\"#FFFFFF\"' " +
-            "onMouseOut='this.style.background=\"#FFFFFF\"; this.style.color=\"#000000\"'>" + counter + "</li>";
+                "onMouseOut='this.style.background=\"#FFFFFF\"; this.style.color=\"#000000\"'>" + counter + "</li>";
         } else {
             htmlContent += "<li class='monthNow gridCalendar' onMouseOver='this.style.background=\"#a1c4fd\"; this.style.color=\"#FFFFFF\"' " +
                 " onMouseOut='this.style.background=\"#FFFFFF\";this.style.color=\"#000000\"'>" + counter + "</li>";
-            }
+        }
 
         weekdays2++;
         counter++;
@@ -77,8 +77,6 @@ function displayCalendar() {
     calendarBody += "<ul>";
     calendarBody += htmlContent;
     calendarBody += "</ul></div>";
-    calendarBody += '<button class="btn btn-primary btn-lg" onclick="remiderTimer()"> Test Button </button>'
-    calendarBody += "<button id='testBtn' onclick='getDataFromCalendar()'>TEST CLICK</button>";
 
     //todo The Modal
     document.getElementById("calendar").innerHTML = calendarBody;
@@ -86,33 +84,33 @@ function displayCalendar() {
     //TODO set the content of div .
     document.getElementById('calendar').innerHTML = calendarBody;
     //Date num
-    
+
     //TODO
-    const monthNow= document.querySelectorAll(".gridCalendar")
-  
+    const monthNow = document.querySelectorAll(".gridCalendar")
+
     // beginModal()
-    
+
     fecha = undefined;
-    monthNow.forEach(num=> {
+    monthNow.forEach(num => {
         num.addEventListener("click", () => {
             pepe(num)
             modalStart()
         })
     })
 
-    monthNow.forEach(num1=>{
-        numero=num1.textContent
-        monthF=month
-        if (monthF<10)
-        monthF="0" + monthF
+    monthNow.forEach(num1 => {
+        numero = num1.textContent
+        monthF = month
+        if (monthF < 10)
+            monthF = "0" + monthF
         if (numero < 10)
-        numero="0"+numero
+            numero = "0" + numero
         time = new Date();
         hour = time.getHours();
         minute = pad(time.getMinutes())
         seconds = pad(time.getSeconds());
-        houtMin= `${hour}:${minute}`
-        fecha= `${year}-${monthF + 1}-${numero}T${houtMin}`
+        houtMin = `${hour}:${minute}`
+        fecha = `${year}-${monthF + 1}-${numero}T${houtMin}`
         // console.log(fecha)
         // console.log(fecha)
         getDataFromCalendar(num1)
@@ -128,24 +126,24 @@ function displayCalendar() {
     const leftMonth = document.getElementById("leftMonth")
     leftMonth.addEventListener("click", restMonth)
 }
-function pepe(num){
-        // console.log(pruebaotravez)
-        numero= num.textContent
-        monthF=month
-        if (monthF<10)
-        monthF="0" + monthF
-        if (numero < 10)
-        numero="0"+numero
-        time = new Date();
-        hour = time.getHours();
-        minute = pad(time.getMinutes())
-        seconds = pad(time.getSeconds());
-        houtMin= `${hour}:${minute}`
-        fecha= `${year}-${monthF + 1}-${numero}T${houtMin}`
-        // console.log(fecha)
-        // console.log(fecha)
-        // console.log(fecha)
-        // modalStart() 
+function pepe(num) {
+    // console.log(pruebaotravez)
+    numero = num.textContent
+    monthF = month
+    if (monthF < 10)
+        monthF = "0" + monthF
+    if (numero < 10)
+        numero = "0" + numero
+    time = new Date();
+    hour = time.getHours();
+    minute = pad(time.getMinutes())
+    seconds = pad(time.getSeconds());
+    houtMin = `${hour}:${minute}`
+    fecha = `${year}-${monthF + 1}-${numero}T${houtMin}`
+    // console.log(fecha)
+    // console.log(fecha)
+    // console.log(fecha)
+    // modalStart() 
 }
 
 //TODO
