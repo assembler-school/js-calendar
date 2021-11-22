@@ -64,16 +64,12 @@
     flex: auto;
 }
 
-#big_calendar, #small_calendar{
-    transform: translateX(0);
-    transition: all 0.3s ease;
-}
-
 #small_calendar,
 #big_calendar {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-
+    transition: all 0.3s ease;
+    transform: translateX(0%);
 }
 
 #small_calendar div,
@@ -135,14 +131,6 @@
     border: none;
     background-color: white;
     cursor: pointer;
-}
-
-.btn-prev-month{
-    transform: translateX(-100%);
-}
-
-.btn-next-month {
-    transform: translateX(100%);
 }
 
 #minicalendar .btn-prev-month, #minicalendar .btn-next-month{

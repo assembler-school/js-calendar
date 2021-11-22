@@ -22,3 +22,5 @@ var ideventmodal = document.querySelector("#contmodalinfo>span")
 var typeeventmodal = document.querySelector(".typeeventmodal>div")
 var cicletype = document.querySelector("#cicletype")
 var bigModalId = document.getElementById("bigModalId")
+const smallCalendar = document.getElementById("small_calendar");
+const bigCalendar = document.getElementById("big_calendar");

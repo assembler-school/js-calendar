@@ -1,21 +1,3 @@
-const MONTHS = {
-    0: 'January',
-    1: 'Feburary',
-    2: 'March',
-    3: 'April',
-    4: 'May',
-    5: 'June',
-    6: 'July',
-    7: 'August',
-    8: 'September',
-    9: 'October',
-    10: 'November',
-    11: 'December'
-};
-
-const smallCalendar = document.getElementById("small_calendar");
-const bigCalendar = document.getElementById("big_calendar");
-
 //Obtain calculate to previous days of actual month
 function prevDaysOfMonth() {
     const firstDayIndex = new Date(actual_date.getFullYear(), actual_date.getMonth(), 1).getDay();
@@ -180,6 +162,7 @@ function nextMonthCal() {
 
 //Create the  complete calendar.
 function createCal() {
+    dynamicCal();
     smallCalendar.innerHTML = null;
     bigCalendar.innerHTML = null;
     headerCal();
@@ -198,12 +181,11 @@ function chooseDateCal() {
             var year = event.target.dataset.year
             var month = event.target.dataset.month
             var day = event.target.dataset.day
-            console.log(event.target);
-            console.log(new Date(year, month, day))
         })
     })
 }
 
+//Check the last day and marked
 function getPresentDay(daysNumber) {
     return daysNumber.filter((element) => {
         if (element.dataset.year == new Date().getFullYear()) {
@@ -217,6 +199,7 @@ function getPresentDay(daysNumber) {
     });
 }
 
+//Check is the same day
 function isSameDay(date1, date2) {
     if (date1.getFullYear() == date2.getFullYear()) {
         if (date1.getMonth() == date2.getMonth()) {
@@ -228,6 +211,7 @@ function isSameDay(date1, date2) {
     return false;
 }
 
+//Create all list events
 function createListEvents() {
     document.getElementById('micalendar_minicalendar').innerHTML = null;
     var summary = newElement({
@@ -251,6 +235,7 @@ function createListEvents() {
     });
 }
 
+//Change the different types of events
 function changeTypeEvent() {
     detailsEventType.forEach(options => {
         options.addEventListener('change', option => {
@@ -265,6 +250,7 @@ function changeTypeEvent() {
     });
 }
 
+//Show all events of the day
 function getAllEventsOfDay(type) {
     if (localStorage.getItem(type)) var events = JSON.parse(localStorage.getItem(type));
     if (!events) return;
@@ -276,10 +262,12 @@ function getAllEventsOfDay(type) {
     orderListDay(listEvents);
 }
 
+//Order the day list
 function orderListDay(array) {
     array.sort((a, b) => a.fechaInicio > b.fechaInicio);
 }
 
+//Create list expired events
 function createListExpired() {
     document.getElementById('expiredEve_minicalendar').innerHTML = null;
     var summary = newElement({
@@ -305,6 +293,7 @@ function createListExpired() {
     });
 }
 
+//Do click in button previous day
 document.querySelectorAll(".btn-prev-month").forEach(element => {
     element.addEventListener("click", event => {
         actual_date.setMonth((actual_date.getMonth() - 1));
@@ -312,9 +301,18 @@ document.querySelectorAll(".btn-prev-month").forEach(element => {
     })
 })
 
+//Do click in button next day
 document.querySelectorAll(".btn-next-month").forEach(element => {
     element.addEventListener("click", event => {
         actual_date.setMonth((actual_date.getMonth() + 1));
         createCal();
     })
 })
+
+//Produced transition of the calendar
+function dynamicCal() {
+    bigCalendar.style.transform = 'translate(100%)';
+    setTimeout(() => {
+        bigCalendar.style.transform = 'translate(0%)';
+    }, 100);
+}
