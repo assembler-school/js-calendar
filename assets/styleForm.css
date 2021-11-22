@@ -14,19 +14,86 @@
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 50%;
+    width: 30%;
     align-content: center;
 }
+.newEventTitle{
+    text-align: center;
+}
 .gridForm{
-    width: 30%;
+    width: 100%;
     text-align: center;
     display: grid;
+    grid-template-areas: "a b"
+    "c d"
+    "e f"
+    "g h"
+    "i j"
+    "k l"
+    "m n"
+    "ñ o";
     column-gap: 0;
     row-gap: 10px;
     align-items: center;
-    padding: auto;
-
+    margin: auto;
 }
+
+#labelName{
+    grid-area : a;
+}
+#eventName{
+    grid-area: b;
+}
+#labelDate{
+    grid-area: c;
+}
+#initDate{
+    grid-area: d;
+}
+#checkEnd{
+    float: right;
+    grid-area : e;
+}
+#labelEndDate{
+    grid-area: f;
+}
+#labelEndDate2{
+    grid-area: g;
+}
+#endaDate{
+    grid-area: h;
+}
+#checkReminder{
+    float: right;
+    grid-area: i;
+}
+#labelCheckRem{
+    grid-area: j;
+}
+#labelSelect{
+    grid-area: k;
+}
+#reminder{
+    grid-area: l;
+}
+#labelText{
+    grid-area: m;
+}
+#description{
+    grid-area: n;
+}
+#labelEvent{
+    grid-area: ñ;
+}
+#eventType{
+    grid-area: o;
+}
+
+.createButtons{
+    margin-top: 20px;
+    align-items: center;
+}
+
 .close {
     color: #aaaaaa;
     float: right;
