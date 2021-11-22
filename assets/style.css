@@ -72,7 +72,12 @@ main{
     /* border: 1px solid chartreuse; */
 }
 .event-container{
+    text-align: center;
     cursor: pointer;
+    border: 1px solid #ff8800;
+    border-radius: 20%;
+    color: black;
+    background-color:#E8C915 ;
 }
 .buttonspecific {
     background-color: #ff8800;
