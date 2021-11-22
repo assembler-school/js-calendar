@@ -274,14 +274,14 @@ function creaTag(element, index) {
                 tag: 'div',
                 id: element.eventId,
                 clas: ['miniEvents', 'personal'],
-                content: horaevento + "  " + element.eventTitle
+                content: element.eventTitle
             }))
         } else if (element.eventType == 'Study')
             boxEventsCal[index].appendChild(newElement({
                 tag: 'div',
                 id: element.eventId,
                 clas: ['miniEvents', 'study'],
-                content: horaevento + "  " + element.eventTitle
+                content: element.eventTitle
             }))
     }
 }
