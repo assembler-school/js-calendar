@@ -14,28 +14,28 @@ function createNewEvent(i){
     eventDiv.appendChild(modalContent);
 
     const html = `<span class="close" id="closeModal">&times;</span>
+    <h2 class = "newEventTitle">New Event</h2>
     <div class="gridForm">
-        <h2>New Event</h2>
-        <label for="eventName">event name: </label>
+        <label for="eventName" id = "labelName">event name: </label>
         <input type="text" name="eventName" id="eventName" placeholder = "name...">
-        <label for="initDate">Initial date: </label>
+        <label for="initDate" id = "labelDate" >Initial date: </label>
         <input type="datetime-local" name="initDate" id="initDate">
         <input type="checkbox" name="endDate?" id = "checkEnd">
-        <label for="endDate?">End date</label>
-        <label for="endDate">End date: </label>
+        <label for="endDate?" id ="labelEndDate">End date</label>
+        <label for="endDate" id ="labelEndDate2">End date: </label>
         <input type="datetime-local" name="endDate" id= "endaDate">
         <input type="checkbox" name="reminder" value="reminder" id="checkReminder">
-        <label for="reminder">Remind me when this event expires:</label>
-        <label for="select">Time:</label>
+        <label for="reminder" id= "labelCheckRem">Remind me when this event expires:</label>
+        <label for="select" id = "labelSelect">Time:</label>
         <select name="select" id = "reminder">
             <option value="5">5 min</option>
             <option value="10" selected>10 min</option>
             <option value="60">1 hour</option>
             <option value="24">1 day</option>
         </select>
-        <label for="textarea">Description:</label>
+        <label for="textarea" id = "labelText">Description:</label>
         <textarea name="textarea" rows="5" cols="40" placeholder="Add some info..." id = "description"></textarea>
-        <label for="eventType">Event type:</label>
+        <label for="eventType" id ="labelEvent">Event type:</label>
         <select name="eventType" id="eventType">
             <option value="---">---</option>
             <option value="meeting">meeting</option>
@@ -43,8 +43,10 @@ function createNewEvent(i){
             <option value="leisure">leisure</option>
         </select>
     </div>
-    <button id="cancelEvent">Cancel</button>
-    <button id="createEvent">Create</button>
+    <div class="createButtons">
+        <button id="cancelEvent">Cancel</button>
+        <button id="createEvent">Create</button>
+    </div>
     <div id="error"></div>`
     
     modalContent.innerHTML = html;
