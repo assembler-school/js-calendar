@@ -1,0 +1,67 @@
+.summary {
+  background-color: var(--third-color);
+}
+
+.summary-past {
+  background-color: #f4f4f4;
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
+.inlineEvent {
+  border-top: 2px solid var(--fifth-color);
+  padding: 0;
+}
+
+.prevEvents__headerTitles {
+  display: flex;
+  margin-right: 10%;
+  font-size: 0.75rem;
+}
+
+.div__timeset {
+  background-size: contain;
+  background-color: var(--type-1);
+  color: var(--third-color);
+  padding: 0.15rem;
+  margin: 0.25rem;
+  border-radius: 0.2rem;
+}
+
+.prevEvents__eventType {
+  background-size: contain;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  text-align: center;
+  padding: 0.15rem;
+  margin: 0.25rem;
+  border-radius: 0.2rem;
+  font-weight: lighter;
+  width: 8rem;
+}
+
+.prevEvents__title {
+  font-size: 1.2rem;
+}
+
+.pastEvent__title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  top: -1rem;
+}
+
+.prevEvents__description {
+  font-size: 1rem;
+  font-weight: lighter;
+}
+
+.summary__optimistic {
+  vertical-align: bottom;
+  background-color: var(--type-1);
+  color: var(--third-color);
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 1rem;
+  margin-bottom: 0rem;
+}
