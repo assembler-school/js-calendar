@@ -121,10 +121,12 @@ The development process will be organized in 3 phases:
 Refer to the samples below for some detailed wireframes. They will allow to better understand the project requirements. You should implement your own style.
 
 <b>Main page</b>:
-<image 1>
+
+<a href='https://www.linkpicture.com/view.php?img=LPic6225c2ac221131678791620'><img src='https://www.linkpicture.com/q/JSPicture1.png' type='image'></a>
 
 <b>Add event modal</b>:
-<image 2>
+
+<a href='https://www.linkpicture.com/view.php?img=LPic6225c2ac221131678791620'><img src='https://www.linkpicture.com/q/JSPicture2.png' type='image'></a>
 
 ## Requirements
 
@@ -147,24 +149,24 @@ Once the main features have been implemented, you can create, in no particular o
 
 <b>It is easier to develop a feature from the beginning than to modify it later.</b>
 
-### <u>Browser compatibility</u>
+### Browser compatibility
 
 You should check that everything is compatible with other current browsers, and, as an extra step, it should also be compatible with older browsers.
 
-### <u>Input validation</u>
+### Input validation
 
 The validation should be done when the input field loses focus, that is, users type a value, they change focus to another element, then the field validation runs.
 - When the user focuses again on the input element with the error, the validation message and any error styles should be removed until the user loses focus on the input element again. If the error is resolved there should be no error message.
 
-### <u>Responsive design</u>
+### Responsive design
 
 All the screens and steps should be responsive so that they can be used in any device size.
 
-### <u>Accessibility</u>
+### Accessibility
 
 Modals should have the option to press TAB or SHIFT + TAB to focus elements inside the modal window. This means that if the users are pressing “TAB” or “SHIFT + TAB” keys when a modal window is opened, they should only be able to tab through the elements inside the modal.
 
-### <u>Expired events</u>
+### Expired events
 
 Try improving the functionality when checking the events that have expired. In a more efficient way than every 10 seconds
 
