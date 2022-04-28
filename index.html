@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calendar</title>
+    <link rel="icon" href="favicon.svg" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <script src="assets/js/main.js" type="module" defer async></script>
+</head>
+
+<body>
+    <main class="main-container">
+        <aside id="summary" class="summary">
+            <div class="summary__day" id="summary-day"></div>
+            <div>
+                <p class="pastEvent__title">Expired events</p>
+                <div class="summary-past" id="summary-past"></div>
+            </div>
+            <div class="summary__optimistic" id="summary-optimistic"></div>
+        </aside>
+        <article class="calendar-container">
+            <header class="header">
+                <div class="header__date">
+                    <h1 class="header__date-title" id="calendar-title"></h1>
+                </div>
+                <div class="header__buttons">
+                    <button class="btn prev-btn" id="prev-btn">&#8592;</button>
+                    <button class="btn next-btn" id="next-btn">&#8594;</button>
+                    <button class="btn plus-btn" id="plus-btn">&#43;</button>
+                </div>
+            </header>
+            <section class="calendar">
+                <div class="calendar__weekdays">
+                    <div>Monday</div>
+                    <div>Tuesday</div>
+                    <div>Wednesday</div>
+                    <div>Thursday</div>
+                    <div>Friday</div>
+                    <div>Saturday</div>
+                    <div>Sunday</div>
+                </div>
+                <div id="daysMonth"></div>
+            </section>
+        </article>
+    </main>
+    <!-- Modal Form Add Event -->
+    <div id="modal-window" class="modalWindow"></div>
+    <div class="summary__current" id="summary-current"></div>
+</body>
+
+</html>
