@@ -94,29 +94,15 @@ function loadMonths() {
 
       const day = document.createElement('div');
       day.classList.add('day');
-      day.setAttribute('id', x);
-      day.setAttribute('month', i);
-      day.addEventListener('click', function () {
-        document.querySelector(".modal").classList.add(isVisible);
-      });
-      day.addEventListener('mouseover', function (e) {
-        const icon = document.createElement('i');
-        icon.classList.add('bi');
-        icon.classList.add('bi-plus-circle');
-        e.target.appendChild(icon);
-      });
-      day.addEventListener('mouseout', function (e) {
-        e.target.children[0].remove();
-      });
 
       if (x === currentDay && i === month) day.classList.add('current');
 
-
       if (x > emptyDays) {
-        day.textContent = x - emptyDays;
+        addDay(day, x, i, emptyDays);
       } else {
         day.classList.add('empty');
       }
+
       monthContainer.appendChild(day);
     }
 
@@ -124,6 +110,29 @@ function loadMonths() {
   }
 
   monthDisplay.innerHTML = `<p>${monthNames[navigator]}, ${year}</p>`;
+
+  function addDay(day , x, i, emptyDays) {
+    day.textContent = x - emptyDays;
+    day.setAttribute('data-day', x);
+    day.setAttribute('data-month', i);
+    day.addEventListener('click', function () {
+      document.querySelector(".modal").classList.add(isVisible);
+    });
+    day.addEventListener('mouseover', function () {
+      document.querySelector(`i[data-day="${x}"][data-month="${i}"]`).style.display = 'block';
+    });
+    day.addEventListener('mouseout', function () {
+      document.querySelector(`i[data-day="${x}"][data-month="${i}"]`).style.display = 'none';
+    });
+
+    const icon = document.createElement('i');
+    icon.classList.add('bi');
+    icon.classList.add('bi-plus-circle');
+    icon.setAttribute('data-day', x);
+    icon.setAttribute('data-month', i);
+    icon.style.display = 'none';
+    day.appendChild(icon);
+  }
 }
 
 function initMonthButtons() {
