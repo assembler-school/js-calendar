@@ -1,3 +1,4 @@
+/* MAIN */
 :root {
   --lightgray: #efefef;
   --blue: steelblue;
@@ -14,6 +15,7 @@
   box-sizing: content-box;
 }
 
+/* HEADER */
 .header {
   padding: 20px 0;
   display: flex;
@@ -28,21 +30,85 @@
   align-items: center;
 }
 .header .open-modal {
-  max-height: 30px;
-  padding: 10px 5px;
-  display: inline-flex;
-  align-items: center;
+  width: 75px;
   cursor: pointer;
+  box-shadow: 0px 0px 2px rgb(0, 0, 0);
+  border: none;
+  outline: none;
+  padding: 5px;
+  border-radius: 5px;
+  color: rgb(0, 0, 0);
 }
 
+/* CALENDAR */
 .calendar {
+  margin: 0 auto;
+  margin-top: 50px;
+  width: 770px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
-  font: 16px/1.5 sans-serif;
+}
+.calendar .display {
+  width: 100%;
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+.calendar .display .previous-btn,
+.calendar .display .next-btn {
+  width: 75px;
+  cursor: pointer;
+  box-shadow: 0px 0px 2px rgb(0, 0, 0);
+  border: none;
+  outline: none;
+  padding: 5px;
+  border-radius: 5px;
+  color: rgb(0, 0, 0);
+}
+.calendar .display .month-display {
+  width: 80%;
+  font-size: 1.2em;
+}
+.calendar .weekdays {
+  width: 100%;
+  display: flex;
+  color: #247ba0;
+  text-align: center;
+}
+.calendar .weekdays .weekday {
+  width: 100px;
+  padding: 10px;
+}
+.calendar .months {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+.calendar .month {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+}
+.calendar .months .month .day {
+  width: 100px;
+  padding: 10px;
+  height: 100px;
+  box-sizing: border-box;
+  background-color: white;
+  margin: 5px;
+  box-shadow: 0px 0px 3px #5c5c5c;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
+/* MODAL */
 .modal {
   position: fixed;
   top: 0;
@@ -143,5 +209,25 @@
 }
 .modal-footer .btn-cancel {
   background-color: rgb(210, 94, 94);
-    margin-left: 20px;
+  margin-left: 20px;
+}
+
+/* FORM */
+#showEndDate {
+  display: none !important;
+}
+#showEndDate.is-visible {
+  display: flex !important;
+}
+#showExpiration {
+  display: none !important;
+}
+#showExpiration.is-visible {
+  display: block !important;
+}
+#previousTime {
+  display: none !important;
+}
+#previousTime.is-visible {
+  display: flex !important;
 }

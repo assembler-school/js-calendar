@@ -17,6 +17,25 @@
     </header>
 
     <div class="calendar">
+
+      <div class="display" id="display">
+        <button id="previousMonth" class="previous-btn">Back</button>
+        <div class="month-display" id="monthDisplay"></div>
+        <button id="nextMonth" class="next-btn">Next</button>
+      </div>
+
+      <div class="weekdays">
+        <div class="weekday">Sunday</div>
+        <div class="weekday">Monday</div>
+        <div class="weekday">Tuesday</div>
+        <div class="weekday">Wednesday</div>
+        <div class="weekday">Thursday</div>
+        <div class="weekday">Friday</div>
+        <div class="weekday">Saturday</div>
+      </div>
+
+      <div class="months" id="months"></div>
+      
       <!-- MODAL -->
       <div class="modal" id="modal">
         <div class="modal-dialog">
@@ -34,43 +53,73 @@
             <form action="" class="form">
               <div class="form-data">
                 <div class="div-label"><label for="title">Title:</label></div>
-                <div class="div-input"><input type="text" name="title" id="title" required maxlength="60" /></div>
+                <div class="div-input">
+                  <input
+                    type="text"
+                    name="title"
+                    id="title"
+                    required
+                    maxlength="60"
+                  />
+                </div>
               </div>
               <div class="form-data">
-                <div class="div-label"><label for="initDate">Initial date:</label></div>
-                <div class="div-input"><input type="date" name="initDate" id="initDate" required /></div>
+                <div class="div-label">
+                  <label for="initDate">Initial date:</label>
+                </div>
+                <div class="div-input">
+                  <input type="date" name="initDate" id="initDate" required />
+                </div>
               </div>
               <div class="form-data">
                 <input type="checkbox" name="existEndDate" id="existEndDate" />
                 <label for="existEndDate">End date</label>
               </div>
-              <div class="form-data">
-                <div class="div-label"><label for="endDate">End date:</label></div>
-                <div class="div-input"><input type="date" name="endDate" id="endDate" /></div>
-              </div>
-              <div class="form-data">
-                <input type="checkbox" name="expiration" id="expiration" />
-                <label for="expiration">Remid me when this event expires</label>
-              </div>
-              <div class="form-data">
-                <div class="div-label"><label for="time">Time:</label></div>
+              <div class="form-data" id="showEndDate">
+                <div class="div-label">
+                  <label for="endDate">End date:</label>
+                </div>
                 <div class="div-input">
-                  <select name="time" id="time">
-                    <option value="" selected></option>
-                    <option value="5">5 min</option>
-                    <option value="10">10 min</option>
-                    <option value="15">15 min</option>
-                    <option value="30">30 min</option>
-                    <option value="60">1 hour</option>
-                  </select>
+                  <input type="date" name="endDate" id="endDate" />
+                </div>
+              </div>
+              <div id="showExpiration">
+                <div class="form-data">
+                  <input type="checkbox" name="expiration" id="expiration" />
+                  <label for="expiration"
+                    >Remid me when this event expires</label
+                  >
+                </div>
+                <div class="form-data" id="previousTime">
+                  <div class="div-label"><label for="time">Time:</label></div>
+                  <div class="div-input">
+                    <select name="time" id="time">
+                      <option value="" selected></option>
+                      <option value="5">5 min</option>
+                      <option value="10">10 min</option>
+                      <option value="15">15 min</option>
+                      <option value="30">30 min</option>
+                      <option value="60">1 hour</option>
+                    </select>
+                  </div>
                 </div>
               </div>
               <div class="form-data">
-                <div class="div-label"><label for="expiration">Description:</label></div>
-                <div class="div-input"><textarea name="description" id="description" maxlength="500"></textarea></div>
+                <div class="div-label">
+                  <label for="expiration">Description:</label>
+                </div>
+                <div class="div-input">
+                  <textarea
+                    name="description"
+                    id="description"
+                    maxlength="500"
+                  ></textarea>
+                </div>
               </div>
               <div class="form-data">
-                <div class="div-label"><label for="type">Event type:</label></div>
+                <div class="div-label">
+                  <label for="type">Event type:</label>
+                </div>
                 <div class="div-input">
                   <select name="type" id="type">
                     <option value="" selected></option>
