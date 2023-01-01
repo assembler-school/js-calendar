@@ -67,6 +67,7 @@ function initForm() {
 function loadMonths() {
   const calendarContainer = document.querySelector("#months");
   const date = new Date();
+  const currentDay = date.getDate();
   const month = date.getMonth();
   const year = date.getFullYear();
   navigator = month;
@@ -89,11 +90,30 @@ function loadMonths() {
     });
     let emptyDays = weekDays.indexOf(dateStr.split(", ")[0]);
 
-    for (let i = 1; i <= emptyDays + daysInMonth; i++) {
+    for (let x = 1; x <= emptyDays + daysInMonth; x++) {
+
       const day = document.createElement('div');
       day.classList.add('day');
-      if (i > emptyDays) {
-        day.textContent = i - emptyDays;
+      day.setAttribute('id', x);
+      day.setAttribute('month', i);
+      day.addEventListener('click', function () {
+        document.querySelector(".modal").classList.add(isVisible);
+      });
+      day.addEventListener('mouseover', function (e) {
+        const icon = document.createElement('i');
+        icon.classList.add('bi');
+        icon.classList.add('bi-plus-circle');
+        e.target.appendChild(icon);
+      });
+      day.addEventListener('mouseout', function (e) {
+        e.target.children[0].remove();
+      });
+
+      if (x === currentDay && i === month) day.classList.add('current');
+
+
+      if (x > emptyDays) {
+        day.textContent = x - emptyDays;
       } else {
         day.classList.add('empty');
       }
