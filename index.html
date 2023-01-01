@@ -1,20 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Js-Calendar</title>
-  <link rel="stylesheet" href="./index.css">
-  <script src="./index.js" defer></script>
-</head>
-<body>
-  <header class="header">
-    <h1 class="h1">JS CALENDAR</h1>
-    <div class="div">
-      <button class="button" id="btnAdd">Add Event</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Js-Calendar</title>
+    <link rel="stylesheet" href="./index.css" />
+    <script src="./index.js" defer></script>
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="h1">JS CALENDAR</h1>
+      <div class="div">
+        <button class="open-modal" data-open="modal">Add Event</button>
+      </div>
+    </header>
+
+    <div class="calendar">
+      <!-- MODAL -->
+      <div class="modal" id="modal">
+        <div class="modal-dialog">
+          <header class="modal-header">
+            NEW EVENT
+            <button
+              class="modal-close"
+              aria-label="close modal"
+              data-close="modal"
+            >
+              ✕
+            </button>
+          </header>
+          <section class="modal-content">
+            <form action="" class="form">
+              <div class="form-data">
+                <div class="div-label"><label for="title">Title:</label></div>
+                <div class="div-input"><input type="text" name="title" id="title" required maxlength="60" /></div>
+              </div>
+              <div class="form-data">
+                <div class="div-label"><label for="initDate">Initial date:</label></div>
+                <div class="div-input"><input type="date" name="initDate" id="initDate" required /></div>
+              </div>
+              <div class="form-data">
+                <input type="checkbox" name="existEndDate" id="existEndDate" />
+                <label for="existEndDate">End date</label>
+              </div>
+              <div class="form-data">
+                <div class="div-label"><label for="endDate">End date:</label></div>
+                <div class="div-input"><input type="date" name="endDate" id="endDate" /></div>
+              </div>
+              <div class="form-data">
+                <input type="checkbox" name="expiration" id="expiration" />
+                <label for="expiration">Remid me when this event expires</label>
+              </div>
+              <div class="form-data">
+                <div class="div-label"><label for="time">Time:</label></div>
+                <div class="div-input">
+                  <select name="time" id="time">
+                    <option value="" selected></option>
+                    <option value="5">5 min</option>
+                    <option value="10">10 min</option>
+                    <option value="15">15 min</option>
+                    <option value="30">30 min</option>
+                    <option value="60">1 hour</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-data">
+                <div class="div-label"><label for="expiration">Description:</label></div>
+                <div class="div-input"><textarea name="description" id="description" maxlength="500"></textarea></div>
+              </div>
+              <div class="form-data">
+                <div class="div-label"><label for="type">Event type:</label></div>
+                <div class="div-input">
+                  <select name="type" id="type">
+                    <option value="" selected></option>
+                    <option value="meeting">Meeting</option>
+                    <option value="personal">Personal</option>
+                    <option value="study">Study</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+          </section>
+          <footer class="modal-footer">
+            <button class="btn-save">Add</button>
+            <button class="btn-cancel" data-close>Cancel</button>
+          </footer>
+        </div>
+      </div>
     </div>
-  </header>
-  
-</body>
+  </body>
 </html>
