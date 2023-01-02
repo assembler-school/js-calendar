@@ -39,7 +39,101 @@
 
       <div class="months" id="months"></div>
 
-      <!-- MODAL -->
+      <!-- MODAL EVENTS -->
+      <div class="modal" id="modalEvent">
+        <div class="modal-dialog">
+          <header class="modal-header">
+            EVENT
+            <button
+              class="modal-close"
+              aria-label="close modal"
+              data-close="modal"
+            >
+              ✕
+            </button>
+          </header>
+          <section class="modal-content" id="modalContent">
+            <form id="formEvent" class="form">
+              <div class="form-data">
+                <div class="div-label"><label for="titleEvent">Title:</label></div>
+                <div class="div-input">
+                  <input
+                    type="text"
+                    name="titleEvent"
+                    id="titleEvent"
+                    maxlength="60"
+                    disabled
+                  />
+                </div>
+              </div>
+              <div class="form-data">
+                <div class="div-label">
+                  <label for="initEventDate">Initial date:</label>
+                </div>
+                <div class="div-input">
+                  <input
+                    type="date"
+                    name="initEventDate"
+                    id="initEventDate"
+                    disabled
+                  />
+                </div>
+              </div>
+              <div class="form-data">
+                <div class="div-label">
+                  <label for="endEventDate">End date:</label>
+                </div>
+                <div class="div-input">
+                  <input type="date" name="endEventDate" id="endEventDate" disabled />
+                </div>
+              </div>
+              <div>
+                <div class="form-data">
+                  <div class="div-label">
+                    <label for="timeEvent">Time:</label>
+                  </div>
+                  <div class="div-input">
+                    <select name="timeEvent" id="timeEvent" disabled>
+                      <option id="optionTimeEvent" value="" selected></option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="form-data">
+                <div class="div-label">
+                  <label for="descriptionEvent">Description:</label>
+                </div>
+                <div class="div-input">
+                  <textarea
+                    name="descriptionEvent"
+                    id="descriptionEvent"
+                    maxlength="500"
+                    disabled
+                  ></textarea>
+                </div>
+              </div>
+              <div class="form-data">
+                <div class="div-label">
+                  <label for="typeEvent">Event type:</label>
+                </div>
+                <div class="div-input">
+                  <select name="typeEvent" id="typeEvent" disabled>
+                    <option id="optionTypeEvent" value="" selected></option>
+                  </select>
+                </div>
+              </div>
+              <input id="idEvent" type="hidden" name="idEvent">
+            </form>
+          </section>
+          <footer class="modal-footer">
+            <button type="submit" form="formEvent" class="btn-cancel">
+              Delete
+            </button>
+          </footer>
+        </div>
+      </div>
+
+      <!-- MODAL CREATION -->
       <div class="modal" id="modal">
         <div class="modal-dialog">
           <header class="modal-header">
@@ -109,7 +203,7 @@
               </div>
               <div class="form-data">
                 <div class="div-label">
-                  <label for="expiration">Description:</label>
+                  <label for="description">Description:</label>
                 </div>
                 <div class="div-input">
                   <textarea
