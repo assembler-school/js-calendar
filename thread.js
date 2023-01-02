@@ -1,31 +1,40 @@
-function threadTasks() {
+function threadRemindTasks() {
   setInterval(() => {
- 
-   console.log('Buscando hilos');
-
     reminders.forEach(task => {
-      if (task.isOpen) {
-        const time = new Date().getTime();
-        const initDate = new Date(task.initDate).getTime();
-        const endDate = new Date(task.endDate).getTime();
+      if (task.remind) {
+        //console.log(task);
+        const now = new Date();
+        const end = getFullDateWithoutTimezone(task.endDate);
+/*         console.log("AHORA - " + now);
+        console.log("FIN - " + end);
+        console.log("DURACION - " + task.time);
+        console.log("timeRemind - " + timeRemind);
+        console.log("finalTime - " + reminded); */
+        const timeRemind = end.getTime() - (task.time * 60 * 1000);
+        const reminded = now > new Date(timeRemind);
 
-        console.log("AHORA - " + time);
-        console.log("FIN - " + endDate);
-        console.log("AHORA - FIN : " + (time - endDate));
-        console.log("DURACION - " + task.duration);
-
-        if (time - endDate <= task.duration) {
-          console.log("AVISANDO")
-        }
-        if (time <= endDate) {
-          console.log("la tarea ha caducado");
-          const modifiedTask = document.querySelector(`div[day-event="${task.timestamp}"]`);
-          modifiedTask.style.backgroundColor = "red";
-        }
-        /*         if (time - initDate > task.duration) {
-                  task.isOpen = false;
-                } */
+        if (reminded) {
+          remindEvent(task);
+          task.remind = false;
+        } 
       }
     })
-  }, 5000)
+  }, 1000)
+}
+
+function threadPendingTasks() {
+  setInterval(() => {
+    allEvents.forEach((task) => {
+      if (!task.finished) {
+        //console.log(task);
+        const init = getFullDateWithoutTimezone(task.initDate);
+        const end = getFullDateWithoutTimezone(task.endDate);
+        const now = new Date(Date.now());
+        if (now > end) {
+          eliminateEvent(task.id);
+          task.finished = true;
+        }
+      }
+    })
+  }, 1000);
 }

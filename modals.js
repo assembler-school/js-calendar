@@ -8,6 +8,8 @@ function initModalCreation() {
     const date = getDateTimeFullParams(currentYear, navigator, 1);
     const result = date.toISOString().split('T')[0];
     initDate.value = result;
+    endDate.value = result;
+    hideEndDateAndRemind();
     document.getElementById(modalId).classList.add(isVisible);
   });
   for (const el of closeModal) {
@@ -50,7 +52,6 @@ function openEvent(e) {
       }
     });
 
-  console.log(getDateToISOString(tempEvent.initDate));
   document.querySelector("#modalEvent").classList.add(isVisible);
   document.querySelector("#titleEvent").value = tempEvent.title;
   document.querySelector("#initEventDate").value = getDateToISOString(tempEvent.initDate);

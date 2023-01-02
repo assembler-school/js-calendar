@@ -26,15 +26,20 @@ function changeStyles(action, element, nav) {
 function setVisibility(action, element) {
   element.style.visibility = action;
 }
+
 function getStringLocaleDate(date, lang) {
   // lunes, 2 de enero de 2023 depends on USER LANG / helper to display it in DOM
   return Intl.DateTimeFormat(lang, { dateStyle: 'full' }).format(date);
 }
-
 function getDateTime(date, hour, minute, second) {
   // Tue Jan 03 2023 09:30:00
   return new Date(`${date}T${hour.toString().length === 1 ? "0" + hour : hour}:${minute === 00 ? "00" : minute}:${second === 00 ? "00" : second}`);
 }
+function getJustDate(date) {
+  // Tue Jan 03 2023 01:00:00
+  return new Date(`${date}`);
+}
+
 function getDateWithoutTime(date) {
   // Tue Jan 03 2023
   return new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'America/New_York' }).formatToParts(date);
@@ -47,24 +52,39 @@ function getDateTimeFullParams(year, month, day, minute, hour, second) {
   } else initDate = new Date(year, month, day);
   return new Date(initDate.getTime() + Math.abs(initDate.getTimezoneOffset() * 60000));
 }
-function getDateWithTimezoneProblems(date) {
+function getDateWithTimezoneProblems(time, timezoneOffset) {
   // Wed Jan 04 2023 00:00:00  -> 1 hour more / helper in timezone problems
-  return new Date(date.getTime() + Math.abs(date.getTimezoneOffset() * 60000));
+  return new Date(time + Math.abs(timezoneOffset * 60000));
 }
-function getDateWithMoreHours(date, hours) {
-  return new Date(date.setHours(date.getHours() + hours));
-}
+
 function getDateTimeUTCFullParams(day, month, year, hour, minute, second) {
   if (hour && minute && second) return new Date(Date.UTC(year, month, day, hour, minute, second));
   else return new Date(Date.UTC(year, month, day));
 }
-function getDateTimeUTC(date, hour, minute, second) {
-  if (hour && minute && second) return new Date(Date.UTC(date, hour, minute, second));
-  else return new Date(Date.UTC(date));
-}
+
+
+
 function getDateToISOString(date) {
+  // 2019-11-21 / helper to set date input
   return new Date(date).toISOString().split('T')[0];
 }
+
+
+
+// DATES AND TIME
+
+function getFullDateWithoutTimezone(date) {
+  // Wed Jan 04 2023 23:54:30
+  return new Date(new Date(date).toISOString().slice(0, -1));
+}
+function getDateWithMoreHours(date, hours) {
+  return new Date(date.setMinutes(date.getMinutes() + hours));
+}
+function getDateTimeUTC(date) {
+  return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes()));
+}
+
+// STORAGE
 
 function saveStorage(key, el) {
   localStorage.setItem(key, JSON.stringify(el));
@@ -72,7 +92,7 @@ function saveStorage(key, el) {
 function getStorage(key) {
   return JSON.parse(localStorage.getItem(key));
 }
-function reloadReminders(event) {
-  myEvents.push(event);
+function reloadEvents(event) {
+  allEvents.push(event);
 }
 

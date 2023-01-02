@@ -59,6 +59,8 @@ function addDay(element, day, month, year, emptyDays) {
       const date = getDateTimeFullParams(year, month, day - emptyDays, 12, 00, 00);
       const result = date.toISOString().split('T')[0];
       document.querySelector("#initDate").value = result;
+      document.querySelector("#endDate").value = result;
+      hideEndDateAndRemind();
     }
   });
 }
@@ -69,7 +71,8 @@ initMonthButtons();
 initModalCreation();
 initModalEvent();
 initForm();
-threadTasks();
+threadPendingTasks();
+threadRemindTasks();
 
 
 
