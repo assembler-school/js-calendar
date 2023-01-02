@@ -52,8 +52,8 @@
             EVENT
             <button
               class="modal-close"
-              aria-label="close modal"
-              data-close="modal"
+              aria-label="close modalEvent"
+              data-close="modalEvent"
             >
               ✕
             </button>
@@ -61,7 +61,9 @@
           <section class="modal-content" id="modalContent">
             <form id="formEvent" class="form">
               <div class="form-data">
-                <div class="div-label"><label for="titleEvent">Title:</label></div>
+                <div class="div-label">
+                  <label for="titleEvent">Title:</label>
+                </div>
                 <div class="div-input">
                   <input
                     type="text"
@@ -90,7 +92,12 @@
                   <label for="endEventDate">End date:</label>
                 </div>
                 <div class="div-input">
-                  <input type="date" name="endEventDate" id="endEventDate" disabled />
+                  <input
+                    type="date"
+                    name="endEventDate"
+                    id="endEventDate"
+                    disabled
+                  />
                 </div>
               </div>
               <div>
@@ -128,7 +135,7 @@
                   </select>
                 </div>
               </div>
-              <input id="idEvent" type="hidden" name="idEvent">
+              <input id="idEvent" type="hidden" name="idEvent" />
             </form>
           </section>
           <footer class="modal-footer">
@@ -238,6 +245,40 @@
             <button type="submit" form="form" class="btn-save">Add</button>
             <button class="btn-cancel" data-close>Cancel</button>
           </footer>
+        </div>
+      </div>
+
+      <!-- ALERT REMIND -->
+      <div class="modal" id="remindAlert">
+        <div class="modal-dialog alert">
+          <header class="modal-header">
+            REMEMBER
+            <button
+              class="modal-close alert"
+              aria-label="close remindAlert"
+              data-close="remindAlert"
+            >
+              ✕
+            </button>
+          </header>
+          <section class="modal-content" id="remindAlertContent"></section>
+        </div>
+      </div>
+
+      <!-- ALERT REMIND -->
+      <div class="modal" id="endAlert">
+        <div class="modal-dialog alert-end">
+          <header class="modal-header">
+            ATTENTION
+            <button
+              class="modal-close alert"
+              aria-label="close endAlert"
+              data-close="endAlert"
+            >
+              ✕
+            </button>
+          </header>
+          <section class="modal-content" id="endAlertContent"></section>
         </div>
       </div>
     </article>

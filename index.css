@@ -170,6 +170,12 @@
   overflow: auto;
   cursor: default;
 }
+.modal-dialog.alert {
+  background-color: rgba(250, 188, 66, 0.657);
+}
+.modal-dialog.alert-end {
+  background-color: rgba(230, 87, 68, 0.922);
+}
 .modal-dialog > * {
   padding: 1rem;
 }
@@ -193,6 +199,14 @@
   padding: 5px;
   border-radius: 5px;
   color: rgb(0, 0, 0);
+}
+.modal-header .modal-close.alert{
+  background-color: transparent;
+  color: black;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  font-weight: bolder;
 }
 .modal p + p {
   margin-top: 1rem;

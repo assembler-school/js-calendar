@@ -19,12 +19,12 @@ function initModalCreation() {
   }
   document.addEventListener("click", e => {
     if (e.target == document.querySelector("#modal.is-visible")) {
-      document.querySelector("#modal.is-visible").classList.remove(isVisible); // events.js
+      document.querySelector("#modal.is-visible").classList.remove(isVisible);
     }
   });
   document.addEventListener("keyup", e => {
     if (e.key == "Escape" && document.querySelector("#modal.is-visible")) {
-      document.querySelector("#modal.is-visible").classList.remove(isVisible); // events.js
+      document.querySelector("#modal.is-visible").classList.remove(isVisible);
     }
   });
 }
@@ -32,12 +32,38 @@ function initModalCreation() {
 function initModalEvent() {
   document.addEventListener("click", e => {
     if (e.target == document.querySelector("#modalEvent.is-visible")) {
-      document.querySelector("#modalEvent.is-visible").classList.remove(isVisible); // events.js
+      document.querySelector("#modalEvent.is-visible").classList.remove(isVisible);
     }
   });
   document.addEventListener("keyup", e => {
     if (e.key == "Escape" && document.querySelector("#modalEvent.is-visible")) {
-      document.querySelector("#modalEvent.is-visible").classList.remove(isVisible); // events.js
+      document.querySelector("#modalEvent.is-visible").classList.remove(isVisible);
+    }
+  });
+}
+
+function initRemindAlert() {
+  document.addEventListener("click", e => {
+    if (e.target == document.querySelector("#remindAlert.is-visible")) {
+      document.querySelector("#remindAlert.is-visible").classList.remove(isVisible);
+    }
+  });
+  document.addEventListener("keyup", e => {
+    if (e.key == "Escape" && document.querySelector("#remindAlert.is-visible")) {
+      document.querySelector("#remindAlert.is-visible").classList.remove(isVisible);
+    }
+  });
+}
+
+function initEndAlert() {
+  document.addEventListener("click", e => {
+    if (e.target == document.querySelector("#endAlert.is-visible")) {
+      document.querySelector("#endAlert.is-visible").classList.remove(isVisible);
+    }
+  });
+  document.addEventListener("keyup", e => {
+    if (e.key == "Escape" && document.querySelector("#endAlert.is-visible")) {
+      document.querySelector("#endAlert.is-visible").classList.remove(isVisible);
     }
   });
 }

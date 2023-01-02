@@ -16,7 +16,46 @@ function loadEvents() {
       remind: event.remind,
       finished: event.finished,
     }) : null;
-    chargeEvent(event);
+
+    const day = new Date(event.initDate).getDate();
+    const dayEnd = new Date(event.endDate).getDate();
+    const month = new Date(event.initDate).getMonth();
+    const monthEnd = new Date(event.endDate).getMonth();
+    let temp;
+    let rare = 0;
+    let first;
+    let second;
+    const daysInMonth = getDateTimeFullParams(currentYear, month, 0).getDate();
+    if (month === monthEnd) {
+      temp = dayEnd - day;
+    } else {
+      const date1 = getDateTimeFullParams(currentYear, month, day);
+      const date2 = getDateTimeFullParams(currentYear, monthEnd, dayEnd);
+      let time = date2.getTime() - date1.getTime();
+      temp = time / (1000 * 3600 * 24);
+      first = daysInMonth - day;
+      second = temp - first;
+    }
+    const allDays = [];
+    for (let i = 0; i <= temp; i++) {
+      if (i <= first) {
+        allDays.push(i + day);
+      } else {
+        allDays.push(second--);
+      }
+    }
+    console.log(allDays);
+
+    allDays.forEach((day, i) => {
+      console.log(day);
+      let daySquare;
+      if (i <= first) {
+        daySquare = document.querySelector(`div[data-day="${day}"][data-month="${month}"]`);
+      } else {
+        daySquare = document.querySelector(`div[data-day="${day}"][data-month="${monthEnd}"]`);
+      }
+      chargeEvent(event, daySquare);
+    });
   });
 }
 
@@ -33,8 +72,9 @@ const addEvent = (e) => {
     if (startDate.getDate() === currentDate.getDate()) {
       startDate = new Date();
     }
-    startDate = getDateTimeUTC(startDate);
+    //startDate = getDateTimeUTC(startDate);
     console.log(startDate);
+    console.log(new Date());
 
     // END DAY AND TIME ////////////////////////////////////////////////////////
     let finalDate;
@@ -44,17 +84,16 @@ const addEvent = (e) => {
       finalDate = new Date();
       finalDate = getDateWithMoreHours(finalDate, 2);
     }
-    finalDate = getDateTimeUTC(finalDate);
+    //finalDate = getDateTimeUTC(finalDate);
     console.log(finalDate);
-
     if (startDate < finalDate) {
-      if (startDate > new Date(Date.now())) {
+      if (startDate >= new Date()) {
         // CREATE EVENT
         const event = {
           id: `id_${Date.now()}`,
           title: title.value,
-          initDate: startDate,
-          endDate: finalDate,
+          initDate: getDateTimeUTC(startDate),
+          endDate: getDateTimeUTC(finalDate),
           time: time.value ? time.value : "",
           description: description.value ? description.value : "",
           type: type.value ? type.value : "",
@@ -70,10 +109,45 @@ const addEvent = (e) => {
         saveStorage("events", allEvents);
 
         // PAINT EVENT IN HIS DAY
-        const day = new Date(initDate.value).getDate();
-        const month = new Date(initDate.value).getMonth();
-        const daySquare = document.querySelector(`div[data-day="${day}"][data-month="${month}"]`);
-        chargeEvent(event, daySquare);
+           const day = new Date(event.initDate).getDate();
+    const dayEnd = new Date(event.endDate).getDate();
+    const month = new Date(event.initDate).getMonth();
+    const monthEnd = new Date(event.endDate).getMonth();
+    let temp;
+    let rare = 0;
+    let first;
+    let second;
+    const daysInMonth = getDateTimeFullParams(currentYear, month, 0).getDate();
+    if (month === monthEnd) {
+      temp = dayEnd - day;
+    } else {
+      const date1 = getDateTimeFullParams(currentYear, month, day);
+      const date2 = getDateTimeFullParams(currentYear, monthEnd, dayEnd);
+      let time = date2.getTime() - date1.getTime();
+      temp = time / (1000 * 3600 * 24);
+      first = daysInMonth - day;
+      second = temp - first;
+    }
+    const allDays = [];
+    for (let i = 0; i <= temp; i++) {
+      if (i <= first) {
+        allDays.push(i + day);
+      } else {
+        allDays.push(second--);
+      }
+    }
+    console.log(allDays);
+
+    allDays.forEach((day, i) => {
+      console.log(day);
+      let daySquare;
+      if (i <= first) {
+        daySquare = document.querySelector(`div[data-day="${day}"][data-month="${month}"]`);
+      } else {
+        daySquare = document.querySelector(`div[data-day="${day}"][data-month="${monthEnd}"]`);
+      }
+      chargeEvent(event, daySquare);
+    });
 
         // RESET FORM
         form.reset();
@@ -94,18 +168,9 @@ function chargeEvent(event, daySquare) {
   newDomEvent.setAttribute('id', event.id);
   newDomEvent.addEventListener("click", (e) => openEvent(e));
   newDomEvent.setAttribute('data-open', 'modalEvent');
-  if (event.finished) newDomEvent.style.backgroundColor = 'red';
   if (!event.remind) newDomEvent.style.backgroundColor = 'orange';
-
-  if (!daySquare) {
-    // When the page load and events are loaded
-    const finalDate = getDateWithTimezoneProblems(new Date(event.initDate).getTime(), new Date(event.initDate).getTimezoneOffset());
-    const daySquare = document.querySelector(`div[data-day="${finalDate.getDate()}"][data-month="${finalDate.getMonth()}"]`);
-    daySquare.append(newDomEvent);
-  } else {
-    // When you add a new event
-    daySquare.append(newDomEvent);
-  }
+  if (event.finished) newDomEvent.style.backgroundColor = 'red';
+  daySquare.append(newDomEvent);
 }
 
 const removeEvent = (e) => {
@@ -125,15 +190,29 @@ const removeEvent = (e) => {
   document.querySelector("#modalEvent.is-visible").classList.remove(isVisible);
 }
 
-function eliminateEvent(id) {
-  const eliminatedTask = document.querySelector(`#${id}`);
+function eliminateEvent(task) {
+  const content = document.querySelector("#endAlertContent");
+  content.innerHTML = '';
+  const text = document.createElement('p');
+  text.innerHTML = `La tarea <h3>${task.title}</h3> ha finalizado`;
+  document.querySelector("#endAlert").classList.add(isVisible);
+  content.append(text);
+
+  const eliminatedTask = document.querySelector(`#${task.id}`);
   eliminatedTask.style.backgroundColor = "red";
   localStorage.removeItem("events");
-  allEvents.find(event => event.id === id).finished = true;
+  allEvents.find(event => event.id === task.id).finished = true;
   localStorage.setItem("events", JSON.stringify(allEvents));
 }
 
 function remindEvent(task) {
+  const content = document.querySelector("#remindAlertContent");
+  content.innerHTML = '';
+  const text = document.createElement('p');
+  text.innerHTML = `Quedan ${task.time} minutos para terminar la tarea <h3>${task.title}</h3>`;
+  document.querySelector("#remindAlert").classList.add(isVisible);
+  content.append(text);
+
   const remindedTask = document.querySelector(`#${task.id}`);
   remindedTask.style.backgroundColor = "orange";
   localStorage.removeItem("events");
