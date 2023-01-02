@@ -5,12 +5,23 @@ const monthNames = ["January", "February", "March", "April", "May", "June", "Jul
 const weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const isVisible = "is-visible";
 
+const initDate = document.querySelector("#initDate");
+const form = document.querySelector("#form");
+
+const date = new Date();
+const currentDay = date.getDate();
+const month = date.getMonth();
+const year = date.getFullYear();
+
 let actualEvents = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
 
 function initModal() {
   const openModal = document.querySelector("[data-open]");
   openModal.addEventListener("click", function () {
     const modalId = this.dataset.open;
+    const finalDate = new Date(date.getTime() + Math.abs(date.getTimezoneOffset() * 60000));
+    const result = finalDate.toISOString().split('T')[0];
+    initDate.value = result;
     document.getElementById(modalId).classList.add(isVisible);
   });
 
@@ -61,17 +72,42 @@ function initForm() {
 
   checkboxEndDate.addEventListener("change", showEndDate);
   checkboxExpiration.addEventListener("change", showPreviousTime);
+  form.addEventListener("submit", addEvent);
+}
+
+const addEvent = (e) => {
+  e.preventDefault();
+
+  const event = {
+    title: title.value,
+    initDate: initDate.value,
+    endDate: endDate.value ? endDate.value : "",
+    time: time.value ? time.value : "",
+    description: description.value ? description.value : "",
+    type: type.value ? type.value : "",
+  }
+  const day = new Date(event.initDate).getDate();
+  const month = new Date(event.initDate).getMonth();
+
+  const daySquare = document.querySelector(`div[data-day="${day}"][data-month="${month}"]`);
+  daySquare.children[0].remove();
+  const newEvent = document.createElement("div");
+  newEvent.textContent = event.title;
+  newEvent.classList.add("day-event");
+  newEvent.addEventListener("click", () => openEvent());
+  daySquare.append(newEvent);
+  form.reset();
+  document.querySelector(".modal.is-visible").classList.remove(isVisible);
+}
+
+function openEvent() {
+  console.log("Mostrando evento");
 }
 
 
 function loadMonths() {
   const calendarContainer = document.querySelector("#months");
-  const date = new Date();
-  const currentDay = date.getDate();
-  const month = date.getMonth();
-  const year = date.getFullYear();
   navigator = month;
-  thisYear = year;
 
   for (let i = 0; i < monthNames.length; i++) {
 
@@ -98,25 +134,29 @@ function loadMonths() {
       if (x === currentDay && i === month) day.classList.add('current');
 
       if (x > emptyDays) {
-        addDay(day, x, i, emptyDays);
+        addDay(day, x, i, year, emptyDays);
       } else {
         day.classList.add('empty');
       }
-
       monthContainer.appendChild(day);
     }
-
     calendarContainer.appendChild(monthContainer);
   }
 
   monthDisplay.innerHTML = `<p>${monthNames[navigator]}, ${year}</p>`;
 
-  function addDay(day , x, i, emptyDays) {
+  function addDay(day, x, i, y, emptyDays) {
     day.textContent = x - emptyDays;
-    day.setAttribute('data-day', x);
+    day.setAttribute('data-day', x-emptyDays);
     day.setAttribute('data-month', i);
-    day.addEventListener('click', function () {
-      document.querySelector(".modal").classList.add(isVisible);
+    day.addEventListener('click', function (e) {
+      if (e.target.hasAttribute('data-day')) {
+        document.querySelector(".modal").classList.add(isVisible);
+        const date = new Date(y, i, x - emptyDays);
+        const finalDate = new Date(date.getTime() + Math.abs(date.getTimezoneOffset() * 60000));
+        const result = finalDate.toISOString().split('T')[0];
+        initDate.value = result;
+      }
     });
     day.addEventListener('mouseover', function () {
       document.querySelector(`i[data-day="${x}"][data-month="${i}"]`).style.display = 'block';
@@ -152,14 +192,14 @@ function changeMonth(action) {
     month.style.display = 'none';
     document.getElementById(navigator).style.display = 'flex';
     previousBtn.style.visibility = 'visible';
-    monthDisplay.innerHTML = `<p>${monthNames[navigator]}, ${thisYear}</p>`;
+    monthDisplay.innerHTML = `<p>${monthNames[navigator]}, ${year}</p>`;
     if (navigator === 11) nextBtn.style.visibility = 'hidden';
   } else {
     navigator--;
     month.style.display = 'none';
     document.getElementById(navigator).style.display = 'flex';
     nextBtn.style.visibility = 'visible';
-    monthDisplay.innerHTML = `<p>${monthNames[navigator]}, ${thisYear}</p>`;
+    monthDisplay.innerHTML = `<p>${monthNames[navigator]}, ${year}</p>`;
     if (navigator === 0) previousBtn.style.visibility = 'hidden';
   }
 }

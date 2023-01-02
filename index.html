@@ -53,9 +53,9 @@
             </button>
           </header>
           <section class="modal-content">
-            <form action="" class="form">
+            <form class="form" id="form">
               <div class="form-data">
-                <div class="div-label"><label for="title">Title:</label></div>
+                <div class="div-label"><label for="title">Title: *</label></div>
                 <div class="div-input">
                   <input
                     type="text"
@@ -68,7 +68,7 @@
               </div>
               <div class="form-data">
                 <div class="div-label">
-                  <label for="initDate">Initial date:</label>
+                  <label for="initDate">Initial date: *</label>
                 </div>
                 <div class="div-input">
                   <input type="date" name="initDate" id="initDate" required />
@@ -135,7 +135,7 @@
             </form>
           </section>
           <footer class="modal-footer">
-            <button class="btn-save">Add</button>
+            <button type="submit" form="form" class="btn-save">Add</button>
             <button class="btn-cancel" data-close>Cancel</button>
           </footer>
         </div>
