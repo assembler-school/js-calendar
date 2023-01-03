@@ -3,6 +3,9 @@ const checkboxExpiration = document.querySelector("#expiration");
 const containerPreviousTime = document.querySelector("#previousTime");
 const containerEndDate = document.querySelector("#showEndDate");
 const initDate = document.querySelector("#initDate");
+const title = document.querySelector("#title");
+const description = document.querySelector("#description");
+const type = document.querySelector("#type");
 const endDate = document.querySelector("#endDate");
 const time = document.querySelector("#time");
 const containerExpiration = document.querySelector("#showExpiration");
@@ -43,6 +46,9 @@ function hideEndDateAndRemind() {
 function setDatesInForm(result) {
   initDate.value = result;
   endDate.value = result;
+  title.value = '';
+  description.value = '';
+  type.value = '';
 }
 
 function setEventData(event) {

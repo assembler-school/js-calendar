@@ -26,267 +26,281 @@
   </head>
   <body>
     <header class="header">
-      <h1 class="h1">CALENDAR 2023</h1>
-      <div class="div">
-        <button class="open-modal" data-open="addModal" id="openModalCreation">Add Event</button>
+      <h1 class="h1">CALENDAR</h1>
+      <div class="btn-add">
+        <button class="open-modal" data-open="addModal" id="openModalCreation">
+          +
+        </button>
       </div>
     </header>
 
-    <article class="calendar">
-      <div class="display" id="display">
-        <button id="previousMonth" class="previous-btn">Back</button>
-        <div class="month-display" id="monthDisplay"></div>
-        <button id="nextMonth" class="next-btn">Next</button>
-      </div>
-
-      <div class="weekdays">
-        <div class="weekday">Sunday</div>
-        <div class="weekday">Monday</div>
-        <div class="weekday">Tuesday</div>
-        <div class="weekday">Wednesday</div>
-        <div class="weekday">Thursday</div>
-        <div class="weekday">Friday</div>
-        <div class="weekday">Saturday</div>
-      </div>
-
-      <div class="months" id="months"></div>
-
-      <!-- MODAL EVENTS -->
-      <div class="modal" id="eventModal">
-        <div class="modal-dialog">
-          <header class="modal-header">
-            EVENT
-            <button
-              class="modal-close"
-              aria-label="close eventModal"
-              data-close="eventModal"
-            >
-              ✕
-            </button>
-          </header>
-          <section class="modal-content" id="modalContent">
-            <form id="formEvent" class="form">
-              <div class="form-data">
-                <div class="div-label">
-                  <label for="titleEvent">Title:</label>
-                </div>
-                <div class="div-input">
-                  <input
-                    type="text"
-                    name="titleEvent"
-                    id="titleEvent"
-                    maxlength="60"
-                    disabled
-                  />
-                </div>
-              </div>
-              <div class="form-data">
-                <div class="div-label">
-                  <label for="initEventDate">Initial date:</label>
-                </div>
-                <div class="div-input">
-                  <input
-                    type="date"
-                    name="initEventDate"
-                    id="initEventDate"
-                    disabled
-                  />
-                </div>
-              </div>
-              <div class="form-data">
-                <div class="div-label">
-                  <label for="endEventDate">End date:</label>
-                </div>
-                <div class="div-input">
-                  <input
-                    type="date"
-                    name="endEventDate"
-                    id="endEventDate"
-                    disabled
-                  />
-                </div>
-              </div>
-              <div>
+    <div class="skeleton">
+      <article class="calendar">
+        <div class="display" id="display">
+          <button id="previousMonth" class="previous-btn">&lt;</button>
+          <div class="month-display" id="monthDisplay"></div>
+          <button id="nextMonth" class="next-btn">&gt;</button>
+        </div>
+        <div class="weekdays">
+          <div class="weekday">Sunday</div>
+          <div class="weekday">Monday</div>
+          <div class="weekday">Tuesday</div>
+          <div class="weekday">Wednesday</div>
+          <div class="weekday">Thursday</div>
+          <div class="weekday">Friday</div>
+          <div class="weekday">Saturday</div>
+        </div>
+        <div class="months" id="months"></div>
+        <!-- MODAL EVENTS -->
+        <div class="modal" id="eventModal">
+          <div class="modal-dialog">
+            <header class="modal-header">
+              EVENT
+              <button
+                class="modal-close"
+                aria-label="close eventModal"
+                data-close="eventModal"
+              >
+                ✕
+              </button>
+            </header>
+            <section class="modal-content" id="modalContent">
+              <form id="formEvent" class="form">
                 <div class="form-data">
                   <div class="div-label">
-                    <label for="timeEvent">Time:</label>
+                    <label for="titleEvent">Title:</label>
                   </div>
                   <div class="div-input">
-                    <select name="timeEvent" id="timeEvent" disabled>
-                      <option id="optionTimeEvent" value="" selected></option>
-                    </select>
+                    <input
+                      type="text"
+                      name="titleEvent"
+                      id="titleEvent"
+                      maxlength="60"
+                      disabled
+                    />
                   </div>
                 </div>
-              </div>
-              <div class="form-data">
-                <div class="div-label">
-                  <label for="descriptionEvent">Description:</label>
-                </div>
-                <div class="div-input">
-                  <textarea
-                    name="descriptionEvent"
-                    id="descriptionEvent"
-                    maxlength="500"
-                    disabled
-                  ></textarea>
-                </div>
-              </div>
-              <div class="form-data">
-                <div class="div-label">
-                  <label for="typeEvent">Event type:</label>
-                </div>
-                <div class="div-input">
-                  <select name="typeEvent" id="typeEvent" disabled>
-                    <option id="optionTypeEvent" value="" selected></option>
-                  </select>
-                </div>
-              </div>
-              <input id="idEvent" type="hidden" name="idEvent" />
-            </form>
-          </section>
-          <footer class="modal-footer">
-            <button type="submit" form="formEvent" class="btn-cancel">
-              Delete
-            </button>
-          </footer>
-        </div>
-      </div>
-
-      <!-- MODAL CREATION -->
-      <div class="modal" id="addModal">
-        <div class="modal-dialog">
-          <header class="modal-header">
-            NEW EVENT
-            <button
-              class="modal-close"
-              aria-label="close addModal"
-              data-close="addModal"
-            >
-              ✕
-            </button>
-          </header>
-          <section class="modal-content">
-            <form class="form" id="form" name="form">
-              <div class="form-data">
-                <div class="div-label"><label for="title">Title: *</label></div>
-                <div class="div-input">
-                  <input
-                    type="text"
-                    name="title"
-                    id="title"
-                    required
-                    maxlength="60"
-                  />
-                </div>
-              </div>
-              <div class="form-data">
-                <div class="div-label">
-                  <label for="initDate">Initial date: *</label>
-                </div>
-                <div class="div-input">
-                  <input type="date" name="initDate" id="initDate" required />
-                </div>
-              </div>
-              <div class="form-data">
-                <input type="checkbox" name="existEndDate" id="existEndDate" />
-                <label for="existEndDate">End date</label>
-              </div>
-              <div class="form-data" id="showEndDate">
-                <div class="div-label">
-                  <label for="endDate">End date:</label>
-                </div>
-                <div class="div-input">
-                  <input type="date" name="endDate" id="endDate" />
-                </div>
-              </div>
-              <div id="showExpiration">
                 <div class="form-data">
-                  <input type="checkbox" name="expiration" id="expiration" />
-                  <label for="expiration"
-                    >Remid me when this event expires</label
-                  >
-                </div>
-                <div class="form-data" id="previousTime">
-                  <div class="div-label"><label for="time">Time:</label></div>
+                  <div class="div-label">
+                    <label for="initEventDate">Initial date:</label>
+                  </div>
                   <div class="div-input">
-                    <select name="time" id="time">
-                      <option value="" selected>Choose time</option>
-                      <option value="1">1 min</option>
-                      <option value="10">10 min</option>
-                      <option value="15">15 min</option>
-                      <option value="30">30 min</option>
-                      <option value="60">1 hour</option>
+                    <input
+                      type="date"
+                      name="initEventDate"
+                      id="initEventDate"
+                      disabled
+                    />
+                  </div>
+                </div>
+                <div class="form-data">
+                  <div class="div-label">
+                    <label for="endEventDate">End date:</label>
+                  </div>
+                  <div class="div-input">
+                    <input
+                      type="date"
+                      name="endEventDate"
+                      id="endEventDate"
+                      disabled
+                    />
+                  </div>
+                </div>
+                <div>
+                  <div class="form-data">
+                    <div class="div-label">
+                      <label for="timeEvent">Time:</label>
+                    </div>
+                    <div class="div-input">
+                      <select name="timeEvent" id="timeEvent" disabled>
+                        <option id="optionTimeEvent" value="" selected></option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-data">
+                  <div class="div-label">
+                    <label for="descriptionEvent">Description:</label>
+                  </div>
+                  <div class="div-input">
+                    <textarea
+                      name="descriptionEvent"
+                      id="descriptionEvent"
+                      maxlength="500"
+                      disabled
+                    ></textarea>
+                  </div>
+                </div>
+                <div class="form-data">
+                  <div class="div-label">
+                    <label for="typeEvent">Event type:</label>
+                  </div>
+                  <div class="div-input">
+                    <select name="typeEvent" id="typeEvent" disabled>
+                      <option id="optionTypeEvent" value="" selected></option>
                     </select>
                   </div>
                 </div>
-              </div>
-              <div class="form-data">
-                <div class="div-label">
-                  <label for="description">Description:</label>
-                </div>
-                <div class="div-input">
-                  <textarea
-                    name="description"
-                    id="description"
-                    maxlength="500"
-                  ></textarea>
-                </div>
-              </div>
-              <div class="form-data">
-                <div class="div-label">
-                  <label for="type">Event type:</label>
-                </div>
-                <div class="div-input">
-                  <select name="type" id="type">
-                    <option value="" selected></option>
-                    <option value="meeting">Meeting</option>
-                    <option value="personal">Personal</option>
-                    <option value="study">Study</option>
-                  </select>
-                </div>
-              </div>
-            </form>
-          </section>
-          <footer class="modal-footer">
-            <button type="submit" form="form" class="btn-save">Add</button>
-            <button class="btn-cancel" data-close="addModal">Cancel</button>
-          </footer>
+                <input id="idEvent" type="hidden" name="idEvent" />
+              </form>
+            </section>
+            <footer class="modal-footer">
+              <button type="submit" form="formEvent" class="btn-cancel">
+                Delete
+              </button>
+            </footer>
+          </div>
         </div>
-      </div>
-
-      <!-- ALERT REMIND -->
-      <div class="modal" id="remindAlert">
-        <div class="modal-dialog alert">
-          <header class="modal-header">
-            REMEMBER
-            <button
-              class="modal-close alert"
-              aria-label="close remindAlert"
-              data-close="remindAlert"
-            >
-              ✕
-            </button>
-          </header>
-          <section class="modal-content" id="remindAlertContent"></section>
+        <!-- MODAL CREATION -->
+        <div class="modal" id="addModal">
+          <div class="modal-dialog">
+            <header class="modal-header">
+              <h3>NEW EVENT</h3>
+              <button
+                class="modal-close"
+                aria-label="close addModal"
+                data-close="addModal"
+              >
+                ✕
+              </button>
+            </header>
+            <section class="modal-content">
+              <form class="form" id="form" name="form">
+                <div class="form-data">
+                  <div class="div-label"><label for="title">Title: *</label></div>
+                  <div class="div-input">
+                    <input
+                      type="text"
+                      name="title"
+                      id="title"
+                      required
+                      maxlength="60"
+                    />
+                  </div>
+                </div>
+                <div class="form-data">
+                  <div class="div-label">
+                    <label for="initDate">Initial date: *</label>
+                  </div>
+                  <div class="div-input">
+                    <input type="date" name="initDate" id="initDate" required />
+                  </div>
+                </div>
+                <div class="form-data">
+                  <input type="checkbox" name="existEndDate" id="existEndDate" />
+                  <label for="existEndDate">End date</label>
+                </div>
+                <div class="form-data" id="showEndDate">
+                  <div class="div-label">
+                    <label for="endDate">End date:</label>
+                  </div>
+                  <div class="div-input">
+                    <input type="date" name="endDate" id="endDate" />
+                  </div>
+                </div>
+                <div id="showExpiration" class="form-data">
+                  <div class="form-data">
+                    <input type="checkbox" name="expiration" id="expiration" />
+                    <label for="expiration"
+                      >Remid me when this event expires</label
+                    >
+                  </div>
+                  <div class="form-data" id="previousTime">
+                    <div class="div-label"><label for="time">Time:</label></div>
+                    <div class="div-input">
+                      <select name="time" id="time">
+                        <option value="" selected>Choose time</option>
+                        <option value="1">1 min</option>
+                        <option value="10">10 min</option>
+                        <option value="15">15 min</option>
+                        <option value="30">30 min</option>
+                        <option value="60">1 hour</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-data">
+                  <div class="div-label">
+                    <label for="description">Description:</label>
+                  </div>
+                  <div class="div-input">
+                    <textarea
+                      name="description"
+                      id="description"
+                      maxlength="500"
+                    ></textarea>
+                  </div>
+                </div>
+                <div class="form-data">
+                  <div class="div-label">
+                    <label for="type">Event type:</label>
+                  </div>
+                  <div class="div-input">
+                    <select name="type" id="type">
+                      <option value="" selected></option>
+                      <option value="meeting">Meeting</option>
+                      <option value="personal">Personal</option>
+                      <option value="study">Study</option>
+                    </select>
+                  </div>
+                </div>
+              </form>
+            </section>
+            <footer class="modal-footer">
+              <button type="submit" form="form" class="btn-save">Add</button>
+              <button class="btn-cancel" data-close="addModal">Cancel</button>
+            </footer>
+          </div>
         </div>
-      </div>
-
-      <!-- ALERT REMIND -->
-      <div class="modal" id="endAlert">
-        <div class="modal-dialog alert-end">
-          <header class="modal-header">
-            ATTENTION
-            <button
-              class="modal-close alert"
-              aria-label="close endAlert"
-              data-close="endAlert"
-            >
-              ✕
-            </button>
-          </header>
-          <section class="modal-content" id="endAlertContent"></section>
+        <!-- ALERT REMIND -->
+        <div class="modal" id="remindAlert">
+          <div class="modal-dialog alert">
+            <header class="modal-header">
+              REMEMBER
+              <button
+                class="modal-close alert"
+                aria-label="close remindAlert"
+                data-close="remindAlert"
+              >
+                ✕
+              </button>
+            </header>
+            <section class="modal-content" id="remindAlertContent"></section>
+          </div>
         </div>
-      </div>
-    </article>
+        <!-- ALERT REMIND -->
+        <div class="modal" id="endAlert">
+          <div class="modal-dialog alert-end">
+            <header class="modal-header">
+              ATTENTION
+              <button
+                class="modal-close alert"
+                aria-label="close endAlert"
+                data-close="endAlert"
+              >
+                ✕
+              </button>
+            </header>
+            <section class="modal-content" id="endAlertContent"></section>
+          </div>
+        </div>
+        <!-- ERRORS -->
+        <div class="modal" id="error">
+          <div class="modal-dialog alert-end">
+            <header class="modal-header">
+              ERROR!
+              <button
+                class="modal-close alert"
+                aria-label="close error"
+                data-close="error"
+              >
+                ✕
+              </button>
+            </header>
+            <section class="modal-content" id="errorContent"></section>
+          </div>
+        </div>
+      </article>
+    </div>
   </body>
 </html>

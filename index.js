@@ -48,7 +48,7 @@ function loadMonths() {
 }
 
 function addDay(element, day, month, year, emptyDays) {
-  element.textContent = day - emptyDays;
+  element.innerHTML = `<p class="number-day">${day - emptyDays}<p>`;
   element.setAttribute('data-day', day - emptyDays);
   element.setAttribute('data-month', month);
   element.setAttribute('data-year', year);
@@ -59,10 +59,7 @@ function addDay(element, day, month, year, emptyDays) {
 
 loadMonths();
 initMonthButtons();
-initModalCreation();
-initModalEvent();
-initEndAlert();
-initRemindAlert();
+initializeModals();
 initForm();
 threadPendingTasks();
 threadRemindTasks();

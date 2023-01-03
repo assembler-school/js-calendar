@@ -22,12 +22,12 @@ function loadEvents() {
 const addEvent = (e) => {
   e.preventDefault();
   const date = new Date(initDate.value);
-  if (date.getMonth() === navigator) {      // FIRST ERROR - ARE WE IN CORRECT MONTH??? FOR THE ADD EVENT BUTTON
+  if (date.getMonth() === navigator) {  
     const startDate = getStartDateOfEvent(initDate.value);
     const finalDate = getEndDateOfEvent(endDate.value);
-    if (finalDate.getMonth() - startDate.getMonth() <= 1) {     // SECOND ERROR - THE EVENT DURATION HAVE MORE THAN 2 MONTHS???
-      if (startDate < finalDate) {       // THIRD ERROR - END IS AFTER INIT???
-        if (startDate >= new Date(currentYear, currentMonth, currentDay)) {         // FOURTH ERROR - EVENT INIT IS BEFORE NOW???
+    if (finalDate.getMonth() - startDate.getMonth() <= 1) { 
+      if (startDate < finalDate) {  
+        if (startDate >= new Date(currentYear, currentMonth, currentDay)) {  
           const event = createEvent(startDate, finalDate);
           time.value && reloadReminderEvents(event);
           reloadEvents(event);
@@ -36,10 +36,10 @@ const addEvent = (e) => {
           initModalEvent();
           form.reset();
           document.querySelector("#addModal.is-visible").classList.remove(isVisible);
-        } else alert("Wrong start date");
-      } else alert("Wrong end date");
-    } else alert("Task duration can't be more than 2 months");
-  } else alert("Wrong selected month");
+        } else openError(1);        
+      } else openError(2);
+    } else openError(3);
+  } else openError(4);
 }
 
 function getStartDateOfEvent(date) {
@@ -181,19 +181,10 @@ function getDaysOfEvent(initDate, endDate) {
 }
 
 function disableEvent(task) {
-  const content = document.querySelector("#endAlertContent");
-  content.innerHTML = '';
-  const text = document.createElement('p');
-  text.innerHTML = `La tarea <h3>${task.title}</h3> ha finalizado`;
-  document.querySelector("#endAlert").classList.add(isVisible);
-  content.append(text);
-
-  const eliminatedTask = document.querySelector(`#${task.id}`);
-  eliminatedTask.style.backgroundColor = "red";
+  openAlert(task, "end");
   removeStorage("events");
   allEvents.find(event => event.id === task.id).finished = true;
   saveStorage("events", allEvents);
-
   setTimeout(() => {
     if (document.querySelector("#endAlert.is-visible")) {
       document.querySelector("#endAlert.is-visible").classList.remove(isVisible);
@@ -202,19 +193,10 @@ function disableEvent(task) {
 }
 
 function remindEvent(task) {
-  const content = document.querySelector("#remindAlertContent");
-  content.innerHTML = '';
-  const text = document.createElement('p');
-  text.innerHTML = `Quedan ${task.time} minutos para terminar la tarea <h3>${task.title}</h3>`;
-  document.querySelector("#remindAlert").classList.add(isVisible);
-  content.append(text);
-
-  const remindedTask = document.querySelector(`#${task.id}`);
-  remindedTask.style.backgroundColor = "orange";
+  openAlert(task, "remind");
   removeStorage("events");
   allEvents.find(event => event.id === task.id).remind = false;
   saveStorage("events", allEvents);
-
   setTimeout(() => {
     if (document.querySelector("#remindAlert.is-visible")) {
       document.querySelector("#remindAlert.is-visible").classList.remove(isVisible);

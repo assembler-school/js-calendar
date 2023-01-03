@@ -116,6 +116,36 @@ function initEndAlert() {
   });
 }
 
+function initErrors() {
+
+  const closeEndAlert = document.querySelectorAll('[data-close="error"]');
+
+  for (const el of closeEndAlert) {
+    el.addEventListener("click", function () {
+      this.parentElement.parentElement.parentElement.classList.remove(isVisible);
+    });
+  }
+
+  document.addEventListener("click", e => {
+    if (e.target == document.querySelector("#error.is-visible")) {
+      document.querySelector("#error.is-visible").classList.remove(isVisible);
+    }
+  });
+  document.addEventListener("keyup", e => {
+    if (e.key == "Escape" && document.querySelector("#error.is-visible")) {
+      document.querySelector("#error.is-visible").classList.remove(isVisible);
+    }
+  });
+}
+
+function initializeModals() {
+  initModalCreation();
+  initModalEvent();
+  initRemindAlert();
+  initEndAlert();
+  initErrors();
+}
+
 function openEvent(e) {
   let tempEvent;
   const events = getStorage("events");
@@ -126,4 +156,49 @@ function openEvent(e) {
       }
     });
   setEventData(tempEvent);
+}
+
+function openError(type) {
+  const content = document.querySelector("#errorContent");
+  content.innerHTML = '';
+  const text = document.createElement('p');
+
+  switch (type) {
+    case 1:
+      text.textContent = 'Error . . . Cannot create an event on a date before the current date';
+      break;
+    case 2:
+      text.textContent = 'Error . . . The end date of the event must be later than the start date.';
+      break;
+    case 3:
+      text.textContent = 'Error . . . The duration of the event cannot exceed two months.';
+      break;
+    case 4:
+      text.textContent = 'Error . . . The month from which you are trying to create the event is incorrect. Please select the correct month before creating the event.';
+      break;
+  }
+  content.append(text);
+  document.querySelector("#error").classList.add(isVisible);
+}
+
+function openAlert(task, type) {
+  if (type === "end") {
+    const content = document.querySelector("#endAlertContent");
+    content.innerHTML = '';
+    const text = document.createElement('p');
+    text.innerHTML = `La tarea <h3>${task.title}</h3> ha finalizado`;
+    content.append(text);
+    document.querySelector("#endAlert").classList.add(isVisible);
+    const eliminatedTask = document.querySelector(`#${task.id}`);
+    eliminatedTask.style.backgroundColor = "red";
+  } else {
+    const content = document.querySelector("#remindAlertContent");
+    content.innerHTML = '';
+    const text = document.createElement('p');
+    text.innerHTML = `Quedan ${task.time} minutos para terminar la tarea <h3>${task.title}</h3>`;
+    content.append(text);
+    document.querySelector("#remindAlert").classList.add(isVisible);
+    const remindedTask = document.querySelector(`#${task.id}`);
+    remindedTask.style.backgroundColor = "orange";
+  }
 }
