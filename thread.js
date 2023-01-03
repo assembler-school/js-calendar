@@ -4,7 +4,7 @@ function threadRemindTasks() {
       if (task.remind) {
         //console.log(task);
         const now = new Date();
-        const end = getFullDateWithoutTimezone(task.endDate);
+        const end = getFullDate_WithoutTimezone_ISOMethod(task.endDate);
         console.log("AHORA - " + now);
         console.log("FIN - " + end);
         console.log("DURACION - " + task.time);
@@ -27,11 +27,11 @@ function threadPendingTasks() {
     allEvents.forEach((task) => {
       if (!task.finished) {
         //console.log(task);
-        const init = getFullDateWithoutTimezone(task.initDate);
-        const end = getFullDateWithoutTimezone(task.endDate);
+        const init = getFullDate_WithoutTimezone_ISOMethod(task.initDate);
+        const end = getFullDate_WithoutTimezone_ISOMethod(task.endDate);
         const now = new Date(Date.now());
         if (now > end) {
-          eliminateEvent(task);
+          disableEvent(task);
           task.finished = true;
         }
       }

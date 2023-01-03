@@ -2,7 +2,6 @@ const monthNames = ["January", "February", "March", "April", "May", "June", "Jul
 const weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 const calendarContainer = document.querySelector("#months");
-const formInitDate = document.querySelector("#initDate");
 const formCreation = document.querySelector("#form");
 const formEvent = document.querySelector("#formEvent");
 const currentDate = new Date();
@@ -27,10 +26,9 @@ function loadMonths() {
     }
 
     const emptyDays = getEmptyDaysInMonth(currentYear, month, 1, "en");
-    const daysInMonth = getDateTimeFullParams(currentYear, month + 1, 0).getDate();
+    const daysInMonth = getFullDate_WithoutTimezone_TimezonOffsetMethod_FromParameters(currentYear, month + 1, 0).getDate();
 
     for (let day = 1; day <= emptyDays + daysInMonth; day++) {
-
       const domDay = document.createElement('div');
       domDay.classList.add('day');
       if (day === currentDay && month === currentMonth) domDay.classList.add('current');
@@ -53,16 +51,9 @@ function addDay(element, day, month, year, emptyDays) {
   element.textContent = day - emptyDays;
   element.setAttribute('data-day', day - emptyDays);
   element.setAttribute('data-month', month);
-  element.addEventListener('click', function (e) {
-    if (e.target.hasAttribute('data-day')) {
-      document.querySelector("#modal").classList.add(isVisible);
-      const date = getDateTimeFullParams(year, month, day - emptyDays, 12, 00, 00);
-      const result = date.toISOString().split('T')[0];
-      document.querySelector("#initDate").value = result;
-      document.querySelector("#endDate").value = result;
-      hideEndDateAndRemind();
-    }
-  });
+  element.setAttribute('data-year', year);
+  element.setAttribute('data-empty', emptyDays);
+  element.setAttribute('data-open', "addModal");
 }
 
 
@@ -70,6 +61,8 @@ loadMonths();
 initMonthButtons();
 initModalCreation();
 initModalEvent();
+initEndAlert();
+initRemindAlert();
 initForm();
 threadPendingTasks();
 threadRemindTasks();

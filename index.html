@@ -17,12 +17,18 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
     />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+      integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
   </head>
   <body>
     <header class="header">
       <h1 class="h1">CALENDAR 2023</h1>
       <div class="div">
-        <button class="open-modal" data-open="modal">Add Event</button>
+        <button class="open-modal" data-open="addModal" id="openModalCreation">Add Event</button>
       </div>
     </header>
 
@@ -46,14 +52,14 @@
       <div class="months" id="months"></div>
 
       <!-- MODAL EVENTS -->
-      <div class="modal" id="modalEvent">
+      <div class="modal" id="eventModal">
         <div class="modal-dialog">
           <header class="modal-header">
             EVENT
             <button
               class="modal-close"
-              aria-label="close modalEvent"
-              data-close="modalEvent"
+              aria-label="close eventModal"
+              data-close="eventModal"
             >
               ✕
             </button>
@@ -147,14 +153,14 @@
       </div>
 
       <!-- MODAL CREATION -->
-      <div class="modal" id="modal">
+      <div class="modal" id="addModal">
         <div class="modal-dialog">
           <header class="modal-header">
             NEW EVENT
             <button
               class="modal-close"
-              aria-label="close modal"
-              data-close="modal"
+              aria-label="close addModal"
+              data-close="addModal"
             >
               ✕
             </button>
@@ -243,7 +249,7 @@
           </section>
           <footer class="modal-footer">
             <button type="submit" form="form" class="btn-save">Add</button>
-            <button class="btn-cancel" data-close>Cancel</button>
+            <button class="btn-cancel" data-close="addModal">Cancel</button>
           </footer>
         </div>
       </div>
