@@ -2,7 +2,6 @@ function threadRemindTasks() {
   setInterval(() => {
     reminders.forEach(task => {
       if (task.remind) {
-        //console.log(task);
         const now = new Date();
         const end = getFullDate_WithoutTimezone_ISOMethod(task.endDate);
         console.log("AHORA - " + now);
@@ -26,7 +25,6 @@ function threadPendingTasks() {
   setInterval(() => {
     allEvents.forEach((task) => {
       if (!task.finished) {
-        //console.log(task);
         const init = getFullDate_WithoutTimezone_ISOMethod(task.initDate);
         const end = getFullDate_WithoutTimezone_ISOMethod(task.endDate);
         const now = new Date(Date.now());

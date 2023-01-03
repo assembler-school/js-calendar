@@ -2,7 +2,7 @@ let reminders = [];
 let allEvents = [];
 
 function loadEvents() {
-  allEvents = getStorage("events") ? JSON.parse(getStorage("events")) : [];
+  allEvents = getStorage("events") ? getStorage("events") : [];
   allEvents.forEach((event) => {
     event.remind ? reminders.push({
       id: event.id,
@@ -15,98 +15,90 @@ function loadEvents() {
       remind: event.remind,
       finished: event.finished,
     }) : null;
-    chooseDateEvent(event);
+    chooseDateEventAndPaint(event);
   });
-
 }
 
 const addEvent = (e) => {
   e.preventDefault();
   const date = new Date(initDate.value);
-
-  // FIRST ERROR - ARE WE IN CORRECT MONTH???
-  if (date.getMonth() === navigator) {
-
-    // INIT DAY AND TIME ////////////////////////////////////////////////////////
-    let startDate = getFullDateTime(initDate.value, 09, 30, 00);
-    // Same day, take the correct hour
-    if (startDate.getDate() === currentDate.getDate()) {
-      startDate = new Date();
-    }
-    //console.log(startDate);
-    //console.log(new Date());
-
-    // END DAY AND TIME ////////////////////////////////////////////////////////
-    let finalDate;
-    endDate.value ? finalDate = getFullDateTime(endDate.value, 11, 30, 00) : finalDate = null;
-    // Same day or not selected
-    if (!endDate.value || finalDate.getDate() === currentDate.getDate()) {
-      finalDate = new Date();
-      finalDate = addHours_toDate(finalDate, 2);
-    }
-    //console.log(finalDate);
-
-    // SECOND ERROR - END IS AFTER INIT???
-    if (startDate < finalDate) {
-      // THIRD ERROR - EVENT AFTER NOW???
-      if (startDate >= new Date(currentYear, currentMonth, currentDay)) {
-
-        // CREATE EVENT
-        const event = {
-          id: `id_${Date.now()}`,
-          title: title.value,
-          initDate: getFullDate_WithoutTimezone_UTCMethod(startDate),
-          endDate: getFullDate_WithoutTimezone_UTCMethod(finalDate),
-          time: time.value ? time.value : "",
-          description: description.value ? description.value : "",
-          type: type.value ? type.value : "",
-          remind: time.value ? true : undefined,
-          finished: false
-        }
-
-        // SET IN REMINDER IF IS NECESARY
-        time.value && reminders.push(event);
-        // SAVE EVENT - LIVE & STORAGE
-        reloadEvents(event);
-        saveStorage("events", allEvents);
-
-        // PAINT EVENT IN HIS DAY
-        chooseDateEvent(event);
-        initModalEvent();
-
-        // RESET FORM
-        form.reset();
-
-        // CLOSE MODAL
-        document.querySelector("#addModal.is-visible").classList.remove(isVisible);
-      } else alert("Wrong start date");
-    } else alert("Wrong end date");
-  } else {
-    alert("Wrong selected month");
-  }
+  if (date.getMonth() === navigator) {      // FIRST ERROR - ARE WE IN CORRECT MONTH??? FOR THE ADD EVENT BUTTON
+    const startDate = getStartDateOfEvent(initDate.value);
+    const finalDate = getEndDateOfEvent(endDate.value);
+    if (finalDate.getMonth() - startDate.getMonth() <= 1) {     // SECOND ERROR - THE EVENT DURATION HAVE MORE THAN 2 MONTHS???
+      if (startDate < finalDate) {       // THIRD ERROR - END IS AFTER INIT???
+        if (startDate >= new Date(currentYear, currentMonth, currentDay)) {         // FOURTH ERROR - EVENT INIT IS BEFORE NOW???
+          const event = createEvent(startDate, finalDate);
+          time.value && reloadReminderEvents(event);
+          reloadEvents(event);
+          saveStorage("events", allEvents);
+          chooseDateEventAndPaint(event);
+          initModalEvent();
+          form.reset();
+          document.querySelector("#addModal.is-visible").classList.remove(isVisible);
+        } else alert("Wrong start date");
+      } else alert("Wrong end date");
+    } else alert("Task duration can't be more than 2 months");
+  } else alert("Wrong selected month");
 }
 
-function chooseDateEvent(event) {
-
-  const day = new Date(event.initDate).getDate();
-  const dayEnd = new Date(event.endDate).getDate();
-  const month = new Date(event.initDate).getMonth();
-  let totalDays = [];
-
-  temp = dayEnd - day;
-  for (let i = 0; i <= temp; i++) {
-    totalDays.push(i + day);
+function getStartDateOfEvent(date) {
+  let startDate = getFullDateTime(date, 09, 30, 00);
+  if (startDate.getDate() === currentDate.getDate()) {
+    startDate = new Date();
   }
+  //console.log(startDate);
+  //console.log(new Date());
+  return startDate;
+}
 
-  totalDays.forEach(day => {
+function getEndDateOfEvent(date) {
+  let finalDate;
+  endDate.value ? finalDate = getFullDateTime(date, 11, 30, 00) : finalDate = null;
+  // Same day or not selected
+  if (!endDate.value || finalDate.getDate() === currentDate.getDate()) {
+    finalDate = new Date();
+    finalDate = addHours_toDate(finalDate, 2);
+  }
+  //console.log(finalDate);
+  return finalDate;
+}
+
+function createEvent(startDate, finalDate) {
+  const event = {
+    id: `id_${Date.now()}`,
+    title: title.value,
+    initDate: getFullDate_WithoutTimezone_UTCMethod(startDate),
+    endDate: getFullDate_WithoutTimezone_UTCMethod(finalDate),
+    time: time.value ? time.value : "",
+    description: description.value ? description.value : "",
+    type: type.value ? type.value : "",
+    remind: time.value ? true : undefined,
+    finished: false
+  }
+  return event;
+}
+
+function chooseDateEventAndPaint(event) {
+  const month = new Date(event.initDate).getMonth();
+  const monthEnd = new Date(event.endDate).getMonth();
+  const { totalDays, daysInMonth1 } = getDaysOfEvent(event.initDate, event.endDate);
+  totalDays.forEach((day, i) => {
     let daySquare;
-    daySquare = document.querySelector(`div[data-day="${day}"][data-month="${month}"]`);
+    if (monthEnd - month > 0) {
+      if (i <= daysInMonth1) {
+        daySquare = document.querySelector(`div[data-day="${day}"][data-month="${month}"]`);
+      } else {
+        daySquare = document.querySelector(`div[data-day="${day}"][data-month="${monthEnd}"]`);
+      }
+    } else {
+      daySquare = document.querySelector(`div[data-day="${day}"][data-month="${month}"]`);
+    }
     paintEvent(event, daySquare);
   });
 }
 
 function paintEvent(event, daySquare) {
-
   const newDomEvent = document.createElement("div");
   newDomEvent.textContent = event.title;
   newDomEvent.classList.add("day-event");
@@ -128,14 +120,64 @@ const removeEvent = (e) => {
   saveStorage("events", allEvents);
 
   // Delete from DOM
-  const day = new Date(initEventDate.value).getDate();
   const month = new Date(initEventDate.value).getMonth();
-  const daySquare = document.querySelector(`div[data-day="${day}"][data-month="${month}"]`);
-  Array.from(daySquare.children).forEach(el => {
-    if (idEvent.value === el.id) el.remove();
+  const monthEnd = new Date(endEventDate.value).getMonth();
+  const { totalDays, daysInMonth1 } = getDaysOfEvent(initEventDate.value, endEventDate.value);
+
+  totalDays.forEach((day, i) => {
+    let daySquare;
+    if (monthEnd - month > 0) {
+      if (i <= daysInMonth1) {
+        daySquare = document.querySelector(`div[data-day="${day}"][data-month="${month}"]`);
+      } else {
+        daySquare = document.querySelector(`div[data-day="${day}"][data-month="${monthEnd}"]`);
+      }
+    } else {
+      daySquare = document.querySelector(`div[data-day="${day}"][data-month="${month}"]`);
+    }
+    Array.from(daySquare.children).forEach(el => {
+      if (idEvent.value === el.id) el.remove();
+    });
   });
   // Close modal
   document.querySelector("#eventModal.is-visible").classList.remove(isVisible);
+}
+
+function getDaysOfEvent(initDate, endDate) {
+  const year = new Date(initDate).getFullYear();
+  const dayInit = new Date(initDate).getDate();
+  const dayFinal = new Date(endDate).getDate();
+  const monthInit = new Date(initDate).getMonth();
+  const monthEnd = new Date(endDate).getMonth();
+  let totalDays = [];
+
+  if (monthEnd - monthInit > 0) {
+    const daysInMonth = getFullDate_WithoutTimezone_TimezonOffsetMethod_FromParameters(year, monthInit, 0).getDate();
+    const daysInMonth1 = (daysInMonth - dayInit);
+    const daysInMonth2 = dayFinal;
+    const numberDays = daysInMonth1 + daysInMonth2;
+    for (let i = 0; i <= numberDays; i++) {
+      if (i <= daysInMonth1) totalDays.push(i + dayInit);
+    }
+    for (let x = 1; x <= (numberDays - daysInMonth1); x++) {
+      totalDays.push(x);
+    }
+    const objectToReturn = {
+      totalDays: totalDays,
+      daysInMonth1: daysInMonth1,
+    }
+    console.log(objectToReturn);
+    return objectToReturn;
+
+  } else {
+    const numberDays = dayFinal - dayInit;
+    for (let i = 0; i <= numberDays; i++) {
+      totalDays.push(i + dayInit);
+    }
+    return { totalDays: totalDays };
+  }
+
+
 }
 
 function disableEvent(task) {
@@ -151,6 +193,12 @@ function disableEvent(task) {
   removeStorage("events");
   allEvents.find(event => event.id === task.id).finished = true;
   saveStorage("events", allEvents);
+
+  setTimeout(() => {
+    if (document.querySelector("#endAlert.is-visible")) {
+      document.querySelector("#endAlert.is-visible").classList.remove(isVisible);
+    }
+  }, 5000);
 }
 
 function remindEvent(task) {
@@ -166,4 +214,10 @@ function remindEvent(task) {
   removeStorage("events");
   allEvents.find(event => event.id === task.id).remind = false;
   saveStorage("events", allEvents);
+
+  setTimeout(() => {
+    if (document.querySelector("#remindAlert.is-visible")) {
+      document.querySelector("#remindAlert.is-visible").classList.remove(isVisible);
+    }
+  }, 5000);
 }

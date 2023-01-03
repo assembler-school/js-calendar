@@ -71,12 +71,14 @@ function removeStorage(key) {
 function reloadEvents(event) {
   allEvents.push(event);
 }
+function reloadReminderEvents(event) {
+  reminders.push(event);
+}
 
 // OTHER METHODS ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function arrayRemove(arr, id) {
   return arr.filter(event => {
-    console.log(event.id + " === " + id);
     return event.id !== id;
   });
 }
