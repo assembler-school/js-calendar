@@ -21,13 +21,13 @@ function loadEvents() {
 
 const addEvent = (e) => {
   e.preventDefault();
-  const date = new Date(initDate.value);
-  if (date.getMonth() === navigator) {
-    const startDate = getStartDateOfEvent(initDate.value);
-    const finalDate = getEndDateOfEvent(endDate.value);
+  const monthEvent = new Date(initDate.value).getMonth();
+  if (monthEvent === navigator) {
+    const startDate = setDateFormValues(initDate.value, extractTime(initTime.value));
+    const finalDate = setDateFormValues(endDate.value, extractTime(endTime.value));
     if (finalDate.getMonth() - startDate.getMonth() <= 1) {
       if (startDate < finalDate) {
-        if (startDate >= new Date(currentYear, currentMonth, currentDay)) {
+        if (startDate.getTime() + 600000 > new Date().getTime()) {
           const event = createEvent(startDate, finalDate);
           time.value && reloadReminderEvents(event);
           reloadEvents(event);
@@ -42,30 +42,12 @@ const addEvent = (e) => {
   } else openError(4);
 }
 
-function getStartDateOfEvent(date) {
-  let startDate = getFullDateTime(date, 09, 30, 00);
-  if (startDate.getDate() === currentDate.getDate()) {
-    startDate = new Date();
-  }
-  return startDate;
-}
-
-function getEndDateOfEvent(date) {
-  let finalDate;
-  endDate.value ? finalDate = getFullDateTime(date, 11, 30, 00) : finalDate = null;
-  if (!endDate.value || finalDate.getDate() === currentDate.getDate()) {
-    finalDate = new Date();
-    finalDate = addHours_toDate(finalDate, 2);
-  }
-  return finalDate;
-}
-
 function createEvent(startDate, finalDate) {
   const event = {
     id: `id_${Date.now()}`,
     title: title.value,
-    initDate: getFullDate_WithoutTimezone_UTCMethod(startDate),
-    endDate: getFullDate_WithoutTimezone_UTCMethod(finalDate),
+    initDate: toIsoString(startDate),
+    endDate: toIsoString(finalDate),
     time: time.value ? time.value : "",
     description: description.value ? description.value : "",
     type: type.value ? type.value : "",
@@ -90,26 +72,25 @@ function chooseDateEventAndPaint(event) {
     } else {
       daySquare = document.querySelector(`div[data-day="${day}"][data-month="${month}"]`);
     }
-    paintEvent(event, daySquare);
+    if (totalDays.length === 1) paintEvent(event, daySquare, true, true);
+    else {
+      if (i === 0) paintEvent(event, daySquare, true, false);
+      else if (i === totalDays.length - 1) paintEvent(event, daySquare, false, true);
+      else paintEvent(event, daySquare);
+    }
   });
 }
 
-function paintEvent(event, daySquare) {
+function paintEvent(event, daySquare, paintInit, paintEnd) {
   const newDomEvent = document.createElement("div");
-  const dateStart = getFullDate_WithoutTimezone_ISOMethod(event.initDate);
-  const hoursStart = dateStart.getHours();
-  const minutesStart = dateStart.getMinutes();
-  const secondsStart = dateStart.getSeconds();
-  const timeStart = getFullTime(hoursStart, minutesStart, secondsStart);
-  const dateEnd = getFullDate_WithoutTimezone_ISOMethod(event.endDate);
-  const hoursEnd = dateEnd.getHours();
-  const minutesEnd = dateEnd.getMinutes();
-  const secondsEnd = dateEnd.getSeconds();
-  const timeEnd = getFullTime(hoursEnd, minutesEnd, secondsEnd);
-  newDomEvent.innerHTML = `<p>${event.title}<p/>
-  <p>${timeStart} - ${timeEnd}</p>`;
+  const strTimeInit = getFullTimeFromString(event.initDate);
+  const strTimeEnd = getFullTimeFromString(event.endDate);
+  newDomEvent.innerHTML = `<p event-id=${event.id}>${event.title}<p/>`;
+  newDomEvent.innerHTML += `<p event-id=${event.id}>${paintInit ? strTimeInit : ''}${paintInit && paintEnd ? ' - ' : ''}${paintEnd ? strTimeEnd : ''}</p>`;
+  newDomEvent.innerHTML += `<p event-id=${event.id}>${paintInit || paintEnd ? event.type : ''}</p>`;
+  newDomEvent.innerHTML += `<p event-id=${event.id}>${paintInit ? event.description : ''}</p>`;
   newDomEvent.classList.add("day-event");
-  newDomEvent.setAttribute('id', event.id);
+  newDomEvent.setAttribute('event-id', event.id);
   newDomEvent.addEventListener("click", (e) => openEvent(e));
   newDomEvent.setAttribute('data-open', 'eventModal');
 
@@ -148,8 +129,8 @@ const removeEvent = (e) => {
 }
 
 function getDaysOfEvent(initDate, endDate) {
-  const dateStart = getFullDate_WithoutTimezone_ISOMethod(initDate);
-  const dateFinal = getFullDate_WithoutTimezone_ISOMethod(endDate);;
+  const dateStart = new Date(initDate);
+  const dateFinal = new Date(endDate);;
   const year = dateStart.getFullYear();
   const dayInit = dateStart.getDate();
   const dayFinal = dateFinal.getDate();
@@ -158,7 +139,7 @@ function getDaysOfEvent(initDate, endDate) {
   let totalDays = [];
 
   if (monthEnd - monthInit > 0) {
-    const daysInMonth = getFullDate_WithoutTimezone_TimezonOffsetMethod_FromParameters(year, monthInit, 0).getDate();
+    const daysInMonth = new Date(year, monthInit, 0).getDate();
     const daysInMonth1 = (daysInMonth - dayInit);
     const daysInMonth2 = dayFinal;
     const numberDays = daysInMonth1 + daysInMonth2;
@@ -182,8 +163,6 @@ function getDaysOfEvent(initDate, endDate) {
     }
     return { totalDays: totalDays };
   }
-
-
 }
 
 function disableEvent(task) {

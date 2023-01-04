@@ -26,7 +26,7 @@ function loadMonths() {
     }
 
     const emptyDays = getEmptyDaysInMonth(currentYear, month, 1, "en");
-    const daysInMonth = getFullDate_WithoutTimezone_TimezonOffsetMethod_FromParameters(currentYear, month + 1, 0).getDate();
+    const daysInMonth = new Date(currentYear, month + 1, 0).getDate();
 
     for (let day = 1; day <= emptyDays + daysInMonth; day++) {
       const domDay = document.createElement('div');
@@ -42,9 +42,9 @@ function loadMonths() {
     }
     calendarContainer.appendChild(monthContainer);
   }
-
-  monthDisplay.innerHTML = `<p>${getStringLocaleDate(currentDate, userLang)}</p>`;
+  monthDisplay.innerHTML = `<p>${getStrDisplayDate(currentDate, userLang)}</p>`;
   loadEvents();
+  initMonthButtons();
 }
 
 function addDay(element, day, month, year, emptyDays) {
@@ -59,9 +59,7 @@ function addDay(element, day, month, year, emptyDays) {
 
 
 loadMonths();
-initMonthButtons();
 initializeModals();
-initForm();
 threadPendingTasks();
 threadRemindTasks();
 

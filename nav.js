@@ -16,11 +16,11 @@ function changeMonth(action) {
   } else {
     navigator--;
     setVisibility('visible', nextBtn);
-    if (navigator === 0) newDate = getFullDate_WithoutTimezone_TimezonOffsetMethod_FromParameters(currentYear, navigator, currentMonth);
+    if (navigator === 0) newDate = new Date(currentYear, navigator, currentMonth);
     if (navigator === 0) setVisibility("hidden", previousBtn);
   }
-  newDate = getFullDate_WithoutTimezone_TimezonOffsetMethod_FromParameters(currentYear, navigator, 1, 12, 00, 00);
-  monthDisplay.innerHTML = `<p>${getStringLocaleDate(newDate, userLang)}</p>`;
+  newDate = new Date(currentYear, navigator, 1, 12, 00, 00);
+  monthDisplay.innerHTML = `<p>${getStrDisplayDate(newDate, userLang)}</p>`;
   changeStyles("on", domMonth, navigator);
 }
 

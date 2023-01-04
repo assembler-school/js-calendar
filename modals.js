@@ -1,25 +1,37 @@
 const isVisible = "is-visible";
 
+// MODALS
 function initModalCreation() {
 
   const openAddModal = document.querySelectorAll('[data-open="addModal"]');
   const closeAddModal = document.querySelectorAll('[data-close="addModal"]');
 
+
   for (const el of openAddModal) {
     el.addEventListener("click", function (e) {
+      const { hours, minutes } = getTimeNow();
+      let date;
+      
       if (e.target.classList.contains("day") || e.target.classList.contains("open-modal")) {
-        let date;
+
         if (el.hasAttribute('data-day')) {
           const year = el.getAttribute('data-year');
           const day = el.getAttribute('data-day');
           const month = el.getAttribute('data-month');
           const emptyDays = el.getAttribute('data-empty');
-          date = getFullDate_WithoutTimezone_TimezonOffsetMethod_FromParameters(year, month, day - emptyDays, 12, 00, 00);
+          date = new Date(year, month, day - emptyDays, 09, 00, 00);
+          if (day - emptyDays === currentDay) {
+            date = new Date(year, month, day - emptyDays, hours, minutes);
+          }
         } else {
-          date = getFullDate_WithoutTimezone_TimezonOffsetMethod_FromParameters(currentYear, navigator, 1);
+          date = new Date(currentYear, navigator, 1, 09, 00, 00);
+          if (navigator == currentMonth) {
+            date = new Date(currentYear, navigator, currentDay, hours, minutes);
+          }
         }
-        const result = date.toISOString().split('T')[0];
-        setDatesInForm(result);
+
+        const { strDate, strTimeInit, strTimeEnd } = getFormValues(date);
+        setDatesInForm(strDate, strTimeInit, strTimeEnd);
         hideEndDateAndRemind();
         document.getElementById("addModal").classList.add(isVisible);
       }
@@ -42,7 +54,6 @@ function initModalCreation() {
     }
   });
 }
-
 function initModalEvent() {
 
   const openEventModal = document.querySelectorAll('[data-open="eventModal"]');
@@ -71,7 +82,6 @@ function initModalEvent() {
     }
   });
 }
-
 function initRemindAlert() {
 
   const closeRemindAlert = document.querySelectorAll('[data-close="remindAlert"]');
@@ -93,7 +103,6 @@ function initRemindAlert() {
     }
   });
 }
-
 function initEndAlert() {
 
   const closeEndAlert = document.querySelectorAll('[data-close="endAlert"]');
@@ -115,7 +124,6 @@ function initEndAlert() {
     }
   });
 }
-
 function initErrors() {
 
   const closeEndAlert = document.querySelectorAll('[data-close="error"]');
@@ -137,28 +145,28 @@ function initErrors() {
     }
   });
 }
-
 function initializeModals() {
   initModalCreation();
   initModalEvent();
   initRemindAlert();
   initEndAlert();
   initErrors();
+  initForm();
 }
 
+// OPENERS
 function openEvent(e) {
+  console.log(e.target);
   let tempEvent;
   const events = getStorage("events");
   events &&
     events.forEach((event) => {
-
-      if (event.id === e.target.parentElement.id) {
+      if (event.id === e.target.getAttribute('event-id')) {
         tempEvent = event;
       }
     });
   setEventData(tempEvent);
 }
-
 function openError(type) {
   const content = document.querySelector("#errorContent");
   content.innerHTML = '';
@@ -166,7 +174,7 @@ function openError(type) {
 
   switch (type) {
     case 1:
-      text.textContent = 'Error . . . Cannot create an event on a date before the current date';
+      text.textContent = 'Error . . . Cannot create an event on a date before the current date. You have 10 minutes to setting up the event';
       break;
     case 2:
       text.textContent = 'Error . . . The end date of the event must be later than the start date.';
@@ -181,7 +189,6 @@ function openError(type) {
   content.append(text);
   document.querySelector("#error").classList.add(isVisible);
 }
-
 function openAlert(task, type) {
   if (type === "end") {
     const content = document.querySelector("#endAlertContent");

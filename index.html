@@ -51,6 +51,7 @@
           <div class="weekday">Saturday</div>
         </div>
         <div class="months" id="months"></div>
+
         <!-- MODAL EVENTS -->
         <div class="modal" id="eventModal">
           <div class="modal-dialog">
@@ -75,7 +76,7 @@
                   <p id="finalDate"></p>
                 </div>
                 <div class="form-data">
-                  <p>Time</p>
+                  <p>Time to remind</p>
                   <p id="timeEvent"></p>
                 </div>
                 <div class="form-data">
@@ -92,8 +93,11 @@
               </form>
             </section>
             <footer class="modal-footer">
-              <button type="submit" form="formEvent" class="btn-cancel">
+              <button type="submit" form="formEvent" class="btn-del">
                 Delete
+              </button>
+              <button class="btn-cancel" data-close="eventModal">
+                Cancel
               </button>
             </footer>
           </div>
@@ -136,6 +140,14 @@
                   </div>
                 </div>
                 <div class="form-data">
+                  <div class="div-label">
+                    <label for="initTime">Initial time: *</label>
+                  </div>
+                  <div class="div-input">
+                    <input type="time" name="initTime" id="initTime" required />
+                  </div>
+                </div>
+                <div class="form-data">
                   <input
                     type="checkbox"
                     name="existEndDate"
@@ -144,11 +156,21 @@
                   <label for="existEndDate">End date</label>
                 </div>
                 <div class="form-data" id="showEndDate">
-                  <div class="div-label">
-                    <label for="endDate">End date: *</label>
+                  <div class="form-data">
+                    <div class="div-label">
+                      <label for="endDate">End date: *</label>
+                    </div>
+                    <div class="div-input">
+                      <input type="date" name="endDate" id="endDate" />
+                    </div>
                   </div>
-                  <div class="div-input">
-                    <input type="date" name="endDate" id="endDate" />
+                  <div class="form-data">
+                    <div class="div-label">
+                      <label for="endTime">End time: *</label>
+                    </div>
+                    <div class="div-input">
+                      <input type="time" name="endTime" id="endTime" />
+                    </div>
                   </div>
                 </div>
                 <div id="showExpiration" class="form-data">

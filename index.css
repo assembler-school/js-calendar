@@ -204,7 +204,7 @@ body {
   margin-top: 5px;
   border-radius: 10px;
   line-height: 23px;
-  font-weight: bolder;
+  font-weight: bold;
   word-wrap: break-word;
   background-color: rgb(0 181 91);
   overflow: visible;
@@ -233,6 +233,7 @@ body {
 }
 .calendar .months .month .day .day-event > * {
   background-color: transparent;
+  text-transform: capitalize;
 }
 
 /* MODAL */
@@ -298,6 +299,7 @@ body {
 }
 .modal p + p {
   margin-top: 1rem;
+  text-transform: capitalize;
 }
 .modal {
   visibility: hidden;
@@ -354,7 +356,8 @@ div.form-data > p {
   width: 90%;
   background-color: var(--main-color);
   font-size: 1.2em;
-  margin: 25px 0;
+  margin-left: 50px;
+  margin-top: 20px;
 }
 .modal-content .form .form-data .div-input {
   width: 50%;
@@ -385,7 +388,8 @@ input[type="checkbox"] + label {
   cursor: pointer;
 }
 .modal-footer .btn-save,
-.modal-footer .btn-cancel {
+.modal-footer .btn-cancel,
+.modal-footer .btn-del {
   background-color: rgba(0, 255, 0, 0.652);
   color: white;
   border: none;
@@ -398,6 +402,9 @@ input[type="checkbox"] + label {
 }
 .modal-footer .btn-cancel {
   background-color: rgb(255, 0, 0);
+}
+.modal-footer .btn-del {
+  background-color: orange;
 }
 
 /* ERRORS */
@@ -551,6 +558,11 @@ input[type="checkbox"] + label {
 }
 .spanWeekday {
   visibility: hidden;
+}
+#showEndDate {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
 }
 
 @keyframes fadeIn {

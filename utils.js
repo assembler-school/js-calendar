@@ -1,68 +1,8 @@
-// DATES AND TIME FROM SEPARATE PARAMETERS ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+addCero = function (num) {
+  return (num < 10 ? '0' : '') + num;
+};
 
-function getFullDate_WithoutTimezone_TimezonOffsetMethod_FromParameters(year, month, day, minute, hour, second) {
-  let initDate;
-  if (hour && minute && second) {
-    initDate = new Date(year, month, day, minute, hour, second);
-  } else initDate = new Date(year, month, day);
-
-  return new Date(initDate.getTime() + Math.abs(initDate.getTimezoneOffset() * 60000));
-}
-function getFullDate_WithoutTimezone_UTCMethod_FromParameters(year, month, day, minute, hour, second) {
-  let initDate;
-  if (hour && minute && second) {
-    initDate = new Date(year, month, day, minute, hour, second);
-  } else initDate = new Date(year, month, day);
-
-  return new Date(Date.UTC(initDate.getFullYear(), initDate.getMonth(), initDate.getDate(), initDate.getHours(), initDate.getMinutes()));
-}
-
-// DATES AND TIME FROM DATE ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// FULL SIMPLE DATETIME
-
-function getFullDate(date) {
-  return new Date(date);
-}
-function getFullDateTime(date, hour, minute, second) {
-  return new Date(`${date}T${hour.toString().length === 1 ? "0" + hour : hour}:${minute === 00 ? "00" : minute}:${second === 00 ? "00" : second}`);
-}
-
-function getFullTime(hour, minute, second) {
-  return `${hour.toString().length === 1 ? "0" + hour : hour}:${minute.toString().length === 1 ? "0" + minute : minute}:${second.toString().length === 1 ? "0" + second : second}`;
-}
-
-// RECOVER DATETIME FROM INPUT VALUES
-function getFullDate_WithoutTimezone_ISOMethod(date) {
-  return new Date(new Date(date).toISOString().slice(0, -1));
-}
-
-// ADD HOURS TO DATETIME
-function addHours_toDate(date, hours) {
-  return new Date(date.setHours(date.getHours() + hours));
-}
-
-// STORAGE IN JSON FORMAT
-function getFullDate_WithoutTimezone_UTCMethod(date) {
-  return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes()));
-}
-
-// SET DATE INPUTS
-function getDate_toString_ISOMethod(date) {
-  return new Date(date).toISOString().split('T')[0];
-}
-
-// PRINT IN DISPLAY
-
-function getDateWithoutTime(date) {
-  return new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'America/New_York' }).formatToParts(date);
-}
-function getStringLocaleDate(date, lang) {
-  return Intl.DateTimeFormat(lang, { dateStyle: 'full' }).format(date);
-}
-
-// STORAGE ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+// STORAGE
 function saveStorage(key, el) {
   localStorage.setItem(key, JSON.stringify(el));
 }
@@ -79,22 +19,19 @@ function reloadReminderEvents(event) {
   reminders.push(event);
 }
 
-// OTHER METHODS ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+// UTIL
 function arrayRemove(arr, id) {
   return arr.filter(event => {
     return event.id !== id;
   });
 }
-
 function getEmptyDaysInMonth(year, month, day, lang) {
-  const date = getFullDate_WithoutTimezone_TimezonOffsetMethod_FromParameters(year, month, day);
+  const date = new Date(year, month, day);
   const dateStr = date.toLocaleDateString(lang, {
     weekday: "long",
   });
   return weekDays.indexOf(dateStr);
 }
-
 function changeStyles(action, element, nav) {
   if (action === 'on') {
     document.getElementById(nav).style.opacity = '1';
@@ -108,7 +45,83 @@ function changeStyles(action, element, nav) {
     element.style.overflow = 'hidden';
   }
 }
-
 function setVisibility(action, element) {
   element.style.visibility = action;
+}
+
+// DATETIME
+
+// impresión de fecha en pantalla
+function getStrDisplayDate(date, lang) {
+  return Intl.DateTimeFormat(lang, { dateStyle: 'full' }).format(date);
+}
+// impresión en pantalla
+function getStrDisplayDateTime(date, lang) {
+  options = {
+  weekday: 'long',
+  year: 'numeric', month: 'long', day: 'numeric',
+  hour: 'numeric', minute: 'numeric',
+  hour12: false,
+};
+  return Intl.DateTimeFormat(lang, options).format(date);
+}
+// Extraer horas y minutos a partir inputs "time"
+function extractTime(time) {
+  if (time) {
+    const data = time.split(':');
+    const hours = data[0];
+    const minutes = data[1];
+    return { hours, minutes };
+  } else {
+    return { hours: "21", minutes: "30" }
+  }
+}
+// 14:56 extraer horas y minutos ahora
+function getTimeNow() {
+  const date = new Date();
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  return { hours, minutes };
+}
+// Configurar valores de formulario al abrir modal  -> initModalCreation
+function getFormValues(date) {
+
+  const strDate = date.getFullYear() +
+    '-' + addCero(date.getMonth() + 1) +
+    '-' + addCero(date.getDate());
+  const strTimeInit = addCero(date.getHours()) +
+    ':' + addCero(date.getMinutes());
+  const strTimeEnd = addCero(date.getHours() + 2) +
+    ':' + addCero(date.getMinutes());
+
+  return { strDate, strTimeInit, strTimeEnd };
+}
+// Crear fecha a partir de los valores del formulario -> addEvent
+function setDateFormValues(date, { hours, minutes }) {
+  const dateOnly = new Date(date);
+  return new Date(dateOnly.getFullYear(), dateOnly.getMonth(), dateOnly.getDate(), hours, minutes);
+}
+// Crear string de fecha para guardar en JSON
+function toIsoString(date) {
+  var tzo = -date.getTimezoneOffset(),
+    dif = tzo >= 0 ? '+' : '-',
+    pad = function (num) {
+      return (num < 10 ? '0' : '') + num;
+    };
+
+  return date.getFullYear() +
+    '-' + pad(date.getMonth() + 1) +
+    '-' + pad(date.getDate()) +
+    'T' + pad(date.getHours()) +
+    ':' + pad(date.getMinutes()) +
+    ':' + pad(date.getSeconds()) +
+    dif + pad(Math.floor(Math.abs(tzo) / 60)) +
+    ':' + pad(Math.abs(tzo) % 60);
+}
+// Crear string de hora con zeros a partir de un string de fecha
+function getFullTimeFromString(str) {
+  const date = new Date(str);
+  const hour = date.getHours();
+  const minute = date.getMinutes();
+  return `${addCero(hour)}:${addCero(minute)}`;
 }
