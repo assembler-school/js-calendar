@@ -155,7 +155,6 @@ function getDaysOfEvent(initDate, endDate) {
       totalDays: totalDays,
       daysInMonth1: daysInMonth1,
     }
-    console.log(objectToReturn);
     return objectToReturn;
 
   } else {
