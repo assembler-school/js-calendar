@@ -48,7 +48,8 @@ function loadMonths() {
 }
 
 function addDay(element, day, month, year, emptyDays) {
-  element.innerHTML = `<p class="number-day">${day - emptyDays}<p>`;
+  const dayOfWeek = new Date(year, month, day).getDay();
+  element.innerHTML = `<p class="number-day">${day - emptyDays}<span class="spanWeekday">  - ${weekDays[dayOfWeek]}</span></p>`;
   element.setAttribute('data-day', day - emptyDays);
   element.setAttribute('data-month', month);
   element.setAttribute('data-year', year);

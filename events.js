@@ -22,12 +22,12 @@ function loadEvents() {
 const addEvent = (e) => {
   e.preventDefault();
   const date = new Date(initDate.value);
-  if (date.getMonth() === navigator) {  
+  if (date.getMonth() === navigator) {
     const startDate = getStartDateOfEvent(initDate.value);
     const finalDate = getEndDateOfEvent(endDate.value);
-    if (finalDate.getMonth() - startDate.getMonth() <= 1) { 
-      if (startDate < finalDate) {  
-        if (startDate >= new Date(currentYear, currentMonth, currentDay)) {  
+    if (finalDate.getMonth() - startDate.getMonth() <= 1) {
+      if (startDate < finalDate) {
+        if (startDate >= new Date(currentYear, currentMonth, currentDay)) {
           const event = createEvent(startDate, finalDate);
           time.value && reloadReminderEvents(event);
           reloadEvents(event);
@@ -36,7 +36,7 @@ const addEvent = (e) => {
           initModalEvent();
           form.reset();
           document.querySelector("#addModal.is-visible").classList.remove(isVisible);
-        } else openError(1);        
+        } else openError(1);
       } else openError(2);
     } else openError(3);
   } else openError(4);
@@ -47,20 +47,16 @@ function getStartDateOfEvent(date) {
   if (startDate.getDate() === currentDate.getDate()) {
     startDate = new Date();
   }
-  //console.log(startDate);
-  //console.log(new Date());
   return startDate;
 }
 
 function getEndDateOfEvent(date) {
   let finalDate;
   endDate.value ? finalDate = getFullDateTime(date, 11, 30, 00) : finalDate = null;
-  // Same day or not selected
   if (!endDate.value || finalDate.getDate() === currentDate.getDate()) {
     finalDate = new Date();
     finalDate = addHours_toDate(finalDate, 2);
   }
-  //console.log(finalDate);
   return finalDate;
 }
 
@@ -100,26 +96,35 @@ function chooseDateEventAndPaint(event) {
 
 function paintEvent(event, daySquare) {
   const newDomEvent = document.createElement("div");
-  newDomEvent.textContent = event.title;
+  const dateStart = getFullDate_WithoutTimezone_ISOMethod(event.initDate);
+  const hoursStart = dateStart.getHours();
+  const minutesStart = dateStart.getMinutes();
+  const secondsStart = dateStart.getSeconds();
+  const timeStart = getFullTime(hoursStart, minutesStart, secondsStart);
+  const dateEnd = getFullDate_WithoutTimezone_ISOMethod(event.endDate);
+  const hoursEnd = dateEnd.getHours();
+  const minutesEnd = dateEnd.getMinutes();
+  const secondsEnd = dateEnd.getSeconds();
+  const timeEnd = getFullTime(hoursEnd, minutesEnd, secondsEnd);
+  newDomEvent.innerHTML = `<p>${event.title}<p/>
+  <p>${timeStart} - ${timeEnd}</p>`;
   newDomEvent.classList.add("day-event");
   newDomEvent.setAttribute('id', event.id);
   newDomEvent.addEventListener("click", (e) => openEvent(e));
   newDomEvent.setAttribute('data-open', 'eventModal');
 
   if (event.remind === false) newDomEvent.style.backgroundColor = 'orange';
-  if (event.finished) newDomEvent.style.backgroundColor = 'red';
+  if (event.finished) newDomEvent.style.backgroundColor = 'rgb(203 55 55)';
 
   daySquare.append(newDomEvent);
 }
 
 const removeEvent = (e) => {
   e.preventDefault();
-  // Delete from localStorage
   allEvents = arrayRemove(allEvents, idEvent.value);
   removeStorage("events");
   saveStorage("events", allEvents);
 
-  // Delete from DOM
   const month = new Date(initEventDate.value).getMonth();
   const monthEnd = new Date(endEventDate.value).getMonth();
   const { totalDays, daysInMonth1 } = getDaysOfEvent(initEventDate.value, endEventDate.value);
@@ -139,16 +144,17 @@ const removeEvent = (e) => {
       if (idEvent.value === el.id) el.remove();
     });
   });
-  // Close modal
   document.querySelector("#eventModal.is-visible").classList.remove(isVisible);
 }
 
 function getDaysOfEvent(initDate, endDate) {
-  const year = new Date(initDate).getFullYear();
-  const dayInit = new Date(initDate).getDate();
-  const dayFinal = new Date(endDate).getDate();
-  const monthInit = new Date(initDate).getMonth();
-  const monthEnd = new Date(endDate).getMonth();
+  const dateStart = getFullDate_WithoutTimezone_ISOMethod(initDate);
+  const dateFinal = getFullDate_WithoutTimezone_ISOMethod(endDate);;
+  const year = dateStart.getFullYear();
+  const dayInit = dateStart.getDate();
+  const dayFinal = dateFinal.getDate();
+  const monthInit = dateStart.getMonth();
+  const monthEnd = dateFinal.getMonth();
   let totalDays = [];
 
   if (monthEnd - monthInit > 0) {

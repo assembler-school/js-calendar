@@ -55,7 +55,7 @@
         <div class="modal" id="eventModal">
           <div class="modal-dialog">
             <header class="modal-header">
-              EVENT
+              <h3 id="titleEvent"></h3>
               <button
                 class="modal-close"
                 aria-label="close eventModal"
@@ -67,81 +67,28 @@
             <section class="modal-content" id="modalContent">
               <form id="formEvent" class="form">
                 <div class="form-data">
-                  <div class="div-label">
-                    <label for="titleEvent">Title:</label>
-                  </div>
-                  <div class="div-input">
-                    <input
-                      type="text"
-                      name="titleEvent"
-                      id="titleEvent"
-                      maxlength="60"
-                      disabled
-                    />
-                  </div>
+                  <p>Initial date</p>
+                  <p id="startDate"></p>
                 </div>
                 <div class="form-data">
-                  <div class="div-label">
-                    <label for="initEventDate">Initial date:</label>
-                  </div>
-                  <div class="div-input">
-                    <input
-                      type="date"
-                      name="initEventDate"
-                      id="initEventDate"
-                      disabled
-                    />
-                  </div>
+                  <p>End date</p>
+                  <p id="finalDate"></p>
                 </div>
                 <div class="form-data">
-                  <div class="div-label">
-                    <label for="endEventDate">End date:</label>
-                  </div>
-                  <div class="div-input">
-                    <input
-                      type="date"
-                      name="endEventDate"
-                      id="endEventDate"
-                      disabled
-                    />
-                  </div>
-                </div>
-                <div>
-                  <div class="form-data">
-                    <div class="div-label">
-                      <label for="timeEvent">Time:</label>
-                    </div>
-                    <div class="div-input">
-                      <select name="timeEvent" id="timeEvent" disabled>
-                        <option id="optionTimeEvent" value="" selected></option>
-                      </select>
-                    </div>
-                  </div>
+                  <p>Time</p>
+                  <p id="timeEvent"></p>
                 </div>
                 <div class="form-data">
-                  <div class="div-label">
-                    <label for="descriptionEvent">Description:</label>
-                  </div>
-                  <div class="div-input">
-                    <textarea
-                      name="descriptionEvent"
-                      id="descriptionEvent"
-                      maxlength="500"
-                      disabled
-                    ></textarea>
-                  </div>
+                  <p>Description</p>
+                  <p id="descriptionEvent"></p>
                 </div>
                 <div class="form-data">
-                  <div class="div-label">
-                    <label for="typeEvent">Event type:</label>
-                  </div>
-                  <div class="div-input">
-                    <select name="typeEvent" id="typeEvent" disabled>
-                      <option id="optionTypeEvent" value="" selected></option>
-                    </select>
-                  </div>
+                  <p>Type</p>
+                  <p id="typeEvent"></p>
                 </div>
                 <input id="idEvent" type="hidden" name="idEvent" />
+                <input id="initEventDate" type="hidden" name="eventInit" />
+                <input id="endEventDate" type="hidden" name="eventEnd" />
               </form>
             </section>
             <footer class="modal-footer">
@@ -167,7 +114,9 @@
             <section class="modal-content">
               <form class="form" id="form" name="form">
                 <div class="form-data">
-                  <div class="div-label"><label for="title">Title: *</label></div>
+                  <div class="div-label">
+                    <label for="title">Title: *</label>
+                  </div>
                   <div class="div-input">
                     <input
                       type="text"
@@ -187,12 +136,16 @@
                   </div>
                 </div>
                 <div class="form-data">
-                  <input type="checkbox" name="existEndDate" id="existEndDate" />
+                  <input
+                    type="checkbox"
+                    name="existEndDate"
+                    id="existEndDate"
+                  />
                   <label for="existEndDate">End date</label>
                 </div>
                 <div class="form-data" id="showEndDate">
                   <div class="div-label">
-                    <label for="endDate">End date:</label>
+                    <label for="endDate">End date: *</label>
                   </div>
                   <div class="div-input">
                     <input type="date" name="endDate" id="endDate" />
@@ -206,11 +159,13 @@
                     >
                   </div>
                   <div class="form-data" id="previousTime">
-                    <div class="div-label"><label for="time">Time:</label></div>
+                    <div class="div-label">
+                      <label for="time">Time: *</label>
+                    </div>
                     <div class="div-input">
                       <select name="time" id="time">
                         <option value="" selected>Choose time</option>
-                        <option value="1">1 min</option>
+                        <option value="5">5 min</option>
                         <option value="10">10 min</option>
                         <option value="15">15 min</option>
                         <option value="30">30 min</option>
@@ -254,50 +209,87 @@
         </div>
         <!-- ALERT REMIND -->
         <div class="modal" id="remindAlert">
-          <div class="modal-dialog alert">
-            <header class="modal-header">
-              REMEMBER
+          <div class="alert-dialog">
+            <header class="alert-header">
+                    <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-exclamation-triangle-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+                />
+              </svg>
+              <h3>REMEMBER</h3>
               <button
-                class="modal-close alert"
+                class="alert-close"
                 aria-label="close remindAlert"
                 data-close="remindAlert"
               >
                 ✕
               </button>
             </header>
-            <section class="modal-content" id="remindAlertContent"></section>
+            <section class="alert-content" id="remindAlertContent"></section>
           </div>
         </div>
-        <!-- ALERT REMIND -->
+        <!-- ALERT END -->
         <div class="modal" id="endAlert">
-          <div class="modal-dialog alert-end">
-            <header class="modal-header">
-              ATTENTION
+          <div class="error-dialog alert-end">
+            <header class="error-header">
+                    <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-exclamation-triangle-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+                />
+              </svg>
+              <h3>ATTENTION</h3>
               <button
-                class="modal-close alert"
-                aria-label="close endAlert"
+                class="error-close"
+                aria-label="error endAlert"
                 data-close="endAlert"
               >
                 ✕
               </button>
             </header>
-            <section class="modal-content" id="endAlertContent"></section>
+            <section class="error-content" id="endAlertContent"></section>
           </div>
         </div>
+
         <!-- ERRORS -->
         <div class="modal" id="error">
-          <div class="modal-dialog alert-end">
-            <header class="modal-header">
-              ERROR!
+          <div class="error-dialog">
+            <header class="error-header">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-exclamation-triangle-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+                />
+              </svg>
+              <h3>ERROR!</h3>
               <button
-                class="modal-close alert"
+                class="error-close alert"
                 aria-label="close error"
                 data-close="error"
               >
                 ✕
               </button>
             </header>
-            <section class="modal-content" id="errorContent"></section>
+            <section class="error-content" id="errorContent"></section>
           </div>
         </div>
       </article>

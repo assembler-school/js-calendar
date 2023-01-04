@@ -28,6 +28,10 @@ function getFullDateTime(date, hour, minute, second) {
   return new Date(`${date}T${hour.toString().length === 1 ? "0" + hour : hour}:${minute === 00 ? "00" : minute}:${second === 00 ? "00" : second}`);
 }
 
+function getFullTime(hour, minute, second) {
+  return `${hour.toString().length === 1 ? "0" + hour : hour}:${minute.toString().length === 1 ? "0" + minute : minute}:${second.toString().length === 1 ? "0" + second : second}`;
+}
+
 // RECOVER DATETIME FROM INPUT VALUES
 function getFullDate_WithoutTimezone_ISOMethod(date) {
   return new Date(new Date(date).toISOString().slice(0, -1));
@@ -35,7 +39,7 @@ function getFullDate_WithoutTimezone_ISOMethod(date) {
 
 // ADD HOURS TO DATETIME
 function addHours_toDate(date, hours) {
-  return new Date(date.setMinutes(date.getMinutes() + hours));
+  return new Date(date.setHours(date.getHours() + hours));
 }
 
 // STORAGE IN JSON FORMAT

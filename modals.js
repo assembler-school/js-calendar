@@ -151,7 +151,8 @@ function openEvent(e) {
   const events = getStorage("events");
   events &&
     events.forEach((event) => {
-      if (event.id === e.target.id) {
+
+      if (event.id === e.target.parentElement.id) {
         tempEvent = event;
       }
     });
@@ -161,7 +162,7 @@ function openEvent(e) {
 function openError(type) {
   const content = document.querySelector("#errorContent");
   content.innerHTML = '';
-  const text = document.createElement('p');
+  const text = document.createElement('span');
 
   switch (type) {
     case 1:
@@ -185,20 +186,25 @@ function openAlert(task, type) {
   if (type === "end") {
     const content = document.querySelector("#endAlertContent");
     content.innerHTML = '';
-    const text = document.createElement('p');
-    text.innerHTML = `La tarea <h3>${task.title}</h3> ha finalizado`;
+    const text = document.createElement('span');
+    text.innerHTML = `La tarea <strong>${task.title}</strong> ha finalizado`;
     content.append(text);
     document.querySelector("#endAlert").classList.add(isVisible);
-    const eliminatedTask = document.querySelector(`#${task.id}`);
-    eliminatedTask.style.backgroundColor = "red";
+    const disabledTasks = document.querySelectorAll(`#${task.id}`);
+    for (const task of disabledTasks) {
+      task.style.backgroundColor = "rgb(203 55 55)";
+    }
   } else {
     const content = document.querySelector("#remindAlertContent");
     content.innerHTML = '';
-    const text = document.createElement('p');
-    text.innerHTML = `Quedan ${task.time} minutos para terminar la tarea <h3>${task.title}</h3>`;
+    const text = document.createElement('span');
+    text.innerHTML = `Quedan <strong>${task.time} minutos</strong> para terminar la tarea <strong>${task.title}</strong>`;
     content.append(text);
     document.querySelector("#remindAlert").classList.add(isVisible);
-    const remindedTask = document.querySelector(`#${task.id}`);
-    remindedTask.style.backgroundColor = "orange";
+    const remindedTasks = document.querySelectorAll(`#${task.id}`);
+    for (const task of remindedTasks) {
+      task.style.backgroundColor = "orange";
+    }
+
   }
 }

@@ -52,14 +52,15 @@ function setDatesInForm(result) {
 }
 
 function setEventData(event) {
-  document.querySelector("#titleEvent").value = event.title;
+  document.querySelector("#titleEvent").textContent = event.title;
+  document.querySelector("#startDate").textContent = getDate_toString_ISOMethod(event.initDate);
+  document.querySelector("#finalDate").textContent = getDate_toString_ISOMethod(event.endDate);
+  document.querySelector("#descriptionEvent").textContent = event.description ? event.description : "Not Selected";
+  document.querySelector("#timeEvent").textContent = event.time ? event.time : "Not Selected";
+  document.querySelector("#typeEvent").textContent = event.type ? event.type : "Not Selected";
+  document.querySelector("#typeEvent").style.textTransform = "capitalize";
   document.querySelector("#initEventDate").value = getDate_toString_ISOMethod(event.initDate);
   document.querySelector("#endEventDate").value = getDate_toString_ISOMethod(event.endDate);
-  document.querySelector("#descriptionEvent").value = event.description;
-  document.querySelector("#optionTimeEvent").value = event.time;
-  document.querySelector("#optionTimeEvent").textContent = event.time;
-  document.querySelector("#optionTypeEvent").value = event.type;
-  document.querySelector("#optionTypeEvent").textContent = event.type;
   document.querySelector("#idEvent").value = event.id;
 }
 
