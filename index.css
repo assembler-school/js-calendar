@@ -595,11 +595,14 @@ input[type="checkbox"] + label {
     flex-direction: column;
   }
   .header .h1 {
-    font-size: 1.6em;
+    font-size: 2.9em;
     transform: rotate(360deg);
     margin: 10px 0;
     text-align: center;
     letter-spacing: 20px;
+    width: 100%;
+  }
+  .header .btn-add {
     width: 100%;
   }
   .header .btn-add .open-modal {
@@ -667,10 +670,11 @@ input[type="checkbox"] + label {
     width: 60vw;
   }
   .modal-header h3 {
-    font-size: 0.5em;
+    font-size: 0.7em;
   }
   div.form-data > p {
-    margin: 0;
+    margin-left: 30px;
+    font-size: 0.7em;
   }
   .modal-footer {
     flex-direction: column;
@@ -684,7 +688,7 @@ input[type="checkbox"] + label {
   .modal-footer .btn-del {
     padding: 4px 10px;
     border-radius: 5px;
-    font-size: 0.5em;
+    font-size: 0.7em;
     margin-top: 5px;
   }
   .modal-content .form .form-data .div-input input,
@@ -694,7 +698,7 @@ input[type="checkbox"] + label {
     padding: 2px 4px;
   }
   label {
-    font-size: 0.6em !important;
+    font-size: 0.7em !important;
   }
   input[type="checkbox"] {
     width: 1em;
