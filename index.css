@@ -557,7 +557,7 @@ input[type="checkbox"] + label {
   display: flex !important;
 }
 .spanWeekday {
-  visibility: hidden;
+  display: none;
 }
 #showEndDate {
   display: flex;
@@ -613,8 +613,9 @@ input[type="checkbox"] + label {
     min-height: 150px;
     font-size: 1.1em;
     display: flex;
-    border-radius: 5px;
     flex-flow: row wrap;
+    border-radius: 5px;
+    justify-content: flex-start;
   }
   .calendar {
     max-width: 100%;
@@ -644,68 +645,61 @@ input[type="checkbox"] + label {
     font-size: 1.6em;
     transform: none;
   }
-  .modal {
-    width: 100vw;
-    height: 100vh;
-  }
-  .modal .modal-dialog {
-    margin-left: -30px;
-    width: 80vw;
-  }
   .calendar .months .month .day .day-event {
-    width: 30.4%;
-    min-width: 200px;
-    height: fit-content;
+    min-width: 220px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    flex-grow: 1;
   }
   .calendar .months .month .day .number-day {
     width: 100%;
     height: fit-content;
+    display: inline-flex;
+    grid-column-start: 1;
+    grid-column-end: 5;
   }
   .spanWeekday {
-    visibility: visible;
+    display: flex;
   }
+  .modal .modal-dialog {
+    margin-left: -30px;
+    width: 60vw;
+  }
+  .modal-header h3 {
+    font-size: 0.5em;
+  }
+  div.form-data > p {
+    margin: 0;
+  }
+  .modal-footer {
+    flex-direction: column;
+    align-items: center;
+  }
+  .modal-content {
+    min-height: fit-content;
+  }
+  .modal-footer .btn-save,
+  .modal-footer .btn-cancel,
+  .modal-footer .btn-del {
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 0.5em;
+    margin-top: 5px;
+  }
+  .modal-content .form .form-data .div-input input,
+  .modal-content .form .form-data .div-input select,
+  .modal-content .form .form-data .div-input textarea {
+    font-size: 0.7em;
+    padding: 2px 4px;
+  }
+  label {
+    font-size: 0.6em !important;
+  }
+  input[type="checkbox"] {
+  width: 1em;
+  height: 1em;
+  margin-top: 0;
 }
-
-@media screen and (max-width: 850px) {
-  .calendar .months .month .day .day-event {
-    width: 29.9%;
-    height: fit-content;
-  }
-}
-
-@media screen and (max-width: 770px) {
-  .calendar .months .month .day .day-event {
-    width: 46.2%;
-    height: fit-content;
-  }
-}
-
-@media screen and (max-width: 680px) {
-  .calendar .months .month .day .day-event {
-    width: 45.7%;
-    height: fit-content;
-  }
-}
-
-@media screen and (max-width: 560px) {
-  .calendar .months .month .day .day-event {
-    width: 45%;
-    height: fit-content;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .calendar .months .month .day .day-event {
-    width: 42%;
-    height: fit-content;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .calendar .months .month .day .day-event {
-    width: 100%;
-    height: fit-content;
-  }
 }
 
 @media screen and (max-width: 480px) {

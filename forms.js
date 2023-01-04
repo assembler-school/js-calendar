@@ -79,5 +79,6 @@ const showPreviousTime = () => {
   } else {
     containerPreviousTime.classList.remove(isVisible);
     time.required = false;
+    time.value = '';
   }
 };

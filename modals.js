@@ -11,7 +11,7 @@ function initModalCreation() {
     el.addEventListener("click", function (e) {
       const { hours, minutes } = getTimeNow();
       let date;
-      
+
       if (e.target.classList.contains("day") || e.target.classList.contains("open-modal")) {
 
         if (el.hasAttribute('data-day')) {
@@ -34,6 +34,7 @@ function initModalCreation() {
         setDatesInForm(strDate, strTimeInit, strTimeEnd);
         hideEndDateAndRemind();
         document.getElementById("addModal").classList.add(isVisible);
+        document.body.style.overflow = 'hidden';
       }
     });
   }
@@ -41,16 +42,19 @@ function initModalCreation() {
   for (const el of closeAddModal) {
     el.addEventListener("click", function () {
       this.parentElement.parentElement.parentElement.classList.remove(isVisible);
+      document.body.style.overflow = 'auto';
     });
   }
   document.addEventListener("click", e => {
     if (e.target == document.querySelector("#addModal.is-visible")) {
       document.querySelector("#addModal.is-visible").classList.remove(isVisible);
+      document.body.style.overflow = 'auto';
     }
   });
   document.addEventListener("keyup", e => {
     if (e.key == "Escape" && document.querySelector("#addModal.is-visible")) {
       document.querySelector("#addModal.is-visible").classList.remove(isVisible);
+      document.body.style.overflow = 'auto';
     }
   });
 }
@@ -62,23 +66,27 @@ function initModalEvent() {
   for (const el of openEventModal) {
     el.addEventListener("click", function () {
       document.querySelector("#eventModal").classList.add(isVisible);
+      document.body.style.overflow = 'hidden';
     });
   }
 
   for (const el of closeEventModal) {
     el.addEventListener("click", function () {
       this.parentElement.parentElement.parentElement.classList.remove(isVisible);
+      document.body.style.overflow = 'auto';
     });
   }
 
   document.addEventListener("click", e => {
     if (e.target == document.querySelector("#eventModal.is-visible")) {
       document.querySelector("#eventModal.is-visible").classList.remove(isVisible);
+      document.body.style.overflow = 'auto';
     }
   });
   document.addEventListener("keyup", e => {
     if (e.key == "Escape" && document.querySelector("#eventModal.is-visible")) {
       document.querySelector("#eventModal.is-visible").classList.remove(isVisible);
+      document.body.style.overflow = 'auto';
     }
   });
 }
@@ -156,7 +164,6 @@ function initializeModals() {
 
 // OPENERS
 function openEvent(e) {
-  console.log(e.target);
   let tempEvent;
   const events = getStorage("events");
   events &&
@@ -197,7 +204,7 @@ function openAlert(task, type) {
     text.innerHTML = `La tarea <strong>${task.title}</strong> ha finalizado`;
     content.append(text);
     document.querySelector("#endAlert").classList.add(isVisible);
-    const disabledTasks = document.querySelectorAll(`#${task.id}`);
+    const disabledTasks = document.querySelectorAll(`[event-id=${task.id}]`);
     for (const task of disabledTasks) {
       task.style.backgroundColor = "rgb(203 55 55)";
     }
@@ -208,7 +215,7 @@ function openAlert(task, type) {
     text.innerHTML = `Quedan <strong>${task.time} minutos</strong> para terminar la tarea <strong>${task.title}</strong>`;
     content.append(text);
     document.querySelector("#remindAlert").classList.add(isVisible);
-    const remindedTasks = document.querySelectorAll(`#${task.id}`);
+    const remindedTasks = document.querySelectorAll(`[event-id=${task.id}]`);
     for (const task of remindedTasks) {
       task.style.backgroundColor = "orange";
     }

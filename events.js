@@ -36,6 +36,7 @@ const addEvent = (e) => {
           initModalEvent();
           form.reset();
           document.querySelector("#addModal.is-visible").classList.remove(isVisible);
+          document.body.style.overflow = "auto";
         } else openError(1);
       } else openError(2);
     } else openError(3);
@@ -122,7 +123,7 @@ const removeEvent = (e) => {
       daySquare = document.querySelector(`div[data-day="${day}"][data-month="${month}"]`);
     }
     Array.from(daySquare.children).forEach(el => {
-      if (idEvent.value === el.id) el.remove();
+      if (idEvent.value === el.getAttribute("event-id")) el.remove();
     });
   });
   document.querySelector("#eventModal.is-visible").classList.remove(isVisible);
