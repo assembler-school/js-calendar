@@ -20,7 +20,7 @@ function initModalCreation() {
           const month = el.getAttribute('data-month');
           const emptyDays = el.getAttribute('data-empty');
           date = new Date(year, month, day, 09, 00, 00);
-          if (day === currentDay) {
+          if (day == currentDay) {
             date = new Date(year, month, day, hours, minutes);
           }
         } else {

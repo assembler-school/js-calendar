@@ -24,29 +24,23 @@
 h1 {
   margin: 0;
 }
-body {
-  display: flex;
-}
 
 /* HEADER */
 .header {
-  max-width: 50px;
   padding: 20px 0;
   display: flex;
-  flex-flow: column-reverse wrap;
-  justify-content: flex-end;
-  align-items: center;
+  flex-flow: row-reverse wrap;
+  justify-content: center;
   background-color: transparent;
   color: white;
   margin: 20px 20px;
 }
 .header .h1 {
-  font-size: 3em;
-  transform: rotate(270deg);
-  width: 50px;
-  letter-spacing: 50px;
-  margin-top: 700px;
+  width: 100%;
+  font-size: 5em;
+  letter-spacing: 20px;
   font-weight: bolder;
+  text-align: center;
 }
 .header .btn-add {
   display: flex;
@@ -59,11 +53,11 @@ body {
   cursor: pointer;
   border: none;
   outline: none;
-  font-size: 3em;
+  font-size: 6em;
   color: rgb(255, 255, 255);
 }
 .header .btn-add .open-modal:hover {
-  transform: scale(1.5);
+  opacity: 0.7;
 }
 
 /* CALENDAR */
@@ -74,7 +68,7 @@ body {
 .calendar {
   margin: 0 auto;
   margin-top: 50px;
-  width: 1830px;
+  width: 1470px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -116,7 +110,7 @@ body {
   text-align: center;
 }
 .calendar .weekdays .weekday {
-  width: 250px;
+  width: 200px;
   padding: 10px;
   font-weight: 600;
   letter-spacing: 1px;
@@ -137,9 +131,9 @@ body {
 }
 
 .calendar .months .month .day {
-  width: 250px;
+  width: 200px;
   padding: 15px;
-  height: 250px;
+  height: 200px;
   box-sizing: border-box;
   background-color: var(--main-dark-color-tr);
   border-radius: 30px;
@@ -574,11 +568,18 @@ input[type="checkbox"] + label {
   }
 }
 
-@media screen and (max-width: 1600px) {
+@media screen and (max-width: 1510px) {
+  .calendar {
+    width: 980px;
+  }
   .calendar .weekdays .weekday {
-    width: 200px;
+    width: 130px;
     font-size: 0.8em;
     margin-bottom: 4px;
+  }
+  .calendar .months .month .day {
+    width: 130px;
+    height: 130px;
   }
 }
 
@@ -696,10 +697,10 @@ input[type="checkbox"] + label {
     font-size: 0.6em !important;
   }
   input[type="checkbox"] {
-  width: 1em;
-  height: 1em;
-  margin-top: 0;
-}
+    width: 1em;
+    height: 1em;
+    margin-top: 0;
+  }
 }
 
 @media screen and (max-width: 480px) {
