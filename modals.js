@@ -19,9 +19,9 @@ function initModalCreation() {
           const day = el.getAttribute('data-day');
           const month = el.getAttribute('data-month');
           const emptyDays = el.getAttribute('data-empty');
-          date = new Date(year, month, day - emptyDays, 09, 00, 00);
+          date = new Date(year, month, day, 09, 00, 00);
           if (day - emptyDays === currentDay) {
-            date = new Date(year, month, day - emptyDays, hours, minutes);
+            date = new Date(year, month, day, hours, minutes);
           }
         } else {
           date = new Date(currentYear, navigator, 1, 09, 00, 00);

@@ -16,7 +16,6 @@ function loadMonths() {
   navigator = currentMonth;
 
   for (let month = 0; month < monthNames.length; month++) {
-
     const monthContainer = document.createElement('div');
     monthContainer.setAttribute('id', month);
     monthContainer.classList.add('month');
@@ -24,10 +23,8 @@ function loadMonths() {
     if (month !== currentMonth) {
       changeStyles("off", monthContainer);
     }
-
     const emptyDays = getEmptyDaysInMonth(currentYear, month, 1, "en");
     const daysInMonth = new Date(currentYear, month + 1, 0).getDate();
-
     for (let day = 1; day <= emptyDays + daysInMonth; day++) {
       const domDay = document.createElement('div');
       domDay.classList.add('day');

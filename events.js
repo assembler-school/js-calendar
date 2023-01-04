@@ -127,6 +127,7 @@ const removeEvent = (e) => {
     });
   });
   document.querySelector("#eventModal.is-visible").classList.remove(isVisible);
+  document.body.style.overflow = 'auto';
 }
 
 function getDaysOfEvent(initDate, endDate) {
