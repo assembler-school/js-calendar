@@ -25,9 +25,3 @@ Project developed:
 
 ![image](https://github.com/devs-toni/appcaljs/assets/103459716/1a136890-3d9f-476e-bbea-199716c19e02)
 
-## Resources
-
-- [JavaScript HTML DOM](https://www.w3schools.com/js/js_htmldom.asp)
-- [JavaScript Dates](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Date)
-- [LocalStorage](https://developer.mozilla.org/es/docs/Web/API/Window/localStorage)
-- [JavaScript Timeout](https://www.w3schools.com/jsref/met_win_settimeout.asp)
